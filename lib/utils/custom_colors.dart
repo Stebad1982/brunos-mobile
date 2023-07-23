@@ -3,14 +3,21 @@ import 'dart:ui';
 import 'package:flutter/widgets.dart';
 
 class CustomColors {
-  static const Color color1 = Color.fromRGBO(215, 136, 9,1);
-  static Color tintColor1 = const Color.fromRGBO(215, 136, 9, 0.5);
+  static const Color orangeColor = Color.fromRGBO(215, 136, 9,1);
+  static Color orangeColorTint = const Color.fromRGBO(215, 136, 9, 0.5);
 
-  static const Color color2 = Color.fromRGBO(65, 75, 88, 1);
-  static Color tintColor2 = const Color.fromRGBO(65, 75, 88, 0.5);
+  static const Color brownColor = Color.fromRGBO(106, 51, 12,1);
+  static Color brownColorTint = const Color.fromRGBO(106, 51, 12, 0.5);
 
-  static const Color color3 = Color.fromRGBO(167, 175, 186, 1);
-  static const Color color4 = Color.fromRGBO(252, 246, 245, 1);
+  static const Color blackColor = Color.fromRGBO(10, 11, 14, 1);
+  static Color blackColorTint = const Color.fromRGBO(10, 11, 14, 0.5);
+
+  static const Color whiteColor = Color.fromRGBO(255, 255, 255, 1);
+  static const Color whiteColorTint = Color.fromRGBO(255, 255, 255, 0.5);
+
+  static const Color greyColor = Color.fromRGBO(133, 136, 141, 1);
+  static const Color greyColorTint = Color.fromRGBO(133, 136, 141, 0.5);
+
   static const Color color5 = Color.fromRGBO(255, 184, 100, 1);
   static Color tintColor3 = const Color.fromRGBO(167, 175, 186, 0.5);
   static const Color color6 = Color.fromRGBO(118, 131, 159, 1);

@@ -28,7 +28,7 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return EasySplashScreen(
       logo: Image.asset('assets/images/logo.png'),
-      logoWidth: 100.w,
+      logoWidth: 150.78.w,
       /* title:  Text(
         'Customer',
         style: TextStyle(
@@ -38,14 +38,15 @@ class _SplashScreenState extends State<SplashScreen> {
           fontFamily: 'Rubik',
         ),
       ),*/
-      backgroundColor: CustomColors.color4,
+      backgroundImage: Image.asset('assets/images/splash-bg.png').image,
+      //backgroundColor: CustomColors.color4,
       showLoader: false,
       //loadingText: const Text("Loading...",style: TextStyle(color: CustomColors.color1),),
       futureNavigator:
           context.read<AuthViewModel>().callVersionAndBuildNumber(),
       // navigator: const IntroSlidesScreen(),
       durationInSeconds: 1,
-      loaderColor: CustomColors.color1,
+      loaderColor: CustomColors.orangeColor,
     );
   }
 }
