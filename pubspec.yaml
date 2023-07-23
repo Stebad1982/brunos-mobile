@@ -38,6 +38,9 @@ dependencies:
   easy_splash_screen: ^1.0.4
   intro_slider: ^4.2.0
   intl: ^0.18.1
+  flutter_svg: ^2.0.7
+  package_info_plus: ^4.0.2
+
 
 
 
@@ -84,10 +87,15 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
-    - family: Rubik
+    - family: CircularStd
       fonts:
-        - asset: assets/fonts/Rubik-Black.ttf
-        - asset: assets/fonts/Rubik-Bold.ttf
+        - asset: assets/fonts/CircularStd-Black.ttf
+        - asset: assets/fonts/CircularStd-BlackItalic.ttf
+        - asset: assets/fonts/CircularStd-Bold.ttf
+        - asset: assets/fonts/CircularStd-BoldItalic.ttf
+        - asset: assets/fonts/CircularStd-Book.ttf
+        - asset: assets/fonts/CircularStd-BookItalic.ttf
+        - asset: assets/fonts/CircularStd-Medium.ttf
   #         style: italic
   #   - family: Trajan Pro
   #     fonts:

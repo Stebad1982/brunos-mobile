@@ -5,17 +5,20 @@ import 'custom_colors.dart';
 
 Widget customButton ({required String text,required VoidCallback onPressed, required bool colored}){
   return SizedBox(
-    height: 40.h,
+    height: 50.h,
     width: double.infinity,
     child: ElevatedButton(
       style: ElevatedButton.styleFrom(
-        backgroundColor: colored ? CustomColors.color2 : CustomColors.color4,
-        shape: const StadiumBorder(side: BorderSide(width: 1.0,color: CustomColors.color2)),
+        backgroundColor: colored ? CustomColors.orangeColor : CustomColors.whiteColor,
+        shape: const StadiumBorder(side: BorderSide(width: 1.0,color: CustomColors.orangeColor)),
       ),
       onPressed: onPressed,
       child: Text(text,
           style: TextStyle(
-              color: colored ? CustomColors.color4 : CustomColors.color2)),
+            fontFamily: 'CircularStd',
+            fontSize: 16.sp,
+              fontWeight: FontWeight.w500,
+              color: colored ? CustomColors.whiteColor : CustomColors.orangeColor,)),
     ),
   );
 }

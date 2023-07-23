@@ -14,10 +14,10 @@ void configLoading() {
     ..loadingStyle = EasyLoadingStyle.custom
     ..indicatorSize = 45.0
     ..radius = 10.0
-    ..progressColor = CustomColors.color4
-    ..backgroundColor = CustomColors.color1
-    ..indicatorColor = CustomColors.color4
-    ..textColor = CustomColors.color4
+    ..progressColor = CustomColors.orangeColor
+    ..backgroundColor = CustomColors.orangeColor
+    ..indicatorColor = CustomColors.orangeColor
+    ..textColor = CustomColors.orangeColor
     ..maskColor = Colors.black.withOpacity(0.5)
     ..maskType = EasyLoadingMaskType.custom
     ..userInteractions = false
@@ -52,7 +52,8 @@ class MyApp extends StatelessWidget {
       DeviceOrientation.portraitDown,
     ]);
     return ScreenUtilInit(
-        useInheritedMediaQuery: true,
+      designSize: const Size(375,812),
+        //useInheritedMediaQuery: true,
         minTextAdapt: true,
         splitScreenMode: true,
         builder: (context, child) {
@@ -61,20 +62,20 @@ class MyApp extends StatelessWidget {
             supportedLocales: context.supportedLocales,
             locale: context.locale,*/
             theme: ThemeData(
-              primaryColor: CustomColors.color1,
+              primaryColor: CustomColors.whiteColor,
               colorScheme: ThemeData().colorScheme.copyWith(
-                secondary: CustomColors.color1,
-                primary: CustomColors.color2,
+                secondary: CustomColors.whiteColor,
+                primary: CustomColors.orangeColor,
               ),
               textTheme: TextTheme(
                 subtitle1: TextStyle(
-                  fontFamily: 'Rubik',
-                  fontSize: 12.sp,
-                  color: CustomColors.color2, // <-- TextFormField input color
+                  fontFamily: 'CircularStd',
+                  fontSize: 14.sp,
+                  color: CustomColors.orangeColor, // <-- TextFormField input color
                 ),
               ),
               textSelectionTheme: const TextSelectionThemeData(
-                cursorColor: CustomColors.color2, //<-- SEE HERE
+                cursorColor: CustomColors.orangeColor, //<-- SEE HERE
               ),
               inputDecorationTheme: InputDecorationTheme(
                 fillColor: Colors.white,
@@ -82,16 +83,16 @@ class MyApp extends StatelessWidget {
                 enabledBorder: const OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.transparent),
                     borderRadius: BorderRadius.all(Radius.circular(15))),
-                suffixIconColor: CustomColors.color3,
-                prefixIconColor: CustomColors.color3,
-                focusColor: CustomColors.color1,
+                suffixIconColor: CustomColors.greyColor,
+                prefixIconColor: CustomColors.greyColor,
+                focusColor: CustomColors.orangeColor,
                 hintStyle: TextStyle(
                   fontFamily: 'Rubik',
                   fontSize: 12.sp,
                   color: Colors.grey,
                 ),
                 focusedBorder: const OutlineInputBorder(
-                    borderSide: BorderSide(color: CustomColors.color1),
+                    borderSide: BorderSide(color: CustomColors.orangeColor),
                     borderRadius: BorderRadius.all(Radius.circular(15))),
               ),
             ),
