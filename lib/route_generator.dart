@@ -2,13 +2,15 @@
 import 'package:brunos_kitchen/screens/splash_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+const String splashRoute = '/';
+const String loginRoute = '/login';
 
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     final args = settings.arguments;
 
     switch (settings.name) {
-      case '/':
+      case splashRoute:
         return MaterialPageRoute(builder: (_) => const SplashScreen());
       case '/tasting_details':
       /*return MaterialPageRoute(
