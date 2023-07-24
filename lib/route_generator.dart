@@ -1,4 +1,5 @@
 
+import 'package:brunos_kitchen/screens/LogInScreen.dart';
 import 'package:brunos_kitchen/screens/splash_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -12,6 +13,8 @@ class RouteGenerator {
     switch (settings.name) {
       case splashRoute:
         return MaterialPageRoute(builder: (_) => const SplashScreen());
+      case loginRoute:
+        return MaterialPageRoute(builder: (_) => const LoginScreen());
       case '/tasting_details':
       /*return MaterialPageRoute(
             builder: (_) => const TastingDetailsScreen(),

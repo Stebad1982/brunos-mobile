@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:intro_slider/intro_slider.dart';
 
+import '../route_generator.dart';
 import '../utils/custom_buttons.dart';
 import '../utils/custom_colors.dart';
 import '../utils/custom_font_style.dart';
@@ -23,7 +24,12 @@ class _IntroSlidesScreenState extends State<IntroSlidesScreen> {
     super.initState();
     slides.add(
       ContentConfig(
-        /* styleTitle: TextStyle(
+        marginDescription: const EdgeInsets.only(
+          left: 20.0,
+          right: 20.0,
+          top: 20.0,
+          bottom: 0.0,
+        ),        /* styleTitle: TextStyle(
             fontFamily: 'Rubik',
             fontSize: 40.sp,
             color: CustomColors.color2,
@@ -69,6 +75,12 @@ class _IntroSlidesScreenState extends State<IntroSlidesScreen> {
     );
     slides.add(
       ContentConfig(
+        marginDescription: const EdgeInsets.only(
+          left: 20.0,
+          right: 20.0,
+          top: 20.0,
+          bottom: 0.0,
+        ),
         /* styleTitle: TextStyle(
             fontFamily: 'Rubik',
             fontSize: 40.sp,
@@ -115,6 +127,12 @@ class _IntroSlidesScreenState extends State<IntroSlidesScreen> {
     );
     slides.add(
       ContentConfig(
+        marginDescription: const EdgeInsets.only(
+          left: 20.0,
+          right: 20.0,
+          top: 20.0,
+          bottom: 0.0,
+        ),
         /* styleTitle: TextStyle(
             fontFamily: 'Rubik',
             fontSize: 40.sp,
@@ -155,7 +173,10 @@ class _IntroSlidesScreenState extends State<IntroSlidesScreen> {
             SizedBox(
               height: 49.h,
             ),
-            customButton(text: 'Get Started', onPressed: () {  }, colored: true)
+            customButton(text: 'Get Started', onPressed: () {
+              Navigator.pushNamedAndRemoveUntil(
+                  context, loginRoute, ModalRoute.withName(splashRoute));
+            }, colored: true)
           ],
         ),
         // widgetDescription: Text('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam',),
@@ -188,12 +209,12 @@ class _IntroSlidesScreenState extends State<IntroSlidesScreen> {
       ),
       onSkipPress: () {
         Navigator.pushNamedAndRemoveUntil(
-            context, '/login', ModalRoute.withName('/'));
+            context, loginRoute, ModalRoute.withName(splashRoute));
       },
-      onDonePress: () {
+     /* onDonePress: () {
         Navigator.pushNamedAndRemoveUntil(
-            context, '/login', ModalRoute.withName('/'));
-      },
+            context, loginRoute, ModalRoute.withName(splashRoute));
+      },*/
     );
   }
 }

@@ -25,7 +25,7 @@ class AuthViewModel with ChangeNotifier {
     }
     final authToken =
     await _sharedPref.read(SharedPreferencesKeys.authToken.text);
-    await Future.delayed(const Duration(seconds: 3), () {});
+    await Future.delayed(const Duration(seconds: 5), () {});
     if (authToken == null) {
       return const IntroSlidesScreen();
     } else {
