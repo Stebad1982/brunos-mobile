@@ -62,6 +62,7 @@ class MyApp extends StatelessWidget {
             supportedLocales: context.supportedLocales,
             locale: context.locale,*/
             theme: ThemeData(
+              scaffoldBackgroundColor: CustomColors.whiteColor,
               primaryColor: CustomColors.whiteColor,
               colorScheme: ThemeData().colorScheme.copyWith(
                 secondary: CustomColors.whiteColor,
@@ -78,7 +79,7 @@ class MyApp extends StatelessWidget {
                 cursorColor: CustomColors.orangeColor, //<-- SEE HERE
               ),
               inputDecorationTheme: InputDecorationTheme(
-                fillColor: Colors.white,
+                fillColor: CustomColors.lightGreyColor,
                 filled: true,
                 enabledBorder: const OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.transparent),
@@ -87,9 +88,9 @@ class MyApp extends StatelessWidget {
                 prefixIconColor: CustomColors.greyColor,
                 focusColor: CustomColors.orangeColor,
                 hintStyle: TextStyle(
-                  fontFamily: 'Rubik',
-                  fontSize: 12.sp,
-                  color: Colors.grey,
+                  fontFamily: 'CircularStd',
+                  fontSize: 14.sp,
+                  color: CustomColors.greyColor,
                 ),
                 focusedBorder: const OutlineInputBorder(
                     borderSide: BorderSide(color: CustomColors.orangeColor),
@@ -97,7 +98,7 @@ class MyApp extends StatelessWidget {
               ),
             ),
             debugShowCheckedModeBanner: false,
-            title: 'Welcome Customer',
+            title: 'Bruno\'s Kitchen' ,
             navigatorObservers: [routeObserver],
             initialRoute: '/',
             navigatorKey: navigatorKey,

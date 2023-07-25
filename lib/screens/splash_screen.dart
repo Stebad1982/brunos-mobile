@@ -6,6 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
 import '../utils/custom_colors.dart';
+import '../utils/images.dart';
 import '../view_models/auth_view_model.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -27,7 +28,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return EasySplashScreen(
-      logo: Image.asset('assets/images/logo-3.gif'),
+      logo: Image.asset(splashAnimation),
       logoWidth: 150.78.w,
       /* title:  Text(
         'Customer',
@@ -38,7 +39,7 @@ class _SplashScreenState extends State<SplashScreen> {
           fontFamily: 'Rubik',
         ),
       ),*/
-      backgroundImage: Image.asset('assets/images/splash-bg.png').image,
+      backgroundImage: Image.asset(splashBackground).image,
       //backgroundColor: CustomColors.color4,
       showLoader: false,
       //loadingText: const Text("Loading...",style: TextStyle(color: CustomColors.color1),),

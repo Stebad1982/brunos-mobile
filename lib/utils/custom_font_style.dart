@@ -3,8 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'custom_colors.dart';
 
-//google font, color color2, size 25, bold
-Widget googleFont1({required String data}) {
+Widget black32w500Center({required String data}) {
   return Text(
     data,
     textAlign: TextAlign.center,
@@ -16,7 +15,18 @@ Widget googleFont1({required String data}) {
   );
 }
 
-Widget googleFont2({required String data}) {
+Widget black24w500({required String data}) {
+  return Text(
+    data,
+    style: TextStyle(
+        fontFamily: 'CircularStd',
+        fontSize: 24.sp,
+        color: CustomColors.blackColor,
+        fontWeight: FontWeight.w500),
+  );
+}
+
+Widget brown32w500({required String data}) {
   return Text(
     data,
     style: TextStyle(
@@ -27,7 +37,7 @@ Widget googleFont2({required String data}) {
   );
 }
 
-Widget googleFont3({required String data}) {
+Widget grey14w400HeightCentre({required String data}) {
   return Text(
     data,
     textAlign: TextAlign.center,
@@ -39,4 +49,24 @@ Widget googleFont3({required String data}) {
         color: CustomColors.greyColor),
   );
 }
+Widget grey14w400({required String data}) {
+  return Text(
+    data,
+    style: TextStyle(
+        fontFamily: 'CircularStd',
+        fontSize: 14.sp,
+        fontWeight: FontWeight.w400,
+        color: CustomColors.greyColor),
+  );
+}
 
+Widget orange14w400({required String data}) {
+  return Text(
+    data,
+    style: TextStyle(
+        fontFamily: 'CircularStd',
+        fontSize: 14.sp,
+        fontWeight: FontWeight.w400,
+        color: CustomColors.orangeColor),
+  );
+}

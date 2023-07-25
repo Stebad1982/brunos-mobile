@@ -1,3 +1,4 @@
+import 'package:brunos_kitchen/utils/images.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -42,29 +43,28 @@ class _IntroSlidesScreenState extends State<IntroSlidesScreen> {
         // title: "Intro Slide 1",
         widgetTitle: Column(
           children: [
-            Image.asset(
-              "assets/images/intro-1.png",
+            Image.asset(intro1,
               height: 305.h,
               width: 227.w,
             ),
             SizedBox(
               height: 26.h,
             ),
-            googleFont1(data: 'Proud Parent of a'),
-            googleFont2(data: 'Puppy?'),
+            black32w500Center(data: 'Proud Parent of a'),
+            brown32w500(data: 'Puppy?'),
             SizedBox(
               height: 16.h,
             ),
             SizedBox(
               width: 308.w,
-              child: googleFont3(
+              child: grey14w400HeightCentre(
                   data:
                       'Experience Bruno\'s Kitchen magic, where our Signature Nutrient Blend in every meal boosts your Doggo\'s wellness.'),
             ),
             SizedBox(
               height: 32.h,
             ),
-            SvgPicture.asset("assets/images/intro-indicator1.svg")
+            SvgPicture.asset(introIndicator1)
           ],
         ),
         // widgetDescription: Text('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam',),
@@ -95,28 +95,28 @@ class _IntroSlidesScreenState extends State<IntroSlidesScreen> {
         widgetTitle: Column(
           children: [
             Image.asset(
-              "assets/images/intro-2.png",
+              intro2,
               height: 305.h,
               width: 227.w,
             ),
             SizedBox(
               height: 26.h,
             ),
-            googleFont1(data: 'Craft Your Dogg’s'),
-            googleFont2(data: 'Perfect Plan'),
+            black32w500Center(data: 'Craft Your Dogg’s'),
+            brown32w500(data: 'Perfect Plan'),
             SizedBox(
               height: 16.h,
             ),
             SizedBox(
               width: 266.w,
-              child: googleFont3(
+              child: grey14w400HeightCentre(
                   data:
                       'Craft the perfect culinary journey for your doggo, customize a meal plan as unique as your furry friend 🐶❤️'),
             ),
             SizedBox(
               height: 32.h,
             ),
-            SvgPicture.asset("assets/images/intro-indicator2.svg")
+            SvgPicture.asset(introIndicator2)
           ],
         ),
         // widgetDescription: Text('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam',),
@@ -147,7 +147,7 @@ class _IntroSlidesScreenState extends State<IntroSlidesScreen> {
         widgetTitle: Column(
           children: [
             Image.asset(
-              "assets/images/intro-3.png",
+             intro3,
               height: 305.h,
               width: 227.w,
             ),
@@ -156,20 +156,20 @@ class _IntroSlidesScreenState extends State<IntroSlidesScreen> {
             ),
             SizedBox(
               width: 286.w,
-                child: googleFont1(data: 'Effortless Convenience')),
+                child: black32w500Center(data: 'Effortless Convenience')),
             SizedBox(
               height: 16.h,
             ),
             SizedBox(
               width: 308.w,
-              child: googleFont3(
+              child: grey14w400HeightCentre(
                   data:
                       'Choose from several meal recipes. cooked, portioned and delivered your way, with whenever and wherever you need it.'),
             ),
             SizedBox(
               height: 32.h,
             ),
-            SvgPicture.asset("assets/images/intro-indicator3.svg"),
+            SvgPicture.asset(introIndicator3),
             SizedBox(
               height: 49.h,
             ),
@@ -179,10 +179,6 @@ class _IntroSlidesScreenState extends State<IntroSlidesScreen> {
             }, colored: true)
           ],
         ),
-        // widgetDescription: Text('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam',),
-        // pathImage: "assets/images/logo.png",
-        //heightImage: 304,
-        // widthImage: 225,
       ),
     );
     super.initState();
