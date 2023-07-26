@@ -16,7 +16,12 @@ class CustomColors {
   static const Color whiteColorTint = Color.fromRGBO(255, 255, 255, 0.5);
 
   static const Color greyColor = Color.fromRGBO(133, 136, 141, 1);
+  static const Color greyMediumColor = Color.fromRGBO(245, 242, 251, 1);
+  static const Color greyMediumLightColor = Color.fromRGBO(239, 239, 239, 1);
   static const Color lightGreyColor = Color.fromRGBO(248, 248, 249, 1);
+
+  static const Color yellowColor = Color.fromRGBO(217, 174, 14, 1);
+
 
   static const Color color5 = Color.fromRGBO(255, 184, 100, 1);
   static Color tintColor3 = const Color.fromRGBO(167, 175, 186, 0.5);

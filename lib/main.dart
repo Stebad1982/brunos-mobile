@@ -79,6 +79,9 @@ class MyApp extends StatelessWidget {
                 cursorColor: CustomColors.orangeColor, //<-- SEE HERE
               ),
               inputDecorationTheme: InputDecorationTheme(
+                isDense: true,
+                contentPadding: EdgeInsets.zero,
+
                 fillColor: CustomColors.lightGreyColor,
                 filled: true,
                 enabledBorder: const OutlineInputBorder(

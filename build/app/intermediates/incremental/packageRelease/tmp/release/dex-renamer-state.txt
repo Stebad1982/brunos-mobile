@@ -1,4 +1,0 @@
-#Tue Jul 25 01:50:22 PKT 2023
-base.0=/Users/appstirr/Documents/Flutter/bruno-mobile/build/app/intermediates/dex/release/minifyReleaseWithR8/classes.dex
-renamed.0=classes.dex
-path.0=classes.dex
