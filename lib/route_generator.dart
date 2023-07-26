@@ -1,4 +1,5 @@
 
+import 'package:brunos_kitchen/screens/bottom_navigation_screen.dart';
 import 'package:brunos_kitchen/screens/logIn_screen.dart';
 import 'package:brunos_kitchen/screens/otp_screen.dart';
 import 'package:brunos_kitchen/screens/paw_points_screen.dart';
@@ -15,6 +16,8 @@ const String registerUserContinueRoute = '/register_user_continue';
 const String otpRoute = '/otp';
 const String userVerifiedRoute = '/user_verified';
 const String pawPointsRoute = '/paw_points';
+const String bottomNavigationRout = '/bottom_navigation';
+
 
 
 
@@ -40,6 +43,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const UserVerifiedScreen());
       case pawPointsRoute:
         return MaterialPageRoute(builder: (_) => const PawPointsScreen());
+      case bottomNavigationRout:
+        return MaterialPageRoute(builder: (_) => const BottomNavigationScreen());
       case '/tasting_details':
       /*return MaterialPageRoute(
             builder: (_) => const TastingDetailsScreen(),

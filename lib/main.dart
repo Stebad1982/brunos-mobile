@@ -1,6 +1,7 @@
 import 'package:brunos_kitchen/route_generator.dart';
 import 'package:brunos_kitchen/utils/custom_colors.dart';
 import 'package:brunos_kitchen/view_models/auth_view_model.dart';
+import 'package:brunos_kitchen/view_models/bottom_navigation_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
@@ -35,6 +36,9 @@ Future<void> main() async{
     providers: [
       ChangeNotifierProvider(
         create: (_) => AuthViewModel(),
+      ),
+      ChangeNotifierProvider(
+        create: (_) => BottomNavigationViewModel(),
       ),
     ],
         child: const MyApp(),
