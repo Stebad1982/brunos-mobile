@@ -66,7 +66,10 @@ class LoginScreen extends StatelessWidget {
                 SizedBox(
                   height: 40.h,
                 ),
-                customButton(text: 'Continue', onPressed: () {}, colored: true),
+                customButton(text: 'Continue', onPressed: () {
+                  Navigator.pushNamedAndRemoveUntil(
+                      context, bottomNavigationRout, ModalRoute.withName(splashRoute));
+                }, colored: true),
                 SizedBox(
                   height: 20.h,
                 ),
