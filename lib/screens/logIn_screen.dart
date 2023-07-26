@@ -20,69 +20,74 @@ class LoginScreen extends StatelessWidget {
         child: Padding(
           padding:
               const EdgeInsets.only(top: 30, bottom: 20, left: 20, right: 20),
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                black24w500Centre(data: 'Welcome back Dog Lovers'),
-                SizedBox(
-                  height: 10.h,
-                ),
-                grey14w400(data: 'Please enter your login details below'),
-                SizedBox(
-                  height: 32.h,
-                ),
-                TextField(
-                  //controller: nameController,
-                  onChanged: (text) {},
-                  keyboardType: TextInputType.emailAddress,
-                  decoration: InputDecoration(
-                      hintText: 'Email address',
-                      prefixIcon: Padding(
-                        padding: const EdgeInsets.all(16),
-                        child: SvgPicture.asset(emailIcon),
-                      )),
-                ),
-                SizedBox(
-                  height: 16.h,
-                ),
-                TextField(
-                  //controller: nameController,
-                  onChanged: (text) {},
-                  keyboardType: TextInputType.visiblePassword,
-                  decoration: InputDecoration(
-                      hintText: 'Password',
-                      prefixIcon: Padding(
-                        padding: const EdgeInsets.all(16),
-                        child: SvgPicture.asset(lockIcon),
-                      )),
-                ),
-                SizedBox(
-                  height: 12.h,
-                ),
-                Align(
-                    alignment: Alignment.centerRight,
-                    child: orange14w400(data: 'Forgot Password')),
-                SizedBox(
-                  height: 40.h,
-                ),
-                customButton(text: 'Continue', onPressed: () {
-                  Navigator.pushNamedAndRemoveUntil(
-                      context, bottomNavigationRout, ModalRoute.withName(splashRoute));
-                }, colored: true),
-                SizedBox(
-                  height: 20.h,
-                ),
-                Center(child: grey14w400(data: 'Or continue with')),
-                SizedBox(
-                  height: 20.h,
-                ),
-                googleFacebookButtonWidget(),
+          child: Stack(
+            children: [
+              SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    black24w500Centre(data: 'Welcome back Dog Lovers'),
+                    SizedBox(
+                      height: 10.h,
+                    ),
+                    grey14w400(data: 'Please enter your login details below'),
+                    SizedBox(
+                      height: 32.h,
+                    ),
+                    TextField(
+                      //controller: nameController,
+                      onChanged: (text) {},
+                      keyboardType: TextInputType.emailAddress,
+                      decoration: InputDecoration(
+                          hintText: 'Email address',
+                          prefixIcon: Padding(
+                            padding: const EdgeInsets.all(16),
+                            child: SvgPicture.asset(emailIcon),
+                          )),
+                    ),
+                    SizedBox(
+                      height: 16.h,
+                    ),
+                    TextField(
+                      //controller: nameController,
+                      onChanged: (text) {},
+                      keyboardType: TextInputType.visiblePassword,
+                      decoration: InputDecoration(
+                          hintText: 'Password',
+                          prefixIcon: Padding(
+                            padding: const EdgeInsets.all(16),
+                            child: SvgPicture.asset(lockIcon),
+                          )),
+                    ),
+                    SizedBox(
+                      height: 12.h,
+                    ),
+                    Align(
+                        alignment: Alignment.centerRight,
+                        child: orange14w400(data: 'Forgot Password')),
+                    SizedBox(
+                      height: 40.h,
+                    ),
+                    customButton(text: 'Continue', onPressed: () {
+                      Navigator.pushNamedAndRemoveUntil(
+                          context, bottomNavigationRout, ModalRoute.withName(splashRoute));
+                    }, colored: true),
+                    SizedBox(
+                      height: 20.h,
+                    ),
+                    Center(child: grey14w400(data: 'Or continue with')),
+                    SizedBox(
+                      height: 20.h,
+                    ),
+                    googleFacebookButtonWidget(),
 
-                SizedBox(
-                  height: 236.h,
+
+                  ],
                 ),
-                InkWell(
+              ),
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: InkWell(
                   onTap: (){
                     Navigator.pushNamed(context, registerUserRoute);
                   },
@@ -113,8 +118,8 @@ class LoginScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),
