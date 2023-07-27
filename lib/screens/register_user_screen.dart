@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
+import '../main.dart';
 import '../utils/custom_buttons.dart';
 import '../utils/custom_colors.dart';
 import '../utils/custom_font_style.dart';
@@ -21,14 +22,17 @@ class RegisterUserScreen extends StatelessWidget {
           padding:
           const EdgeInsets.only(top: 30, bottom: 20, left: 20, right: 20),
           child: SingleChildScrollView(
-            child: Column(
+            child: Stack(
+              children: [
+              Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 black24w500Centre(data: 'Let’s get started!'),
                 SizedBox(
                   height: 10.h,
                 ),
-                grey14w400(data: 'Tell us a bit about you and your pawsome friend'),
+                grey14w400(
+                    data: 'Tell us a bit about you and your pawsome friend'),
                 SizedBox(
                   height: 32.h,
                 ),
@@ -79,7 +83,8 @@ class RegisterUserScreen extends StatelessWidget {
                               const VerticalDivider(
                                 color: CustomColors.greyColor,
                                 thickness: 1,
-                              )                        ],
+                              )
+                            ],
                           ),
                         ),
                       )),
@@ -112,45 +117,49 @@ class RegisterUserScreen extends StatelessWidget {
                   height: 20.h,
                 ),
                 googleFacebookButtonWidget(),
-                SizedBox(
-                  height: 126.h,
-                ),
-                InkWell(
-                  onTap: (){
-                    Navigator.pop(context);
-                  },
-                  child: const Center(
-                    child: Text.rich(
-                      TextSpan(
-                        children: [
-                          TextSpan(
-                            text: 'Already Have Account? ',
-                            style: TextStyle(
-                              color: CustomColors.blackColor,
-                              fontSize: 16,
-                              fontFamily: 'Circular Std',
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                          TextSpan(
-                            text: 'Log In',
-                            style: TextStyle(
-                              color: CustomColors.orangeColor,
-                              fontSize: 16,
-                              fontFamily: 'Circular Std',
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                        ],
-                      ),
+              ],
+            ),
+            SizedBox(height: screenHeight,
+                child: Align(
+                alignment: Alignment.bottomCenter,
+                child: InkWell(
+                onTap: (){
+          Navigator.pop(context);
+          },
+            child: const Text.rich(
+              TextSpan(
+                children: [
+                  TextSpan(
+                    text: 'Already Have Account? ',
+                    style: TextStyle(
+                      color: CustomColors.blackColor,
+                      fontSize: 16,
+                      fontFamily: 'Circular Std',
+                      fontWeight: FontWeight.w500,
                     ),
                   ),
-                ),
-              ],
+                  TextSpan(
+                    text: 'Log In',
+                    style: TextStyle(
+                      color: CustomColors.orangeColor,
+                      fontSize: 16,
+                      fontFamily: 'Circular Std',
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
       ),
+      ],
+    ),)
+    ,
+    )
+    ,
+    )
+    ,
     );
   }
 }

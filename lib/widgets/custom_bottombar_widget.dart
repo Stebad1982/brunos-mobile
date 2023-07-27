@@ -2,26 +2,33 @@
 
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 
+import '../utils/custom_colors.dart';
 import '../view_models/bottom_navigation_view_model.dart';
 
-class CustomBottomBar extends StatefulWidget {
-  const CustomBottomBar({super.key});
+class CustomBottomBarWidget extends StatefulWidget {
+  const CustomBottomBarWidget({super.key});
 
   @override
-  _CustomBottomBarState createState() => _CustomBottomBarState();
+  _CustomBottomBarWidgetState createState() => _CustomBottomBarWidgetState();
 }
 
-class _CustomBottomBarState extends State<CustomBottomBar> {
+class _CustomBottomBarWidgetState extends State<CustomBottomBarWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
       clipBehavior: Clip.hardEdge,
       decoration: BoxDecoration(
         color: const Color(0xFFFAFAFA),
+
         // color: AppTheme.primaryColor.withOpacity(0.8),
+        borderRadius: const BorderRadius.only(
+          topLeft: Radius.circular(30.0),
+          topRight: Radius.circular(30.0),
+        ),
         boxShadow: [
           BoxShadow(
             blurRadius: 24,
@@ -29,7 +36,7 @@ class _CustomBottomBarState extends State<CustomBottomBar> {
           ),
         ],
       ),
-      height: 60,
+      height: 87.h,
       width: MediaQuery.of(context).size.width,
       child: BackdropFilter(
         filter: ImageFilter.blur(sigmaX: 90, sigmaY: 90),
@@ -37,31 +44,25 @@ class _CustomBottomBarState extends State<CustomBottomBar> {
           type: MaterialType.transparency,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children:  [
               BBarIcon(
-                title: "",
-                iconData: Icons.dashboard_rounded,
-                selectedIcon: Icons.dashboard_rounded,
+                title: "Home",
+                iconData: Icons.home_filled,
+                selectedIcon: Icons.home_filled,
                 index: 0,
               ),
               BBarIcon(
-                title: "",
-                iconData: Icons.dashboard_rounded,
-                selectedIcon: Icons.notifications,
+                title: "shop",
+                iconData: Icons.shopping_bag,
+                selectedIcon: Icons.shopping_bag,
                 index: 1,
               ),
               BBarIcon(
-                title: "",
-                iconData: Icons.dashboard_rounded,
-                selectedIcon: Icons.verified_user_rounded,
+                title: "Profile",
+                iconData: Icons.account_circle,
+                selectedIcon: Icons.account_circle,
                 index: 2,
-              ),
-              BBarIcon(
-                title: "",
-                iconData: Icons.dashboard_rounded,
-                selectedIcon: Icons.verified_user_rounded,
-                index: 3,
               ),
             ],
           ),
@@ -112,26 +113,26 @@ class _BBarIconState extends State<BBarIcon> {
                       ? Icon(
                     widget.selectedIcon,
                     key: const Key("selected"),
-                    color: Colors.teal,
+                    color: CustomColors.orangeColor,
                     size: 28,
                   )
                       : Icon(
                     widget.iconData,
                     key: const Key("unselected"),
-                    color: Colors.grey.withOpacity(0.5),
+                    color: CustomColors.greyColor,
                     // color: AppTheme.lightGreyColor,
                     size: 28,
                   ),
                 ),
                 const SizedBox(height: 4),
-                // Text(
-                //   widget.title,
-                //   style: TextStyle(
-                //     color: widget.index == value.homeViewIndex
-                //         ? AppTheme.secondaryColor
-                //         : AppTheme.lightGreyColor,
-                //   ),
-                // )
+                Text(
+                  widget.title,
+                  style: TextStyle(
+                    color: widget.index == value.homeViewIndex
+                        ? CustomColors.orangeColor
+                        : CustomColors.greyColor,
+                  ),
+                )
               ],
             ),
           );

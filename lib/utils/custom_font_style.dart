@@ -39,6 +39,28 @@ Widget black14w400Centre({required String data}) {
   );
 }
 
+Widget black14w500({required String data}) {
+  return Text(
+    data,
+    style: TextStyle(
+        fontFamily: 'CircularStd',
+        fontSize: 14.sp,
+        color: CustomColors.blackColor,
+        fontWeight: FontWeight.w500),
+  );
+}
+
+Widget black18w500({required String data}) {
+  return Text(
+    data,
+    style: TextStyle(
+        fontFamily: 'CircularStd',
+        fontSize: 18.sp,
+        color: CustomColors.blackColor,
+        fontWeight: FontWeight.w500),
+  );
+}
+
 Widget brown32w500({required String data}) {
   return Text(
     data,
@@ -80,6 +102,17 @@ Widget orange14w400({required String data}) {
         fontFamily: 'CircularStd',
         fontSize: 14.sp,
         fontWeight: FontWeight.w400,
+        color: CustomColors.orangeColor),
+  );
+}
+
+Widget orange14w500({required String data}) {
+  return Text(
+    data,
+    style: TextStyle(
+        fontFamily: 'CircularStd',
+        fontSize: 14.sp,
+        fontWeight: FontWeight.w500,
         color: CustomColors.orangeColor),
   );
 }

@@ -24,7 +24,7 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
         body: Stack(
           children: [
             Consumer<BottomNavigationViewModel>(
-              builder: (context, value, _) {
+              builder: (context, bottomNavigationViewModel, _) {
                 return AnimatedSwitcher(
                   duration: const Duration(milliseconds: 200),
                   reverseDuration: const Duration(milliseconds: 1),
@@ -39,13 +39,13 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
                       ),
                     );
                   },
-                  child: value.getHomeView(value.homeViewIndex),
+                  child: bottomNavigationViewModel.getHomeView(bottomNavigationViewModel.homeViewIndex),
                 );
               },
             ),
             const Align(
               alignment: Alignment.bottomCenter,
-              child: CustomBottomBar(),
+              child: CustomBottomBarWidget(),
             )
           ],
         ),

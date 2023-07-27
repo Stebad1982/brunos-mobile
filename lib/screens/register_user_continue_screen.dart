@@ -25,9 +25,7 @@ class RegisterUserContinueScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const BackButtonWidget(),
-              SizedBox(
-                height: 184.h,
-              ),
+              const Spacer(),
               Center(
                 child: Column(
                   children: [
@@ -47,15 +45,15 @@ class RegisterUserContinueScreen extends StatelessWidget {
                         child: black14w400Centre(
                             data:
                                 'You’re now one step closer to giving your doggo the love and treats they deserve.')),
-                    SizedBox(
-                      height: 193.9.h,
-                    ),
-                    customButton(text: 'Continue', onPressed: () {
-                      Navigator.pushNamed(context, otpRoute);
-                    }, colored: true),
+
                   ],
                 ),
-              )
+              ),
+              const Spacer(),
+              customButton(text: 'Continue', onPressed: () {
+                Navigator.pushNamed(context, otpRoute);
+              }, colored: true),
+              SizedBox(height: 20.h,)
             ],
           ),
         ),

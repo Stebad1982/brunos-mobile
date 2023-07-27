@@ -29,8 +29,17 @@ void configLoading() {
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 final RouteObserver<ModalRoute> routeObserver =
 RouteObserver<ModalRoute>();
+final double screenHeight = MediaQuery
+    .of(navigatorKey.currentContext!)
+    .size
+    .height - 100;
 Future<void> main() async{
-
+  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+    //systemNavigationBarColor: Colors.amber, // navigation bar color
+    statusBarColor: Colors.transparent, // status bar color
+    statusBarIconBrightness: Brightness.dark, // status bar icon color
+    systemNavigationBarIconBrightness: Brightness.dark, // color of navigation controls
+  ));
   configLoading();
   runApp(MultiProvider(
     providers: [

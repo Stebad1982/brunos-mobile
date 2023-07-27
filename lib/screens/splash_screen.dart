@@ -2,6 +2,7 @@
 
 import 'package:easy_splash_screen/easy_splash_screen.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
@@ -21,8 +22,14 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     // TODO: implement initState
+    //SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
     super.initState();
+  }
 
+  @override
+  void dispose() {
+  //  SystemChrome.restoreSystemUIOverlays();
+    super.dispose();
   }
 
   @override

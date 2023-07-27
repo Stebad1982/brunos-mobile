@@ -1,3 +1,4 @@
+import 'package:brunos_kitchen/main.dart';
 import 'package:brunos_kitchen/route_generator.dart';
 import 'package:brunos_kitchen/utils/custom_colors.dart';
 import 'package:brunos_kitchen/utils/custom_font_style.dart';
@@ -20,10 +21,10 @@ class LoginScreen extends StatelessWidget {
         child: Padding(
           padding:
               const EdgeInsets.only(top: 30, bottom: 20, left: 20, right: 20),
-          child: Stack(
-            children: [
-              SingleChildScrollView(
-                child: Column(
+          child: SingleChildScrollView(
+            child: Stack(
+              children: [
+                Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     black24w500Centre(data: 'Welcome back Dog Lovers'),
@@ -69,9 +70,11 @@ class LoginScreen extends StatelessWidget {
                       height: 40.h,
                     ),
                     customButton(text: 'Continue', onPressed: () {
-                      Navigator.pushNamedAndRemoveUntil(
-                          context, bottomNavigationRout, ModalRoute.withName(splashRoute));
-                    }, colored: true),
+                          Navigator.pushNamedAndRemoveUntil(
+                              context,
+                              bottomNavigationRoute,
+                              ModalRoute.withName(splashRoute));
+                        }, colored: true),
                     SizedBox(
                       height: 20.h,
                     ),
@@ -84,42 +87,43 @@ class LoginScreen extends StatelessWidget {
 
                   ],
                 ),
-              ),
-              Align(
-                alignment: Alignment.bottomCenter,
-                child: InkWell(
-                  onTap: (){
-                    Navigator.pushNamed(context, registerUserRoute);
-                  },
-                  child: const Center(
-                    child: Text.rich(
-                      TextSpan(
-                        children: [
-                          TextSpan(
-                            text: 'Don’t Have Account? ',
-                            style: TextStyle(
-                              color: CustomColors.blackColor,
-                              fontSize: 16,
-                              fontFamily: 'Circular Std',
-                              fontWeight: FontWeight.w500,
+                SizedBox(
+                  height: screenHeight,
+                  child: Align(
+                    alignment: Alignment.bottomCenter,
+                    child: InkWell(
+                      onTap: (){
+                        Navigator.pushNamed(context, registerUserRoute);
+                      },
+                      child: const Text.rich(
+                        TextSpan(
+                          children: [
+                            TextSpan(
+                              text: 'Don’t Have Account? ',
+                              style: TextStyle(
+                                color: CustomColors.blackColor,
+                                fontSize: 16,
+                                fontFamily: 'Circular Std',
+                                fontWeight: FontWeight.w500,
+                              ),
                             ),
-                          ),
-                          TextSpan(
-                            text: 'Sign Up',
-                            style: TextStyle(
-                              color: CustomColors.orangeColor,
-                              fontSize: 16,
-                              fontFamily: 'Circular Std',
-                              fontWeight: FontWeight.w500,
+                            TextSpan(
+                              text: 'Sign Up',
+                              style: TextStyle(
+                                color: CustomColors.orangeColor,
+                                fontSize: 16,
+                                fontFamily: 'Circular Std',
+                                fontWeight: FontWeight.w500,
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

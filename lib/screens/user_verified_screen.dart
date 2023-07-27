@@ -23,9 +23,7 @@ class UserVerifiedScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const BackButtonWidget(),
-              SizedBox(
-                height: 151.h,
-              ),
+              const Spacer(),
               Center(
                 child: Column(
                   children: [
@@ -45,15 +43,15 @@ class UserVerifiedScreen extends StatelessWidget {
                         child: black14w400Centre(
                             data:
                             'Your account has been verified')),
-                    SizedBox(
-                      height: 258.h,
-                    ),
-                    customButton(text: 'Continue', onPressed: () {
-                      Navigator.pushNamed(context, pawPointsRoute);
-                    }, colored: true),
+
                   ],
                 ),
-              )
+              ),
+              const Spacer(),
+              customButton(text: 'Continue', onPressed: () {
+                Navigator.pushNamed(context, pawPointsRoute);
+              }, colored: true),
+              SizedBox(height: 20.h,)
             ],
           ),
         ),

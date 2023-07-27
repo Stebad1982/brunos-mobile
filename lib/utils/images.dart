@@ -7,7 +7,8 @@ const introIndicator3 = "assets/images/intro-indicator3.svg";
 const splashAnimation = "assets/images/splash-logo.gif";
 const coin = "assets/images/coin.svg";
 const dog = "assets/images/dog.svg";
-const circularMap = "assets/images/map.svg";
+const circularMap = "assets/images/map.png";
+const mapPin = "assets/images/map-pin.svg";
 const password = "assets/images/password.svg";
 const splashBackground = "assets/images/splash-bg.png";
 const tick = "assets/images/tick.svg";
@@ -17,5 +18,10 @@ const userIcon = "assets/images/icon-user.svg";
 const phoneIcon = "assets/images/Icon-phone.svg";
 const facebookIcon = "assets/images/facebook.svg";
 const googleIcon = "assets/images/google.svg";
+const homeAddressIcon = "assets/images/home-rounded-icon.svg";
+const workAddressIcon = "assets/images/work-rounded-icon.svg";
+const partnerAddressIcon = "assets/images/partner-rounded-icon.svg";
+const otherAddressIcon = "assets/images/other-rounded-icon.svg";
+
 
 

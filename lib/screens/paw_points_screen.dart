@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
+import '../route_generator.dart';
 import '../utils/custom_buttons.dart';
 import '../utils/custom_colors.dart';
 import '../utils/custom_font_style.dart';
@@ -18,14 +19,12 @@ class PawPointsScreen extends StatelessWidget {
       body: SafeArea(
         child: Padding(
           padding:
-          const EdgeInsets.only(top: 30, bottom: 20, left: 20, right: 20),
+              const EdgeInsets.only(top: 30, bottom: 20, left: 20, right: 20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const BackButtonWidget(),
-              SizedBox(
-                height: 83.h,
-              ),
+              const Spacer(),
               Center(
                 child: Column(
                   children: [
@@ -77,17 +76,17 @@ class PawPointsScreen extends StatelessWidget {
                         textAlign: TextAlign.center,
                       ),
                     ),
-                    SizedBox(
-                      height: 269.h,
-                    ),
-                    customButton(text: 'Continue', onPressed: () {
-/*
-                      Navigator.pushNamed(context, otpRoute);
-*/
-                    }, colored: true),
                   ],
                 ),
-              )
+              ),
+              const Spacer(),
+              customButton(
+                  text: 'Continue',
+                  onPressed: () {
+                      Navigator.pushNamed(context, shareAddressRoute);
+                  },
+                  colored: true),
+              SizedBox(height: 20.h,),
             ],
           ),
         ),
