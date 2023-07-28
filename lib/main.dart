@@ -32,7 +32,7 @@ RouteObserver<ModalRoute>();
 final double screenHeight = MediaQuery
     .of(navigatorKey.currentContext!)
     .size
-    .height - 100;
+    .height * 0.9;
 Future<void> main() async{
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
     //systemNavigationBarColor: Colors.amber, // navigation bar color
@@ -81,6 +81,14 @@ class MyApp extends StatelessWidget {
                 secondary: CustomColors.whiteColor,
                 primary: CustomColors.orangeColor,
               ),
+              appBarTheme: AppBarTheme(
+                  centerTitle: true,
+                  titleTextStyle: TextStyle(
+                fontFamily: 'CircularStd',
+                fontSize: 16.sp,
+                fontWeight: FontWeight.w500,
+                color: CustomColors.blackColor,
+              )),
               textTheme: TextTheme(
                 subtitle1: TextStyle(
                   fontFamily: 'CircularStd',

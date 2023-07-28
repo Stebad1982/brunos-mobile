@@ -19,7 +19,7 @@ class ShareAddressScreen extends StatelessWidget {
       body: SafeArea(
         child: Padding(
           padding:
-          const EdgeInsets.only(top: 30, bottom: 20, left: 20, right: 20),
+          const EdgeInsets.only(top: 30, bottom: 30, left: 20, right: 20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -68,9 +68,6 @@ class ShareAddressScreen extends StatelessWidget {
                       },
                       child: orange14w500(data: 'Enter Manually'))
                 ],
-              ),
-              SizedBox(
-                height: 20.h,
               ),
             ],
           ),

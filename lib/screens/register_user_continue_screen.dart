@@ -20,7 +20,7 @@ class RegisterUserContinueScreen extends StatelessWidget {
       body: SafeArea(
         child: Padding(
           padding:
-              const EdgeInsets.only(top: 30, bottom: 20, left: 20, right: 20),
+              const EdgeInsets.only(top: 30, bottom: 30, left: 20, right: 20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -53,7 +53,6 @@ class RegisterUserContinueScreen extends StatelessWidget {
               customButton(text: 'Continue', onPressed: () {
                 Navigator.pushNamed(context, otpRoute);
               }, colored: true),
-              SizedBox(height: 20.h,)
             ],
           ),
         ),
