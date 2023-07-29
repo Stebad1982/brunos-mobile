@@ -33,6 +33,10 @@ final double screenHeight = MediaQuery
     .of(navigatorKey.currentContext!)
     .size
     .height * 0.9;
+final double screenHeightWithAppBar = MediaQuery
+    .of(navigatorKey.currentContext!)
+    .size
+    .height * 0.8;
 Future<void> main() async{
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
     //systemNavigationBarColor: Colors.amber, // navigation bar color

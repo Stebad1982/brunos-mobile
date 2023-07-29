@@ -19,10 +19,10 @@ class OtpScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Padding(
-          padding:
-          const EdgeInsets.only(top: 30, bottom: 20, left: 20, right: 20),
-          child: SingleChildScrollView(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding:
+            const EdgeInsets.only(top: 30, bottom: 20, left: 20, right: 20),
             child: Stack(
               children: [
                 Column(

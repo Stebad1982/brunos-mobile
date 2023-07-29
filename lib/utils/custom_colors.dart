@@ -4,7 +4,7 @@ import 'package:flutter/widgets.dart';
 
 class CustomColors {
   static const Color orangeColor = Color.fromRGBO(215, 136, 9,1);
-  static Color orangeColorTint = const Color.fromRGBO(215, 136, 9, 0.5);
+  static Color orangeColorTint = const Color.fromRGBO(215, 136, 9, 0.3);
 
   static const Color brownColor = Color.fromRGBO(106, 51, 12,1);
   static Color brownColorTint = const Color.fromRGBO(106, 51, 12, 0.5);
@@ -21,6 +21,7 @@ class CustomColors {
   static const Color lightGreyColor = Color.fromRGBO(248, 248, 249, 1);
 
   static const Color yellowColor = Color.fromRGBO(217, 174, 14, 1);
+  static const Color purpleColor = Color.fromRGBO(123, 76, 223, 1);
 
 
   static const Color color5 = Color.fromRGBO(255, 184, 100, 1);

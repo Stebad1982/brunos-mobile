@@ -18,10 +18,10 @@ class RegisterUserScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Padding(
-          padding:
-          const EdgeInsets.only(top: 30, bottom: 20, left: 20, right: 20),
-          child: SingleChildScrollView(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding:
+            const EdgeInsets.only(top: 30, bottom: 20, left: 20, right: 20),
             child: Stack(
               children: [
               Column(
@@ -124,8 +124,8 @@ class RegisterUserScreen extends StatelessWidget {
                 alignment: Alignment.bottomCenter,
                 child: InkWell(
                 onTap: (){
-          Navigator.pop(context);
-          },
+            Navigator.pop(context);
+            },
             child: const Text.rich(
               TextSpan(
                 children: [
@@ -150,13 +150,14 @@ class RegisterUserScreen extends StatelessWidget {
                 ],
               ),
             ),
+            ),
           ),
-        ),
       ),
       ],
-    ),)
-    ,
     )
+    ,
+    ),
+        )
     ,
     )
     ,
