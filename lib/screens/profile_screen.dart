@@ -4,9 +4,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
 
 import '../route_generator.dart';
 import '../utils/custom_colors.dart';
+import '../utils/enums.dart';
+import '../view_models/puppy_view_model.dart';
 import '../widgets/app_bar_with_back_widget.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -87,6 +90,7 @@ class ProfileScreen extends StatelessWidget {
                   )),
               ListTile(
                 onTap: (){
+                  context.read<PuppyViewModel>().setRouteToPuppyFrom(Screens.profile.text);
                   Navigator.pushNamed(context, puppyRoute);
                 },
                   leading: SvgPicture.asset(

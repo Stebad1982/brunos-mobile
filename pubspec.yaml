@@ -38,6 +38,7 @@ dependencies:
   easy_splash_screen: ^1.0.4
   intro_slider: ^4.2.0
   intl: ^0.18.1
+  accordion: ^2.5.1
   flutter_svg: ^2.0.7
   pin_code_fields: ^8.0.1
   package_info_plus: ^4.0.2

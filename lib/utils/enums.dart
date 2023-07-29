@@ -1,13 +1,8 @@
-enum WeekDays {
-  sunday("Sun"),
-  monday("Mon"),
-  tuesday("Tue"),
-  wednesday("Wed"),
-  thursday("Thu"),
-  friday("Fri"),
-  saturday("Sat");
+enum Screens {
+  home("Home"),
+  profile("Profile");
 
-  const WeekDays(this.text);
+  const Screens(this.text);
 
   final String text;
 }

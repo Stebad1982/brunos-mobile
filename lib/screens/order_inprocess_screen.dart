@@ -12,7 +12,7 @@ class OrderInProcessScreen extends StatelessWidget {
       itemCount: 20,
       padding: const EdgeInsets.only(left: 20,right: 20,top: 30),
       itemBuilder: (BuildContext context, int index) {
-        return ordersVerticalListChip();
+        return ordersVerticalListChipWidget();
       },
     );
   }

@@ -27,10 +27,10 @@ Widget black24w500Centre({required String data}) {
   );
 }
 
-Widget black14w400Centre({required String data}) {
+Widget black14w400Centre({required String data, bool? left}) {
   return Text(
     data,
-    textAlign: TextAlign.center,
+    textAlign: left != null? TextAlign.left: TextAlign.center,
     style: TextStyle(
         fontFamily: 'CircularStd',
         fontSize: 14.sp,
@@ -94,6 +94,16 @@ Widget brown14w400({required String data}) {
         fontWeight: FontWeight.w400),
   );
 }
+Widget brown12w500({required String data}) {
+  return Text(
+    data,
+    style: TextStyle(
+        fontFamily: 'CircularStd',
+        fontSize: 12.sp,
+        color: CustomColors.brownColor,
+        fontWeight: FontWeight.w500),
+  );
+}
 
 Widget grey14w400HeightCentre({required String data}) {
   return Text(
@@ -114,6 +124,17 @@ Widget grey14w400({required String data}) {
         fontFamily: 'CircularStd',
         fontSize: 14.sp,
         fontWeight: FontWeight.w400,
+        color: CustomColors.greyColor),
+  );
+}
+
+Widget grey12w500({required String data}) {
+  return Text(
+    data,
+    style: TextStyle(
+        fontFamily: 'CircularStd',
+        fontSize: 12.sp,
+        fontWeight: FontWeight.w500,
         color: CustomColors.greyColor),
   );
 }
@@ -146,7 +167,18 @@ Widget black12w500({required String data}) {
     style: TextStyle(
         fontFamily: 'CircularStd',
         fontSize: 12.sp,
-        fontWeight: FontWeight.w500,
+        fontWeight: FontWeight.w400,
+        color: CustomColors.blackColor),
+  );
+}
+
+Widget black10w400({required String data}) {
+  return Text(
+    data,
+    style: TextStyle(
+        fontFamily: 'CircularStd',
+        fontSize: 10.sp,
+        fontWeight: FontWeight.w400,
         color: CustomColors.blackColor),
   );
 }
@@ -159,5 +191,17 @@ Widget black16w500({required String data}) {
         fontSize: 16.sp,
         fontWeight: FontWeight.w500,
         color: CustomColors.blackColor),
+  );
+}
+
+
+Widget white18w500({required String data}) {
+  return Text(
+    data,
+    style: TextStyle(
+        fontFamily: 'CircularStd',
+        fontSize: 18.sp,
+        fontWeight: FontWeight.w500,
+        color: CustomColors.whiteColor),
   );
 }

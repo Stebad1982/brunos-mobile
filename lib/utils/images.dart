@@ -15,6 +15,12 @@ const tick = "assets/images/tick.svg";
 const editImageIcon = "assets/images/edit-image-icon.svg";
 const sampleFood1 = "assets/images/Active.png";
 const dogFace = "assets/images/dog-face.svg";
+const buyBulits = "assets/images/buy-bulits.png";
+const transitionPlan = "assets/images/transition-plan.svg";
+const monthlyPlan = "assets/images/monthly-plan.svg";
+const onetimePlan = "assets/images/one-time-plan.svg";
+
+const dogFootPrint = "assets/images/dog-foot-print.svg";
 const slider1 = "assets/images/slider-1.png";
 const slider2 = "assets/images/slider-2.png";
 const slider3 = "assets/images/slider-3.png";

@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../utils/images.dart';
 
-Widget ordersVerticalListChip() {
+Widget ordersVerticalListChipWidget() {
   return Column(
     children: [
       Row(
