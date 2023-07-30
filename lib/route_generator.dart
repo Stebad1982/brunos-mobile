@@ -1,10 +1,15 @@
 
 import 'package:brunos_kitchen/screens/add_address_screen.dart';
 import 'package:brunos_kitchen/screens/bottom_navigation_screen.dart';
+import 'package:brunos_kitchen/screens/checkout_screen.dart';
 import 'package:brunos_kitchen/screens/choose_your_plan_screen.dart';
+import 'package:brunos_kitchen/screens/delivery_dates_screen.dart';
 import 'package:brunos_kitchen/screens/edit_profile_screen.dart';
 import 'package:brunos_kitchen/screens/logIn_screen.dart';
 import 'package:brunos_kitchen/screens/monthly_plan_screen.dart';
+import 'package:brunos_kitchen/screens/one_time_plan_screen.dart';
+import 'package:brunos_kitchen/screens/order_completed_screen.dart';
+import 'package:brunos_kitchen/screens/order_confirmation_screen.dart';
 import 'package:brunos_kitchen/screens/orders_screen.dart';
 import 'package:brunos_kitchen/screens/otp_screen.dart';
 import 'package:brunos_kitchen/screens/paw_points_screen.dart';
@@ -33,19 +38,16 @@ const String addAddressRoute = '/add_address';
 const String editProfileRoute = '/edit_profile';
 const String ordersRoute = '/orders';
 const String puppyRoute = '/puppy';
+const String deliveryDatesRoute = '/delivery_dates';
 const String puppyCreationRoute = '/puppy_creation';
 const String puppyAdditionalRoute = '/puppyAdditional';
 const String puppyConfirmationRoute = '/puppyConfirmation';
 const String choosePlanRoute = '/choosePlan';
 const String transitionPlanRoute = '/transitionPlan';
 const String monthlyPlanRoute = '/monthlyPlan';
-
-
-
-
-
-
-
+const String checkOutRoute = '/checkOut';
+const String oneTimePlanRoute = '/oneTimePlan';
+const String orderConfirmationRoute = '/orderConfirmation';
 
 
 class RouteGenerator {
@@ -91,6 +93,14 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const TransitionalPlanScreen());
       case monthlyPlanRoute:
         return MaterialPageRoute(builder: (_) => const MonthlyPlanScreen());
+      case deliveryDatesRoute:
+        return MaterialPageRoute(builder: (_) => const DeliveryDatesScreen());
+      case checkOutRoute:
+        return MaterialPageRoute(builder: (_) => const CheckoutScreen());
+      case orderConfirmationRoute:
+        return MaterialPageRoute(builder: (_) => const OrderConfirmationScreen());
+      case oneTimePlanRoute:
+        return MaterialPageRoute(builder: (_) => const OneTimePlanScreen());
       case '/tasting_details':
       /*return MaterialPageRoute(
             builder: (_) => const TastingDetailsScreen(),

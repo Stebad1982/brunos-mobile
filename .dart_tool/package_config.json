@@ -86,6 +86,12 @@
       "languageVersion": "3.0"
     },
     {
+      "name": "flutter_dash",
+      "rootUri": "file:///Users/appstirr/.pub-cache/hosted/pub.dev/flutter_dash-1.0.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.17"
+    },
+    {
       "name": "flutter_easyloading",
       "rootUri": "file:///Users/appstirr/.pub-cache/hosted/pub.dev/flutter_easyloading-3.0.5",
       "packageUri": "lib/",
@@ -314,6 +320,12 @@
       "languageVersion": "2.18"
     },
     {
+      "name": "simple_gesture_detector",
+      "rootUri": "file:///Users/appstirr/.pub-cache/hosted/pub.dev/simple_gesture_detector-0.2.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "sky_engine",
       "rootUri": "file:///Users/appstirr/Developer/flutter/bin/cache/pkg/sky_engine",
       "packageUri": "lib/",
@@ -342,6 +354,12 @@
       "rootUri": "file:///Users/appstirr/.pub-cache/hosted/pub.dev/string_scanner-1.2.0",
       "packageUri": "lib/",
       "languageVersion": "2.18"
+    },
+    {
+      "name": "table_calendar",
+      "rootUri": "file:///Users/appstirr/.pub-cache/hosted/pub.dev/table_calendar-3.0.9",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
     },
     {
       "name": "term_glyph",
@@ -410,7 +428,7 @@
       "languageVersion": "2.19"
     }
   ],
-  "generated": "2023-07-29T16:16:56.249397Z",
+  "generated": "2023-07-30T00:48:17.558317Z",
   "generator": "pub",
   "generatorVersion": "3.0.6"
 }

@@ -91,7 +91,7 @@ Future recipeDetailBottomSheetWidget() {
                                 SingleChildScrollView(
                                   child: Column(
                                     children: <Widget>[
-                                      black12w500(
+                                      black12w500Centre(
                                           data:
                                               'Give your furry friend a taste of the good life with the Pedigree Complete Nutrition Grilled Steak & Vegetable Flavor Dog Kibble Adult Dry Dog Food. With a succulent steak flavor accented with hearty vegetables, this food has everything you need to keep your dog feeling his best. It’s prepared with whole grains for healthy digestion, plus essential nutrients and omega-6 fatty acids to promote a healthy skin and luxurious coat. And perhaps best of all, the crunchy texture of the kibble helps clean his teeth, so he’s always ready for his close up. It’s the easy way to combine great-tasting food plus nutrition that promotes health and vitality into a single bowl.'),
                                       SizedBox(
@@ -103,7 +103,7 @@ Future recipeDetailBottomSheetWidget() {
                                 SingleChildScrollView(
                                   child: Column(
                                     children: <Widget>[
-                                      black12w500(
+                                      black12w500Centre(
                                           data:
                                               'Ground Whole Grain Corn, Meat And Bone Meal, Corn Gluten Meal, Animal Fat (Source Of Omega 6 Fatty Acids [Preserved With Bha & Citric Acid]), Soybean Meal, Natural Flavor, Chicken By-Product Meal, Dried Plain Beet Pulp, Salt, Potassium Chloride, Brewers Rice, Ground Whole Grain Wheat, Choline Chloride, Calcium Carbonate, Dried Peas, Dl-Methionine'),
                                       SizedBox(
@@ -115,7 +115,7 @@ Future recipeDetailBottomSheetWidget() {
                                 SingleChildScrollView(
                                   child: Column(
                                     children: <Widget>[
-                                      black12w500(
+                                      black12w500Centre(
                                           data:
                                               'Mix with the present diet by one-quarter to three quarters to begin with (25% new to 75% old). Follow by a daily increase in the amount of the new product until your pet is eating only the new. This gradual approach, taken over a week\'s time, is usually more acceptable and avoids any digestive upsets a sudden change in diet may cause to your pet.'),
                                       SizedBox(

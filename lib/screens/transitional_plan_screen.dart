@@ -30,7 +30,7 @@ class TransitionalPlanScreen extends StatelessWidget {
               ),
               Center(
                 child: Image.asset(
-                  buyBulits,
+                  buyBulits2,
                   height: 57.h,
                 ),
               ),

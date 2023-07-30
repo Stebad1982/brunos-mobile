@@ -24,7 +24,7 @@ Widget foodGridChipWidget (){
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Image.asset(food,height: 100.h,),
-            black12w500(data: 'Beefy Barkfest')
+            black12w500Centre(data: 'Beefy Barkfest')
           ],
         ),
       ));

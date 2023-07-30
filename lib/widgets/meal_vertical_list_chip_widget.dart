@@ -31,7 +31,7 @@ Widget mealVerticalListChipWidget() {
               children: [
                 Container(
                     decoration: ShapeDecoration(
-                      color: CustomColors.greyColor,
+                      color: CustomColors.whiteColor,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(200),
                       ),

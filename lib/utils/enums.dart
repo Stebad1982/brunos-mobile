@@ -7,15 +7,12 @@ enum Screens {
   final String text;
 }
 
-enum JobStatus {
-  inProgress("In Progress"),
-  completed("Completed"),
-  cancelled("Cancelled"),
-  pending("Pending"),
-  onGoing("On Going"),
-  unAttended("Unattended");
+enum Plans {
+  transitional("Transitional"),
+  monthly("Monthly"),
+  oneTime("OneTime");
 
-  const JobStatus(this.text);
+  const Plans(this.text);
 
   final String text;
 }

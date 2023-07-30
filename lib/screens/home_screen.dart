@@ -3,15 +3,19 @@ import 'package:accordion/accordion_section.dart';
 import 'package:brunos_kitchen/utils/images.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dash/flutter_dash.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import '../dunmmy_data.dart';
 import '../utils/custom_buttons.dart';
 import '../utils/custom_colors.dart';
 import '../utils/custom_font_style.dart';
 import '../widgets/carousel_widget.dart';
 import '../widgets/food_category_grid_chip_widget.dart';
+import '../widgets/food_discribed_grid_chip_widget.dart';
 import '../widgets/food_grid_chip_widget.dart';
+import '../widgets/other_items_horizontal_list_chip_widget.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -24,6 +28,7 @@ class HomeScreen extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.only(top: 20, bottom: 150),
           child: Column(
+            mainAxisSize: MainAxisSize.min,
             children: [
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -63,8 +68,8 @@ class HomeScreen extends StatelessWidget {
                 height: 24.h,
               ),
               Container(
-                decoration: BoxDecoration(
-                    gradient: CustomColors.linearGradient1),
+                decoration:
+                    BoxDecoration(gradient: CustomColors.linearGradient1),
                 child: Column(
                   children: [
                     Padding(
@@ -95,10 +100,10 @@ class HomeScreen extends StatelessWidget {
                               crossAxisCount: 2,
                               crossAxisSpacing: 20.0,
                               mainAxisSpacing: 20.0,
-                              childAspectRatio: (1 / 0.7)),
-                      itemCount: 8,
+                              childAspectRatio: (1 / 0.75)),
+                      itemCount: foodCategoryList.length,
                       itemBuilder: (BuildContext context, int index) {
-                        return foodCategoryGridChipWidget();
+                        return foodCategoryGridChipWidget(listItems: foodCategoryList[index]);
                       },
                     ),
                     SizedBox(
@@ -146,53 +151,79 @@ class HomeScreen extends StatelessWidget {
               black24w500Centre(data: 'Our Pawfect Process'),
               SizedBox(height: 15.h),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20.0,vertical: 15),
+                padding:
+                    const EdgeInsets.only(left: 20.0, right: 20.0, top: 15),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Container(
-                      width: 36.w,
-                      height: 36.w,
-                      decoration: ShapeDecoration(
-                        color: CustomColors.lightBrownColor,
-                        shape: OvalBorder(),
-                      ),
-                      child: Center(child: white18w500(data: '1')),
+                    Column(
+                      children: [
+                        Container(
+                          width: 36.w,
+                          height: 36.w,
+                          decoration: ShapeDecoration(
+                            color: CustomColors.lightBrownColor,
+                            shape: OvalBorder(),
+                          ),
+                          child: Center(child: white18w500(data: '1')),
+                        ),
+                        const Dash(
+                            direction: Axis.vertical,
+                            length: 120,
+                            dashLength: 10,
+                            dashColor: CustomColors.brownColor),
+                      ],
                     ),
-                    SizedBox(width: 14.w,),
+                    SizedBox(
+                      width: 14.w,
+                    ),
                     Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Container(
-                            height: 36.w,
+                              height: 36.w,
                               child: Align(
-                                alignment: Alignment.centerLeft,
+                                  alignment: Alignment.centerLeft,
                                   child: black18w500(data: 'Get Personal'))),
-                        black14w400Centre(
-                          left: true,
-                            data: 'Share details about your beloved pet. We deliver human-grade food in user-friendly packaging - minimal processing, stringent safety norms, and easy-to-serve: just open and serve!')
-                      ],),
+                          black14w400Centre(
+                              left: true,
+                              data:
+                                  'Share details about your beloved pet. We deliver human-grade food in user-friendly packaging - minimal processing, stringent safety norms, and easy-to-serve: just open and serve!')
+                        ],
+                      ),
                     ),
-                  ],),
+                  ],
+                ),
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20.0,vertical: 15),
+                padding: const EdgeInsets.symmetric(horizontal: 20.0),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Container(
-                      width: 36.w,
-                      height: 36.w,
-                      decoration: ShapeDecoration(
-                        color: CustomColors.lightBrownColor,
-                        shape: OvalBorder(),
-                      ),
-                      child: Center(child: white18w500(data: '2')),
+                    Column(
+                      children: [
+                        Container(
+                          width: 36.w,
+                          height: 36.w,
+                          decoration: ShapeDecoration(
+                            color: CustomColors.lightBrownColor,
+                            shape: OvalBorder(),
+                          ),
+                          child: Center(child: white18w500(data: '2')),
+                        ),
+                        const Dash(
+                            direction: Axis.vertical,
+                            length: 120,
+                            dashLength: 10,
+                            dashColor: CustomColors.brownColor),
+                      ],
                     ),
-                    SizedBox(width: 14.w,),
+                    SizedBox(
+                      width: 14.w,
+                    ),
                     Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -204,14 +235,19 @@ class HomeScreen extends StatelessWidget {
                                   child: black18w500(data: 'Choose Wisely'))),
                           black14w400Centre(
                               left: true,
-                              data: 'Vet-designed plans tailored to your dog\'s unique needs. Pre-prepared and portioned meals calculated according to the profile you create, satisfying their calorie requirements with precision')
-                        ],),
+                              data:
+                                  'Vet-designed plans tailored to your dog\'s unique needs. Pre-prepared and portioned meals calculated according to the profile you create, satisfying their calorie requirements with precision')
+                        ],
+                      ),
                     ),
-                    SizedBox(width: 14.w,),
-                  ],),
+                    SizedBox(
+                      width: 14.w,
+                    ),
+                  ],
+                ),
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20.0,vertical: 15),
+                padding: const EdgeInsets.symmetric(horizontal: 20.0),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -225,7 +261,9 @@ class HomeScreen extends StatelessWidget {
                       ),
                       child: Center(child: white18w500(data: '3')),
                     ),
-                    SizedBox(width: 14.w,),
+                    SizedBox(
+                      width: 14.w,
+                    ),
                     Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -234,126 +272,171 @@ class HomeScreen extends StatelessWidget {
                               height: 36.w,
                               child: Align(
                                   alignment: Alignment.centerLeft,
-                                  child: black18w500(data: 'Witness the Woofs'))),
+                                  child:
+                                      black18w500(data: 'Witness the Woofs'))),
                           black14w400Centre(
                               left: true,
-                              data: 'Get ready for your pet\'s joy as their food arrives just days after cooking - never deep-frozen or shelf-stored for months. Watch them light up with Bruno\'s Kitchen!')
-                        ],),
-                    ),
-                  ],),
-              ),
-
-
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                child: Accordion(
-                  maxOpenSections: 2,
-                  headerBackgroundColorOpened: Colors.black54,
-                  scaleWhenAnimating: true,
-                  openAndCloseAnimation: true,
-                  headerPadding:
-                  const EdgeInsets.symmetric(vertical: 7, horizontal: 15),
-                 // sectionOpeningHapticFeedback: SectionHapticFeedback.heavy,
-                 // sectionClosingHapticFeedback: SectionHapticFeedback.light,
-                  children: [
-                    AccordionSection(
-                     // isOpen: false,
-                      flipRightIconIfOpen: true,
-                     rightIcon: Icon(Icons.keyboard_arrow_down),
-                     // leftIcon: const Icon(Icons.insights_rounded, color: Colors.white),
-                      headerBackgroundColor: CustomColors.whiteColor,
-                      headerBackgroundColorOpened: CustomColors.whiteColor,
-                      header: Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 5),
-                        child: Align(
-                          alignment: Alignment.centerLeft,
-                            child: black14w400Centre(data: 'About Bruno’s Kitchen')),
+                              data:
+                                  'Get ready for your pet\'s joy as their food arrives just days after cooking - never deep-frozen or shelf-stored for months. Watch them light up with Bruno\'s Kitchen!')
+                        ],
                       ),
-                      content: black12w500(data: 'When you start and order you can cancel it by clicking the logo on home page. You can find cancel button there.'),
-                      contentHorizontalPadding: 20,
-                      contentBorderWidth: 1,
-                      // onOpenSection: () => print('onOpenSection ...'),
-                      // onCloseSection: () => print('onCloseSection ...'),
                     ),
-                    AccordionSection(
-                     // isOpen: true,
-                      flipRightIconIfOpen: true,
-                      rightIcon: Icon(Icons.keyboard_arrow_down),
-                      // leftIcon: const Icon(Icons.insights_rounded, color: Colors.white),
-                      headerBackgroundColor: CustomColors.whiteColor,
-                      headerBackgroundColorOpened: CustomColors.whiteColor,
-                      header: Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 5),
-                        child: Align(
-                            alignment: Alignment.centerLeft,
-                            child: black14w400Centre(data: 'About Bruno’s Kitchen')),
-                      ),
-                      content: black12w500(data: 'When you start and order you can cancel it by clicking the logo on home page. You can find cancel button there.'),
-                      contentHorizontalPadding: 20,
-                      contentBorderWidth: 1,
-                      // onOpenSection: () => print('onOpenSection ...'),
-                      // onCloseSection: () => print('onCloseSection ...'),
-                    ),
-                    AccordionSection(
-                     // isOpen: true,
-                      flipRightIconIfOpen: true,
-                      rightIcon: Icon(Icons.keyboard_arrow_down),
-                      // leftIcon: const Icon(Icons.insights_rounded, color: Colors.white),
-                      headerBackgroundColor: CustomColors.whiteColor,
-                      headerBackgroundColorOpened: CustomColors.whiteColor,
-                      header: Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 5),
-                        child: Align(
-                            alignment: Alignment.centerLeft,
-                            child: black14w400Centre(data: 'About Bruno’s Kitchen')),
-                      ),
-                      content: black12w500(data: 'When you start and order you can cancel it by clicking the logo on home page. You can find cancel button there.'),
-                      contentHorizontalPadding: 20,
-                      contentBorderWidth: 1,
-                      // onOpenSection: () => print('onOpenSection ...'),
-                      // onCloseSection: () => print('onCloseSection ...'),
-                    ),
-                    AccordionSection(
-                      //isOpen: true,
-                      flipRightIconIfOpen: true,
-                      rightIcon: Icon(Icons.keyboard_arrow_down),
-                      // leftIcon: const Icon(Icons.insights_rounded, color: Colors.white),
-                      headerBackgroundColor: CustomColors.whiteColor,
-                      headerBackgroundColorOpened: CustomColors.whiteColor,
-                      header: Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 5),
-                        child: Align(
-                            alignment: Alignment.centerLeft,
-                            child: black14w400Centre(data: 'About Bruno’s Kitchen')),
-                      ),
-                      content: black12w500(data: 'When you start and order you can cancel it by clicking the logo on home page. You can find cancel button there.'),
-                      contentHorizontalPadding: 20,
-                      contentBorderWidth: 1,
-                      // onOpenSection: () => print('onOpenSection ...'),
-                      // onCloseSection: () => print('onCloseSection ...'),
-                    ),
-                    AccordionSection(
-                     // isOpen: true,
-                      flipRightIconIfOpen: true,
-                      rightIcon: Icon(Icons.keyboard_arrow_down),
-                      // leftIcon: const Icon(Icons.insights_rounded, color: Colors.white),
-                      headerBackgroundColor: CustomColors.whiteColor,
-                      headerBackgroundColorOpened: CustomColors.whiteColor,
-                      header: Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 5),
-                        child: Align(
-                            alignment: Alignment.centerLeft,
-                            child: black14w400Centre(data: 'About Bruno’s Kitchen')),
-                      ),
-                      content: black12w500(data: 'When you start and order you can cancel it by clicking the logo on home page. You can find cancel button there.'),
-                      contentHorizontalPadding: 20,
-                      contentBorderWidth: 1,
-                      // onOpenSection: () => print('onOpenSection ...'),
-                      // onCloseSection: () => print('onCloseSection ...'),
-                    ),
-
                   ],
                 ),
+              ),
+              SizedBox(
+                height: 40.h,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                child: Image.asset(dogBanner),
+              ),
+              SizedBox(
+                height: 20.h,
+              ),
+              SizedBox(
+                height: 230.0.h,
+                child: ListView.builder(
+                  padding: EdgeInsets.symmetric(horizontal: 20),
+                  shrinkWrap: true,
+                  scrollDirection: Axis.horizontal,
+                  itemCount: 3,
+                  itemBuilder: (BuildContext context, int index) => SizedBox(
+                    width: 157.w,
+                    child: otherItemsHorizontalListChipWidget(),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 40.h,
+              ),
+              black24w500Centre(data: 'Frequently asked questions'),
+              SizedBox(
+                height: 20.h,
+              ),
+              Accordion(
+                disableScrolling: true,
+                paddingListHorizontal: 20,
+                maxOpenSections: 2,
+                headerBackgroundColorOpened: Colors.black54,
+                scaleWhenAnimating: true,
+                openAndCloseAnimation: true,
+                headerPadding:
+                    const EdgeInsets.symmetric(vertical: 7, horizontal: 15),
+                // sectionOpeningHapticFeedback: SectionHapticFeedback.heavy,
+                // sectionClosingHapticFeedback: SectionHapticFeedback.light,
+                children: [
+                  AccordionSection(
+                    // isOpen: false,
+                    flipRightIconIfOpen: true,
+                    rightIcon: Icon(Icons.keyboard_arrow_down),
+                    // leftIcon: const Icon(Icons.insights_rounded, color: Colors.white),
+                    headerBackgroundColor: CustomColors.whiteColor,
+                    headerBackgroundColorOpened: CustomColors.whiteColor,
+                    header: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 5),
+                      child: Align(
+                          alignment: Alignment.centerLeft,
+                          child:
+                              black14w400Centre(data: 'About Bruno’s Kitchen')),
+                    ),
+                    content: black12w500Centre(
+                        data:
+                            'When you start and order you can cancel it by clicking the logo on home page. You can find cancel button there.'),
+                    contentHorizontalPadding: 20,
+                    contentBorderWidth: 1,
+                    // onOpenSection: () => print('onOpenSection ...'),
+                    // onCloseSection: () => print('onCloseSection ...'),
+                  ),
+                  AccordionSection(
+                    // isOpen: true,
+                    flipRightIconIfOpen: true,
+                    rightIcon: Icon(Icons.keyboard_arrow_down),
+                    // leftIcon: const Icon(Icons.insights_rounded, color: Colors.white),
+                    headerBackgroundColor: CustomColors.whiteColor,
+                    headerBackgroundColorOpened: CustomColors.whiteColor,
+                    header: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 5),
+                      child: Align(
+                          alignment: Alignment.centerLeft,
+                          child:
+                              black14w400Centre(data: 'About Bruno’s Kitchen')),
+                    ),
+                    content: black12w500Centre(
+                        data:
+                            'When you start and order you can cancel it by clicking the logo on home page. You can find cancel button there.'),
+                    contentHorizontalPadding: 20,
+                    contentBorderWidth: 1,
+                    // onOpenSection: () => print('onOpenSection ...'),
+                    // onCloseSection: () => print('onCloseSection ...'),
+                  ),
+                  AccordionSection(
+                    // isOpen: true,
+                    flipRightIconIfOpen: true,
+                    rightIcon: Icon(Icons.keyboard_arrow_down),
+                    // leftIcon: const Icon(Icons.insights_rounded, color: Colors.white),
+                    headerBackgroundColor: CustomColors.whiteColor,
+                    headerBackgroundColorOpened: CustomColors.whiteColor,
+                    header: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 5),
+                      child: Align(
+                          alignment: Alignment.centerLeft,
+                          child:
+                              black14w400Centre(data: 'About Bruno’s Kitchen')),
+                    ),
+                    content: black12w500Centre(
+                        data:
+                            'When you start and order you can cancel it by clicking the logo on home page. You can find cancel button there.'),
+                    contentHorizontalPadding: 20,
+                    contentBorderWidth: 1,
+                    // onOpenSection: () => print('onOpenSection ...'),
+                    // onCloseSection: () => print('onCloseSection ...'),
+                  ),
+                  AccordionSection(
+                    //isOpen: true,
+                    flipRightIconIfOpen: true,
+                    rightIcon: Icon(Icons.keyboard_arrow_down),
+                    // leftIcon: const Icon(Icons.insights_rounded, color: Colors.white),
+                    headerBackgroundColor: CustomColors.whiteColor,
+                    headerBackgroundColorOpened: CustomColors.whiteColor,
+                    header: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 5),
+                      child: Align(
+                          alignment: Alignment.centerLeft,
+                          child:
+                              black14w400Centre(data: 'About Bruno’s Kitchen')),
+                    ),
+                    content: black12w500Centre(
+                        data:
+                            'When you start and order you can cancel it by clicking the logo on home page. You can find cancel button there.'),
+                    contentHorizontalPadding: 20,
+                    contentBorderWidth: 1,
+                    // onOpenSection: () => print('onOpenSection ...'),
+                    // onCloseSection: () => print('onCloseSection ...'),
+                  ),
+                  AccordionSection(
+                    // isOpen: true,
+                    flipRightIconIfOpen: true,
+                    rightIcon: Icon(Icons.keyboard_arrow_down),
+                    // leftIcon: const Icon(Icons.insights_rounded, color: Colors.white),
+                    headerBackgroundColor: CustomColors.whiteColor,
+                    headerBackgroundColorOpened: CustomColors.whiteColor,
+                    header: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 5),
+                      child: Align(
+                          alignment: Alignment.centerLeft,
+                          child:
+                              black14w400Centre(data: 'About Bruno’s Kitchen')),
+                    ),
+                    content: black12w500Centre(
+                        data:
+                            'When you start and order you can cancel it by clicking the logo on home page. You can find cancel button there.'),
+                    contentHorizontalPadding: 20,
+                    contentBorderWidth: 1,
+                    // onOpenSection: () => print('onOpenSection ...'),
+                    // onCloseSection: () => print('onCloseSection ...'),
+                  ),
+                ],
               ),
             ],
           ),

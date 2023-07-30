@@ -62,6 +62,17 @@ Widget black14w500({required String data}) {
   );
 }
 
+Widget yellow10w500({required String data}) {
+  return Text(
+    data,
+    style: TextStyle(
+        fontFamily: 'CircularStd',
+        fontSize: 10.sp,
+        color: CustomColors.yellowColor,
+        fontWeight: FontWeight.w500),
+  );
+}
+
 Widget black18w500({required String data}) {
   return Text(
     data,
@@ -84,9 +95,10 @@ Widget brown32w500({required String data}) {
   );
 }
 
-Widget brown14w400({required String data}) {
+Widget brown14w400Centre({required String data, bool? centre}) {
   return Text(
     data,
+    textAlign: centre != null?  TextAlign.center: TextAlign.left,
     style: TextStyle(
         fontFamily: 'CircularStd',
         fontSize: 14.sp,
@@ -94,7 +106,7 @@ Widget brown14w400({required String data}) {
         fontWeight: FontWeight.w400),
   );
 }
-Widget brown12w500({required String data}) {
+Widget brown12w500Centre({required String data}) {
   return Text(
     data,
     style: TextStyle(
@@ -161,9 +173,10 @@ Widget orange14w500({required String data}) {
   );
 }
 
-Widget black12w500({required String data}) {
+Widget black12w500Centre({required String data, bool? centre}) {
   return Text(
     data,
+    textAlign: centre != null?  TextAlign.center: TextAlign.left,
     style: TextStyle(
         fontFamily: 'CircularStd',
         fontSize: 12.sp,
@@ -201,6 +214,17 @@ Widget white18w500({required String data}) {
     style: TextStyle(
         fontFamily: 'CircularStd',
         fontSize: 18.sp,
+        fontWeight: FontWeight.w500,
+        color: CustomColors.whiteColor),
+  );
+}
+
+Widget white8w500({required String data}) {
+  return Text(
+    data,
+    style: TextStyle(
+        fontFamily: 'CircularStd',
+        fontSize: 8.sp,
         fontWeight: FontWeight.w500,
         color: CustomColors.whiteColor),
   );

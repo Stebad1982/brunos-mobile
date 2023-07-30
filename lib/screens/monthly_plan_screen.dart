@@ -1,3 +1,4 @@
+import 'package:brunos_kitchen/route_generator.dart';
 import 'package:brunos_kitchen/utils/custom_font_style.dart';
 import 'package:brunos_kitchen/utils/images.dart';
 import 'package:flutter/cupertino.dart';
@@ -62,7 +63,7 @@ class MonthlyPlanScreen extends StatelessWidget {
                         children: [
                           Container(
                               decoration: ShapeDecoration(
-                                color: CustomColors.greyColor,
+                                color: CustomColors.whiteColor,
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(200),
                                 ),
@@ -81,7 +82,7 @@ class MonthlyPlanScreen extends StatelessWidget {
                               SizedBox(
                                 height: 5.h,
                               ),
-                              black12w500(data: 'tap to add meal')
+                              black12w500Centre(data: 'tap to add meal')
                             ],
                           ),
                           const Spacer(),
@@ -126,7 +127,7 @@ class MonthlyPlanScreen extends StatelessWidget {
                         children: [
                           Container(
                               decoration: ShapeDecoration(
-                                color: CustomColors.greyColor,
+                                color: CustomColors.whiteColor,
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(200),
                                 ),
@@ -145,7 +146,7 @@ class MonthlyPlanScreen extends StatelessWidget {
                               SizedBox(
                                 height: 5.h,
                               ),
-                              black12w500(data: 'tap to add meal')
+                              black12w500Centre(data: 'tap to add meal')
                             ],
                           ),
                           const Spacer(),
@@ -190,7 +191,7 @@ class MonthlyPlanScreen extends StatelessWidget {
                         children: [
                           Container(
                               decoration: ShapeDecoration(
-                                color: CustomColors.greyColor,
+                                color: CustomColors.whiteColor,
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(200),
                                 ),
@@ -209,7 +210,7 @@ class MonthlyPlanScreen extends StatelessWidget {
                               SizedBox(
                                 height: 5.h,
                               ),
-                              black12w500(data: 'tap to add meal')
+                              black12w500Centre(data: 'tap to add meal')
                             ],
                           ),
                           const Spacer(),
@@ -239,7 +240,7 @@ class MonthlyPlanScreen extends StatelessWidget {
               child: Align(
                 alignment: Alignment.bottomCenter,
                 child: customButton(text: 'Continue', onPressed: () {
-
+Navigator.pushNamed(context, deliveryDatesRoute);
                 }, colored: true),
               ),
             ),

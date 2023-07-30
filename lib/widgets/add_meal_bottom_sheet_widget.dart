@@ -16,7 +16,7 @@ Future recipeDetailBottomSheetWidget() {
       context: navigatorKey.currentContext!,
       builder: (context) {
         return Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
           child: Wrap(
             children: [
               Column(
@@ -35,7 +35,7 @@ Future recipeDetailBottomSheetWidget() {
                           grey14w400(data: 'Day 1-11'),
                         ],
                       ),
-                      Spacer(),
+                      const Spacer(),
                       InkWell(
                         onTap: (){
                           Navigator.pop(context);
@@ -63,7 +63,7 @@ Future recipeDetailBottomSheetWidget() {
                     ],
                   ),
 
-                  Container(
+                  SizedBox(
                     height: 500.h,
                     child: ListView.builder(
                       //physics: NeverScrollableScrollPhysics(),

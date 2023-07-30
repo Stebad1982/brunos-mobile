@@ -19,8 +19,8 @@ class PuppyAdditionalScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const AppBarWithBackWidget(
-        heading: 'My Puppy',
+      appBar:  AppBarWithBackWidget(
+        heading: context.read<PuppyViewModel>().getRouteToPuppyFrom == Screens.home.text?'Create Account':'My Puppy',
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -29,6 +29,18 @@ class PuppyAdditionalScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              Visibility(
+                visible: context.read<PuppyViewModel>().getRouteToPuppyFrom == Screens.home.text,
+                child: Padding(
+                  padding: const EdgeInsets.only(bottom: 40.0),
+                  child: Center(
+                    child: Image.asset(
+                      buyBulits1,
+                      height: 57.h,
+                    ),
+                  ),
+                ),
+              ),
               Center(
                 child: SvgPicture.asset(
                   dogFace,

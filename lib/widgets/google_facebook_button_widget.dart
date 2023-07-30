@@ -29,7 +29,7 @@ Widget googleFacebookButtonWidget(){
               SizedBox(
                 width: 12.w,
               ),
-              black12w500(data: 'Google')
+              black12w500Centre(data: 'Google')
             ],
           ),
         ),
@@ -54,7 +54,7 @@ Widget googleFacebookButtonWidget(){
               SizedBox(
                 width: 12.w,
               ),
-              black12w500(data: 'Facebook')
+              black12w500Centre(data: 'Facebook')
             ],
           ),
         ),

@@ -43,7 +43,7 @@ class EditProfileScreen extends StatelessWidget {
                     ),
                   ),
                   SizedBox(height: 9.h,),
-                  brown14w400(data: 'Edit photo'),
+                  brown14w400Centre(data: 'Edit photo'),
                   SizedBox(height: 39.h,),
                   TextField(
                     //controller: nameController,

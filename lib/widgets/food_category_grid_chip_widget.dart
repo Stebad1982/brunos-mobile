@@ -1,3 +1,4 @@
+import 'package:brunos_kitchen/dunmmy_data.dart';
 import 'package:brunos_kitchen/main.dart';
 import 'package:brunos_kitchen/route_generator.dart';
 import 'package:brunos_kitchen/utils/custom_font_style.dart';
@@ -12,7 +13,7 @@ import 'package:provider/provider.dart';
 import '../utils/custom_colors.dart';
 import '../utils/enums.dart';
 
-Widget foodCategoryGridChipWidget (){
+Widget foodCategoryGridChipWidget ({required FoodCategory listItems}){
   return GestureDetector(
     onTap: (){
       navigatorKey.currentContext!.read<PuppyViewModel>().setRouteToPuppyFrom(Screens.home.text);
@@ -33,8 +34,8 @@ Widget foodCategoryGridChipWidget (){
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            SvgPicture.asset(foodCategory,height: 42.h,),
-            black12w500(data: 'Freshly cooked')
+            SvgPicture.asset(listItems.image!,height: 42.h,),
+            black12w500Centre(data: listItems.name!,centre: true)
           ],
         ),
       )),

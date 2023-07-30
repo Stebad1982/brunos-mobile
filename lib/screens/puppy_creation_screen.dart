@@ -4,11 +4,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:provider/provider.dart';
 
 import '../main.dart';
 import '../utils/custom_buttons.dart';
 import '../utils/custom_colors.dart';
+import '../utils/enums.dart';
 import '../utils/images.dart';
+import '../view_models/puppy_view_model.dart';
 import '../widgets/app_bar_with_back_widget.dart';
 
 class PuppyCreationScreen extends StatelessWidget {
@@ -17,8 +20,8 @@ class PuppyCreationScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const AppBarWithBackWidget(
-        heading: 'My Puppy',
+      appBar:  AppBarWithBackWidget(
+        heading: context.read<PuppyViewModel>().getRouteToPuppyFrom == Screens.home.text?'Create Account':'My Puppy',
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -27,6 +30,18 @@ class PuppyCreationScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              Visibility(
+                visible: context.read<PuppyViewModel>().getRouteToPuppyFrom == Screens.home.text,
+                child: Padding(
+                  padding: const EdgeInsets.only(bottom: 40.0),
+                  child: Center(
+                    child: Image.asset(
+                      buyBulits1,
+                      height: 57.h,
+                    ),
+                  ),
+                ),
+              ),
               Center(
                 child: SvgPicture.asset(
                   dogFace,

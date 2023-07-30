@@ -26,7 +26,7 @@ class PuppyScreen extends StatelessWidget {
         child: Column(
           children: [
             ListView.builder(
-              physics: NeverScrollableScrollPhysics(),
+              physics: const NeverScrollableScrollPhysics(),
               shrinkWrap: true,
               itemCount: 2,
               padding: const EdgeInsets.only(left: 20, right: 20, top: 30),
@@ -61,10 +61,10 @@ class PuppyScreen extends StatelessWidget {
                               ),
                             ),
                             child: Padding(
-                              padding: const EdgeInsets.all(0.0),
+                              padding: const EdgeInsets.all(10.0),
                               child: SvgPicture.asset(
                                 dogFootPrint,
-                                height: 40.h,
+                                height: 20
                               ),
                             )),
                         SizedBox(

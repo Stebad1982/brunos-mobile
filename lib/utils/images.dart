@@ -15,7 +15,11 @@ const tick = "assets/images/tick.svg";
 const editImageIcon = "assets/images/edit-image-icon.svg";
 const sampleFood1 = "assets/images/Active.png";
 const dogFace = "assets/images/dog-face.svg";
-const buyBulits = "assets/images/buy-bulits.png";
+const buyBulits1 = "assets/images/buy-bulits1.png";
+const buyBulits2 = "assets/images/buy-bulits2.png";
+const buyBulits3 = "assets/images/buy-bulits3.png";
+const dogBanner = "assets/images/dog-banner.png";
+
 const transitionPlan = "assets/images/transition-plan.svg";
 const monthlyPlan = "assets/images/monthly-plan.svg";
 const onetimePlan = "assets/images/one-time-plan.svg";
@@ -25,7 +29,12 @@ const slider1 = "assets/images/slider-1.png";
 const slider2 = "assets/images/slider-2.png";
 const slider3 = "assets/images/slider-3.png";
 const foodCategory = "assets/images/food-category.svg";
+const foodCategory1 = "assets/images/food-category1.svg";
+const foodCategory2 = "assets/images/food-category2.svg";
+const foodCategory3 = "assets/images/food-category3.svg";
+
 const food = "assets/images/food.png";
+const bone = "assets/images/bone.png";
 
 const cameraImage = "assets/images/camera-image.svg";
 const shoppingIcon = "assets/images/shopping-ico.svg";
@@ -38,6 +47,9 @@ const googleIcon = "assets/images/google.svg";
 const profileImage = "assets/images/profile.png";
 const faqIcon = "assets/images/faq-icon.svg";
 const helpIcon = "assets/images/help-icon.svg";
+const couponIcon = "assets/images/coupon-icon.svg";
+const couponCoin = "assets/images/coupon-coin.svg";
+const orderConfirmation = "assets/images/order-confirmation.svg";
 const logoutIcon = "assets/images/Icon.svg";
 const orderIcon = "assets/images/order-icon.svg";
 const payCardIcon = "assets/images/paycard-icon.svg";
