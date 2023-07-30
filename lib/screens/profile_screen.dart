@@ -129,6 +129,9 @@ class ProfileScreen extends StatelessWidget {
                     color: CustomColors.greyColor,
                   )),
               ListTile(
+                onTap: (){
+                  Navigator.pushNamed(context, addressRoute);
+                },
                   leading: SvgPicture.asset(
                     mapPin,
                     height: 24.h,
