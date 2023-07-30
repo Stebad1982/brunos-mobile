@@ -1,5 +1,6 @@
 
-import 'package:brunos_kitchen/screens/add_address_screen.dart';
+import 'package:brunos_kitchen/screens/address_adding_screen.dart';
+import 'package:brunos_kitchen/screens/address_screen.dart';
 import 'package:brunos_kitchen/screens/bottom_navigation_screen.dart';
 import 'package:brunos_kitchen/screens/checkout_screen.dart';
 import 'package:brunos_kitchen/screens/choose_your_plan_screen.dart';
@@ -19,7 +20,7 @@ import 'package:brunos_kitchen/screens/puppy_creation_screen.dart';
 import 'package:brunos_kitchen/screens/puppy_screen.dart';
 import 'package:brunos_kitchen/screens/register_user_continue_screen.dart';
 import 'package:brunos_kitchen/screens/register_user_screen.dart';
-import 'package:brunos_kitchen/screens/share_address_screen.dart';
+import 'package:brunos_kitchen/screens/address_intro_screen.dart';
 import 'package:brunos_kitchen/screens/splash_screen.dart';
 import 'package:brunos_kitchen/screens/transitional_plan_screen.dart';
 import 'package:brunos_kitchen/screens/user_verified_screen.dart';
@@ -48,6 +49,8 @@ const String monthlyPlanRoute = '/monthlyPlan';
 const String checkOutRoute = '/checkOut';
 const String oneTimePlanRoute = '/oneTimePlan';
 const String orderConfirmationRoute = '/orderConfirmation';
+const String addressRoute = '/address';
+
 
 
 class RouteGenerator {
@@ -72,9 +75,9 @@ class RouteGenerator {
       case bottomNavigationRoute:
         return MaterialPageRoute(builder: (_) => const BottomNavigationScreen());
       case shareAddressRoute:
-        return MaterialPageRoute(builder: (_) => const ShareAddressScreen());
+        return MaterialPageRoute(builder: (_) => const AddressIntroScreen());
       case addAddressRoute:
-        return MaterialPageRoute(builder: (_) => const AddAddressScreen());
+        return MaterialPageRoute(builder: (_) => const AddressAddingScreen());
       case editProfileRoute:
         return MaterialPageRoute(builder: (_) => const EditProfileScreen());
       case ordersRoute:
@@ -101,6 +104,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const OrderConfirmationScreen());
       case oneTimePlanRoute:
         return MaterialPageRoute(builder: (_) => const OneTimePlanScreen());
+      case addressRoute:
+        return MaterialPageRoute(builder: (_) => const AddressScreen());
       case '/tasting_details':
       /*return MaterialPageRoute(
             builder: (_) => const TastingDetailsScreen(),

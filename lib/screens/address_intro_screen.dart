@@ -10,8 +10,8 @@ import '../utils/custom_font_style.dart';
 import '../utils/images.dart';
 import '../widgets/back_button_widget.dart';
 
-class ShareAddressScreen extends StatelessWidget {
-  const ShareAddressScreen({Key? key}) : super(key: key);
+class AddressIntroScreen extends StatelessWidget {
+  const AddressIntroScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

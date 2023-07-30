@@ -23,7 +23,8 @@ class CheckoutScreen extends StatelessWidget {
         children: [
           SingleChildScrollView(
             child: Padding(
-              padding: const EdgeInsets.only(left: 20.0,right: 20,top: 20,bottom: 220),
+              padding: const EdgeInsets.only(
+                  left: 20.0, right: 20, top: 20, bottom: 220),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
@@ -54,8 +55,9 @@ class CheckoutScreen extends StatelessWidget {
                     decoration: ShapeDecoration(
                       color: CustomColors.whiteColor,
                       shape: RoundedRectangleBorder(
-                        side: BorderSide(
-                            width: 0.50, color: CustomColors.greyMediumLightColor),
+                        side: const BorderSide(
+                            width: 0.50,
+                            color: CustomColors.greyMediumLightColor),
                         borderRadius: BorderRadius.circular(12),
                       ),
                     ),
@@ -89,22 +91,27 @@ class CheckoutScreen extends StatelessWidget {
                                   black14w400Centre(data: 'Dubai - UAE')
                                 ],
                               ),
-                              Container(
-                                decoration: ShapeDecoration(
-                                  color: CustomColors.whiteColor,
-                                  shape: RoundedRectangleBorder(
-                                    side: const BorderSide(
-                                        width: 0.75,
-                                        color: CustomColors.greyMediumColor),
-                                    borderRadius: BorderRadius.circular(12),
+                              InkWell(
+                                onTap: () {
+                                  Navigator.pushNamed(context, addressRoute);
+                                },
+                                child: Container(
+                                  decoration: ShapeDecoration(
+                                    color: CustomColors.whiteColor,
+                                    shape: RoundedRectangleBorder(
+                                      side: const BorderSide(
+                                          width: 0.75,
+                                          color: CustomColors.greyMediumColor),
+                                      borderRadius: BorderRadius.circular(12),
+                                    ),
                                   ),
-                                ),
-                                child: const Padding(
-                                  padding: EdgeInsets.all(10),
-                                  child: Icon(
-                                    Icons.edit,
-                                    size: 20,
-                                    color: CustomColors.orangeColor,
+                                  child: const Padding(
+                                    padding: EdgeInsets.all(10),
+                                    child: Icon(
+                                      Icons.edit,
+                                      size: 20,
+                                      color: CustomColors.orangeColor,
+                                    ),
                                   ),
                                 ),
                               )
@@ -123,7 +130,8 @@ class CheckoutScreen extends StatelessWidget {
                       color: CustomColors.whiteColor,
                       shape: RoundedRectangleBorder(
                         side: BorderSide(
-                            width: 0.50, color: CustomColors.greyMediumLightColor),
+                            width: 0.50,
+                            color: CustomColors.greyMediumLightColor),
                         borderRadius: BorderRadius.circular(12),
                       ),
                     ),
@@ -156,7 +164,8 @@ class CheckoutScreen extends StatelessWidget {
                       color: CustomColors.whiteColor,
                       shape: RoundedRectangleBorder(
                         side: const BorderSide(
-                            width: 0.50, color: CustomColors.greyMediumLightColor),
+                            width: 0.50,
+                            color: CustomColors.greyMediumLightColor),
                         borderRadius: BorderRadius.circular(12),
                       ),
                     ),
@@ -205,7 +214,8 @@ class CheckoutScreen extends StatelessWidget {
                       color: CustomColors.whiteColor,
                       shape: RoundedRectangleBorder(
                         side: const BorderSide(
-                            width: 0.50, color: CustomColors.greyMediumLightColor),
+                            width: 0.50,
+                            color: CustomColors.greyMediumLightColor),
                         borderRadius: BorderRadius.circular(12),
                       ),
                     ),
@@ -223,7 +233,8 @@ class CheckoutScreen extends StatelessWidget {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              black12w500Centre(data: 'Your accumulated Paw Points'),
+                              black12w500Centre(
+                                  data: 'Your accumulated Paw Points'),
                               black16w500(data: '64468'),
                             ],
                           ),
@@ -246,7 +257,8 @@ class CheckoutScreen extends StatelessWidget {
                       color: CustomColors.whiteColor,
                       shape: RoundedRectangleBorder(
                         side: const BorderSide(
-                            width: 0.50, color: CustomColors.greyMediumLightColor),
+                            width: 0.50,
+                            color: CustomColors.greyMediumLightColor),
                         borderRadius: BorderRadius.circular(12),
                       ),
                     ),
@@ -314,7 +326,8 @@ class CheckoutScreen extends StatelessWidget {
                             ),
                             child: Padding(
                               padding: const EdgeInsets.all(20),
-                              child: black14w400Centre(data: 'Apply coupon code'),
+                              child:
+                                  black14w400Centre(data: 'Apply coupon code'),
                             ),
                           ),
                         ],
@@ -347,18 +360,26 @@ class CheckoutScreen extends StatelessWidget {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Row(children: [
-                      black14w400Centre(data: 'Total'),
-                      const Spacer(),
-                      black16w500(data: 'AED 95')
-                    ],),
-                    SizedBox(height: 16.h,),
-                    Row(children: [
-                      black14w400Centre(data: 'Points Rewarded Amount'),
-                      const Spacer(),
-                      black16w500(data: '5')
-                    ],),
-                    SizedBox(height: 40.h,),
+                    Row(
+                      children: [
+                        black14w400Centre(data: 'Total'),
+                        const Spacer(),
+                        black16w500(data: 'AED 95')
+                      ],
+                    ),
+                    SizedBox(
+                      height: 16.h,
+                    ),
+                    Row(
+                      children: [
+                        black14w400Centre(data: 'Points Rewarded Amount'),
+                        const Spacer(),
+                        black16w500(data: '5')
+                      ],
+                    ),
+                    SizedBox(
+                      height: 40.h,
+                    ),
                     customButton(
                         text: 'Place Order',
                         onPressed: () {

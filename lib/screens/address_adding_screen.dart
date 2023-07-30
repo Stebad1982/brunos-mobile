@@ -11,14 +11,14 @@ import '../utils/custom_buttons.dart';
 import '../utils/custom_font_style.dart';
 import '../widgets/back_button_widget.dart';
 
-class AddAddressScreen extends StatefulWidget {
-  const AddAddressScreen({Key? key}) : super(key: key);
+class AddressAddingScreen extends StatefulWidget {
+  const AddressAddingScreen({Key? key}) : super(key: key);
 
   @override
-  State<AddAddressScreen> createState() => _AddAddressScreenState();
+  State<AddressAddingScreen> createState() => _AddressAddingScreenState();
 }
 
-class _AddAddressScreenState extends State<AddAddressScreen> {
+class _AddressAddingScreenState extends State<AddressAddingScreen> {
   bool _switchValue = true;
 
   @override
