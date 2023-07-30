@@ -12,6 +12,7 @@ import '../utils/custom_colors.dart';
 import '../utils/custom_font_style.dart';
 import '../utils/images.dart';
 import '../widgets/app_bar_with_back_widget.dart';
+import '../widgets/date_picker_bottom_sheet_widget.dart';
 
 class PuppyAdditionalScreen extends StatelessWidget {
   const PuppyAdditionalScreen({Key? key}) : super(key: key);
@@ -121,17 +122,47 @@ class PuppyAdditionalScreen extends StatelessWidget {
               SizedBox(
                 height: 19.h,
               ),
-              Container(
-                width: double.infinity,
-                decoration: ShapeDecoration(
-                  color: CustomColors.lightGreyColor,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
+              InkWell(
+                onTap: (){
+                  datePickerBottomSheetWidget();
+                 /* showCupertinoModalPopup(context: context, builder: (_) => Container(
+                    height: 500,
+                    color: Color.fromARGB(255, 255, 255, 255),
+                    child: Column(
+                      children: [
+                        Container(
+                          height: 400,
+                          child: CupertinoDatePicker(
+                              mode: CupertinoDatePickerMode.date,
+                              initialDateTime: DateTime.now(),
+                              onDateTimeChanged: (val) {
+                                *//*setState(() {
+                                  _chosenDateTime = val;
+                                });*//*
+                              }),
+                        ),
+
+                        // Close the modal
+                        CupertinoButton(
+                          child: Text('OK'),
+                          onPressed: () => Navigator.of(context).pop(),
+                        )
+                      ],
+                    ),
+                  ));*/
+                },
+                child: Container(
+                  width: double.infinity,
+                  decoration: ShapeDecoration(
+                    color: CustomColors.lightGreyColor,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
                   ),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(20),
-                  child: Center(child: black14w400Centre(data: 'MM   /   DD   /   YYYY')),
+                  child: Padding(
+                    padding: const EdgeInsets.all(20),
+                    child: Center(child: black14w400Centre(data: 'MM   /   DD   /   YYYY')),
+                  ),
                 ),
               ),
               SizedBox(

@@ -9,7 +9,7 @@ import '../utils/custom_font_style.dart';
 
 Widget foodGridChipWidget (){
   return Card(
-      elevation: 0,
+//      elevation: 5,
       color: CustomColors.whiteColor,
       borderOnForeground: false,
       shape: const RoundedRectangleBorder(
@@ -18,12 +18,20 @@ Widget foodGridChipWidget (){
             Radius.circular(20)),
       ),
       child: Padding(
-        padding: const EdgeInsets.all(20.0),
+        padding: const EdgeInsets.all(10.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Image.asset(food,height: 100.h,),
+            Container(
+              width: double.infinity,
+                decoration: ShapeDecoration(
+                  color: CustomColors.lightGreyColor,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                ),
+                child: Image.asset(food,height: 100.h,)),
             black12w500Centre(data: 'Beefy Barkfest')
           ],
         ),

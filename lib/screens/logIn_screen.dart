@@ -83,6 +83,15 @@ class LoginScreen extends StatelessWidget {
                       height: 20.h,
                     ),
                     googleFacebookButtonWidget(),
+                    SizedBox(
+                      height: 40.h,
+                    ),
+                    customButton(text: 'Skip', onPressed: () {
+                      Navigator.pushNamedAndRemoveUntil(
+                          context,
+                          bottomNavigationRoute,
+                          ModalRoute.withName(splashRoute));
+                    }, colored: false),
 
 
                   ],

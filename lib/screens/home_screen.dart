@@ -6,11 +6,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dash/flutter_dash.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
 
 import '../dunmmy_data.dart';
+import '../route_generator.dart';
 import '../utils/custom_buttons.dart';
 import '../utils/custom_colors.dart';
 import '../utils/custom_font_style.dart';
+import '../utils/enums.dart';
+import '../view_models/puppy_view_model.dart';
 import '../widgets/carousel_widget.dart';
 import '../widgets/food_category_grid_chip_widget.dart';
 import '../widgets/food_discribed_grid_chip_widget.dart';
@@ -26,7 +30,7 @@ class HomeScreen extends StatelessWidget {
       backgroundColor: CustomColors.lightGreyColor,
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.only(top: 20, bottom: 150),
+          padding: const EdgeInsets.only(top: 20, bottom: 80),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -76,7 +80,7 @@ class HomeScreen extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(horizontal: 20),
                       child: black24w500Centre(
                           data:
-                              'Trademarked Nutrient Blends, Exclusively Crafted for Your Pup\'s Special Needs.'),
+                              'Trademarked Nutrient Blends, Exclusively Crafted For Your Pup\'s Special Needs.'),
                     ),
                     SizedBox(
                       height: 20.h,
@@ -112,7 +116,7 @@ class HomeScreen extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 20.0),
                       child: black24w500Centre(
-                          data: 'Dive into a World of Paw-licking Goodness'),
+                          data: 'Dive Into A World Of Paw-Licking Goodness'),
                     ),
                   ],
                 ),
@@ -125,7 +129,22 @@ class HomeScreen extends StatelessWidget {
                 child: black14w400Centre(
                     data: 'Check out our delicious doggie dishes'),
               ),
-              GridView.builder(
+              SizedBox(height: 20.h),
+              SingleChildScrollView(
+                child: Wrap(
+                  runSpacing: 10,
+                  spacing: 10,
+                  alignment: WrapAlignment.center,
+                  children: List.generate(5, (index) {
+                    return Container(
+                      width: 157.w,
+                      height: 158.h,
+                      child: foodGridChipWidget(),
+                    );
+                  }),
+                ),
+              ),
+             /* GridView.builder(
                 padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
                 physics: const NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
@@ -134,17 +153,20 @@ class HomeScreen extends StatelessWidget {
                     crossAxisSpacing: 20.0,
                     mainAxisSpacing: 20.0,
                     childAspectRatio: (1 / 1)),
-                itemCount: 8,
+                itemCount: 5,
                 itemBuilder: (BuildContext context, int index) {
                   return foodGridChipWidget();
                 },
-              ),
-              SizedBox(height: 20.h),
+              ),*/
+              SizedBox(height: 30.h),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20.0),
                 child: customButton(
                     text: 'Design Your Doggo\'s Delicious Diet Now',
-                    onPressed: () {},
+                    onPressed: () {
+                      context.read<PuppyViewModel>().setRouteToPuppyFrom(Screens.home.text);
+                      Navigator.pushNamed(context, puppyCreationRoute);
+                    },
                     colored: true),
               ),
               SizedBox(height: 40.h),
@@ -295,9 +317,9 @@ class HomeScreen extends StatelessWidget {
                 height: 20.h,
               ),
               SizedBox(
-                height: 230.0.h,
+                height: 270.0.h,
                 child: ListView.builder(
-                  padding: EdgeInsets.symmetric(horizontal: 20),
+                  padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 20),
                   shrinkWrap: true,
                   scrollDirection: Axis.horizontal,
                   itemCount: 3,
@@ -308,9 +330,9 @@ class HomeScreen extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                height: 40.h,
+                height: 30.h,
               ),
-              black24w500Centre(data: 'Frequently asked questions'),
+              black24w500Centre(data: 'Frequently Asked Questions'),
               SizedBox(
                 height: 20.h,
               ),

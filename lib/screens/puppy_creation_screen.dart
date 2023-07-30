@@ -52,7 +52,7 @@ class PuppyCreationScreen extends StatelessWidget {
                 height: 15.h,
               ),
               Center(
-                  child: black24w500Centre(data: 'Tell us about your pooch!')),
+                  child: black24w500Centre(data: 'Tell Us About Your Pooch!')),
               SizedBox(
                 height: 10.h,
               ),
@@ -73,7 +73,7 @@ class PuppyCreationScreen extends StatelessWidget {
                 onChanged: (text) {},
                 keyboardType: TextInputType.name,
                 decoration: const InputDecoration(
-                    contentPadding: EdgeInsets.all(20.0), hintText: 'Labby'),
+                    contentPadding: EdgeInsets.all(20.0), hintText: 'Entre Your Pet\'s Name'),
               ),
               SizedBox(
                 height: 20.h,

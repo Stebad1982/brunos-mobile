@@ -15,7 +15,7 @@ class AppBarWithBackWidget extends StatelessWidget implements PreferredSizeWidge
       automaticallyImplyLeading: false,
       toolbarHeight: 60.h,
       backgroundColor: CustomColors.whiteColor,
-      //elevation: 0,
+      elevation: 1,
       title: heading != null? Text(heading!) : Container(),
       leading: InkWell(
         onTap: () {

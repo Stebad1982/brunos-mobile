@@ -48,12 +48,13 @@ class _OrdersScreenState extends State<OrdersScreen>
       appBar: const AppBarWithBackWidget(
         heading: 'My Orders',
       ),
-      body: Scaffold(
-        appBar: AppBar(
-          automaticallyImplyLeading: false,
-          backgroundColor: CustomColors.whiteColor,
-          elevation: 0,
-          bottom: TabBar(
+      body: Column(
+        children: [
+          SizedBox(height: 30.h,),
+          TabBar(
+            padding: EdgeInsets.symmetric(horizontal: 20),
+            indicatorPadding: EdgeInsets.zero,
+            labelPadding: EdgeInsets.zero,
             isScrollable: true,
             onTap: (index) {
               //your currently selected index
@@ -69,7 +70,7 @@ class _OrdersScreenState extends State<OrdersScreen>
                         borderRadius: BorderRadius.circular(8),
                       ),
                       height: 40.h,
-                      width: 158.w,
+                      width: 130.w,
                       child: Center(
                           child: black14w400Centre(data: 'In Process')))),
               Tab(
@@ -81,9 +82,9 @@ class _OrdersScreenState extends State<OrdersScreen>
                         borderRadius: BorderRadius.circular(8),
                       ),
                       height: 40.h,
-                      width: 158.w,
+                      width: 130.w,
                       child:
-                          Center(child: black14w400Centre(data: 'Shipped')))),
+                      Center(child: black14w400Centre(data: 'Shipped')))),
               Tab(
                   child: Container(
                       decoration: BoxDecoration(
@@ -93,7 +94,7 @@ class _OrdersScreenState extends State<OrdersScreen>
                         borderRadius: BorderRadius.circular(8),
                       ),
                       height: 40.h,
-                      width: 158.w,
+                      width: 130.w,
                       child: Center(child: black14w400Centre(data: 'Active')))),
               Tab(
                   child: Container(
@@ -104,22 +105,24 @@ class _OrdersScreenState extends State<OrdersScreen>
                         borderRadius: BorderRadius.circular(8),
                       ),
                       height: 40.h,
-                      width: 158.w,
+                      width: 130.w,
                       child:
-                          Center(child: black14w400Centre(data: 'Completed')))),
+                      Center(child: black14w400Centre(data: 'Completed')))),
             ],
           ),
-        ),
-        body: TabBarView(
-          controller: tabController,
-          children: const [
-            OrderInProcessScreen(),
-            OrderShipScreen(),
-            OrderActiveScreen(),
-            OrderCompletedScreen(),
-          ],
-        ),
-      ),
+          Expanded(
+            child: TabBarView(
+              controller: tabController,
+              children: const [
+                OrderInProcessScreen(),
+                OrderShipScreen(),
+                OrderActiveScreen(),
+                OrderCompletedScreen(),
+              ],
+            ),
+          ),
+        ],
+      )
     );
   }
 }

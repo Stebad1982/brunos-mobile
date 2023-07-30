@@ -23,8 +23,8 @@ Widget foodDescribedGridChipWidget() {
       Navigator.pushNamed(navigatorKey.currentContext!, deliveryDatesRoute);
     },
     child: Card(
-        elevation: 0,
-        color: CustomColors.lightGreyColor,
+        elevation: 8,
+        color: CustomColors.whiteColor,
         borderOnForeground: false,
         shape: const RoundedRectangleBorder(
           // side: BorderSide(color: CustomColors.whiteColor),
@@ -37,33 +37,36 @@ Widget foodDescribedGridChipWidget() {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Stack(
-                children: [
-                  Container(
-                      width: double.infinity,
-                      decoration: ShapeDecoration(
-                        color: CustomColors.whiteColor,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12),
+              Container(
+                  width: double.infinity,
+                  decoration: ShapeDecoration(
+                    gradient: CustomColors.linearGradient2,
+                   // color: CustomColors.whiteColor,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                  ),
+                  child: Stack(
+                    children: [
+                      Center(
+                        child: Image.asset(
+                          food,
+                          height: 96.h,
                         ),
                       ),
-                      child: Image.asset(
-                        food,
-                        height: 96.h,
-                      )),
-                  Align(
-                      alignment: Alignment.topRight,
-                      child: IconButton(
-                        onPressed: () {
-                          recipeDetailBottomSheetWidget();
-                        },
-                        icon: Icon(
-                          Icons.info,
-                          color: CustomColors.orangeColorTint,
-                        ),
-                      ))
-                ],
-              ),
+                      Align(
+                          alignment: Alignment.topRight,
+                          child: IconButton(
+                            onPressed: () {
+                              recipeDetailBottomSheetWidget();
+                            },
+                            icon: Icon(
+                              Icons.info,
+                              color: CustomColors.orangeColorTint,
+                            ),
+                          ))
+                    ],
+                  )),
               black14w400Centre(data: 'Beefy Barkfest'),
               black10w400(data: 'High protein, grain-free,picky eater approved'),
               brown12w500Centre(data: 'AED 100 / Plan'),

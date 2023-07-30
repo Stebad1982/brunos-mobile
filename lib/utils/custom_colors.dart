@@ -46,8 +46,16 @@ class CustomColors {
       end: Alignment.bottomCenter,
       stops: [0.25, 0.4, 0.6, 8]);
 
-  static LinearGradient linearGradient2 = const LinearGradient(colors: <Color>[
-    Color.fromRGBO(235, 114, 114, 1),
-    Color.fromRGBO(235, 20, 20, 1),
-  ]);
+  static LinearGradient linearGradient2 = const LinearGradient(
+      colors: <Color>[
+        Color.fromRGBO(215, 136, 9, 0.1),
+        Color.fromRGBO(123, 76, 223, 0.1),
+     //   Color.fromRGBO(255, 202, 0, 0.3),
+      //  Color.fromRGBO(248, 248, 249, 1),
+      ],
+      begin: Alignment.topCenter,
+      end: Alignment.bottomCenter,
+     // stops: [0.25, 0.4, 0.6, 8],
+  );
+
 }

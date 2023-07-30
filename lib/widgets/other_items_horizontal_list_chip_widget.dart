@@ -15,7 +15,7 @@ import '../utils/enums.dart';
 
 Widget otherItemsHorizontalListChipWidget() {
   return Card(
-      elevation: 0,
+      elevation: 5,
       color: CustomColors.whiteColor,
       borderOnForeground: false,
       shape: const RoundedRectangleBorder(
@@ -24,7 +24,7 @@ Widget otherItemsHorizontalListChipWidget() {
       ),
       child: Padding(
         padding: const EdgeInsets.only(
-            left: 10.0, right: 10.0, top: 10.0, bottom: 20.0),
+            left: 10.0, right: 10.0, top: 8.0, bottom: 18.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.start,
