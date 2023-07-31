@@ -24,27 +24,8 @@ class EditProfileScreen extends StatelessWidget {
           child: Stack(
             children: [
               Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  SizedBox(height: 41.h,),
-                  Center(
-                    child: Stack(
-                      children: [
-                        Image.asset(
-                          profileImage,
-                          height: 120.h,
-                        ),
-                        Container(
-                          width: 130.w,
-                          height: 140.h,
-                            child: Align(
-                              alignment: Alignment.bottomRight,
-                                child: SvgPicture.asset(editImageIcon,height: 56.h,)))
-                      ],
-                    ),
-                  ),
-                  SizedBox(height: 9.h,),
-                  brown14w400Centre(data: 'Edit photo'),
-                  SizedBox(height: 39.h,),
                   TextField(
                     //controller: nameController,
                     onChanged: (text) {},
@@ -108,7 +89,7 @@ class EditProfileScreen extends StatelessWidget {
                 child: Align(
                   alignment: Alignment.bottomCenter,
                   child: customButton(text: 'Save', onPressed: () {
-                   // Navigator.pushNamed(context, otpRoute);
+                    Navigator.pop(context);
                   }, colored: true),
                 ),
               ),

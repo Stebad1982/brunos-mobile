@@ -57,7 +57,7 @@ class CheckoutScreen extends StatelessWidget {
                       shape: RoundedRectangleBorder(
                         side: const BorderSide(
                             width: 0.50,
-                            color: CustomColors.greyMediumLightColor),
+                            color: CustomColors.greyColor),
                         borderRadius: BorderRadius.circular(12),
                       ),
                     ),
@@ -131,7 +131,7 @@ class CheckoutScreen extends StatelessWidget {
                       shape: RoundedRectangleBorder(
                         side: BorderSide(
                             width: 0.50,
-                            color: CustomColors.greyMediumLightColor),
+                            color: CustomColors.greyColor),
                         borderRadius: BorderRadius.circular(12),
                       ),
                     ),
@@ -165,7 +165,7 @@ class CheckoutScreen extends StatelessWidget {
                       shape: RoundedRectangleBorder(
                         side: const BorderSide(
                             width: 0.50,
-                            color: CustomColors.greyMediumLightColor),
+                            color: CustomColors.greyColor),
                         borderRadius: BorderRadius.circular(12),
                       ),
                     ),
@@ -215,7 +215,7 @@ class CheckoutScreen extends StatelessWidget {
                       shape: RoundedRectangleBorder(
                         side: const BorderSide(
                             width: 0.50,
-                            color: CustomColors.greyMediumLightColor),
+                            color: CustomColors.greyColor),
                         borderRadius: BorderRadius.circular(12),
                       ),
                     ),
@@ -258,7 +258,7 @@ class CheckoutScreen extends StatelessWidget {
                       shape: RoundedRectangleBorder(
                         side: const BorderSide(
                             width: 0.50,
-                            color: CustomColors.greyMediumLightColor),
+                            color: CustomColors.greyColor),
                         borderRadius: BorderRadius.circular(12),
                       ),
                     ),
@@ -282,7 +282,7 @@ class CheckoutScreen extends StatelessWidget {
                             children: [
                               black14w400Centre(data: 'Generate coupon code'),
                               Spacer(),
-                              yellow10w500(data: 'HOW IT WORKS?'),
+                              orange14w400(data: 'How it works?'),
                             ],
                           ),
                           SizedBox(
@@ -320,7 +320,7 @@ class CheckoutScreen extends StatelessWidget {
                               shape: RoundedRectangleBorder(
                                 side: const BorderSide(
                                     width: 0.50,
-                                    color: CustomColors.greyMediumLightColor),
+                                    color: CustomColors.greyColor),
                                 borderRadius: BorderRadius.circular(12),
                               ),
                             ),
@@ -343,8 +343,10 @@ class CheckoutScreen extends StatelessWidget {
             child: Container(
               decoration: const BoxDecoration(
                 color: CustomColors.whiteColor,
-                borderRadius: BorderRadius.all(
-                  Radius.circular(30.0),
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(30.0),
+                  topRight: Radius.circular(30.0),
+
                 ),
                 boxShadow: [
                   BoxShadow(

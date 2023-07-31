@@ -13,8 +13,8 @@ Widget mealVerticalListChipWidget() {
   return Column(
     children: [
       GestureDetector(
-        onTap: (){
-         // Navigator.pushNamed(navigatorKey.currentContext!, puppyCreationRoute);
+        onTap: () {
+          Navigator.pop(navigatorKey.currentContext!);
         },
         child: Container(
           decoration: ShapeDecoration(
@@ -24,8 +24,7 @@ Widget mealVerticalListChipWidget() {
             ),
           ),
           child: Padding(
-            padding:
-            const EdgeInsets.symmetric(horizontal: 15.0, vertical: 22),
+            padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 22),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [

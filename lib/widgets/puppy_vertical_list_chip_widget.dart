@@ -9,7 +9,7 @@ import '../route_generator.dart';
 import '../utils/custom_font_style.dart';
 import '../utils/images.dart';
 
-Widget puppyVerticalListChipWidget() {
+Widget puppyVerticalListChipWidget(String puppyTag) {
   return Column(
     children: [
       GestureDetector(
@@ -24,7 +24,7 @@ Widget puppyVerticalListChipWidget() {
             ),
           ),
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0,vertical: 30),
+            padding: const EdgeInsets.symmetric(horizontal: 16.0,vertical: 20),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
@@ -44,7 +44,7 @@ Widget puppyVerticalListChipWidget() {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     black14w400Centre(data: 'Labby'),
-                    grey12w500(data: 'Existing pet'),
+                    grey12w500(data: puppyTag),
                   ],
                 ),
                 Spacer(),

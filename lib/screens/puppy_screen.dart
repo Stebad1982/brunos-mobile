@@ -1,3 +1,4 @@
+import 'package:brunos_kitchen/dunmmy_data.dart';
 import 'package:brunos_kitchen/route_generator.dart';
 import 'package:brunos_kitchen/utils/custom_font_style.dart';
 import 'package:flutter/cupertino.dart';
@@ -28,13 +29,13 @@ class PuppyScreen extends StatelessWidget {
             ListView.builder(
               physics: const NeverScrollableScrollPhysics(),
               shrinkWrap: true,
-              itemCount: 2,
+              itemCount: puppyTag.length,
               padding: const EdgeInsets.only(left: 20, right: 20, top: 30),
               itemBuilder: (BuildContext context, int index) {
-                return puppyVerticalListChipWidget();
+                return puppyVerticalListChipWidget(puppyTag[index]);
               },
             ),
-            GestureDetector(
+            InkWell(
               onTap: (){
                 Navigator.pushNamed(context, puppyCreationRoute);
               },
@@ -49,7 +50,7 @@ class PuppyScreen extends StatelessWidget {
                   ),
                   child: Padding(
                     padding: const EdgeInsets.symmetric(
-                        horizontal: 16.0, vertical: 30),
+                        horizontal: 16.0, vertical: 20),
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [

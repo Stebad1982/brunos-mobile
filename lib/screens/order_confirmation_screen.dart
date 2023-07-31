@@ -1,3 +1,4 @@
+import 'package:brunos_kitchen/route_generator.dart';
 import 'package:brunos_kitchen/utils/images.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +22,7 @@ class OrderConfirmationScreen extends StatelessWidget {
       body: SafeArea(
         child: Padding(
           padding:
-          const EdgeInsets.only(top: 30, bottom: 30, left: 20, right: 20),
+              const EdgeInsets.only(top: 30, bottom: 30, left: 20, right: 20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -49,7 +50,8 @@ class OrderConfirmationScreen extends StatelessWidget {
                       color: CustomColors.whiteColor,
                       shape: RoundedRectangleBorder(
                         side: const BorderSide(
-                            width: 0.50, color: CustomColors.greyMediumLightColor),
+                            width: 0.50,
+                            color: CustomColors.greyMediumLightColor),
                         borderRadius: BorderRadius.circular(12),
                       ),
                     ),
@@ -89,10 +91,18 @@ class OrderConfirmationScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  const SizedBox(height: 40,),
-                  customButton(text: 'Save and Continue', onPressed: () {
-                    //Navigator.pushNamed(context, pawPointsRoute);
-                  }, colored: true),
+                  const SizedBox(
+                    height: 40,
+                  ),
+                  customButton(
+                      text: 'Save and Continue',
+                      onPressed: () {
+                        Navigator.of(context).pushNamedAndRemoveUntil(
+                            bottomNavigationRoute,
+                            (Route<dynamic> route) => false,
+                            arguments: {"key": "value"});
+                      },
+                      colored: true),
                 ],
               ),
             ],

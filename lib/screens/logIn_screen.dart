@@ -69,7 +69,7 @@ class LoginScreen extends StatelessWidget {
                     SizedBox(
                       height: 40.h,
                     ),
-                    customButton(text: 'Continue', onPressed: () {
+                    customButton(text: 'Login', onPressed: () {
                           Navigator.pushNamedAndRemoveUntil(
                               context,
                               bottomNavigationRoute,
@@ -86,7 +86,7 @@ class LoginScreen extends StatelessWidget {
                     SizedBox(
                       height: 40.h,
                     ),
-                    customButton(text: 'Skip', onPressed: () {
+                    customButton(text: 'Continue As Guest', onPressed: () {
                       Navigator.pushNamedAndRemoveUntil(
                           context,
                           bottomNavigationRoute,

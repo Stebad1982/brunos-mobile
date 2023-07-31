@@ -17,3 +17,11 @@ List<FoodCategory> foodCategoryList = [
   FoodCategory('Customized meals', foodCategory2),
   FoodCategory('Vet Developed', foodCategory3)
 ];
+
+
+
+
+List<String> puppyTag = [
+'Primary',
+  'Existing pet'
+];

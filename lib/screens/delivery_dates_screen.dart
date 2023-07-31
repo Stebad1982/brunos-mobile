@@ -62,6 +62,7 @@ class _DeliveryDatesScreenState extends State<DeliveryDatesScreen> {
                 rowHeight: 45,
                 headerStyle: const HeaderStyle(
                   formatButtonVisible: false,
+                  titleCentered: true,
                 ),
                 availableGestures: AvailableGestures.all,
                 selectedDayPredicate: (day) => isSameDay(day, today),
