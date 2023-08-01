@@ -6,9 +6,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
 
 import '../utils/custom_buttons.dart';
+import '../utils/enums.dart';
 import '../utils/images.dart';
+import '../view_models/auth_view_model.dart';
 import '../widgets/google_facebook_button_widget.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -63,9 +66,15 @@ class LoginScreen extends StatelessWidget {
                     SizedBox(
                       height: 12.h,
                     ),
-                    Align(
-                        alignment: Alignment.centerRight,
-                        child: orange14w400(data: 'Forgot Password')),
+                    InkWell(
+                      onTap: (){
+                        context.read<AuthViewModel>().setOtpRouteFrom(Screens.forgetPassword.text);
+                        Navigator.pushNamed(context, forgetPasswordRoute);
+                      },
+                      child: Align(
+                          alignment: Alignment.centerRight,
+                          child: orange14w400(data: 'Forgot Password')),
+                    ),
                     SizedBox(
                       height: 40.h,
                     ),
@@ -102,6 +111,7 @@ class LoginScreen extends StatelessWidget {
                     alignment: Alignment.bottomCenter,
                     child: InkWell(
                       onTap: (){
+                        context.read<AuthViewModel>().setOtpRouteFrom(Screens.registerUser.text);
                         Navigator.pushNamed(context, registerUserRoute);
                       },
                       child: const Text.rich(

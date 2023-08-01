@@ -175,9 +175,15 @@ class ProfileScreen extends StatelessWidget {
                     color: CustomColors.greyColor,
                   )),
               ListTile(
+                onTap: (){
+                    Navigator.pushNamed(context, faqRoute);
+                },
                   leading: SvgPicture.asset(
                     faqIcon,
                     height: 24.h,
+                  ),
+                  shape: const Border(
+                    bottom: BorderSide(color: CustomColors.greyMediumColor),
                   ),
                   title: Align(
                       alignment: Alignment.centerLeft,
@@ -193,6 +199,9 @@ class ProfileScreen extends StatelessWidget {
                   leading: SvgPicture.asset(
                     faqIcon,
                     height: 24.h,
+                  ),
+                  shape: const Border(
+                    bottom: BorderSide(color: CustomColors.greyMediumColor),
                   ),
                   title: Align(
                       alignment: Alignment.centerLeft,
@@ -221,6 +230,9 @@ class ProfileScreen extends StatelessWidget {
                   )),
               SizedBox(height: 32.h,),
               ListTile(
+                onTap: (){
+                  Navigator.pushNamedAndRemoveUntil(context, loginRoute, (route) => false);
+                },
                   leading: SvgPicture.asset(
                     logoutIcon,
                     height: 24.h,

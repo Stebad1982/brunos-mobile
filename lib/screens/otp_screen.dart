@@ -4,12 +4,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
+import 'package:provider/provider.dart';
 
 import '../main.dart';
 import '../route_generator.dart';
 import '../utils/custom_buttons.dart';
 import '../utils/custom_colors.dart';
 import '../utils/custom_font_style.dart';
+import '../utils/enums.dart';
+import '../view_models/auth_view_model.dart';
 import '../widgets/back_button_widget.dart';
 
 class OtpScreen extends StatelessWidget {
@@ -146,7 +149,10 @@ class OtpScreen extends StatelessWidget {
                   child: Align(
                     alignment: Alignment.bottomCenter,
                     child: customButton(text: 'Continue', onPressed: () {
-                      Navigator.pushNamed(context, userVerifiedRoute);
+                      context.read<AuthViewModel>().getOtpRouteFrom == Screens.registerUser.text?
+                      Navigator.pushNamed(context, userVerifiedRoute):
+                      Navigator.pushNamed(context, resetPasswordRoute);
+
                     }, colored: true),
                   ),
                 ),

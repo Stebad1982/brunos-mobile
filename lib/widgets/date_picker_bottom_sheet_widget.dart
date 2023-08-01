@@ -58,6 +58,7 @@ Future datePickerBottomSheetWidget() {
                     height: 150.h,
                     child: CupertinoTheme(
                       data: CupertinoThemeData(
+                        brightness: Brightness.light,
                         textTheme: CupertinoTextThemeData(
                           dateTimePickerTextStyle: TextStyle(
                             fontSize: 20.sp,

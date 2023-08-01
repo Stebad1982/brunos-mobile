@@ -6,6 +6,8 @@ import 'package:brunos_kitchen/screens/checkout_screen.dart';
 import 'package:brunos_kitchen/screens/choose_your_plan_screen.dart';
 import 'package:brunos_kitchen/screens/delivery_dates_screen.dart';
 import 'package:brunos_kitchen/screens/edit_profile_screen.dart';
+import 'package:brunos_kitchen/screens/faq_screen.dart';
+import 'package:brunos_kitchen/screens/forget_password_screen.dart';
 import 'package:brunos_kitchen/screens/logIn_screen.dart';
 import 'package:brunos_kitchen/screens/monthly_plan_screen.dart';
 import 'package:brunos_kitchen/screens/one_time_plan_screen.dart';
@@ -21,6 +23,8 @@ import 'package:brunos_kitchen/screens/puppy_screen.dart';
 import 'package:brunos_kitchen/screens/register_user_continue_screen.dart';
 import 'package:brunos_kitchen/screens/register_user_screen.dart';
 import 'package:brunos_kitchen/screens/address_intro_screen.dart';
+import 'package:brunos_kitchen/screens/reset_password_screen.dart';
+import 'package:brunos_kitchen/screens/reset_password_success_screen.dart';
 import 'package:brunos_kitchen/screens/splash_screen.dart';
 import 'package:brunos_kitchen/screens/transitional_plan_screen.dart';
 import 'package:brunos_kitchen/screens/user_verified_screen.dart';
@@ -50,6 +54,11 @@ const String checkOutRoute = '/checkOut';
 const String oneTimePlanRoute = '/oneTimePlan';
 const String orderConfirmationRoute = '/orderConfirmation';
 const String addressRoute = '/address';
+const String faqRoute = '/faq';
+const String forgetPasswordRoute = '/forgetPassword';
+const String resetPasswordRoute = '/resetPassword';
+const String resetPasswordSuccessRoute = '/resetPasswordSuccess';
+
 
 
 
@@ -106,7 +115,15 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const OneTimePlanScreen());
       case addressRoute:
         return MaterialPageRoute(builder: (_) => const AddressScreen());
-      case '/tasting_details':
+      case faqRoute:
+        return MaterialPageRoute(builder: (_) => const FaqScreen());
+      case forgetPasswordRoute:
+        return MaterialPageRoute(builder: (_) => const ForgetPasswordScreen());
+      case resetPasswordRoute:
+        return MaterialPageRoute(builder: (_) => const ResetPasswordScreen());
+      case resetPasswordSuccessRoute:
+        return MaterialPageRoute(builder: (_) => const ResetPasswordSuccessScreen());
+        case '/tasting_details':
       /*return MaterialPageRoute(
             builder: (_) => const TastingDetailsScreen(),
             settings: const RouteSettings(name: '/tasting_details'));*/

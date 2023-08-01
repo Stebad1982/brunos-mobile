@@ -11,7 +11,16 @@ import '../utils/shared_pref .dart';
 
 class AuthViewModel with ChangeNotifier {
 
+  String _otpRouteFrom = Screens.registerUser.text;
+
   final SharedPref _sharedPref = SharedPref();
+
+  String get getOtpRouteFrom => _otpRouteFrom;
+
+  void setOtpRouteFrom (String value){
+    _otpRouteFrom = value;
+    notifyListeners();
+  }
 
 
   Future<Widget> callVersionAndBuildNumber() async {

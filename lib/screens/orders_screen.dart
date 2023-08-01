@@ -95,7 +95,7 @@ class _OrdersScreenState extends State<OrdersScreen>
                       ),
                       height: 40.h,
                       width: 130.w,
-                      child: Center(child: black14w400Centre(data: 'Schedule')))),
+                      child: Center(child: black14w400Centre(data: 'Scheduled')))),
               Tab(
                   child: Container(
                       decoration: BoxDecoration(

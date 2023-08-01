@@ -3,11 +3,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
 
 import '../utils/custom_buttons.dart';
 import '../utils/custom_colors.dart';
 import '../utils/custom_font_style.dart';
+import '../utils/enums.dart';
 import '../utils/images.dart';
+import '../view_models/plans_view_model.dart';
 import '../widgets/app_bar_with_back_widget.dart';
 
 class CheckoutScreen extends StatelessWidget {
@@ -15,9 +18,15 @@ class CheckoutScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: const AppBarWithBackWidget(
-        heading: 'Transitional Plan',
+    return Consumer<PlansViewModel>(builder: (context, plansViewModel, child) {
+
+      return Scaffold(
+      appBar: AppBarWithBackWidget(
+        heading: plansViewModel.getPlanType == Plans.transitional.text
+            ? 'Transitional Plan'
+            : plansViewModel.getPlanType == Plans.monthly.text
+            ? 'Monthly Plan'
+            : 'One time Order',
       ),
       body: Stack(
         children: [
@@ -395,6 +404,6 @@ class CheckoutScreen extends StatelessWidget {
           ),
         ],
       ),
-    );
+    );});
   }
 }
