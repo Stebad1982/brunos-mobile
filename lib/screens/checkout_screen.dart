@@ -12,6 +12,7 @@ import '../utils/enums.dart';
 import '../utils/images.dart';
 import '../view_models/plans_view_model.dart';
 import '../widgets/app_bar_with_back_widget.dart';
+import '../widgets/redeem_paw_points_bottom_sheet_widget.dart';
 
 class CheckoutScreen extends StatelessWidget {
   const CheckoutScreen({Key? key}) : super(key: key);
@@ -86,6 +87,10 @@ class CheckoutScreen extends StatelessWidget {
                               black14w400Centre(data: 'Delivery Address'),
                             ],
                           ),
+                          SizedBox(
+                            height: 10.h,
+                          ),
+                          Image.asset(mapImage),
                           SizedBox(
                             height: 10.h,
                           ),
@@ -217,43 +222,48 @@ class CheckoutScreen extends StatelessWidget {
                   SizedBox(
                     height: 24.h,
                   ),
-                  Container(
-                    width: double.infinity,
-                    decoration: ShapeDecoration(
-                      color: CustomColors.whiteColor,
-                      shape: RoundedRectangleBorder(
-                        side: const BorderSide(
-                            width: 0.50,
-                            color: CustomColors.greyColor),
-                        borderRadius: BorderRadius.circular(12),
+                  InkWell(
+                    onTap: (){
+                      redeemPawPointsBottomSheetWidget();
+                    },
+                    child: Container(
+                      width: double.infinity,
+                      decoration: ShapeDecoration(
+                        color: CustomColors.whiteColor,
+                        shape: RoundedRectangleBorder(
+                          side: const BorderSide(
+                              width: 0.50,
+                              color: CustomColors.greyColor),
+                          borderRadius: BorderRadius.circular(12),
+                        ),
                       ),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(20),
-                      child: Row(
-                        children: [
-                          SvgPicture.asset(
-                            couponCoin,
-                            height: 40.h,
-                          ),
-                          SizedBox(
-                            width: 10.w,
-                          ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              black12w500Centre(
-                                  data: 'Your accumulated Paw Points'),
-                              black16w500(data: '64468'),
-                            ],
-                          ),
-                          const Spacer(),
-                          const Icon(
-                            Icons.arrow_forward_ios_rounded,
-                            size: 15,
-                            color: CustomColors.greyColor,
-                          )
-                        ],
+                      child: Padding(
+                        padding: const EdgeInsets.all(20),
+                        child: Row(
+                          children: [
+                            SvgPicture.asset(
+                              couponCoin,
+                              height: 40.h,
+                            ),
+                            SizedBox(
+                              width: 10.w,
+                            ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                black12w500Centre(
+                                    data: 'Your accumulated Paw Points'),
+                                black16w500(data: '64468'),
+                              ],
+                            ),
+                            const Spacer(),
+                            const Icon(
+                              Icons.arrow_forward_ios_rounded,
+                              size: 15,
+                              color: CustomColors.greyColor,
+                            )
+                          ],
+                        ),
                       ),
                     ),
                   ),

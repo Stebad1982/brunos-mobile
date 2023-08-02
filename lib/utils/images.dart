@@ -37,6 +37,7 @@ const food = "assets/images/food.png";
 const bone = "assets/images/bone.png";
 
 const cameraImage = "assets/images/camera-image.svg";
+const mapImage = "assets/images/map-image.jpeg";
 const shoppingIcon = "assets/images/shopping-ico.svg";
 const lockIcon = "assets/images/Icon-lock.svg";
 const emailIcon = "assets/images/Icon-email.svg";
