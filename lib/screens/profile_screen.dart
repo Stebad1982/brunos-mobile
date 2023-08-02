@@ -30,25 +30,18 @@ class ProfileScreen extends StatelessWidget {
                   Navigator.pushNamed(context, editProfileRoute);
                 },
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Image.asset(
-                      profileImage,
-                      height: 58.h,
-                    ),
-                    SizedBox(
-                      width: 16.w,
-                    ),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          black14w400Centre(data: 'Hi, Sepide'),
-                          SizedBox(
-                            height: 10.h,
-                          ),
-                          grey14w400(data: 'Sepide@piqo.design')
-                        ],
-                      ),
+
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        black14w400Centre(data: 'Hi, Sepide'),
+                        SizedBox(
+                          height: 10.h,
+                        ),
+                        grey14w400(data: 'Sepide@piqo.design')
+                      ],
                     ),
                     const Align(
                         alignment: Alignment.centerRight,
