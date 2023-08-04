@@ -4,11 +4,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:provider/provider.dart';
 
 import '../main.dart';
 import '../utils/custom_buttons.dart';
 import '../utils/custom_colors.dart';
 import '../utils/custom_font_style.dart';
+import '../view_models/auth_view_model.dart';
 import '../widgets/google_facebook_button_widget.dart';
 
 class RegisterUserScreen extends StatelessWidget {
@@ -16,7 +18,8 @@ class RegisterUserScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Consumer<AuthViewModel>(builder: (_, authViewModel, __) {
+      return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
@@ -37,7 +40,7 @@ class RegisterUserScreen extends StatelessWidget {
                   height: 32.h,
                 ),
                 TextField(
-                  //controller: nameController,
+                  controller: authViewModel.getNameController,
                   onChanged: (text) {},
                   keyboardType: TextInputType.name,
                   decoration: InputDecoration(
@@ -51,7 +54,7 @@ class RegisterUserScreen extends StatelessWidget {
                   height: 16.h,
                 ),
                 TextField(
-                  //controller: nameController,
+                  controller: authViewModel.getEmailController,
                   onChanged: (text) {},
                   keyboardType: TextInputType.emailAddress,
                   decoration: InputDecoration(
@@ -65,7 +68,7 @@ class RegisterUserScreen extends StatelessWidget {
                   height: 16.h,
                 ),
                 TextField(
-                  //controller: nameController,
+                  controller: authViewModel.getPhoneController,
                   onChanged: (text) {},
                   keyboardType: TextInputType.phone,
                   decoration: InputDecoration(
@@ -93,7 +96,7 @@ class RegisterUserScreen extends StatelessWidget {
                   height: 16.h,
                 ),
                 TextField(
-                  //controller: nameController,
+                  controller: authViewModel.getPasswordController,
                   onChanged: (text) {},
                   keyboardType: TextInputType.visiblePassword,
                   decoration: InputDecoration(
@@ -103,6 +106,20 @@ class RegisterUserScreen extends StatelessWidget {
                         child: SvgPicture.asset(lockIcon),
                       )),
                 ),
+          SizedBox(
+            height: 16.h,
+          ),
+          TextField(
+            controller: authViewModel.getConfirmPasswordController,
+            onChanged: (text) {},
+            keyboardType: TextInputType.visiblePassword,
+            decoration: InputDecoration(
+                hintText: 'Password',
+                prefixIcon: Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: SvgPicture.asset(lockIcon),
+                )),
+          ),
                 SizedBox(
                   height: 40.h,
                 ),
@@ -161,6 +178,6 @@ class RegisterUserScreen extends StatelessWidget {
     ,
     )
     ,
-    );
+    );});
   }
 }
