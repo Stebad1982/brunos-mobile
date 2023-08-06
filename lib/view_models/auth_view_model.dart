@@ -1,10 +1,19 @@
 import 'dart:io';
 
+import 'package:brunos_kitchen/models/base_response_model.dart';
+import 'package:brunos_kitchen/models/requests/forgot_password_request.dart';
+import 'package:brunos_kitchen/models/requests/user_register_request.dart';
+import 'package:brunos_kitchen/services/auth_api_services.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
+import '../models/requests/sign_in_request.dart';
+import '../models/responses/auth_response.dart';
 import '../screens/logIn_screen.dart';
 import '../screens/intro_slides_screen.dart';
 import '../utils/enums.dart';
@@ -12,49 +21,67 @@ import '../utils/shared_pref .dart';
 
 class AuthViewModel with ChangeNotifier {
   String _otpRouteFrom = Screens.registerUser.text;
-  final TextEditingController _name = TextEditingController();
+  final AuthApiServices _authApiServices = AuthApiServices();
+  AuthResponse _authResponse = AuthResponse();
+  FirebaseAuth _auth = FirebaseAuth.instance;
+  String? _fcmToken;
+  String _operatingSystem = '';
+  String _verificationId = '';
+  final String _countryCode = '+92';
+  final FirebaseMessaging _firebaseMessaging = FirebaseMessaging.instance;
+  final TextEditingController _otpController = TextEditingController();
+  final TextEditingController _nameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _phoneController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _confirmPasswordController =
       TextEditingController();
-  String? _nameFieldError,
-      _emailFieldError,
-      _phoneFieldError,
-      _passwordFieldError,
-      _confirmPasswordFieldError;
+  String _nameFieldError = '';
+  String _emailFieldError = '';
+  String _phoneFieldError = '';
+  String _passwordFieldError = '';
+  String _confirmPasswordFieldError = '';
 
-  String? get getNameFieldError => _nameFieldError;
+  String get getCountryCode => _countryCode;
+
+  AuthResponse get getAuthResponse => _authResponse;
+
+  void setAuthResponse(AuthResponse value) {
+    _authResponse = value;
+    notifyListeners();
+  }
+
+  String get getNameFieldError => _nameFieldError;
 
   void setNameFieldError(String value) {
     _nameFieldError = value;
     notifyListeners();
   }
 
-  String? get getEmailFieldError => _emailFieldError;
+  String get getEmailFieldError => _emailFieldError;
 
-  void setEmailFieldError(value) {
+  void setEmailFieldError(String value) {
     _emailFieldError = value;
     notifyListeners();
   }
 
-  String? get getPhoneFieldError => _phoneFieldError;
+  String get getPhoneFieldError => _phoneFieldError;
 
-  void setPhoneFieldError(value) {
+  void setPhoneFieldError(String value) {
     _phoneFieldError = value;
     notifyListeners();
   }
 
-  String? get getPasswordFieldError => _passwordFieldError;
+  String get getPasswordFieldError => _passwordFieldError;
 
-  void setPasswordFieldError(value) {
+  void setPasswordFieldError(String value) {
     _passwordFieldError = value;
     notifyListeners();
   }
 
-  String? get getConfirmPasswordFieldError => _confirmPasswordFieldError;
+  String get getConfirmPasswordFieldError => _confirmPasswordFieldError;
 
-  void setConfirmPasswordFieldError(value) {
+  void setConfirmPasswordFieldError(String value) {
     _confirmPasswordFieldError = value;
     notifyListeners();
   }
@@ -68,7 +95,10 @@ class AuthViewModel with ChangeNotifier {
     notifyListeners();
   }
 
-  TextEditingController get getNameController => _name;
+  TextEditingController get getOtpController => _otpController;
+
+
+  TextEditingController get getNameController => _nameController;
 
   TextEditingController get getEmailController => _emailController;
 
@@ -79,14 +109,207 @@ class AuthViewModel with ChangeNotifier {
   TextEditingController get getConfirmPasswordController =>
       _confirmPasswordController;
 
-  Future<Widget> callVersionAndBuildNumber() async {
-    PackageInfo packageInfo = await PackageInfo.fromPlatform();
+  bool nameValidation() {
+    if (_nameController.text.isEmpty) {
+      setNameFieldError('Please Enter Name');
+      return false;
+    } else {
+      setNameFieldError('');
+      return true;
+    }
+  }
+
+  bool emailValidation() {
+    if (_emailController.text.isEmpty) {
+      setEmailFieldError('Please Enter Email');
+      return false;
+    } else {
+      setEmailFieldError('');
+      return true;
+    }
+  }
+
+  bool phoneValidation() {
+    if (_phoneController.text.isEmpty) {
+      setPhoneFieldError('Please Enter Phone Number');
+      return false;
+    } else {
+      setPhoneFieldError('');
+      return true;
+    }
+  }
+
+  bool passwordValidation() {
+    if (_passwordController.text.isEmpty) {
+      setPasswordFieldError('Please Enter Password');
+      return false;
+    } else {
+      setPasswordFieldError('');
+      return true;
+    }
+  }
+
+  bool confirmPasswordValidation() {
+    if (_confirmPasswordController.text.isEmpty) {
+      setConfirmPasswordFieldError('Please Enter Password again');
+      return false;
+    } else if (_confirmPasswordController.text != _passwordController.text) {
+      setConfirmPasswordFieldError('Please Enter Password again');
+      return false;
+    } else {
+      setConfirmPasswordFieldError('');
+      return true;
+    }
+  }
+
+  bool signInValidation() {
+    if (emailValidation() && passwordValidation()) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  bool userRegistrationValidation() {
+    if (nameValidation() &&
+        emailValidation() &&
+        phoneValidation() &&
+        passwordValidation() &&
+        confirmPasswordValidation()) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  Future<bool> callSignInApi() async {
+    EasyLoading.show(status: 'Please Wait ...');
+    try {
+      final SignInRequest signInRequest = SignInRequest(
+          password: _passwordController.text,
+          email: _emailController.text,
+          deviceToken: _fcmToken ?? '',
+          deviceType: _operatingSystem);
+
+      final AuthResponse response =
+          await _authApiServices.signInApi(signInRequest: signInRequest);
+      setAuthResponse(response);
+      if (_authResponse.isSuccess!) {
+        //  setImageSlider();
+        EasyLoading.dismiss();
+        return true;
+      } else {
+        EasyLoading.showError('${_authResponse.message}');
+        return false;
+      }
+    } catch (e) {
+      EasyLoading.showError(e.toString());
+      return false;
+    }
+  }
+
+  Future<bool> callUserRegisterApi() async {
+    EasyLoading.show(status: 'Please Wait ...');
+    try {
+      final UserRegisterRequest userRegisterRequest = UserRegisterRequest(
+          password: _passwordController.text,
+          email: _emailController.text,
+          deviceToken: _fcmToken ?? '',
+          deviceType: _operatingSystem,
+          fullName: _nameController.text,
+          phoneNumber: _phoneController.text);
+
+      final AuthResponse response = await _authApiServices.userRegisterApi(
+          userRegisterRequest: userRegisterRequest);
+      setAuthResponse(response);
+      if (_authResponse.isSuccess!) {
+        //  setImageSlider();
+        EasyLoading.dismiss();
+        return true;
+      } else {
+        EasyLoading.showError('${_authResponse.message}');
+        return false;
+      }
+    } catch (e) {
+      EasyLoading.showError(e.toString());
+      return false;
+    }
+  }
+
+  Future<bool> callForgotPasswordApi() async {
+    EasyLoading.show(status: 'Please Wait ...');
+    try {
+      final ForgotPasswordRequest forgotPasswordRequest = ForgotPasswordRequest(
+          password: _passwordController.text,
+          email: _emailController.text,
+          otp: '');
+
+      final BaseResponseModel response = await _authApiServices
+          .forgotPasswordApi(forgotPasswordRequest: forgotPasswordRequest);
+      if (response.isSuccess!) {
+        EasyLoading.dismiss();
+        return true;
+      } else {
+        EasyLoading.showError('${response.message}');
+        return false;
+      }
+    } catch (e) {
+      EasyLoading.showError(e.toString());
+      return false;
+    }
+  }
+
+  Future<void> verifyNumber() async {
+    EasyLoading.show(status: 'Sending OTP');
+   // String phoneNumberWithCC = '';
+    /*if(_phoneController.text.startsWith("0"))
+    {
+      phoneNumberWithCC = _phoneNumberController.text.replaceFirst("0", "+92");
+    }
+    else{
+      EasyLoading.showToast('Incorrect Phone Number');
+    }*/
+    await _auth.verifyPhoneNumber(
+      phoneNumber: _phoneController.text,
+      verificationCompleted: (PhoneAuthCredential credential)  {
+        _auth.signInWithCredential(credential);
+        EasyLoading.dismiss();
+      },
+      timeout: const Duration(seconds: 60),
+      verificationFailed: (FirebaseAuthException e) {
+        EasyLoading.showToast(e.toString());
+      },
+      codeSent: (String verificationId, int? resendToken) {
+        _verificationId = verificationId;
+        EasyLoading.dismiss();
+      },
+      codeAutoRetrievalTimeout: (String verificationId) {},
+    );
+  }
+
+  Future <bool> verifyOTP () async {
+    try {
+      final credentials = await _auth.signInWithCredential(
+          PhoneAuthProvider.credential(
+              verificationId: _verificationId, smsCode: _otpController.text));
+      return credentials.user != null ? true : false;
+    }
+    catch(exception){
+      EasyLoading.showToast(exception.toString());
+      return false;
+    }
+  }
+
+  Future<Widget> callSplash() async {
+    //PackageInfo packageInfo = await PackageInfo.fromPlatform();
     //setVersion(packageInfo.version);
     // setBuild(packageInfo.buildNumber);
+    _fcmToken = await _firebaseMessaging.getToken();
+    print(_fcmToken);
     if (Platform.isAndroid) {
-      // setOperatingSystem('Android');
+      _operatingSystem = 'Android';
     } else {
-      // setOperatingSystem('iOS');
+      _operatingSystem = 'iOS';
     }
     final authToken =
         await _sharedPref.read(SharedPreferencesKeys.authToken.text);
@@ -94,15 +317,21 @@ class AuthViewModel with ChangeNotifier {
     if (authToken == null) {
       return const IntroSlidesScreen();
     } else {
-      Widget routeTo = LoginScreen();
-      /*  await callSplashApi().then((value) {
-        if (value) {
-          routeTo = DashboardScreen();
-        } else {
-          routeTo = LoginScreen();
-        }
-      });*/
+      Widget routeTo = const LoginScreen();
       return routeTo;
     }
+  }
+
+  void clearFieldsData() {
+    _nameController.clear();
+    _emailController.clear();
+    _phoneController.clear();
+    _passwordController.clear();
+    _confirmPasswordController.clear();
+    setNameFieldError('');
+    setEmailFieldError('');
+    setPhoneFieldError('');
+    setPasswordFieldError('');
+    setConfirmPasswordFieldError('');
   }
 }

@@ -4,11 +4,14 @@ import 'package:brunos_kitchen/view_models/auth_view_model.dart';
 import 'package:brunos_kitchen/view_models/bottom_navigation_view_model.dart';
 import 'package:brunos_kitchen/view_models/plans_view_model.dart';
 import 'package:brunos_kitchen/view_models/puppy_view_model.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
+
+import 'firebase_options.dart';
 
 void configLoading() {
   EasyLoading.instance
@@ -18,7 +21,7 @@ void configLoading() {
     ..indicatorSize = 45.0
     ..radius = 10.0
     ..progressColor = CustomColors.orangeColor
-    ..backgroundColor = CustomColors.orangeColor
+    ..backgroundColor = CustomColors.whiteColor
     ..indicatorColor = CustomColors.orangeColor
     ..textColor = CustomColors.orangeColor
     ..maskColor = Colors.black.withOpacity(0.5)
@@ -40,12 +43,15 @@ final double screenHeightWithAppBar = MediaQuery
     .size
     .height * 0.8;
 Future<void> main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
     //systemNavigationBarColor: Colors.amber, // navigation bar color
     statusBarColor: Colors.transparent, // status bar color
     statusBarIconBrightness: Brightness.dark, // status bar icon color
     systemNavigationBarIconBrightness: Brightness.dark, // color of navigation controls
   ));
+
   configLoading();
   runApp(MultiProvider(
     providers: [
@@ -105,7 +111,7 @@ class MyApp extends StatelessWidget {
                 subtitle1: TextStyle(
                   fontFamily: 'CircularStd',
                   fontSize: 14.sp,
-                  color: CustomColors.orangeColor, // <-- TextFormField input color
+                  color: CustomColors.blackColor, // <-- TextFormField input color
                 ),
               ),
               textSelectionTheme: const TextSelectionThemeData(
@@ -114,7 +120,6 @@ class MyApp extends StatelessWidget {
               inputDecorationTheme: InputDecorationTheme(
                 isDense: true,
                 contentPadding: EdgeInsets.zero,
-
                 fillColor: CustomColors.lightGreyColor,
                 filled: true,
                 enabledBorder: const OutlineInputBorder(

@@ -49,6 +49,10 @@ class LoginScreen extends StatelessWidget {
                               child: SvgPicture.asset(emailIcon),
                             )),
                       ),
+                      SizedBox(height: 5.h,),
+                      Visibility(
+                        visible: authViewModel.getEmailFieldError.isNotEmpty,
+                          child: orange14w400(data: authViewModel.getEmailFieldError)),
                       SizedBox(
                         height: 16.h,
                       ),
@@ -63,11 +67,15 @@ class LoginScreen extends StatelessWidget {
                               child: SvgPicture.asset(lockIcon),
                             )),
                       ),
+                      Visibility(
+                          visible: authViewModel.getPasswordFieldError.isNotEmpty,
+                          child: orange14w400(data: authViewModel.getPasswordFieldError)),
                       SizedBox(
                         height: 12.h,
                       ),
                       InkWell(
                         onTap: (){
+                          authViewModel.clearFieldsData();
                           context.read<AuthViewModel>().setOtpRouteFrom(Screens.forgetPassword.text);
                           Navigator.pushNamed(context, forgetPasswordRoute);
                         },
@@ -79,11 +87,18 @@ class LoginScreen extends StatelessWidget {
                         height: 40.h,
                       ),
                       customButton(text: 'Login', onPressed: () {
-                        Navigator.pushNamedAndRemoveUntil(
-                            context,
-                            bottomNavigationRoute,
-                            ModalRoute.withName(splashRoute));
-                      }, colored: true),
+                            if (authViewModel.signInValidation()) {
+                              authViewModel.callSignInApi().then((value) => {
+                                    if (value)
+                                      {
+                                        Navigator.pushNamedAndRemoveUntil(
+                                            context,
+                                            bottomNavigationRoute,
+                                            ModalRoute.withName(splashRoute))
+                                      }
+                                  });
+                            }
+                          }, colored: true),
                       SizedBox(
                         height: 20.h,
                       ),
@@ -111,7 +126,8 @@ class LoginScreen extends StatelessWidget {
                       alignment: Alignment.bottomCenter,
                       child: InkWell(
                         onTap: (){
-                          context.read<AuthViewModel>().setOtpRouteFrom(Screens.registerUser.text);
+                          authViewModel.clearFieldsData();
+                          authViewModel.setOtpRouteFrom(Screens.registerUser.text);
                           Navigator.pushNamed(context, registerUserRoute);
                         },
                         child: const Text.rich(
