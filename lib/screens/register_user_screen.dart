@@ -1,5 +1,6 @@
 import 'package:brunos_kitchen/route_generator.dart';
 import 'package:brunos_kitchen/utils/images.dart';
+import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -12,6 +13,7 @@ import '../utils/custom_colors.dart';
 import '../utils/custom_font_style.dart';
 import '../view_models/auth_view_model.dart';
 import '../widgets/google_facebook_button_widget.dart';
+import '../widgets/user_form_fields_widget.dart';
 
 class RegisterUserScreen extends StatelessWidget {
   const RegisterUserScreen({Key? key}) : super(key: key);
@@ -20,7 +22,7 @@ class RegisterUserScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<AuthViewModel>(builder: (_, authViewModel, __) {
       return WillPopScope(
-        onWillPop: () async{
+        onWillPop: () async {
           authViewModel.clearFieldsData();
           Navigator.pop(context);
           return false;
@@ -46,17 +48,7 @@ class RegisterUserScreen extends StatelessWidget {
                         SizedBox(
                           height: 32.h,
                         ),
-                        TextField(
-                          controller: authViewModel.getNameController,
-                          onChanged: (text) {},
-                          keyboardType: TextInputType.name,
-                          decoration: InputDecoration(
-                              hintText: 'Full name',
-                              prefixIcon: Padding(
-                                padding: const EdgeInsets.all(16),
-                                child: SvgPicture.asset(userIcon),
-                              )),
-                        ),
+                        const NameFieldWidget(),
                         SizedBox(
                           height: 5.h,
                         ),
@@ -67,17 +59,7 @@ class RegisterUserScreen extends StatelessWidget {
                         SizedBox(
                           height: 16.h,
                         ),
-                        TextField(
-                          controller: authViewModel.getEmailController,
-                          onChanged: (text) {},
-                          keyboardType: TextInputType.emailAddress,
-                          decoration: InputDecoration(
-                              hintText: 'Email address',
-                              prefixIcon: Padding(
-                                padding: const EdgeInsets.all(16),
-                                child: SvgPicture.asset(emailIcon),
-                              )),
-                        ),
+                        const EmailFieldWidget(),
                         SizedBox(
                           height: 5.h,
                         ),
@@ -89,36 +71,7 @@ class RegisterUserScreen extends StatelessWidget {
                         SizedBox(
                           height: 16.h,
                         ),
-                        TextField(
-                          controller: authViewModel.getPhoneController,
-                          onChanged: (text) {},
-                          keyboardType: TextInputType.phone,
-                          decoration: InputDecoration(
-                              hintText: 'Phone Number',
-                              prefixIcon: Padding(
-                                padding: const EdgeInsets.all(16),
-                                child: IntrinsicHeight(
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      SvgPicture.asset(phoneIcon),
-                                      SizedBox(
-                                        width: 5.w,
-                                      ),
-                                      grey14w400(
-                                          data: authViewModel.getCountryCode),
-                                      SizedBox(
-                                        width: 5.w,
-                                      ),
-                                      const VerticalDivider(
-                                        color: CustomColors.greyColor,
-                                        thickness: 1,
-                                      )
-                                    ],
-                                  ),
-                                ),
-                              )),
-                        ),
+                        const PhoneFieldWidget(),
                         SizedBox(
                           height: 5.h,
                         ),
@@ -130,17 +83,7 @@ class RegisterUserScreen extends StatelessWidget {
                         SizedBox(
                           height: 16.h,
                         ),
-                        TextField(
-                          controller: authViewModel.getPasswordController,
-                          onChanged: (text) {},
-                          keyboardType: TextInputType.visiblePassword,
-                          decoration: InputDecoration(
-                              hintText: 'Password',
-                              prefixIcon: Padding(
-                                padding: const EdgeInsets.all(16),
-                                child: SvgPicture.asset(lockIcon),
-                              )),
-                        ),
+                        const PasswordFieldWidget(hint: 'New Password',),
                         SizedBox(
                           height: 5.h,
                         ),
@@ -152,18 +95,7 @@ class RegisterUserScreen extends StatelessWidget {
                         SizedBox(
                           height: 16.h,
                         ),
-                        TextField(
-                          controller:
-                              authViewModel.getConfirmPasswordController,
-                          onChanged: (text) {},
-                          keyboardType: TextInputType.visiblePassword,
-                          decoration: InputDecoration(
-                              hintText: 'Confirm Password',
-                              prefixIcon: Padding(
-                                padding: const EdgeInsets.all(16),
-                                child: SvgPicture.asset(lockIcon),
-                              )),
-                        ),
+                        const ConfirmPasswordFieldWidget(hint: 'Re-Enter New Password',),
                         SizedBox(
                           height: 5.h,
                         ),
@@ -180,15 +112,13 @@ class RegisterUserScreen extends StatelessWidget {
                             text: 'Continue',
                             onPressed: () {
                               if (authViewModel.userRegistrationValidation()) {
-                                authViewModel
-                                    .callUserRegisterApi()
-                                    .then((value) => {
-                                          if (value)
-                                            {
-                                              Navigator.pushNamed(context,
-                                                  registerUserContinueRoute)
-                                            }
-                                        });
+                                authViewModel.checkPhoneNumber(checkType: false).then((value) => {
+                                  if(!value){
+                                    Navigator.pushNamed(context,
+                                        registerUserContinueRoute)
+                                  }
+                                });
+
                               }
                             },
                             colored: true),
@@ -199,7 +129,7 @@ class RegisterUserScreen extends StatelessWidget {
                         SizedBox(
                           height: 20.h,
                         ),
-                        googleFacebookButtonWidget(),
+                        googleFacebookButtonWidget(context: context),
                       ],
                     ),
                     SizedBox(

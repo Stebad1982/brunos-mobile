@@ -175,8 +175,16 @@ class OtpScreen extends StatelessWidget {
                                                       .read<AuthViewModel>()
                                                       .getOtpRouteFrom ==
                                                   Screens.registerUser.text
-                                              ? Navigator.pushNamed(
-                                                  context, userVerifiedRoute)
+                                              ? authViewModel
+                                                  .callUserRegisterApi()
+                                                  .then((value) => {
+                                                        if (value)
+                                                          {
+                                                            Navigator.pushNamed(
+                                                                context,
+                                                                userVerifiedRoute)
+                                                          }
+                                                      })
                                               : Navigator.pushNamed(
                                                   context, resetPasswordRoute)
                                         },

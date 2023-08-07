@@ -10,10 +10,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
 import '../models/requests/sign_in_request.dart';
+import '../models/requests/social_sign_in_request.dart';
 import '../models/responses/auth_response.dart';
+import '../screens/bottom_navigation_screen.dart';
 import '../screens/logIn_screen.dart';
 import '../screens/intro_slides_screen.dart';
 import '../utils/enums.dart';
@@ -23,11 +26,11 @@ class AuthViewModel with ChangeNotifier {
   String _otpRouteFrom = Screens.registerUser.text;
   final AuthApiServices _authApiServices = AuthApiServices();
   AuthResponse _authResponse = AuthResponse();
-  FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  String _countryCode = '+971';
   String? _fcmToken;
   String _operatingSystem = '';
   String _verificationId = '';
-  final String _countryCode = '+92';
   final FirebaseMessaging _firebaseMessaging = FirebaseMessaging.instance;
   final TextEditingController _otpController = TextEditingController();
   final TextEditingController _nameController = TextEditingController();
@@ -43,6 +46,11 @@ class AuthViewModel with ChangeNotifier {
   String _confirmPasswordFieldError = '';
 
   String get getCountryCode => _countryCode;
+
+  void setCountryCode(String value) {
+    _countryCode = value;
+    notifyListeners();
+  }
 
   AuthResponse get getAuthResponse => _authResponse;
 
@@ -96,7 +104,6 @@ class AuthViewModel with ChangeNotifier {
   }
 
   TextEditingController get getOtpController => _otpController;
-
 
   TextEditingController get getNameController => _nameController;
 
@@ -182,6 +189,14 @@ class AuthViewModel with ChangeNotifier {
     }
   }
 
+  bool forgotPasswordValidation() {
+    if (passwordValidation() && confirmPasswordValidation()) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   Future<bool> callSignInApi() async {
     EasyLoading.show(status: 'Please Wait ...');
     try {
@@ -217,7 +232,7 @@ class AuthViewModel with ChangeNotifier {
           deviceToken: _fcmToken ?? '',
           deviceType: _operatingSystem,
           fullName: _nameController.text,
-          phoneNumber: _phoneController.text);
+          phoneNumber: _countryCode + _phoneController.text);
 
       final AuthResponse response = await _authApiServices.userRegisterApi(
           userRegisterRequest: userRegisterRequest);
@@ -241,8 +256,8 @@ class AuthViewModel with ChangeNotifier {
     try {
       final ForgotPasswordRequest forgotPasswordRequest = ForgotPasswordRequest(
           password: _passwordController.text,
-          email: _emailController.text,
-          otp: '');
+          phoneNumber: _phoneController.text,
+          otp: _otpController.text);
 
       final BaseResponseModel response = await _authApiServices
           .forgotPasswordApi(forgotPasswordRequest: forgotPasswordRequest);
@@ -259,25 +274,77 @@ class AuthViewModel with ChangeNotifier {
     }
   }
 
-  Future<void> verifyNumber() async {
-    EasyLoading.show(status: 'Sending OTP');
-   // String phoneNumberWithCC = '';
-    /*if(_phoneController.text.startsWith("0"))
-    {
-      phoneNumberWithCC = _phoneNumberController.text.replaceFirst("0", "+92");
+  Future<bool> callSocialMediaLoginApi(
+      {required UserCredential userDetails}) async {
+    EasyLoading.show(status: 'Please Wait ...');
+    try {
+      final SocialSignInRequest socialSignInRequest = SocialSignInRequest(
+          clientId: userDetails.user!.uid,
+          email: userDetails.user!.email!,
+          fullName: userDetails.user!.displayName!,
+          phoneNumber: userDetails.user!.phoneNumber!,
+          deviceType: _operatingSystem,
+          deviceToken: _fcmToken ?? '',
+          media: '',
+          platform: 'Google');
+
+      final BaseResponseModel response = await _authApiServices
+          .socialMediaLoginApi(socialSignInRequest: socialSignInRequest);
+      if (response.isSuccess!) {
+        EasyLoading.dismiss();
+        return true;
+      } else {
+        EasyLoading.showError('${response.message}');
+        return false;
+      }
+    } catch (e) {
+      EasyLoading.showError(e.toString());
+      return false;
     }
-    else{
-      EasyLoading.showToast('Incorrect Phone Number');
-    }*/
+  }
+
+  Future<bool> checkPhoneNumber({required bool checkType}) async {
+    EasyLoading.show(status: 'Please Wait');
+
+    try {
+      final BaseResponseModel response =
+          await _authApiServices.checkPhoneNumberApi(
+              phoneNumber: _countryCode + _phoneController.text);
+      if (response.isSuccess!) {
+        if (!checkType) {
+          EasyLoading.showError('${response.message}');
+        } else {
+          EasyLoading.dismiss();
+        }
+        return true;
+      } else {
+        if (checkType) {
+          EasyLoading.showError('${response.message}');
+        } else {
+          EasyLoading.dismiss();
+        }
+        return false;
+      }
+    } catch (e) {
+      EasyLoading.showError(e.toString());
+      return false;
+    }
+  }
+
+  Future<bool> verifyNumber() async {
+    EasyLoading.show(status: 'Sending OTP');
+    bool returnValue = true;
     await _auth.verifyPhoneNumber(
-      phoneNumber: _phoneController.text,
-      verificationCompleted: (PhoneAuthCredential credential)  {
+      phoneNumber: _countryCode + _phoneController.text,
+      verificationCompleted: (PhoneAuthCredential credential) {
         _auth.signInWithCredential(credential);
         EasyLoading.dismiss();
+        returnValue = true;
       },
       timeout: const Duration(seconds: 60),
       verificationFailed: (FirebaseAuthException e) {
         EasyLoading.showToast(e.toString());
+        returnValue = false;
       },
       codeSent: (String verificationId, int? resendToken) {
         _verificationId = verificationId;
@@ -285,16 +352,20 @@ class AuthViewModel with ChangeNotifier {
       },
       codeAutoRetrievalTimeout: (String verificationId) {},
     );
+    return returnValue;
   }
 
-  Future <bool> verifyOTP () async {
+  Future<bool> verifyOTP() async {
     try {
+      EasyLoading.show(status: 'Verify OTP');
+
       final credentials = await _auth.signInWithCredential(
           PhoneAuthProvider.credential(
               verificationId: _verificationId, smsCode: _otpController.text));
+      EasyLoading.dismiss();
+
       return credentials.user != null ? true : false;
-    }
-    catch(exception){
+    } catch (exception) {
       EasyLoading.showToast(exception.toString());
       return false;
     }
@@ -317,8 +388,40 @@ class AuthViewModel with ChangeNotifier {
     if (authToken == null) {
       return const IntroSlidesScreen();
     } else {
-      Widget routeTo = const LoginScreen();
+      Widget routeTo = const BottomNavigationScreen();
       return routeTo;
+    }
+  }
+
+  Future<bool> signInWithGoogle() async {
+    EasyLoading.show(status: 'Please Wait...');
+    // Trigger the authentication flow
+    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+
+    if (googleUser != null) {
+      // Obtain the auth details from the request
+
+      final GoogleSignInAuthentication googleAuth =
+          await googleUser.authentication;
+      final credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth.accessToken,
+        idToken: googleAuth.idToken,
+      );
+      final userDetails =
+          await FirebaseAuth.instance.signInWithCredential(credential);
+
+      if (userDetails.user != null) {
+        // await getUserToken();
+        final loginStatus =
+            await callSocialMediaLoginApi(userDetails: userDetails);
+        return loginStatus;
+      } else {
+        EasyLoading.showError('Something Went Wrong');
+        return false;
+      }
+    } else {
+      EasyLoading.showError('Something Went Wrong');
+      return false;
     }
   }
 

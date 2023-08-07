@@ -12,7 +12,7 @@ class ApiBaseHelper {
   SharedPref sharedPref = SharedPref();
   static const _baseURL =
      // 'http://10.120.10.159:8000/api/';
-      'http://3.78.185.237:4000/bruno/api/v1/auth/';
+      'http://3.78.185.237:4000/bruno/api/v1/';
    String? autToken;
 
   Future<dynamic> httpRequest(

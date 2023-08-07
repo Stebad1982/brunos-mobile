@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:brunos_kitchen/models/base_response_model.dart';
 import 'package:brunos_kitchen/models/requests/forgot_password_request.dart';
+import 'package:brunos_kitchen/models/requests/social_sign_in_request.dart';
 import 'package:brunos_kitchen/models/requests/user_register_request.dart';
 
 import '../models/requests/sign_in_request.dart';
@@ -51,6 +52,42 @@ class AuthApiServices {
         endPoint: EndPoints.forgotPassword,
         requestType: 'POST',
         requestBody: forgotPasswordRequest,
+        params: '');
+    final parsed = json.decode(response.body);
+    BaseResponseModel baseResponseModel = BaseResponseModel.fromJson(parsed);
+    return baseResponseModel;
+  }
+
+  Future<BaseResponseModel> checkPhoneNumberApi({required String phoneNumber}) async {
+    ApiBaseHelper httpService = ApiBaseHelper();
+    final response = await httpService.httpRequest(
+        endPoint: EndPoints.checkPhoneNumber,
+        requestType: 'GET',
+        requestBody: '',
+        params: 'phoneNumber=$phoneNumber');
+    final parsed = json.decode(response.body);
+    BaseResponseModel baseResponseModel = BaseResponseModel.fromJson(parsed);
+    return baseResponseModel;
+  }
+
+  Future<BaseResponseModel> socialMediaLoginApi({required SocialSignInRequest socialSignInRequest}) async {
+    ApiBaseHelper httpService = ApiBaseHelper();
+    final response = await httpService.httpRequest(
+        endPoint: EndPoints.socialLoginApi,
+        requestType: 'POST',
+        requestBody: socialSignInRequest,
+        params: '');
+    final parsed = json.decode(response.body);
+    BaseResponseModel baseResponseModel = BaseResponseModel.fromJson(parsed);
+    return baseResponseModel;
+  }
+
+  Future<BaseResponseModel> splashApi() async {
+    ApiBaseHelper httpService = ApiBaseHelper();
+    final response = await httpService.httpRequest(
+        endPoint: EndPoints.splashApi,
+        requestType: 'GET',
+        requestBody: '',
         params: '');
     final parsed = json.decode(response.body);
     BaseResponseModel baseResponseModel = BaseResponseModel.fromJson(parsed);

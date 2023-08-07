@@ -12,6 +12,7 @@ import '../utils/enums.dart';
 import '../utils/images.dart';
 import '../view_models/auth_view_model.dart';
 import '../widgets/google_facebook_button_widget.dart';
+import '../widgets/user_form_fields_widget.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -38,17 +39,7 @@ class LoginScreen extends StatelessWidget {
                       SizedBox(
                         height: 32.h,
                       ),
-                      TextField(
-                        controller: authViewModel.getEmailController,
-                        onChanged: (text) {},
-                        keyboardType: TextInputType.emailAddress,
-                        decoration: InputDecoration(
-                            hintText: 'Email address',
-                            prefixIcon: Padding(
-                              padding: const EdgeInsets.all(16),
-                              child: SvgPicture.asset(emailIcon),
-                            )),
-                      ),
+                      const EmailFieldWidget(),
                       SizedBox(height: 5.h,),
                       Visibility(
                         visible: authViewModel.getEmailFieldError.isNotEmpty,
@@ -56,17 +47,7 @@ class LoginScreen extends StatelessWidget {
                       SizedBox(
                         height: 16.h,
                       ),
-                      TextField(
-                        controller: authViewModel.getPasswordController,
-                        onChanged: (text) {},
-                        keyboardType: TextInputType.visiblePassword,
-                        decoration: InputDecoration(
-                            hintText: 'Password',
-                            prefixIcon: Padding(
-                              padding: const EdgeInsets.all(16),
-                              child: SvgPicture.asset(lockIcon),
-                            )),
-                      ),
+                      const PasswordFieldWidget(hint: 'Password',),
                       Visibility(
                           visible: authViewModel.getPasswordFieldError.isNotEmpty,
                           child: orange14w400(data: authViewModel.getPasswordFieldError)),
@@ -106,7 +87,7 @@ class LoginScreen extends StatelessWidget {
                       SizedBox(
                         height: 20.h,
                       ),
-                      googleFacebookButtonWidget(),
+                      googleFacebookButtonWidget(context: context),
                       SizedBox(
                         height: 40.h,
                       ),

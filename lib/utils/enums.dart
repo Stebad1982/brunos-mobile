@@ -40,9 +40,13 @@ enum SharedPreferencesKeys {
 }
 
 enum EndPoints {
-  signIn('login'),
-  signUp(''),
-  forgotPassword('forgot-password');
+  signIn('auth/login'),
+  signUp('auth/'),
+  forgotPassword('auth/forgot-password'),
+  splashApi('user/'),
+  socialLoginApi('auth/social-login'),
+  checkPhoneNumber('auth/phoneNumber?');
+
 
   final String url;
 

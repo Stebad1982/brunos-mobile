@@ -2,10 +2,12 @@ import 'package:brunos_kitchen/main.dart';
 import 'package:brunos_kitchen/utils/custom_colors.dart';
 import 'package:brunos_kitchen/utils/custom_font_style.dart';
 import 'package:brunos_kitchen/utils/images.dart';
+import 'package:brunos_kitchen/view_models/auth_view_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
 
 import '../route_generator.dart';
 import '../utils/custom_buttons.dart';
@@ -51,7 +53,14 @@ class RegisterUserContinueScreen extends StatelessWidget {
               ),
               const Spacer(),
               customButton(text: 'Continue', onPressed: () {
-                Navigator.pushNamed(context, otpRoute);
+                if (context.read<AuthViewModel>().phoneValidation()) {
+                  context.read<AuthViewModel>()
+                      .verifyNumber()
+                      .then((value) => {
+                    if (value)
+                      {Navigator.pushNamed(context, otpRoute)}
+                  });
+                }
               }, colored: true),
             ],
           ),
