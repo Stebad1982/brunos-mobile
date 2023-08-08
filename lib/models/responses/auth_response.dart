@@ -23,6 +23,7 @@ class AuthResponse extends BaseResponseModel{
 }
 
 class AuthData {
+  String? id;
   String? fullName;
   String? email;
   String? phoneNumber;
@@ -33,7 +34,8 @@ class AuthData {
   String? address;
 
   AuthData(
-      {this.fullName,
+      {this.id,
+        this.fullName,
         this.email,
         this.phoneNumber,
         this.isVerified,
@@ -43,6 +45,7 @@ class AuthData {
         this.address});
 
   AuthData.fromJson(Map<String, dynamic> json) {
+    id = json['_id'];
     fullName = json['fullName'];
     email = json['email'];
     phoneNumber = json['phoneNumber'];
@@ -55,6 +58,7 @@ class AuthData {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['_id'] = this.id;
     data['fullName'] = this.fullName;
     data['email'] = this.email;
     data['phoneNumber'] = this.phoneNumber;

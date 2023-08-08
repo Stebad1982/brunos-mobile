@@ -31,11 +31,11 @@ enum AddressLabel {
 }
 
 enum Puppy {
-  boy("Boy"),
-  girl("Girl"),
-  active('Active'),
-  veryActive('Very Active'),
-  lessActive('Less Active');
+  boy("boy"),
+  girl("girl"),
+  active('active'),
+  veryActive('veryActive'),
+  lessActive('lessActive');
 
   const Puppy(this.text);
 
@@ -62,6 +62,7 @@ enum EndPoints {
   checkPhoneNumber('auth/phoneNumber?'),
   breeds('pet/breeds'),
   addBreeds('pet/breed'),
+  puppies('pet/user'),
   registerPuppy('pet/');
 
 

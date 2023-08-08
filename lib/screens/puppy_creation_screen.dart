@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:brunos_kitchen/route_generator.dart';
 import 'package:brunos_kitchen/utils/custom_font_style.dart';
 import 'package:flutter/cupertino.dart';
@@ -97,30 +99,38 @@ class PuppyCreationScreen extends StatelessWidget {
                     SizedBox(
                       height: 15.h,
                     ),
-                    Container(
-                      width: double.infinity,
-                      decoration: ShapeDecoration(
-                        color: CustomColors.lightGreyColor,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12),
+                    InkWell(
+                      onTap: () {
+                        puppyViewModel.getAndUpLoadImage(fromCamera: true);
+                      },
+                      child: Container(
+                        width: double.infinity,
+                        decoration: ShapeDecoration(
+                          color: CustomColors.lightGreyColor,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12),
+                          ),
                         ),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(20),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            SvgPicture.asset(
-                              cameraImage,
-                              height: 102.h,
-                            ),
-                            SizedBox(
-                              height: 14.h,
-                            ),
-                            black14w400Centre(data: 'Click to select photo'),
-                            black14w400Centre(
-                                data: '.png . jpeg. max 1 MB file size'),
-                          ],
+                        child: Padding(
+                          padding: const EdgeInsets.all(20),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              puppyViewModel.getImageFile == null
+                                  ? SvgPicture.asset(
+                                      cameraImage,
+                                      height: 102.h,
+                                    )
+                                  : Image.file(
+                                      File(puppyViewModel.getImageFile!.path)),
+                              SizedBox(
+                                height: 14.h,
+                              ),
+                              black14w400Centre(data: 'Click to select photo'),
+                              black14w400Centre(
+                                  data: '.png . jpeg. max 1 MB file size'),
+                            ],
+                          ),
                         ),
                       ),
                     ),
@@ -250,9 +260,18 @@ class PuppyCreationScreen extends StatelessWidget {
                     child: customButton(
                         text: 'Save',
                         onPressed: () {
-                        /*  if (puppyViewModel.puppyCreationValidation()) {*/
-                            Navigator.pushNamed(context, puppyAdditionalRoute);
-                         /* }*/
+                          puppyViewModel.getBreedslist.clear();
+                          if (puppyViewModel.puppyCreationValidation()) {
+                            puppyViewModel
+                                .callPuppyBreedsApi()
+                                .then((value) => {
+                                      if (value)
+                                        {
+                                          Navigator.pushNamed(
+                                              context, puppyAdditionalRoute)
+                                        }
+                                    });
+                          }
                         },
                         colored: true),
                   ),

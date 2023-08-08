@@ -1,4 +1,5 @@
 import 'package:brunos_kitchen/main.dart';
+import 'package:brunos_kitchen/models/responses/puppies_response.dart';
 import 'package:brunos_kitchen/utils/custom_colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +10,7 @@ import '../route_generator.dart';
 import '../utils/custom_font_style.dart';
 import '../utils/images.dart';
 
-Widget puppyVerticalListChipWidget(String puppyTag) {
+Widget puppyVerticalListChipWidget({required PuppiesData data}) {
   return Column(
     children: [
       GestureDetector(
@@ -32,19 +33,19 @@ Widget puppyVerticalListChipWidget(String puppyTag) {
                     decoration: ShapeDecoration(
                       color: CustomColors.yellowColor,
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(293),
+                        borderRadius: BorderRadius.circular(100),
                       ),
                     ),
                     child: Padding(
                       padding: const EdgeInsets.all(9.0),
-                      child: SvgPicture.asset(dogFace,height: 22.h,),
+                      child: Image.network(data.media!,height: 22.h,width: 22.h,),
                     )),
                 SizedBox(width: 10.w,),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    black14w400Centre(data: 'Labby'),
-                    grey12w500(data: puppyTag),
+                    black14w400Centre(data: data.name!),
+                    grey12w500(data: data.breed!),
                   ],
                 ),
                 Spacer(),

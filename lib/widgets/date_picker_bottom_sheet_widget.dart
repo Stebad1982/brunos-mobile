@@ -1,6 +1,8 @@
+import 'package:brunos_kitchen/view_models/puppy_view_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 
 import '../main.dart';
 import '../utils/custom_buttons.dart';
@@ -66,7 +68,8 @@ Future datePickerBottomSheetWidget() {
                     ), child: CupertinoDatePicker(
                         mode: CupertinoDatePickerMode.date,
                         initialDateTime: DateTime.now(),
-                        onDateTimeChanged: (val) {
+                        onDateTimeChanged: (value) {
+                          context.read<PuppyViewModel>().setPuppyDob(value);
                           /*setState(() {
                                     _chosenDateTime = val;
                                   });*/

@@ -5,6 +5,7 @@ import 'package:brunos_kitchen/models/requests/add_breed_request.dart';
 import 'package:brunos_kitchen/models/requests/register_puppy_request.dart';
 import 'package:brunos_kitchen/models/responses/breeds_response.dart';
 
+import '../models/responses/puppies_response.dart';
 import '../utils/enums.dart';
 import 'api_base_helper.dart';
 
@@ -46,6 +47,26 @@ class PuppyApiServices {
     return baseResponseModel;
   }
 
+  Future<BreedsResponse> allBreedsApi() async {
+    ApiBaseHelper httpService = ApiBaseHelper();
+    final response = await httpService.httpRequest(
+        endPoint: EndPoints.breeds,
+        requestType: 'GET',
+        params: '');
+    final parsed = json.decode(response.body);
+    BreedsResponse breedsResponse = BreedsResponse.fromJson(parsed);
+    return breedsResponse;
+  }
 
+  Future<PuppiesResponse> puppiesApi() async {
+    ApiBaseHelper httpService = ApiBaseHelper();
+    final response = await httpService.httpRequest(
+        endPoint: EndPoints.puppies,
+        requestType: 'GET',
+        params: '');
+    final parsed = json.decode(response.body);
+    PuppiesResponse puppiesResponse = PuppiesResponse.fromJson(parsed);
+    return puppiesResponse;
+  }
 
 }
