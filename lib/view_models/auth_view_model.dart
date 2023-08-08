@@ -27,6 +27,7 @@ class AuthViewModel with ChangeNotifier {
   String _otpRouteFrom = Screens.registerUser.text;
   final AuthApiServices _authApiServices = AuthApiServices();
   AuthResponse _authResponse = AuthResponse();
+  final SharedPref _sharedPref = SharedPref();
   final FirebaseAuth _auth = FirebaseAuth.instance;
   String _countryCode = '+971';
   String? _fcmToken;
@@ -98,7 +99,6 @@ class AuthViewModel with ChangeNotifier {
     notifyListeners();
   }
 
-  final SharedPref _sharedPref = SharedPref();
 
   String get getOtpRouteFrom => _otpRouteFrom;
 
@@ -413,9 +413,8 @@ class AuthViewModel with ChangeNotifier {
     }
     final authToken =
         await _sharedPref.read(SharedPreferencesKeys.authToken.text);
-
+    await Future.delayed(const Duration(seconds: 4), () {});
     if (authToken == null) {
-      await Future.delayed(const Duration(seconds: 4), () {});
       return const IntroSlidesScreen();
     } else {
       Widget routeTo = const LoginScreen();

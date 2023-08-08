@@ -87,7 +87,15 @@ class PuppyCreationScreen extends StatelessWidget {
                           hintText: 'Entre Your Pet\'s Name'),
                     ),
                     SizedBox(
-                      height: 20.h,
+                      height: 5.h,
+                    ),
+                    Visibility(
+                        visible:
+                            puppyViewModel.getPuppyNameFieldError.isNotEmpty,
+                        child: orange14w400(
+                            data: puppyViewModel.getPuppyNameFieldError)),
+                    SizedBox(
+                      height: 15.h,
                     ),
                     Container(
                       width: double.infinity,
@@ -117,7 +125,15 @@ class PuppyCreationScreen extends StatelessWidget {
                       ),
                     ),
                     SizedBox(
-                      height: 14.h,
+                      height: 5.h,
+                    ),
+                    Visibility(
+                        visible:
+                            puppyViewModel.getPuppyImageFieldError.isNotEmpty,
+                        child: orange14w400(
+                            data: puppyViewModel.getPuppyImageFieldError)),
+                    SizedBox(
+                      height: 10.h,
                     ),
                     SizedBox(
                         width: 307.w,
@@ -127,7 +143,9 @@ class PuppyCreationScreen extends StatelessWidget {
                     SizedBox(
                       height: 30.h,
                     ),
-                    black18w500(data: '${puppyViewModel.getPuppyNameController.text.isNotEmpty?puppyViewModel.getPuppyNameController.text:'Pet'} is a?'),
+                    black18w500(
+                        data:
+                            '${puppyViewModel.getPuppyNameController.text.isNotEmpty ? puppyViewModel.getPuppyNameController.text : 'Pet'} is a?'),
                     SizedBox(
                       height: 16.h,
                     ),
@@ -139,7 +157,8 @@ class PuppyCreationScreen extends StatelessWidget {
                               onPressed: () {
                                 puppyViewModel.setPuppyGender(Puppy.boy.text);
                               },
-                              colored: puppyViewModel.getPuppyGender == Puppy.boy.text),
+                              colored: puppyViewModel.getPuppyGender ==
+                                  Puppy.boy.text),
                         ),
                         SizedBox(
                           width: 20.w,
@@ -150,14 +169,17 @@ class PuppyCreationScreen extends StatelessWidget {
                               onPressed: () {
                                 puppyViewModel.setPuppyGender(Puppy.girl.text);
                               },
-                              colored: puppyViewModel.getPuppyGender == Puppy.girl.text),
+                              colored: puppyViewModel.getPuppyGender ==
+                                  Puppy.girl.text),
                         )
                       ],
                     ),
                     SizedBox(
                       height: 40.h,
                     ),
-                    black18w500(data: 'Is ${puppyViewModel.getPuppyNameController.text.isNotEmpty?puppyViewModel.getPuppyNameController.text:'Pet'} spayed/neutered?'),
+                    black18w500(
+                        data:
+                            'Is ${puppyViewModel.getPuppyNameController.text.isNotEmpty ? puppyViewModel.getPuppyNameController.text : 'Pet'} spayed/neutered?'),
                     SizedBox(
                       height: 24.h,
                     ),
@@ -179,9 +201,9 @@ class PuppyCreationScreen extends StatelessWidget {
                           child: customSquareButton(
                               text: 'Yes',
                               onPressed: () {
-                                // Navigator.pushNamed(context, otpRoute);
+                                puppyViewModel.setPuppyIsSpayNeuter(true);
                               },
-                              colored: true),
+                              colored: puppyViewModel.getPuppyIsSpayNeuter),
                         ),
                         SizedBox(
                           width: 20.w,
@@ -190,9 +212,9 @@ class PuppyCreationScreen extends StatelessWidget {
                           child: customSquareButton(
                               text: 'No',
                               onPressed: () {
-                                // Navigator.pushNamed(context, otpRoute);
+                                puppyViewModel.setPuppyIsSpayNeuter(false);
                               },
-                              colored: false),
+                              colored: !puppyViewModel.getPuppyIsSpayNeuter),
                         )
                       ],
                     ),
@@ -228,7 +250,9 @@ class PuppyCreationScreen extends StatelessWidget {
                     child: customButton(
                         text: 'Save',
                         onPressed: () {
-                          Navigator.pushNamed(context, puppyAdditionalRoute);
+                        /*  if (puppyViewModel.puppyCreationValidation()) {*/
+                            Navigator.pushNamed(context, puppyAdditionalRoute);
+                         /* }*/
                         },
                         colored: true),
                   ),

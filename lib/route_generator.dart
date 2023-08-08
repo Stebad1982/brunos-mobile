@@ -16,7 +16,7 @@ import 'package:brunos_kitchen/screens/order_confirmation_screen.dart';
 import 'package:brunos_kitchen/screens/orders_screen.dart';
 import 'package:brunos_kitchen/screens/otp_screen.dart';
 import 'package:brunos_kitchen/screens/paw_points_screen.dart';
-import 'package:brunos_kitchen/screens/puppy_additional_screen.dart';
+import 'package:brunos_kitchen/screens/puppy_creation_additional_screen.dart';
 import 'package:brunos_kitchen/screens/puppy_confirmation_screen.dart';
 import 'package:brunos_kitchen/screens/puppy_creation_screen.dart';
 import 'package:brunos_kitchen/screens/puppy_screen.dart';
@@ -96,7 +96,7 @@ class RouteGenerator {
       case puppyRoute:
         return MaterialPageRoute(builder: (_) => const PuppyScreen());
       case puppyAdditionalRoute:
-        return MaterialPageRoute(builder: (_) => const PuppyAdditionalScreen());
+        return MaterialPageRoute(builder: (_) => const PuppyCreationAdditionalScreen());
       case puppyConfirmationRoute:
         return MaterialPageRoute(builder: (_) => const PuppyConfirmationScreen());
       case choosePlanRoute:
