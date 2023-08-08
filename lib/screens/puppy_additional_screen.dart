@@ -19,7 +19,9 @@ class PuppyAdditionalScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Consumer<PuppyViewModel>(builder: (_, puppyViewModel, __) {
+
+      return Scaffold(
       appBar: AppBarWithBackWidget(
         heading: context.read<PuppyViewModel>().getRouteToPuppyFrom ==
                 Screens.home.text
@@ -69,7 +71,7 @@ class PuppyAdditionalScreen extends StatelessWidget {
                   SizedBox(
                     height: 30.h,
                   ),
-                  black18w500(data: 'Which Breed type is Labby?'),
+                  black18w500(data: 'Which Breed type is ${puppyViewModel.getPuppyNameController.text.isNotEmpty?puppyViewModel.getPuppyNameController.text:'Pet'}?'),
                   SizedBox(
                     height: 8.h,
                   ),
@@ -122,11 +124,11 @@ class PuppyAdditionalScreen extends StatelessWidget {
                   SizedBox(
                     height: 34.h,
                   ),
-                  orange14w400(data: 'If Labby is a mixed breed'),
+                  orange14w400(data: 'If ${puppyViewModel.getPuppyNameController.text.isNotEmpty?puppyViewModel.getPuppyNameController.text:'Pet'} is a mixed breed'),
                   SizedBox(
                     height: 40.h,
                   ),
-                  black18w500(data: 'When is Labby birthday?'),
+                  black18w500(data: 'When is ${puppyViewModel.getPuppyNameController.text.isNotEmpty?puppyViewModel.getPuppyNameController.text:'Pet'} birthday?'),
                   SizedBox(
                     height: 19.h,
                   ),
@@ -153,7 +155,7 @@ class PuppyAdditionalScreen extends StatelessWidget {
                   SizedBox(
                     height: 40.h,
                   ),
-                  black18w500(data: 'How much does Labby weight?'),
+                  black18w500(data: 'How much does ${puppyViewModel.getPuppyNameController.text.isNotEmpty?puppyViewModel.getPuppyNameController.text:'Pet'} weight?'),
                   SizedBox(
                     height: 9.h,
                   ),
@@ -258,10 +260,16 @@ class PuppyAdditionalScreen extends StatelessWidget {
                   child: customButton(
                       text: 'Save',
                       onPressed: () {
-                        context.read<PuppyViewModel>().getRouteToPuppyFrom ==
+                        puppyViewModel.callRegisterPuppyApi().then((value) => {
+                          if(value){
+                            puppyViewModel.getRouteToPuppyFrom ==
                             Screens.home.text
                             ? Navigator.pushNamed(context, choosePlanRoute)
-                            : Navigator.pushNamed(context, puppyConfirmationRoute);                      },
+                            : Navigator.pushNamed(context, puppyConfirmationRoute)
+                        }
+                        });
+
+                        },
                       colored: true),
                 ),
               ),
@@ -270,6 +278,6 @@ class PuppyAdditionalScreen extends StatelessWidget {
 
         ],
       ),
-    );
+    );});
   }
 }

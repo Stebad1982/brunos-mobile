@@ -40,17 +40,10 @@ class LoginScreen extends StatelessWidget {
                         height: 32.h,
                       ),
                       const EmailFieldWidget(),
-                      SizedBox(height: 5.h,),
-                      Visibility(
-                        visible: authViewModel.getEmailFieldError.isNotEmpty,
-                          child: orange14w400(data: authViewModel.getEmailFieldError)),
                       SizedBox(
                         height: 16.h,
                       ),
                       const PasswordFieldWidget(hint: 'Password',),
-                      Visibility(
-                          visible: authViewModel.getPasswordFieldError.isNotEmpty,
-                          child: orange14w400(data: authViewModel.getPasswordFieldError)),
                       SizedBox(
                         height: 12.h,
                       ),
@@ -68,6 +61,11 @@ class LoginScreen extends StatelessWidget {
                         height: 40.h,
                       ),
                       customButton(text: 'Login', onPressed: () {
+                        FocusScopeNode currentFocus = FocusScope.of(context);
+
+                        if (!currentFocus.hasPrimaryFocus) {
+                          currentFocus.unfocus();
+                        }
                             if (authViewModel.signInValidation()) {
                               authViewModel.callSignInApi().then((value) => {
                                     if (value)
@@ -92,6 +90,11 @@ class LoginScreen extends StatelessWidget {
                         height: 40.h,
                       ),
                       customButton(text: 'Continue As Guest', onPressed: () {
+                        FocusScopeNode currentFocus = FocusScope.of(context);
+
+                        if (!currentFocus.hasPrimaryFocus) {
+                          currentFocus.unfocus();
+                        }
                         Navigator.pushNamedAndRemoveUntil(
                             context,
                             bottomNavigationRoute,

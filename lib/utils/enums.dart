@@ -30,6 +30,19 @@ enum AddressLabel {
   final String text;
 }
 
+enum Puppy {
+  boy("Boy"),
+  girl("Girl"),
+  active('Active'),
+  veryActive('Very Active'),
+  lessActive('Less Active');
+
+  const Puppy(this.text);
+
+  final String text;
+}
+
+
 
 enum SharedPreferencesKeys {
   authToken("auth_token");
@@ -43,9 +56,13 @@ enum EndPoints {
   signIn('auth/login'),
   signUp('auth/'),
   forgotPassword('auth/forgot-password'),
-  splashApi('user/'),
-  socialLoginApi('auth/social-login'),
-  checkPhoneNumber('auth/phoneNumber?');
+  splash('user/'),
+  editUserProfile('user/'),
+  socialLogin('auth/social-login'),
+  checkPhoneNumber('auth/phoneNumber?'),
+  breeds('pet/breeds'),
+  addBreeds('pet/breed'),
+  registerPuppy('pet/');
 
 
   final String url;

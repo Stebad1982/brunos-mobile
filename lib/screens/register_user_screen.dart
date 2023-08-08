@@ -50,67 +50,36 @@ class RegisterUserScreen extends StatelessWidget {
                         ),
                         const NameFieldWidget(),
                         SizedBox(
-                          height: 5.h,
-                        ),
-                        Visibility(
-                            visible: authViewModel.getNameFieldError.isNotEmpty,
-                            child: orange14w400(
-                                data: authViewModel.getNameFieldError)),
-                        SizedBox(
                           height: 16.h,
                         ),
                         const EmailFieldWidget(),
-                        SizedBox(
-                          height: 5.h,
-                        ),
-                        Visibility(
-                            visible:
-                                authViewModel.getEmailFieldError.isNotEmpty,
-                            child: orange14w400(
-                                data: authViewModel.getEmailFieldError)),
+
                         SizedBox(
                           height: 16.h,
                         ),
                         const PhoneFieldWidget(),
-                        SizedBox(
-                          height: 5.h,
-                        ),
-                        Visibility(
-                            visible:
-                                authViewModel.getPhoneFieldError.isNotEmpty,
-                            child: orange14w400(
-                                data: authViewModel.getPhoneFieldError)),
+
                         SizedBox(
                           height: 16.h,
                         ),
                         const PasswordFieldWidget(hint: 'New Password',),
-                        SizedBox(
-                          height: 5.h,
-                        ),
-                        Visibility(
-                            visible:
-                                authViewModel.getPasswordFieldError.isNotEmpty,
-                            child: orange14w400(
-                                data: authViewModel.getPasswordFieldError)),
+
                         SizedBox(
                           height: 16.h,
                         ),
                         const ConfirmPasswordFieldWidget(hint: 'Re-Enter New Password',),
-                        SizedBox(
-                          height: 5.h,
-                        ),
-                        Visibility(
-                            visible: authViewModel
-                                .getConfirmPasswordFieldError.isNotEmpty,
-                            child: orange14w400(
-                                data: authViewModel
-                                    .getConfirmPasswordFieldError)),
+
                         SizedBox(
                           height: 40.h,
                         ),
                         customButton(
                             text: 'Continue',
                             onPressed: () {
+                              FocusScopeNode currentFocus = FocusScope.of(context);
+
+                              if (!currentFocus.hasPrimaryFocus) {
+                                currentFocus.unfocus();
+                              }
                               if (authViewModel.userRegistrationValidation()) {
                                 authViewModel.checkPhoneNumber(checkType: false).then((value) => {
                                   if(!value){

@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:brunos_kitchen/models/base_response_model.dart';
+import 'package:brunos_kitchen/models/requests/edit_user_profile_request.dart';
 import 'package:brunos_kitchen/models/requests/forgot_password_request.dart';
 import 'package:brunos_kitchen/models/requests/social_sign_in_request.dart';
 import 'package:brunos_kitchen/models/requests/user_register_request.dart';
@@ -70,28 +71,43 @@ class AuthApiServices {
     return baseResponseModel;
   }
 
-  Future<BaseResponseModel> socialMediaLoginApi({required SocialSignInRequest socialSignInRequest}) async {
+  Future<AuthResponse> socialMediaLoginApi({required SocialSignInRequest socialSignInRequest}) async {
     ApiBaseHelper httpService = ApiBaseHelper();
     final response = await httpService.httpRequest(
-        endPoint: EndPoints.socialLoginApi,
+        endPoint: EndPoints.socialLogin,
         requestType: 'POST',
         requestBody: socialSignInRequest,
         params: '');
     final parsed = json.decode(response.body);
-    BaseResponseModel baseResponseModel = BaseResponseModel.fromJson(parsed);
-    return baseResponseModel;
+    AuthResponse authResponse = AuthResponse.fromJson(parsed);
+    if (authResponse.isSuccess!) {
+      _sharedPref.save(
+          SharedPreferencesKeys.authToken.text, authResponse.data!.clientToken);
+    }
+    return authResponse;
   }
 
-  Future<BaseResponseModel> splashApi() async {
+  Future<AuthResponse> splashApi() async {
     ApiBaseHelper httpService = ApiBaseHelper();
     final response = await httpService.httpRequest(
-        endPoint: EndPoints.splashApi,
+        endPoint: EndPoints.splash,
         requestType: 'GET',
-        requestBody: '',
         params: '');
     final parsed = json.decode(response.body);
-    BaseResponseModel baseResponseModel = BaseResponseModel.fromJson(parsed);
-    return baseResponseModel;
+    AuthResponse authResponse = AuthResponse.fromJson(parsed);
+    return authResponse;
+  }
+
+  Future<AuthResponse> editUserProfileApi({required EditUserProfileRequest editUserProfileRequest}) async {
+    ApiBaseHelper httpService = ApiBaseHelper();
+    final response = await httpService.httpRequest(
+        endPoint: EndPoints.editUserProfile,
+        requestType: 'PUT',
+        requestBody: editUserProfileRequest,
+        params: '');
+    final parsed = json.decode(response.body);
+    AuthResponse authResponse = AuthResponse.fromJson(parsed);
+    return authResponse;
   }
 
 

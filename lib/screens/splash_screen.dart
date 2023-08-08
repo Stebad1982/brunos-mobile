@@ -51,7 +51,7 @@ class _SplashScreenState extends State<SplashScreen> {
       showLoader: false,
       //loadingText: const Text("Loading...",style: TextStyle(color: CustomColors.color1),),
       futureNavigator:
-          context.read<AuthViewModel>().callSplash(),
+          context.read<AuthViewModel>().checkSplash(),
       // navigator: const IntroSlidesScreen(),
       durationInSeconds: 1,
       loaderColor: CustomColors.orangeColor,

@@ -12,7 +12,7 @@ class ApiBaseHelper {
   SharedPref sharedPref = SharedPref();
   static const _baseURL =
      // 'http://10.120.10.159:8000/api/';
-      'http://3.78.185.237:4000/bruno/api/v1/';
+      'http://18.194.249.227:4000/bruno/api/v1/';
    String? autToken;
 
   Future<dynamic> httpRequest(
@@ -35,7 +35,13 @@ class ApiBaseHelper {
               body: jsonEncode(requestBody)
           );
           return responseJson;
-
+        case 'PUT':
+          final responseJson = await http.put(
+              Uri.parse(_baseURL + endPoint.url),
+              headers:getHeaders(),
+              body: jsonEncode(requestBody)
+          );
+          return responseJson;
         case 'MULTIPART':
           final request = http.MultipartRequest('POST',  Uri.parse(_baseURL + endPoint.url));
           request.fields.addAll(requestBody!.toJson());

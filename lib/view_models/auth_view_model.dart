@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:brunos_kitchen/models/base_response_model.dart';
+import 'package:brunos_kitchen/models/requests/edit_user_profile_request.dart';
 import 'package:brunos_kitchen/models/requests/forgot_password_request.dart';
 import 'package:brunos_kitchen/models/requests/user_register_request.dart';
 import 'package:brunos_kitchen/services/auth_api_services.dart';
@@ -56,6 +57,9 @@ class AuthViewModel with ChangeNotifier {
 
   void setAuthResponse(AuthResponse value) {
     _authResponse = value;
+    _emailController.text = _authResponse.data!.email!;
+    _phoneController.text = _authResponse.data!.phoneNumber!;
+    _nameController.text = _authResponse.data!.fullName!;
     notifyListeners();
   }
 
@@ -223,6 +227,31 @@ class AuthViewModel with ChangeNotifier {
     }
   }
 
+  Future<bool> editUserProfileApi() async {
+    EasyLoading.show(status: 'Please Wait ...');
+    try {
+      final EditUserProfileRequest editUserProfileRequest =
+          EditUserProfileRequest(
+              fullName: _nameController.text,
+              phoneNumber: _phoneController.text);
+
+      final AuthResponse response = await _authApiServices.editUserProfileApi(
+          editUserProfileRequest: editUserProfileRequest);
+      setAuthResponse(response);
+      if (_authResponse.isSuccess!) {
+        //  setImageSlider();
+        EasyLoading.dismiss();
+        return true;
+      } else {
+        EasyLoading.showError('${_authResponse.message}');
+        return false;
+      }
+    } catch (e) {
+      EasyLoading.showError(e.toString());
+      return false;
+    }
+  }
+
   Future<bool> callUserRegisterApi() async {
     EasyLoading.show(status: 'Please Wait ...');
     try {
@@ -257,7 +286,7 @@ class AuthViewModel with ChangeNotifier {
       final ForgotPasswordRequest forgotPasswordRequest = ForgotPasswordRequest(
           password: _passwordController.text,
           phoneNumber: _phoneController.text,
-          otp: _otpController.text);
+          otp: '2521');
 
       final BaseResponseModel response = await _authApiServices
           .forgotPasswordApi(forgotPasswordRequest: forgotPasswordRequest);
@@ -282,14 +311,14 @@ class AuthViewModel with ChangeNotifier {
           clientId: userDetails.user!.uid,
           email: userDetails.user!.email!,
           fullName: userDetails.user!.displayName!,
-          phoneNumber: userDetails.user!.phoneNumber!,
+          phoneNumber: userDetails.user!.phoneNumber ?? '+923340394150',
           deviceType: _operatingSystem,
           deviceToken: _fcmToken ?? '',
-          media: '',
+          media: 'deviceTypedeviceTypedeviceType',
           platform: 'Google');
-
-      final BaseResponseModel response = await _authApiServices
-          .socialMediaLoginApi(socialSignInRequest: socialSignInRequest);
+      final AuthResponse response = await _authApiServices.socialMediaLoginApi(
+          socialSignInRequest: socialSignInRequest);
+      setAuthResponse(response);
       if (response.isSuccess!) {
         EasyLoading.dismiss();
         return true;
@@ -371,7 +400,7 @@ class AuthViewModel with ChangeNotifier {
     }
   }
 
-  Future<Widget> callSplash() async {
+  Future<Widget> checkSplash() async {
     //PackageInfo packageInfo = await PackageInfo.fromPlatform();
     //setVersion(packageInfo.version);
     // setBuild(packageInfo.buildNumber);
@@ -384,11 +413,19 @@ class AuthViewModel with ChangeNotifier {
     }
     final authToken =
         await _sharedPref.read(SharedPreferencesKeys.authToken.text);
-    await Future.delayed(const Duration(seconds: 4), () {});
+
     if (authToken == null) {
+      await Future.delayed(const Duration(seconds: 4), () {});
       return const IntroSlidesScreen();
     } else {
-      Widget routeTo = const BottomNavigationScreen();
+      Widget routeTo = const LoginScreen();
+      await callSplash().then((value) {
+        if (value) {
+          routeTo = const BottomNavigationScreen();
+        } else {
+          routeTo = const LoginScreen();
+        }
+      });
       return routeTo;
     }
   }
@@ -412,9 +449,8 @@ class AuthViewModel with ChangeNotifier {
 
       if (userDetails.user != null) {
         // await getUserToken();
-        final loginStatus =
-            await callSocialMediaLoginApi(userDetails: userDetails);
-        return loginStatus;
+        //  final bool loginStatus =
+        return callSocialMediaLoginApi(userDetails: userDetails);
       } else {
         EasyLoading.showError('Something Went Wrong');
         return false;
@@ -436,5 +472,20 @@ class AuthViewModel with ChangeNotifier {
     setPhoneFieldError('');
     setPasswordFieldError('');
     setConfirmPasswordFieldError('');
+  }
+
+  Future <bool> callSplash() async{
+    try {
+      final AuthResponse response = await _authApiServices.splashApi();
+      setAuthResponse(response);
+      if (response.isSuccess!) {
+        return true;
+      } else {
+        return false;
+      }
+    } catch (e) {
+      EasyLoading.showError(e.toString());
+      return false;
+    }
   }
 }

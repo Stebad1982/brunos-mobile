@@ -46,18 +46,16 @@ class ForgetPasswordScreen extends StatelessWidget {
                 ),
                 const PhoneFieldWidget(),
                 SizedBox(
-                  height: 5.h,
-                ),
-                Visibility(
-                    visible: authViewModel.getPhoneFieldError.isNotEmpty,
-                    child:
-                        orange14w400(data: authViewModel.getPhoneFieldError)),
-                SizedBox(
                   height: 40.h,
                 ),
                 customButton(
                     text: 'Continue',
                     onPressed: () async {
+                      FocusScopeNode currentFocus = FocusScope.of(context);
+
+                      if (!currentFocus.hasPrimaryFocus) {
+                        currentFocus.unfocus();
+                      }
                       if (authViewModel.phoneValidation()) {
                         final bool phoneExist =
                             await authViewModel.checkPhoneNumber(checkType: true);
