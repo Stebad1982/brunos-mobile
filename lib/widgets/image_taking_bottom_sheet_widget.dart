@@ -76,7 +76,7 @@ Future imageTakingBottomSheetWidget() {
 
                       }, icon: const Icon(Icons.photo_library,size: 30,color: CustomColors.orangeColor,),),
                       SizedBox(width: 5.w,),
-                      black16w500(data: 'Camera')
+                      black16w500(data: 'Gallery')
                     ],),
                   )
 

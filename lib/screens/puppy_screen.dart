@@ -74,7 +74,7 @@ class _PuppyScreenState extends State<PuppyScreen> {
                                 padding: const EdgeInsets.all(10.0),
                                 child: SvgPicture.asset(
                                     dogFootPrint,
-                                    height: 20
+                                    height: 20.h
                                 ),
                               )),
                           SizedBox(

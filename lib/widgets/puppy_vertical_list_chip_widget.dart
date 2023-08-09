@@ -1,6 +1,7 @@
 import 'package:brunos_kitchen/main.dart';
 import 'package:brunos_kitchen/models/responses/puppies_response.dart';
 import 'package:brunos_kitchen/utils/custom_colors.dart';
+import 'package:brunos_kitchen/widgets/circular_network_image_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -14,7 +15,7 @@ Widget puppyVerticalListChipWidget({required PuppiesData data}) {
   return Column(
     children: [
       GestureDetector(
-        onTap: (){
+        onTap: () {
           Navigator.pushNamed(navigatorKey.currentContext!, puppyCreationRoute);
         },
         child: Container(
@@ -25,22 +26,14 @@ Widget puppyVerticalListChipWidget({required PuppiesData data}) {
             ),
           ),
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0,vertical: 20),
+            padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 20),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Container(
-                    decoration: ShapeDecoration(
-                      color: CustomColors.yellowColor,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(100),
-                      ),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(9.0),
-                      child: Image.network(data.media!,height: 22.h,width: 22.h,),
-                    )),
-                SizedBox(width: 10.w,),
+                circularNetworkImageWidget(image: data.media!, size: 40.h),
+                SizedBox(
+                  width: 10.w,
+                ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -53,13 +46,18 @@ Widget puppyVerticalListChipWidget({required PuppiesData data}) {
                   decoration: ShapeDecoration(
                     color: CustomColors.whiteColor,
                     shape: RoundedRectangleBorder(
-                      side: const BorderSide(width: 0.75, color: CustomColors.greyMediumColor),
+                      side: const BorderSide(
+                          width: 0.75, color: CustomColors.greyMediumColor),
                       borderRadius: BorderRadius.circular(12),
                     ),
                   ),
                   child: const Padding(
                     padding: EdgeInsets.all(10),
-                    child: Icon(Icons.edit,size: 20,color: CustomColors.orangeColor,),
+                    child: Icon(
+                      Icons.edit,
+                      size: 20,
+                      color: CustomColors.orangeColor,
+                    ),
                   ),
                 )
               ],

@@ -122,8 +122,15 @@ class PuppyCreationScreen extends StatelessWidget {
                                       cameraImage,
                                       height: 102.h,
                                     )
-                                  : Image.file(
-                                      File(puppyViewModel.getImageFile!.path)),
+                                  :
+                              SizedBox(
+                                height: 100.h,width: 100.h,
+                                child: CircleAvatar(
+                                  backgroundColor: CustomColors.greyColor,
+                                  backgroundImage: Image.file(
+                                      File(puppyViewModel.getImageFile!.path)).image,
+                                ),
+                              ),
                               SizedBox(
                                 height: 14.h,
                               ),

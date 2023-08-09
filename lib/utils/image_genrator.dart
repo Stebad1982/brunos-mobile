@@ -16,7 +16,7 @@ class ImageGenerator{
     final CroppedFile? croppedFile = await ImageCropper().cropImage(sourcePath: imageFileToCrop.path,
         //maxWidth: 1080,
         //maxHeight: 120,
-        aspectRatio: const CropAspectRatio(ratioX: 2.5, ratioY: 1.0));
+        aspectRatio: const CropAspectRatio(ratioX: 2.5, ratioY: 2.5));
     return croppedFile!;
   }
 }
