@@ -26,7 +26,8 @@ class PhoneFieldWidget extends StatelessWidget {
             decoration: InputDecoration(
                 hintText: 'Phone Number',
                 prefixIcon: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16,vertical: 4),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
                   child: IntrinsicHeight(
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
@@ -35,9 +36,8 @@ class PhoneFieldWidget extends StatelessWidget {
                         CountryCodePicker(
                           padding: EdgeInsets.zero,
                           showFlagMain: false,
-                          onChanged: (value) => {
-                            authViewModel.setCountryCode(value.toString())
-                          },
+                          onChanged: (value) =>
+                              {authViewModel.setCountryCode(value.toString())},
                           initialSelection: authViewModel.getCountryCode,
                           favorite: const ['+971', 'UAE'],
                           showCountryOnly: false,
@@ -62,10 +62,8 @@ class PhoneFieldWidget extends StatelessWidget {
             height: 5.h,
           ),
           Visibility(
-              visible:
-              authViewModel.getPhoneFieldError.isNotEmpty,
-              child: orange14w400(
-                  data: authViewModel.getPhoneFieldError)),
+              visible: authViewModel.getPhoneFieldError.isNotEmpty,
+              child: orange14w400(data: authViewModel.getPhoneFieldError)),
         ],
       );
     });
@@ -97,8 +95,7 @@ class NameFieldWidget extends StatelessWidget {
           ),
           Visibility(
               visible: authViewModel.getNameFieldError.isNotEmpty,
-              child: orange14w400(
-                  data: authViewModel.getNameFieldError)),
+              child: orange14w400(data: authViewModel.getNameFieldError)),
         ],
       );
     });
@@ -129,10 +126,8 @@ class EmailFieldWidget extends StatelessWidget {
             height: 5.h,
           ),
           Visibility(
-              visible:
-              authViewModel.getEmailFieldError.isNotEmpty,
-              child: orange14w400(
-                  data: authViewModel.getEmailFieldError)),
+              visible: authViewModel.getEmailFieldError.isNotEmpty,
+              child: orange14w400(data: authViewModel.getEmailFieldError)),
         ],
       );
     });
@@ -141,6 +136,7 @@ class EmailFieldWidget extends StatelessWidget {
 
 class PasswordFieldWidget extends StatelessWidget {
   final String hint;
+
   const PasswordFieldWidget({Key? key, required this.hint}) : super(key: key);
 
   @override
@@ -152,8 +148,17 @@ class PasswordFieldWidget extends StatelessWidget {
           TextField(
             controller: authViewModel.getPasswordController,
             onChanged: (text) {},
+            obscureText: authViewModel.getSecurePassword,
             keyboardType: TextInputType.visiblePassword,
             decoration: InputDecoration(
+                suffixIcon: IconButton(
+                  icon: authViewModel.getSecurePassword
+                      ? const Icon(Icons.visibility_off)
+                      : const Icon(Icons.visibility),
+                  onPressed: () {
+                    authViewModel.setSecurePassword();
+                  },
+                ),
                 hintText: hint,
                 prefixIcon: Padding(
                   padding: const EdgeInsets.all(16),
@@ -164,10 +169,8 @@ class PasswordFieldWidget extends StatelessWidget {
             height: 5.h,
           ),
           Visibility(
-              visible:
-              authViewModel.getPasswordFieldError.isNotEmpty,
-              child: orange14w400(
-                  data: authViewModel.getPasswordFieldError)),
+              visible: authViewModel.getPasswordFieldError.isNotEmpty,
+              child: orange14w400(data: authViewModel.getPasswordFieldError)),
         ],
       );
     });
@@ -176,7 +179,9 @@ class PasswordFieldWidget extends StatelessWidget {
 
 class ConfirmPasswordFieldWidget extends StatelessWidget {
   final String hint;
-  const ConfirmPasswordFieldWidget({Key? key,required this.hint}) : super(key: key);
+
+  const ConfirmPasswordFieldWidget({Key? key, required this.hint})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -187,9 +192,18 @@ class ConfirmPasswordFieldWidget extends StatelessWidget {
           TextField(
             controller: authViewModel.getConfirmPasswordController,
             onChanged: (text) {},
+            obscureText: authViewModel.getSecurePassword,
             keyboardType: TextInputType.visiblePassword,
             decoration: InputDecoration(
                 hintText: hint,
+                suffixIcon: IconButton(
+                  icon: authViewModel.getSecurePassword
+                      ? const Icon(Icons.visibility_off)
+                      : const Icon(Icons.visibility),
+                  onPressed: () {
+                    authViewModel.setSecurePassword();
+                  },
+                ),
                 prefixIcon: Padding(
                   padding: const EdgeInsets.all(16),
                   child: SvgPicture.asset(lockIcon),
@@ -199,11 +213,9 @@ class ConfirmPasswordFieldWidget extends StatelessWidget {
             height: 5.h,
           ),
           Visibility(
-              visible: authViewModel
-                  .getConfirmPasswordFieldError.isNotEmpty,
+              visible: authViewModel.getConfirmPasswordFieldError.isNotEmpty,
               child: orange14w400(
-                  data: authViewModel
-                      .getConfirmPasswordFieldError)),
+                  data: authViewModel.getConfirmPasswordFieldError)),
         ],
       );
     });

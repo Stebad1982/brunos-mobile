@@ -40,11 +40,11 @@ class ProfileScreen extends StatelessWidget {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        black14w400Centre(data: 'Hi, Sepide'),
+                        black14w400Centre(data: 'Hi, ${context.read<AuthViewModel>().getAuthResponse.data!.fullName}'),
                         SizedBox(
                           height: 10.h,
                         ),
-                        grey14w400(data: 'Sepide@piqo.design')
+                        grey14w400(data: context.read<AuthViewModel>().getAuthResponse.data!.email!)
                       ],
                     ),
                     const Align(

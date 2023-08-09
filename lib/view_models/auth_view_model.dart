@@ -25,6 +25,7 @@ import '../utils/shared_pref .dart';
 
 class AuthViewModel with ChangeNotifier {
   String _otpRouteFrom = Screens.registerUser.text;
+  bool _securePassword = true;
   final AuthApiServices _authApiServices = AuthApiServices();
   AuthResponse _authResponse = AuthResponse();
   final SharedPref _sharedPref = SharedPref();
@@ -46,6 +47,13 @@ class AuthViewModel with ChangeNotifier {
   String _phoneFieldError = '';
   String _passwordFieldError = '';
   String _confirmPasswordFieldError = '';
+
+  bool get getSecurePassword => _securePassword;
+
+  void setSecurePassword (){
+    _securePassword = !_securePassword;
+    notifyListeners();
+  }
 
   String get getCountryCode => _countryCode;
 
@@ -162,10 +170,10 @@ class AuthViewModel with ChangeNotifier {
 
   bool confirmPasswordValidation() {
     if (_confirmPasswordController.text.isEmpty) {
-      setConfirmPasswordFieldError('Please Enter Password again');
+      setConfirmPasswordFieldError('Password didn\'t matched');
       return false;
     } else if (_confirmPasswordController.text != _passwordController.text) {
-      setConfirmPasswordFieldError('Please Enter Password again');
+      setConfirmPasswordFieldError('Password didn\'t matched');
       return false;
     } else {
       setConfirmPasswordFieldError('');
@@ -212,8 +220,8 @@ class AuthViewModel with ChangeNotifier {
 
       final AuthResponse response =
           await _authApiServices.signInApi(signInRequest: signInRequest);
-      setAuthResponse(response);
       if (_authResponse.isSuccess!) {
+        setAuthResponse(response);
         //  setImageSlider();
         EasyLoading.dismiss();
         return true;
@@ -237,8 +245,8 @@ class AuthViewModel with ChangeNotifier {
 
       final AuthResponse response = await _authApiServices.editUserProfileApi(
           editUserProfileRequest: editUserProfileRequest);
-      setAuthResponse(response);
       if (_authResponse.isSuccess!) {
+        setAuthResponse(response);
         //  setImageSlider();
         EasyLoading.dismiss();
         return true;
@@ -265,8 +273,8 @@ class AuthViewModel with ChangeNotifier {
 
       final AuthResponse response = await _authApiServices.userRegisterApi(
           userRegisterRequest: userRegisterRequest);
-      setAuthResponse(response);
       if (_authResponse.isSuccess!) {
+        setAuthResponse(response);
         //  setImageSlider();
         EasyLoading.dismiss();
         return true;
@@ -318,8 +326,8 @@ class AuthViewModel with ChangeNotifier {
           platform: 'Google');
       final AuthResponse response = await _authApiServices.socialMediaLoginApi(
           socialSignInRequest: socialSignInRequest);
-      setAuthResponse(response);
       if (response.isSuccess!) {
+        setAuthResponse(response);
         EasyLoading.dismiss();
         return true;
       } else {
@@ -465,6 +473,7 @@ class AuthViewModel with ChangeNotifier {
     _emailController.clear();
     _phoneController.clear();
     _passwordController.clear();
+    _securePassword = true;
     _confirmPasswordController.clear();
     setNameFieldError('');
     setEmailFieldError('');
@@ -476,8 +485,8 @@ class AuthViewModel with ChangeNotifier {
   Future <bool> callSplash() async{
     try {
       final AuthResponse response = await _authApiServices.splashApi();
-      setAuthResponse(response);
       if (response.isSuccess!) {
+        setAuthResponse(response);
         return true;
       } else {
         return false;

@@ -381,6 +381,7 @@ class PuppyCreationAdditionalScreen extends StatelessWidget {
                                           Navigator.of(context)
                                             ..pop()
                                             ..pop(),
+                                          puppyViewModel.callPuppiesApi(),
                                           puppyViewModel.getRouteToPuppyFrom ==
                                                   Screens.home.text
                                               ? Navigator.pushNamed(

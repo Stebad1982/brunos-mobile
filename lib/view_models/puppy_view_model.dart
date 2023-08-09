@@ -301,7 +301,7 @@ class PuppyViewModel with ChangeNotifier {
           media: _puppyImage,
           gender: _puppyGender,
           isSpayNeuter: _puppyIsSpayNeuter,
-          breed: 'Labrador Retriever',
+          breed: _puppyBreedController.text,
           bornOnDate: puppyBirthDate,
           currentWeight: _puppyCurrentWeight,
           actualWeight: _puppyActualWeight,

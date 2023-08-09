@@ -5,6 +5,7 @@ class UserRegisterRequest {
   String password;
   String deviceToken;
   String deviceType;
+  String role = 'user';
 
   UserRegisterRequest(
       {required this.fullName,
@@ -24,7 +25,7 @@ class UserRegisterRequest {
     data['password'] = password;
     data['deviceToken'] = deviceToken;
     data['deviceType'] = deviceType;
-    data['role'] = 'user';
+    data['role'] = role;
     return data;
   }
 }

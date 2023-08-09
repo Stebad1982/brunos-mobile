@@ -1,3 +1,4 @@
+import 'package:brunos_kitchen/route_generator.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -43,11 +44,11 @@ class PuppyConfirmationScreen extends StatelessWidget {
               Column(
                 children: [
                   customButton(text: 'I want to add more pet', onPressed: () {
-                    //Navigator.pushNamed(context, pawPointsRoute);
+                    Navigator.pushReplacementNamed(context, puppyCreationRoute);
                   }, colored: false, icon: Icons.add),
                   const SizedBox(height: 26,),
                   customButton(text: 'Continue', onPressed: () {
-                    //Navigator.pushNamed(context, pawPointsRoute);
+                    Navigator.pop(context);
                   }, colored: true),
                 ],
               ),

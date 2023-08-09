@@ -3,7 +3,7 @@ class SignInRequest {
   String password;
   String deviceToken;
   String deviceType;
-  //String? role = 'user';
+  String role = 'user';
 
   SignInRequest(
       {required this.email,
@@ -18,7 +18,7 @@ class SignInRequest {
     data['password'] = password;
     data['deviceToken'] = deviceToken;
     data['deviceType'] = deviceType;
-    data['role'] = 'user';
+    data['role'] = role;
     return data;
   }
 }

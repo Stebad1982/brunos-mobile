@@ -165,31 +165,15 @@ class OtpScreen extends StatelessWidget {
                         child: customButton(
                             text: 'Continue',
                             onPressed: () {
-                              authViewModel.verifyOTP().then(
-                                    (value) => {
-                                      if (value)
-                                        {
-                                          authViewModel.getOtpController
-                                              .clear(),
-                                          context
-                                                      .read<AuthViewModel>()
-                                                      .getOtpRouteFrom ==
-                                                  Screens.registerUser.text
-                                              ? authViewModel
-                                                  .callUserRegisterApi()
-                                                  .then((value) => {
-                                                        if (value)
-                                                          {
-                                                            Navigator.pushNamed(
-                                                                context,
-                                                                userVerifiedRoute)
-                                                          }
-                                                      })
-                                              : Navigator.pushNamed(
-                                                  context, resetPasswordRoute)
-                                        },
-                                    },
-                                  );
+                              authViewModel
+                                  .callUserRegisterApi()
+                                  .then((value) => {
+                                        if (value)
+                                          {
+                                            Navigator.pushNamed(
+                                                context, userVerifiedRoute)
+                                          }
+                                      });
                             },
                             colored: true),
                       ),

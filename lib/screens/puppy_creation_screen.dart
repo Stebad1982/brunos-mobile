@@ -15,6 +15,7 @@ import '../utils/enums.dart';
 import '../utils/images.dart';
 import '../view_models/puppy_view_model.dart';
 import '../widgets/app_bar_with_back_widget.dart';
+import '../widgets/image_taking_bottom_sheet_widget.dart';
 
 class PuppyCreationScreen extends StatelessWidget {
   const PuppyCreationScreen({Key? key}) : super(key: key);
@@ -101,7 +102,7 @@ class PuppyCreationScreen extends StatelessWidget {
                     ),
                     InkWell(
                       onTap: () {
-                        puppyViewModel.getAndUpLoadImage(fromCamera: true);
+                        imageTakingBottomSheetWidget();
                       },
                       child: Container(
                         width: double.infinity,
