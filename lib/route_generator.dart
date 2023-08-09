@@ -19,7 +19,8 @@ import 'package:brunos_kitchen/screens/paw_points_screen.dart';
 import 'package:brunos_kitchen/screens/puppy_creation_additional_screen.dart';
 import 'package:brunos_kitchen/screens/puppy_confirmation_screen.dart';
 import 'package:brunos_kitchen/screens/puppy_creation_screen.dart';
-import 'package:brunos_kitchen/screens/puppy_screen.dart';
+import 'package:brunos_kitchen/screens/puppy_detail_screen.dart';
+import 'package:brunos_kitchen/screens/puppies_list_screen.dart';
 import 'package:brunos_kitchen/screens/register_user_continue_screen.dart';
 import 'package:brunos_kitchen/screens/register_user_screen.dart';
 import 'package:brunos_kitchen/screens/address_intro_screen.dart';
@@ -42,7 +43,7 @@ const String shareAddressRoute = '/share_address';
 const String addAddressRoute = '/add_address';
 const String editProfileRoute = '/edit_profile';
 const String ordersRoute = '/orders';
-const String puppyRoute = '/puppy';
+const String puppiesListRoute = '/puppiesList';
 const String deliveryDatesRoute = '/delivery_dates';
 const String puppyCreationRoute = '/puppy_creation';
 const String puppyAdditionalRoute = '/puppyAdditional';
@@ -58,6 +59,8 @@ const String faqRoute = '/faq';
 const String forgetPasswordRoute = '/forgetPassword';
 const String resetPasswordRoute = '/resetPassword';
 const String resetPasswordSuccessRoute = '/resetPasswordSuccess';
+const String puppyDetailRoute = '/puppyDetail';
+
 
 
 
@@ -93,8 +96,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const OrdersScreen());
       case puppyCreationRoute:
         return MaterialPageRoute(builder: (_) => const PuppyCreationScreen());
-      case puppyRoute:
-        return MaterialPageRoute(builder: (_) => const PuppyScreen());
+      case puppiesListRoute:
+        return MaterialPageRoute(builder: (_) => const PuppiesListScreen());
       case puppyAdditionalRoute:
         return MaterialPageRoute(builder: (_) => const PuppyCreationAdditionalScreen());
       case puppyConfirmationRoute:
@@ -123,6 +126,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const ResetPasswordScreen());
       case resetPasswordSuccessRoute:
         return MaterialPageRoute(builder: (_) => const ResetPasswordSuccessScreen());
+      case puppyDetailRoute:
+        return MaterialPageRoute(builder: (_) => const PuppyDetailScreen());
         case '/tasting_details':
       /*return MaterialPageRoute(
             builder: (_) => const TastingDetailsScreen(),

@@ -31,29 +31,36 @@ class ProfileScreen extends StatelessWidget {
             children: [
               InkWell(
                 onTap: (){
-                  Navigator.pushNamed(context, editProfileRoute);
+                  if(context.read<AuthViewModel>().getAuthResponse.data != null){
+                    Navigator.pushNamed(context, editProfileRoute);
+                  }
                 },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        black14w400Centre(data: 'Hi, ${context.read<AuthViewModel>().getAuthResponse.data!.fullName}'),
+                        black14w400Centre(data: 'Hi, ${
+                context.read<AuthViewModel>().getAuthResponse.data != null ?context.read<AuthViewModel>().getAuthResponse.data!.fullName
+                        : 'Guest'}'),
                         SizedBox(
                           height: 10.h,
                         ),
-                        grey14w400(data: context.read<AuthViewModel>().getAuthResponse.data!.email!)
+                        grey14w400(data: context.read<AuthViewModel>().getAuthResponse.data != null ?
+                        context.read<AuthViewModel>().getAuthResponse.data!.email! : '')
                       ],
                     ),
-                    const Align(
-                        alignment: Alignment.centerRight,
-                        child: Icon(
-                          Icons.arrow_forward_ios_rounded,
-                          size: 15,
-                          color: CustomColors.greyColor,
-                        ))
+                    Visibility(
+                      visible: context.read<AuthViewModel>().getAuthResponse.data != null,
+                      child: const Align(
+                          alignment: Alignment.centerRight,
+                          child: Icon(
+                            Icons.arrow_forward_ios_rounded,
+                            size: 15,
+                            color: CustomColors.greyColor,
+                          )),
+                    )
                   ],
                 ),
               ),
@@ -88,7 +95,7 @@ class ProfileScreen extends StatelessWidget {
               ListTile(
                 onTap: (){
                   context.read<PuppyViewModel>().setRouteToPuppyFrom(Screens.profile.text);
-                  Navigator.pushNamed(context, puppyRoute);
+                  Navigator.pushNamed(context, puppiesListRoute);
                 },
                   leading: SvgPicture.asset(
                     orderIcon,

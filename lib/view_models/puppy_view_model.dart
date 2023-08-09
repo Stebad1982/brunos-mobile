@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:brunos_kitchen/models/base_response_model.dart';
+import 'package:brunos_kitchen/models/puppy_model.dart';
 import 'package:brunos_kitchen/models/requests/register_puppy_request.dart';
 import 'package:brunos_kitchen/models/responses/breeds_response.dart';
 import 'package:brunos_kitchen/models/responses/puppies_response.dart';
@@ -16,6 +17,7 @@ import '../dunmmy_data.dart';
 import '../screens/logIn_screen.dart';
 import '../screens/intro_slides_screen.dart';
 import '../services/firebase_upload_image_service.dart';
+import '../utils/date_time_formatter.dart';
 import '../utils/enums.dart';
 import '../utils/image_genrator.dart';
 import '../utils/shared_pref .dart';
@@ -27,7 +29,7 @@ class PuppyViewModel with ChangeNotifier {
   final PuppyApiServices _puppyApiServices = PuppyApiServices();
   final ImageGenerator _imageGenerator = ImageGenerator();
   PuppiesResponse _puppiesResponse = PuppiesResponse();
-
+  PuppyModel? _puppyDetail;
   final TextEditingController _puppyNameController = TextEditingController();
   String _puppyImage = '';
   CroppedFile? _imageFile;
@@ -37,7 +39,7 @@ class PuppyViewModel with ChangeNotifier {
   BreedsResponse _breedsResponse = BreedsResponse();
   List<BreedsData> _breedsList = [];
   String _puppyDob = 'MM   /   DD   /   YYYY';
-  DateTime? _formatDate;
+  DateTime? _formatBirthDate;
   int _puppyCurrentWeight = 0;
   int _puppyActualWeight = 0;
   String _puppyActivityLevel = Puppy.active.text;
@@ -48,9 +50,16 @@ class PuppyViewModel with ChangeNotifier {
   String _actualWeightFieldError = '';
   String _puppyImageFieldError = '';
 
+  PuppyModel? get getPuppyDetail => _puppyDetail;
+
+  void setPuppyDetail(PuppyModel value) {
+    _puppyDetail = value;
+    notifyListeners();
+  }
+
   PuppiesResponse get getPuppiesResponse => _puppiesResponse;
 
-  void setPuppiesResponse (PuppiesResponse value){
+  void setPuppiesResponse(PuppiesResponse value) {
     _puppiesResponse = value;
     notifyListeners();
   }
@@ -95,10 +104,8 @@ class PuppyViewModel with ChangeNotifier {
   String get getPuppyDob => _puppyDob;
 
   void setPuppyDob(DateTime value) {
-    _formatDate = value;
-    final DateFormat formatter = DateFormat('MM / dd / yyyy');
-    final String formatted = formatter.format(value);
-    _puppyDob = formatted;
+    _formatBirthDate = value;
+    _puppyDob = DateTimeFormatter.showDateFormat2(value);
     notifyListeners();
   }
 
@@ -284,7 +291,7 @@ class PuppyViewModel with ChangeNotifier {
 
   Future<bool> callRegisterPuppyApi() async {
     EasyLoading.show(status: 'Please Wait ...');
-    final puppyBirthDate = _formatDate!.millisecondsSinceEpoch;
+    final puppyBirthDate = DateTimeFormatter.dateToTimeStamp(_formatBirthDate!);
 
     if (_imageFile != null) {
       try {
@@ -357,5 +364,4 @@ class PuppyViewModel with ChangeNotifier {
       return false;
     }
   }
-
 }
