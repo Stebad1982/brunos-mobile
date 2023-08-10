@@ -249,10 +249,10 @@ class PuppyCreationAdditionalScreen extends StatelessWidget {
                       height: 12.h,
                     ),
                     TextField(
-                      //controller: nameController,
-                      onChanged: (text) {
+                      controller: puppyViewModel.getPuppyCurrentWeight,
+                      /*onChanged: (text) {
                         puppyViewModel.setPuppyCurrentWeight(int.parse(text));
-                      },
+                      },*/
                       keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
                           contentPadding: EdgeInsets.all(20.0),
@@ -271,10 +271,10 @@ class PuppyCreationAdditionalScreen extends StatelessWidget {
                     ),
                     black14w400Centre(data: 'Ideal Weight'),
                     TextField(
-                      //controller: nameController,
-                      onChanged: (text) {
+                      controller: puppyViewModel.getPuppyActualWeight,
+                     /* onChanged: (text) {
                         puppyViewModel.setPuppyActualWeight(int.parse(text));
-                      },
+                      },*/
                       keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
                           contentPadding: EdgeInsets.all(20.0),

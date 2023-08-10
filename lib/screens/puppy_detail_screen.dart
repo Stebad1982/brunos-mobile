@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
+import '../route_generator.dart';
 import '../utils/custom_colors.dart';
 import '../view_models/puppy_view_model.dart';
 import '../widgets/app_bar_with_back_widget.dart';
@@ -26,11 +27,13 @@ class PuppyDetailScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-
               Align(
                 alignment: Alignment.centerRight,
                 child: InkWell(
-                  onTap: (){},
+                  onTap: (){
+                    Navigator.pushNamed(
+                        context, puppyCreationRoute);
+                  },
                   child: Container(
                     decoration: ShapeDecoration(
                       //color: CustomColors.orangeColor,

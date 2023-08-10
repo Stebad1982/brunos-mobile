@@ -15,6 +15,7 @@ import '../utils/enums.dart';
 import '../utils/images.dart';
 import '../view_models/puppy_view_model.dart';
 import '../widgets/app_bar_with_back_widget.dart';
+import '../widgets/circular_network_image_widget.dart';
 import '../widgets/image_taking_bottom_sheet_widget.dart';
 
 class PuppyCreationScreen extends StatelessWidget {
@@ -118,11 +119,16 @@ class PuppyCreationScreen extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               puppyViewModel.getImageFile == null
-                                  ? SvgPicture.asset(
+                                  ?
+                              puppyViewModel.getPuppyImage.isNotEmpty?
+                              circularNetworkImageWidget(
+                                  image: puppyViewModel.getPuppyImage, size: 100.h):
+                              SvgPicture.asset(
                                       cameraImage,
                                       height: 102.h,
                                     )
                                   :
+
                               SizedBox(
                                 height: 100.h,width: 100.h,
                                 child: CircleAvatar(

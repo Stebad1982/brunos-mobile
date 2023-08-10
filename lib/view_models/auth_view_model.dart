@@ -142,7 +142,13 @@ class AuthViewModel with ChangeNotifier {
     if (_emailController.text.isEmpty) {
       setEmailFieldError('Please Enter Email');
       return false;
-    } else {
+    }
+    else if(!RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+        .hasMatch(_emailController.text)){
+      setEmailFieldError('Please Enter Valid Email');
+      return false;
+    }
+    else {
       setEmailFieldError('');
       return true;
     }
@@ -162,7 +168,12 @@ class AuthViewModel with ChangeNotifier {
     if (_passwordController.text.isEmpty) {
       setPasswordFieldError('Please Enter Password');
       return false;
-    } else {
+    }
+    else if(_passwordController.text.length != 8){
+      setPasswordFieldError('Password length must be of 8 characters');
+      return false;
+    }
+    else {
       setPasswordFieldError('');
       return true;
     }
@@ -220,13 +231,13 @@ class AuthViewModel with ChangeNotifier {
 
       final AuthResponse response =
           await _authApiServices.signInApi(signInRequest: signInRequest);
-      if (_authResponse.isSuccess!) {
+      if (response.isSuccess!) {
         setAuthResponse(response);
         //  setImageSlider();
         EasyLoading.dismiss();
         return true;
       } else {
-        EasyLoading.showError('${_authResponse.message}');
+        EasyLoading.showError('${response.message}');
         return false;
       }
     } catch (e) {
@@ -245,13 +256,13 @@ class AuthViewModel with ChangeNotifier {
 
       final AuthResponse response = await _authApiServices.editUserProfileApi(
           editUserProfileRequest: editUserProfileRequest);
-      if (_authResponse.isSuccess!) {
+      if (response.isSuccess!) {
         setAuthResponse(response);
         //  setImageSlider();
         EasyLoading.dismiss();
         return true;
       } else {
-        EasyLoading.showError('${_authResponse.message}');
+        EasyLoading.showError('${response.message}');
         return false;
       }
     } catch (e) {
@@ -273,13 +284,13 @@ class AuthViewModel with ChangeNotifier {
 
       final AuthResponse response = await _authApiServices.userRegisterApi(
           userRegisterRequest: userRegisterRequest);
-      if (_authResponse.isSuccess!) {
+      if (response.isSuccess!) {
         setAuthResponse(response);
         //  setImageSlider();
         EasyLoading.dismiss();
         return true;
       } else {
-        EasyLoading.showError('${_authResponse.message}');
+        EasyLoading.showError('${response.message}');
         return false;
       }
     } catch (e) {

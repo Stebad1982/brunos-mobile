@@ -1,9 +1,12 @@
 import 'package:brunos_kitchen/models/responses/puppies_response.dart';
 
+import '../utils/enums.dart';
+
 class PuppyModel {
   String? sId;
   int? createdOnDate;
   String? name;
+  String? gender;
   String? media;
   bool? isSpayNeuter;
   String? breed;
@@ -19,6 +22,7 @@ class PuppyModel {
     this.media,
     this.isSpayNeuter,
     this.breed,
+    this.gender,
     this.bornOnDate,
     this.currentWeight,
     this.actualWeight,
@@ -32,6 +36,7 @@ class PuppyModel {
     media = json['media'];
     isSpayNeuter = json['isSpayNeuter'];
     breed = json['breed'];
+    gender = json['gender']?? Puppy.boy.text;
     bornOnDate = json['bornOnDate'];
     currentWeight = json['currentWeight'];
     actualWeight = json['actualWeight'];

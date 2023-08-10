@@ -1,4 +1,3 @@
-
 import 'package:brunos_kitchen/main.dart';
 import 'package:brunos_kitchen/models/responses/puppies_response.dart';
 import 'package:brunos_kitchen/utils/custom_colors.dart';
@@ -20,7 +19,9 @@ Widget puppyVerticalListChipWidget({required PuppyModel puppyDetail}) {
     children: [
       GestureDetector(
         onTap: () {
-          navigatorKey.currentContext!.read<PuppyViewModel>().setPuppyDetail(puppyDetail);
+          navigatorKey.currentContext!
+              .read<PuppyViewModel>()
+              .setPuppyDetail(puppyDetail);
           Navigator.pushNamed(navigatorKey.currentContext!, puppyDetailRoute);
         },
         child: Container(
@@ -35,7 +36,8 @@ Widget puppyVerticalListChipWidget({required PuppyModel puppyDetail}) {
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                circularNetworkImageWidget(image: puppyDetail.media!, size: 40.h),
+                circularNetworkImageWidget(
+                    image: puppyDetail.media!, size: 40.h),
                 SizedBox(
                   width: 10.w,
                 ),
@@ -48,7 +50,13 @@ Widget puppyVerticalListChipWidget({required PuppyModel puppyDetail}) {
                 ),
                 Spacer(),
                 InkWell(
-                  onTap: (){},
+                  onTap: () {
+                    navigatorKey.currentContext!
+                        .read<PuppyViewModel>()
+                        .showPuppyData(data: puppyDetail);
+                    Navigator.pushNamed(
+                        navigatorKey.currentContext!, puppyCreationRoute);
+                  },
                   child: Container(
                     decoration: ShapeDecoration(
                       color: CustomColors.whiteColor,
