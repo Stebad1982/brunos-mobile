@@ -3,9 +3,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'custom_colors.dart';
 
-Widget customButton ({required String text,required VoidCallback onPressed, required bool colored, IconData? icon}){
+Widget customButton ({required String text,required VoidCallback onPressed, required bool colored, IconData? icon, double? height}){
   return SizedBox(
-    height: 50.h,
+    height: height == null? 50.h : height.h,
     width: double.infinity,
     child: ElevatedButton(
       style: ElevatedButton.styleFrom(

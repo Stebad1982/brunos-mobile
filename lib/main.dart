@@ -1,4 +1,5 @@
 import 'package:brunos_kitchen/route_generator.dart';
+import 'package:brunos_kitchen/view_models/address_view_model.dart';
 import 'package:brunos_kitchen/utils/custom_colors.dart';
 import 'package:brunos_kitchen/view_models/auth_view_model.dart';
 import 'package:brunos_kitchen/view_models/bottom_navigation_view_model.dart';
@@ -67,6 +68,9 @@ Future<void> main() async{
       ),
       ChangeNotifierProvider(
         create: (_) => PlansViewModel(),
+      ),
+      ChangeNotifierProvider(
+        create: (_) => AddressViewModel(),
       ),
     ],
         child: const MyApp(),

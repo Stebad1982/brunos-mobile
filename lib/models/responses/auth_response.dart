@@ -32,6 +32,7 @@ class AuthData {
   bool? isSocialLogin;
   String? clientToken;
   String? address;
+  int? petsCount;
 
   AuthData(
       {this.id,
@@ -42,7 +43,8 @@ class AuthData {
         this.isEnableNotification,
         this.isSocialLogin,
         this.clientToken,
-        this.address});
+        this.address,
+      this.petsCount});
 
   AuthData.fromJson(Map<String, dynamic> json) {
     id = json['_id'];
@@ -54,6 +56,7 @@ class AuthData {
     isSocialLogin = json['isSocialLogin'];
     clientToken = json['clientToken'];
     address = json['address'];
+    petsCount = json['petsCount'];
   }
 
   Map<String, dynamic> toJson() {
@@ -67,6 +70,7 @@ class AuthData {
     data['isSocialLogin'] = this.isSocialLogin;
     data['clientToken'] = this.clientToken;
     data['address'] = this.address;
+    data['petsCount'] = this.petsCount;
     return data;
   }
 }

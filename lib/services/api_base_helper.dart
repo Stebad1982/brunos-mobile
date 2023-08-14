@@ -8,6 +8,10 @@ import 'package:http/http.dart' as http;
 import '../utils/enums.dart';
 import '../utils/shared_pref .dart';
 
+
+const kGoogleApiKey = "AIzaSyAf8I5_7UDuc66z53Wbryj7m98Ofee44lg";
+
+
 class ApiBaseHelper {
   SharedPref sharedPref = SharedPref();
   static const _baseURL =
@@ -37,9 +41,15 @@ class ApiBaseHelper {
           return responseJson;
         case 'PUT':
           final responseJson = await http.put(
-              Uri.parse(_baseURL + endPoint.url),
+              Uri.parse(_baseURL + endPoint.url + params),
               headers:getHeaders(),
               body: jsonEncode(requestBody)
+          );
+          return responseJson;
+        case 'DEL':
+          final responseJson = await http.delete(
+              Uri.parse(_baseURL + endPoint.url + params),
+              headers:getHeaders(),
           );
           return responseJson;
         case 'MULTIPART':

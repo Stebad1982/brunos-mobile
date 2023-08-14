@@ -140,7 +140,7 @@ class PuppyCreationScreen extends StatelessWidget {
                               SizedBox(
                                 height: 14.h,
                               ),
-                              black14w400Centre(data: 'Click to select photo'),
+                              black14w400Centre(data: 'Click to select photo (Optional)'),
                               black14w400Centre(
                                   data: '.png . jpeg. max 1 MB file size'),
                             ],
@@ -151,11 +151,11 @@ class PuppyCreationScreen extends StatelessWidget {
                     SizedBox(
                       height: 5.h,
                     ),
-                    Visibility(
+                   /* Visibility(
                         visible:
                             puppyViewModel.getPuppyImageFieldError.isNotEmpty,
                         child: orange14w400(
-                            data: puppyViewModel.getPuppyImageFieldError)),
+                            data: puppyViewModel.getPuppyImageFieldError)),*/
                     SizedBox(
                       height: 10.h,
                     ),

@@ -87,6 +87,7 @@ class PuppyCreationAdditionalScreen extends StatelessWidget {
                     ),
                     TextField(
                       controller: puppyViewModel.getPuppyBreedController,
+                      scrollPadding: EdgeInsets.only(bottom: 150),
                       onChanged: (value) {
                         puppyViewModel.searchBreeds(value);
                       },
@@ -111,7 +112,6 @@ class PuppyCreationAdditionalScreen extends StatelessWidget {
                             ),
                             color: CustomColors.orangeColorTint,
                             borderRadius: BorderRadius.circular(20),
-
                           ),
                           height: 200.h,
                           child: ListView.builder(
@@ -126,7 +126,8 @@ class PuppyCreationAdditionalScreen extends StatelessWidget {
                                     onTap: () {
                                       puppyViewModel
                                               .getPuppyBreedController.text =
-                                          puppyViewModel.getBreedslist[index].name!;
+                                          puppyViewModel
+                                              .getBreedslist[index].name!;
                                       puppyViewModel.setBreedsList([]);
                                     },
                                     title: black12w500Centre(
@@ -225,11 +226,11 @@ class PuppyCreationAdditionalScreen extends StatelessWidget {
                     SizedBox(
                       height: 5.h,
                     ),
-                    Visibility(
+                   /* Visibility(
                         visible:
                             puppyViewModel.getPuppyDobFieldError.isNotEmpty,
                         child: orange14w400(
-                            data: puppyViewModel.getPuppyDobFieldError)),
+                            data: puppyViewModel.getPuppyDobFieldError)),*/
                     SizedBox(
                       height: 40.h,
                     ),
@@ -244,7 +245,7 @@ class PuppyCreationAdditionalScreen extends StatelessWidget {
                     SizedBox(
                       height: 18.h,
                     ),
-                    black14w400Centre(data: 'Current Weight'),
+                    black14w400Centre(data: 'Current Weight (Optional)'),
                     SizedBox(
                       height: 12.h,
                     ),
@@ -261,18 +262,18 @@ class PuppyCreationAdditionalScreen extends StatelessWidget {
                     SizedBox(
                       height: 5.h,
                     ),
-                    Visibility(
+                    /*   Visibility(
                         visible: puppyViewModel
                             .getCurrentWeightFieldError.isNotEmpty,
                         child: orange14w400(
-                            data: puppyViewModel.getCurrentWeightFieldError)),
+                            data: puppyViewModel.getCurrentWeightFieldError)),*/
                     SizedBox(
                       height: 20.h,
                     ),
-                    black14w400Centre(data: 'Ideal Weight'),
+                    black14w400Centre(data: 'Ideal Weight (Optional)'),
                     TextField(
                       controller: puppyViewModel.getPuppyActualWeight,
-                     /* onChanged: (text) {
+                      /* onChanged: (text) {
                         puppyViewModel.setPuppyActualWeight(int.parse(text));
                       },*/
                       keyboardType: TextInputType.number,
@@ -283,11 +284,11 @@ class PuppyCreationAdditionalScreen extends StatelessWidget {
                     SizedBox(
                       height: 5.h,
                     ),
-                    Visibility(
+                    /*Visibility(
                         visible:
                             puppyViewModel.getActualWeightFieldError.isNotEmpty,
                         child: orange14w400(
-                            data: puppyViewModel.getActualWeightFieldError)),
+                            data: puppyViewModel.getActualWeightFieldError)),*/
                     SizedBox(
                       height: 40.h,
                     ),
@@ -372,24 +373,33 @@ class PuppyCreationAdditionalScreen extends StatelessWidget {
                         onPressed: () {
                           if (puppyViewModel
                               .puppyAdditionalCreationValidation()) {
-                            puppyViewModel
-                                .callRegisterPuppyApi()
+                            puppyViewModel.getIsPuppyEdit
+                                ? puppyViewModel.callEditPuppyApi()
                                 .then((value) => {
-                                      if (value)
-                                        {
-                                          puppyViewModel.clearPuppyData(),
-                                          Navigator.of(context)
-                                            ..pop()
-                                            ..pop(),
-                                          puppyViewModel.callPuppiesApi(),
-                                          puppyViewModel.getRouteToPuppyFrom ==
-                                                  Screens.home.text
-                                              ? Navigator.pushNamed(
-                                                  context, choosePlanRoute)
-                                              : Navigator.pushNamed(context,
-                                                  puppyConfirmationRoute)
-                                        }
-                                    });
+                              if (value)
+                                {
+                                  Navigator.of(context)
+                                    ..pop()
+                                    ..pop(),
+                                }
+                            })
+                                : puppyViewModel
+                                    .callRegisterPuppyApi()
+                                    .then((value) => {
+                                          if (value)
+                                            {
+                                              Navigator.of(context)
+                                                ..pop()
+                                                ..pop(),
+                                              puppyViewModel
+                                                          .getRouteToPuppyFrom ==
+                                                      Screens.home.text
+                                                  ? Navigator.pushNamed(
+                                                      context, choosePlanRoute)
+                                                  : Navigator.pushNamed(context,
+                                                      puppyConfirmationRoute)
+                                            }
+                                        });
                           }
                         },
                         colored: true),

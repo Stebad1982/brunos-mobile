@@ -62,6 +62,19 @@ Widget black14w500({required String data}) {
   );
 }
 
+//google font, color color2, size 12, bold
+Widget googleFont2({required String data, bool? click}) {
+  return Text(
+    data,
+    style: TextStyle(
+        fontFamily: 'Rubik',
+        fontSize: 12.sp,
+        color:
+        click != null && click ? CustomColors.orangeColor : CustomColors.purpleColor,
+        fontWeight: FontWeight.bold),
+  );
+}
+
 Widget yellow10w500({required String data}) {
   return Text(
     data,

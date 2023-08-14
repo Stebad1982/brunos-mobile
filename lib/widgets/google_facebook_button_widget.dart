@@ -52,10 +52,12 @@ Widget googleFacebookButtonWidget({required BuildContext context}) {
       const Spacer(),
       InkWell(
         onTap: () {
-          showDialog<void>(context: context, builder: (BuildContext context) {
-            return  CupertinoAlertDialog(
-              title: black14w400Centre(data: 'FBApp Bruno Kitchen is in Review.'),
-            );
+          context.read<AuthViewModel>().signInWithFacebook().then((value) => {
+            if (value)
+              {
+                Navigator.pushNamedAndRemoveUntil(context,
+                    bottomNavigationRoute, ModalRoute.withName(splashRoute))
+              }
           });
 
         },

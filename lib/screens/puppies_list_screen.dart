@@ -46,6 +46,7 @@ class _PuppiesListScreenState extends State<PuppiesListScreen> {
             children: [
               InkWell(
                 onTap: (){
+                  puppyViewModel.clearPuppyData();
                   Navigator.pushNamed(context, puppyCreationRoute);
                 },
                 child: Padding(
