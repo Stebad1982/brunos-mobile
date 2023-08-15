@@ -42,7 +42,7 @@ class HomeScreen extends StatelessWidget {
                   children: [
                     InkWell(
                       onTap: () {
-                        Navigator.pushNamed(context, manageAddressRoute);
+                        Navigator.pushNamed(context, addressRoute);
                       },
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,

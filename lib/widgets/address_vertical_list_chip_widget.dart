@@ -4,11 +4,13 @@ import 'package:brunos_kitchen/view_models/address_view_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 
 import '../main.dart';
 import '../utils/custom_colors.dart';
 import '../utils/custom_font_style.dart';
+import '../utils/images.dart';
 
 Widget addressVerticalListChipWidget() {
   return Column(
@@ -25,20 +27,25 @@ Widget addressVerticalListChipWidget() {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Transform.scale(
-                scale: 1.3,
-                child: Radio(
-                    visualDensity: const VisualDensity(
-                      horizontal: VisualDensity.minimumDensity,
-                      vertical: VisualDensity.minimumDensity,
-                    ),
-                    //materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                    value: "radio value",
-                    groupValue: "group value",
-                    onChanged: (value) {
-                      print(value); //selected value
-                    }),
+              Container(
+                decoration: BoxDecoration(
+                  color:
+                  CustomColors.whiteColor,
+                  shape: BoxShape.circle,
+                  border: Border.all(
+                      width: 1,
+                      color: CustomColors.orangeColor),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(10),
+                  child: SvgPicture.asset(
+                    homeAddressIcon,
+                    width: 24.w,
+                    color:  CustomColors.orangeColor,
+                  ),
+                ),
               ),
+
               SizedBox(
                 width: 10.w,
               ),
