@@ -36,7 +36,7 @@ class PuppyModel {
     media = json['media'];
     isSpayNeuter = json['isSpayNeuter'];
     breed = json['breed'];
-    gender = json['gender']?? Puppy.boy.text;
+    gender = json['gender'];
     bornOnDate = json['bornOnDate'];
     currentWeight = json['currentWeight'];
     actualWeight = json['actualWeight'];

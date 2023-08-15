@@ -36,8 +36,17 @@ Widget puppyVerticalListChipWidget({required PuppyModel puppyDetail}) {
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                circularNetworkImageWidget(
-                    image: puppyDetail.media!, size: 40.h),
+                puppyDetail.media!.isNotEmpty
+                    ? circularNetworkImageWidget(
+                        image: puppyDetail.media!, size: 40.h)
+                    : SizedBox(
+                        height: 40.h,
+                        width: 40.h,
+                        child: CircleAvatar(
+                          backgroundColor: CustomColors.yellowColor,
+                          child: SvgPicture.asset(dogFace),
+                        ),
+                      ),
                 SizedBox(
                   width: 10.w,
                 ),
@@ -53,7 +62,7 @@ Widget puppyVerticalListChipWidget({required PuppyModel puppyDetail}) {
                   onTap: () {
                     navigatorKey.currentContext!
                         .read<PuppyViewModel>()
-                        .showPuppyData(data: puppyDetail);
+                        .setPuppyDetail(puppyDetail);
                     Navigator.pushNamed(
                         navigatorKey.currentContext!, puppyCreationRoute);
                   },

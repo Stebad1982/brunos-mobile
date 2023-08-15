@@ -11,6 +11,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
@@ -323,20 +324,11 @@ class AuthViewModel with ChangeNotifier {
   }
 
   Future<bool> callSocialMediaLoginApi(
-      {required UserCredential userDetails}) async {
+      {required SocialSignInRequest userDetails}) async {
     EasyLoading.show(status: 'Please Wait ...');
     try {
-      final SocialSignInRequest socialSignInRequest = SocialSignInRequest(
-          clientId: userDetails.user!.uid,
-          email: userDetails.user!.email!,
-          fullName: userDetails.user!.displayName!,
-          phoneNumber: userDetails.user!.phoneNumber ?? '+923340394150',
-          deviceType: _operatingSystem,
-          deviceToken: _fcmToken ?? '',
-          media: 'deviceTypedeviceTypedeviceType',
-          platform: 'Google');
       final AuthResponse response = await _authApiServices.socialMediaLoginApi(
-          socialSignInRequest: socialSignInRequest);
+          socialSignInRequest: userDetails);
       if (response.isSuccess!) {
         setAuthResponse(response);
         EasyLoading.dismiss();
@@ -468,7 +460,17 @@ class AuthViewModel with ChangeNotifier {
       if (userDetails.user != null) {
         // await getUserToken();
         //  final bool loginStatus =
-        return callSocialMediaLoginApi(userDetails: userDetails);
+        final SocialSignInRequest socialSignInRequest = SocialSignInRequest(
+            clientId: userDetails.user!.uid,
+            email: userDetails.user!.email!,
+            fullName: userDetails.user!.displayName!,
+            phoneNumber: userDetails.user!.phoneNumber ?? '+923340394150',
+            deviceType: _operatingSystem,
+            deviceToken: _fcmToken ?? '',
+            media: userDetails.user!.photoURL!,
+            platform: 'Google');
+
+        return await callSocialMediaLoginApi(userDetails: socialSignInRequest);
       } else {
         EasyLoading.showError('Something Went Wrong');
         return false;
@@ -478,6 +480,44 @@ class AuthViewModel with ChangeNotifier {
       return false;
     }
   }
+
+  Future<bool> signInWithFacebook() async {
+    EasyLoading.show(status: 'Please Wait...');
+
+    // Trigger the sign-in flow
+    final LoginResult loginResult = await FacebookAuth.instance.login();
+
+    // Create a credential from the access token
+    if (loginResult.accessToken != null) {
+      final OAuthCredential facebookAuthCredential =
+      FacebookAuthProvider.credential(loginResult.accessToken!.token);
+
+      // Once signed in, return the UserCredential
+      final userDetails = await FirebaseAuth.instance
+          .signInWithCredential(facebookAuthCredential);
+      if (userDetails.user != null) {
+        //await getUserToken();
+
+        final SocialSignInRequest socialSignInRequest = SocialSignInRequest(
+            clientId: userDetails.user!.uid,
+            email: userDetails.user!.email!,
+            fullName: userDetails.user!.displayName!,
+            phoneNumber: userDetails.user!.phoneNumber ?? '+923340394150',
+            deviceType: _operatingSystem,
+            deviceToken: _fcmToken ?? '',
+            media: userDetails.user!.photoURL!,
+            platform: 'Facebook');
+        return await callSocialMediaLoginApi(userDetails: socialSignInRequest);
+      } else {
+        EasyLoading.showError('Something Went Wrong');
+        return false;
+      }
+    } else {
+      EasyLoading.showError('Something Went Wrong');
+      return false;
+    }
+  }
+
 
   void clearFieldsData() {
     _nameController.clear();

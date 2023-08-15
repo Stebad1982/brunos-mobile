@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:brunos_kitchen/models/base_response_model.dart';
 import 'package:brunos_kitchen/models/puppy_model.dart';
+import 'package:brunos_kitchen/models/requests/edit_puppy_request.dart';
 import 'package:brunos_kitchen/models/requests/register_puppy_request.dart';
 import 'package:brunos_kitchen/models/responses/breeds_response.dart';
 import 'package:brunos_kitchen/models/responses/puppies_response.dart';
@@ -46,16 +47,19 @@ class PuppyViewModel with ChangeNotifier {
   String _puppyActivityLevel = Puppy.active.text;
   String _puppyNameFieldError = '';
   String _puppyBreedFieldError = '';
-  String _puppyDobFieldError = '';
-  String _currentWeightFieldError = '';
-  String _actualWeightFieldError = '';
+/*  String _puppyDobFieldError = '';*/
+
+  // String _currentWeightFieldError = '';
+  // String _actualWeightFieldError = '';
+/*
   String _puppyImageFieldError = '';
+*/
 
   bool get getIsPuppyEdit => _isPuppyEdit;
 
   String get getPuppyImage => _puppyImage;
 
-  void setIsPuppyEdit (bool value){
+  void setIsPuppyEdit(bool value) {
     _isPuppyEdit = value;
     notifyListeners();
   }
@@ -64,7 +68,8 @@ class PuppyViewModel with ChangeNotifier {
 
   void setPuppyDetail(PuppyModel value) {
     _puppyDetail = value;
-    showPuppyData(data: value);
+    _isPuppyEdit = true;
+    setSelectedPuppyModel(data: value);
     notifyListeners();
   }
 
@@ -84,7 +89,7 @@ class PuppyViewModel with ChangeNotifier {
 
   TextEditingController get getPuppyActualWeight => _puppyActualWeight;
 
- /* void setPuppyActualWeight(int value) {
+  /* void setPuppyActualWeight(int value) {
     _puppyActualWeight = value;
     notifyListeners();
   }*/
@@ -120,26 +125,28 @@ class PuppyViewModel with ChangeNotifier {
     notifyListeners();
   }
 
-  String get getPuppyDobFieldError => _puppyDobFieldError;
+ // String get getPuppyDobFieldError => _puppyDobFieldError;
 
-  void setPuppyDobFieldError(String value) {
+/*  void setPuppyDobFieldError(String value) {
     _puppyDobFieldError = value;
     notifyListeners();
-  }
+  }*/
 
-  String get getActualWeightFieldError => _actualWeightFieldError;
+  // String get getActualWeightFieldError => _actualWeightFieldError;
 
-  void setActualWeightFieldError(String value) {
-    _actualWeightFieldError = value;
-    notifyListeners();
-  }
+  // void setActualWeightFieldError(String value) {
+  //   _actualWeightFieldError = value;
+  //   notifyListeners();
+  // }
 
+/*
   String get getCurrentWeightFieldError => _currentWeightFieldError;
+*/
 
-  void setCurrentWeightFieldError(String value) {
-    _currentWeightFieldError = value;
-    notifyListeners();
-  }
+  // void setCurrentWeightFieldError(String value) {
+  //   _currentWeightFieldError = value;
+  //   notifyListeners();
+  // }
 
   String get getPuppyBreedFieldError => _puppyBreedFieldError;
 
@@ -155,12 +162,14 @@ class PuppyViewModel with ChangeNotifier {
     notifyListeners();
   }
 
+/*
   String get getPuppyImageFieldError => _puppyImageFieldError;
+*/
 
-  void setPuppyImageFieldError(String value) {
+  /* void setPuppyImageFieldError(String value) {
     _puppyImageFieldError = value;
     notifyListeners();
-  }
+  }*/
 
   TextEditingController get getPuppyNameController => _puppyNameController;
 
@@ -195,7 +204,7 @@ class PuppyViewModel with ChangeNotifier {
     }
   }
 
-  bool puppyDobValidation() {
+ /* bool puppyDobValidation() {
     if (_puppyDob.isEmpty) {
       setPuppyDobFieldError('Please Select Pet BirthDay');
       return false;
@@ -203,9 +212,9 @@ class PuppyViewModel with ChangeNotifier {
       setPuppyDobFieldError('');
       return true;
     }
-  }
+  }*/
 
-  bool puppyCurrentWeightValidation() {
+  /* bool puppyCurrentWeightValidation() {
     if (_puppyCurrentWeight == 0) {
       setCurrentWeightFieldError('Please Select Pet Current Weight');
       return false;
@@ -213,9 +222,9 @@ class PuppyViewModel with ChangeNotifier {
       setCurrentWeightFieldError('');
       return true;
     }
-  }
+  }*/
 
-  bool puppyActualWeightValidation() {
+  /* bool puppyActualWeightValidation() {
     if (_puppyActualWeight == 0) {
       setActualWeightFieldError('Please Select Pet Actual Weight');
       return false;
@@ -223,7 +232,7 @@ class PuppyViewModel with ChangeNotifier {
       setActualWeightFieldError('');
       return true;
     }
-  }
+  }*/
 
   bool puppyNameValidation() {
     if (_puppyNameController.text.isEmpty) {
@@ -235,7 +244,7 @@ class PuppyViewModel with ChangeNotifier {
     }
   }
 
-  bool puppyImageValidation() {
+  /* bool puppyImageValidation() {
     if (_imageFile == null) {
       setPuppyImageFieldError('Please Enter Pet Image');
       return false;
@@ -243,10 +252,10 @@ class PuppyViewModel with ChangeNotifier {
       setPuppyImageFieldError('');
       return true;
     }
-  }
+  }*/
 
   bool puppyCreationValidation() {
-    if (puppyNameValidation() && puppyImageValidation()) {
+    if (puppyNameValidation() /*&& puppyImageValidation()*/) {
       return true;
     } else {
       return false;
@@ -254,30 +263,34 @@ class PuppyViewModel with ChangeNotifier {
   }
 
   bool puppyAdditionalCreationValidation() {
-    if (puppyBreedValidation() &&
-        puppyDobValidation() &&
+    if (puppyBreedValidation() /*&&
+            puppyDobValidation() *//*&&
         puppyCurrentWeightValidation() &&
-        puppyActualWeightValidation()) {
+        puppyActualWeightValidation()*/
+        ) {
       return true;
     } else {
       return false;
     }
   }
 
-  void showPuppyData({required PuppyModel data}){
+  void setSelectedPuppyModel({required PuppyModel data}) {
     _puppyNameController.text = data.name!;
     _puppyImage = data.media!;
     _imageFile = null;
     _puppyGender = data.gender!;
     _puppyIsSpayNeuter = data.isSpayNeuter!;
     _puppyBreedController.text = data.breed!;
-    _puppyDob = DateTimeFormatter.timeStampToDate(data.bornOnDate!);
+    _puppyDob = data.bornOnDate! != 0
+        ? DateTimeFormatter.timeStampToDate(data.bornOnDate!)
+        : 'MM   /   DD   /   YYYY';
     _puppyCurrentWeight.text = data.currentWeight!.toString();
     _puppyActualWeight.text = data.actualWeight!.toString();
     _puppyActivityLevel = data.activityLevel!;
   }
 
   void clearPuppyData() {
+    _isPuppyEdit = false;
     _puppyNameController.clear();
     _puppyImage = '';
     _imageFile = null;
@@ -291,10 +304,10 @@ class PuppyViewModel with ChangeNotifier {
     _puppyActivityLevel = Puppy.active.text;
     _puppyNameFieldError = '';
     _puppyBreedFieldError = '';
-    _puppyDobFieldError = '';
-    _currentWeightFieldError = '';
+  //  _puppyDobFieldError = '';
+    /*  _currentWeightFieldError = '';
     _actualWeightFieldError = '';
-    _puppyImageFieldError = '';
+    _puppyImageFieldError = '';*/
   }
 
   void searchBreeds(String query) {
@@ -315,7 +328,12 @@ class PuppyViewModel with ChangeNotifier {
 
   Future<bool> callRegisterPuppyApi() async {
     EasyLoading.show(status: 'Please Wait ...');
-    final puppyBirthDate = DateTimeFormatter.dateToTimeStamp(_formatBirthDate!);
+
+    int puppyBirthDate = 0;
+
+    if (_formatBirthDate != null) {
+      puppyBirthDate = DateTimeFormatter.dateToTimeStamp(_formatBirthDate!);
+    }
 
     if (_imageFile != null) {
       try {
@@ -342,7 +360,8 @@ class PuppyViewModel with ChangeNotifier {
       if (response.isSuccess!) {
         //  setImageSlider();
         EasyLoading.dismiss();
-        return true;
+        callPuppiesApi();
+    return true;
       } else {
         EasyLoading.showError('${response.message}');
         return false;
@@ -371,12 +390,75 @@ class PuppyViewModel with ChangeNotifier {
     }
   }
 
+  Future<bool> callDeletePuppyApi() async {
+    EasyLoading.show(status: 'Please Wait ...');
+    try {
+      final BaseResponseModel response = await _puppyApiServices.deletePuppyApi(puppyId: _puppyDetail!.sId!);
+      if (response.isSuccess!) {
+        EasyLoading.dismiss();
+        await callPuppiesApi();
+        return true;
+      } else {
+        EasyLoading.showError('${response.message}');
+        return false;
+      }
+    } catch (e) {
+      EasyLoading.showError(e.toString());
+      return false;
+    }
+  }
+
+  Future<bool> callEditPuppyApi() async {
+    EasyLoading.show(status: 'Please Wait ...');
+
+    int puppyBirthDate = 0;
+
+    if (_formatBirthDate != null) {
+      puppyBirthDate = DateTimeFormatter.dateToTimeStamp(_formatBirthDate!);
+    }
+
+    if (_imageFile != null) {
+      try {
+        _puppyImage = await _firebaseUploadImageService.upLoadImageFile(
+            mFileImage: _imageFile!, fileName: _puppyNameController.text);
+        print(_puppyImage);
+      } catch (e) {
+        EasyLoading.dismiss();
+      }
+    }
+    final EditPuppyRequest editPuppyRequest = EditPuppyRequest(
+        name: _puppyNameController.text,
+        media: _puppyImage,
+        gender: _puppyGender,
+        isSpayNeuter: _puppyIsSpayNeuter,
+        breed: _puppyBreedController.text,
+        bornOnDate: puppyBirthDate,
+        currentWeight: int.parse(_puppyCurrentWeight.text),
+        actualWeight: int.parse(_puppyActualWeight.text),
+        activityLevel: _puppyActivityLevel);
+    try {
+      final BaseResponseModel response = await _puppyApiServices.editPuppyApi(
+          editPuppyRequest: editPuppyRequest, puppyId: _puppyDetail!.sId!);
+      if (response.isSuccess!) {
+        EasyLoading.dismiss();
+        callPuppiesApi();
+    return true;
+      } else {
+        EasyLoading.showError('${response.message}');
+        return false;
+      }
+    } catch (e) {
+      EasyLoading.showError(e.toString());
+      return false;
+    }
+  }
+
   Future<bool> callPuppiesApi() async {
     EasyLoading.show(status: 'Please Wait ...');
     try {
       final PuppiesResponse response = await _puppyApiServices.puppiesApi();
-      setPuppiesResponse(response);
       if (response.isSuccess!) {
+        setPuppiesResponse(response);
         EasyLoading.dismiss();
         return true;
       } else {

@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:brunos_kitchen/models/base_response_model.dart';
 import 'package:brunos_kitchen/models/requests/add_breed_request.dart';
+import 'package:brunos_kitchen/models/requests/edit_puppy_request.dart';
 import 'package:brunos_kitchen/models/requests/register_puppy_request.dart';
 import 'package:brunos_kitchen/models/responses/breeds_response.dart';
 
@@ -68,5 +69,29 @@ class PuppyApiServices {
     PuppiesResponse puppiesResponse = PuppiesResponse.fromJson(parsed);
     return puppiesResponse;
   }
+
+  Future<BaseResponseModel> editPuppyApi({required EditPuppyRequest editPuppyRequest, required String puppyId}) async {
+    ApiBaseHelper httpService = ApiBaseHelper();
+    final response = await httpService.httpRequest(
+        endPoint: EndPoints.registerPuppy,
+        requestType: 'PUT',
+        requestBody: editPuppyRequest,
+        params: puppyId);
+    final parsed = json.decode(response.body);
+    BaseResponseModel baseResponseModel = BaseResponseModel.fromJson(parsed);
+    return baseResponseModel;
+  }
+
+  Future<BaseResponseModel> deletePuppyApi({required String puppyId}) async {
+    ApiBaseHelper httpService = ApiBaseHelper();
+    final response = await httpService.httpRequest(
+        endPoint: EndPoints.registerPuppy,
+        requestType: 'DEL',
+        params: puppyId);
+    final parsed = json.decode(response.body);
+    BaseResponseModel baseResponseModel = BaseResponseModel.fromJson(parsed);
+    return baseResponseModel;
+  }
+
 
 }

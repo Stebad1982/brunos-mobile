@@ -1,4 +1,6 @@
 
+import 'package:brunos_kitchen/screens/address/add_address_screen.dart';
+import 'package:brunos_kitchen/screens/address/manage_address_screen.dart';
 import 'package:brunos_kitchen/screens/address_adding_screen.dart';
 import 'package:brunos_kitchen/screens/address_screen.dart';
 import 'package:brunos_kitchen/screens/bottom_navigation_screen.dart';
@@ -60,6 +62,8 @@ const String forgetPasswordRoute = '/forgetPassword';
 const String resetPasswordRoute = '/resetPassword';
 const String resetPasswordSuccessRoute = '/resetPasswordSuccess';
 const String puppyDetailRoute = '/puppyDetail';
+const String manageAddressRoute = '/manageAddress';
+const String addAddressRoute2 = '/addAddress';
 
 
 
@@ -128,6 +132,10 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const ResetPasswordSuccessScreen());
       case puppyDetailRoute:
         return MaterialPageRoute(builder: (_) => const PuppyDetailScreen());
+      case manageAddressRoute:
+        return MaterialPageRoute(builder: (_) => const ManageAddressScreen());
+      case addAddressRoute2:
+        return MaterialPageRoute(builder: (_) => const AddAddressScreen());
         case '/tasting_details':
       /*return MaterialPageRoute(
             builder: (_) => const TastingDetailsScreen(),

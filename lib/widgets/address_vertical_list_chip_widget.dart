@@ -1,7 +1,10 @@
+
 import 'package:brunos_kitchen/route_generator.dart';
+import 'package:brunos_kitchen/view_models/address_view_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 
 import '../main.dart';
 import '../utils/custom_colors.dart';
@@ -49,8 +52,9 @@ Widget addressVerticalListChipWidget() {
               const Spacer(),
               InkWell(
                 onTap: () {
+                  navigatorKey.currentContext!.read<AddressViewModel>().setIsAddressAdd(false);
                   Navigator.pushNamed(
-                      navigatorKey.currentContext!, addAddressRoute);
+                      navigatorKey.currentContext!, addAddressRoute2);
                 },
                 child: Container(
                   decoration: ShapeDecoration(
