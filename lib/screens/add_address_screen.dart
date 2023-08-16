@@ -13,13 +13,13 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart' as locator;
 import 'package:provider/provider.dart';
 
-import '../../utils/custom_buttons.dart';
-import '../../utils/custom_colors.dart';
-import '../../utils/enums.dart';
-import '../../utils/images.dart';
-import '../../view_models/auth_view_model.dart';
-import '../../widgets/app_bar_with_back_widget.dart';
-import '../../view_models/address_view_model.dart';
+import '../utils/custom_buttons.dart';
+import '../utils/custom_colors.dart';
+import '../utils/enums.dart';
+import '../utils/images.dart';
+import '../view_models/auth_view_model.dart';
+import '../widgets/app_bar_with_back_widget.dart';
+import '../view_models/address_view_model.dart';
 
 class AddAddressScreen extends StatefulWidget {
   const AddAddressScreen({Key? key}) : super(key: key);
@@ -147,15 +147,13 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                             padding: const EdgeInsets.symmetric(horizontal: 20),
                             child: Card(
                               elevation: 5,
-                              color: CustomColors.orangeColor,
+                              color: CustomColors.orangeColorTint,
                               borderOnForeground: false,
                               shape: RoundedRectangleBorder(
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(10.0.r)),
                                 side: BorderSide(
-                                  color: addressViewModel.getSelectedLabel == 2
-                                      ? CustomColors.purpleColor
-                                      : CustomColors.yellowColor,
+                                  color:  CustomColors.yellowColor,
                                   width: 1.0,
                                 ),
                               ),
@@ -170,17 +168,13 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                                       (BuildContext context, int index) {
                                     return Card(
                                         elevation: 5,
-                                        color: CustomColors.orangeColor,
+                                        color: CustomColors.lightGreyColor,
                                         borderOnForeground: false,
                                         shape: RoundedRectangleBorder(
                                           borderRadius: BorderRadius.all(
                                               Radius.circular(10.0.r)),
                                           side: BorderSide(
-                                            color: addressViewModel
-                                                        .getSelectedLabel ==
-                                                    2
-                                                ? CustomColors.purpleColor
-                                                : CustomColors.yellowColor,
+                                            color:  CustomColors.yellowColor,
                                             width: 1.0,
                                           ),
                                         ),

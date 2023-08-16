@@ -1,4 +1,3 @@
-
 import 'package:brunos_kitchen/models/address_model.dart';
 import 'package:brunos_kitchen/route_generator.dart';
 import 'package:brunos_kitchen/utils/enums.dart';
@@ -35,36 +34,47 @@ Widget addressVerticalListChipWidget({required AddressModel data}) {
                 children: [
                   Container(
                     decoration: BoxDecoration(
-                      color:
-                      CustomColors.whiteColor,
+                      color: CustomColors.whiteColor,
                       shape: BoxShape.circle,
-                      border: Border.all(
-                          width: 1,
-                          color: CustomColors.orangeColor),
+                      border:
+                          Border.all(width: 1, color: CustomColors.orangeColor),
                     ),
                     child: Padding(
                       padding: const EdgeInsets.all(5),
                       child: SvgPicture.asset(
-                        data.label == AddressLabels.home.text? homeAddressIcon
-                            : data.label == AddressLabels.work.text? workAddressIcon:
-                        data.label == AddressLabels.partner.text? partnerAddressIcon: otherAddressIcon,
+                        data.label == AddressLabels.home.text
+                            ? homeAddressIcon
+                            : data.label == AddressLabels.work.text
+                                ? workAddressIcon
+                                : data.label == AddressLabels.partner.text
+                                    ? partnerAddressIcon
+                                    : otherAddressIcon,
                         width: 15.w,
-                        color:  CustomColors.orangeColor,
+                        color: CustomColors.orangeColor,
                       ),
                     ),
                   ),
-                  SizedBox(width: 5.w,),
-                  black12w500Centre(data: data.label == AddressLabels.home.text? AddressLabels.home.text
-                      : data.label == AddressLabels.work.text? AddressLabels.work.text:
-                  data.label == AddressLabels.partner.text? AddressLabels.partner.text: AddressLabels.other.text,),
+                  SizedBox(
+                    width: 5.w,
+                  ),
+                  black12w500Centre(
+                    data: data.label == AddressLabels.home.text
+                        ? AddressLabels.home.text
+                        : data.label == AddressLabels.work.text
+                            ? AddressLabels.work.text
+                            : data.label == AddressLabels.partner.text
+                                ? AddressLabels.partner.text
+                                : AddressLabels.other.text,
+                  ),
                   const Spacer(),
                   Visibility(
-                      visible: data.isDefault!,
-                      child: Column(
-                        children: [
-                          orange14w400(data: 'Default'),
-                        ],
-                      ))
+                    visible: data.isDefault!,
+                    child: Column(
+                      children: [
+                        orange14w400(data: 'Default'),
+                      ],
+                    ),
+                  ),
                 ],
               ),
               Row(
@@ -73,17 +83,25 @@ Widget addressVerticalListChipWidget({required AddressModel data}) {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        SizedBox(height: 10.h,),
+                        SizedBox(
+                          height: 10.h,
+                        ),
                         black14w500(data: data.address!),
-                        SizedBox(height: 5.h,),
-                        grey14w400(data: 'Flat/House: ${data.flatHouseNumber!}'),
+                        SizedBox(
+                          height: 5.h,
+                        ),
+                        grey14w400(
+                            data: 'Flat/House: ${data.flatHouseNumber!}'),
                       ],
                     ),
                   ),
                   InkWell(
                     onTap: () {
-                      deleteAddressConfirmationDialog(context: navigatorKey.currentContext!, addressId: data.sId!);
-                     /* navigatorKey.currentContext!.read<AddressViewModel>().setIsAddressAdd(false);
+                      navigatorKey.currentContext!.read<AddressViewModel>().setIsAddressAdd(false);
+                      navigatorKey.currentContext!.read<AddressViewModel>().setEditAddress(data);
+                      Navigator.pushNamed(
+                          navigatorKey.currentContext!, addressDetailRoute);
+                      /* navigatorKey.currentContext!.read<AddressViewModel>().setIsAddressAdd(false);
                       Navigator.pushNamed(
                           navigatorKey.currentContext!, addAddressRoute);*/
                     },
@@ -99,14 +117,13 @@ Widget addressVerticalListChipWidget({required AddressModel data}) {
                       child: const Padding(
                         padding: EdgeInsets.all(10),
                         child: Icon(
-                          Icons.delete_outline,
+                          Icons.sticky_note_2_outlined,
                           size: 20,
                           color: CustomColors.orangeColor,
                         ),
                       ),
                     ),
                   )
-
                 ],
               ),
             ],

@@ -223,7 +223,7 @@ class AddressViewModel with ChangeNotifier {
           types: [],
           strictbounds: false,
           language: "en",
-          components: [Component(Component.country, "pk")]);
+          components: [Component(Component.country, "AE")]);
       setPredictionList(result.predictions);
       EasyLoading.dismiss();
     } catch (e) {

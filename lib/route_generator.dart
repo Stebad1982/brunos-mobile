@@ -1,6 +1,5 @@
-
-import 'package:brunos_kitchen/screens/address/add_address_screen.dart';
-import 'package:brunos_kitchen/screens/address_adding_screen.dart';
+import 'package:brunos_kitchen/screens/add_address_screen.dart';
+import 'package:brunos_kitchen/screens/address_detail_screen.dart';
 import 'package:brunos_kitchen/screens/address_screen.dart';
 import 'package:brunos_kitchen/screens/bottom_navigation_screen.dart';
 import 'package:brunos_kitchen/screens/checkout_screen.dart';
@@ -24,7 +23,6 @@ import 'package:brunos_kitchen/screens/puppy_detail_screen.dart';
 import 'package:brunos_kitchen/screens/puppies_list_screen.dart';
 import 'package:brunos_kitchen/screens/register_user_continue_screen.dart';
 import 'package:brunos_kitchen/screens/register_user_screen.dart';
-import 'package:brunos_kitchen/screens/address_intro_screen.dart';
 import 'package:brunos_kitchen/screens/reset_password_screen.dart';
 import 'package:brunos_kitchen/screens/reset_password_success_screen.dart';
 import 'package:brunos_kitchen/screens/splash_screen.dart';
@@ -32,6 +30,7 @@ import 'package:brunos_kitchen/screens/transitional_plan_screen.dart';
 import 'package:brunos_kitchen/screens/user_verified_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
 const String splashRoute = '/';
 const String loginRoute = '/login';
 const String registerUserRoute = '/register_user';
@@ -64,10 +63,7 @@ const String resetPasswordSuccessRoute = '/resetPasswordSuccess';
 const String puppyDetailRoute = '/puppyDetail';
 const String manageAddressRoute = '/manageAddress';
 const String addAddressRoute = '/addAddress';
-
-
-
-
+const String addressDetailRoute = '/addressDetail';
 
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -81,7 +77,8 @@ class RouteGenerator {
       case registerUserRoute:
         return MaterialPageRoute(builder: (_) => const RegisterUserScreen());
       case registerUserContinueRoute:
-        return MaterialPageRoute(builder: (_) => const RegisterUserContinueScreen());
+        return MaterialPageRoute(
+            builder: (_) => const RegisterUserContinueScreen());
       case otpRoute:
         return MaterialPageRoute(builder: (_) => const OtpScreen());
       case userVerifiedRoute:
@@ -89,8 +86,9 @@ class RouteGenerator {
       case pawPointsRoute:
         return MaterialPageRoute(builder: (_) => const PawPointsScreen());
       case bottomNavigationRoute:
-        return MaterialPageRoute(builder: (_) => const BottomNavigationScreen());
-     /* case shareAddressRoute:
+        return MaterialPageRoute(
+            builder: (_) => const BottomNavigationScreen());
+      /* case shareAddressRoute:
         return MaterialPageRoute(builder: (_) => const AddressIntroScreen());*/
       case editProfileRoute:
         return MaterialPageRoute(builder: (_) => const EditProfileScreen());
@@ -101,13 +99,16 @@ class RouteGenerator {
       case puppiesListRoute:
         return MaterialPageRoute(builder: (_) => const PuppiesListScreen());
       case puppyAdditionalRoute:
-        return MaterialPageRoute(builder: (_) => const PuppyCreationAdditionalScreen());
+        return MaterialPageRoute(
+            builder: (_) => const PuppyCreationAdditionalScreen());
       case puppyConfirmationRoute:
-        return MaterialPageRoute(builder: (_) => const PuppyConfirmationScreen());
+        return MaterialPageRoute(
+            builder: (_) => const PuppyConfirmationScreen());
       case choosePlanRoute:
         return MaterialPageRoute(builder: (_) => const ChooseYourPlanScreen());
       case transitionPlanRoute:
-        return MaterialPageRoute(builder: (_) => const TransitionalPlanScreen());
+        return MaterialPageRoute(
+            builder: (_) => const TransitionalPlanScreen());
       case monthlyPlanRoute:
         return MaterialPageRoute(builder: (_) => const MonthlyPlanScreen());
       case deliveryDatesRoute:
@@ -115,7 +116,8 @@ class RouteGenerator {
       case checkOutRoute:
         return MaterialPageRoute(builder: (_) => const CheckoutScreen());
       case orderConfirmationRoute:
-        return MaterialPageRoute(builder: (_) => const OrderConfirmationScreen());
+        return MaterialPageRoute(
+            builder: (_) => const OrderConfirmationScreen());
       case oneTimePlanRoute:
         return MaterialPageRoute(builder: (_) => const OneTimePlanScreen());
       case addressRoute:
@@ -127,12 +129,15 @@ class RouteGenerator {
       case resetPasswordRoute:
         return MaterialPageRoute(builder: (_) => const ResetPasswordScreen());
       case resetPasswordSuccessRoute:
-        return MaterialPageRoute(builder: (_) => const ResetPasswordSuccessScreen());
+        return MaterialPageRoute(
+            builder: (_) => const ResetPasswordSuccessScreen());
       case puppyDetailRoute:
         return MaterialPageRoute(builder: (_) => const PuppyDetailScreen());
       case addAddressRoute:
         return MaterialPageRoute(builder: (_) => const AddAddressScreen());
-        case '/tasting_details':
+      case addressDetailRoute:
+        return MaterialPageRoute(builder: (_) => const AddressDetailScreen());
+      case '/tasting_details':
       /*return MaterialPageRoute(
             builder: (_) => const TastingDetailsScreen(),
             settings: const RouteSettings(name: '/tasting_details'));*/

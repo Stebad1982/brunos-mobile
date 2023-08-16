@@ -44,8 +44,7 @@ class HomeScreen extends StatelessWidget {
                       onTap: () {
                         Navigator.pushNamed(
                             context,
-                            context
-                                        .read<AuthViewModel>()
+                            context.read<AuthViewModel>()
                                         .getAuthResponse
                                         .data!
                                         .address !=

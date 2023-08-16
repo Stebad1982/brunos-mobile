@@ -109,7 +109,7 @@ class PuppyDetailScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         black14w500(data: 'Gender'),
-                        black14w500(data: toBeginningOfSentenceCase('Boy')!)
+                        black14w500(data: toBeginningOfSentenceCase(puppyViewModel.getPuppyDetail!.gender)!)
                       ],
                     ),
                     SizedBox(
