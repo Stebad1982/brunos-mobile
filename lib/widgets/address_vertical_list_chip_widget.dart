@@ -1,5 +1,7 @@
 
+import 'package:brunos_kitchen/models/address_model.dart';
 import 'package:brunos_kitchen/route_generator.dart';
+import 'package:brunos_kitchen/utils/enums.dart';
 import 'package:brunos_kitchen/view_models/address_view_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -11,8 +13,9 @@ import '../main.dart';
 import '../utils/custom_colors.dart';
 import '../utils/custom_font_style.dart';
 import '../utils/images.dart';
+import 'dialogs/delete_address_confirmation_dialog.dart';
 
-Widget addressVerticalListChipWidget() {
+Widget addressVerticalListChipWidget({required AddressModel data}) {
   return Column(
     children: [
       Container(
@@ -23,65 +26,89 @@ Widget addressVerticalListChipWidget() {
           ),
         ),
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 30),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
+          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 15),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
-                decoration: BoxDecoration(
-                  color:
-                  CustomColors.whiteColor,
-                  shape: BoxShape.circle,
-                  border: Border.all(
-                      width: 1,
-                      color: CustomColors.orangeColor),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(10),
-                  child: SvgPicture.asset(
-                    homeAddressIcon,
-                    width: 24.w,
-                    color:  CustomColors.orangeColor,
-                  ),
-                ),
-              ),
-
-              SizedBox(
-                width: 10.w,
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  black18w500(data: 'Mina Jebel Ali'),
-                  black14w400Centre(data: 'Dubai - UAE'),
+                  Container(
+                    decoration: BoxDecoration(
+                      color:
+                      CustomColors.whiteColor,
+                      shape: BoxShape.circle,
+                      border: Border.all(
+                          width: 1,
+                          color: CustomColors.orangeColor),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(5),
+                      child: SvgPicture.asset(
+                        data.label == AddressLabels.home.text? homeAddressIcon
+                            : data.label == AddressLabels.work.text? workAddressIcon:
+                        data.label == AddressLabels.partner.text? partnerAddressIcon: otherAddressIcon,
+                        width: 15.w,
+                        color:  CustomColors.orangeColor,
+                      ),
+                    ),
+                  ),
+                  SizedBox(width: 5.w,),
+                  black12w500Centre(data: data.label == AddressLabels.home.text? AddressLabels.home.text
+                      : data.label == AddressLabels.work.text? AddressLabels.work.text:
+                  data.label == AddressLabels.partner.text? AddressLabels.partner.text: AddressLabels.other.text,),
+                  const Spacer(),
+                  Visibility(
+                      visible: data.isDefault!,
+                      child: Column(
+                        children: [
+                          orange14w400(data: 'Default'),
+                        ],
+                      ))
                 ],
               ),
-              const Spacer(),
-              InkWell(
-                onTap: () {
-                  navigatorKey.currentContext!.read<AddressViewModel>().setIsAddressAdd(false);
-                  Navigator.pushNamed(
-                      navigatorKey.currentContext!, addAddressRoute2);
-                },
-                child: Container(
-                  decoration: ShapeDecoration(
-                    color: CustomColors.whiteColor,
-                    shape: RoundedRectangleBorder(
-                      side: const BorderSide(
-                          width: 0.75, color: CustomColors.greyMediumColor),
-                      borderRadius: BorderRadius.circular(12),
+              Row(
+                children: [
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(height: 10.h,),
+                        black14w500(data: data.address!),
+                        SizedBox(height: 5.h,),
+                        grey14w400(data: 'Flat/House: ${data.flatHouseNumber!}'),
+                      ],
                     ),
                   ),
-                  child: const Padding(
-                    padding: EdgeInsets.all(10),
-                    child: Icon(
-                      Icons.edit,
-                      size: 20,
-                      color: CustomColors.orangeColor,
+                  InkWell(
+                    onTap: () {
+                      deleteAddressConfirmationDialog(context: navigatorKey.currentContext!, addressId: data.sId!);
+                     /* navigatorKey.currentContext!.read<AddressViewModel>().setIsAddressAdd(false);
+                      Navigator.pushNamed(
+                          navigatorKey.currentContext!, addAddressRoute);*/
+                    },
+                    child: Container(
+                      decoration: ShapeDecoration(
+                        color: CustomColors.whiteColor,
+                        shape: RoundedRectangleBorder(
+                          side: const BorderSide(
+                              width: 0.75, color: CustomColors.greyMediumColor),
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                      ),
+                      child: const Padding(
+                        padding: EdgeInsets.all(10),
+                        child: Icon(
+                          Icons.delete_outline,
+                          size: 20,
+                          color: CustomColors.orangeColor,
+                        ),
+                      ),
                     ),
-                  ),
-                ),
-              )
+                  )
+
+                ],
+              ),
             ],
           ),
         ),

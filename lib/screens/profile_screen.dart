@@ -106,7 +106,7 @@ class ProfileScreen extends StatelessWidget {
                   ),
                   title: Align(
                       alignment: Alignment.centerLeft,
-                      child: black14w400Centre(data: 'My Puppy')),
+                      child: black14w400Centre(data: 'My Pets')),
                   contentPadding: const EdgeInsets.all(0),
                   minLeadingWidth: 12,
                   trailing: const Icon(

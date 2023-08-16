@@ -12,7 +12,7 @@ import '../utils/custom_colors.dart';
 import '../utils/images.dart';
 import '../view_models/puppy_view_model.dart';
 import '../widgets/app_bar_with_back_widget.dart';
-import '../widgets/delete_pet_confirmation_dialog.dart';
+import '../widgets/dialogs/delete_pet_confirmation_dialog.dart';
 import '../widgets/circular_network_image_widget.dart';
 
 class PuppyDetailScreen extends StatelessWidget {
@@ -103,7 +103,7 @@ class PuppyDetailScreen extends StatelessWidget {
                       ],
                     ),
                     SizedBox(
-                      height: 15.h,
+                      height: 30.h,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -113,7 +113,11 @@ class PuppyDetailScreen extends StatelessWidget {
                       ],
                     ),
                     SizedBox(
-                      height: 20.h,
+                      height: 10.h,
+                    ),
+                    Divider(),
+                    SizedBox(
+                      height: 10.h,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -127,7 +131,11 @@ class PuppyDetailScreen extends StatelessWidget {
                       ],
                     ),
                     SizedBox(
-                      height: 20.h,
+                      height: 10.h,
+                    ),
+                    Divider(),
+                    SizedBox(
+                      height: 10.h,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -142,7 +150,11 @@ class PuppyDetailScreen extends StatelessWidget {
                       ],
                     ),
                     SizedBox(
-                      height: 20.h,
+                      height: 10.h,
+                    ),
+                    Divider(),
+                    SizedBox(
+                      height: 10.h,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -158,7 +170,11 @@ class PuppyDetailScreen extends StatelessWidget {
                       ],
                     ),
                     SizedBox(
-                      height: 20.h,
+                      height: 10.h,
+                    ),
+                    Divider(),
+                    SizedBox(
+                      height: 10.h,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -174,7 +190,11 @@ class PuppyDetailScreen extends StatelessWidget {
                       ],
                     ),
                     SizedBox(
-                      height: 20.h,
+                      height: 10.h,
+                    ),
+                    Divider(),
+                    SizedBox(
+                      height: 10.h,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -186,7 +206,7 @@ class PuppyDetailScreen extends StatelessWidget {
                       ],
                     ),
                     SizedBox(
-                      height: 18.h,
+                      height: 100.h,
                     ),
                   ],
                 ),

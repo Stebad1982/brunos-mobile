@@ -4,9 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
-import '../utils/custom_buttons.dart';
-import '../utils/custom_colors.dart';
-import '../utils/custom_font_style.dart';
+import '../../utils/custom_buttons.dart';
+import '../../utils/custom_colors.dart';
+import '../../utils/custom_font_style.dart';
+import '../../view_models/auth_view_model.dart';
 
 void deletePetConfirmationDialog(
     {required BuildContext context, required String name}) {
@@ -66,7 +67,10 @@ void deletePetConfirmationDialog(
                               .read<PuppyViewModel>()
                               .callDeletePuppyApi().then((value) => {
                                 if(value){
-                                  Navigator.pop(context)
+                                  Navigator.pop(context),
+                                  context
+                                      .read<AuthViewModel>()
+                                      .callSplash()
                                 }
                           });
                         },

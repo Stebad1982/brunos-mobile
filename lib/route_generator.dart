@@ -1,6 +1,5 @@
 
 import 'package:brunos_kitchen/screens/address/add_address_screen.dart';
-import 'package:brunos_kitchen/screens/address/manage_address_screen.dart';
 import 'package:brunos_kitchen/screens/address_adding_screen.dart';
 import 'package:brunos_kitchen/screens/address_screen.dart';
 import 'package:brunos_kitchen/screens/bottom_navigation_screen.dart';
@@ -41,8 +40,9 @@ const String otpRoute = '/otp';
 const String userVerifiedRoute = '/user_verified';
 const String pawPointsRoute = '/paw_points';
 const String bottomNavigationRoute = '/bottom_navigation';
+/*
 const String shareAddressRoute = '/share_address';
-const String addAddressRoute = '/add_address';
+*/
 const String editProfileRoute = '/edit_profile';
 const String ordersRoute = '/orders';
 const String puppiesListRoute = '/puppiesList';
@@ -63,7 +63,7 @@ const String resetPasswordRoute = '/resetPassword';
 const String resetPasswordSuccessRoute = '/resetPasswordSuccess';
 const String puppyDetailRoute = '/puppyDetail';
 const String manageAddressRoute = '/manageAddress';
-const String addAddressRoute2 = '/addAddress';
+const String addAddressRoute = '/addAddress';
 
 
 
@@ -90,10 +90,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const PawPointsScreen());
       case bottomNavigationRoute:
         return MaterialPageRoute(builder: (_) => const BottomNavigationScreen());
-      case shareAddressRoute:
-        return MaterialPageRoute(builder: (_) => const AddressIntroScreen());
-      case addAddressRoute:
-        return MaterialPageRoute(builder: (_) => const AddressAddingScreen());
+     /* case shareAddressRoute:
+        return MaterialPageRoute(builder: (_) => const AddressIntroScreen());*/
       case editProfileRoute:
         return MaterialPageRoute(builder: (_) => const EditProfileScreen());
       case ordersRoute:
@@ -132,9 +130,7 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const ResetPasswordSuccessScreen());
       case puppyDetailRoute:
         return MaterialPageRoute(builder: (_) => const PuppyDetailScreen());
-      case manageAddressRoute:
-        return MaterialPageRoute(builder: (_) => const ManageAddressScreen());
-      case addAddressRoute2:
+      case addAddressRoute:
         return MaterialPageRoute(builder: (_) => const AddAddressScreen());
         case '/tasting_details':
       /*return MaterialPageRoute(

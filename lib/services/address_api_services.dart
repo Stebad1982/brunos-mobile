@@ -1,6 +1,15 @@
 
 
-/*class AddressApiServices {
+import 'dart:convert';
+
+import 'package:brunos_kitchen/models/base_response_model.dart';
+import 'package:brunos_kitchen/models/requests/add_address_request.dart';
+
+import '../models/responses/all_address_reponse.dart';
+import '../utils/enums.dart';
+import 'api_base_helper.dart';
+
+class AddressApiServices {
   Future<AllAddressResponse> allAddress() async {
     ApiBaseHelper httpService = ApiBaseHelper();
     final response = await httpService.httpRequest(
@@ -10,32 +19,31 @@
     return allAddressResponse;
   }
 
-  Future<AllAddressResponse> createAddress(
-      {required CreateAddressRequest createAddressRequest}) async {
+  Future<BaseResponseModel> createAddress(
+      {required AddAddressRequest addAddressRequest}) async {
     ApiBaseHelper httpService = ApiBaseHelper();
     final response = await httpService.httpRequest(
-        endPoint: EndPoints.createAddress,
+        endPoint: EndPoints.addAddress,
         requestType: 'POST',
-        requestBody: createAddressRequest,
+        requestBody: addAddressRequest,
         params: '');
     final parsed = json.decode(response.body);
-    AllAddressResponse allAddressResponse = AllAddressResponse.fromJson(parsed);
-    return allAddressResponse;
+    BaseResponseModel baseResponseModel = BaseResponseModel.fromJson(parsed);
+    return baseResponseModel;
   }
 
-  Future<AllAddressResponse> deleteAddress({required int addressId}) async {
+  Future<BaseResponseModel> deleteAddress({required String addressId}) async {
     ApiBaseHelper httpService = ApiBaseHelper();
     final response = await httpService.httpRequest(
         endPoint: EndPoints.deleteAddress,
-        requestType: 'GET',
-        requestBody: '',
-        params: addressId.toString());
+        requestType: 'DEL',
+        params: addressId);
     final parsed = json.decode(response.body);
-    AllAddressResponse allAddressResponse = AllAddressResponse.fromJson(parsed);
-    return allAddressResponse;
+    BaseResponseModel baseResponseModel = BaseResponseModel.fromJson(parsed);
+    return baseResponseModel;
   }
 
-  Future<AllAddressResponse> updateAddress(
+/*  Future<AllAddressResponse> updateAddress(
       {required AddressModel addressModel}) async {
     ApiBaseHelper httpService = ApiBaseHelper();
     final response = await httpService.httpRequest(
@@ -46,5 +54,5 @@
     final parsed = json.decode(response.body);
     AllAddressResponse allAddressResponse = AllAddressResponse.fromJson(parsed);
     return allAddressResponse;
-  }
-}*/
+  }*/
+}

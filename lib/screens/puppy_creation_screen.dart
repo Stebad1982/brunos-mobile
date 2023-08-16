@@ -16,6 +16,7 @@ import '../utils/images.dart';
 import '../view_models/puppy_view_model.dart';
 import '../widgets/app_bar_with_back_widget.dart';
 import '../widgets/circular_network_image_widget.dart';
+import '../widgets/dialogs/discription_dialog.dart';
 import '../widgets/image_taking_bottom_sheet_widget.dart';
 
 class PuppyCreationScreen extends StatelessWidget {
@@ -30,7 +31,7 @@ class PuppyCreationScreen extends StatelessWidget {
           heading: context.read<PuppyViewModel>().getRouteToPuppyFrom ==
                   Screens.home.text
               ? 'Create Account'
-              : 'My Puppy',
+              : 'My Pets',
         ),
         body: Stack(
           children: [
@@ -119,28 +120,30 @@ class PuppyCreationScreen extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               puppyViewModel.getImageFile == null
-                                  ?
-                              puppyViewModel.getPuppyImage.isNotEmpty?
-                              circularNetworkImageWidget(
-                                  image: puppyViewModel.getPuppyImage, size: 100.h):
-                              SvgPicture.asset(
-                                      cameraImage,
-                                      height: 102.h,
-                                    )
-                                  :
-
-                              SizedBox(
-                                height: 100.h,width: 100.h,
-                                child: CircleAvatar(
-                                  backgroundColor: CustomColors.greyColor,
-                                  backgroundImage: Image.file(
-                                      File(puppyViewModel.getImageFile!.path)).image,
-                                ),
-                              ),
+                                  ? puppyViewModel.getPuppyImage.isNotEmpty
+                                      ? circularNetworkImageWidget(
+                                          image: puppyViewModel.getPuppyImage,
+                                          size: 100.h)
+                                      : SvgPicture.asset(
+                                          cameraImage,
+                                          height: 102.h,
+                                        )
+                                  : SizedBox(
+                                      height: 100.h,
+                                      width: 100.h,
+                                      child: CircleAvatar(
+                                        backgroundColor: CustomColors.greyColor,
+                                        backgroundImage: Image.file(File(
+                                                puppyViewModel
+                                                    .getImageFile!.path))
+                                            .image,
+                                      ),
+                                    ),
                               SizedBox(
                                 height: 14.h,
                               ),
-                              black14w400Centre(data: 'Click to select photo (Optional)'),
+                              black14w400Centre(
+                                  data: 'Click to select photo (Optional)'),
                               black14w400Centre(
                                   data: '.png . jpeg. max 1 MB file size'),
                             ],
@@ -151,7 +154,7 @@ class PuppyCreationScreen extends StatelessWidget {
                     SizedBox(
                       height: 5.h,
                     ),
-                   /* Visibility(
+                    /* Visibility(
                         visible:
                             puppyViewModel.getPuppyImageFieldError.isNotEmpty,
                         child: orange14w400(
@@ -207,14 +210,26 @@ class PuppyCreationScreen extends StatelessWidget {
                     SizedBox(
                       height: 24.h,
                     ),
-                    Row(
-                      children: [
-                        black14w400Centre(data: 'Why does this matter'),
-                        const Icon(
-                          Icons.help,
-                          size: 16,
-                        )
-                      ],
+                    InkWell(
+                      onTap: () {
+                        descriptionDialog(
+                            context: context,
+                            description:
+                                'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic',
+                            height: 300);
+                      },
+                      child: Row(
+                        children: [
+                          black14w400Centre(data: 'Why does this matter'),
+                          SizedBox(
+                            width: 5.w,
+                          ),
+                          const Icon(
+                            Icons.help,
+                            size: 16,
+                          )
+                        ],
+                      ),
                     ),
                     SizedBox(
                       height: 24.h,

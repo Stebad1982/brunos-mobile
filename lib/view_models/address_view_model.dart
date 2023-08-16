@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:brunos_kitchen/models/base_response_model.dart';
+import 'package:brunos_kitchen/models/requests/add_address_request.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
@@ -12,11 +14,13 @@ import 'package:google_maps_webservice/places.dart';
 
 import '../models/address_model.dart';
 import '../models/responses/all_address_reponse.dart';
+import '../services/address_api_services.dart';
 import '../services/api_base_helper.dart';
+import '../utils/enums.dart';
 
 class AddressViewModel with ChangeNotifier {
-  //final AddressApiServices _addressApiServices = AddressApiServices();
- AllAddressResponse _allAddressResponse = AllAddressResponse();
+  final AddressApiServices _addressApiServices = AddressApiServices();
+  AllAddressResponse _allAddressResponse = AllAddressResponse();
   final TextEditingController _fullAddressController = TextEditingController();
   final TextEditingController _nearByLocationController =
       TextEditingController();
@@ -33,7 +37,7 @@ class AddressViewModel with ChangeNotifier {
 
   // Prediction? _selectedPrediction;
   bool _isDefault = false;
-  int _selectedLabel = 1;
+  String _selectedLabel = AddressLabels.other.text;
   AddressModel _editAddress = AddressModel();
   bool _isAddressAdd = true;
   bool _routeFromSettings = true;
@@ -77,7 +81,7 @@ class AddressViewModel with ChangeNotifier {
 
   bool get getIsDefault => _isDefault;
 
-  int get getSelectedLabel => _selectedLabel;
+  String get getSelectedLabel => _selectedLabel;
 
   void setDebounce(Timer? value) {
     _debounce = value;
@@ -91,9 +95,9 @@ class AddressViewModel with ChangeNotifier {
 
   void setEditAddress(AddressModel value) {
     _editAddress = value;
-    _fullAddressController.text = _editAddress.fullAddress!;
-    _nearByLocationController.text = _editAddress.nearbyLocations!;
-    _selectedLabel = _editAddress.addressType!;
+    _fullAddressController.text = _editAddress.flatHouseNumber!;
+    _nearByLocationController.text = _editAddress.address!;
+    _selectedLabel = _editAddress.label!;
     _isDefault = _editAddress.isDefault!;
     notifyListeners();
   }
@@ -121,7 +125,7 @@ class AddressViewModel with ChangeNotifier {
     notifyListeners();
   }
 
-  void setSelectedLabel(int value) {
+  void setSelectedLabel(String value) {
     _selectedLabel = value;
     notifyListeners();
   }
@@ -129,7 +133,7 @@ class AddressViewModel with ChangeNotifier {
   clearAddressData() {
     _fullAddressController.clear();
     _nearByLocationController.clear();
-    _selectedLabel = 1;
+    _selectedLabel = AddressLabels.other.text;
     _isDefault = false;
   }
 
@@ -162,17 +166,19 @@ class AddressViewModel with ChangeNotifier {
       }
       updateMapCameraPosition(
           LatLng(myLocation!.latitude!, myLocation!.longitude!));
-    }
-
-    else{
+    } else {
       _googleMapController?.animateCamera(
         CameraUpdate.newCameraPosition(
-          CameraPosition(target: LatLng(double.parse(_editAddress.lat!),double.parse(_editAddress.long!)), zoom: 15),
+          CameraPosition(
+              target: LatLng(double.parse(_editAddress.coordinates![0]),
+                  double.parse(_editAddress.coordinates![1])),
+              zoom: 15),
         ),
       );
-      setInitialCameraPosition(LatLng(double.parse(_editAddress.lat!),double.parse(_editAddress.long!)));
+      setInitialCameraPosition(LatLng(
+          double.parse(_editAddress.coordinates![0]),
+          double.parse(_editAddress.coordinates![1])));
     }
-
   }
 
   void updateMapCameraPosition(LatLng location) async {
@@ -186,8 +192,8 @@ class AddressViewModel with ChangeNotifier {
   }
 
   Future<void> convertCoordinatesToPlaces() async {
-    List<Placemark> placemarks =
-        await placemarkFromCoordinates(getInitialCameraPosition.latitude, getInitialCameraPosition.longitude);
+    List<Placemark> placemarks = await placemarkFromCoordinates(
+        getInitialCameraPosition.latitude, getInitialCameraPosition.longitude);
     var first = placemarks.first;
     getNearByLocationController.text =
         '${first.locality}, ${first.name},${first.subLocality}, ${first.thoroughfare}, ${first.subThoroughfare}';
@@ -225,17 +231,17 @@ class AddressViewModel with ChangeNotifier {
     }
   }
 
-/*  Future<bool> callAllAddressApi() async {
+  Future<bool> callAllAddressApi() async {
     EasyLoading.show(status: 'Please wait...');
     try {
       final AllAddressResponse response =
           await _addressApiServices.allAddress();
-      setAllAddressResponse(response);
-      if (_allAddressResponse.status!) {
+      if (response.isSuccess!) {
+        setAllAddressResponse(response);
         EasyLoading.dismiss();
         return true;
       } else {
-        EasyLoading.showError('${_allAddressResponse.message}');
+        EasyLoading.showError('${response.message}');
         return false;
       }
     } catch (e) {
@@ -246,24 +252,24 @@ class AddressViewModel with ChangeNotifier {
 
   Future<bool> callCreateAddressApi() async {
     EasyLoading.show(status: 'Please wait...');
-    final CreateAddressRequest newAddress = CreateAddressRequest(
-        addressType: _selectedLabel,
-        fullAddress: _fullAddressController.text,
-        nearbyLocations: _nearByLocationController.text,
-        lat: _selectedAddressLat.toString(),
-        long: _selectedAddressLng.toString(),
-        isDefault: _isDefault);
+    final AddAddressRequest addAddressRequest = AddAddressRequest(
+        isDefault: _isDefault,
+        coordinates: [
+          _selectedAddressLat.toString(),
+          _selectedAddressLng.toString()
+        ],
+        address: _nearByLocationController.text,
+        label: _selectedLabel,
+        flatHouseNumber: _fullAddressController.text);
     try {
-      final AllAddressResponse response = await _addressApiServices
-          .createAddress(createAddressRequest: newAddress);
-
-      setAllAddressResponse(response);
-
-      if (_allAddressResponse.status!) {
+      final BaseResponseModel response = await _addressApiServices
+          .createAddress(addAddressRequest: addAddressRequest);
+      if (response.isSuccess!) {
         EasyLoading.dismiss();
+        callAllAddressApi();
         return true;
       } else {
-        EasyLoading.showError('${_allAddressResponse.message}');
+        EasyLoading.showError('${response.message}');
         return false;
       }
     } catch (e) {
@@ -272,14 +278,14 @@ class AddressViewModel with ChangeNotifier {
     }
   }
 
-  Future<bool> callDeleteAddressApi() async {
+  Future<bool> callDeleteAddressApi({required String id }) async {
     EasyLoading.show(status: 'Please wait...');
     try {
-      final AllAddressResponse response =
-          await _addressApiServices.deleteAddress(addressId: _editAddress.id!);
-      setAllAddressResponse(response);
-      if (_allAddressResponse.status!) {
+      final BaseResponseModel response =
+          await _addressApiServices.deleteAddress(addressId: id/*editAddress.sId!*/);
+      if (response.isSuccess!) {
         EasyLoading.dismiss();
+        callAllAddressApi();
         return true;
       } else {
         EasyLoading.showError('${_allAddressResponse.message}');
@@ -291,6 +297,7 @@ class AddressViewModel with ChangeNotifier {
     }
   }
 
+/*
   Future<bool> callUpdateAddressApi() async {
     EasyLoading.show(status: 'Please wait...');
     final AddressModel updatedAddress = AddressModel(
@@ -318,5 +325,6 @@ class AddressViewModel with ChangeNotifier {
       EasyLoading.showError(e.toString());
       return false;
     }
-  }*/
+  }
+*/
 }

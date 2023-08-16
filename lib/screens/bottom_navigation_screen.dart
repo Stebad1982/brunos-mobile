@@ -2,8 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../view_models/auth_view_model.dart';
 import '../view_models/bottom_navigation_view_model.dart';
 import '../widgets/custom_bottombar_widget.dart';
+import '../widgets/dialogs/share_your_location_dialog.dart';
 
 class BottomNavigationScreen extends StatefulWidget {
   const BottomNavigationScreen({super.key});
@@ -13,6 +15,21 @@ class BottomNavigationScreen extends StatefulWidget {
 }
 
 class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      if (context
+          .read<AuthViewModel>()
+          .getAuthResponse
+          .data!
+          .address == null
+      ) {
+        shareYourLocationDialog(context: context);
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -39,7 +56,8 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
                       ),
                     );
                   },
-                  child: bottomNavigationViewModel.getHomeView(bottomNavigationViewModel.homeViewIndex),
+                  child: bottomNavigationViewModel.getHomeView(
+                      bottomNavigationViewModel.homeViewIndex),
                 );
               },
             ),

@@ -83,7 +83,10 @@ class PawPointsScreen extends StatelessWidget {
               customButton(
                   text: 'Continue',
                   onPressed: () {
-                      Navigator.pushNamed(context, shareAddressRoute);
+                    Navigator.pushNamedAndRemoveUntil(
+                        context,
+                        bottomNavigationRoute,
+                        ModalRoute.withName(splashRoute));
                   },
                   colored: true),
             ],

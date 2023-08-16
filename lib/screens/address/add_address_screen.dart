@@ -15,7 +15,9 @@ import 'package:provider/provider.dart';
 
 import '../../utils/custom_buttons.dart';
 import '../../utils/custom_colors.dart';
+import '../../utils/enums.dart';
 import '../../utils/images.dart';
+import '../../view_models/auth_view_model.dart';
 import '../../widgets/app_bar_with_back_widget.dart';
 import '../../view_models/address_view_model.dart';
 
@@ -257,14 +259,14 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                             GestureDetector(
                               onTap: () {
                                 //   addressViewModel.callLocation(context);
-                                addressViewModel.setSelectedLabel(1);
+                                addressViewModel.setSelectedLabel(AddressLabels.home.text);
                               },
                               child: Column(
                                 children: [
                                   Container(
                                     decoration: BoxDecoration(
                                       color:
-                                          addressViewModel.getSelectedLabel == 1
+                                          addressViewModel.getSelectedLabel == AddressLabels.home.text
                                               ? CustomColors.orangeColor
                                               : CustomColors.whiteColor,
                                       shape: BoxShape.circle,
@@ -279,14 +281,14 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                                         width: 24.w,
                                         color:
                                             addressViewModel.getSelectedLabel ==
-                                                    1
+                                                AddressLabels.home.text
                                                 ? CustomColors.whiteColor
                                                 : CustomColors.orangeColor,
                                       ),
                                     ),
                                   ),
                                   SizedBox(height: 5.h,),
-                                  addressViewModel.getSelectedLabel == 1
+                                  addressViewModel.getSelectedLabel == AddressLabels.home.text
                                       ? orange14w400(data: 'Home')
                                       : black14w400Centre(data: 'Home'),
                                 ],
@@ -296,14 +298,14 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                             GestureDetector(
                               onTap: () {
                                 //   addressViewModel.callLocation(context);
-                                addressViewModel.setSelectedLabel(2);
+                                addressViewModel.setSelectedLabel(AddressLabels.work.text);
                               },
                               child: Column(
                                 children: [
                                   Container(
                                     decoration: BoxDecoration(
                                       color:
-                                      addressViewModel.getSelectedLabel == 2
+                                      addressViewModel.getSelectedLabel == AddressLabels.work.text
                                           ? CustomColors.orangeColor
                                           : CustomColors.whiteColor,
                                       shape: BoxShape.circle,
@@ -318,14 +320,14 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                                         width: 24.w,
                                         color:
                                         addressViewModel.getSelectedLabel ==
-                                            2
+                                            AddressLabels.work.text
                                             ? CustomColors.whiteColor
                                             : CustomColors.orangeColor,
                                       ),
                                     ),
                                   ),
                                   SizedBox(height: 5.h,),
-                                  addressViewModel.getSelectedLabel == 2
+                                  addressViewModel.getSelectedLabel == AddressLabels.work.text
                                       ? orange14w400(data: 'Work')
                                       : black14w400Centre(data: 'Work'),
                                 ],
@@ -335,14 +337,14 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                             GestureDetector(
                               onTap: () {
                                 //   addressViewModel.callLocation(context);
-                                addressViewModel.setSelectedLabel(3);
+                                addressViewModel.setSelectedLabel(AddressLabels.partner.text);
                               },
                               child: Column(
                                 children: [
                                   Container(
                                     decoration: BoxDecoration(
                                       color:
-                                      addressViewModel.getSelectedLabel == 3
+                                      addressViewModel.getSelectedLabel == AddressLabels.partner.text
                                           ? CustomColors.orangeColor
                                           : CustomColors.whiteColor,
                                       shape: BoxShape.circle,
@@ -357,14 +359,14 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                                         width: 24.w,
                                         color:
                                         addressViewModel.getSelectedLabel ==
-                                            3
+                                            AddressLabels.partner.text
                                             ? CustomColors.whiteColor
                                             : CustomColors.orangeColor,
                                       ),
                                     ),
                                   ),
                                   SizedBox(height: 5.h,),
-                                  addressViewModel.getSelectedLabel == 3
+                                  addressViewModel.getSelectedLabel == AddressLabels.partner.text
                                       ? orange14w400(data: 'Partner')
                                       : black14w400Centre(data: 'Partner'),
                                 ],
@@ -374,14 +376,14 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                             GestureDetector(
                               onTap: () {
                                 //   addressViewModel.callLocation(context);
-                                addressViewModel.setSelectedLabel(4);
+                                addressViewModel.setSelectedLabel(AddressLabels.other.text);
                               },
                               child: Column(
                                 children: [
                                   Container(
                                     decoration: BoxDecoration(
                                       color:
-                                      addressViewModel.getSelectedLabel == 4
+                                      addressViewModel.getSelectedLabel == AddressLabels.other.text
                                           ? CustomColors.orangeColor
                                           : CustomColors.whiteColor,
                                       shape: BoxShape.circle,
@@ -396,14 +398,14 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                                         width: 24.w,
                                         color:
                                         addressViewModel.getSelectedLabel ==
-                                            4
+                                            AddressLabels.other.text
                                             ? CustomColors.whiteColor
                                             : CustomColors.orangeColor,
                                       ),
                                     ),
                                   ),
                                   SizedBox(height: 5.h,),
-                                  addressViewModel.getSelectedLabel == 4
+                                  addressViewModel.getSelectedLabel == AddressLabels.other.text
                                       ? orange14w400(data: 'Other')
                                       : black14w400Centre(data: 'Other'),
                                 ],
@@ -437,13 +439,14 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                             text: addressViewModel.getIsAddressAdd
                                 ? 'Submit'
                                 : 'Update',
-                            onPressed: () {
-                              /*  if (addressViewModel.validateAddress()) {
+                            onPressed: () async {
+                                if (addressViewModel.validateAddress()) {
                                   if (addressViewModel.getIsAddressAdd) {
                                     await addressViewModel
                                         .callCreateAddressApi()
                                         .then((value) {
                                       Navigator.pop(context);
+/*
                                       if (value) {
                                         context
                                             .read<AuthViewModel>()
@@ -452,8 +455,9 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                                                 .data!
                                                 .defaultAddress!);
                                       }
+*/
                                     });
-                                  } else {
+                                  } /*else {
                                     await addressViewModel
                                         .callUpdateAddressApi()
                                         .then((value) {
@@ -467,10 +471,10 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                                                 .defaultAddress!);
                                       }
                                     });
-                                  }
+                                  }*/
                                 } else {
                                   EasyLoading.showToast('Please Fill All Fields');
-                                }*/
+                                }
                             },
                             colored: true),
                       ],

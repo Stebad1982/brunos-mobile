@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:brunos_kitchen/main.dart';
 import 'package:brunos_kitchen/models/base_response_model.dart';
 import 'package:brunos_kitchen/models/puppy_model.dart';
 import 'package:brunos_kitchen/models/requests/edit_puppy_request.dart';
@@ -8,11 +9,13 @@ import 'package:brunos_kitchen/models/responses/breeds_response.dart';
 import 'package:brunos_kitchen/models/responses/puppies_response.dart';
 import 'package:brunos_kitchen/route_generator.dart';
 import 'package:brunos_kitchen/services/puppy_api_services.dart';
+import 'package:brunos_kitchen/view_models/auth_view_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:intl/intl.dart';
 import 'package:package_info_plus/package_info_plus.dart';
+import 'package:provider/provider.dart';
 
 import '../dunmmy_data.dart';
 import '../screens/logIn_screen.dart';
@@ -352,8 +355,8 @@ class PuppyViewModel with ChangeNotifier {
           isSpayNeuter: _puppyIsSpayNeuter,
           breed: _puppyBreedController.text,
           bornOnDate: puppyBirthDate,
-          currentWeight: int.parse(_puppyCurrentWeight.text),
-          actualWeight: int.parse(_puppyActualWeight.text),
+          currentWeight: _puppyCurrentWeight.text.isNotEmpty?int.parse(_puppyCurrentWeight.text):0,
+          actualWeight: _puppyActualWeight.text.isNotEmpty? int.parse(_puppyActualWeight.text):0,
           activityLevel: _puppyActivityLevel);
       final BaseResponseModel response = await _puppyApiServices.addPuppyApi(
           registerPuppyRequest: registerPuppyRequest);
@@ -433,15 +436,15 @@ class PuppyViewModel with ChangeNotifier {
         isSpayNeuter: _puppyIsSpayNeuter,
         breed: _puppyBreedController.text,
         bornOnDate: puppyBirthDate,
-        currentWeight: int.parse(_puppyCurrentWeight.text),
-        actualWeight: int.parse(_puppyActualWeight.text),
+        currentWeight: _puppyCurrentWeight.text.isNotEmpty?int.parse(_puppyCurrentWeight.text):0,
+        actualWeight: _puppyActualWeight.text.isNotEmpty?int.parse(_puppyActualWeight.text): 0,
         activityLevel: _puppyActivityLevel);
     try {
       final BaseResponseModel response = await _puppyApiServices.editPuppyApi(
           editPuppyRequest: editPuppyRequest, puppyId: _puppyDetail!.sId!);
       if (response.isSuccess!) {
         EasyLoading.dismiss();
-        callPuppiesApi();
+        await callPuppiesApi();
     return true;
       } else {
         EasyLoading.showError('${response.message}');

@@ -1,40 +1,48 @@
 class AddressModel {
-  int? id;
-  int? addressType;
-  String? fullAddress;
-  String? nearbyLocations;
-  String? lat;
-  String? long;
+  String? sId;
+  int? createdOnDate;
+  String? type;
+  List<String>? coordinates;
+  String? address;
+  String? label;
   bool? isDefault;
+  String? userId;
+  String? flatHouseNumber;
 
   AddressModel(
-      {this.id,
-        this.addressType,
-        this.fullAddress,
-        this.nearbyLocations,
-        this.lat,
-        this.long,
-        this.isDefault});
+      {this.sId,
+        this.createdOnDate,
+        this.type,
+        this.coordinates,
+        this.address,
+        this.label,
+        this.isDefault,
+        this.userId,
+        this.flatHouseNumber});
 
   AddressModel.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    addressType = json['address_type'];
-    fullAddress = json['full_address'];
-    nearbyLocations = json['nearby_locations'];
-    lat = json['lat'];
-    long = json['long'];
-    isDefault = json['is_default'];
+    sId = json['_id'];
+    createdOnDate = json['createdOnDate'];
+    type = json['type'];
+    coordinates = json['coordinates'].cast<String>();
+    address = json['address'];
+    label = json['label'];
+    isDefault = json['isDefault'];
+    userId = json['userId'];
+    flatHouseNumber = json['flatHouseNumber'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['address_type'] = this.addressType;
-    data['full_address'] = this.fullAddress;
-    data['nearby_locations'] = this.nearbyLocations;
-    data['lat'] = this.lat;
-    data['long'] = this.long;
-    data['is_default'] = this.isDefault;
+    data['_id'] = this.sId;
+    data['createdOnDate'] = this.createdOnDate;
+    data['type'] = this.type;
+    data['coordinates'] = this.coordinates;
+    data['address'] = this.address;
+    data['label'] = this.label;
+    data['isDefault'] = this.isDefault;
+    data['userId'] = this.userId;
+    data['flatHouseNumber'] = this.flatHouseNumber;
     return data;
   }
 }

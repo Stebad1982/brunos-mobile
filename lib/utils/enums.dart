@@ -20,15 +20,6 @@ enum Plans {
   final String text;
 }
 
-enum AddressLabel {
-  home("Home"),
-  office("Office"),
-  other("Other");
-
-  const AddressLabel(this.text);
-
-  final String text;
-}
 
 enum Puppy {
   boy("boy"),
@@ -38,6 +29,17 @@ enum Puppy {
   lessActive('lessActive');
 
   const Puppy(this.text);
+
+  final String text;
+}
+
+enum AddressLabels {
+  home("Home"),
+  work("Work"),
+  partner('Partner'),
+  other('Other');
+
+  const AddressLabels(this.text);
 
   final String text;
 }
@@ -63,7 +65,10 @@ enum EndPoints {
   breeds('pet/breeds'),
   addBreeds('pet/breed'),
   puppies('pet/user'),
-  registerPuppy('pet/');
+  registerPuppy('pet/'),
+  allAddresses('user/locations'),
+  addAddress('user/location'),
+  deleteAddress('user/location/');
 
 
   final String url;

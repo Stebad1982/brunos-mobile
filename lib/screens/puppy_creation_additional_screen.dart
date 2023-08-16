@@ -12,6 +12,7 @@ import '../utils/custom_buttons.dart';
 import '../utils/custom_colors.dart';
 import '../utils/custom_font_style.dart';
 import '../utils/images.dart';
+import '../view_models/auth_view_model.dart';
 import '../widgets/app_bar_with_back_widget.dart';
 import '../widgets/date_picker_bottom_sheet_widget.dart';
 
@@ -26,7 +27,7 @@ class PuppyCreationAdditionalScreen extends StatelessWidget {
           heading: context.read<PuppyViewModel>().getRouteToPuppyFrom ==
                   Screens.home.text
               ? 'Create Account'
-              : 'My Puppy',
+              : 'My Pets',
         ),
         body: Stack(
           children: [
@@ -226,7 +227,7 @@ class PuppyCreationAdditionalScreen extends StatelessWidget {
                     SizedBox(
                       height: 5.h,
                     ),
-                   /* Visibility(
+                    /* Visibility(
                         visible:
                             puppyViewModel.getPuppyDobFieldError.isNotEmpty,
                         child: orange14w400(
@@ -257,7 +258,7 @@ class PuppyCreationAdditionalScreen extends StatelessWidget {
                       keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
                           contentPadding: EdgeInsets.all(20.0),
-                          hintText: 'Weight'),
+                          hintText: 'Weight in KG'),
                     ),
                     SizedBox(
                       height: 5.h,
@@ -279,7 +280,7 @@ class PuppyCreationAdditionalScreen extends StatelessWidget {
                       keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
                           contentPadding: EdgeInsets.all(20.0),
-                          hintText: 'Weight'),
+                          hintText: 'Weight in KG'),
                     ),
                     SizedBox(
                       height: 5.h,
@@ -374,15 +375,16 @@ class PuppyCreationAdditionalScreen extends StatelessWidget {
                           if (puppyViewModel
                               .puppyAdditionalCreationValidation()) {
                             puppyViewModel.getIsPuppyEdit
-                                ? puppyViewModel.callEditPuppyApi()
-                                .then((value) => {
-                              if (value)
-                                {
-                                  Navigator.of(context)
-                                    ..pop()
-                                    ..pop(),
-                                }
-                            })
+                                ? puppyViewModel
+                                    .callEditPuppyApi()
+                                    .then((value) => {
+                                          if (value)
+                                            {
+                                              Navigator.of(context)
+                                                ..pop()
+                                                ..pop(),
+                                            }
+                                        })
                                 : puppyViewModel
                                     .callRegisterPuppyApi()
                                     .then((value) => {
@@ -397,7 +399,10 @@ class PuppyCreationAdditionalScreen extends StatelessWidget {
                                                   ? Navigator.pushNamed(
                                                       context, choosePlanRoute)
                                                   : Navigator.pushNamed(context,
-                                                      puppyConfirmationRoute)
+                                                      puppyConfirmationRoute),
+                                              context
+                                                  .read<AuthViewModel>()
+                                                  .callSplash()
                                             }
                                         });
                           }

@@ -42,7 +42,16 @@ class HomeScreen extends StatelessWidget {
                   children: [
                     InkWell(
                       onTap: () {
-                        Navigator.pushNamed(context, addressRoute);
+                        Navigator.pushNamed(
+                            context,
+                            context
+                                        .read<AuthViewModel>()
+                                        .getAuthResponse
+                                        .data!
+                                        .address !=
+                                    null
+                                ? addressRoute
+                                : addAddressRoute);
                       },
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -56,7 +65,15 @@ class HomeScreen extends StatelessWidget {
                               )
                             ],
                           ),
-                          black14w400Centre(data: '46 Larkrow, London')
+                          black14w400Centre(
+                              data: context
+                                          .read<AuthViewModel>()
+                                          .getAuthResponse
+                                          .data!
+                                          .address !=
+                                      null
+                                  ? '46 Larkrow, London'
+                                  : 'Click to set Your Location')
                         ],
                       ),
                     ),
