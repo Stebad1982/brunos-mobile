@@ -17,6 +17,7 @@ import '../models/responses/all_address_reponse.dart';
 import '../services/address_api_services.dart';
 import '../services/api_base_helper.dart';
 import '../utils/enums.dart';
+import '../utils/images.dart';
 
 class AddressViewModel with ChangeNotifier {
   final AddressApiServices _addressApiServices = AddressApiServices();
@@ -30,6 +31,7 @@ class AddressViewModel with ChangeNotifier {
   List<Prediction> _predictionList = [];
   double? _selectedAddressLat;
   double? _selectedAddressLng;
+  final List<Marker> _markers = [];
   GoogleMapController? _googleMapController;
   locator.LocationData? myLocation;
   String? error;
@@ -37,12 +39,23 @@ class AddressViewModel with ChangeNotifier {
 
   // Prediction? _selectedPrediction;
   bool _isDefault = false;
-  String _selectedLabel = AddressLabels.other.text;
+  String _otherLabel = AddressLabels.other.text;
+  String _selectedLabel = AddressLabels.home.text;
   AddressModel _editAddress = AddressModel();
   bool _isAddressAdd = true;
   bool _routeFromSettings = true;
 
   Timer? get getDebounce => _debounce;
+
+  String get getOtherLabel => _otherLabel;
+
+  List<Marker> get getUserMarker => _markers;
+
+
+  void setOtherLabel (String value){
+    _otherLabel = value;
+    notifyListeners();
+  }
 
   LatLng get getInitialCameraPosition => _initialCameraPosition;
 
@@ -133,7 +146,8 @@ class AddressViewModel with ChangeNotifier {
   clearAddressData() {
     _fullAddressController.clear();
     _nearByLocationController.clear();
-    _selectedLabel = AddressLabels.other.text;
+    _selectedLabel = AddressLabels.home.text;
+    _otherLabel = AddressLabels.other.text;
     _isDefault = false;
   }
 
@@ -145,6 +159,31 @@ class AddressViewModel with ChangeNotifier {
       return true;
     }
   }
+
+  void setIsDefaultAddressTrueFalse(bool value){
+    _editAddress.isDefault = value;
+    notifyListeners();
+  }
+
+  Future <void> addMarkers() async {
+    _markers.clear();
+    _markers.add(
+      Marker(
+          onDragEnd: ((newPosition) {
+            updateMapCameraPosition(LatLng(
+                newPosition.latitude, newPosition.longitude));
+          }),
+          draggable: true,
+          markerId: const MarkerId("1"),
+          position: _initialCameraPosition,
+        icon: await BitmapDescriptor.fromAssetImage(
+            const ImageConfiguration(devicePixelRatio: 3.2),
+            sampleFood1) //Icon for Marker
+      ),
+    );
+    notifyListeners();
+  }
+
 
   void getUserLocation(
     GoogleMapController _cntlr,
@@ -189,6 +228,7 @@ class AddressViewModel with ChangeNotifier {
     );
     setInitialCameraPosition(LatLng(location.latitude, location.longitude));
     convertCoordinatesToPlaces();
+    notifyListeners();
   }
 
   Future<void> convertCoordinatesToPlaces() async {
@@ -259,7 +299,7 @@ class AddressViewModel with ChangeNotifier {
           _selectedAddressLng.toString()
         ],
         address: _nearByLocationController.text,
-        label: _selectedLabel,
+        label: _selectedLabel == AddressLabels.other.text? _otherLabel: _selectedLabel,
         flatHouseNumber: _fullAddressController.text);
     try {
       final BaseResponseModel response = await _addressApiServices
@@ -278,11 +318,11 @@ class AddressViewModel with ChangeNotifier {
     }
   }
 
-  Future<bool> callDeleteAddressApi({required String id }) async {
+  Future<bool> callDeleteAddressApi() async {
     EasyLoading.show(status: 'Please wait...');
     try {
       final BaseResponseModel response =
-          await _addressApiServices.deleteAddress(addressId: id/*editAddress.sId!*/);
+          await _addressApiServices.deleteAddress(addressId: _editAddress.sId!);
       if (response.isSuccess!) {
         EasyLoading.dismiss();
         callAllAddressApi();
@@ -296,6 +336,26 @@ class AddressViewModel with ChangeNotifier {
       return false;
     }
   }
+
+  Future<bool> callDefaultAddressApi() async {
+    EasyLoading.show(status: 'Please wait...');
+    try {
+      final BaseResponseModel response =
+      await _addressApiServices.defaultAddress(addressId: _editAddress.sId!);
+      if (response.isSuccess!) {
+        EasyLoading.dismiss();
+        callAllAddressApi();
+        return true;
+      } else {
+        EasyLoading.showError('${response.message}');
+        return false;
+      }
+    } catch (e) {
+      EasyLoading.showError(e.toString());
+      return false;
+    }
+  }
+
 
 /*
   Future<bool> callUpdateAddressApi() async {

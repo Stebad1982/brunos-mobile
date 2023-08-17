@@ -402,7 +402,7 @@ class PuppyCreationAdditionalScreen extends StatelessWidget {
                                                       puppyConfirmationRoute),
                                               context
                                                   .read<AuthViewModel>()
-                                                  .callSplash()
+                                                  .callSplash(showLoader: true)
                                             }
                                         });
                           }

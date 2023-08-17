@@ -43,6 +43,18 @@ class AddressApiServices {
     return baseResponseModel;
   }
 
+  Future<BaseResponseModel> defaultAddress({required String addressId}) async {
+    ApiBaseHelper httpService = ApiBaseHelper();
+    final response = await httpService.httpRequest(
+        endPoint: EndPoints.defaultAddress,
+        requestType: 'PUT',
+        requestBody: '',
+        params: addressId);
+    final parsed = json.decode(response.body);
+    BaseResponseModel baseResponseModel = BaseResponseModel.fromJson(parsed);
+    return baseResponseModel;
+  }
+
 /*  Future<AllAddressResponse> updateAddress(
       {required AddressModel addressModel}) async {
     ApiBaseHelper httpService = ApiBaseHelper();

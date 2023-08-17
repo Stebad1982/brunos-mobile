@@ -12,6 +12,7 @@ import 'package:provider/provider.dart';
 import '../route_generator.dart';
 import '../utils/custom_colors.dart';
 import '../utils/images.dart';
+import '../view_models/auth_view_model.dart';
 import '../view_models/puppy_view_model.dart';
 import '../widgets/app_bar_with_back_widget.dart';
 import '../widgets/dialogs/delete_address_confirmation_dialog.dart';
@@ -35,38 +36,50 @@ class AddressDetailScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: InkWell(
-                    onTap: () {
-                      deleteAddressConfirmationDialog(context: context, addressId: addressViewModel.getEditAddress.sId!);
-                    },
-                    child: Container(
-                      decoration: ShapeDecoration(
-                        //color: CustomColors.orangeColor,
-                        shape: RoundedRectangleBorder(
-                          side: const BorderSide(
-                              width: 0.75, color: CustomColors.orangeColor),
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                      ),
-                      child:  Padding(
-                        padding: EdgeInsets.all(10),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            const Icon(
-                              Icons.delete_outline,
-                              size: 20,
-                              color: CustomColors.orangeColor,
+                Row(
+                  children: [
+                    Visibility(
+                      visible: addressViewModel.getEditAddress.isDefault!,
+                      child: Container(
+                          decoration: const BoxDecoration(
+                              borderRadius:
+                              BorderRadius.all(Radius.circular(20)),
+                              color: CustomColors.orangeColor),
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 10.0,vertical: 2),
+                            child: white12w400(data: 'Default'),
+                          )),
+                    ),
+                    Expanded(
+                      child: Align(
+                        alignment: Alignment.centerRight,
+                        child: InkWell(
+                          onTap: () {
+                            deleteAddressConfirmationDialog(
+                                context: context);
+                          },
+                          child: Container(
+                            decoration: ShapeDecoration(
+                              //color: CustomColors.orangeColor,
+                              shape: RoundedRectangleBorder(
+                                side: const BorderSide(
+                                    width: 0.75, color: CustomColors.orangeColor),
+                                borderRadius: BorderRadius.circular(12),
+                              ),
                             ),
-                            orange14w400(data: 'Delete'),
-                          ],
+                            child: const Padding(
+                              padding: EdgeInsets.all(10),
+                              child: Icon(
+                                Icons.delete_outline,
+                                size: 20,
+                                color: CustomColors.orangeColor,
+                              ),
+                            ),
+                          ),
                         ),
                       ),
                     ),
-                  ),
+                  ],
                 ),
                 SizedBox(
                   height: 20.h,
@@ -93,16 +106,18 @@ class AddressDetailScreen extends StatelessWidget {
                           target: addressViewModel.getInitialCameraPosition),
                       markers: <Marker>{
                         Marker(
-                         /* onDragEnd: ((newPosition) {
+                          /* onDragEnd: ((newPosition) {
                             addressViewModel.updateMapCameraPosition(LatLng(
                                 newPosition.latitude, newPosition.longitude));
                           }),*/
                           //draggable: false,
                           markerId: const MarkerId("1"),
                           position: LatLng(
-                              double.parse(addressViewModel.getEditAddress.coordinates![0]),
-                              double.parse(addressViewModel.getEditAddress.coordinates![1])),
-                          icon: BitmapDescriptor.defaultMarker,
+                              double.parse(addressViewModel.getEditAddress
+                                  .coordinates![0]),
+                              double.parse(addressViewModel.getEditAddress
+                                  .coordinates![1])),
+                          icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueOrange),
                           infoWindow: const InfoWindow(
                             title: '',
                           ),
@@ -112,24 +127,39 @@ class AddressDetailScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(
-                  height: 30.h,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    black16w500(data: 'Set As Default'),
-                    Transform.scale(
-                      scale: 0.8,
-                      child: CupertinoSwitch(
-                        activeColor: CustomColors.orangeColor,
-                        value: addressViewModel.getEditAddress.isDefault!,
-                        onChanged: (value) {
-                          //TODO: default key
-                        },
+                Visibility(
+                  visible: !addressViewModel.getEditAddress.isDefault!,
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        height: 30.h,
                       ),
-                    ),
-                  ],
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          black16w500(data: 'Set As Default'),
+                          Transform.scale(
+                            scale: 0.8,
+                            child: CupertinoSwitch(
+                              activeColor: CustomColors.orangeColor,
+                              value: addressViewModel.getEditAddress.isDefault!,
+                              onChanged: (isDefault) {
+                                addressViewModel.callDefaultAddressApi().then((
+                                    value) async => {
+                                if(value){
+                                  addressViewModel.setIsDefaultAddressTrueFalse(
+                                      isDefault),
+                                  context
+                                      .read<AuthViewModel>()
+                                      .callSplash(showLoader: true),
+                              }});
+                              },
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
                 SizedBox(
                   height: 30.h,
@@ -139,7 +169,8 @@ class AddressDetailScreen extends StatelessWidget {
                   children: [
                     black14w500(data: 'Address:'),
                     SizedBox(width: 40.w,),
-                    Flexible(child: black14w500(data: toBeginningOfSentenceCase(addressViewModel.getEditAddress.address)!))
+                    Flexible(child: black14w500(data: toBeginningOfSentenceCase(
+                        addressViewModel.getEditAddress.address)!))
                   ],
                 ),
                 SizedBox(
@@ -157,7 +188,8 @@ class AddressDetailScreen extends StatelessWidget {
                     Flexible(
                       child: black14w500(
                           data: toBeginningOfSentenceCase(
-                              addressViewModel.getEditAddress.flatHouseNumber)!),
+                              addressViewModel.getEditAddress
+                                  .flatHouseNumber)!),
                     )
                   ],
                 ),

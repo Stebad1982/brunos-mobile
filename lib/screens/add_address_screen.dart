@@ -20,6 +20,7 @@ import '../utils/images.dart';
 import '../view_models/auth_view_model.dart';
 import '../widgets/app_bar_with_back_widget.dart';
 import '../view_models/address_view_model.dart';
+import '../widgets/dialogs/address_label_dialog.dart';
 
 class AddAddressScreen extends StatefulWidget {
   const AddAddressScreen({Key? key}) : super(key: key);
@@ -29,6 +30,16 @@ class AddAddressScreen extends StatefulWidget {
 }
 
 class _AddAddressScreenState extends State<AddAddressScreen> {
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      context.read<AddressViewModel>().addMarkers();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Consumer<AddressViewModel>(
@@ -62,7 +73,9 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                       },
                       initialCameraPosition: CameraPosition(
                           target: addressViewModel.getInitialCameraPosition),
-                      markers: <Marker>{
+                      markers:
+                    //  Set<Marker>.of(addressViewModel.getUserMarker),
+                      <Marker>{
                         Marker(
                           onDragEnd: ((newPosition) {
                             addressViewModel.updateMapCameraPosition(LatLng(
@@ -71,7 +84,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                           draggable: true,
                           markerId: const MarkerId("1"),
                           position: addressViewModel.getInitialCameraPosition,
-                          icon: BitmapDescriptor.defaultMarker,
+                          icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueOrange),
                           infoWindow: const InfoWindow(
                             title: '',
                           ),
@@ -89,7 +102,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                             child: Padding(
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 20),
-                              child: GestureDetector(
+                              child: InkWell(
                                 onTap: () {
                                   /* addressViewModel
                                 .callDeleteAddressApi()
@@ -152,7 +165,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                               shape: RoundedRectangleBorder(
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(10.0.r)),
-                                side: BorderSide(
+                                side: const BorderSide(
                                   color:  CustomColors.yellowColor,
                                   width: 1.0,
                                 ),
@@ -173,12 +186,12 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                                         shape: RoundedRectangleBorder(
                                           borderRadius: BorderRadius.all(
                                               Radius.circular(10.0.r)),
-                                          side: BorderSide(
+                                          side: const BorderSide(
                                             color:  CustomColors.yellowColor,
                                             width: 1.0,
                                           ),
                                         ),
-                                        child: GestureDetector(
+                                        child: InkWell(
                                           onTap: () {
                                             addressViewModel
                                                 .setSelectedPrediction(
@@ -250,7 +263,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                         ),
                         Row(
                           children: [
-                            GestureDetector(
+                            InkWell(
                               onTap: () {
                                 //   addressViewModel.callLocation(context);
                                 addressViewModel.setSelectedLabel(AddressLabels.home.text);
@@ -289,7 +302,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                               ),
                             ),
                             SizedBox(width: 20.w,),
-                            GestureDetector(
+                            InkWell(
                               onTap: () {
                                 //   addressViewModel.callLocation(context);
                                 addressViewModel.setSelectedLabel(AddressLabels.work.text);
@@ -328,7 +341,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                               ),
                             ),
                             SizedBox(width: 20.w,),
-                            GestureDetector(
+                            InkWell(
                               onTap: () {
                                 //   addressViewModel.callLocation(context);
                                 addressViewModel.setSelectedLabel(AddressLabels.partner.text);
@@ -367,9 +380,10 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                               ),
                             ),
                             SizedBox(width: 20.w,),
-                            GestureDetector(
+                            InkWell(
                               onTap: () {
                                 //   addressViewModel.callLocation(context);
+                                addressLabelDialog(context: context);
                                 addressViewModel.setSelectedLabel(AddressLabels.other.text);
                               },
                               child: Column(
@@ -400,8 +414,8 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                                   ),
                                   SizedBox(height: 5.h,),
                                   addressViewModel.getSelectedLabel == AddressLabels.other.text
-                                      ? orange14w400(data: 'Other')
-                                      : black14w400Centre(data: 'Other'),
+                                      ? orange14w400(data: addressViewModel.getOtherLabel)
+                                      : black14w400Centre(data: addressViewModel.getOtherLabel),
                                 ],
                               ),
                             ),
@@ -440,6 +454,9 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                                         .callCreateAddressApi()
                                         .then((value) {
                                       Navigator.pop(context);
+                                      context
+                                          .read<AuthViewModel>()
+                                          .callSplash(showLoader: true);
 /*
                                       if (value) {
                                         context

@@ -1,5 +1,8 @@
 import 'package:brunos_kitchen/models/base_response_model.dart';
 
+import '../address_model.dart';
+import '../puppy_model.dart';
+
 class AuthResponse extends BaseResponseModel{
   AuthData? data;
 
@@ -7,12 +10,12 @@ class AuthResponse extends BaseResponseModel{
 
   AuthResponse.fromJson(Map<String, dynamic> json) {
     isSuccess = json['isSuccess'];
-    data = json['data'] != null ? AuthData.fromJson(json['data']) : null;
+    data = json['data'] != null ? new AuthData.fromJson(json['data']) : null;
     message = json['message'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['isSuccess'] = isSuccess;
     if (this.data != null) {
       data['data'] = this.data!.toJson();
@@ -23,56 +26,72 @@ class AuthResponse extends BaseResponseModel{
 }
 
 class AuthData {
-  String? id;
+  String? sId;
+  int? createdOnDate;
   String? fullName;
   String? email;
   String? phoneNumber;
   bool? isVerified;
-  bool? isEnableNotification;
-  bool? isSocialLogin;
-  String? clientToken;
-  String? address;
+  String? media;
   int? petsCount;
+  PuppyModel? pet;
+  AddressModel? location;
+  String? refreshToken;
+  String? clientToken;
 
   AuthData(
-      {this.id,
+      {this.sId,
+        this.createdOnDate,
         this.fullName,
         this.email,
         this.phoneNumber,
         this.isVerified,
-        this.isEnableNotification,
-        this.isSocialLogin,
-        this.clientToken,
-        this.address,
-      this.petsCount});
+        this.media,
+        this.petsCount,
+        this.pet,
+        this.location,
+        this.refreshToken,
+        this.clientToken});
 
   AuthData.fromJson(Map<String, dynamic> json) {
-    id = json['_id'];
+    sId = json['_id'];
+    createdOnDate = json['createdOnDate'];
     fullName = json['fullName'];
     email = json['email'];
     phoneNumber = json['phoneNumber'];
     isVerified = json['isVerified'];
-    isEnableNotification = json['isEnableNotification'];
-    isSocialLogin = json['isSocialLogin'];
-    clientToken = json['clientToken'];
-    address = json['address'];
+    media = json['media'];
     petsCount = json['petsCount'];
+    pet = json['pet'] != null ? PuppyModel.fromJson(json['pet']) : null;
+    location = json['location'] != null
+        ? AddressModel.fromJson(json['location'])
+        : null;
+    refreshToken = json['refreshToken'];
+    clientToken = json['clientToken'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['_id'] = this.id;
+    data['_id'] = this.sId;
+    data['createdOnDate'] = this.createdOnDate;
     data['fullName'] = this.fullName;
     data['email'] = this.email;
     data['phoneNumber'] = this.phoneNumber;
     data['isVerified'] = this.isVerified;
-    data['isEnableNotification'] = this.isEnableNotification;
-    data['isSocialLogin'] = this.isSocialLogin;
-    data['clientToken'] = this.clientToken;
-    data['address'] = this.address;
+    data['media'] = this.media;
     data['petsCount'] = this.petsCount;
+    if (this.pet != null) {
+      data['pet'] = this.pet!.toJson();
+    }
+    if (this.location != null) {
+      data['location'] = this.location!.toJson();
+    }
+    data['refreshToken'] = this.refreshToken;
+    data['clientToken'] = this.clientToken;
     return data;
   }
 }
+
+
 
 

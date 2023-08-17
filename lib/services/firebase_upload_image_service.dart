@@ -10,7 +10,7 @@ class FirebaseUploadImageService {
   Future<String> upLoadImageFile(
       {required CroppedFile mFileImage, required String fileName}) async {
     final Reference storageReference =
-        FirebaseStorage.instance.ref().child(navigatorKey.currentContext!.read<AuthViewModel>().getAuthResponse.data!.id!);
+        FirebaseStorage.instance.ref().child(navigatorKey.currentContext!.read<AuthViewModel>().getAuthResponse.data!.sId!);
     UploadTask uploadTask =
         storageReference.child("$fileName.jpg").putFile(File(mFileImage.path));
     String url = await (await uploadTask).ref.getDownloadURL();

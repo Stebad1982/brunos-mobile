@@ -10,6 +10,7 @@ import 'package:provider/provider.dart';
 import '../route_generator.dart';
 import '../utils/custom_colors.dart';
 import '../utils/images.dart';
+import '../view_models/auth_view_model.dart';
 import '../view_models/puppy_view_model.dart';
 import '../widgets/app_bar_with_back_widget.dart';
 import '../widgets/dialogs/delete_pet_confirmation_dialog.dart';
@@ -34,31 +35,49 @@ class PuppyDetailScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Align(
-                      alignment: Alignment.centerRight,
-                      child: InkWell(
-                        onTap: () {
-                          deletePetConfirmationDialog(context: context, name: puppyViewModel.getPuppyDetail!.name!, );
-                        },
-                        child: Container(
-                          decoration: ShapeDecoration(
-                            //color: CustomColors.orangeColor,
-                            shape: RoundedRectangleBorder(
-                              side: const BorderSide(
-                                  width: 0.75, color: CustomColors.orangeColor),
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                          ),
-                          child: const Padding(
-                            padding: EdgeInsets.all(10),
-                            child: Icon(
-                              Icons.delete_outline,
-                              size: 20,
-                              color: CustomColors.orangeColor,
+                    Row(
+                      children: [
+                        Visibility(
+                          visible: puppyViewModel.getPuppyDetail!.isDefault!,
+                          child: Container(
+                              decoration: const BoxDecoration(
+                                  borderRadius:
+                                  BorderRadius.all(Radius.circular(20)),
+                                  color: CustomColors.orangeColor),
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 10.0,vertical: 2),
+                                child: white12w400(data: 'Primary'),
+                              )),
+                        ),
+                        Expanded(
+                          child: Align(
+                            alignment: Alignment.centerRight,
+                            child: InkWell(
+                              onTap: () {
+                                deletePetConfirmationDialog(context: context, name: puppyViewModel.getPuppyDetail!.name!, );
+                              },
+                              child: Container(
+                                decoration: ShapeDecoration(
+                                  //color: CustomColors.orangeColor,
+                                  shape: RoundedRectangleBorder(
+                                    side: const BorderSide(
+                                        width: 0.75, color: CustomColors.orangeColor),
+                                    borderRadius: BorderRadius.circular(12),
+                                  ),
+                                ),
+                                child: const Padding(
+                                  padding: EdgeInsets.all(10),
+                                  child: Icon(
+                                    Icons.delete_outline,
+                                    size: 20,
+                                    color: CustomColors.orangeColor,
+                                  ),
+                                ),
+                              ),
                             ),
                           ),
                         ),
-                      ),
+                      ],
                     ),
                     SizedBox(
                       height: 10.h,
@@ -85,22 +104,39 @@ class PuppyDetailScreen extends StatelessWidget {
                     ),
                     grey14w400(
                         data: '( ${puppyViewModel.getPuppyDetail!.breed!} )'),
-                    SizedBox(
-                      height: 30.h,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        black16w500(data: 'Set As Primary'),
-                        Transform.scale(
-                          scale: 0.8,
-                          child: CupertinoSwitch(
-                            activeColor: CustomColors.orangeColor,
-                            value: true,
-                            onChanged: (value) {},
+                    Visibility(
+                      visible: !puppyViewModel.getPuppyDetail!.isDefault!,
+                      child: Column(
+                        children: [
+                          SizedBox(
+                            height: 30.h,
                           ),
-                        ),
-                      ],
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              black16w500(data: 'Set As Primary'),
+                              Transform.scale(
+                                scale: 0.8,
+                                child: CupertinoSwitch(
+                                  activeColor: CustomColors.orangeColor,
+                                  value: puppyViewModel.getPuppyDetail!.isDefault!,
+                                  onChanged: (isDefault) {
+                                    puppyViewModel.callDefaultPuppyApi().then((
+                                        value) async => {
+                                      if(value){
+                                        puppyViewModel.setIsDefaultPuppyTrueFalse(
+                                            isDefault),
+                                        context
+                                            .read<AuthViewModel>()
+                                            .callSplash(showLoader: true),
+                                      }});
+                                  },
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
                     SizedBox(
                       height: 30.h,

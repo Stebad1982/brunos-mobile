@@ -23,7 +23,7 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
           .read<AuthViewModel>()
           .getAuthResponse
           .data!
-          .address == null
+          .location == null
       ) {
         shareYourLocationDialog(context: context);
       }

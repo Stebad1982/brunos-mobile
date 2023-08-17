@@ -13,6 +13,7 @@ class PuppyModel {
   int? bornOnDate;
   int? currentWeight;
   int? actualWeight;
+  bool? isDefault;
   String? activityLevel;
 
   PuppyModel({
@@ -27,6 +28,7 @@ class PuppyModel {
     this.currentWeight,
     this.actualWeight,
     this.activityLevel,
+    this.isDefault
   });
 
   PuppyModel.fromJson(Map<String, dynamic> json) {
@@ -40,6 +42,7 @@ class PuppyModel {
     bornOnDate = json['bornOnDate'];
     currentWeight = json['currentWeight'];
     actualWeight = json['actualWeight'];
+    isDefault = json['isDefault'];
     activityLevel = json['activityLevel'];
   }
 
@@ -54,6 +57,7 @@ class PuppyModel {
     data['bornOnDate'] = this.bornOnDate;
     data['currentWeight'] = this.currentWeight;
     data['actualWeight'] = this.actualWeight;
+    data['isDefault'] = this.isDefault;
     data['activityLevel'] = this.activityLevel;
     return data;
   }

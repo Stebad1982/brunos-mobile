@@ -429,7 +429,7 @@ class AuthViewModel with ChangeNotifier {
       return const IntroSlidesScreen();
     } else {
       Widget routeTo = const LoginScreen();
-      await callSplash().then((value) {
+      await callSplash(showLoader: false).then((value) {
         if (value) {
           routeTo = const BottomNavigationScreen();
         } else {
@@ -533,13 +533,18 @@ class AuthViewModel with ChangeNotifier {
     setConfirmPasswordFieldError('');
   }
 
-  Future <bool> callSplash() async{
+  Future <bool> callSplash({required bool showLoader}) async{
+    if(showLoader){
+      EasyLoading.show(status: 'Please Wait...');
+    }
     try {
       final AuthResponse response = await _authApiServices.splashApi();
       if (response.isSuccess!) {
         setAuthResponse(response);
+        EasyLoading.dismiss();
         return true;
       } else {
+        EasyLoading.showError(response.message!);
         return false;
       }
     } catch (e) {

@@ -55,6 +55,23 @@ Widget puppyVerticalListChipWidget({required PuppyModel puppyDetail}) {
                   children: [
                     black14w400Centre(data: puppyDetail.name!),
                     grey12w500(data: puppyDetail.breed!),
+                    Visibility(
+                      visible: puppyDetail.isDefault!,
+                      child: Column(
+                        children: [
+                          SizedBox(height: 5.h,),
+                          Container(
+                              decoration: const BoxDecoration(
+                                  borderRadius:
+                                  BorderRadius.all(Radius.circular(20)),
+                                  color: CustomColors.orangeColor),
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 10.0,vertical: 2),
+                                child: white12w400(data: 'Primary'),
+                              )),
+                        ],
+                      ),
+                    ),
                   ],
                 ),
                 Spacer(),

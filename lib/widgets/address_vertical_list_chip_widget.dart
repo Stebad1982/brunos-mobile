@@ -64,16 +64,20 @@ Widget addressVerticalListChipWidget({required AddressModel data}) {
                             ? AddressLabels.work.text
                             : data.label == AddressLabels.partner.text
                                 ? AddressLabels.partner.text
-                                : AddressLabels.other.text,
+                                : data.label!,
                   ),
                   const Spacer(),
                   Visibility(
                     visible: data.isDefault!,
-                    child: Column(
-                      children: [
-                        orange14w400(data: 'Default'),
-                      ],
-                    ),
+                    child: Container(
+                        decoration: const BoxDecoration(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(20)),
+                            color: CustomColors.orangeColor),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 10.0,vertical: 2),
+                          child: white12w400(data: 'Default'),
+                        )),
                   ),
                 ],
               ),
@@ -97,8 +101,12 @@ Widget addressVerticalListChipWidget({required AddressModel data}) {
                   ),
                   InkWell(
                     onTap: () {
-                      navigatorKey.currentContext!.read<AddressViewModel>().setIsAddressAdd(false);
-                      navigatorKey.currentContext!.read<AddressViewModel>().setEditAddress(data);
+                      navigatorKey.currentContext!
+                          .read<AddressViewModel>()
+                          .setIsAddressAdd(false);
+                      navigatorKey.currentContext!
+                          .read<AddressViewModel>()
+                          .setEditAddress(data);
                       Navigator.pushNamed(
                           navigatorKey.currentContext!, addressDetailRoute);
                       /* navigatorKey.currentContext!.read<AddressViewModel>().setIsAddressAdd(false);

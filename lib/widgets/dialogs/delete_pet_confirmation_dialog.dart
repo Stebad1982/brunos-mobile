@@ -34,7 +34,7 @@ void deletePetConfirmationDialog(
                   data: 'Confirmation',
                 ),
                 const Spacer(),
-                black14w500(
+                black14w400Centre(
                   data: 'Do you really want to Delete $name?',
                 ),
                 const Spacer(),
@@ -70,7 +70,7 @@ void deletePetConfirmationDialog(
                                   Navigator.pop(context),
                                   context
                                       .read<AuthViewModel>()
-                                      .callSplash()
+                                      .callSplash(showLoader: true)
                                 }
                           });
                         },

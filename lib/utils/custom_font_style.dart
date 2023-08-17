@@ -232,6 +232,17 @@ Widget white18w500({required String data}) {
   );
 }
 
+Widget white12w400({required String data}) {
+  return Text(
+    data,
+    style: TextStyle(
+        fontFamily: 'CircularStd',
+        fontSize: 12.sp,
+        fontWeight: FontWeight.w400,
+        color: CustomColors.whiteColor),
+  );
+}
+
 Widget white8w500({required String data}) {
   return Text(
     data,

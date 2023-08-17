@@ -11,7 +11,7 @@ import '../../utils/custom_font_style.dart';
 import '../../view_models/auth_view_model.dart';
 
 void deleteAddressConfirmationDialog(
-    {required BuildContext context, required String addressId}) {
+    {required BuildContext context}) {
   showGeneralDialog(
     context: context,
     barrierLabel: "Barrier",
@@ -35,7 +35,7 @@ void deleteAddressConfirmationDialog(
                       data: 'Confirmation',
                     ),
                     const Spacer(),
-                    black14w500(
+                    black14w400Centre(
                       data: 'Do you really want to Delete this Address?',
                     ),
                     const Spacer(),
@@ -65,12 +65,12 @@ void deleteAddressConfirmationDialog(
                             onPressed: () async {
                               Navigator.pop(context);
                               await context
-                                  .read<AddressViewModel>().callDeleteAddressApi(id: addressId).then((value) => {
+                                  .read<AddressViewModel>().callDeleteAddressApi().then((value) => {
                                 if(value){
-                                //  Navigator.pop(context),
+                                  Navigator.pop(context),
                                   context
                                       .read<AuthViewModel>()
-                                      .callSplash()
+                                      .callSplash(showLoader: true)
                                 }
                               });
                             },

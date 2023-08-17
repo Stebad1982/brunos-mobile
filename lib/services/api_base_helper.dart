@@ -43,7 +43,7 @@ class ApiBaseHelper {
           final responseJson = await http.put(
               Uri.parse(_baseURL + endPoint.url + params),
               headers:getHeaders(),
-              body: jsonEncode(requestBody)
+              body: requestBody != ''? jsonEncode(requestBody): null
           );
           return responseJson;
         case 'DEL':

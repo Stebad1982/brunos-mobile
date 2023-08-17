@@ -1,6 +1,7 @@
 import 'package:accordion/accordion.dart';
 import 'package:accordion/accordion_section.dart';
 import 'package:brunos_kitchen/utils/images.dart';
+import 'package:brunos_kitchen/view_models/address_view_model.dart';
 import 'package:brunos_kitchen/view_models/auth_view_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -42,12 +43,14 @@ class HomeScreen extends StatelessWidget {
                   children: [
                     InkWell(
                       onTap: () {
+                        context.read<AddressViewModel>().setIsAddressAdd(true);
                         Navigator.pushNamed(
                             context,
-                            context.read<AuthViewModel>()
+                            context
+                                        .read<AuthViewModel>()
                                         .getAuthResponse
                                         .data!
-                                        .address !=
+                                        .location !=
                                     null
                                 ? addressRoute
                                 : addAddressRoute);
@@ -64,15 +67,24 @@ class HomeScreen extends StatelessWidget {
                               )
                             ],
                           ),
-                          black14w400Centre(
-                              data: context
-                                          .read<AuthViewModel>()
-                                          .getAuthResponse
-                                          .data!
-                                          .address !=
-                                      null
-                                  ? '46 Larkrow, London'
-                                  : 'Click to set Your Location')
+                          SizedBox(
+                            width: 200.w,
+                            child: black14w400Centre(
+                              left: true,
+                                data: context
+                                            .read<AuthViewModel>()
+                                            .getAuthResponse
+                                            .data!
+                                            .location !=
+                                        null
+                                    ? context
+                                        .read<AuthViewModel>()
+                                        .getAuthResponse
+                                        .data!
+                                        .location!
+                                        .address!
+                                    : 'Click to set Your Location'),
+                          )
                         ],
                       ),
                     ),

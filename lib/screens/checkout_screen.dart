@@ -1,8 +1,11 @@
 import 'package:brunos_kitchen/route_generator.dart';
+import 'package:brunos_kitchen/view_models/address_view_model.dart';
+import 'package:brunos_kitchen/view_models/auth_view_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
 
 import '../utils/custom_buttons.dart';
@@ -20,244 +23,221 @@ class CheckoutScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Consumer<PlansViewModel>(builder: (context, plansViewModel, child) {
-
       return Scaffold(
-      appBar: AppBarWithBackWidget(
-        heading: plansViewModel.getPlanType == Plans.transitional.text
-            ? 'Transitional Plan'
-            : plansViewModel.getPlanType == Plans.monthly.text
-            ? 'Monthly Plan'
-            : 'One time Order',
-      ),
-      body: Stack(
-        children: [
-          SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.only(
-                  left: 20.0, right: 20, top: 20, bottom: 220),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  SizedBox(
-                    height: 10.h,
-                  ),
-                  Center(
-                    child: Image.asset(
-                      buyBulits3,
-                      height: 57.h,
+        appBar: AppBarWithBackWidget(
+          heading: plansViewModel.getPlanType == Plans.transitional.text
+              ? 'Transitional Plan'
+              : plansViewModel.getPlanType == Plans.monthly.text
+                  ? 'Monthly Plan'
+                  : 'One time Order',
+        ),
+        body: Stack(
+          children: [
+            SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.only(
+                    left: 20.0, right: 20, top: 20, bottom: 220),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    SizedBox(
+                      height: 10.h,
                     ),
-                  ),
-                  SizedBox(
-                    height: 40.h,
-                  ),
-                  black24w500Centre(data: 'Checkout'),
-                  SizedBox(
-                    height: 10.h,
-                  ),
-                  black14w400Centre(
-                      data:
-                          'You’re just two clicks away to serve up the finest meals tailored for your fluffy companion\'s ultimate joy'),
-                  SizedBox(
-                    height: 30.h,
-                  ),
-                  Container(
-                    width: double.infinity,
-                    decoration: ShapeDecoration(
-                      color: CustomColors.whiteColor,
-                      shape: RoundedRectangleBorder(
-                        side: const BorderSide(
-                            width: 0.50,
-                            color: CustomColors.greyColor),
-                        borderRadius: BorderRadius.circular(12),
+                    Center(
+                      child: Image.asset(
+                        buyBulits3,
+                        height: 57.h,
                       ),
                     ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(20),
-                      child: Column(
-                        children: [
-                          Row(
-                            children: [
-                              SvgPicture.asset(
-                                mapPin,
-                                color: CustomColors.orangeColor,
-                              ),
-                              SizedBox(
-                                width: 2.w,
-                              ),
-                              black14w400Centre(data: 'Delivery Address'),
-                            ],
-                          ),
-                          SizedBox(
-                            height: 10.h,
-                          ),
-                          Image.asset(mapImage),
-                          SizedBox(
-                            height: 10.h,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  black18w500(data: 'Mina Jebel Ali'),
-                                  black14w400Centre(data: 'Dubai - UAE')
-                                ],
-                              ),
-                              InkWell(
-                                onTap: () {
-                                  Navigator.pushNamed(context, addressRoute);
-                                },
-                                child: Container(
-                                  decoration: ShapeDecoration(
-                                    color: CustomColors.whiteColor,
-                                    shape: RoundedRectangleBorder(
-                                      side: const BorderSide(
-                                          width: 0.75,
-                                          color: CustomColors.greyMediumColor),
-                                      borderRadius: BorderRadius.circular(12),
-                                    ),
-                                  ),
-                                  child: const Padding(
-                                    padding: EdgeInsets.all(10),
-                                    child: Icon(
-                                      Icons.edit,
-                                      size: 20,
-                                      color: CustomColors.orangeColor,
-                                    ),
-                                  ),
-                                ),
-                              )
-                            ],
-                          ),
-                        ],
-                      ),
+                    SizedBox(
+                      height: 40.h,
                     ),
-                  ),
-                  SizedBox(
-                    height: 24.h,
-                  ),
-                  Container(
-                    width: double.infinity,
-                    decoration: ShapeDecoration(
-                      color: CustomColors.whiteColor,
-                      shape: RoundedRectangleBorder(
-                        side: BorderSide(
-                            width: 0.50,
-                            color: CustomColors.greyColor),
-                        borderRadius: BorderRadius.circular(12),
-                      ),
+                    black24w500Centre(data: 'Checkout'),
+                    SizedBox(
+                      height: 10.h,
                     ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(20),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          SvgPicture.asset(payCardIcon),
-                          SizedBox(
-                            width: 2.w,
-                          ),
-                          black14w400Centre(data: 'Payment method'),
-                          Spacer(),
-                          Icon(
-                            Icons.arrow_forward_ios_rounded,
-                            size: 15,
-                            color: CustomColors.greyColor,
-                          )
-                        ],
-                      ),
+                    black14w400Centre(
+                        data:
+                            'You’re just two clicks away to serve up the finest meals tailored for your fluffy companion\'s ultimate joy'),
+                    SizedBox(
+                      height: 30.h,
                     ),
-                  ),
-                  SizedBox(
-                    height: 24.h,
-                  ),
-                  Container(
-                    width: double.infinity,
-                    decoration: ShapeDecoration(
-                      color: CustomColors.whiteColor,
-                      shape: RoundedRectangleBorder(
-                        side: const BorderSide(
-                            width: 0.50,
-                            color: CustomColors.greyColor),
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(20),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          black18w500(data: 'Order Summary'),
-                          SizedBox(
-                            height: 20.h,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              black14w400Centre(data: 'Subtotal'),
-                              SizedBox(
-                                width: 2.w,
-                              ),
-                              black14w400Centre(data: 'AED 100'),
-                            ],
-                          ),
-                          SizedBox(
-                            height: 20.h,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              black14w400Centre(data: 'Shipping Fee'),
-                              SizedBox(
-                                width: 2.w,
-                              ),
-                              black14w400Centre(data: '10 AED (One time  Fee)'),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 24.h,
-                  ),
-                  InkWell(
-                    onTap: (){
-                      redeemPawPointsBottomSheetWidget();
-                    },
-                    child: Container(
+                    Container(
                       width: double.infinity,
                       decoration: ShapeDecoration(
                         color: CustomColors.whiteColor,
                         shape: RoundedRectangleBorder(
                           side: const BorderSide(
-                              width: 0.50,
-                              color: CustomColors.greyColor),
+                              width: 0.50, color: CustomColors.greyColor),
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(20),
+                        child: Column(
+                          children: [
+                            Row(
+                              children: [
+                                SvgPicture.asset(
+                                  mapPin,
+                                  color: CustomColors.orangeColor,
+                                ),
+                                SizedBox(
+                                  width: 2.w,
+                                ),
+                                black14w400Centre(data: 'Delivery Address'),
+                              ],
+                            ),
+                            SizedBox(
+                              height: 10.h,
+                            ),
+                            SizedBox(
+                              height: 130.h,
+                              child: ClipRRect(
+                                borderRadius:
+                                    const BorderRadius.all(Radius.circular(20)),
+                                child: GoogleMap(
+                                 // zoomControlsEnabled: false,
+                                  //liteModeEnabled: true,
+                                 // myLocationEnabled: true,
+                                 // myLocationButtonEnabled: true,
+                                  mapType: MapType.terrain,
+                                  onCameraMove: (position) {
+                                    LatLng(position.target.latitude,
+                                        position.target.longitude);
+                                  },
+                                  /* onCameraIdle: () {
+                                  addressViewModel.convertCoordinatesToPlaces();
+                                },*/
+                                  initialCameraPosition: CameraPosition(
+                                      target: LatLng(
+                                          double.parse(context
+                                              .read<AuthViewModel>()
+                                              .getAuthResponse
+                                              .data!
+                                              .location!
+                                              .coordinates![0]),
+                                          double.parse(context
+                                              .read<AuthViewModel>()
+                                              .getAuthResponse
+                                              .data!
+                                              .location!
+                                              .coordinates![1]))),
+                                  markers: <Marker>{
+                                    Marker(
+                                      markerId: const MarkerId("1"),
+                                      position: LatLng(
+                                          double.parse(context
+                                              .read<AuthViewModel>()
+                                              .getAuthResponse
+                                              .data!
+                                              .location!
+                                              .coordinates![0]),
+                                          double.parse(context
+                                              .read<AuthViewModel>()
+                                              .getAuthResponse
+                                              .data!
+                                              .location!
+                                              .coordinates![1])),
+                                      icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueOrange),
+                                      infoWindow: const InfoWindow(
+                                        title: '',
+                                      ),
+                                    )
+                                  },
+                                  onMapCreated: context
+                                      .read<AddressViewModel>()
+                                      .getUserLocation,
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 10.h,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    SizedBox(
+                                        width: 240.w,
+                                        child: black18w500(
+                                            data: context
+                                                .read<AuthViewModel>()
+                                                .getAuthResponse
+                                                .data!
+                                                .location!
+                                                .address!)),
+                                    SizedBox(
+                                        width: 240.w,
+                                        child: black14w400Centre(
+                                            left: true,
+                                            data: context
+                                                .read<AuthViewModel>()
+                                                .getAuthResponse
+                                                .data!
+                                                .location!
+                                                .flatHouseNumber!))
+                                  ],
+                                ),
+                                InkWell(
+                                  onTap: () {
+                                    Navigator.pushNamed(context, addressRoute);
+                                  },
+                                  child: Container(
+                                    decoration: ShapeDecoration(
+                                      color: CustomColors.whiteColor,
+                                      shape: RoundedRectangleBorder(
+                                        side: const BorderSide(
+                                            width: 0.75,
+                                            color:
+                                                CustomColors.greyMediumColor),
+                                        borderRadius: BorderRadius.circular(12),
+                                      ),
+                                    ),
+                                    child: const Padding(
+                                      padding: EdgeInsets.all(10),
+                                      child: Icon(
+                                        Icons.edit,
+                                        size: 20,
+                                        color: CustomColors.orangeColor,
+                                      ),
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 24.h,
+                    ),
+                    Container(
+                      width: double.infinity,
+                      decoration: ShapeDecoration(
+                        color: CustomColors.whiteColor,
+                        shape: RoundedRectangleBorder(
+                          side: BorderSide(
+                              width: 0.50, color: CustomColors.greyColor),
                           borderRadius: BorderRadius.circular(12),
                         ),
                       ),
                       child: Padding(
                         padding: const EdgeInsets.all(20),
                         child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            SvgPicture.asset(
-                              couponCoin,
-                              height: 40.h,
-                            ),
+                            SvgPicture.asset(payCardIcon),
                             SizedBox(
-                              width: 10.w,
+                              width: 2.w,
                             ),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                black12w500Centre(
-                                    data: 'Your accumulated Paw Points'),
-                                black16w500(data: '64468'),
-                              ],
-                            ),
-                            const Spacer(),
-                            const Icon(
+                            black14w400Centre(data: 'Payment method'),
+                            Spacer(),
+                            Icon(
                               Icons.arrow_forward_ios_rounded,
                               size: 15,
                               color: CustomColors.greyColor,
@@ -266,154 +246,250 @@ class CheckoutScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-                  ),
-                  SizedBox(
-                    height: 24.h,
-                  ),
-                  Container(
-                    width: double.infinity,
-                    decoration: ShapeDecoration(
-                      color: CustomColors.whiteColor,
-                      shape: RoundedRectangleBorder(
-                        side: const BorderSide(
-                            width: 0.50,
-                            color: CustomColors.greyColor),
-                        borderRadius: BorderRadius.circular(12),
+                    SizedBox(
+                      height: 24.h,
+                    ),
+                    Container(
+                      width: double.infinity,
+                      decoration: ShapeDecoration(
+                        color: CustomColors.whiteColor,
+                        shape: RoundedRectangleBorder(
+                          side: const BorderSide(
+                              width: 0.50, color: CustomColors.greyColor),
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(20),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            black18w500(data: 'Order Summary'),
+                            SizedBox(
+                              height: 20.h,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                black14w400Centre(data: 'Subtotal'),
+                                SizedBox(
+                                  width: 2.w,
+                                ),
+                                black14w400Centre(data: 'AED 100'),
+                              ],
+                            ),
+                            SizedBox(
+                              height: 20.h,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                black14w400Centre(data: 'Shipping Fee'),
+                                SizedBox(
+                                  width: 2.w,
+                                ),
+                                black14w400Centre(
+                                    data: '10 AED (One time  Fee)'),
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
                     ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(20),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          black18w500(data: 'Enter your Promo code here'),
-                          SizedBox(
-                            height: 17.h,
+                    SizedBox(
+                      height: 24.h,
+                    ),
+                    InkWell(
+                      onTap: () {
+                        redeemPawPointsBottomSheetWidget();
+                      },
+                      child: Container(
+                        width: double.infinity,
+                        decoration: ShapeDecoration(
+                          color: CustomColors.whiteColor,
+                          shape: RoundedRectangleBorder(
+                            side: const BorderSide(
+                                width: 0.50, color: CustomColors.greyColor),
+                            borderRadius: BorderRadius.circular(12),
                           ),
-                          black14w400Centre(
-                              left: true,
-                              data:
-                                  'You can only use your PawPoints or a Promo Code per transaction. Promo codes are one-time use only.'),
-                          SizedBox(
-                            height: 17.h,
-                          ),
-                          Row(
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(20),
+                          child: Row(
                             children: [
-                              black14w400Centre(data: 'Generate coupon code'),
-                              Spacer(),
-                              orange14w400(data: 'How it works?'),
-                            ],
-                          ),
-                          SizedBox(
-                            height: 10.h,
-                          ),
-                          Container(
-                            width: double.infinity,
-                            decoration: ShapeDecoration(
-                              color: CustomColors.greyMediumLightColor,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(12),
+                              SvgPicture.asset(
+                                couponCoin,
+                                height: 40.h,
                               ),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(20),
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.center,
+                              SizedBox(
+                                width: 10.w,
+                              ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  SvgPicture.asset(couponIcon),
-                                  SizedBox(
-                                    width: 2.w,
-                                  ),
-                                  black14w400Centre(data: 'ME432DW'),
+                                  black12w500Centre(
+                                      data: 'Your accumulated Paw Points'),
+                                  black16w500(data: '64468'),
                                 ],
                               ),
-                            ),
+                              const Spacer(),
+                              const Icon(
+                                Icons.arrow_forward_ios_rounded,
+                                size: 15,
+                                color: CustomColors.greyColor,
+                              )
+                            ],
                           ),
-                          SizedBox(
-                            height: 10.h,
-                          ),
-                          Container(
-                            width: double.infinity,
-                            decoration: ShapeDecoration(
-                              color: CustomColors.whiteColor,
-                              shape: RoundedRectangleBorder(
-                                side: const BorderSide(
-                                    width: 0.50,
-                                    color: CustomColors.greyColor),
-                                borderRadius: BorderRadius.circular(12),
-                              ),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(20),
-                              child:
-                                  black14w400Centre(data: 'Apply coupon code'),
-                            ),
-                          ),
-                        ],
+                        ),
                       ),
                     ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: Container(
-              decoration: const BoxDecoration(
-                color: CustomColors.whiteColor,
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(30.0),
-                  topRight: Radius.circular(30.0),
-
-                ),
-                boxShadow: [
-                  BoxShadow(
-                    offset: Offset(0, 0),
-                    blurRadius: 5,
-                    spreadRadius: 2,
-                    color: Colors.black12,
-                  ),
-                ],
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(20),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Row(
-                      children: [
-                        black14w400Centre(data: 'Total'),
-                        const Spacer(),
-                        black16w500(data: 'AED 95')
-                      ],
-                    ),
                     SizedBox(
-                      height: 16.h,
+                      height: 24.h,
                     ),
-                    Row(
-                      children: [
-                        black14w400Centre(data: 'Points Rewarded Amount'),
-                        const Spacer(),
-                        black16w500(data: '5')
-                      ],
+                    Container(
+                      width: double.infinity,
+                      decoration: ShapeDecoration(
+                        color: CustomColors.whiteColor,
+                        shape: RoundedRectangleBorder(
+                          side: const BorderSide(
+                              width: 0.50, color: CustomColors.greyColor),
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(20),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            black18w500(data: 'Enter your Promo code here'),
+                            SizedBox(
+                              height: 17.h,
+                            ),
+                            black14w400Centre(
+                                left: true,
+                                data:
+                                    'You can only use your PawPoints or a Promo Code per transaction. Promo codes are one-time use only.'),
+                            SizedBox(
+                              height: 17.h,
+                            ),
+                            Row(
+                              children: [
+                                black14w400Centre(data: 'Generate coupon code'),
+                                Spacer(),
+                                orange14w400(data: 'How it works?'),
+                              ],
+                            ),
+                            SizedBox(
+                              height: 10.h,
+                            ),
+                            Container(
+                              width: double.infinity,
+                              decoration: ShapeDecoration(
+                                color: CustomColors.greyMediumLightColor,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.all(20),
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    SvgPicture.asset(couponIcon),
+                                    SizedBox(
+                                      width: 2.w,
+                                    ),
+                                    black14w400Centre(data: 'ME432DW'),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 10.h,
+                            ),
+                            Container(
+                              width: double.infinity,
+                              decoration: ShapeDecoration(
+                                color: CustomColors.whiteColor,
+                                shape: RoundedRectangleBorder(
+                                  side: const BorderSide(
+                                      width: 0.50,
+                                      color: CustomColors.greyColor),
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.all(20),
+                                child: black14w400Centre(
+                                    data: 'Apply coupon code'),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
                     ),
-                    SizedBox(
-                      height: 40.h,
-                    ),
-                    customButton(
-                        text: 'Place Order',
-                        onPressed: () {
-                          Navigator.pushNamed(context, orderConfirmationRoute);
-                        },
-                        colored: true),
                   ],
                 ),
               ),
             ),
-          ),
-        ],
-      ),
-    );});
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: Container(
+                decoration: const BoxDecoration(
+                  color: CustomColors.whiteColor,
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(30.0),
+                    topRight: Radius.circular(30.0),
+                  ),
+                  boxShadow: [
+                    BoxShadow(
+                      offset: Offset(0, 0),
+                      blurRadius: 5,
+                      spreadRadius: 2,
+                      color: Colors.black12,
+                    ),
+                  ],
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(20),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Row(
+                        children: [
+                          black14w400Centre(data: 'Total'),
+                          const Spacer(),
+                          black16w500(data: 'AED 95')
+                        ],
+                      ),
+                      SizedBox(
+                        height: 16.h,
+                      ),
+                      Row(
+                        children: [
+                          black14w400Centre(data: 'Points Rewarded Amount'),
+                          const Spacer(),
+                          black16w500(data: '5')
+                        ],
+                      ),
+                      SizedBox(
+                        height: 40.h,
+                      ),
+                      customButton(
+                          text: 'Place Order',
+                          onPressed: () {
+                            Navigator.pushNamed(
+                                context, orderConfirmationRoute);
+                          },
+                          colored: true),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      );
+    });
   }
 }

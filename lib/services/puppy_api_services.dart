@@ -93,5 +93,17 @@ class PuppyApiServices {
     return baseResponseModel;
   }
 
+  Future<BaseResponseModel> defaultPuppy({required String puppyId}) async {
+    ApiBaseHelper httpService = ApiBaseHelper();
+    final response = await httpService.httpRequest(
+        endPoint: EndPoints.defaultPuppy,
+        requestType: 'PUT',
+        requestBody: '',
+        params: puppyId);
+    final parsed = json.decode(response.body);
+    BaseResponseModel baseResponseModel = BaseResponseModel.fromJson(parsed);
+    return baseResponseModel;
+  }
+
 
 }

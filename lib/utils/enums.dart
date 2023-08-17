@@ -68,6 +68,8 @@ enum EndPoints {
   registerPuppy('pet/'),
   allAddresses('user/locations'),
   addAddress('user/location'),
+  defaultAddress('user/default/location/'),
+  defaultPuppy('pet/default/'),
   deleteAddress('user/location/');
 
 

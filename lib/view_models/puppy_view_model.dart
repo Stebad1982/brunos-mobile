@@ -473,4 +473,28 @@ class PuppyViewModel with ChangeNotifier {
       return false;
     }
   }
+
+  Future<bool> callDefaultPuppyApi() async {
+    EasyLoading.show(status: 'Please wait...');
+    try {
+      final BaseResponseModel response =
+          await _puppyApiServices.defaultPuppy(puppyId: _puppyDetail!.sId!);
+      if (response.isSuccess!) {
+        EasyLoading.dismiss();
+        callPuppiesApi();
+        return true;
+      } else {
+        EasyLoading.showError('${response.message}');
+        return false;
+      }
+    } catch (e) {
+      EasyLoading.showError(e.toString());
+      return false;
+    }
+  }
+
+ void setIsDefaultPuppyTrueFalse(bool value) {
+    _puppyDetail!.isDefault = value;
+    notifyListeners();
+  }
 }
