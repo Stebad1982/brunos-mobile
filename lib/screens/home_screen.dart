@@ -18,6 +18,8 @@ import '../utils/custom_font_style.dart';
 import '../utils/enums.dart';
 import '../view_models/puppy_view_model.dart';
 import '../widgets/carousel_widget.dart';
+import '../widgets/circular_network_image_widget.dart';
+import '../widgets/deafult_puppy_icon_widget.dart';
 import '../widgets/food_category_grid_chip_widget.dart';
 import '../widgets/food_discribed_grid_chip_widget.dart';
 import '../widgets/food_grid_chip_widget.dart';
@@ -70,7 +72,7 @@ class HomeScreen extends StatelessWidget {
                           SizedBox(
                             width: 200.w,
                             child: black14w400Centre(
-                              left: true,
+                                left: true,
                                 data: context
                                             .read<AuthViewModel>()
                                             .getAuthResponse
@@ -78,7 +80,7 @@ class HomeScreen extends StatelessWidget {
                                             .location !=
                                         null
                                     ? context
-                                        .read<AuthViewModel>()
+                                        .watch<AuthViewModel>()
                                         .getAuthResponse
                                         .data!
                                         .location!
@@ -88,10 +90,7 @@ class HomeScreen extends StatelessWidget {
                         ],
                       ),
                     ),
-                    SvgPicture.asset(
-                      shoppingIcon,
-                      height: 44.h,
-                    ),
+                    defaultPuppyIconWidget(),
                   ],
                 ),
               ),

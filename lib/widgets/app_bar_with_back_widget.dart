@@ -4,10 +4,13 @@ import 'package:provider/provider.dart';
 
 import '../utils/custom_colors.dart';
 import '../utils/custom_font_style.dart';
+import 'deafult_puppy_icon_widget.dart';
 
-class AppBarWithBackWidget extends StatelessWidget implements PreferredSizeWidget{
+class AppBarWithBackWidget extends StatelessWidget
+    implements PreferredSizeWidget {
   final String? heading;
-  const AppBarWithBackWidget({Key? key,  this.heading}) : super(key: key);
+
+  const AppBarWithBackWidget({Key? key, this.heading}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +19,7 @@ class AppBarWithBackWidget extends StatelessWidget implements PreferredSizeWidge
       toolbarHeight: 60.h,
       backgroundColor: CustomColors.whiteColor,
       elevation: 1,
-      title: heading != null? Text(heading!) : Container(),
+      title: heading != null ? Text(heading!) : Container(),
       leading: InkWell(
         onTap: () {
           Navigator.pop(context);
@@ -26,18 +29,12 @@ class AppBarWithBackWidget extends StatelessWidget implements PreferredSizeWidge
           color: CustomColors.blackColor,
         ),
       ),
-    /*  actions: [
-        Row(
-          children: [
-            const NotificationIconWidget(),
-
-            SizedBox(
-              width: 20.w,
-            )
-          ],
-        )
-      ],*/
-
+      actions: [
+        Padding(
+          padding: const EdgeInsets.only(right: 10),
+          child: defaultPuppyIconWidget(),
+        ),
+      ],
     );
   }
 
