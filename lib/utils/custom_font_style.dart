@@ -186,8 +186,10 @@ Widget orange14w500({required String data}) {
   );
 }
 
-Widget black12w500Centre({required String data, bool? centre}) {
+Widget black12w500Centre({required String data, bool? centre, bool? overFlowText}) {
   return Text(
+    maxLines: overFlowText != null && overFlowText? 1 : null,
+    overflow: overFlowText != null && overFlowText? TextOverflow.ellipsis: null,
     data,
     textAlign: centre != null?  TextAlign.center: TextAlign.left,
     style: TextStyle(
@@ -232,8 +234,10 @@ Widget white18w500({required String data}) {
   );
 }
 
-Widget white12w400({required String data}) {
+Widget white12w400({required String data, bool? overFlowText}) {
   return Text(
+    maxLines: overFlowText != null && overFlowText? 1 : null,
+    overflow: overFlowText != null && overFlowText? TextOverflow.ellipsis: null,
     data,
     style: TextStyle(
         fontFamily: 'CircularStd',

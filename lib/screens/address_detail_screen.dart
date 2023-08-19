@@ -28,7 +28,7 @@ class AddressDetailScreen extends StatelessWidget {
       return Scaffold(
         appBar: AppBarWithBackWidget(
           heading: toBeginningOfSentenceCase(
-              'Address Detail'),
+              'Address Detail'), showPuppy: false,
         ),
         body: SingleChildScrollView(
           child: Padding(

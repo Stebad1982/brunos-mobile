@@ -19,7 +19,7 @@ class MonthlyPlanScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const AppBarWithBackWidget(
-        heading: 'Monthly Plan',
+        heading: 'Monthly Plan', showPuppy: true,
       ),
       body: Padding(
         padding: const EdgeInsets.all(20),

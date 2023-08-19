@@ -30,8 +30,8 @@ class ProfileScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               InkWell(
-                onTap: (){
-                  if(context.read<AuthViewModel>().getAuthResponse.data != null){
+                onTap: () {
+                  if (!context.read<AuthViewModel>().getAuthResponse.data!.isGuest!) {
                     Navigator.pushNamed(context, editProfileRoute);
                   }
                 },
@@ -41,18 +41,32 @@ class ProfileScreen extends StatelessWidget {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        black14w400Centre(data: 'Hi, ${
-                context.read<AuthViewModel>().getAuthResponse.data != null ?context.read<AuthViewModel>().getAuthResponse.data!.fullName
-                        : 'Guest'}'),
+                        black14w400Centre(
+                            data:
+                                'Hi, ${context.read<AuthViewModel>().getAuthResponse.data!.fullName}'),
                         SizedBox(
                           height: 10.h,
                         ),
-                        grey14w400(data: context.read<AuthViewModel>().getAuthResponse.data != null ?
-                        context.read<AuthViewModel>().getAuthResponse.data!.email! : '')
+                        grey14w400(
+                            data: !context
+                                    .read<AuthViewModel>()
+                                    .getAuthResponse
+                                    .data!
+                                    .isGuest!
+                                ? context
+                                    .read<AuthViewModel>()
+                                    .getAuthResponse
+                                    .data!
+                                    .email!
+                                : '')
                       ],
                     ),
                     Visibility(
-                      visible: context.read<AuthViewModel>().getAuthResponse.data != null,
+                      visible: !context
+                          .read<AuthViewModel>()
+                          .getAuthResponse
+                          .data!
+                          .isGuest!,
                       child: const Align(
                           alignment: Alignment.centerRight,
                           child: Icon(
@@ -72,9 +86,9 @@ class ProfileScreen extends StatelessWidget {
                 height: 14.h,
               ),
               ListTile(
-                onTap: (){
-                  Navigator.pushNamed(context, ordersRoute);
-                },
+                  onTap: () {
+                    Navigator.pushNamed(context, ordersRoute);
+                  },
                   leading: SvgPicture.asset(
                     orderIcon,
                     height: 24.h,
@@ -93,10 +107,12 @@ class ProfileScreen extends StatelessWidget {
                     color: CustomColors.greyColor,
                   )),
               ListTile(
-                onTap: (){
-                  context.read<PuppyViewModel>().setRouteToPuppyFrom(Screens.profile.text);
-                  Navigator.pushNamed(context, puppiesListRoute);
-                },
+                  onTap: () {
+                    context
+                        .read<PuppyViewModel>()
+                        .setRouteToPuppyFrom(Screens.profile.text);
+                    Navigator.pushNamed(context, puppiesListRoute);
+                  },
                   leading: SvgPicture.asset(
                     orderIcon,
                     height: 24.h,
@@ -133,9 +149,9 @@ class ProfileScreen extends StatelessWidget {
                     color: CustomColors.greyColor,
                   )),
               ListTile(
-                onTap: (){
-                  Navigator.pushNamed(context, addressRoute);
-                },
+                  onTap: () {
+                    Navigator.pushNamed(context, addressRoute);
+                  },
                   leading: SvgPicture.asset(
                     mapPin,
                     height: 24.h,
@@ -179,9 +195,9 @@ class ProfileScreen extends StatelessWidget {
                     color: CustomColors.greyColor,
                   )),
               ListTile(
-                onTap: (){
+                  onTap: () {
                     Navigator.pushNamed(context, faqRoute);
-                },
+                  },
                   leading: SvgPicture.asset(
                     faqIcon,
                     height: 24.h,
@@ -232,13 +248,35 @@ class ProfileScreen extends StatelessWidget {
                     size: 15,
                     color: CustomColors.greyColor,
                   )),
-              SizedBox(height: 32.h,),
-              ListTile(
-                onTap: () async {
-                  context.read<AuthViewModel>().clearFieldsData();
-                  Navigator.pushNamedAndRemoveUntil(context, loginRoute, (route) => false);
-                  sharedPref.remove(SharedPreferencesKeys.authToken.text);
-                },
+              SizedBox(
+                height: 32.h,
+              ),
+              Visibility(
+                visible: context.read<AuthViewModel>().getAuthResponse.data!.isGuest!,
+                child: ListTile(
+                  onTap: () async {
+                    context.read<AuthViewModel>().clearFieldsData();
+                    Navigator.pushNamed(
+                        context, registerUserRoute);
+                    sharedPref.remove(SharedPreferencesKeys.authToken.text);
+                  },
+                  leading: const Icon(Icons.app_registration,color: CustomColors.orangeColor,),
+                  title: Align(
+                      alignment: Alignment.centerLeft,
+                      child: orange14w400(data: 'Register')),
+                  contentPadding: const EdgeInsets.all(0),
+                  minLeadingWidth: 12,
+                ),
+              ),
+              Visibility(
+                visible: !context.read<AuthViewModel>().getAuthResponse.data!.isGuest!,
+                child: ListTile(
+                  onTap: () async {
+                    context.read<AuthViewModel>().clearFieldsData();
+                    Navigator.pushNamedAndRemoveUntil(
+                        context, loginRoute, (route) => false);
+                    sharedPref.remove(SharedPreferencesKeys.authToken.text);
+                  },
                   leading: SvgPicture.asset(
                     logoutIcon,
                     height: 24.h,
@@ -247,8 +285,12 @@ class ProfileScreen extends StatelessWidget {
                       alignment: Alignment.centerLeft,
                       child: orange14w400(data: 'Log out')),
                   contentPadding: const EdgeInsets.all(0),
-                  minLeadingWidth: 12,),
-              SizedBox(height: 100.h,),
+                  minLeadingWidth: 12,
+                ),
+              ),
+              SizedBox(
+                height: 100.h,
+              ),
             ],
           ),
         ),

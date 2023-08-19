@@ -26,7 +26,7 @@ class OrderConfirmationScreen extends StatelessWidget {
               ? 'Transitional Plan'
               : plansViewModel.getPlanType == Plans.monthly.text
               ? 'Monthly Plan'
-              : 'One time Order',
+              : 'One time Order', showPuppy: false,
         ),
         body: SafeArea(
           child: Padding(

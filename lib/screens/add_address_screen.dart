@@ -47,7 +47,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
       return Scaffold(
         appBar: AppBarWithBackWidget(
           heading:
-              addressViewModel.getIsAddressAdd ? 'Add Address' : 'Edit Address',
+              addressViewModel.getIsAddressAdd ? 'Add Address' : 'Edit Address', showPuppy: false,
         ),
         body: Stack(
           children: [

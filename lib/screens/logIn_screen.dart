@@ -95,10 +95,15 @@ class LoginScreen extends StatelessWidget {
                         if (!currentFocus.hasPrimaryFocus) {
                           currentFocus.unfocus();
                         }
-                        Navigator.pushNamedAndRemoveUntil(
-                            context,
-                            bottomNavigationRoute,
-                            ModalRoute.withName(splashRoute));
+                        authViewModel.callGuestUserRegisterApi().then((value) => {
+                          if (value)
+                            {
+                              Navigator.pushNamedAndRemoveUntil(
+                                  context,
+                                  bottomNavigationRoute,
+                                  ModalRoute.withName(splashRoute))
+                            }
+                        });
                       }, colored: false),
 
 
@@ -112,7 +117,7 @@ class LoginScreen extends StatelessWidget {
                         onTap: (){
                           authViewModel.clearFieldsData();
                           authViewModel.setOtpRouteFrom(Screens.registerUser.text);
-                          Navigator.pushNamed(context, registerUserRoute);
+                          Navigator.pushReplacementNamed(context,registerUserRoute);
                         },
                         child: const Text.rich(
                           TextSpan(

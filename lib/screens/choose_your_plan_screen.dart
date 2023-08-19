@@ -19,7 +19,7 @@ class ChooseYourPlanScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const AppBarWithBackWidget(
-        heading: 'Choose your plan',
+        heading: 'Choose your plan', showPuppy: true,
       ),
       body: Padding(
         padding: const EdgeInsets.all(20),

@@ -300,6 +300,35 @@ class AuthViewModel with ChangeNotifier {
     }
   }
 
+  Future<bool> callGuestUserRegisterApi() async {
+    EasyLoading.show(status: 'Please Wait ...');
+    try {
+      final UserRegisterRequest userRegisterRequest = UserRegisterRequest(
+          password: '',
+          email: '',
+          deviceToken: _fcmToken ?? '',
+          deviceType: _operatingSystem,
+          fullName: 'Guest',
+          phoneNumber: '');
+
+      final AuthResponse response = await _authApiServices.guestUserRegisterApi(
+          userRegisterRequest: userRegisterRequest);
+      if (response.isSuccess!) {
+        setAuthResponse(response);
+        //  setImageSlider();
+        EasyLoading.dismiss();
+        return true;
+      } else {
+        EasyLoading.showError('${response.message}');
+        return false;
+      }
+    } catch (e) {
+      EasyLoading.showError(e.toString());
+      return false;
+    }
+  }
+
+
   Future<bool> callForgotPasswordApi() async {
     EasyLoading.show(status: 'Please Wait ...');
     try {

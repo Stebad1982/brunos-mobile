@@ -14,7 +14,7 @@ class OneTimePlanScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const AppBarWithBackWidget(
-        heading: 'OneTime Order',
+        heading: 'OneTime Order', showPuppy: true,
       ),
       body: Padding(
         padding: const EdgeInsets.all(20),

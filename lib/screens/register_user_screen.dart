@@ -108,7 +108,7 @@ class RegisterUserScreen extends StatelessWidget {
                         child: InkWell(
                           onTap: () {
                             authViewModel.clearFieldsData();
-                            Navigator.pop(context);
+                            Navigator.pushReplacementNamed(context,loginRoute);
                           },
                           child: const Text.rich(
                             TextSpan(

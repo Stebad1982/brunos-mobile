@@ -57,6 +57,7 @@ enum SharedPreferencesKeys {
 enum EndPoints {
   signIn('auth/login'),
   signUp('auth/'),
+  guest('auth/guest'),
   forgotPassword('auth/forgot-password'),
   splash('user/'),
   editUserProfile('user/'),

@@ -38,8 +38,8 @@ class _AddressScreenState extends State<AddressScreen> {
     return Consumer<AddressViewModel>(
         builder: (context, addressViewModel, child) {
           return Scaffold(
-            appBar: const AppBarWithBackWidget(
-              heading: 'Address',
+            appBar:  const AppBarWithBackWidget(
+              heading: 'Address', showPuppy: false,
             ),
             floatingActionButton: FloatingActionButton(
               backgroundColor: CustomColors.orangeColor,

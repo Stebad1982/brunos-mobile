@@ -9,8 +9,9 @@ import 'deafult_puppy_icon_widget.dart';
 class AppBarWithBackWidget extends StatelessWidget
     implements PreferredSizeWidget {
   final String? heading;
+  final bool showPuppy;
 
-  const AppBarWithBackWidget({Key? key, this.heading}) : super(key: key);
+  const AppBarWithBackWidget({Key? key, this.heading, required this.showPuppy}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -30,9 +31,12 @@ class AppBarWithBackWidget extends StatelessWidget
         ),
       ),
       actions: [
-        Padding(
-          padding: const EdgeInsets.only(right: 10),
-          child: defaultPuppyIconWidget(),
+        Visibility(
+          visible: showPuppy,
+          child: Padding(
+            padding: const EdgeInsets.only(right: 10,top: 10),
+            child: defaultPuppyIconWidget(),
+          ),
         ),
       ],
     );

@@ -47,6 +47,22 @@ class AuthApiServices {
     return authResponse;
   }
 
+  Future<AuthResponse> guestUserRegisterApi({required UserRegisterRequest userRegisterRequest}) async {
+    ApiBaseHelper httpService = ApiBaseHelper();
+    final response = await httpService.httpRequest(
+        endPoint: EndPoints.guest,
+        requestType: 'POST',
+        requestBody: userRegisterRequest,
+        params: '');
+    final parsed = json.decode(response.body);
+    AuthResponse authResponse = AuthResponse.fromJson(parsed);
+    if (authResponse.isSuccess!) {
+      _sharedPref.save(
+          SharedPreferencesKeys.authToken.text, authResponse.data!.clientToken);
+    }
+    return authResponse;
+  }
+
   Future<BaseResponseModel> forgotPasswordApi({required ForgotPasswordRequest forgotPasswordRequest}) async {
     ApiBaseHelper httpService = ApiBaseHelper();
     final response = await httpService.httpRequest(

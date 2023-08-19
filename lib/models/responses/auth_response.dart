@@ -32,6 +32,7 @@ class AuthData {
   String? email;
   String? phoneNumber;
   bool? isVerified;
+  bool? isGuest;
   String? media;
   int? petsCount;
   PuppyModel? pet;
@@ -49,6 +50,7 @@ class AuthData {
         this.media,
         this.petsCount,
         this.pet,
+        this.isGuest,
         this.location,
         this.refreshToken,
         this.clientToken});
@@ -61,6 +63,7 @@ class AuthData {
     phoneNumber = json['phoneNumber'];
     isVerified = json['isVerified'];
     media = json['media'];
+    isGuest = json['isGuest'];
     petsCount = json['petsCount'];
     pet = json['pet'] != null ? PuppyModel.fromJson(json['pet']) : null;
     location = json['location'] != null
@@ -76,6 +79,7 @@ class AuthData {
     data['createdOnDate'] = this.createdOnDate;
     data['fullName'] = this.fullName;
     data['email'] = this.email;
+    data['isGuest'] = this.isGuest;
     data['phoneNumber'] = this.phoneNumber;
     data['isVerified'] = this.isVerified;
     data['media'] = this.media;

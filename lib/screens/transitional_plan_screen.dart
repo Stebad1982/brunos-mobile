@@ -17,7 +17,7 @@ class TransitionalPlanScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const AppBarWithBackWidget(
-        heading: 'Transitional Plan',
+        heading: 'Transitional Plan', showPuppy: true,
       ),
       body: Padding(
         padding: const EdgeInsets.all(20),
