@@ -61,7 +61,6 @@ const String forgetPasswordRoute = '/forgetPassword';
 const String resetPasswordRoute = '/resetPassword';
 const String resetPasswordSuccessRoute = '/resetPasswordSuccess';
 const String puppyDetailRoute = '/puppyDetail';
-const String manageAddressRoute = '/manageAddress';
 const String addAddressRoute = '/addAddress';
 const String addressDetailRoute = '/addressDetail';
 

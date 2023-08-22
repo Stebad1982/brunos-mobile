@@ -164,7 +164,7 @@ class _IntroSlidesScreenState extends State<IntroSlidesScreen> {
               width: 308.w,
               child: grey14w400HeightCentre(
                   data:
-                      'Choose from several meal recipes. cooked, portioned and delivered your way, with whenever and wherever you need it.'),
+                  'Choose meal recipes, prepared and sent on your schedule, as you need.'),
             ),
             SizedBox(
               height: 32.h,

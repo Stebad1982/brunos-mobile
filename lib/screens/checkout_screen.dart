@@ -91,12 +91,18 @@ class CheckoutScreen extends StatelessWidget {
                             SizedBox(
                               height: 10.h,
                             ),
-                            SizedBox(
+
+                            context
+                                .read<AuthViewModel>()
+                                .getAuthResponse
+                                .data!
+                                .location != null?SizedBox(
                               height: 130.h,
                               child: ClipRRect(
                                 borderRadius:
                                     const BorderRadius.all(Radius.circular(20)),
-                                child: GoogleMap(
+                                child:
+                                GoogleMap(
                                  // zoomControlsEnabled: false,
                                   //liteModeEnabled: true,
                                  // myLocationEnabled: true,
@@ -106,9 +112,6 @@ class CheckoutScreen extends StatelessWidget {
                                     LatLng(position.target.latitude,
                                         position.target.longitude);
                                   },
-                                  /* onCameraIdle: () {
-                                  addressViewModel.convertCoordinatesToPlaces();
-                                },*/
                                   initialCameraPosition: CameraPosition(
                                       target: LatLng(
                                           double.parse(context
@@ -150,7 +153,7 @@ class CheckoutScreen extends StatelessWidget {
                                       .getUserLocation,
                                 ),
                               ),
-                            ),
+                            ): Container(),
                             SizedBox(
                               height: 10.h,
                             ),
@@ -168,8 +171,12 @@ class CheckoutScreen extends StatelessWidget {
                                                 .read<AuthViewModel>()
                                                 .getAuthResponse
                                                 .data!
+                                                .location != null? context
+                                                .read<AuthViewModel>()
+                                                .getAuthResponse
+                                                .data!
                                                 .location!
-                                                .address!)),
+                                                .address!: 'Click to add Address')),
                                     SizedBox(
                                         width: 240.w,
                                         child: black14w400Centre(
@@ -178,13 +185,22 @@ class CheckoutScreen extends StatelessWidget {
                                                 .read<AuthViewModel>()
                                                 .getAuthResponse
                                                 .data!
+                                                .location != null? context
+                                                .read<AuthViewModel>()
+                                                .getAuthResponse
+                                                .data!
                                                 .location!
-                                                .flatHouseNumber!))
+                                                .flatHouseNumber!:''))
                                   ],
                                 ),
                                 InkWell(
-                                  onTap: () {
-                                    Navigator.pushNamed(context, addressRoute);
+                                  onTap: () {context
+                                      .read<AuthViewModel>()
+                                      .getAuthResponse
+                                      .data!
+                                      .location != null?
+                                    Navigator.pushNamed(context, addressRoute):
+                                  Navigator.pushNamed(context, addAddressRoute);
                                   },
                                   child: Container(
                                     decoration: ShapeDecoration(
@@ -197,10 +213,14 @@ class CheckoutScreen extends StatelessWidget {
                                         borderRadius: BorderRadius.circular(12),
                                       ),
                                     ),
-                                    child: const Padding(
+                                    child:  Padding(
                                       padding: EdgeInsets.all(10),
                                       child: Icon(
-                                        Icons.edit,
+                                        context
+                                            .read<AuthViewModel>()
+                                            .getAuthResponse
+                                            .data!
+                                            .location != null? Icons.edit: Icons.add,
                                         size: 20,
                                         color: CustomColors.orangeColor,
                                       ),

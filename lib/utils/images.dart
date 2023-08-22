@@ -28,10 +28,15 @@ const dogFootPrint = "assets/images/dog-foot-print.svg";
 const slider1 = "assets/images/slider-1.png";
 const slider2 = "assets/images/slider-2.png";
 const slider3 = "assets/images/slider-3.png";
-const foodCategory = "assets/images/food-category.svg";
-const foodCategory1 = "assets/images/food-category1.svg";
-const foodCategory2 = "assets/images/food-category2.svg";
-const foodCategory3 = "assets/images/food-category3.svg";
+
+const freshlyCooked = "assets/images/freshly-cooked.svg";
+const wellBalancedNutrientBlend = "assets/images/well-balanced-nutrient-blend.svg";
+const doorstepDelivery = "assets/images/doorstep-delivery.svg";
+const longShelfLife = "assets/images/long-shelf-life.svg";
+const humanGradeIngredients = "assets/images/long-shelf-life.svg";
+const aafcoCompliant = "assets/images/aafco-compliant.svg";
+const customizedMeals = "assets/images/customized-meals.svg";
+const vetDeveloped = "assets/images/vet-developed.svg";
 
 const food = "assets/images/food.png";
 const bone = "assets/images/bone.png";

@@ -8,22 +8,17 @@ class FoodCategory {
 }
 
 List<FoodCategory> foodCategoryList = [
-  FoodCategory('Freshly cooked', foodCategory),
-  FoodCategory('Exclusive Nutrient blends', foodCategory1),
-  FoodCategory('Doorstep Delivery', foodCategory2),
-  FoodCategory('Fresh for 10 days', foodCategory3),
-  FoodCategory('Never frozen', foodCategory),
-  FoodCategory('AAFCO compliant', foodCategory1),
-  FoodCategory('Customized meals', foodCategory2),
-  FoodCategory('Vet Developed', foodCategory3)
+  FoodCategory('Freshly cooked', freshlyCooked),
+  FoodCategory('Well balanced nutrient blend', wellBalancedNutrientBlend),
+  FoodCategory('Doorstep delivery', doorstepDelivery),
+  FoodCategory('Long shelf life', longShelfLife),
+  FoodCategory('Human grade ingredients', humanGradeIngredients),
+  FoodCategory('AAFCO compliant', aafcoCompliant),
+  FoodCategory('Customized meals', customizedMeals),
+  FoodCategory('Vet Developed', vetDeveloped)
 ];
 
 List<String> breedsList =['jsjsjjsjs','jdkkdkdkdk', 'ieriueiuruier'];
 
 
 
-
-List<String> puppyTag = [
-'Primary',
-  'Existing pet'
-];

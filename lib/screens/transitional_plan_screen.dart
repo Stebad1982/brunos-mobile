@@ -64,7 +64,7 @@ class TransitionalPlanScreen extends StatelessWidget {
                   return foodDescribedGridChipWidget();
                 },
               ),
-              black18w500(
+            /*  black18w500(
                   data: 'Try our canine-crafted combos'),
               GridView.builder(
                 padding: EdgeInsets.symmetric(
@@ -81,7 +81,7 @@ class TransitionalPlanScreen extends StatelessWidget {
                 itemBuilder: (BuildContext context, int index) {
                   return foodDescribedGridChipWidget();
                 },
-              ),
+              ),*/
             ],
           ),
         ),
