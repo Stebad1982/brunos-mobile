@@ -34,7 +34,7 @@ void deletePetConfirmationDialog(
                   data: 'Confirmation',
                 ),
                 const Spacer(),
-                black14w400Centre(
+                lightBlack14w400Centre(
                   data: 'Do you really want to Delete $name?',
                 ),
                 const Spacer(),

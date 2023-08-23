@@ -56,7 +56,7 @@ Future redeemPawPointsBottomSheetWidget() {
                   SizedBox(
                     height: 20.h,
                   ),
-                  black14w400Centre(
+                  lightBlack14w400Centre(
                       data:
                           'you can use your loyalty points  to get discount, by converting your loyalty points to % discount coupon',
                       left: true),
@@ -95,14 +95,14 @@ Future redeemPawPointsBottomSheetWidget() {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      black14w400Centre(data: '400'),
-                      black14w400Centre(data: '7999 Points'),
+                      lightBlack14w400Centre(data: '400'),
+                      lightBlack14w400Centre(data: '7999 Points'),
                     ],
                   ),
                   SizedBox(
                     height: 20.h,
                   ),
-                  black14w400Centre(data: 'Promo Code'),
+                  lightBlack14w400Centre(data: 'Promo Code'),
                   SizedBox(
                     height: 10.h,
                   ),
@@ -120,7 +120,7 @@ Future redeemPawPointsBottomSheetWidget() {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          black14w400Centre(data: 'ME432DW'),
+                          lightBlack14w400Centre(data: 'ME432DW'),
                           brown12w500Centre(data: 'Copy'),
                         ],
                       ),

@@ -71,7 +71,7 @@ class HomeScreen extends StatelessWidget {
                           ),
                           SizedBox(
                             width: 200.w,
-                            child: black14w400Centre(
+                            child: lightBlack14w400Centre(
                                 left: true,
                                 data: context
                                             .read<AuthViewModel>()
@@ -120,7 +120,7 @@ class HomeScreen extends StatelessWidget {
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child: black14w400Centre(
+                      child: lightBlack14w400Centre(
                           data:
                               'Sharing your love for pets and their wellbeing, we at Bruno\'s Kitchen have crafted a service that brings balanced, freshly-prepared pet food right to your doorstep. Our simple yet nutritious recipes are scientifically formulated and made with utmost love, because we believe your furry friends deserve the very best.'),
                     ),
@@ -160,7 +160,7 @@ class HomeScreen extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                child: black14w400Centre(
+                child: lightBlack14w400Centre(
                     data: 'Check out our delicious doggie dishes'),
               ),
               SizedBox(height: 20.h),
@@ -255,7 +255,7 @@ class HomeScreen extends StatelessWidget {
                               child: Align(
                                   alignment: Alignment.centerLeft,
                                   child: black18w500(data: 'Get Personal'))),
-                          black14w400Centre(
+                          lightBlack14w400Centre(
                               left: true,
                               data:
                                   'Share details about your beloved pet. We deliver human-grade food in user-friendly packaging - minimal processing, stringent safety norms, and easy-to-serve: just open and serve!')
@@ -301,7 +301,7 @@ class HomeScreen extends StatelessWidget {
                               child: Align(
                                   alignment: Alignment.centerLeft,
                                   child: black18w500(data: 'Choose Wisely'))),
-                          black14w400Centre(
+                          lightBlack14w400Centre(
                               left: true,
                               data:
                                   'Vet-designed plans tailored to your dog\'s unique needs. Pre-prepared and portioned meals calculated according to the profile you create, satisfying their calorie requirements with precision')
@@ -342,7 +342,7 @@ class HomeScreen extends StatelessWidget {
                                   alignment: Alignment.centerLeft,
                                   child:
                                       black18w500(data: 'Witness the Woofs'))),
-                          black14w400Centre(
+                          lightBlack14w400Centre(
                               left: true,
                               data:
                                   'Get ready for your pet\'s joy as their food arrives just days after cooking - never deep-frozen or shelf-stored for months. Watch them light up with Bruno\'s Kitchen!')
@@ -407,7 +407,7 @@ class HomeScreen extends StatelessWidget {
                       child: Align(
                           alignment: Alignment.centerLeft,
                           child:
-                              black14w400Centre(data: 'About Bruno’s Kitchen')),
+                              lightBlack14w400Centre(data: 'About Bruno’s Kitchen')),
                     ),
                     content: black12w500Centre(
                         data:
@@ -429,7 +429,7 @@ class HomeScreen extends StatelessWidget {
                       child: Align(
                           alignment: Alignment.centerLeft,
                           child:
-                              black14w400Centre(data: 'About Bruno’s Kitchen')),
+                              lightBlack14w400Centre(data: 'About Bruno’s Kitchen')),
                     ),
                     content: black12w500Centre(
                         data:
@@ -451,7 +451,7 @@ class HomeScreen extends StatelessWidget {
                       child: Align(
                           alignment: Alignment.centerLeft,
                           child:
-                              black14w400Centre(data: 'About Bruno’s Kitchen')),
+                              lightBlack14w400Centre(data: 'About Bruno’s Kitchen')),
                     ),
                     content: black12w500Centre(
                         data:
@@ -473,7 +473,7 @@ class HomeScreen extends StatelessWidget {
                       child: Align(
                           alignment: Alignment.centerLeft,
                           child:
-                              black14w400Centre(data: 'About Bruno’s Kitchen')),
+                              lightBlack14w400Centre(data: 'About Bruno’s Kitchen')),
                     ),
                     content: black12w500Centre(
                         data:
@@ -495,7 +495,7 @@ class HomeScreen extends StatelessWidget {
                       child: Align(
                           alignment: Alignment.centerLeft,
                           child:
-                              black14w400Centre(data: 'About Bruno’s Kitchen')),
+                              lightBlack14w400Centre(data: 'About Bruno’s Kitchen')),
                     ),
                     content: black12w500Centre(
                         data:

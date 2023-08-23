@@ -22,7 +22,7 @@ import '../utils/images.dart';
 class AddressViewModel with ChangeNotifier {
   final AddressApiServices _addressApiServices = AddressApiServices();
   AllAddressResponse _allAddressResponse = AllAddressResponse();
-  final TextEditingController _fullAddressController = TextEditingController();
+ // final TextEditingController _fullAddressController = TextEditingController();
   final TextEditingController _nearByLocationController =
       TextEditingController();
   GoogleMapsPlaces? _googleMapsPlaces;
@@ -38,7 +38,7 @@ class AddressViewModel with ChangeNotifier {
   locator.Location location = locator.Location();
 
   // Prediction? _selectedPrediction;
-  bool _isDefault = false;
+  bool _isDefault = true;
   String _otherLabel = AddressLabels.other.text;
   String _selectedLabel = AddressLabels.home.text;
   AddressModel _editAddress = AddressModel();
@@ -75,7 +75,7 @@ class AddressViewModel with ChangeNotifier {
     notifyListeners();
   }
 
-  TextEditingController get getFullAddressController => _fullAddressController;
+ // TextEditingController get getFullAddressController => _fullAddressController;
 
   GoogleMapController get getGoogleMapController => _googleMapController!;
 
@@ -108,7 +108,7 @@ class AddressViewModel with ChangeNotifier {
 
   void setEditAddress(AddressModel value) {
     _editAddress = value;
-    _fullAddressController.text = _editAddress.flatHouseNumber!;
+  //  _fullAddressController.text = _editAddress.flatHouseNumber!;
     _nearByLocationController.text = _editAddress.address!;
     _selectedLabel = _editAddress.label!;
     _isDefault = _editAddress.isDefault!;
@@ -144,15 +144,23 @@ class AddressViewModel with ChangeNotifier {
   }
 
   clearAddressData() {
-    _fullAddressController.clear();
+   // _fullAddressController.clear();
     _nearByLocationController.clear();
     _selectedLabel = AddressLabels.home.text;
     _otherLabel = AddressLabels.other.text;
-    _isDefault = false;
+    _isDefault = true;
   }
 
-  bool validateAddress() {
-    if (_fullAddressController.text.isEmpty ||
+  /*bool validateAddress() {
+    if (_fullAddressController.text.isEmpty ) {
+      return false;
+    } else {
+      return true;
+    }
+  }*/
+
+  bool validateAddressDetail(){
+    if (
         _nearByLocationController.text.isEmpty) {
       return false;
     } else {
@@ -300,7 +308,7 @@ class AddressViewModel with ChangeNotifier {
         ],
         address: _nearByLocationController.text,
         label: _selectedLabel == AddressLabels.other.text? _otherLabel: _selectedLabel,
-        flatHouseNumber: _fullAddressController.text);
+        flatHouseNumber: '');
     try {
       final BaseResponseModel response = await _addressApiServices
           .createAddress(addAddressRequest: addAddressRequest);

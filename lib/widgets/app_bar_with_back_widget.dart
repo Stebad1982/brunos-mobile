@@ -25,16 +25,19 @@ class AppBarWithBackWidget extends StatelessWidget
         onTap: () {
           Navigator.pop(context);
         },
-        child: const Icon(
-          Icons.arrow_back_ios,
-          color: CustomColors.blackColor,
+        child: const Padding(
+          padding: EdgeInsets.only(left: 10.0),
+          child: Icon(
+            Icons.arrow_back_ios,
+            color: CustomColors.blackColor,
+          ),
         ),
       ),
       actions: [
         Visibility(
           visible: showPuppy,
           child: Padding(
-            padding: const EdgeInsets.only(right: 10,top: 10),
+            padding: const EdgeInsets.only(right: 20,top: 10),
             child: defaultPuppyIconWidget(),
           ),
         ),

@@ -37,7 +37,7 @@ class FaqScreen extends StatelessWidget {
               padding: const EdgeInsets.symmetric(vertical: 5),
               child: Align(
                   alignment: Alignment.centerLeft,
-                  child: black14w400Centre(data: 'About Bruno’s Kitchen')),
+                  child: lightBlack14w400Centre(data: 'About Bruno’s Kitchen')),
             ),
             content: black12w500Centre(
                 data:
@@ -58,7 +58,7 @@ class FaqScreen extends StatelessWidget {
               padding: const EdgeInsets.symmetric(vertical: 5),
               child: Align(
                   alignment: Alignment.centerLeft,
-                  child: black14w400Centre(data: 'About Bruno’s Kitchen')),
+                  child: lightBlack14w400Centre(data: 'About Bruno’s Kitchen')),
             ),
             content: black12w500Centre(
                 data:
@@ -79,7 +79,7 @@ class FaqScreen extends StatelessWidget {
               padding: const EdgeInsets.symmetric(vertical: 5),
               child: Align(
                   alignment: Alignment.centerLeft,
-                  child: black14w400Centre(data: 'About Bruno’s Kitchen')),
+                  child: lightBlack14w400Centre(data: 'About Bruno’s Kitchen')),
             ),
             content: black12w500Centre(
                 data:
@@ -100,7 +100,7 @@ class FaqScreen extends StatelessWidget {
               padding: const EdgeInsets.symmetric(vertical: 5),
               child: Align(
                   alignment: Alignment.centerLeft,
-                  child: black14w400Centre(data: 'About Bruno’s Kitchen')),
+                  child: lightBlack14w400Centre(data: 'About Bruno’s Kitchen')),
             ),
             content: black12w500Centre(
                 data:
@@ -121,7 +121,7 @@ class FaqScreen extends StatelessWidget {
               padding: const EdgeInsets.symmetric(vertical: 5),
               child: Align(
                   alignment: Alignment.centerLeft,
-                  child: black14w400Centre(data: 'About Bruno’s Kitchen')),
+                  child: lightBlack14w400Centre(data: 'About Bruno’s Kitchen')),
             ),
             content: black12w500Centre(
                 data:

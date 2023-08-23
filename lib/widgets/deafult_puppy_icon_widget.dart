@@ -26,41 +26,19 @@ Widget defaultPuppyIconWidget() {
           Navigator.pushNamed(navigatorKey.currentContext!, puppiesListRoute);
         }
       },
-      child: Stack(
-        children: [
-          SizedBox(
-            height: 40.h,
-            width: 110.w,
-            child: Center(
-              child: SizedBox(
-                width: 110.w,
-                child: Padding(
-                  padding: const EdgeInsets.only(
-                      right: 10.0, top: 5, bottom: 5, left: 50),
-                  child: black12w500Centre(
-                      overFlowText: true,
-                      data: authViewModel.getAuthResponse.data!.pet != null
-                          ? authViewModel.getAuthResponse.data!.pet!.name!
-                          : 'Add Pet'),
-                ),
+      child: authViewModel.getAuthResponse.data!.pet != null &&
+              authViewModel.getAuthResponse.data!.pet!.media!.isNotEmpty
+          ? circularNetworkImageWidget(
+              image: authViewModel.getAuthResponse.data!.pet!.media!,
+              size: 40.h)
+          : SizedBox(
+              height: 40.h,
+              width: 40.h,
+              child: CircleAvatar(
+                backgroundColor: CustomColors.yellowColor,
+                child: SvgPicture.asset(dogFace),
               ),
             ),
-          ),
-          authViewModel.getAuthResponse.data!.pet != null &&
-                  authViewModel.getAuthResponse.data!.pet!.media!.isNotEmpty
-              ? circularNetworkImageWidget(
-                  image: authViewModel.getAuthResponse.data!.pet!.media!,
-                  size: 40.h)
-              : SizedBox(
-                  height: 40.h,
-                  width: 40.h,
-                  child: CircleAvatar(
-                    backgroundColor: CustomColors.yellowColor,
-                    child: SvgPicture.asset(dogFace),
-                  ),
-                ),
-        ],
-      ),
     );
   });
 }

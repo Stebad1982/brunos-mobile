@@ -68,7 +68,7 @@ class PuppyCreationAdditionalScreen extends StatelessWidget {
                       height: 10.h,
                     ),
                     Center(
-                      child: black14w400Centre(
+                      child: lightBlack14w400Centre(
                           data:
                               'In less than a minute, we’ll create a unique meal plan designed to meet your dog’s needs.'),
                     ),
@@ -81,7 +81,7 @@ class PuppyCreationAdditionalScreen extends StatelessWidget {
                     SizedBox(
                       height: 8.h,
                     ),
-                    black14w400Centre(
+                    lightBlack14w400Centre(
                         data: 'Currently serving 300+ breeds and counting.'),
                     SizedBox(
                       height: 19.h,
@@ -219,7 +219,7 @@ class PuppyCreationAdditionalScreen extends StatelessWidget {
                         child: Padding(
                           padding: const EdgeInsets.all(20),
                           child: Center(
-                              child: black14w400Centre(
+                              child: lightBlack14w400Centre(
                                   data: puppyViewModel.getPuppyDob)),
                         ),
                       ),
@@ -241,12 +241,12 @@ class PuppyCreationAdditionalScreen extends StatelessWidget {
                     SizedBox(
                       height: 9.h,
                     ),
-                    black14w400Centre(
+                    lightBlack14w400Centre(
                         data: 'Not Sure? Give us your best guess.'),
                     SizedBox(
                       height: 18.h,
                     ),
-                    black14w400Centre(data: 'Current Weight (Optional)'),
+                    lightBlack14w400Centre(data: 'Current Weight (Optional)'),
                     SizedBox(
                       height: 12.h,
                     ),
@@ -271,7 +271,7 @@ class PuppyCreationAdditionalScreen extends StatelessWidget {
                     SizedBox(
                       height: 20.h,
                     ),
-                    black14w400Centre(data: 'Ideal Weight (Optional)'),
+                    lightBlack14w400Centre(data: 'Ideal Weight (Optional)'),
                     TextField(
                       controller: puppyViewModel.getPuppyActualWeight,
                       /* onChanged: (text) {

@@ -69,7 +69,7 @@ class OrderConfirmationScreen extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            black14w400Centre(data: 'Order detail'),
+                            lightBlack14w400Centre(data: 'Order detail'),
                             SizedBox(
                               height: 20.h,
                             ),
@@ -80,7 +80,7 @@ class OrderConfirmationScreen extends StatelessWidget {
                                 SizedBox(
                                   width: 2.w,
                                 ),
-                                black14w400Centre(data: '#FDS639820'),
+                                lightBlack14w400Centre(data: '#FDS639820'),
                               ],
                             ),
                             SizedBox(
@@ -93,7 +93,7 @@ class OrderConfirmationScreen extends StatelessWidget {
                                 SizedBox(
                                   width: 2.w,
                                 ),
-                                black14w400Centre(data: '45 AED'),
+                                lightBlack14w400Centre(data: '45 AED'),
                               ],
                             ),
                           ],

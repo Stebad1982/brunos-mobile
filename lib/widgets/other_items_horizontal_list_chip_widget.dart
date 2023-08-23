@@ -63,7 +63,7 @@ Widget otherItemsHorizontalListChipWidget() {
                 )
               ],
             ),
-            black14w400Centre(data: 'Wishbone Bacon Chew Toy For Dogs',left: true),
+            lightBlack14w400Centre(data: 'Wishbone Bacon Chew Toy For Dogs',left: true),
             brown12w500Centre(data: 'AED 50'),
           ],
         ),

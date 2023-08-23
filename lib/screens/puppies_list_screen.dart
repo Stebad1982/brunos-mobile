@@ -81,7 +81,7 @@ class _PuppiesListScreenState extends State<PuppiesListScreen> {
                           SizedBox(
                             width: 10.w,
                           ),
-                          black14w400Centre(data: 'Add new pet'),
+                          lightBlack14w400Centre(data: 'Add new pet'),
                           const Spacer(),
                           Container(
                             decoration: ShapeDecoration(
@@ -113,7 +113,7 @@ class _PuppiesListScreenState extends State<PuppiesListScreen> {
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                child: black14w400Centre(
+                child: lightBlack14w400Centre(
                     left: true,
                     data:
                     'Proud parent of multiple pups? We\'ve got you covered! You can easily add more dogs to your account here.'),

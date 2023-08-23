@@ -15,7 +15,7 @@ Widget ordersVerticalListChipWidget() {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              black14w400Centre(data: 'Redbarn Grain Free food'),
+              lightBlack14w400Centre(data: 'Redbarn Grain Free food'),
               grey14w400(data: '2 Kilograms'),
               SizedBox(
                 height: 14.h,

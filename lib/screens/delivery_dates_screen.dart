@@ -67,7 +67,7 @@ class _DeliveryDatesScreenState extends State<DeliveryDatesScreen> {
                     SizedBox(
                       height: 10.h,
                     ),
-                    black14w400Centre(
+                    lightBlack14w400Centre(
                         data:
                             'Order by 4pm to receive your doggies dishes between 9am- 12noon the following day'),
                     SizedBox(
@@ -98,7 +98,7 @@ class _DeliveryDatesScreenState extends State<DeliveryDatesScreen> {
                             SizedBox(
                               width: 5.w,
                             ),
-                            black14w400Centre(data: 'One time Delivery'),
+                            lightBlack14w400Centre(data: 'One time Delivery'),
                             Spacer(),
                             Transform.scale(
                               scale: 1,
@@ -117,7 +117,7 @@ class _DeliveryDatesScreenState extends State<DeliveryDatesScreen> {
                             SizedBox(
                               width: 5.w,
                             ),
-                            black14w400Centre(
+                            lightBlack14w400Centre(
                                 data: 'Scheduled Delivery\n( Every 10 days )',
                                 left: true)
                           ],
@@ -161,7 +161,7 @@ class _DeliveryDatesScreenState extends State<DeliveryDatesScreen> {
                           ),
                           Align(
                               alignment: Alignment.centerLeft,
-                              child: black14w400Centre(data: 'Order Summary')),
+                              child: lightBlack14w400Centre(data: 'Order Summary')),
                           SizedBox(
                             height: 15.h,
                           ),
@@ -199,8 +199,8 @@ class _DeliveryDatesScreenState extends State<DeliveryDatesScreen> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
-                                  black14w400Centre(data: 'Batch 1 (Beefy Barkfest)'),
-                                  black14w400Centre(data: '3 June 2023'),
+                                  lightBlack14w400Centre(data: 'Batch 1 (Beefy Barkfest)'),
+                                  lightBlack14w400Centre(data: '3 June 2023'),
                                 ],
                               ),
                             ),
@@ -217,8 +217,8 @@ class _DeliveryDatesScreenState extends State<DeliveryDatesScreen> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
-                                  black14w400Centre(data: 'Batch 1 (Beefy Barkfest)'),
-                                  black14w400Centre(data: '3 June 2023'),
+                                  lightBlack14w400Centre(data: 'Batch 1 (Beefy Barkfest)'),
+                                  lightBlack14w400Centre(data: '3 June 2023'),
                                 ],
                               ),
                             ),
@@ -235,8 +235,8 @@ class _DeliveryDatesScreenState extends State<DeliveryDatesScreen> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
-                                  black14w400Centre(data: 'Batch 1 (Beefy Barkfest)'),
-                                  black14w400Centre(data: '3 June 2023'),
+                                  lightBlack14w400Centre(data: 'Batch 1 (Beefy Barkfest)'),
+                                  lightBlack14w400Centre(data: '3 June 2023'),
                                 ],
                               ),
                             ),

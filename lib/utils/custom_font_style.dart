@@ -27,14 +27,15 @@ Widget black24w500Centre({required String data}) {
   );
 }
 
-Widget black14w400Centre({required String data, bool? left}) {
+Widget lightBlack14w400Centre({required String data, bool? left}) {
   return Text(
     data,
     textAlign: left != null? TextAlign.left: TextAlign.center,
     style: TextStyle(
         fontFamily: 'CircularStd',
         fontSize: 14.sp,
-        color: CustomColors.blackColor,
+        height: 1.3,
+        color: CustomColors.lightBlackColor,
         fontWeight: FontWeight.w400),
   );
 }

@@ -35,8 +35,13 @@ class ChooseYourPlanScreen extends StatelessWidget {
             SizedBox(
               height: 40.h,
             ),
-            black24w500Centre(
-                data: 'Create a paw-licking good meal plan for Labby'),
+            Center(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                child: black24w500Centre(
+                    data: 'Create A Paw-Licking Good Meal Plan For Labby'),
+              ),
+            ),
             SizedBox(
               height: 40.h,
             ),
@@ -72,7 +77,7 @@ class ChooseYourPlanScreen extends StatelessWidget {
                             SizedBox(
                               height: 5.h,
                             ),
-                            black14w400Centre(
+                            lightBlack14w400Centre(
                                 data:
                                     'First-Timers: Ease your pup into Bruno\'s recipes. Post-transition, enjoy a wider menu!',
                                 left: true)
@@ -119,7 +124,7 @@ class ChooseYourPlanScreen extends StatelessWidget {
                             SizedBox(
                               height: 5.h,
                             ),
-                            black14w400Centre(
+                            lightBlack14w400Centre(
                                 data:
                                     'For an affordable, varied meal adventure. Three monthly meal choices for your pup\'s delight!',
                                 left: true)
@@ -166,7 +171,7 @@ class ChooseYourPlanScreen extends StatelessWidget {
                             SizedBox(
                               height: 5.h,
                             ),
-                            black14w400Centre(
+                            lightBlack14w400Centre(
                                 data:
                                     'Hesitant? Sample our meals and let your doggie be the gourmet judge!',
                                 left: true)

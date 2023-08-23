@@ -72,14 +72,14 @@ class PuppyCreationScreen extends StatelessWidget {
                       height: 10.h,
                     ),
                     Center(
-                      child: black14w400Centre(
+                      child: lightBlack14w400Centre(
                           data:
                               'Within a moment, we\'ll whip up a custom meal plan tailored to suit your doggo\'s unique needs'),
                     ),
                     SizedBox(
                       height: 30.h,
                     ),
-                    black14w400Centre(data: 'Pet Name'),
+                    lightBlack14w400Centre(data: 'Pet Name'),
                     SizedBox(
                       height: 12.h,
                     ),
@@ -142,9 +142,9 @@ class PuppyCreationScreen extends StatelessWidget {
                               SizedBox(
                                 height: 14.h,
                               ),
-                              black14w400Centre(
+                              lightBlack14w400Centre(
                                   data: 'Click to select photo (Optional)'),
-                              black14w400Centre(
+                              lightBlack14w400Centre(
                                   data: '.png . jpeg. max 1 MB file size'),
                             ],
                           ),
@@ -164,7 +164,7 @@ class PuppyCreationScreen extends StatelessWidget {
                     ),
                     SizedBox(
                         width: 307.w,
-                        child: black14w400Centre(
+                        child: lightBlack14w400Centre(
                             data:
                                 'Proud parent of multiple pups? We\'ve got you covered! You can easily add more pet profiles to your account once you have finished signing up.')),
                     SizedBox(
@@ -220,7 +220,7 @@ class PuppyCreationScreen extends StatelessWidget {
                       },
                       child: Row(
                         children: [
-                          black14w400Centre(data: 'Why does this matter'),
+                          lightBlack14w400Centre(data: 'Why does this matter'),
                           SizedBox(
                             width: 5.w,
                           ),

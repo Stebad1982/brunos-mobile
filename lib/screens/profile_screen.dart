@@ -41,7 +41,7 @@ class ProfileScreen extends StatelessWidget {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        black14w400Centre(
+                        lightBlack14w400Centre(
                             data:
                                 'Hi, ${context.read<AuthViewModel>().getAuthResponse.data!.fullName}'),
                         SizedBox(
@@ -81,7 +81,7 @@ class ProfileScreen extends StatelessWidget {
               SizedBox(
                 height: 39.h,
               ),
-              black14w400Centre(data: 'Account'),
+              lightBlack14w400Centre(data: 'Account'),
               SizedBox(
                 height: 14.h,
               ),
@@ -95,7 +95,7 @@ class ProfileScreen extends StatelessWidget {
                   ),
                   title: Align(
                       alignment: Alignment.centerLeft,
-                      child: black14w400Centre(data: 'Orders')),
+                      child: lightBlack14w400Centre(data: 'Orders')),
                   contentPadding: const EdgeInsets.all(0),
                   minLeadingWidth: 12,
                   shape: const Border(
@@ -122,7 +122,7 @@ class ProfileScreen extends StatelessWidget {
                   ),
                   title: Align(
                       alignment: Alignment.centerLeft,
-                      child: black14w400Centre(data: 'My Pets')),
+                      child: lightBlack14w400Centre(data: 'My Pets')),
                   contentPadding: const EdgeInsets.all(0),
                   minLeadingWidth: 12,
                   trailing: const Icon(
@@ -140,7 +140,7 @@ class ProfileScreen extends StatelessWidget {
                   ),
                   title: Align(
                       alignment: Alignment.centerLeft,
-                      child: black14w400Centre(data: 'Payment')),
+                      child: lightBlack14w400Centre(data: 'Payment')),
                   contentPadding: const EdgeInsets.all(0),
                   minLeadingWidth: 12,
                   trailing: const Icon(
@@ -161,7 +161,7 @@ class ProfileScreen extends StatelessWidget {
                   ),
                   title: Align(
                       alignment: Alignment.centerLeft,
-                      child: black14w400Centre(data: 'Shipping Address')),
+                      child: lightBlack14w400Centre(data: 'Shipping Address')),
                   contentPadding: const EdgeInsets.all(0),
                   minLeadingWidth: 12,
                   trailing: const Icon(
@@ -172,7 +172,7 @@ class ProfileScreen extends StatelessWidget {
               SizedBox(
                 height: 50.h,
               ),
-              black14w400Centre(data: 'Help & Support'),
+              lightBlack14w400Centre(data: 'Help & Support'),
               SizedBox(
                 height: 14.h,
               ),
@@ -186,7 +186,7 @@ class ProfileScreen extends StatelessWidget {
                   ),
                   title: Align(
                       alignment: Alignment.centerLeft,
-                      child: black14w400Centre(data: 'Get Help')),
+                      child: lightBlack14w400Centre(data: 'Get Help')),
                   contentPadding: const EdgeInsets.all(0),
                   minLeadingWidth: 12,
                   trailing: const Icon(
@@ -207,7 +207,7 @@ class ProfileScreen extends StatelessWidget {
                   ),
                   title: Align(
                       alignment: Alignment.centerLeft,
-                      child: black14w400Centre(data: 'FAQ')),
+                      child: lightBlack14w400Centre(data: 'FAQ')),
                   contentPadding: const EdgeInsets.all(0),
                   minLeadingWidth: 12,
                   trailing: const Icon(
@@ -225,7 +225,7 @@ class ProfileScreen extends StatelessWidget {
                   ),
                   title: Align(
                       alignment: Alignment.centerLeft,
-                      child: black14w400Centre(data: 'Blogs')),
+                      child: lightBlack14w400Centre(data: 'Blogs')),
                   contentPadding: const EdgeInsets.all(0),
                   minLeadingWidth: 12,
                   trailing: const Icon(
@@ -240,7 +240,7 @@ class ProfileScreen extends StatelessWidget {
                   ),
                   title: Align(
                       alignment: Alignment.centerLeft,
-                      child: black14w400Centre(data: 'News Updates')),
+                      child: lightBlack14w400Centre(data: 'News Updates')),
                   contentPadding: const EdgeInsets.all(0),
                   minLeadingWidth: 12,
                   trailing: const Icon(

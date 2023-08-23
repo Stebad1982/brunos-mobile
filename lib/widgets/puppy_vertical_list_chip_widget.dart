@@ -53,7 +53,7 @@ Widget puppyVerticalListChipWidget({required PuppyModel puppyDetail}) {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    black14w400Centre(data: puppyDetail.name!),
+                    lightBlack14w400Centre(data: puppyDetail.name!),
                     grey12w500(data: puppyDetail.breed!),
                     Visibility(
                       visible: puppyDetail.isDefault!,

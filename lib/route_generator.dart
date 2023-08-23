@@ -1,3 +1,4 @@
+import 'package:brunos_kitchen/screens/add_address_detail_screen.dart';
 import 'package:brunos_kitchen/screens/add_address_screen.dart';
 import 'package:brunos_kitchen/screens/address_detail_screen.dart';
 import 'package:brunos_kitchen/screens/address_screen.dart';
@@ -63,6 +64,8 @@ const String resetPasswordSuccessRoute = '/resetPasswordSuccess';
 const String puppyDetailRoute = '/puppyDetail';
 const String addAddressRoute = '/addAddress';
 const String addressDetailRoute = '/addressDetail';
+const String addAddressDetailRoute = '/addAddressDetail';
+
 
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -136,6 +139,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const AddAddressScreen());
       case addressDetailRoute:
         return MaterialPageRoute(builder: (_) => const AddressDetailScreen());
+      case addAddressDetailRoute:
+        return MaterialPageRoute(builder: (_) => const AddAddressDetailScreen());
       case '/tasting_details':
       /*return MaterialPageRoute(
             builder: (_) => const TastingDetailsScreen(),

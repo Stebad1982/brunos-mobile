@@ -72,7 +72,7 @@ class _OrdersScreenState extends State<OrdersScreen>
                         height: 40.h,
                         width: 170.w,
                         child: Center(
-                            child: black14w400Centre(data: 'In Process')))),
+                            child: lightBlack14w400Centre(data: 'In Process')))),
                 Tab(
                     child: Container(
                         decoration: BoxDecoration(
@@ -84,7 +84,7 @@ class _OrdersScreenState extends State<OrdersScreen>
                         height: 40.h,
                         width: 170.w,
                         child: Center(
-                            child: black14w400Centre(data: 'Completed')))),
+                            child: lightBlack14w400Centre(data: 'Completed')))),
               ],
             ),
             Expanded(

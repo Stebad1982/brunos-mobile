@@ -40,7 +40,7 @@ class UserVerifiedScreen extends StatelessWidget {
                     ),
                     SizedBox(
                         width: 306.57.w,
-                        child: black14w400Centre(
+                        child: lightBlack14w400Centre(
                             data:
                             'Your account has been verified')),
 

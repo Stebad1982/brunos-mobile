@@ -64,7 +64,7 @@ Future oneTimeOrderBottomSheetWidget() {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                      black14w400Centre(data: 'Mighty Chicken'),
+                      lightBlack14w400Centre(data: 'Mighty Chicken'),
                       black10w400(data: 'High protein, grain-free,\npicky eater approved'),
                         SizedBox(height: 5.h,),
                         orange14w400(data: 'AED 100 / plan')
@@ -72,7 +72,7 @@ Future oneTimeOrderBottomSheetWidget() {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
-                        black14w400Centre(data: 'Quantity'),
+                        lightBlack14w400Centre(data: 'Quantity'),
                         SizedBox(height: 5.h,),
                         Row(children: [
                           InkWell(

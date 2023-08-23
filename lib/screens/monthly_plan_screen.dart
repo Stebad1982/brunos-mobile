@@ -30,12 +30,12 @@ class MonthlyPlanScreen extends StatelessWidget {
               children: [
                 Center(
                     child:
-                        black24w500Centre(data: 'Let’s feed your beloved Labby')),
+                        black24w500Centre(data: 'Let’s Feed Your Beloved Labby')),
                 SizedBox(
                   height: 10.h,
                 ),
                 Center(
-                    child: black14w400Centre(
+                    child: lightBlack14w400Centre(
                         data: 'You can select up to 3 delicious dishes per month')),
                 SizedBox(
                   height: 30.h,

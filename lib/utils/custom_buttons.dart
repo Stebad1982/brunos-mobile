@@ -9,6 +9,7 @@ Widget customButton ({required String text,required VoidCallback onPressed, requ
     width: double.infinity,
     child: ElevatedButton(
       style: ElevatedButton.styleFrom(
+        elevation: 0,
         backgroundColor: colored ? CustomColors.orangeColor : CustomColors.whiteColor,
         shape: const StadiumBorder(side: BorderSide(width: 1.0,color: CustomColors.orangeColor)),
       ),
@@ -37,6 +38,7 @@ Widget customSquareButton ({required String text,required VoidCallback onPressed
     width: double.infinity,
     child: ElevatedButton(
       style: ElevatedButton.styleFrom(
+        elevation: 0,
         backgroundColor: colored ? CustomColors.orangeColor : CustomColors.whiteColor,
         shape:  RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12),

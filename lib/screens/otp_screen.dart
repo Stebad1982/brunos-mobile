@@ -58,7 +58,7 @@ class OtpScreen extends StatelessWidget {
                               ),
                               SizedBox(
                                   width: 306.57.w,
-                                  child: black14w400Centre(
+                                  child: lightBlack14w400Centre(
                                       data:
                                           'We have send an OTP to ${authViewModel.getCountryCode + authViewModel.getPhoneController.text}')),
                               SizedBox(

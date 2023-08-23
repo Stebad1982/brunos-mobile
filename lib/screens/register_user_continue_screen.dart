@@ -44,7 +44,7 @@ class RegisterUserContinueScreen extends StatelessWidget {
                     ),
                     SizedBox(
                         width: 306.57.w,
-                        child: black14w400Centre(
+                        child: lightBlack14w400Centre(
                             data:
                                 'You’re now one step closer to giving your doggo the love and treats they deserve.')),
 

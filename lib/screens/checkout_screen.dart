@@ -56,7 +56,7 @@ class CheckoutScreen extends StatelessWidget {
                     SizedBox(
                       height: 10.h,
                     ),
-                    black14w400Centre(
+                    lightBlack14w400Centre(
                         data:
                             'You’re just two clicks away to serve up the finest meals tailored for your fluffy companion\'s ultimate joy'),
                     SizedBox(
@@ -85,7 +85,7 @@ class CheckoutScreen extends StatelessWidget {
                                 SizedBox(
                                   width: 2.w,
                                 ),
-                                black14w400Centre(data: 'Delivery Address'),
+                                lightBlack14w400Centre(data: 'Delivery Address'),
                               ],
                             ),
                             SizedBox(
@@ -179,7 +179,7 @@ class CheckoutScreen extends StatelessWidget {
                                                 .address!: 'Click to add Address')),
                                     SizedBox(
                                         width: 240.w,
-                                        child: black14w400Centre(
+                                        child: lightBlack14w400Centre(
                                             left: true,
                                             data: context
                                                 .read<AuthViewModel>()
@@ -255,7 +255,7 @@ class CheckoutScreen extends StatelessWidget {
                             SizedBox(
                               width: 2.w,
                             ),
-                            black14w400Centre(data: 'Payment method'),
+                            lightBlack14w400Centre(data: 'Payment method'),
                             Spacer(),
                             Icon(
                               Icons.arrow_forward_ios_rounded,
@@ -291,11 +291,11 @@ class CheckoutScreen extends StatelessWidget {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                black14w400Centre(data: 'Subtotal'),
+                                lightBlack14w400Centre(data: 'Subtotal'),
                                 SizedBox(
                                   width: 2.w,
                                 ),
-                                black14w400Centre(data: 'AED 100'),
+                                lightBlack14w400Centre(data: 'AED 100'),
                               ],
                             ),
                             SizedBox(
@@ -304,11 +304,11 @@ class CheckoutScreen extends StatelessWidget {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                black14w400Centre(data: 'Shipping Fee'),
+                                lightBlack14w400Centre(data: 'Shipping Fee'),
                                 SizedBox(
                                   width: 2.w,
                                 ),
-                                black14w400Centre(
+                                lightBlack14w400Centre(
                                     data: '10 AED (One time  Fee)'),
                               ],
                             ),
@@ -385,7 +385,7 @@ class CheckoutScreen extends StatelessWidget {
                             SizedBox(
                               height: 17.h,
                             ),
-                            black14w400Centre(
+                            lightBlack14w400Centre(
                                 left: true,
                                 data:
                                     'You can only use your PawPoints or a Promo Code per transaction. Promo codes are one-time use only.'),
@@ -394,7 +394,7 @@ class CheckoutScreen extends StatelessWidget {
                             ),
                             Row(
                               children: [
-                                black14w400Centre(data: 'Generate coupon code'),
+                                lightBlack14w400Centre(data: 'Generate coupon code'),
                                 Spacer(),
                                 orange14w400(data: 'How it works?'),
                               ],
@@ -419,7 +419,7 @@ class CheckoutScreen extends StatelessWidget {
                                     SizedBox(
                                       width: 2.w,
                                     ),
-                                    black14w400Centre(data: 'ME432DW'),
+                                    lightBlack14w400Centre(data: 'ME432DW'),
                                   ],
                                 ),
                               ),
@@ -440,7 +440,7 @@ class CheckoutScreen extends StatelessWidget {
                               ),
                               child: Padding(
                                 padding: const EdgeInsets.all(20),
-                                child: black14w400Centre(
+                                child: lightBlack14w400Centre(
                                     data: 'Apply coupon code'),
                               ),
                             ),
@@ -477,7 +477,7 @@ class CheckoutScreen extends StatelessWidget {
                     children: [
                       Row(
                         children: [
-                          black14w400Centre(data: 'Total'),
+                          lightBlack14w400Centre(data: 'Total'),
                           const Spacer(),
                           black16w500(data: 'AED 95')
                         ],
@@ -487,7 +487,7 @@ class CheckoutScreen extends StatelessWidget {
                       ),
                       Row(
                         children: [
-                          black14w400Centre(data: 'Points Rewarded Amount'),
+                          lightBlack14w400Centre(data: 'Points Rewarded Amount'),
                           const Spacer(),
                           black16w500(data: '5')
                         ],
