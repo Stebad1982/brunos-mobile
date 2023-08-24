@@ -23,7 +23,7 @@ import '../widgets/deafult_puppy_icon_widget.dart';
 import '../widgets/food_category_grid_chip_widget.dart';
 import '../widgets/food_discribed_grid_chip_widget.dart';
 import '../widgets/food_grid_chip_widget.dart';
-import '../widgets/other_items_horizontal_list_chip_widget.dart';
+import '../widgets/shop_items_horizontal_list_chip_widget.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -70,7 +70,7 @@ class HomeScreen extends StatelessWidget {
                             ],
                           ),
                           SizedBox(
-                            width: 200.w,
+                            width: 280.w,
                             child: lightBlack14w400Centre(
                                 left: true,
                                 data: context
@@ -360,7 +360,7 @@ class HomeScreen extends StatelessWidget {
                 height: 20.h,
               ),
               SizedBox(
-                height: 270.0.h,
+                height: 265.0.h,
                 child: ListView.builder(
                   padding:
                       const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
@@ -368,8 +368,8 @@ class HomeScreen extends StatelessWidget {
                   scrollDirection: Axis.horizontal,
                   itemCount: 3,
                   itemBuilder: (BuildContext context, int index) => SizedBox(
-                    width: 157.w,
-                    child: otherItemsHorizontalListChipWidget(),
+                    width: 159.w,
+                    child: shopItemsHorizontalListChipWidget(),
                   ),
                 ),
               ),

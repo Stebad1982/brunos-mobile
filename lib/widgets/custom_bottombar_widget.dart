@@ -97,19 +97,17 @@ class _BBarIconState extends State<BBarIcon> {
       width: MediaQuery.of(context).size.width / 4,
       height: 65,
       child: Consumer<BottomNavigationViewModel>(
-        builder: (context, value, _) {
+        builder: (context, bottomNavigationViewModel, _) {
           return InkResponse(
             onTap: () {
-              value.homeViewIndex = widget.index;
-              value.update();
+              bottomNavigationViewModel.setHomeViewIndex(widget.index);
             },
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 AnimatedSwitcher(
                   duration: const Duration(milliseconds: 200),
-                  child: widget.index == value.homeViewIndex
-
+                  child: widget.index == bottomNavigationViewModel.getHomeViewIndex
                       ? Icon(
                     widget.selectedIcon,
                     key: const Key("selected"),
@@ -128,7 +126,7 @@ class _BBarIconState extends State<BBarIcon> {
                 Text(
                   widget.title,
                   style: TextStyle(
-                    color: widget.index == value.homeViewIndex
+                    color: widget.index == bottomNavigationViewModel.getHomeViewIndex
                         ? CustomColors.orangeColor
                         : CustomColors.greyColor,
                   ),

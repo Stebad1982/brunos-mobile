@@ -34,12 +34,14 @@ class OneTimePlanScreen extends StatelessWidget {
               SizedBox(
                 height: 40.h,
               ),
-              black24w500Centre(
-                  data: 'Let’s Feed Your Beloved Labby'),
+              Center(
+                child: black24w500Centre(
+                    data: 'Let’s Feed Your Beloved\nLabby'),
+              ),
               SizedBox(
                 height: 10.h,
               ),
-              lightBlack14w400Centre(data: 'Pick from any of our Bruno-approved delightful dishes below'),
+              Center(child: lightBlack14w400Centre(data: 'Pick from any of our Bruno-approved delightful\ndishes below')),
               SizedBox(
                 height: 30.h,
               ),

@@ -71,7 +71,7 @@ class _DeliveryDatesScreenState extends State<DeliveryDatesScreen> {
                     ),
                     lightBlack14w400Centre(
                         data:
-                            'Order by 4pm to receive your doggies dishes between 9am- 12noon the following day'),
+                            'Order by 4pm to receive your doggies dishes\nbetween 9am- 12noon the following day'),
                     SizedBox(
                       height: 30.h,
                     ),
@@ -262,7 +262,7 @@ class _DeliveryDatesScreenState extends State<DeliveryDatesScreen> {
                     ),
                     brown14w400Centre(
                         data:
-                            'Great! Now tell us where we will be delivering our tail-wagging meals',
+                            'Great! Now tell us where we will be delivering\nour tail-wagging meals',
                         centre: true),
                     SizedBox(
                       height: 100.h,

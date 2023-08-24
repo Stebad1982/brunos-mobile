@@ -1,6 +1,7 @@
 import 'package:brunos_kitchen/utils/custom_font_style.dart';
 import 'package:brunos_kitchen/utils/images.dart';
 import 'package:brunos_kitchen/view_models/auth_view_model.dart';
+import 'package:brunos_kitchen/view_models/bottom_navigation_view_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -19,7 +20,6 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
@@ -30,8 +30,15 @@ class ProfileScreen extends StatelessWidget {
             children: [
               InkWell(
                 onTap: () {
-                  if (!context.read<AuthViewModel>().getAuthResponse.data!.isGuest!) {
+                  if (!context
+                      .read<AuthViewModel>()
+                      .getAuthResponse
+                      .data!
+                      .isGuest!) {
                     Navigator.pushNamed(context, editProfileRoute);
+                  } else {
+                    context.read<AuthViewModel>().clearFieldsData();
+                    Navigator.pushNamed(context, registerUserRoute);
                   }
                 },
                 child: Row(
@@ -41,10 +48,19 @@ class ProfileScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         lightBlack14w400Centre(
+                          left: true,
                             data:
                                 'Hi, ${context.read<AuthViewModel>().getAuthResponse.data!.fullName}'),
                         SizedBox(
                           height: 10.h,
+                        ),
+                        Visibility(
+                          visible: context
+                              .read<AuthViewModel>()
+                              .getAuthResponse
+                              .data!
+                              .isGuest!,
+                          child: orange14w400(data: 'Register Now')
                         ),
                         grey14w400(
                             data: !context
@@ -60,20 +76,13 @@ class ProfileScreen extends StatelessWidget {
                                 : '')
                       ],
                     ),
-                    Visibility(
-                      visible: !context
-                          .read<AuthViewModel>()
-                          .getAuthResponse
-                          .data!
-                          .isGuest!,
-                      child: const Align(
-                          alignment: Alignment.centerRight,
-                          child: Icon(
-                            Icons.arrow_forward_ios_rounded,
-                            size: 15,
-                            color: CustomColors.greyColor,
-                          )),
-                    )
+                    const Align(
+                        alignment: Alignment.centerRight,
+                        child: Icon(
+                          Icons.arrow_forward_ios_rounded,
+                          size: 15,
+                          color: CustomColors.greyColor,
+                        ))
                   ],
                 ),
               ),
@@ -247,31 +256,21 @@ class ProfileScreen extends StatelessWidget {
                     size: 15,
                     color: CustomColors.greyColor,
                   )),
-              Visibility(
-                visible: context.read<AuthViewModel>().getAuthResponse.data!.isGuest!,
-                child: ListTile(
-                  onTap: () async {
-                    context.read<AuthViewModel>().clearFieldsData();
-                    Navigator.pushNamed(
-                        context, registerUserRoute);
-                  },
-                  leading: const Icon(Icons.app_registration,color: CustomColors.orangeColor,),
-                  title: Align(
-                      alignment: Alignment.centerLeft,
-                      child: orange14w400(data: 'Register')),
-                  contentPadding: const EdgeInsets.all(0),
-                  minLeadingWidth: 12,
-                ),
-              ),
-
               SizedBox(
                 height: 32.h,
               ),
               Visibility(
-                visible: !context.read<AuthViewModel>().getAuthResponse.data!.isGuest!,
+                visible: !context
+                    .read<AuthViewModel>()
+                    .getAuthResponse
+                    .data!
+                    .isGuest!,
                 child: ListTile(
                   onTap: () async {
                     context.read<AuthViewModel>().clearFieldsData();
+                    context
+                        .read<BottomNavigationViewModel>()
+                        .setHomeViewIndex(0);
                     context.read<AuthViewModel>().callLogOut();
                     Navigator.pushNamedAndRemoveUntil(
                         context, loginRoute, (route) => false);

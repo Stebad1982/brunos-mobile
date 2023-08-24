@@ -8,7 +8,7 @@ import 'package:brunos_kitchen/screens/shop_screen.dart';
 import 'package:flutter/cupertino.dart';
 
 class BottomNavigationViewModel extends ChangeNotifier {
-  int homeViewIndex = 0;
+  int _homeViewIndex = 0;
 
   Widget getHomeView(int index) {
     Widget _widget = Container();
@@ -22,7 +22,12 @@ class BottomNavigationViewModel extends ChangeNotifier {
     return _widget;
   }
 
-  void update() {
+  int get getHomeViewIndex => _homeViewIndex;
+
+  void setHomeViewIndex(int value){
+    _homeViewIndex = value;
     notifyListeners();
   }
+
+
 }

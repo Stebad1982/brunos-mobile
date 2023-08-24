@@ -1,4 +1,5 @@
 import 'package:brunos_kitchen/view_models/auth_view_model.dart';
+import 'package:brunos_kitchen/view_models/bottom_navigation_view_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -19,8 +20,9 @@ Widget googleFacebookButtonWidget({required BuildContext context}) {
           context.read<AuthViewModel>().signInWithGoogle().then((value) => {
                 if (value)
                   {
+                    context.read<BottomNavigationViewModel>().setHomeViewIndex(0),
                     Navigator.pushNamedAndRemoveUntil(context,
-                        bottomNavigationRoute, ModalRoute.withName(splashRoute))
+                        bottomNavigationRoute,  (route) => false)
                   }
               });
         },
@@ -55,8 +57,9 @@ Widget googleFacebookButtonWidget({required BuildContext context}) {
           context.read<AuthViewModel>().signInWithFacebook().then((value) => {
             if (value)
               {
+                context.read<BottomNavigationViewModel>().setHomeViewIndex(0),
                 Navigator.pushNamedAndRemoveUntil(context,
-                    bottomNavigationRoute, ModalRoute.withName(splashRoute))
+                    bottomNavigationRoute,  (route) => false)
               }
           });
 

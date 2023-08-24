@@ -39,7 +39,7 @@ class ChooseYourPlanScreen extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10.0),
                 child: black24w500Centre(
-                    data: 'Create A Paw-Licking Good Meal Plan For Labby'),
+                    data: 'Create A Paw-Licking\nGood Meal Plan For Labby'),
               ),
             ),
             SizedBox(

@@ -18,7 +18,7 @@ void addressLabelDialog({required BuildContext context}) {
     barrierLabel: "Barrier",
     barrierDismissible: false,
     barrierColor: Colors.black.withOpacity(0.5),
-    transitionDuration: const Duration(milliseconds: 500),
+    //transitionDuration: const Duration(milliseconds: 500),
     pageBuilder: (_, __, ___) {
       return Center(
         child: WillPopScope(
@@ -89,7 +89,7 @@ void addressLabelDialog({required BuildContext context}) {
         ),
       );
     },
-    transitionBuilder: (_, anim, __, child) {
+    /*transitionBuilder: (_, anim, __, child) {
       Tween<Offset> tween;
       if (anim.status == AnimationStatus.reverse) {
         tween = Tween(begin: const Offset(-1, 0), end: Offset.zero);
@@ -104,6 +104,6 @@ void addressLabelDialog({required BuildContext context}) {
           child: child,
         ),
       );
-    },
+    },*/
   );
 }

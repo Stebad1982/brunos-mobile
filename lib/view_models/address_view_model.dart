@@ -153,6 +153,10 @@ class AddressViewModel with ChangeNotifier {
   clearAddressData() {
     // _fullAddressController.clear();
     _addressController.clear();
+    _streetController.clear();
+    _floorController.clear();
+    _flatHouseNumberController.clear();
+    _deliveryInstructionController.clear();
     _selectedLabel = AddressLabels.home.text;
     _otherLabel = AddressLabels.other.text;
     _isDefault = true;

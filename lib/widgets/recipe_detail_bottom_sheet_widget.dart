@@ -92,6 +92,7 @@ Future recipeDetailBottomSheetWidget() {
                                   child: Column(
                                     children: <Widget>[
                                       black12w500Centre(
+                                        lineSpacing: true ,
                                           data:
                                               'Give your furry friend a taste of the good life with the Pedigree Complete Nutrition Grilled Steak & Vegetable Flavor Dog Kibble Adult Dry Dog Food. With a succulent steak flavor accented with hearty vegetables, this food has everything you need to keep your dog feeling his best. It’s prepared with whole grains for healthy digestion, plus essential nutrients and omega-6 fatty acids to promote a healthy skin and luxurious coat. And perhaps best of all, the crunchy texture of the kibble helps clean his teeth, so he’s always ready for his close up. It’s the easy way to combine great-tasting food plus nutrition that promotes health and vitality into a single bowl.'),
                                       SizedBox(

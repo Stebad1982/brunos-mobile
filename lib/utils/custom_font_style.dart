@@ -63,6 +63,17 @@ Widget black14w500({required String data}) {
   );
 }
 
+Widget black14w400({required String data}) {
+  return Text(
+    data,
+    style: TextStyle(
+        fontFamily: 'CircularStd',
+        fontSize: 14.sp,
+        color: CustomColors.blackColor,
+        fontWeight: FontWeight.w400),
+  );
+}
+
 //google font, color color2, size 12, bold
 Widget googleFont2({required String data, bool? click}) {
   return Text(
@@ -187,13 +198,14 @@ Widget orange14w500({required String data}) {
   );
 }
 
-Widget black12w500Centre({required String data, bool? centre, bool? overFlowText}) {
+Widget black12w500Centre({required String data, bool? centre, bool? overFlowText, bool? lineSpacing}) {
   return Text(
     maxLines: overFlowText != null && overFlowText? 1 : null,
     overflow: overFlowText != null && overFlowText? TextOverflow.ellipsis: null,
     data,
     textAlign: centre != null?  TextAlign.center: TextAlign.left,
     style: TextStyle(
+        height: lineSpacing == true? 2 : null,
         fontFamily: 'CircularStd',
         fontSize: 12.sp,
         fontWeight: FontWeight.w400,

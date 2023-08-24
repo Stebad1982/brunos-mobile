@@ -57,7 +57,7 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
                     );
                   },
                   child: bottomNavigationViewModel.getHomeView(
-                      bottomNavigationViewModel.homeViewIndex),
+                      bottomNavigationViewModel.getHomeViewIndex),
                 );
               },
             ),

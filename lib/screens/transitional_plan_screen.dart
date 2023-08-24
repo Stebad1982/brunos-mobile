@@ -40,12 +40,12 @@ class TransitionalPlanScreen extends StatelessWidget {
               ),
               Center(
                 child: black24w500Centre(
-                    data: 'Let’s Feed Your Beloved Labby'),
+                    data: 'Let’s Feed Your Beloved\nLabby'),
               ),
               SizedBox(
                 height: 10.h,
               ),
-              Center(child: lightBlack14w400Centre(data: 'Pick from any of our Bruno-approved delightful dishes below')),
+              Center(child: lightBlack14w400Centre(data: 'Pick from any of our Bruno-approved delightful\ndishes below')),
               SizedBox(
                 height: 30.h,
               ),
