@@ -129,6 +129,7 @@ class PuppyDetailScreen extends StatelessWidget {
                                         context
                                             .read<AuthViewModel>()
                                             .callSplash(showLoader: true),
+                                        Navigator.pop(context)
                                       }});
                                   },
                                 ),

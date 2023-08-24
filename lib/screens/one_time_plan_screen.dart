@@ -45,39 +45,38 @@ class OneTimePlanScreen extends StatelessWidget {
               ),
               black18w500(
                   data: 'Recommended Dishes'),
-              GridView.builder(
-                padding: EdgeInsets.symmetric(
-                    horizontal: 0.w, vertical: 20.h),
-                physics: const NeverScrollableScrollPhysics(),
-                shrinkWrap: true,
-                gridDelegate:
-                const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    crossAxisSpacing: 20.0,
-                    mainAxisSpacing: 20.0,
-                    childAspectRatio: (1 / 1.5)),
-                itemCount: 4,
-                itemBuilder: (BuildContext context, int index) {
-                  return foodDescribedGridChipWidget();
-                },
+              SizedBox(
+                height: 20.h,
+              ),
+              Wrap(
+                runSpacing: 20,
+                spacing: 20,
+                alignment: WrapAlignment.center,
+                children: List.generate(4, (index) {
+                  return SizedBox(
+                    width: 157.w,
+                    child: foodDescribedGridChipWidget(),
+                  );
+                }),
+              ),
+              SizedBox(
+                height: 30.h,
               ),
               black18w500(
                   data: 'Try our canine-crafted combos'),
-              GridView.builder(
-                padding: EdgeInsets.symmetric(
-                    horizontal: 0.w, vertical: 20.h),
-                physics: const NeverScrollableScrollPhysics(),
-                shrinkWrap: true,
-                gridDelegate:
-                const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    crossAxisSpacing: 20.0,
-                    mainAxisSpacing: 20.0,
-                    childAspectRatio: (1 / 1.5)),
-                itemCount: 4,
-                itemBuilder: (BuildContext context, int index) {
-                  return foodDescribedGridChipWidget();
-                },
+              SizedBox(
+                height: 20.h,
+              ),
+              Wrap(
+                runSpacing: 20,
+                spacing: 20,
+                alignment: WrapAlignment.center,
+                children: List.generate(4, (index) {
+                  return SizedBox(
+                    width: 157.w,
+                    child: foodDescribedGridChipWidget(),
+                  );
+                }),
               ),
             ],
           ),

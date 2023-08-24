@@ -19,7 +19,6 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final SharedPref sharedPref = SharedPref();
 
     return Scaffold(
       body: SingleChildScrollView(
@@ -248,9 +247,6 @@ class ProfileScreen extends StatelessWidget {
                     size: 15,
                     color: CustomColors.greyColor,
                   )),
-              SizedBox(
-                height: 32.h,
-              ),
               Visibility(
                 visible: context.read<AuthViewModel>().getAuthResponse.data!.isGuest!,
                 child: ListTile(
@@ -258,7 +254,6 @@ class ProfileScreen extends StatelessWidget {
                     context.read<AuthViewModel>().clearFieldsData();
                     Navigator.pushNamed(
                         context, registerUserRoute);
-                    sharedPref.remove(SharedPreferencesKeys.authToken.text);
                   },
                   leading: const Icon(Icons.app_registration,color: CustomColors.orangeColor,),
                   title: Align(
@@ -268,14 +263,18 @@ class ProfileScreen extends StatelessWidget {
                   minLeadingWidth: 12,
                 ),
               ),
+
+              SizedBox(
+                height: 32.h,
+              ),
               Visibility(
                 visible: !context.read<AuthViewModel>().getAuthResponse.data!.isGuest!,
                 child: ListTile(
                   onTap: () async {
                     context.read<AuthViewModel>().clearFieldsData();
+                    context.read<AuthViewModel>().callLogOut();
                     Navigator.pushNamedAndRemoveUntil(
                         context, loginRoute, (route) => false);
-                    sharedPref.remove(SharedPreferencesKeys.authToken.text);
                   },
                   leading: SvgPicture.asset(
                     logoutIcon,

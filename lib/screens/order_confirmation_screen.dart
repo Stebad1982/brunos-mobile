@@ -108,7 +108,7 @@ class OrderConfirmationScreen extends StatelessWidget {
                         onPressed: () {
                           Navigator.of(context).pushNamedAndRemoveUntil(
                               bottomNavigationRoute,
-                                  (Route<dynamic> route) => false,
+                                  (route) => false,
                               arguments: {"key": "value"});
                         },
                         colored: true),

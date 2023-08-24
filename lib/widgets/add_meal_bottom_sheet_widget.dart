@@ -7,7 +7,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../main.dart';
 import '../utils/custom_colors.dart';
 
-Future recipeDetailBottomSheetWidget() {
+Future addMealDetailBottomSheetWidget() {
   return showModalBottomSheet(
       isScrollControlled: false,
       backgroundColor: CustomColors.whiteColor,

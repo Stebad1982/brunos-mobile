@@ -7,6 +7,10 @@ class AddressModel {
   String? label;
   bool? isDefault;
   String? userId;
+  String? street;
+  String? area;
+  String? floor;
+  String? deliveryInstruction;
   String? flatHouseNumber;
 
   AddressModel(
@@ -18,6 +22,10 @@ class AddressModel {
         this.label,
         this.isDefault,
         this.userId,
+        this.street,
+        this.area,
+        this.floor,
+        this.deliveryInstruction,
         this.flatHouseNumber});
 
   AddressModel.fromJson(Map<String, dynamic> json) {
@@ -29,20 +37,11 @@ class AddressModel {
     label = json['label'];
     isDefault = json['isDefault'];
     userId = json['userId'];
+    street = json['street'];
+    area = json['area'];
+    floor = json['floor'];
+    deliveryInstruction = json['deliveryInstruction'];
     flatHouseNumber = json['flatHouseNumber'];
   }
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['_id'] = this.sId;
-    data['createdOnDate'] = this.createdOnDate;
-    data['type'] = this.type;
-    data['coordinates'] = this.coordinates;
-    data['address'] = this.address;
-    data['label'] = this.label;
-    data['isDefault'] = this.isDefault;
-    data['userId'] = this.userId;
-    data['flatHouseNumber'] = this.flatHouseNumber;
-    return data;
-  }
 }

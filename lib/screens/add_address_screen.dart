@@ -52,43 +52,47 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
         ),
         body: Stack(
           children: [
-            Expanded(
-              child: GoogleMap(
-                padding: const EdgeInsets.only(top: 70.0, right: 10),
-                zoomControlsEnabled: false,
-                //liteModeEnabled: true,
-                myLocationEnabled: true,
-                myLocationButtonEnabled: true,
-                mapType: MapType.terrain,
-                onCameraMove: (position) {
-                  addressViewModel.setInitialCameraPosition(LatLng(
-                      position.target.latitude,
-                      position.target.longitude));
-                },
-                onCameraIdle: () {
-                  addressViewModel.convertCoordinatesToPlaces();
-                },
-                initialCameraPosition: CameraPosition(
-                    target: addressViewModel.getInitialCameraPosition),
-                markers:
-              //  Set<Marker>.of(addressViewModel.getUserMarker),
-                <Marker>{
-                  Marker(
-                    onDragEnd: ((newPosition) {
-                      addressViewModel.updateMapCameraPosition(LatLng(
-                          newPosition.latitude, newPosition.longitude));
-                    }),
-                    draggable: true,
-                    markerId: const MarkerId("1"),
-                    position: addressViewModel.getInitialCameraPosition,
-                    icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueOrange),
-                    infoWindow: const InfoWindow(
-                      title: '',
-                    ),
-                  )
-                },
-                onMapCreated: addressViewModel.getUserLocation,
-              ),
+            Column(
+              children: [
+                Expanded(
+                  child: GoogleMap(
+                    padding: const EdgeInsets.only(top: 70.0, right: 10),
+                    zoomControlsEnabled: false,
+                    //liteModeEnabled: true,
+                    myLocationEnabled: true,
+                    myLocationButtonEnabled: true,
+                    mapType: MapType.terrain,
+                    onCameraMove: (position) {
+                      addressViewModel.setInitialCameraPosition(LatLng(
+                          position.target.latitude,
+                          position.target.longitude));
+                    },
+                    onCameraIdle: () {
+                      addressViewModel.convertCoordinatesToPlaces();
+                    },
+                    initialCameraPosition: CameraPosition(
+                        target: addressViewModel.getInitialCameraPosition),
+                    markers:
+                  //  Set<Marker>.of(addressViewModel.getUserMarker),
+                    <Marker>{
+                      Marker(
+                        onDragEnd: ((newPosition) {
+                          addressViewModel.updateMapCameraPosition(LatLng(
+                              newPosition.latitude, newPosition.longitude));
+                        }),
+                        draggable: true,
+                        markerId: const MarkerId("1"),
+                        position: addressViewModel.getInitialCameraPosition,
+                        icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueOrange),
+                        infoWindow: const InfoWindow(
+                          title: '',
+                        ),
+                      )
+                    },
+                    onMapCreated: addressViewModel.getUserLocation,
+                  ),
+                ),
+              ],
             ),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -128,7 +132,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: TextField(
                     controller:
-                        addressViewModel.getNearByLocationController,
+                        addressViewModel.getAddressController,
                     decoration: const InputDecoration(
                       fillColor: CustomColors.whiteColor,
                       contentPadding: EdgeInsets.symmetric(

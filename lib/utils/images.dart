@@ -30,6 +30,7 @@ const slider2 = "assets/images/slider-2.png";
 const slider3 = "assets/images/slider-3.png";
 
 const freshlyCooked = "assets/images/freshly-cooked.svg";
+const informationButton = "assets/images/Information-button.svg";
 const wellBalancedNutrientBlend = "assets/images/well-balanced-nutrient-blend.svg";
 const doorstepDelivery = "assets/images/doorstep-delivery.svg";
 const longShelfLife = "assets/images/long-shelf-life.svg";

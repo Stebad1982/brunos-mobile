@@ -85,8 +85,7 @@ class PawPointsScreen extends StatelessWidget {
                   onPressed: () {
                     Navigator.pushNamedAndRemoveUntil(
                         context,
-                        bottomNavigationRoute,
-                        ModalRoute.withName(splashRoute));
+                        bottomNavigationRoute, (route) => false);
                   },
                   colored: true),
             ],

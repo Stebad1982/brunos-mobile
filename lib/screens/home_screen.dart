@@ -31,7 +31,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: CustomColors.lightGreyColor,
+      backgroundColor: CustomColors.whiteColorShade,
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.only(top: 20, bottom: 80),
@@ -164,19 +164,16 @@ class HomeScreen extends StatelessWidget {
                     data: 'Check out our delicious doggie dishes'),
               ),
               SizedBox(height: 20.h),
-              SingleChildScrollView(
-                child: Wrap(
-                  runSpacing: 10,
-                  spacing: 10,
-                  alignment: WrapAlignment.center,
-                  children: List.generate(5, (index) {
-                    return Container(
-                      width: 157.w,
-                      height: 158.h,
-                      child: foodGridChipWidget(),
-                    );
-                  }),
-                ),
+              Wrap(
+                runSpacing: 20,
+                spacing: 20,
+                alignment: WrapAlignment.center,
+                children: List.generate(5, (index) {
+                  return SizedBox(
+                    width: 157.w,
+                    child: foodGridChipWidget(),
+                  );
+                }),
               ),
               /* GridView.builder(
                 padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),

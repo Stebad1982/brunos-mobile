@@ -49,9 +49,12 @@ class PhoneFieldWidget extends StatelessWidget {
                             color: CustomColors.greyColor,
                           ),
                         ),
-                        const VerticalDivider(
-                          color: CustomColors.greyColor,
-                          thickness: 1,
+                        const Padding(
+                          padding: EdgeInsets.symmetric(vertical: 16.0),
+                          child: VerticalDivider(
+                            color: CustomColors.greyShadeColor,
+                            thickness: 1,
+                          ),
                         )
                       ],
                     ),

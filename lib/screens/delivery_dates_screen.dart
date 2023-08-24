@@ -22,6 +22,8 @@ class DeliveryDatesScreen extends StatefulWidget {
 
 class _DeliveryDatesScreenState extends State<DeliveryDatesScreen> {
   DateTime today = DateTime.now();
+  int _radioSelected = 1;
+  late String _radioVal;
 
   void _onDaySelected(DateTime day, DateTime focusDay) {
     setState(() {
@@ -62,7 +64,7 @@ class _DeliveryDatesScreenState extends State<DeliveryDatesScreen> {
                     ),
                     black24w500Centre(
                         data: plansViewModel.getPlanType == Plans.monthly.text
-                            ? 'Schedule your meal deliveries'
+                            ? 'Schedule Your Meal Deliveries'
                             : 'Select Your Delivery Date'),
                     SizedBox(
                       height: 10.h,
@@ -84,14 +86,19 @@ class _DeliveryDatesScreenState extends State<DeliveryDatesScreen> {
                             Transform.scale(
                               scale: 1,
                               child: Radio(
+                                activeColor: CustomColors.blackColor,
                                   visualDensity: const VisualDensity(
                                     horizontal: VisualDensity.minimumDensity,
                                     vertical: VisualDensity.minimumDensity,
                                   ),
                                   //materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                                  value: "radio value",
-                                  groupValue: "group value",
+                                  value: 1,
+                                  groupValue: _radioSelected,
                                   onChanged: (value) {
+                                    setState(() {
+                                      _radioSelected = value!;
+                                      _radioVal = 'male';
+                                    });
                                     print(value); //selected value
                                   }),
                             ),
@@ -103,14 +110,19 @@ class _DeliveryDatesScreenState extends State<DeliveryDatesScreen> {
                             Transform.scale(
                               scale: 1,
                               child: Radio(
+                                activeColor: CustomColors.blackColor,
                                   visualDensity: const VisualDensity(
                                     horizontal: VisualDensity.minimumDensity,
                                     vertical: VisualDensity.minimumDensity,
                                   ),
                                   //materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                                  value: "radio value",
-                                  groupValue: "group value",
+                                  value: 2,
+                                  groupValue: _radioSelected,
                                   onChanged: (value) {
+                                    setState(() {
+                                      _radioSelected = value!;
+                                      _radioVal = 'female';
+                                    });
                                     print(value); //selected value
                                   }),
                             ),
@@ -168,7 +180,7 @@ class _DeliveryDatesScreenState extends State<DeliveryDatesScreen> {
                           Container(
                             width: double.infinity,
                             decoration: const ShapeDecoration(
-                              color: CustomColors.greyMediumLightColor,
+                              color: CustomColors.lightGreyColor,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.only(
                                     topLeft: Radius.circular(20),
@@ -191,7 +203,7 @@ class _DeliveryDatesScreenState extends State<DeliveryDatesScreen> {
                             width: double.infinity,
                             decoration:  BoxDecoration(
                               color: CustomColors.whiteColor,
-                              border: Border.all(color: CustomColors.lightGreyColor),
+                              border: Border.all(color: CustomColors.greyMediumColor),
                             ),
                             child: Padding(
                               padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 10),
@@ -209,7 +221,7 @@ class _DeliveryDatesScreenState extends State<DeliveryDatesScreen> {
                             width: double.infinity,
                             decoration:  BoxDecoration(
                               color: CustomColors.whiteColor,
-                              border: Border.all(color: CustomColors.lightGreyColor),
+                              border: Border.all(color: CustomColors.greyMediumColor),
                             ),
                             child: Padding(
                               padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 10),
@@ -227,7 +239,7 @@ class _DeliveryDatesScreenState extends State<DeliveryDatesScreen> {
                             width: double.infinity,
                             decoration:  BoxDecoration(
                               color: CustomColors.whiteColor,
-                              border: Border.all(color: CustomColors.lightGreyColor),
+                              border: Border.all(color: CustomColors.greyMediumColor),
                             ),
                             child: Padding(
                               padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 10),

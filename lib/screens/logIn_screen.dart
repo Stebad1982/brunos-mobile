@@ -73,7 +73,7 @@ class LoginScreen extends StatelessWidget {
                                         Navigator.pushNamedAndRemoveUntil(
                                             context,
                                             bottomNavigationRoute,
-                                            ModalRoute.withName(splashRoute))
+                                            (route) => false)
                                       }
                                   });
                             }
@@ -100,8 +100,7 @@ class LoginScreen extends StatelessWidget {
                             {
                               Navigator.pushNamedAndRemoveUntil(
                                   context,
-                                  bottomNavigationRoute,
-                                  ModalRoute.withName(splashRoute))
+                                  bottomNavigationRoute, (route) => false)
                             }
                         });
                       }, colored: false),

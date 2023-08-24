@@ -338,11 +338,8 @@ class PuppyCreationAdditionalScreen extends StatelessWidget {
                       ],
                     ),
                     SizedBox(
-                      height: 40.h,
+                      height: 110.h,
                     ),
-                    SizedBox(
-                      height: 70.h,
-                    )
                   ],
                 ),
               ),

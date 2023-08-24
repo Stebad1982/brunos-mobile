@@ -3,6 +3,10 @@ class AddAddressRequest {
   String address;
   String label;
   bool isDefault;
+  String street;
+  String area;
+  String floor;
+  String deliveryInstruction;
   String flatHouseNumber;
 
   AddAddressRequest(
@@ -10,6 +14,10 @@ class AddAddressRequest {
         required this.address,
         required this.label,
         required this.isDefault,
+        required this.street,
+        required this.area,
+        required this.floor,
+        required this.deliveryInstruction,
         required this.flatHouseNumber});
 
 
@@ -19,6 +27,10 @@ class AddAddressRequest {
     data['address'] = this.address;
     data['label'] = this.label;
     data['isDefault'] = this.isDefault;
+    data['street'] = this.street;
+    data['area'] = this.area;
+    data['floor'] = this.floor;
+    data['deliveryInstruction'] = this.deliveryInstruction;
     data['flatHouseNumber'] = this.flatHouseNumber;
     return data;
   }

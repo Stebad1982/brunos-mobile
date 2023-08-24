@@ -177,6 +177,72 @@ class AddressDetailScreen extends StatelessWidget {
                   height: 10.h,
                 ),
                 Divider(),
+
+                SizedBox(
+                  height: 10.h,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    black14w500(data: 'Street:'),
+                    SizedBox(width: 40.w,),
+                    Flexible(
+                      child: black14w500(
+                          data: addressViewModel.getEditAddress
+                              .street!.isNotEmpty? toBeginningOfSentenceCase(
+                              addressViewModel.getEditAddress
+                                  .street)!: 'N/A'),
+                    )
+                  ],
+                ),
+                SizedBox(
+                  height: 10.h,
+                ),
+                Divider(),
+
+                SizedBox(
+                  height: 10.h,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    black14w500(data: 'Area:'),
+                    SizedBox(width: 40.w,),
+                    Flexible(
+                      child: black14w500(
+                          data: addressViewModel.getEditAddress
+                              .area!.isNotEmpty? toBeginningOfSentenceCase(
+                              addressViewModel.getEditAddress
+                                  .area)!: 'N/A'),
+                    )
+                  ],
+                ),
+                SizedBox(
+                  height: 10.h,
+                ),
+                Divider(),
+
+                SizedBox(
+                  height: 10.h,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    black14w500(data: 'Floor:'),
+                    SizedBox(width: 40.w,),
+                    Flexible(
+                      child: black14w500(
+                          data: addressViewModel.getEditAddress
+                              .floor!.isNotEmpty? toBeginningOfSentenceCase(
+                              addressViewModel.getEditAddress
+                                  .floor)!: 'N/A'),
+                    )
+                  ],
+                ),
+                SizedBox(
+                  height: 10.h,
+                ),
+                Divider(),
                 SizedBox(
                   height: 10.h,
                 ),
@@ -187,9 +253,10 @@ class AddressDetailScreen extends StatelessWidget {
                     SizedBox(width: 40.w,),
                     Flexible(
                       child: black14w500(
-                          data: toBeginningOfSentenceCase(
+                          data: addressViewModel.getEditAddress
+                              .flatHouseNumber!.isNotEmpty? toBeginningOfSentenceCase(
                               addressViewModel.getEditAddress
-                                  .flatHouseNumber)!),
+                                  .flatHouseNumber)!: 'N/A'),
                     )
                   ],
                 ),
@@ -206,6 +273,22 @@ class AddressDetailScreen extends StatelessWidget {
                     black14w500(data: 'Label'),
                     black14w500(
                         data: addressViewModel.getEditAddress.label!)
+                  ],
+                ),
+                SizedBox(
+                  height: 10.h,
+                ),
+                Divider(),
+                SizedBox(
+                  height: 10.h,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    black14w500(data: 'Delivery Instructions:'),
+                    SizedBox(width: 40.w,),
+                    Flexible(child: black14w500(data: addressViewModel.getEditAddress.deliveryInstruction!.isNotEmpty?toBeginningOfSentenceCase(
+                        addressViewModel.getEditAddress.deliveryInstruction)!: 'N/A'))
                   ],
                 ),
               ],

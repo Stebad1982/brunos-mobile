@@ -221,6 +221,10 @@ class AuthViewModel with ChangeNotifier {
     }
   }
 
+  void callLogOut(){
+    _sharedPref.remove(SharedPreferencesKeys.authToken.text);
+  }
+
   Future<bool> callSignInApi() async {
     EasyLoading.show(status: 'Please Wait ...');
     try {

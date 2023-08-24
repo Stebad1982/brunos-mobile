@@ -175,7 +175,7 @@ class _IntroSlidesScreenState extends State<IntroSlidesScreen> {
             ),
             customButton(text: 'Get Started', onPressed: () {
               Navigator.pushNamedAndRemoveUntil(
-                  context, loginRoute, ModalRoute.withName(splashRoute));
+                  context, loginRoute,  (route) => false);
             }, colored: true)
           ],
         ),
@@ -205,7 +205,7 @@ class _IntroSlidesScreenState extends State<IntroSlidesScreen> {
       ),
       onSkipPress: () {
         Navigator.pushNamedAndRemoveUntil(
-            context, loginRoute, ModalRoute.withName(splashRoute));
+            context, loginRoute,  (route) => false);
       },
      /* onDonePress: () {
         Navigator.pushNamedAndRemoveUntil(

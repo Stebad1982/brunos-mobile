@@ -87,9 +87,6 @@ class AuthData {
     if (this.pet != null) {
       data['pet'] = this.pet!.toJson();
     }
-    if (this.location != null) {
-      data['location'] = this.location!.toJson();
-    }
     data['refreshToken'] = this.refreshToken;
     data['clientToken'] = this.clientToken;
     return data;

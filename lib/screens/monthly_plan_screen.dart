@@ -46,7 +46,7 @@ class MonthlyPlanScreen extends StatelessWidget {
                 ),
                 InkWell(
                   onTap: (){
-                    recipeDetailBottomSheetWidget();
+                    addMealDetailBottomSheetWidget();
                   },
                   child: Container(
                     decoration: ShapeDecoration(
@@ -110,7 +110,7 @@ class MonthlyPlanScreen extends StatelessWidget {
                 ),
                 InkWell(
                   onTap: (){
-                    recipeDetailBottomSheetWidget();
+                    addMealDetailBottomSheetWidget();
                   },
                   child: Container(
                     decoration: ShapeDecoration(
@@ -174,7 +174,7 @@ class MonthlyPlanScreen extends StatelessWidget {
                 ),
                 InkWell(
                   onTap: (){
-                    recipeDetailBottomSheetWidget();
+                    addMealDetailBottomSheetWidget();
                   },
                   child: Container(
                     decoration: ShapeDecoration(
