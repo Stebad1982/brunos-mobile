@@ -30,7 +30,7 @@ class PuppyCreationScreen extends StatelessWidget {
         appBar: AppBarWithBackWidget(
           heading: context.read<PuppyViewModel>().getRouteToPuppyFrom ==
                   Screens.home.text
-              ? 'Create Account'
+              ? 'Add pet'
               : 'My Pets', showPuppy: false,
         ),
         body: Stack(

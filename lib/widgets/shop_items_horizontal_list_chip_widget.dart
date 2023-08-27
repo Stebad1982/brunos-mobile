@@ -16,14 +16,10 @@ import '../utils/enums.dart';
 Widget shopItemsHorizontalListChipWidget() {
   return InkWell(
     onTap: () {
-     /* navigatorKey.currentContext!.read<PlansViewModel>().getPlanType ==
-          Plans.oneTime.text
-          ? oneTimeOrderBottomSheetWidget()
-          : Navigator.pushNamed(
-          navigatorKey.currentContext!, deliveryDatesRoute);*/
+      Navigator.pushNamed(navigatorKey.currentContext!, shopItemDetailRoute);
     },
     child: Card(
-        elevation: 8,
+        elevation: 2,
         color: CustomColors.whiteColor,
         borderOnForeground: false,
         shape: const RoundedRectangleBorder(
@@ -36,6 +32,7 @@ Widget shopItemsHorizontalListChipWidget() {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
+                height: 108.h,
                   width: double.infinity,
                   decoration: ShapeDecoration(
                     color: CustomColors.lightGreyColor,
@@ -43,15 +40,17 @@ Widget shopItemsHorizontalListChipWidget() {
                       borderRadius: BorderRadius.circular(12),
                     ),
                   ),
-                  child: Center(
-                    child: Image.asset(
-                      bone,
-                      height: 108.h,
+                  child: Padding(
+                    padding: const EdgeInsets.all(15),
+                    child: Center(
+                      child: Image.asset(
+                        bone,
+                       // height: 108.h,
+                      ),
                     ),
                   )),
               Padding(
-                padding: const EdgeInsets.only(
-                    left: 8, right: 8, top: 12, bottom: 18),
+                padding: const EdgeInsets.only(left: 8, right: 8, top: 12),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -60,6 +59,9 @@ Widget shopItemsHorizontalListChipWidget() {
                       height: 6.h,
                     ),
                     brown12w500Centre(data: 'AED 50'),
+                    SizedBox(
+                      height: 18.h,
+                    ),
                   ],
                 ),
               ),

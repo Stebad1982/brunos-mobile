@@ -155,6 +155,7 @@ class AddressViewModel with ChangeNotifier {
     _addressController.clear();
     _streetController.clear();
     _floorController.clear();
+    _areaController.clear();
     _flatHouseNumberController.clear();
     _deliveryInstructionController.clear();
     _selectedLabel = AddressLabels.home.text;

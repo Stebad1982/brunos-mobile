@@ -26,6 +26,7 @@ import 'package:brunos_kitchen/screens/register_user_continue_screen.dart';
 import 'package:brunos_kitchen/screens/register_user_screen.dart';
 import 'package:brunos_kitchen/screens/reset_password_screen.dart';
 import 'package:brunos_kitchen/screens/reset_password_success_screen.dart';
+import 'package:brunos_kitchen/screens/shop_item_detail_screen.dart';
 import 'package:brunos_kitchen/screens/splash_screen.dart';
 import 'package:brunos_kitchen/screens/transitional_plan_screen.dart';
 import 'package:brunos_kitchen/screens/user_verified_screen.dart';
@@ -64,8 +65,8 @@ const String resetPasswordSuccessRoute = '/resetPasswordSuccess';
 const String puppyDetailRoute = '/puppyDetail';
 const String addAddressRoute = '/addAddress';
 const String addressDetailRoute = '/addressDetail';
+const String shopItemDetailRoute = '/shopItemDetail';
 const String addAddressDetailRoute = '/addAddressDetail';
-
 
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -140,7 +141,12 @@ class RouteGenerator {
       case addressDetailRoute:
         return MaterialPageRoute(builder: (_) => const AddressDetailScreen());
       case addAddressDetailRoute:
-        return MaterialPageRoute(builder: (_) => const AddAddressDetailScreen());
+        return MaterialPageRoute(
+            builder: (_) => const AddAddressDetailScreen());
+      case shopItemDetailRoute:
+        return MaterialPageRoute(
+            builder: (_) => const ShopItemDetailScreen());
+
       case '/tasting_details':
       /*return MaterialPageRoute(
             builder: (_) => const TastingDetailsScreen(),

@@ -26,7 +26,7 @@ class PuppyCreationAdditionalScreen extends StatelessWidget {
         appBar: AppBarWithBackWidget(
           heading: context.read<PuppyViewModel>().getRouteToPuppyFrom ==
                   Screens.home.text
-              ? 'Create Account'
+              ? 'Add Pet'
               : 'My Pets', showPuppy: false,
         ),
         body: Stack(
@@ -380,6 +380,9 @@ class PuppyCreationAdditionalScreen extends StatelessWidget {
                                               Navigator.of(context)
                                                 ..pop()
                                                 ..pop(),
+                                              context
+                                                  .read<AuthViewModel>()
+                                                  .callSplash(showLoader: true)
                                             }
                                         })
                                 : puppyViewModel

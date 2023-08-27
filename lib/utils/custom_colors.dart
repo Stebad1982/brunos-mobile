@@ -8,6 +8,7 @@ class CustomColors {
 
   static const Color brownColor = Color.fromRGBO(106, 51, 12, 1);
   static Color lightBrownColor = const Color.fromRGBO(203, 150, 112, 1);
+  static Color greenColor = const Color.fromRGBO(46, 213, 115, 1);
 
   static const Color blackColor = Color.fromRGBO(10, 11, 14, 1);
   static Color lightBlackColor = const Color.fromRGBO(67, 69, 75, 1);

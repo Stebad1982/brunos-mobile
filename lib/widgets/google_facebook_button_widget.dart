@@ -31,7 +31,7 @@ Widget googleFacebookButtonWidget({required BuildContext context}) {
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(100),
               border:
-                  Border.all(width: 1, color: CustomColors.greyMediumColor)),
+                  Border.all(width: 1, color: CustomColors.greyShadeColor)),
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 11),
             child: Row(
@@ -69,7 +69,7 @@ Widget googleFacebookButtonWidget({required BuildContext context}) {
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(100),
               border:
-                  Border.all(width: 1, color: CustomColors.greyMediumColor)),
+                  Border.all(width: 1, color: CustomColors.greyShadeColor)),
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 11),
             child: Row(

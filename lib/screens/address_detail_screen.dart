@@ -152,6 +152,7 @@ class AddressDetailScreen extends StatelessWidget {
                                   context
                                       .read<AuthViewModel>()
                                       .callSplash(showLoader: true),
+                                  Navigator.pop(context)
                               }});
                               },
                             ),

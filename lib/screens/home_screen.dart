@@ -74,7 +74,7 @@ class HomeScreen extends StatelessWidget {
                             child: lightBlack14w400Centre(
                                 left: true,
                                 data: context
-                                            .read<AuthViewModel>()
+                                            .watch<AuthViewModel>()
                                             .getAuthResponse
                                             .data!
                                             .location !=
@@ -85,7 +85,7 @@ class HomeScreen extends StatelessWidget {
                                         .data!
                                         .location!
                                         .address!
-                                    : 'Click to set Your Location'),
+                                    : 'Tap to set Your Location'),
                           )
                         ],
                       ),
@@ -359,18 +359,19 @@ class HomeScreen extends StatelessWidget {
               SizedBox(
                 height: 20.h,
               ),
-              SizedBox(
-                height: 265.0.h,
-                child: ListView.builder(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-                  shrinkWrap: true,
-                  scrollDirection: Axis.horizontal,
-                  itemCount: 3,
-                  itemBuilder: (BuildContext context, int index) => SizedBox(
+              SingleChildScrollView(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+               // shrinkWrap: true,
+                scrollDirection: Axis.horizontal,
+              //  itemCount: 3,
+               /* itemBuilder: (BuildContext context, int index) =>*/
+                child: Row(
+                  children: foodCategoryList.map((e) =>  Container(
+                    margin: const EdgeInsets.only(right: 20),
                     width: 159.w,
                     child: shopItemsHorizontalListChipWidget(),
-                  ),
+                  ),).toList(),
                 ),
               ),
               SizedBox(

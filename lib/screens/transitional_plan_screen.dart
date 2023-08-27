@@ -20,9 +20,9 @@ class TransitionalPlanScreen extends StatelessWidget {
       appBar: const AppBarWithBackWidget(
         heading: 'Transitional Plan', showPuppy: true,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(20),
-        child: SingleChildScrollView(
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -49,21 +49,26 @@ class TransitionalPlanScreen extends StatelessWidget {
               SizedBox(
                 height: 30.h,
               ),
-              black18w500(
-                  data: 'Recommended Dishes'),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                child: black18w500(
+                    data: 'Recommended Dishes'),
+              ),
               SizedBox(
                 height: 20.h,
               ),
-              Wrap(
-                runSpacing: 20,
-                spacing: 20,
-                alignment: WrapAlignment.center,
-                children: List.generate(4, (index) {
-                  return SizedBox(
-                    width: 157.w,
-                    child: foodDescribedGridChipWidget(),
-                  );
-                }),
+              Center(
+                child: Wrap(
+                  runSpacing: 20.w,
+                  spacing: 20.w,
+                  alignment: WrapAlignment.center,
+                  children: List.generate(4, (index) {
+                    return SizedBox(
+                      width: 157.w,
+                      child: foodDescribedGridChipWidget(),
+                    );
+                  }),
+                ),
               ),
 /*
               GridView.builder(
