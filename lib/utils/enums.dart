@@ -2,7 +2,8 @@ enum Screens {
   home("Home"),
   profile("Profile"),
   forgetPassword("ForgetPassword"),
-  registerUser("RegisterUser")
+  registerUser("RegisterUser"),
+  login("Login"),
   ;
 
   const Screens(this.text);

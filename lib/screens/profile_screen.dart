@@ -12,6 +12,7 @@ import '../route_generator.dart';
 import '../utils/custom_colors.dart';
 import '../utils/enums.dart';
 import '../utils/shared_pref .dart';
+import '../view_models/address_view_model.dart';
 import '../view_models/puppy_view_model.dart';
 import '../widgets/app_bar_with_back_widget.dart';
 
@@ -38,6 +39,9 @@ class ProfileScreen extends StatelessWidget {
                     Navigator.pushNamed(context, editProfileRoute);
                   } else {
                     context.read<AuthViewModel>().clearFieldsData();
+                    context
+                        .read<AuthViewModel>()
+                        .setRegisterRouteFrom(Screens.profile.text);
                     Navigator.pushNamed(context, registerUserRoute);
                   }
                 },
@@ -48,20 +52,19 @@ class ProfileScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         lightBlack14w400Centre(
-                          left: true,
+                            left: true,
                             data:
                                 'Hi, ${context.read<AuthViewModel>().getAuthResponse.data!.fullName}'),
                         SizedBox(
                           height: 10.h,
                         ),
                         Visibility(
-                          visible: context
-                              .read<AuthViewModel>()
-                              .getAuthResponse
-                              .data!
-                              .isGuest!,
-                          child: orange14w400(data: 'Register Now')
-                        ),
+                            visible: context
+                                .read<AuthViewModel>()
+                                .getAuthResponse
+                                .data!
+                                .isGuest!,
+                            child: orange14w400(data: 'Register Now')),
                         grey14w400(
                             data: !context
                                     .read<AuthViewModel>()
@@ -158,7 +161,17 @@ class ProfileScreen extends StatelessWidget {
                   )),
               ListTile(
                   onTap: () {
-                    Navigator.pushNamed(context, addressRoute);
+                    if (context
+                            .read<AuthViewModel>()
+                            .getAuthResponse
+                            .data!
+                            .location !=
+                        null) {
+                      Navigator.pushNamed(context, addressRoute);
+                    } else {
+                      context.read<AddressViewModel>().setIsAddressAdd(true);
+                      Navigator.pushNamed(context, addAddressRoute);
+                    }
                   },
                   leading: SvgPicture.asset(
                     mapPin,

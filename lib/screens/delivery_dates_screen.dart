@@ -21,13 +21,18 @@ class DeliveryDatesScreen extends StatefulWidget {
 }
 
 class _DeliveryDatesScreenState extends State<DeliveryDatesScreen> {
-  DateTime today = DateTime.now();
+  DateTime _focusedDay = DateTime.now();
+  List<DateTime> _selectedDates = [];
   int _radioSelected = 1;
   late String _radioVal;
 
   void _onDaySelected(DateTime day, DateTime focusDay) {
     setState(() {
-      today = day;
+      if (_selectedDates.contains(day)) {
+        _selectedDates.remove(day);
+      } else {
+        _selectedDates.add(day);
+      }
     });
   }
 
@@ -143,11 +148,13 @@ class _DeliveryDatesScreenState extends State<DeliveryDatesScreen> {
                         titleCentered: true,
                       ),
                       availableGestures: AvailableGestures.all,
-                      selectedDayPredicate: (day) => isSameDay(day, today),
+                      selectedDayPredicate: (day) {
+                        return _selectedDates.contains(day);
+                      },
                       locale: 'en_US',
                       firstDay: DateTime.utc(2010, 10, 16),
                       lastDay: DateTime.utc(2030, 3, 14),
-                      focusedDay: today,
+                      focusedDay: _focusedDay,
                       onDaySelected: _onDaySelected,
                       calendarStyle: CalendarStyle(
                           selectedDecoration: const BoxDecoration(

@@ -94,10 +94,10 @@ class PuppyCreationAdditionalScreen extends StatelessWidget {
                       },
                       keyboardType: TextInputType.name,
                       decoration: const InputDecoration(
-                          suffixIcon: Icon(
+                          /*suffixIcon: Icon(
                             Icons.keyboard_arrow_down,
                             size: 25,
-                          ),
+                          ),*/
                           contentPadding: EdgeInsets.all(20.0),
                           hintText: 'Enter Your Pet\'s Breed'),
                     ),

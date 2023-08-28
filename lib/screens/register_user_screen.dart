@@ -11,6 +11,7 @@ import '../main.dart';
 import '../utils/custom_buttons.dart';
 import '../utils/custom_colors.dart';
 import '../utils/custom_font_style.dart';
+import '../utils/enums.dart';
 import '../view_models/auth_view_model.dart';
 import '../widgets/google_facebook_button_widget.dart';
 import '../widgets/user_form_fields_widget.dart';
@@ -24,6 +25,8 @@ class RegisterUserScreen extends StatelessWidget {
       return WillPopScope(
         onWillPop: () async {
           authViewModel.clearFieldsData();
+          authViewModel.getRegisterRouteFrom == Screens.login.text?
+          Navigator.pushReplacementNamed(context,loginRoute):
           Navigator.pop(context);
           return false;
         },

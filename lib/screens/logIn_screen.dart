@@ -116,6 +116,7 @@ class LoginScreen extends StatelessWidget {
                         onTap: (){
                           authViewModel.clearFieldsData();
                           authViewModel.setOtpRouteFrom(Screens.registerUser.text);
+                          context.read<AuthViewModel>().setRegisterRouteFrom(Screens.login.text);
                           Navigator.pushReplacementNamed(context,registerUserRoute);
                         },
                         child: const Text.rich(

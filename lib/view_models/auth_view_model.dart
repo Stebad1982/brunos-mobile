@@ -26,6 +26,7 @@ import '../utils/shared_pref .dart';
 
 class AuthViewModel with ChangeNotifier {
   String _otpRouteFrom = Screens.registerUser.text;
+  String _registerRouteFrom = Screens.login.text;
   bool _securePassword = true;
   final AuthApiServices _authApiServices = AuthApiServices();
   AuthResponse _authResponse = AuthResponse();
@@ -107,7 +108,12 @@ class AuthViewModel with ChangeNotifier {
     _confirmPasswordFieldError = value;
     notifyListeners();
   }
+  String get getRegisterRouteFrom => _registerRouteFrom;
 
+  void setRegisterRouteFrom(String value) {
+    _registerRouteFrom = value;
+    notifyListeners();
+  }
 
   String get getOtpRouteFrom => _otpRouteFrom;
 

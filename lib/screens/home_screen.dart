@@ -45,17 +45,19 @@ class HomeScreen extends StatelessWidget {
                   children: [
                     InkWell(
                       onTap: () {
-                        context.read<AddressViewModel>().setIsAddressAdd(true);
-                        Navigator.pushNamed(
-                            context,
-                            context
-                                        .read<AuthViewModel>()
-                                        .getAuthResponse
-                                        .data!
-                                        .location !=
-                                    null
-                                ? addressRoute
-                                : addAddressRoute);
+                        if (context
+                                .read<AuthViewModel>()
+                                .getAuthResponse
+                                .data!
+                                .location !=
+                            null) {
+                          Navigator.pushNamed(context, addressRoute);
+                        } else {
+                          context
+                              .read<AddressViewModel>()
+                              .setIsAddressAdd(true);
+                          Navigator.pushNamed(context, addAddressRoute);
+                        }
                       },
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -403,8 +405,8 @@ class HomeScreen extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(vertical: 5),
                       child: Align(
                           alignment: Alignment.centerLeft,
-                          child:
-                              lightBlack14w400Centre(data: 'About Bruno’s Kitchen')),
+                          child: lightBlack14w400Centre(
+                              data: 'About Bruno’s Kitchen')),
                     ),
                     content: black12w500Centre(
                         data:
@@ -425,8 +427,8 @@ class HomeScreen extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(vertical: 5),
                       child: Align(
                           alignment: Alignment.centerLeft,
-                          child:
-                              lightBlack14w400Centre(data: 'About Bruno’s Kitchen')),
+                          child: lightBlack14w400Centre(
+                              data: 'About Bruno’s Kitchen')),
                     ),
                     content: black12w500Centre(
                         data:
@@ -447,8 +449,8 @@ class HomeScreen extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(vertical: 5),
                       child: Align(
                           alignment: Alignment.centerLeft,
-                          child:
-                              lightBlack14w400Centre(data: 'About Bruno’s Kitchen')),
+                          child: lightBlack14w400Centre(
+                              data: 'About Bruno’s Kitchen')),
                     ),
                     content: black12w500Centre(
                         data:
@@ -469,8 +471,8 @@ class HomeScreen extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(vertical: 5),
                       child: Align(
                           alignment: Alignment.centerLeft,
-                          child:
-                              lightBlack14w400Centre(data: 'About Bruno’s Kitchen')),
+                          child: lightBlack14w400Centre(
+                              data: 'About Bruno’s Kitchen')),
                     ),
                     content: black12w500Centre(
                         data:
@@ -491,8 +493,8 @@ class HomeScreen extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(vertical: 5),
                       child: Align(
                           alignment: Alignment.centerLeft,
-                          child:
-                              lightBlack14w400Centre(data: 'About Bruno’s Kitchen')),
+                          child: lightBlack14w400Centre(
+                              data: 'About Bruno’s Kitchen')),
                     ),
                     content: black12w500Centre(
                         data:
