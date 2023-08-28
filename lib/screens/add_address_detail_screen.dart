@@ -74,7 +74,7 @@ class _AddAddressDetailScreenState extends State<AddAddressDetailScreen> {
                         children: [
                           Expanded(
                             child: TextField(
-                              //controller: nameController,
+                              controller: addressViewModel.getFlatHouseNumberController,
                               onChanged: (text) {},
                               keyboardType: TextInputType.streetAddress,
                               decoration: const InputDecoration(

@@ -87,7 +87,7 @@ class NameFieldWidget extends StatelessWidget {
             onChanged: (text) {},
             keyboardType: TextInputType.name,
             decoration: InputDecoration(
-                hintText: 'Full name',
+                hintText: 'Full Name',
                 prefixIcon: Padding(
                   padding: const EdgeInsets.all(16),
                   child: SvgPicture.asset(userIcon),
@@ -119,7 +119,7 @@ class EmailFieldWidget extends StatelessWidget {
             onChanged: (text) {},
             keyboardType: TextInputType.emailAddress,
             decoration: InputDecoration(
-                hintText: 'Email address',
+                hintText: 'Email Address',
                 prefixIcon: Padding(
                   padding: const EdgeInsets.all(16),
                   child: SvgPicture.asset(emailIcon),

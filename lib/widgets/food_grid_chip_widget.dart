@@ -11,7 +11,7 @@ import 'add_meal_bottom_sheet_widget.dart';
 
 Widget foodGridChipWidget (){
   return Card(
-      elevation: 8,
+      elevation: 2,
       color: CustomColors.whiteColor,
       borderOnForeground: false,
       shape: const RoundedRectangleBorder(

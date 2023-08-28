@@ -15,6 +15,7 @@ import '../utils/enums.dart';
 import '../utils/images.dart';
 import '../view_models/plans_view_model.dart';
 import '../widgets/app_bar_with_back_widget.dart';
+import '../widgets/dialogs/discription_dialog.dart';
 import '../widgets/redeem_paw_points_bottom_sheet_widget.dart';
 
 class CheckoutScreen extends StatelessWidget {
@@ -241,7 +242,7 @@ class CheckoutScreen extends StatelessWidget {
                       decoration: ShapeDecoration(
                         color: CustomColors.whiteColor,
                         shape: RoundedRectangleBorder(
-                          side: BorderSide(
+                          side: const BorderSide(
                               width: 0.50, color: CustomColors.greyColor),
                           borderRadius: BorderRadius.circular(12),
                         ),
@@ -256,8 +257,8 @@ class CheckoutScreen extends StatelessWidget {
                               width: 2.w,
                             ),
                             lightBlack14w400Centre(data: 'Payment method'),
-                            Spacer(),
-                            Icon(
+                            const Spacer(),
+                            const Icon(
                               Icons.arrow_forward_ios_rounded,
                               size: 15,
                               color: CustomColors.greyColor,
@@ -395,8 +396,16 @@ class CheckoutScreen extends StatelessWidget {
                             Row(
                               children: [
                                 lightBlack14w400Centre(data: 'Generate coupon code'),
-                                Spacer(),
-                                orange14w400(data: 'How it works?'),
+                                const Spacer(),
+                                InkWell(
+                                  onTap: (){
+                                    descriptionDialog(
+                                        context: context,
+                                        description:
+                                        'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic',
+                                        height: 300);
+                                  },
+                                    child: orange14w400(data: 'How it works?')),
                               ],
                             ),
                             SizedBox(

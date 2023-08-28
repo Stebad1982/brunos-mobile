@@ -154,10 +154,11 @@ Widget grey14w400HeightCentre({required String data}) {
         color: CustomColors.greyColor),
   );
 }
-Widget grey14w400({required String data}) {
+Widget grey14w400({required String data, bool? lineHeight}) {
   return Text(
     data,
     style: TextStyle(
+      height: lineHeight == true? 1.5: null,
         fontFamily: 'CircularStd',
         fontSize: 14.sp,
         fontWeight: FontWeight.w400,
@@ -205,7 +206,7 @@ Widget black12w500Centre({required String data, bool? centre, bool? overFlowText
     data,
     textAlign: centre != null?  TextAlign.center: TextAlign.left,
     style: TextStyle(
-        height: lineSpacing == true? 2 : null,
+        height: lineSpacing == true? 1.5 : null,
         fontFamily: 'CircularStd',
         fontSize: 12.sp,
         fontWeight: FontWeight.w400,
@@ -244,6 +245,17 @@ Widget white18w500({required String data}) {
         fontSize: 18.sp,
         fontWeight: FontWeight.w500,
         color: CustomColors.whiteColor),
+  );
+}
+
+Widget whiteTint14w400({required String data}) {
+  return Text(
+    data,
+    style: TextStyle(
+        fontFamily: 'CircularStd',
+        fontSize: 14.sp,
+        fontWeight: FontWeight.w400,
+        color: CustomColors.whiteColorTint),
   );
 }
 

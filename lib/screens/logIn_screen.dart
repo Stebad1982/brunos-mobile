@@ -1,3 +1,4 @@
+
 import 'package:brunos_kitchen/main.dart';
 import 'package:brunos_kitchen/route_generator.dart';
 import 'package:brunos_kitchen/utils/custom_colors.dart';
@@ -31,7 +32,7 @@ class LoginScreen extends StatelessWidget {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      black24w500Centre(data: 'Welcome back Dog Lovers'),
+                      black24w500Centre(data: 'Welcome Back Dog Lovers'),
                       SizedBox(
                         height: 10.h,
                       ),
@@ -47,16 +48,15 @@ class LoginScreen extends StatelessWidget {
                       SizedBox(
                         height: 12.h,
                       ),
-                      InkWell(
-                        onTap: (){
-                          authViewModel.clearFieldsData();
-                          context.read<AuthViewModel>().setOtpRouteFrom(Screens.forgetPassword.text);
-                          Navigator.pushNamed(context, forgetPasswordRoute);
-                        },
-                        child: Align(
-                            alignment: Alignment.centerRight,
-                            child: orange14w400(data: 'Forgot Password')),
-                      ),
+                      Align(
+                          alignment: Alignment.centerRight,
+                          child: InkWell(
+                              onTap: (){
+                                authViewModel.clearFieldsData();
+                                context.read<AuthViewModel>().setOtpRouteFrom(Screens.forgetPassword.text);
+                                Navigator.pushNamed(context, forgetPasswordRoute);
+                              },
+                              child: orange14w400(data: 'Forget Password ?'))),
                       SizedBox(
                         height: 40.h,
                       ),

@@ -25,7 +25,7 @@ Widget foodDescribedGridChipWidget() {
               navigatorKey.currentContext!, deliveryDatesRoute);
     },
     child: Card(
-        elevation: 8,
+        elevation: 2,
         color: CustomColors.whiteColor,
         borderOnForeground: false,
         shape: const RoundedRectangleBorder(

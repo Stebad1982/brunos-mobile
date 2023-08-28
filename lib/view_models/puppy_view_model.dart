@@ -445,6 +445,10 @@ class PuppyViewModel with ChangeNotifier {
       if (response.isSuccess!) {
         EasyLoading.dismiss();
         await callPuppiesApi();
+        if(_puppyDetail != null){
+          final PuppyModel updatedPuppy = _puppiesResponse.data!.firstWhere((element) => element.sId == _puppyDetail!.sId );
+          setPuppyDetail(updatedPuppy);
+        }
     return true;
       } else {
         EasyLoading.showError('${response.message}');
