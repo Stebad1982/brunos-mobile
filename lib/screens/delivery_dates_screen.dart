@@ -21,20 +21,15 @@ class DeliveryDatesScreen extends StatefulWidget {
 }
 
 class _DeliveryDatesScreenState extends State<DeliveryDatesScreen> {
-  DateTime _focusedDay = DateTime.now();
-  List<DateTime> _selectedDates = [];
-  int _radioSelected = 1;
-  late String _radioVal;
-
-  void _onDaySelected(DateTime day, DateTime focusDay) {
-    setState(() {
-      if (_selectedDates.contains(day)) {
-        _selectedDates.remove(day);
-      } else {
-        _selectedDates.add(day);
-      }
+  @override
+  void initState() {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      context.read<PlansViewModel>().clearCalenderValues();
     });
+    super.initState();
   }
+
+  DateTime focusedDay = DateTime.now();
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +40,8 @@ class _DeliveryDatesScreenState extends State<DeliveryDatesScreen> {
               ? 'Transitional Plan'
               : plansViewModel.getPlanType == Plans.monthly.text
                   ? 'Monthly Plan'
-                  : 'One time Order', showPuppy: true,
+                  : 'One time Order',
+          showPuppy: true,
         ),
         body: Stack(
           children: [
@@ -91,44 +87,34 @@ class _DeliveryDatesScreenState extends State<DeliveryDatesScreen> {
                             Transform.scale(
                               scale: 1,
                               child: Radio(
-                                activeColor: CustomColors.blackColor,
+                                  activeColor: CustomColors.blackColor,
                                   visualDensity: const VisualDensity(
                                     horizontal: VisualDensity.minimumDensity,
                                     vertical: VisualDensity.minimumDensity,
                                   ),
-                                  //materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                                   value: 1,
-                                  groupValue: _radioSelected,
+                                  groupValue: plansViewModel.getRadioVal,
                                   onChanged: (value) {
-                                    setState(() {
-                                      _radioSelected = value!;
-                                      _radioVal = 'male';
-                                    });
-                                    print(value); //selected value
+                                    plansViewModel.setRadioValue(value!);
                                   }),
                             ),
                             SizedBox(
                               width: 5.w,
                             ),
                             lightBlack14w400Centre(data: 'One time Delivery'),
-                            Spacer(),
+                            const Spacer(),
                             Transform.scale(
                               scale: 1,
                               child: Radio(
-                                activeColor: CustomColors.blackColor,
+                                  activeColor: CustomColors.blackColor,
                                   visualDensity: const VisualDensity(
                                     horizontal: VisualDensity.minimumDensity,
                                     vertical: VisualDensity.minimumDensity,
                                   ),
-                                  //materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                                   value: 2,
-                                  groupValue: _radioSelected,
+                                  groupValue: plansViewModel.getRadioVal,
                                   onChanged: (value) {
-                                    setState(() {
-                                      _radioSelected = value!;
-                                      _radioVal = 'female';
-                                    });
-                                    print(value); //selected value
+                                    plansViewModel.setRadioValue(value!);
                                   }),
                             ),
                             SizedBox(
@@ -149,19 +135,19 @@ class _DeliveryDatesScreenState extends State<DeliveryDatesScreen> {
                       ),
                       availableGestures: AvailableGestures.all,
                       selectedDayPredicate: (day) {
-                        return _selectedDates.contains(day);
+                        return plansViewModel.getSelectedDates.contains(day);
                       },
                       locale: 'en_US',
-                      firstDay: DateTime.utc(2010, 10, 16),
+                      firstDay: focusedDay.add(const Duration(days: 4)),
                       lastDay: DateTime.utc(2030, 3, 14),
-                      focusedDay: _focusedDay,
-                      onDaySelected: _onDaySelected,
-                      calendarStyle: CalendarStyle(
-                          selectedDecoration: const BoxDecoration(
+                      focusedDay: focusedDay.add(const Duration(days: 4)),
+                      onDaySelected: plansViewModel.onDaySelected,
+                      calendarStyle: const CalendarStyle(
+                          selectedDecoration: BoxDecoration(
                               color: CustomColors.orangeColor,
                               shape: BoxShape.circle),
                           todayDecoration: BoxDecoration(
-                              color: CustomColors.orangeColorTint,
+                              color: CustomColors.yellowColor,
                               shape: BoxShape.circle)),
                     ),
                     SizedBox(
@@ -180,7 +166,8 @@ class _DeliveryDatesScreenState extends State<DeliveryDatesScreen> {
                           ),
                           Align(
                               alignment: Alignment.centerLeft,
-                              child: lightBlack14w400Centre(data: 'Order Summary')),
+                              child: lightBlack14w400Centre(
+                                  data: 'Order Summary')),
                           SizedBox(
                             height: 15.h,
                           ),
@@ -198,7 +185,8 @@ class _DeliveryDatesScreenState extends State<DeliveryDatesScreen> {
                               padding: const EdgeInsets.all(20),
                               child: Row(
                                 crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   black16w500(data: 'Meal Batch'),
                                   black16w500(data: 'Deliver on'),
@@ -208,17 +196,21 @@ class _DeliveryDatesScreenState extends State<DeliveryDatesScreen> {
                           ),
                           Container(
                             width: double.infinity,
-                            decoration:  BoxDecoration(
+                            decoration: BoxDecoration(
                               color: CustomColors.whiteColor,
-                              border: Border.all(color: CustomColors.greyMediumColor),
+                              border: Border.all(
+                                  color: CustomColors.greyMediumColor),
                             ),
                             child: Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 10),
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 20, vertical: 10),
                               child: Row(
                                 crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
-                                  lightBlack14w400Centre(data: 'Batch 1 (Beefy Barkfest)'),
+                                  lightBlack14w400Centre(
+                                      data: 'Batch 1 (Beefy Barkfest)'),
                                   lightBlack14w400Centre(data: '3 June 2023'),
                                 ],
                               ),
@@ -226,17 +218,21 @@ class _DeliveryDatesScreenState extends State<DeliveryDatesScreen> {
                           ),
                           Container(
                             width: double.infinity,
-                            decoration:  BoxDecoration(
+                            decoration: BoxDecoration(
                               color: CustomColors.whiteColor,
-                              border: Border.all(color: CustomColors.greyMediumColor),
+                              border: Border.all(
+                                  color: CustomColors.greyMediumColor),
                             ),
                             child: Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 10),
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 20, vertical: 10),
                               child: Row(
                                 crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
-                                  lightBlack14w400Centre(data: 'Batch 1 (Beefy Barkfest)'),
+                                  lightBlack14w400Centre(
+                                      data: 'Batch 1 (Beefy Barkfest)'),
                                   lightBlack14w400Centre(data: '3 June 2023'),
                                 ],
                               ),
@@ -244,23 +240,26 @@ class _DeliveryDatesScreenState extends State<DeliveryDatesScreen> {
                           ),
                           Container(
                             width: double.infinity,
-                            decoration:  BoxDecoration(
+                            decoration: BoxDecoration(
                               color: CustomColors.whiteColor,
-                              border: Border.all(color: CustomColors.greyMediumColor),
+                              border: Border.all(
+                                  color: CustomColors.greyMediumColor),
                             ),
                             child: Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 10),
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 20, vertical: 10),
                               child: Row(
                                 crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
-                                  lightBlack14w400Centre(data: 'Batch 1 (Beefy Barkfest)'),
+                                  lightBlack14w400Centre(
+                                      data: 'Batch 1 (Beefy Barkfest)'),
                                   lightBlack14w400Centre(data: '3 June 2023'),
                                 ],
                               ),
                             ),
                           ),
-
                         ],
                       ),
                     ),
@@ -274,7 +273,6 @@ class _DeliveryDatesScreenState extends State<DeliveryDatesScreen> {
                     SizedBox(
                       height: 100.h,
                     ),
-
                   ],
                 ),
               ),
@@ -287,7 +285,6 @@ class _DeliveryDatesScreenState extends State<DeliveryDatesScreen> {
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(30.0),
                     topRight: Radius.circular(30.0),
-
                   ),
                   boxShadow: [
                     BoxShadow(
