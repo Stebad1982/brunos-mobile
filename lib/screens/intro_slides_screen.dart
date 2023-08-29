@@ -51,7 +51,7 @@ class _IntroSlidesScreenState extends State<IntroSlidesScreen> {
               height: 26.h,
             ),
             black32w500Center(data: 'Proud Parent of a'),
-            brown32w500(data: 'Puppy?'),
+            brown32w500(data: 'Doggo?'),
             SizedBox(
               height: 16.h,
             ),
