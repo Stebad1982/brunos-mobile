@@ -8,6 +8,7 @@ import '../main.dart';
 import '../utils/custom_buttons.dart';
 import '../utils/custom_colors.dart';
 import '../utils/custom_font_style.dart';
+import '../view_models/auth_view_model.dart';
 
 Future datePickerBottomSheetWidget() {
   return showModalBottomSheet(
@@ -27,7 +28,7 @@ Future datePickerBottomSheetWidget() {
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      black18w500(data: 'Select Labby\'s BirthDay'),
+                      black18w500(data: 'Select ${context.watch<AuthViewModel>().getAuthResponse.data!.pet!.name!}\'s BirthDay'),
                       const Spacer(),
                       InkWell(
                         onTap: () {
@@ -68,6 +69,7 @@ Future datePickerBottomSheetWidget() {
                     ), child: CupertinoDatePicker(
                         mode: CupertinoDatePickerMode.date,
                         initialDateTime: DateTime.now(),
+                        maximumDate: DateTime.now(),
                         onDateTimeChanged: (value) {
                           context.read<PuppyViewModel>().setPuppyDob(value);
                           /*setState(() {

@@ -1,9 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 
 import '../utils/custom_font_style.dart';
 import '../utils/images.dart';
+import '../view_models/auth_view_model.dart';
 import '../widgets/app_bar_with_back_widget.dart';
 import '../widgets/food_discribed_grid_chip_widget.dart';
 
@@ -36,7 +38,7 @@ class OneTimePlanScreen extends StatelessWidget {
               ),
               Center(
                 child: black24w500Centre(
-                    data: 'Let’s Feed Your Beloved\nLabby'),
+                    data: 'Let’s Feed Your Beloved\n${context.watch<AuthViewModel>().getAuthResponse.data!.pet!.name!}'),
               ),
               SizedBox(
                 height: 10.h,

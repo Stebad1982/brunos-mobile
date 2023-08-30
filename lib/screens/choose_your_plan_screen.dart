@@ -10,6 +10,7 @@ import 'package:provider/provider.dart';
 
 import '../utils/custom_colors.dart';
 import '../utils/enums.dart';
+import '../view_models/auth_view_model.dart';
 import '../widgets/app_bar_with_back_widget.dart';
 
 class ChooseYourPlanScreen extends StatelessWidget {
@@ -40,7 +41,7 @@ class ChooseYourPlanScreen extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 10.0),
                   child: black24w500Centre(
-                      data: 'Create A Paw-Licking\nGood Meal Plan For Labby'),
+                      data: 'Create A Paw-Licking\nGood Meal Plan For ${context.watch<AuthViewModel>().getAuthResponse.data!.pet!.name!}'),
                 ),
               ),
               SizedBox(

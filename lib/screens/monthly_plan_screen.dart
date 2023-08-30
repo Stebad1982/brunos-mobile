@@ -5,10 +5,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:provider/provider.dart';
 
 import '../main.dart';
 import '../utils/custom_buttons.dart';
 import '../utils/custom_colors.dart';
+import '../view_models/auth_view_model.dart';
 import '../widgets/add_meal_bottom_sheet_widget.dart';
 import '../widgets/app_bar_with_back_widget.dart';
 
@@ -30,7 +32,7 @@ class MonthlyPlanScreen extends StatelessWidget {
               children: [
                 Center(
                     child:
-                        black24w500Centre(data: 'Let’s Feed Your Beloved\nLabby')),
+                        black24w500Centre(data: 'Let’s Feed Your Beloved\n${context.watch<AuthViewModel>().getAuthResponse.data!.pet!.name!}')),
                 SizedBox(
                   height: 10.h,
                 ),
