@@ -1,9 +1,11 @@
 import 'package:brunos_kitchen/main.dart';
 import 'package:brunos_kitchen/utils/custom_colors.dart';
+import 'package:brunos_kitchen/widgets/dialogs/schedule_date_range_calender_dialog.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:table_calendar/table_calendar.dart';
 
 import '../route_generator.dart';
 import '../utils/custom_font_style.dart';
@@ -13,8 +15,18 @@ Widget mealVerticalListChipWidget() {
   return Column(
     children: [
       GestureDetector(
-        onTap: () {
-          Navigator.pop(navigatorKey.currentContext!);
+        onTap: () async {
+         scheduleDateRangeCalenderDialog();
+          /*   final List<DateTime> picked = await DateRagePicker.showDatePicker(
+                context: context,
+                initialFirstDate: new DateTime.now(),
+                initialLastDate: (new DateTime.now()).add(new Duration(days: 7)),
+                firstDate: new DateTime(2015),
+                lastDate: new DateTime(2030)
+            );
+            if (picked != null && picked.length == 2) {
+              print(picked);
+            }*/
         },
         child: Container(
           decoration: ShapeDecoration(
