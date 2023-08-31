@@ -65,7 +65,7 @@ class _AddressScreenState extends State<AddressScreen> {
                     itemCount: addressViewModel.getAllAddressResponse.data!.length,
                     padding: const EdgeInsets.only(left: 20, right: 20, top: 20,bottom: 40),
                     itemBuilder: (BuildContext context, int index) {
-                      return addressVerticalListChipWidget(data: addressViewModel.getAllAddressResponse.data![index]);
+                      return addressVerticalListChipWidget(addressDetail: addressViewModel.getAllAddressResponse.data![index]);
                     },
                   ),
                 ): Container(),

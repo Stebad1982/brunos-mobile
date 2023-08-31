@@ -15,9 +15,9 @@ class PlansViewModel with ChangeNotifier {
   int _radioSelected = 1;
   DateTime? _rangeStart;
   DateTime? _rangeEnd;
-  DateTime _focusedDay = DateTime.now();
-  DateTime? _selectedDay = DateTime.now();
-  List<DateTime> _selectedDates = [];
+  DateTime _focusedDay = DateTime.now().add(const Duration(days: 4));
+  DateTime _selectedDay = DateTime.now().add(const Duration(days: 4));
+  //final List<DateTime> _selectedDates = [];
   DateTime get getFocusedDay => _focusedDay;
 
   DateTime? get getSelectedDay => _selectedDay;
@@ -26,7 +26,7 @@ class PlansViewModel with ChangeNotifier {
 
   DateTime? get getRangeEnd => _rangeEnd;
 
-  List<DateTime> get getSelectedDates => _selectedDates;
+//  List<DateTime> get getSelectedDates => _selectedDates;
 
   int get getRadioVal => _radioSelected;
 
@@ -44,12 +44,16 @@ class PlansViewModel with ChangeNotifier {
 
   void clearCalenderValues() {
     _radioSelected = 1;
-    _selectedDates.clear();
+    _rangeStart = DateTime.now().add(const Duration(days: 4));
+    _rangeEnd = DateTime.now().add(const Duration(days: 8));
+    _focusedDay = DateTime.now().add(const Duration(days: 4));
+    _selectedDay = DateTime.now().add(const Duration(days: 4));
+  //  _selectedDates.clear();
     notifyListeners();
   }
 
   void onRangeSelected(DateTime? start, DateTime? end, DateTime focusDay){
-    _selectedDay = null;
+    _selectedDay = start!;
     _rangeStart = start;
     _rangeEnd = end;
     notifyListeners();
@@ -58,6 +62,14 @@ class PlansViewModel with ChangeNotifier {
   void onDaySelected(DateTime day, DateTime focusDay) {
 
     if(_planType == Plans.monthly.text){
+      if(!isSameDay(_selectedDay, day)){
+        _selectedDay = day;
+        focusDay = focusDay;
+        notifyListeners();
+      }
+    }
+
+    else{
       if(!isSameDay(_selectedDay, day)){
         _selectedDay = day;
         focusDay = focusDay;

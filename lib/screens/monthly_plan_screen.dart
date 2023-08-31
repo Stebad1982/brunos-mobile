@@ -242,7 +242,7 @@ class MonthlyPlanScreen extends StatelessWidget {
               child: Align(
                 alignment: Alignment.bottomCenter,
                 child: customButton(text: 'Continue', onPressed: () {
-Navigator.pushNamed(context, deliveryDatesRoute);
+                  Navigator.pushNamed(context, checkOutRoute);
                 }, colored: true),
               ),
             ),

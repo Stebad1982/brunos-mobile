@@ -1,6 +1,8 @@
 import 'dart:io';
 
+import 'package:brunos_kitchen/models/address_model.dart';
 import 'package:brunos_kitchen/models/base_response_model.dart';
+import 'package:brunos_kitchen/models/puppy_model.dart';
 import 'package:brunos_kitchen/models/requests/edit_user_profile_request.dart';
 import 'package:brunos_kitchen/models/requests/forgot_password_request.dart';
 import 'package:brunos_kitchen/models/requests/user_register_request.dart';
@@ -61,6 +63,16 @@ class AuthViewModel with ChangeNotifier {
 
   void setCountryCode(String value) {
     _countryCode = value;
+    notifyListeners();
+  }
+
+  void setAddress(AddressModel value){
+    _authResponse.data!.location = value;
+    notifyListeners();
+  }
+
+  void setPuppy(PuppyModel value){
+    _authResponse.data!.pet = value;
     notifyListeners();
   }
 

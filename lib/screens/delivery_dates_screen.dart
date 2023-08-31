@@ -29,7 +29,7 @@ class _DeliveryDatesScreenState extends State<DeliveryDatesScreen> {
     super.initState();
   }
 
-  DateTime focusedDay = DateTime.now();
+  //DateTime focusedDay = DateTime.now();
 
   @override
   Widget build(BuildContext context) {
@@ -134,13 +134,11 @@ class _DeliveryDatesScreenState extends State<DeliveryDatesScreen> {
                         titleCentered: true,
                       ),
                       availableGestures: AvailableGestures.all,
-                      selectedDayPredicate: (day) {
-                        return plansViewModel.getSelectedDates.contains(day);
-                      },
+                      selectedDayPredicate: (day) => isSameDay(plansViewModel.getSelectedDay,day),
                       locale: 'en_US',
-                      firstDay: focusedDay.add(const Duration(days: 4)),
+                      firstDay: plansViewModel.getFocusedDay,
                       lastDay: DateTime.utc(2030, 3, 14),
-                      focusedDay: focusedDay.add(const Duration(days: 4)),
+                      focusedDay: plansViewModel.getFocusedDay,
                       onDaySelected: plansViewModel.onDaySelected,
                       calendarStyle: const CalendarStyle(
                           selectedDecoration: BoxDecoration(

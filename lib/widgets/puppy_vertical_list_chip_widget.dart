@@ -1,6 +1,7 @@
 import 'package:brunos_kitchen/main.dart';
 import 'package:brunos_kitchen/models/responses/puppies_response.dart';
 import 'package:brunos_kitchen/utils/custom_colors.dart';
+import 'package:brunos_kitchen/view_models/auth_view_model.dart';
 import 'package:brunos_kitchen/view_models/puppy_view_model.dart';
 import 'package:brunos_kitchen/widgets/circular_network_image_widget.dart';
 import 'package:flutter/cupertino.dart';
@@ -13,16 +14,29 @@ import '../models/puppy_model.dart';
 import '../route_generator.dart';
 import '../utils/custom_font_style.dart';
 import '../utils/images.dart';
+import '../view_models/bottom_navigation_view_model.dart';
 
 Widget puppyVerticalListChipWidget({required PuppyModel puppyDetail}) {
   return Column(
     children: [
-      GestureDetector(
+      InkWell(
         onTap: () {
-          navigatorKey.currentContext!
-              .read<PuppyViewModel>()
-              .setPuppyDetail(puppyDetail);
-          Navigator.pushNamed(navigatorKey.currentContext!, puppyDetailRoute);
+          if (navigatorKey.currentContext!
+                  .read<BottomNavigationViewModel>()
+                  .getHomeViewIndex !=
+              2) {
+            navigatorKey.currentContext!
+                .read<AuthViewModel>()
+                .setPuppy(puppyDetail);
+            Navigator.pop(navigatorKey.currentContext!);
+          }
+          else{
+            navigatorKey.currentContext!
+                .read<PuppyViewModel>()
+                .setPuppyDetail(puppyDetail);
+            Navigator.pushNamed(
+                navigatorKey.currentContext!, puppyDetailRoute);
+          }
         },
         child: Container(
           decoration: ShapeDecoration(
@@ -59,14 +73,17 @@ Widget puppyVerticalListChipWidget({required PuppyModel puppyDetail}) {
                       visible: puppyDetail.isDefault!,
                       child: Column(
                         children: [
-                          SizedBox(height: 5.h,),
+                          SizedBox(
+                            height: 5.h,
+                          ),
                           Container(
                               decoration: const BoxDecoration(
                                   borderRadius:
-                                  BorderRadius.all(Radius.circular(20)),
+                                      BorderRadius.all(Radius.circular(20)),
                                   color: CustomColors.orangeColor),
                               child: Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 10.0,vertical: 2),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 10.0, vertical: 2),
                                 child: white12w400(data: 'Primary'),
                               )),
                         ],
@@ -81,7 +98,7 @@ Widget puppyVerticalListChipWidget({required PuppyModel puppyDetail}) {
                         .read<PuppyViewModel>()
                         .setPuppyDetail(puppyDetail);
                     Navigator.pushNamed(
-                        navigatorKey.currentContext!, puppyCreationRoute);
+                        navigatorKey.currentContext!, puppyDetailRoute);
                   },
                   child: Container(
                     decoration: ShapeDecoration(
@@ -95,7 +112,7 @@ Widget puppyVerticalListChipWidget({required PuppyModel puppyDetail}) {
                     child: const Padding(
                       padding: EdgeInsets.all(10),
                       child: Icon(
-                        Icons.edit,
+                        Icons.sticky_note_2_outlined,
                         size: 20,
                         color: CustomColors.orangeColor,
                       ),
