@@ -10,7 +10,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
-import '../dunmmy_data.dart';
+import '../utils/food_category_list_data.dart';
 import '../route_generator.dart';
 import '../utils/custom_buttons.dart';
 import '../utils/custom_colors.dart';

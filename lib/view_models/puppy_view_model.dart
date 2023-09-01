@@ -17,7 +17,7 @@ import 'package:intl/intl.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:provider/provider.dart';
 
-import '../dunmmy_data.dart';
+import '../utils/food_category_list_data.dart';
 import '../screens/logIn_screen.dart';
 import '../screens/intro_slides_screen.dart';
 import '../services/firebase_upload_image_service.dart';

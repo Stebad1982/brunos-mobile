@@ -1,7 +1,9 @@
 import 'dart:io';
 
+import 'package:brunos_kitchen/models/dishes_model.dart';
 import 'package:brunos_kitchen/route_generator.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:intl/intl.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:table_calendar/table_calendar.dart';
 
@@ -13,11 +15,41 @@ import '../utils/shared_pref .dart';
 class PlansViewModel with ChangeNotifier {
   String _planType = Plans.transitional.text;
   int _radioSelected = 1;
+  int _selectedDish = 1;
+  SelectedDishModel? _selectedDishModel1;
+  SelectedDishModel? _selectedDishModel2;
+  SelectedDishModel? _selectedDishModel3;
   DateTime? _rangeStart;
   DateTime? _rangeEnd;
   DateTime _focusedDay = DateTime.now().add(const Duration(days: 4));
   DateTime _selectedDay = DateTime.now().add(const Duration(days: 4));
-  //final List<DateTime> _selectedDates = [];
+
+  int get getSelectedDish => _selectedDish;
+
+  void setSelectedDish (int value){
+    _selectedDish = value;
+    notifyListeners();
+  }
+
+  SelectedDishModel? get getSelectedDishModel1 => _selectedDishModel1;
+  SelectedDishModel? get getSelectedDishModel2 => _selectedDishModel2;
+  SelectedDishModel? get getSelectedDishModel3 => _selectedDishModel3;
+
+
+  void setSelectedDishModel(SelectedDishModel value){
+    if(_selectedDish == 1){
+      _selectedDishModel1 = value;
+      notifyListeners();
+    }
+    else if(_selectedDish == 2){
+      _selectedDishModel2 = value;
+      notifyListeners();
+    }
+    else{
+      _selectedDishModel3 = value;
+      notifyListeners();
+    }
+  }
   DateTime get getFocusedDay => _focusedDay;
 
   DateTime? get getSelectedDay => _selectedDay;
@@ -53,9 +85,10 @@ class PlansViewModel with ChangeNotifier {
   }
 
   void onRangeSelected(DateTime? start, DateTime? end, DateTime focusDay){
-    _selectedDay = start!;
-    _rangeStart = start;
-    _rangeEnd = end;
+    DateFormat inputFormat = DateFormat('dd/MM/yyyy');
+    _selectedDay = inputFormat.parse(start.toString());
+    _rangeStart = inputFormat.parse(start.toString());
+    _rangeEnd = inputFormat.parse(end.toString());
     notifyListeners();
   }
 

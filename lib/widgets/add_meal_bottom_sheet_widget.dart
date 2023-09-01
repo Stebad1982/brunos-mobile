@@ -1,4 +1,5 @@
 
+import 'package:brunos_kitchen/models/dishes_model.dart';
 import 'package:brunos_kitchen/utils/custom_font_style.dart';
 import 'package:brunos_kitchen/widgets/meal_vertical_list_chip_widget.dart';
 import 'package:flutter/material.dart';
@@ -68,10 +69,10 @@ Future addMealDetailBottomSheetWidget() {
                     child: ListView.builder(
                       //physics: NeverScrollableScrollPhysics(),
                       shrinkWrap: true,
-                      itemCount: 30,
+                      itemCount: dishList.length,
                       padding: const EdgeInsets.symmetric(vertical: 20),
                       itemBuilder: (BuildContext context, int index) {
-                        return mealVerticalListChipWidget();
+                        return mealVerticalListChipWidget(dishData: dishList[index]);
                       },
                     ),
                   ),

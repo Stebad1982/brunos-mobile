@@ -1,4 +1,4 @@
-import 'package:brunos_kitchen/dunmmy_data.dart';
+import 'package:brunos_kitchen/utils/food_category_list_data.dart';
 import 'package:brunos_kitchen/main.dart';
 import 'package:brunos_kitchen/route_generator.dart';
 import 'package:brunos_kitchen/utils/custom_font_style.dart';

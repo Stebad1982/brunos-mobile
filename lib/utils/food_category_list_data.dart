@@ -18,7 +18,5 @@ List<FoodCategory> foodCategoryList = [
   FoodCategory('Vet Developed', vetDeveloped)
 ];
 
-List<String> breedsList =['jsjsjjsjs','jdkkdkdkdk', 'ieriueiuruier'];
-
 
 

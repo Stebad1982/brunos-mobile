@@ -1,5 +1,6 @@
 
 import 'package:brunos_kitchen/main.dart';
+import 'package:brunos_kitchen/models/dishes_model.dart';
 import 'package:brunos_kitchen/utils/custom_colors.dart';
 import 'package:brunos_kitchen/view_models/plans_view_model.dart';
 import 'package:brunos_kitchen/widgets/dialogs/schedule_date_range_calender_dialog.dart';
@@ -14,7 +15,7 @@ import '../route_generator.dart';
 import '../utils/custom_font_style.dart';
 import '../utils/images.dart';
 
-Widget mealVerticalListChipWidget() {
+Widget mealVerticalListChipWidget({required DishesModel dishData}) {
   return Column(
     children: [
       GestureDetector(
@@ -53,7 +54,7 @@ Widget mealVerticalListChipWidget() {
                       ),
                     ),
                     child: Image.asset(
-                      food,
+                      dishData.image!,
                       height: 52.h,
                     )),
                 SizedBox(
@@ -62,7 +63,7 @@ Widget mealVerticalListChipWidget() {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    black16w500(data: 'Beefy Barkfest'),
+                    black16w500(data: dishData.name!),
                   ],
                 ),
                 const Spacer(),
