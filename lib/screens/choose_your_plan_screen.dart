@@ -50,6 +50,7 @@ class ChooseYourPlanScreen extends StatelessWidget {
               InkWell(
                 onTap: () {
                   context.read<PlansViewModel>().setPlanType(Plans.transitional.text);
+                  context.read<PlansViewModel>().clearPlanData();
                   Navigator.pushNamed(context, transitionPlanRoute);
                 },
                 child: Container(
@@ -97,6 +98,7 @@ class ChooseYourPlanScreen extends StatelessWidget {
               InkWell(
                 onTap: () {
                   context.read<PlansViewModel>().setPlanType(Plans.monthly.text);
+                  context.read<PlansViewModel>().clearPlanData();
                   Navigator.pushNamed(context, monthlyPlanRoute);
                 },
                 child: Container(
@@ -144,6 +146,7 @@ class ChooseYourPlanScreen extends StatelessWidget {
               InkWell(
                 onTap: () {
                   context.read<PlansViewModel>().setPlanType(Plans.oneTime.text);
+                  context.read<PlansViewModel>().clearPlanData();
                   Navigator.pushNamed(context, oneTimePlanRoute);
                 },
                 child: Container(

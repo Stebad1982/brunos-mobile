@@ -23,9 +23,6 @@ class DeliveryDatesScreen extends StatefulWidget {
 class _DeliveryDatesScreenState extends State<DeliveryDatesScreen> {
   @override
   void initState() {
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      context.read<PlansViewModel>().clearCalenderValues();
-    });
     super.initState();
   }
 
@@ -76,7 +73,7 @@ class _DeliveryDatesScreenState extends State<DeliveryDatesScreen> {
                     SizedBox(
                       height: 30.h,
                     ),
-                    Visibility(
+                /*    Visibility(
                       visible: plansViewModel.getPlanType == Plans.monthly.text,
                       child: Padding(
                         padding: const EdgeInsets.only(bottom: 20),
@@ -126,7 +123,7 @@ class _DeliveryDatesScreenState extends State<DeliveryDatesScreen> {
                           ],
                         ),
                       ),
-                    ),
+                    ),*/
                     TableCalendar(
                       rowHeight: 45,
                       headerStyle: const HeaderStyle(

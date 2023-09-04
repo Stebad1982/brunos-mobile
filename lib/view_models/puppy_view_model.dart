@@ -363,7 +363,7 @@ class PuppyViewModel with ChangeNotifier {
       if (response.isSuccess!) {
         //  setImageSlider();
         EasyLoading.dismiss();
-        callPuppiesApi();
+        await callPuppiesApi();
     return true;
       } else {
         EasyLoading.showError('${response.message}');

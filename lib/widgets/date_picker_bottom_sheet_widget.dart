@@ -28,7 +28,9 @@ Future datePickerBottomSheetWidget() {
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      black18w500(data: 'Select ${context.watch<AuthViewModel>().getAuthResponse.data!.pet!.name!}\'s BirthDay'),
+                      black18w500(
+                          data:
+                              'Select ${navigatorKey.currentContext!.watch<PuppyViewModel>().getPuppyNameController.text.isNotEmpty ? navigatorKey.currentContext!.watch<PuppyViewModel>().getPuppyNameController.text : 'Pet'}\'s BirthDay'),
                       const Spacer(),
                       InkWell(
                         onTap: () {
@@ -56,7 +58,9 @@ Future datePickerBottomSheetWidget() {
                       )
                     ],
                   ),
-                  SizedBox(height: 20.h,),
+                  SizedBox(
+                    height: 20.h,
+                  ),
                   SizedBox(
                     height: 150.h,
                     child: CupertinoTheme(
@@ -65,19 +69,24 @@ Future datePickerBottomSheetWidget() {
                         textTheme: CupertinoTextThemeData(
                           dateTimePickerTextStyle: TextStyle(
                             fontSize: 20.sp,
-                          ),),
-                    ), child: CupertinoDatePicker(
-                        mode: CupertinoDatePickerMode.date,
-                        initialDateTime: DateTime.now(),
-                        maximumDate: DateTime.now(),
-                        onDateTimeChanged: (value) {
-                          context.read<PuppyViewModel>().setPuppyDob(value);
-                          /*setState(() {
+                          ),
+                        ),
+                      ),
+                      child: CupertinoDatePicker(
+                          mode: CupertinoDatePickerMode.date,
+                          initialDateTime: DateTime.now(),
+                          maximumDate: DateTime.now(),
+                          onDateTimeChanged: (value) {
+                            context.read<PuppyViewModel>().setPuppyDob(value);
+                            /*setState(() {
                                     _chosenDateTime = val;
                                   });*/
-                        }),
-                  ),),
-                  SizedBox(height: 30.h,),
+                          }),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 30.h,
+                  ),
                   customButton(
                       text: 'Submit',
                       onPressed: () {

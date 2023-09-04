@@ -14,58 +14,72 @@ import '../utils/shared_pref .dart';
 
 class PlansViewModel with ChangeNotifier {
   String _planType = Plans.transitional.text;
-  int _radioSelected = 1;
-  int _selectedDish = 1;
-  SelectedDishModel? _selectedDishModel1;
-  SelectedDishModel? _selectedDishModel2;
-  SelectedDishModel? _selectedDishModel3;
-  DateTime? _rangeStart;
-  DateTime? _rangeEnd;
+  //int _radioSelected = 1;
+  DishesModel? _scheduleSelectedDish;
+  int _scheduleEmptyTileNumber = 1;
+  final TextEditingController _scheduleSelectedDaysController =
+      TextEditingController();
+  SelectedDishModel? _scheduleEmptyTile1;
+  SelectedDishModel? _scheduleEmptyTile2;
+  SelectedDishModel? _scheduleEmptyTile3;
+
+/*  DateTime? _rangeStart;
+  DateTime? _rangeEnd;*/
   DateTime _focusedDay = DateTime.now().add(const Duration(days: 4));
   DateTime _selectedDay = DateTime.now().add(const Duration(days: 4));
 
-  int get getSelectedDish => _selectedDish;
+  int get getScheduleEmptyTileNumber => _scheduleEmptyTileNumber;
 
-  void setSelectedDish (int value){
-    _selectedDish = value;
+  void setScheduleEmptyTileNumber(int value) {
+    _scheduleEmptyTileNumber = value;
     notifyListeners();
   }
 
-  SelectedDishModel? get getSelectedDishModel1 => _selectedDishModel1;
-  SelectedDishModel? get getSelectedDishModel2 => _selectedDishModel2;
-  SelectedDishModel? get getSelectedDishModel3 => _selectedDishModel3;
+  void setScheduleSelectedDish(DishesModel value) {
+    _scheduleSelectedDish = value;
+  }
 
+  TextEditingController get getScheduleSelectedDaysController =>
+      _scheduleSelectedDaysController;
 
-  void setSelectedDishModel(SelectedDishModel value){
-    if(_selectedDish == 1){
-      _selectedDishModel1 = value;
+  SelectedDishModel? get getScheduleEmptyTile1 => _scheduleEmptyTile1;
+
+  SelectedDishModel? get getScheduleEmptyTile2 => _scheduleEmptyTile2;
+
+  SelectedDishModel? get getScheduleEmptyTile3 => _scheduleEmptyTile3;
+
+  void setScheduleSelectedDishModel() {
+    final SelectedDishModel applyDishDetail = SelectedDishModel(
+        dishesModel: _scheduleSelectedDish!,
+        totalDays: int.parse(_scheduleSelectedDaysController.text));
+    if (_scheduleEmptyTileNumber == 1) {
+      _scheduleEmptyTile1 = applyDishDetail;
       notifyListeners();
-    }
-    else if(_selectedDish == 2){
-      _selectedDishModel2 = value;
+    } else if (_scheduleEmptyTileNumber == 2) {
+      _scheduleEmptyTile2 = applyDishDetail;
       notifyListeners();
-    }
-    else{
-      _selectedDishModel3 = value;
+    } else {
+      _scheduleEmptyTile3 = applyDishDetail;
       notifyListeners();
     }
   }
+
   DateTime get getFocusedDay => _focusedDay;
 
   DateTime? get getSelectedDay => _selectedDay;
 
-  DateTime? get getRangeStart => _rangeStart;
+/*  DateTime? get getRangeStart => _rangeStart;
 
-  DateTime? get getRangeEnd => _rangeEnd;
+  DateTime? get getRangeEnd => _rangeEnd;*/
 
 //  List<DateTime> get getSelectedDates => _selectedDates;
 
-  int get getRadioVal => _radioSelected;
+  //int get getRadioVal => _radioSelected;
 
-  void setRadioValue(int value) {
+/*  void setRadioValue(int value) {
     _radioSelected = value;
     notifyListeners();
-  }
+  }*/
 
   String get getPlanType => _planType;
 
@@ -74,43 +88,44 @@ class PlansViewModel with ChangeNotifier {
     notifyListeners();
   }
 
-  void clearCalenderValues() {
-    _radioSelected = 1;
-    _rangeStart = DateTime.now().add(const Duration(days: 4));
-    _rangeEnd = DateTime.now().add(const Duration(days: 8));
+  void clearPlanData() {
+  //  _radioSelected = 1;
+    /*   _rangeStart = DateTime.now().add(const Duration(days: 4));
+    _rangeEnd = DateTime.now().add(const Duration(days: 8));*/
+    _scheduleEmptyTileNumber = 1;
+    _scheduleEmptyTile1 = null;
+    _scheduleEmptyTile2 = null;
+    _scheduleEmptyTile3 = null;
     _focusedDay = DateTime.now().add(const Duration(days: 4));
     _selectedDay = DateTime.now().add(const Duration(days: 4));
-  //  _selectedDates.clear();
+    //  _selectedDates.clear();
     notifyListeners();
   }
 
-  void onRangeSelected(DateTime? start, DateTime? end, DateTime focusDay){
+/*  void onRangeSelected(DateTime? start, DateTime? end, DateTime focusDay){
     DateFormat inputFormat = DateFormat('dd/MM/yyyy');
     _selectedDay = inputFormat.parse(start.toString());
     _rangeStart = inputFormat.parse(start.toString());
     _rangeEnd = inputFormat.parse(end.toString());
     notifyListeners();
-  }
+  }*/
 
   void onDaySelected(DateTime day, DateTime focusDay) {
-
-    if(_planType == Plans.monthly.text){
-      if(!isSameDay(_selectedDay, day)){
+    /*if (_planType == Plans.monthly.text) {
+      if (!isSameDay(_selectedDay, day)) {
         _selectedDay = day;
         focusDay = focusDay;
         notifyListeners();
       }
-    }
-
-    else{
-      if(!isSameDay(_selectedDay, day)){
+    } else {*/
+      if (!isSameDay(_selectedDay, day)) {
         _selectedDay = day;
         focusDay = focusDay;
         notifyListeners();
       }
-    }
+ /*   }*/
 
-  /*  if(_planType == Plans.transitional.text){
+    /*  if(_planType == Plans.transitional.text){
       final List<DateTime> allBatches = [
         day,
         day.add(const Duration(days: 10)),

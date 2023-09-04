@@ -1,6 +1,7 @@
 import 'package:brunos_kitchen/route_generator.dart';
 import 'package:brunos_kitchen/utils/custom_font_style.dart';
 import 'package:brunos_kitchen/utils/images.dart';
+import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -57,10 +58,10 @@ class MonthlyPlanScreen extends StatelessWidget {
                   ),
                   InkWell(
                     onTap: () {
-                      plansViewModel.setSelectedDish(1);
+                      plansViewModel.setScheduleEmptyTileNumber(1);
                       addMealDetailBottomSheetWidget();
                     },
-                    child: Container(
+                    child: plansViewModel.getScheduleEmptyTile1 != null? Container(
                       decoration: ShapeDecoration(
                         color: CustomColors.lightGreyColor,
                         shape: RoundedRectangleBorder(
@@ -82,7 +83,7 @@ class MonthlyPlanScreen extends StatelessWidget {
                                   ),
                                 ),
                                 child: Image.asset(
-                                  food,
+                                  plansViewModel.getScheduleEmptyTile1!.dishesModel.image!,
                                   height: 52.h,
                                 )),
                             SizedBox(
@@ -91,11 +92,18 @@ class MonthlyPlanScreen extends StatelessWidget {
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                black16w500(data: 'Day 1-11'),
+                                black16w500(data: 'Day ${plansViewModel.getScheduleEmptyTile1!.totalDays}'),
                                 SizedBox(
                                   height: 5.h,
                                 ),
-                                black12w500Centre(data: 'tap to add meal')
+                                black14w500(data: plansViewModel.getScheduleEmptyTile1!.dishesModel.name!),
+                                Visibility(
+                                  visible: plansViewModel.getScheduleEmptyTile1 == null,
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(top: 8.0),
+                                    child: black12w500Centre(data: 'tap to add meal'),
+                                  ),
+                                )
                               ],
                             ),
                             const Spacer(),
@@ -116,17 +124,21 @@ class MonthlyPlanScreen extends StatelessWidget {
                           ],
                         ),
                       ),
-                    ),
+                    )
+                    : DottedBorder(
+                        color: CustomColors.greyColor,
+                        strokeWidth: 1,
+                        child: Container(color: Colors.orange,height: 80,)),
                   ),
                   SizedBox(
                     height: 20.h,
                   ),
                   InkWell(
                     onTap: () {
-                      plansViewModel.setSelectedDish(2);
+                      plansViewModel.setScheduleEmptyTileNumber(2);
                       addMealDetailBottomSheetWidget();
                     },
-                    child: Container(
+                    child:plansViewModel.getScheduleEmptyTile2 != null? Container(
                       decoration: ShapeDecoration(
                         color: CustomColors.lightGreyColor,
                         shape: RoundedRectangleBorder(
@@ -182,17 +194,18 @@ class MonthlyPlanScreen extends StatelessWidget {
                           ],
                         ),
                       ),
-                    ),
+                    )
+                        : Container(color: Colors.orange,height: 80,),
                   ),
                   SizedBox(
                     height: 20.h,
                   ),
                   InkWell(
                     onTap: () {
-                      plansViewModel.setSelectedDish(3);
+                      plansViewModel.setScheduleEmptyTileNumber(3);
                       addMealDetailBottomSheetWidget();
                     },
-                    child: Container(
+                    child: plansViewModel.getScheduleEmptyTile3 != null? Container(
                       decoration: ShapeDecoration(
                         color: CustomColors.lightGreyColor,
                         shape: RoundedRectangleBorder(
@@ -248,7 +261,8 @@ class MonthlyPlanScreen extends StatelessWidget {
                           ],
                         ),
                       ),
-                    ),
+                    )
+                        : Container(color: Colors.orange,height: 80,),
                   ),
                 ],
               ),

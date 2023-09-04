@@ -1,11 +1,10 @@
 import 'package:brunos_kitchen/utils/images.dart';
 
 class SelectedDishModel {
-  DishesModel? dishesModel;
-  String? startDate;
-  String? endDate;
+  DishesModel dishesModel;
+  int totalDays;
 
-  SelectedDishModel(this.dishesModel, this.endDate, this.startDate);
+  SelectedDishModel({required this.dishesModel, required this.totalDays});
 }
 
 class DishesModel {

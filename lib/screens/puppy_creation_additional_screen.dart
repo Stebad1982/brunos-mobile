@@ -374,22 +374,26 @@ class PuppyCreationAdditionalScreen extends StatelessWidget {
                             puppyViewModel.getIsPuppyEdit
                                 ? puppyViewModel
                                     .callEditPuppyApi()
-                                    .then((value) => {
+                                    .then((value) async => {
                                           if (value)
                                             {
+                                             await context
+                                                  .read<AuthViewModel>()
+                                                  .callSplash(showLoader: true),
                                               Navigator.of(context)
                                                 ..pop()
                                                 ..pop(),
-                                              context
-                                                  .read<AuthViewModel>()
-                                                  .callSplash(showLoader: true)
+
                                             }
                                         })
                                 : puppyViewModel
                                     .callRegisterPuppyApi()
-                                    .then((value) => {
+                                    .then((value) async => {
                                           if (value)
                                             {
+                                              await context
+                                                .read<AuthViewModel>()
+                                                .callSplash(showLoader: true),
                                               Navigator.of(context)
                                                 ..pop()
                                                 ..pop(),
@@ -400,9 +404,6 @@ class PuppyCreationAdditionalScreen extends StatelessWidget {
                                                       context, choosePlanRoute)
                                                   : Navigator.pushNamed(context,
                                                       puppyConfirmationRoute),
-                                              context
-                                                  .read<AuthViewModel>()
-                                                  .callSplash(showLoader: true)
                                             }
                                         });
                           }

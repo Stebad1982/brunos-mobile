@@ -3,7 +3,7 @@ import 'package:brunos_kitchen/main.dart';
 import 'package:brunos_kitchen/models/dishes_model.dart';
 import 'package:brunos_kitchen/utils/custom_colors.dart';
 import 'package:brunos_kitchen/view_models/plans_view_model.dart';
-import 'package:brunos_kitchen/widgets/dialogs/schedule_date_range_calender_dialog.dart';
+import 'package:brunos_kitchen/widgets/dialogs/schedule_days_range_dialog.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -21,8 +21,9 @@ Widget mealVerticalListChipWidget({required DishesModel dishData}) {
       GestureDetector(
         onTap: () async {
           Navigator.pop(navigatorKey.currentContext!);
-          navigatorKey.currentContext!.read<PlansViewModel>().clearCalenderValues();
-         scheduleDateRangeCalenderDialog();
+          navigatorKey.currentContext!.read<PlansViewModel>().getScheduleSelectedDaysController.clear();
+          navigatorKey.currentContext!.read<PlansViewModel>().setScheduleSelectedDish(dishData);
+         scheduleDaysRangeDialog();
           /*   final List<DateTime> picked = await DateRagePicker.showDatePicker(
                 context: context,
                 initialFirstDate: new DateTime.now(),
