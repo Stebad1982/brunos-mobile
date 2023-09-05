@@ -61,9 +61,9 @@ class _DeliveryDatesScreenState extends State<DeliveryDatesScreen> {
                       height: 40.h,
                     ),
                     black24w500Centre(
-                        data: plansViewModel.getPlanType == Plans.monthly.text
+                        data:/* plansViewModel.getPlanType == Plans.monthly.text
                             ? 'Schedule Your Meal Deliveries'
-                            : 'Select Your Delivery Date'),
+                            :*/ 'Select Your Delivery Date'),
                     SizedBox(
                       height: 10.h,
                     ),
@@ -145,7 +145,7 @@ class _DeliveryDatesScreenState extends State<DeliveryDatesScreen> {
                               color: CustomColors.yellowColor,
                               shape: BoxShape.circle)),
                     ),
-                    SizedBox(
+                    /*SizedBox(
                       height: 20.h,
                     ),
                     Visibility(
@@ -257,7 +257,7 @@ class _DeliveryDatesScreenState extends State<DeliveryDatesScreen> {
                           ),
                         ],
                       ),
-                    ),
+                    ),*/
                     SizedBox(
                       height: 30.h,
                     ),
@@ -293,7 +293,7 @@ class _DeliveryDatesScreenState extends State<DeliveryDatesScreen> {
                 child: Padding(
                   padding: const EdgeInsets.all(20),
                   child: customButton(
-                      text: 'Continue',
+                      text: 'Add To Cart',
                       onPressed: () {
                         Navigator.pushNamed(context, checkOutRoute);
                       },

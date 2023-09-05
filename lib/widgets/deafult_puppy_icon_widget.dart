@@ -30,10 +30,10 @@ Widget defaultPuppyIconWidget() {
               authViewModel.getAuthResponse.data!.pet!.media!.isNotEmpty
           ? circularNetworkImageWidget(
               image: authViewModel.getAuthResponse.data!.pet!.media!,
-              size: 40.h)
+              size: 30.h)
           : SizedBox(
-              height: 40.h,
-              width: 40.h,
+              height: 30.h,
+              width: 30.h,
               child: SvgPicture.asset(dogProfileImage),
             ),
     );

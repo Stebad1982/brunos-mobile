@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 
 import '../utils/custom_colors.dart';
 import '../utils/custom_font_style.dart';
+import 'cart_icon_widget.dart';
 import 'deafult_puppy_icon_widget.dart';
 
 class AppBarWithBackWidget extends StatelessWidget
@@ -37,10 +38,18 @@ class AppBarWithBackWidget extends StatelessWidget
         Visibility(
           visible: showPuppy,
           child: Padding(
+            padding: const EdgeInsets.only(right: 5,top: 10),
+            child: cartIconWidget(),
+          ),
+        ),
+        Visibility(
+          visible: showPuppy,
+          child: Padding(
             padding: const EdgeInsets.only(right: 20,top: 10),
             child: defaultPuppyIconWidget(),
           ),
         ),
+
       ],
     );
   }

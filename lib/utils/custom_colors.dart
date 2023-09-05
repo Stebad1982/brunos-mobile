@@ -25,6 +25,8 @@ class CustomColors {
 
   static const Color yellowColor = Color.fromRGBO(255, 202, 0, 1);
   static const Color purpleColor = Color.fromRGBO(123, 76, 223, 1);
+  static const Color purpleColorTint = Color.fromRGBO(123, 76, 223, 0.5);
+
 
   static const Color color5 = Color.fromRGBO(255, 184, 100, 1);
   static Color tintColor3 = const Color.fromRGBO(167, 175, 186, 0.5);

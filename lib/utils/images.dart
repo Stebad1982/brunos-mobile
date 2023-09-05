@@ -65,6 +65,8 @@ const homeAddressIcon = "assets/images/home-rounded-icon.svg";
 const workAddressIcon = "assets/images/work-rounded-icon.svg";
 const partnerAddressIcon = "assets/images/partner-rounded-icon.svg";
 const otherAddressIcon = "assets/images/other-rounded-icon.svg";
+const shoppingBagIcon = "assets/images/shopping-bag.svg";
+
 
 
 

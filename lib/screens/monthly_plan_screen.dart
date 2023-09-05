@@ -21,11 +21,11 @@ class MonthlyPlanScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<PlansViewModel>(builder: (context, plansViewModel, child)
-    {
+    return Consumer<PlansViewModel>(builder: (context, plansViewModel, child) {
       return Scaffold(
         appBar: const AppBarWithBackWidget(
-          heading: 'Monthly Plan', showPuppy: true,
+          heading: 'Monthly Plan',
+          showPuppy: true,
         ),
         body: Padding(
           padding: const EdgeInsets.all(20),
@@ -35,20 +35,16 @@ class MonthlyPlanScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Center(
-                      child:
-                      black24w500Centre(
-                          data: 'Let’s Feed Your Beloved\n${context
-                              .watch<AuthViewModel>()
-                              .getAuthResponse
-                              .data!
-                              .pet!
-                              .name!}')),
+                      child: black24w500Centre(
+                          data:
+                              'Let’s Feed Your Beloved\n${context.watch<AuthViewModel>().getAuthResponse.data!.pet!.name!}')),
                   SizedBox(
                     height: 10.h,
                   ),
                   Center(
                       child: lightBlack14w400Centre(
-                          data: 'You can select up to 3 delicious dishes per month')),
+                          data:
+                              'You can select up to 3 delicious dishes per month')),
                   SizedBox(
                     height: 30.h,
                   ),
@@ -61,7 +57,7 @@ class MonthlyPlanScreen extends StatelessWidget {
                       plansViewModel.setScheduleEmptyTileNumber(1);
                       addMealDetailBottomSheetWidget();
                     },
-                    child: plansViewModel.getScheduleEmptyTile1 != null? Container(
+                    child: Container(
                       decoration: ShapeDecoration(
                         color: CustomColors.lightGreyColor,
                         shape: RoundedRectangleBorder(
@@ -69,8 +65,7 @@ class MonthlyPlanScreen extends StatelessWidget {
                         ),
                       ),
                       child: Padding(
-                        padding:
-                        const EdgeInsets.symmetric(
+                        padding: const EdgeInsets.symmetric(
                             horizontal: 15.0, vertical: 22),
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.center,
@@ -82,28 +77,46 @@ class MonthlyPlanScreen extends StatelessWidget {
                                     borderRadius: BorderRadius.circular(200),
                                   ),
                                 ),
-                                child: Image.asset(
-                                  plansViewModel.getScheduleEmptyTile1!.dishesModel.image!,
-                                  height: 52.h,
-                                )),
+                                child:
+                                    plansViewModel.getScheduleEmptyTile1 != null
+                                        ? Image.asset(
+                                            plansViewModel
+                                                .getScheduleEmptyTile1!
+                                                .dishesModel
+                                                .image!,
+                                            height: 52.h,
+                                          )
+                                        : SizedBox(
+                                            height: 52.h,
+                                            width: 52.h,
+                                          )),
                             SizedBox(
                               width: 10.w,
                             ),
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                black16w500(data: 'Day ${plansViewModel.getScheduleEmptyTile1!.totalDays}'),
-                                SizedBox(
-                                  height: 5.h,
-                                ),
-                                black14w500(data: plansViewModel.getScheduleEmptyTile1!.dishesModel.name!),
-                                Visibility(
+                                plansViewModel.getScheduleEmptyTile1 != null
+                                    ? black16w500(
+                                        data:
+                                            'Days ${plansViewModel.getScheduleEmptyTile1!.totalDays}')
+                                    : black16w500(data: 'Tap to Add Meal'),
+                                plansViewModel.getScheduleEmptyTile1 != null? Padding(
+                                  padding: const EdgeInsets.only(top: 5.0),
+                                  child: black14w500(
+                                      data: plansViewModel
+                                          .getScheduleEmptyTile1!
+                                          .dishesModel
+                                          .name!),
+                                ):Container(),
+
+                                /*     Visibility(
                                   visible: plansViewModel.getScheduleEmptyTile1 == null,
                                   child: Padding(
                                     padding: const EdgeInsets.only(top: 8.0),
                                     child: black12w500Centre(data: 'tap to add meal'),
                                   ),
-                                )
+                                )*/
                               ],
                             ),
                             const Spacer(),
@@ -124,11 +137,7 @@ class MonthlyPlanScreen extends StatelessWidget {
                           ],
                         ),
                       ),
-                    )
-                    : DottedBorder(
-                        color: CustomColors.greyColor,
-                        strokeWidth: 1,
-                        child: Container(color: Colors.orange,height: 80,)),
+                    ),
                   ),
                   SizedBox(
                     height: 20.h,
@@ -138,7 +147,7 @@ class MonthlyPlanScreen extends StatelessWidget {
                       plansViewModel.setScheduleEmptyTileNumber(2);
                       addMealDetailBottomSheetWidget();
                     },
-                    child:plansViewModel.getScheduleEmptyTile2 != null? Container(
+                    child: Container(
                       decoration: ShapeDecoration(
                         color: CustomColors.lightGreyColor,
                         shape: RoundedRectangleBorder(
@@ -146,8 +155,7 @@ class MonthlyPlanScreen extends StatelessWidget {
                         ),
                       ),
                       child: Padding(
-                        padding:
-                        const EdgeInsets.symmetric(
+                        padding: const EdgeInsets.symmetric(
                             horizontal: 15.0, vertical: 22),
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.center,
@@ -159,9 +167,18 @@ class MonthlyPlanScreen extends StatelessWidget {
                                     borderRadius: BorderRadius.circular(200),
                                   ),
                                 ),
-                                child: Image.asset(
-                                  food,
+                                child:
+                                plansViewModel.getScheduleEmptyTile2 != null
+                                    ? Image.asset(
+                                  plansViewModel
+                                      .getScheduleEmptyTile2!
+                                      .dishesModel
+                                      .image!,
                                   height: 52.h,
+                                )
+                                    : SizedBox(
+                                  height: 52.h,
+                                  width: 52.h,
                                 )),
                             SizedBox(
                               width: 10.w,
@@ -169,11 +186,27 @@ class MonthlyPlanScreen extends StatelessWidget {
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                black16w500(data: 'Day 1-11'),
-                                SizedBox(
-                                  height: 5.h,
-                                ),
-                                black12w500Centre(data: 'tap to add meal')
+                                plansViewModel.getScheduleEmptyTile2 != null
+                                    ? black16w500(
+                                    data:
+                                    'Days ${plansViewModel.getScheduleEmptyTile2!.totalDays}')
+                                    : black16w500(data: 'Tap to Add Meal'),
+                                plansViewModel.getScheduleEmptyTile2 != null? Padding(
+                                  padding: const EdgeInsets.only(top: 5.0),
+                                  child: black14w500(
+                                      data: plansViewModel
+                                          .getScheduleEmptyTile2!
+                                          .dishesModel
+                                          .name!),
+                                ):Container(),
+
+                                /*     Visibility(
+                                  visible: plansViewModel.getScheduleEmptyTile1 == null,
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(top: 8.0),
+                                    child: black12w500Centre(data: 'tap to add meal'),
+                                  ),
+                                )*/
                               ],
                             ),
                             const Spacer(),
@@ -194,8 +227,7 @@ class MonthlyPlanScreen extends StatelessWidget {
                           ],
                         ),
                       ),
-                    )
-                        : Container(color: Colors.orange,height: 80,),
+                    ),
                   ),
                   SizedBox(
                     height: 20.h,
@@ -205,7 +237,7 @@ class MonthlyPlanScreen extends StatelessWidget {
                       plansViewModel.setScheduleEmptyTileNumber(3);
                       addMealDetailBottomSheetWidget();
                     },
-                    child: plansViewModel.getScheduleEmptyTile3 != null? Container(
+                    child: Container(
                       decoration: ShapeDecoration(
                         color: CustomColors.lightGreyColor,
                         shape: RoundedRectangleBorder(
@@ -213,8 +245,7 @@ class MonthlyPlanScreen extends StatelessWidget {
                         ),
                       ),
                       child: Padding(
-                        padding:
-                        const EdgeInsets.symmetric(
+                        padding: const EdgeInsets.symmetric(
                             horizontal: 15.0, vertical: 22),
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.center,
@@ -226,9 +257,18 @@ class MonthlyPlanScreen extends StatelessWidget {
                                     borderRadius: BorderRadius.circular(200),
                                   ),
                                 ),
-                                child: Image.asset(
-                                  food,
+                                child:
+                                plansViewModel.getScheduleEmptyTile3 != null
+                                    ? Image.asset(
+                                  plansViewModel
+                                      .getScheduleEmptyTile3!
+                                      .dishesModel
+                                      .image!,
                                   height: 52.h,
+                                )
+                                    : SizedBox(
+                                  height: 52.h,
+                                  width: 52.h,
                                 )),
                             SizedBox(
                               width: 10.w,
@@ -236,11 +276,27 @@ class MonthlyPlanScreen extends StatelessWidget {
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                black16w500(data: 'Day 1-11'),
-                                SizedBox(
-                                  height: 5.h,
-                                ),
-                                black12w500Centre(data: 'tap to add meal')
+                                plansViewModel.getScheduleEmptyTile3 != null
+                                    ? black16w500(
+                                    data:
+                                    'Days ${plansViewModel.getScheduleEmptyTile3!.totalDays}')
+                                    : black16w500(data: 'Tap to Add Meal'),
+                                plansViewModel.getScheduleEmptyTile3 != null? Padding(
+                                  padding: const EdgeInsets.only(top: 5.0),
+                                  child: black14w500(
+                                      data: plansViewModel
+                                          .getScheduleEmptyTile3!
+                                          .dishesModel
+                                          .name!),
+                                ):Container(),
+
+                                /*     Visibility(
+                                  visible: plansViewModel.getScheduleEmptyTile1 == null,
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(top: 8.0),
+                                    child: black12w500Centre(data: 'tap to add meal'),
+                                  ),
+                                )*/
                               ],
                             ),
                             const Spacer(),
@@ -261,8 +317,7 @@ class MonthlyPlanScreen extends StatelessWidget {
                           ],
                         ),
                       ),
-                    )
-                        : Container(color: Colors.orange,height: 80,),
+                    ),
                   ),
                 ],
               ),
@@ -270,14 +325,18 @@ class MonthlyPlanScreen extends StatelessWidget {
                 height: screenHeight,
                 child: Align(
                   alignment: Alignment.bottomCenter,
-                  child: customButton(text: 'Continue', onPressed: () {
-                    Navigator.pushNamed(context, checkOutRoute);
-                  }, colored: true),
+                  child: customButton(
+                      text: 'Continue',
+                      onPressed: () {
+                        Navigator.pushNamed(context, deliveryDatesRoute);
+                      },
+                      colored: true),
                 ),
               ),
             ],
           ),
         ),
       );
-    });  }
+    });
+  }
 }
