@@ -15,51 +15,51 @@ import '../utils/shared_pref .dart';
 class PlansViewModel with ChangeNotifier {
   String _planType = Plans.transitional.text;
   //int _radioSelected = 1;
-  DishesModel? _scheduleSelectedDish;
-  int _scheduleEmptyTileNumber = 1;
-  final TextEditingController _scheduleSelectedDaysController =
+  DishesModel? _selectedDish;
+  int _monthlyEmptyTileNumber = 1;
+  final TextEditingController _monthlySelectedDaysController =
       TextEditingController();
-  SelectedDishModel? _scheduleEmptyTile1;
-  SelectedDishModel? _scheduleEmptyTile2;
-  SelectedDishModel? _scheduleEmptyTile3;
+  SelectedDishModel? _monthlyEmptyTile1;
+  SelectedDishModel? _monthlyEmptyTile2;
+  SelectedDishModel? _monthlyEmptyTile3;
 
 /*  DateTime? _rangeStart;
   DateTime? _rangeEnd;*/
   DateTime _focusedDay = DateTime.now().add(const Duration(days: 4));
   DateTime _selectedDay = DateTime.now().add(const Duration(days: 4));
 
-  int get getScheduleEmptyTileNumber => _scheduleEmptyTileNumber;
+  int get getMonthlyEmptyTileNumber => _monthlyEmptyTileNumber;
 
-  void setScheduleEmptyTileNumber(int value) {
-    _scheduleEmptyTileNumber = value;
+  void setMonthlyEmptyTileNumber(int value) {
+    _monthlyEmptyTileNumber = value;
     notifyListeners();
   }
 
-  void setScheduleSelectedDish(DishesModel value) {
-    _scheduleSelectedDish = value;
+  void setSelectedDish(DishesModel value) {
+    _selectedDish = value;
   }
 
-  TextEditingController get getScheduleSelectedDaysController =>
-      _scheduleSelectedDaysController;
+  TextEditingController get getMonthlySelectedDaysController =>
+      _monthlySelectedDaysController;
 
-  SelectedDishModel? get getScheduleEmptyTile1 => _scheduleEmptyTile1;
+  SelectedDishModel? get getMonthlyEmptyTile1 => _monthlyEmptyTile1;
 
-  SelectedDishModel? get getScheduleEmptyTile2 => _scheduleEmptyTile2;
+  SelectedDishModel? get getMonthlyEmptyTile2 => _monthlyEmptyTile2;
 
-  SelectedDishModel? get getScheduleEmptyTile3 => _scheduleEmptyTile3;
+  SelectedDishModel? get getMonthlyEmptyTile3 => _monthlyEmptyTile3;
 
-  void setScheduleSelectedDishModel() {
+  void setMonthlySelectedDishModel() {
     final SelectedDishModel applyDishDetail = SelectedDishModel(
-        dishesModel: _scheduleSelectedDish!,
-        totalDays: int.parse(_scheduleSelectedDaysController.text));
-    if (_scheduleEmptyTileNumber == 1) {
-      _scheduleEmptyTile1 = applyDishDetail;
+        dishesModel: _selectedDish!,
+        totalDays: int.parse(_monthlySelectedDaysController.text), qty: 1);
+    if (_monthlyEmptyTileNumber == 1) {
+      _monthlyEmptyTile1 = applyDishDetail;
       notifyListeners();
-    } else if (_scheduleEmptyTileNumber == 2) {
-      _scheduleEmptyTile2 = applyDishDetail;
+    } else if (_monthlyEmptyTileNumber == 2) {
+      _monthlyEmptyTile2 = applyDishDetail;
       notifyListeners();
     } else {
-      _scheduleEmptyTile3 = applyDishDetail;
+      _monthlyEmptyTile3 = applyDishDetail;
       notifyListeners();
     }
   }
@@ -92,10 +92,10 @@ class PlansViewModel with ChangeNotifier {
   //  _radioSelected = 1;
     /*   _rangeStart = DateTime.now().add(const Duration(days: 4));
     _rangeEnd = DateTime.now().add(const Duration(days: 8));*/
-    _scheduleEmptyTileNumber = 1;
-    _scheduleEmptyTile1 = null;
-    _scheduleEmptyTile2 = null;
-    _scheduleEmptyTile3 = null;
+    _monthlyEmptyTileNumber = 1;
+    _monthlyEmptyTile1 = null;
+    _monthlyEmptyTile2 = null;
+    _monthlyEmptyTile3 = null;
     _focusedDay = DateTime.now().add(const Duration(days: 4));
     _selectedDay = DateTime.now().add(const Duration(days: 4));
     //  _selectedDates.clear();

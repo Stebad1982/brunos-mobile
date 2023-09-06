@@ -26,7 +26,7 @@ Future scheduleDaysRangeDialog() {
               mainAxisSize: MainAxisSize.min,
               children: [
                 TextField(
-                  controller: planViewModel.getScheduleSelectedDaysController,
+                  controller: planViewModel.getMonthlySelectedDaysController,
                   onChanged: (text) {},
                   keyboardType: TextInputType.number,
                   decoration: const InputDecoration(
@@ -40,7 +40,7 @@ Future scheduleDaysRangeDialog() {
                 customButton(
                     text: 'Submit',
                     onPressed: () {
-                      planViewModel.setScheduleSelectedDishModel();
+                      planViewModel.setMonthlySelectedDishModel();
                       Navigator.pop(context);
                     },
                     colored: true),

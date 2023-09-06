@@ -1,3 +1,4 @@
+import 'package:brunos_kitchen/main.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -16,7 +17,9 @@ import 'circular_network_image_widget.dart';
 Widget cartIconWidget() {
   return Consumer<AuthViewModel>(builder: (_, authViewModel, __) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        Navigator.pushNamed(navigatorKey.currentContext!, cartRoute);
+      },
       child:  SizedBox(
         height: 30.h,
         width: 30.h,

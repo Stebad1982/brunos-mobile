@@ -25,7 +25,7 @@ class PuppyDetailScreen extends StatelessWidget {
       return Scaffold(
         appBar: AppBarWithBackWidget(
           heading: toBeginningOfSentenceCase(
-              '${puppyViewModel.getPuppyDetail!.name} Detail'), showPuppy: false,
+              '${puppyViewModel.getPuppyDetail!.name} Detail'), showPuppy: false,showCart: true
         ),
         body: Stack(
           children: [

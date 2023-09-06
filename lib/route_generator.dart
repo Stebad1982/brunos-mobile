@@ -3,6 +3,7 @@ import 'package:brunos_kitchen/screens/add_address_screen.dart';
 import 'package:brunos_kitchen/screens/address_detail_screen.dart';
 import 'package:brunos_kitchen/screens/address_screen.dart';
 import 'package:brunos_kitchen/screens/bottom_navigation_screen.dart';
+import 'package:brunos_kitchen/screens/cart_screen.dart';
 import 'package:brunos_kitchen/screens/checkout_screen.dart';
 import 'package:brunos_kitchen/screens/choose_your_plan_screen.dart';
 import 'package:brunos_kitchen/screens/delivery_dates_screen.dart';
@@ -67,6 +68,7 @@ const String addAddressRoute = '/addAddress';
 const String addressDetailRoute = '/addressDetail';
 const String shopItemDetailRoute = '/shopItemDetail';
 const String addAddressDetailRoute = '/addAddressDetail';
+const String cartRoute = '/cart';
 
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -146,6 +148,9 @@ class RouteGenerator {
       case shopItemDetailRoute:
         return MaterialPageRoute(
             builder: (_) => const ShopItemDetailScreen());
+      case cartRoute:
+        return MaterialPageRoute(
+            builder: (_) => const CartScreen());
 
       case '/tasting_details':
       /*return MaterialPageRoute(

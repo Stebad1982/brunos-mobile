@@ -44,7 +44,7 @@ class _OrdersScreenState extends State<OrdersScreen>
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: const AppBarWithBackWidget(
-          heading: 'My Orders', showPuppy: false,
+          heading: 'My Orders', showPuppy: false,showCart: true
         ),
         body: Column(
           children: [

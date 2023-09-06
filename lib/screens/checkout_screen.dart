@@ -30,7 +30,7 @@ class CheckoutScreen extends StatelessWidget {
               ? 'Transitional Plan'
               : plansViewModel.getPlanType == Plans.monthly.text
                   ? 'Monthly Plan'
-                  : 'One time Order', showPuppy: true,
+                  : 'One time Order', showPuppy: true,showCart: true
         ),
         body: Stack(
           children: [

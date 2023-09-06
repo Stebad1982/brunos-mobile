@@ -11,8 +11,9 @@ class AppBarWithBackWidget extends StatelessWidget
     implements PreferredSizeWidget {
   final String? heading;
   final bool showPuppy;
+  final bool showCart;
 
-  const AppBarWithBackWidget({Key? key, this.heading, required this.showPuppy}) : super(key: key);
+  const AppBarWithBackWidget({Key? key, this.heading, required this.showPuppy, required this.showCart}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +37,7 @@ class AppBarWithBackWidget extends StatelessWidget
       ),
       actions: [
         Visibility(
-          visible: showPuppy,
+          visible: showCart,
           child: Padding(
             padding: const EdgeInsets.only(right: 5,top: 10),
             child: cartIconWidget(),

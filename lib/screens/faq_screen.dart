@@ -13,7 +13,7 @@ class FaqScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const AppBarWithBackWidget(
-        heading: 'FAQ', showPuppy: false,
+        heading: 'FAQ', showPuppy: false,showCart: true
       ),
       body: Accordion(
         disableScrolling: true,

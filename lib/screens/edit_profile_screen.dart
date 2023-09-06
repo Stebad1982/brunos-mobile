@@ -20,7 +20,7 @@ class EditProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const AppBarWithBackWidget(heading: 'Edit Profile', showPuppy: false,),
+      appBar: const AppBarWithBackWidget(heading: 'Edit Profile', showPuppy: false,showCart: true),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.only(

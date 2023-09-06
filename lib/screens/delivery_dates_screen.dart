@@ -1,7 +1,9 @@
+import 'package:brunos_kitchen/models/cart_model.dart';
 import 'package:brunos_kitchen/route_generator.dart';
 import 'package:brunos_kitchen/utils/custom_colors.dart';
 import 'package:brunos_kitchen/utils/custom_font_style.dart';
 import 'package:brunos_kitchen/utils/enums.dart';
+import 'package:brunos_kitchen/view_models/cart_view_model.dart';
 import 'package:brunos_kitchen/view_models/plans_view_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -9,8 +11,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:table_calendar/table_calendar.dart';
 
+import '../models/dishes_model.dart';
 import '../utils/custom_buttons.dart';
+import '../utils/date_time_formatter.dart';
 import '../utils/images.dart';
+import '../view_models/auth_view_model.dart';
 import '../widgets/app_bar_with_back_widget.dart';
 
 class DeliveryDatesScreen extends StatefulWidget {
@@ -38,7 +43,7 @@ class _DeliveryDatesScreenState extends State<DeliveryDatesScreen> {
               : plansViewModel.getPlanType == Plans.monthly.text
                   ? 'Monthly Plan'
                   : 'One time Order',
-          showPuppy: true,
+          showPuppy: true,showCart: true
         ),
         body: Stack(
           children: [
@@ -61,9 +66,10 @@ class _DeliveryDatesScreenState extends State<DeliveryDatesScreen> {
                       height: 40.h,
                     ),
                     black24w500Centre(
-                        data:/* plansViewModel.getPlanType == Plans.monthly.text
+                        data: /* plansViewModel.getPlanType == Plans.monthly.text
                             ? 'Schedule Your Meal Deliveries'
-                            :*/ 'Select Your Delivery Date'),
+                            :*/
+                            'Select Your Delivery Date'),
                     SizedBox(
                       height: 10.h,
                     ),
@@ -73,7 +79,7 @@ class _DeliveryDatesScreenState extends State<DeliveryDatesScreen> {
                     SizedBox(
                       height: 30.h,
                     ),
-                /*    Visibility(
+                    /*    Visibility(
                       visible: plansViewModel.getPlanType == Plans.monthly.text,
                       child: Padding(
                         padding: const EdgeInsets.only(bottom: 20),
@@ -131,7 +137,8 @@ class _DeliveryDatesScreenState extends State<DeliveryDatesScreen> {
                         titleCentered: true,
                       ),
                       availableGestures: AvailableGestures.all,
-                      selectedDayPredicate: (day) => isSameDay(plansViewModel.getSelectedDay,day),
+                      selectedDayPredicate: (day) =>
+                          isSameDay(plansViewModel.getSelectedDay, day),
                       locale: 'en_US',
                       firstDay: plansViewModel.getFocusedDay,
                       lastDay: DateTime.utc(2030, 3, 14),
@@ -295,7 +302,22 @@ class _DeliveryDatesScreenState extends State<DeliveryDatesScreen> {
                   child: customButton(
                       text: 'Add To Cart',
                       onPressed: () {
-                        Navigator.pushNamed(context, checkOutRoute);
+                        final String deliveryDate =  DateTimeFormatter.showDateFormat3(plansViewModel.getSelectedDay!);
+                        if (plansViewModel.getPlanType == Plans.monthly.text) {
+                          final List<SelectedDishModel> dishesList = [
+                            plansViewModel.getMonthlyEmptyTile1!,
+                            plansViewModel.getMonthlyEmptyTile2!,
+                            plansViewModel.getMonthlyEmptyTile3!
+                          ];
+                          context.read<CartViewModel>().addToCartList(CartModel(
+                              selectedDish: dishesList,
+                              puppy: context
+                                  .read<AuthViewModel>()
+                                  .getAuthResponse
+                                  .data!
+                                  .pet!, deliveryDate: deliveryDate),);
+                        }
+                        Navigator.pushNamed(context, cartRoute);
                       },
                       colored: true),
                 ),

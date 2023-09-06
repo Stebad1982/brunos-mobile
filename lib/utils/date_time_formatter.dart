@@ -12,6 +12,12 @@ class DateTimeFormatter {
     return formatted;
   }
 
+  static showDateFormat3(DateTime date) {
+    final DateFormat formatter = DateFormat('dd MMM yyyy');
+    final String formatted = formatter.format(date);
+    return formatted;
+  }
+
   static dateToTimeStamp(DateTime date) {
     final int dateFormat = date.millisecondsSinceEpoch;
     return dateFormat;

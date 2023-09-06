@@ -20,7 +20,7 @@ class TransitionalPlanScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const AppBarWithBackWidget(
-        heading: 'Transitional Plan', showPuppy: true,
+        heading: 'Transitional Plan', showPuppy: true,showCart: true
       ),
       body: SingleChildScrollView(
         child: Padding(

@@ -199,6 +199,17 @@ Widget orange14w500({required String data}) {
   );
 }
 
+Widget orange18w500({required String data}) {
+  return Text(
+    data,
+    style: TextStyle(
+        fontFamily: 'CircularStd',
+        fontSize: 18.sp,
+        fontWeight: FontWeight.w500,
+        color: CustomColors.orangeColor),
+  );
+}
+
 Widget black12w500Centre({required String data, bool? centre, bool? overFlowText, bool? lineSpacing}) {
   return Text(
     maxLines: overFlowText != null && overFlowText? 1 : null,

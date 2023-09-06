@@ -27,7 +27,7 @@ class PuppyCreationAdditionalScreen extends StatelessWidget {
           heading: context.read<PuppyViewModel>().getRouteToPuppyFrom ==
                   Screens.home.text
               ? 'Add Pet'
-              : 'My Pets', showPuppy: false,
+              : 'My Pets', showPuppy: false,showCart: true
         ),
         body: Stack(
           children: [

@@ -18,7 +18,7 @@ class PuppyConfirmationScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const AppBarWithBackWidget(
-        heading: 'My Pets', showPuppy: false,
+        heading: 'My Pets', showPuppy: false,showCart: true
       ),
       body: SafeArea(
         child: Padding(

@@ -21,8 +21,8 @@ Widget mealVerticalListChipWidget({required DishesModel dishData}) {
       GestureDetector(
         onTap: () async {
           Navigator.pop(navigatorKey.currentContext!);
-          navigatorKey.currentContext!.read<PlansViewModel>().getScheduleSelectedDaysController.clear();
-          navigatorKey.currentContext!.read<PlansViewModel>().setScheduleSelectedDish(dishData);
+          navigatorKey.currentContext!.read<PlansViewModel>().getMonthlySelectedDaysController.clear();
+          navigatorKey.currentContext!.read<PlansViewModel>().setSelectedDish(dishData);
          scheduleDaysRangeDialog();
           /*   final List<DateTime> picked = await DateRagePicker.showDatePicker(
                 context: context,

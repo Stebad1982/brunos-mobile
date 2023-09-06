@@ -39,7 +39,7 @@ class _AddressScreenState extends State<AddressScreen> {
         builder: (context, addressViewModel, child) {
           return Scaffold(
             appBar:  const AppBarWithBackWidget(
-              heading: 'Address', showPuppy: false,
+              heading: 'Address', showPuppy: false,showCart: true
             ),
             floatingActionButton: FloatingActionButton(
               backgroundColor: CustomColors.orangeColor,

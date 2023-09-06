@@ -16,7 +16,7 @@ class ShopItemDetailScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBarWithBackWidget(
         heading: toBeginningOfSentenceCase('Product Detail'),
-        showPuppy: false,
+        showPuppy: false,showCart: true
       ),
       body: SingleChildScrollView(
         child: Padding(

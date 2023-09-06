@@ -20,7 +20,7 @@ class ChooseYourPlanScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const AppBarWithBackWidget(
-        heading: 'Choose your plan', showPuppy: true,
+        heading: 'Choose your plan', showPuppy: true,showCart: true
       ),
       body: SingleChildScrollView(
         child: Padding(
