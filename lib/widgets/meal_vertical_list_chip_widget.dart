@@ -18,7 +18,7 @@ import '../utils/images.dart';
 Widget mealVerticalListChipWidget({required DishesModel dishData}) {
   return Column(
     children: [
-      GestureDetector(
+      InkWell(
         onTap: () async {
           Navigator.pop(navigatorKey.currentContext!);
           navigatorKey.currentContext!.read<PlansViewModel>().getMonthlySelectedDaysController.clear();

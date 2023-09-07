@@ -15,6 +15,7 @@ import '../view_models/auth_view_model.dart';
 import '../view_models/plans_view_model.dart';
 import '../widgets/add_meal_bottom_sheet_widget.dart';
 import '../widgets/app_bar_with_back_widget.dart';
+import '../widgets/dialogs/discription_dialog.dart';
 
 class MonthlyPlanScreen extends StatelessWidget {
   const MonthlyPlanScreen({Key? key}) : super(key: key);
@@ -24,9 +25,7 @@ class MonthlyPlanScreen extends StatelessWidget {
     return Consumer<PlansViewModel>(builder: (context, plansViewModel, child) {
       return Scaffold(
         appBar: const AppBarWithBackWidget(
-          heading: 'Monthly Plan',
-          showPuppy: true,showCart: true
-        ),
+            heading: 'Monthly Plan', showPuppy: true, showCart: true),
         body: Padding(
           padding: const EdgeInsets.all(20),
           child: Stack(
@@ -80,10 +79,8 @@ class MonthlyPlanScreen extends StatelessWidget {
                                 child:
                                     plansViewModel.getMonthlyEmptyTile1 != null
                                         ? Image.asset(
-                                            plansViewModel
-                                                .getMonthlyEmptyTile1!
-                                                .dishesModel
-                                                .image!,
+                                            plansViewModel.getMonthlyEmptyTile1!
+                                                .dishesModel.image!,
                                             height: 52.h,
                                           )
                                         : SizedBox(
@@ -101,14 +98,17 @@ class MonthlyPlanScreen extends StatelessWidget {
                                         data:
                                             'Days ${plansViewModel.getMonthlyEmptyTile1!.totalDays}')
                                     : black16w500(data: 'Tap to Add Meal'),
-                                plansViewModel.getMonthlyEmptyTile1 != null? Padding(
-                                  padding: const EdgeInsets.only(top: 5.0),
-                                  child: black14w500(
-                                      data: plansViewModel
-                                          .getMonthlyEmptyTile1!
-                                          .dishesModel
-                                          .name!),
-                                ):Container(),
+                                plansViewModel.getMonthlyEmptyTile1 != null
+                                    ? Padding(
+                                        padding:
+                                            const EdgeInsets.only(top: 5.0),
+                                        child: black14w500(
+                                            data: plansViewModel
+                                                .getMonthlyEmptyTile1!
+                                                .dishesModel
+                                                .name!),
+                                      )
+                                    : Container(),
 
                                 /*     Visibility(
                                   visible: plansViewModel.getScheduleEmptyTile1 == null,
@@ -168,18 +168,16 @@ class MonthlyPlanScreen extends StatelessWidget {
                                   ),
                                 ),
                                 child:
-                                plansViewModel.getMonthlyEmptyTile2 != null
-                                    ? Image.asset(
-                                  plansViewModel
-                                      .getMonthlyEmptyTile2!
-                                      .dishesModel
-                                      .image!,
-                                  height: 52.h,
-                                )
-                                    : SizedBox(
-                                  height: 52.h,
-                                  width: 52.h,
-                                )),
+                                    plansViewModel.getMonthlyEmptyTile2 != null
+                                        ? Image.asset(
+                                            plansViewModel.getMonthlyEmptyTile2!
+                                                .dishesModel.image!,
+                                            height: 52.h,
+                                          )
+                                        : SizedBox(
+                                            height: 52.h,
+                                            width: 52.h,
+                                          )),
                             SizedBox(
                               width: 10.w,
                             ),
@@ -188,17 +186,20 @@ class MonthlyPlanScreen extends StatelessWidget {
                               children: [
                                 plansViewModel.getMonthlyEmptyTile2 != null
                                     ? black16w500(
-                                    data:
-                                    'Days ${plansViewModel.getMonthlyEmptyTile2!.totalDays}')
+                                        data:
+                                            'Days ${plansViewModel.getMonthlyEmptyTile2!.totalDays}')
                                     : black16w500(data: 'Tap to Add Meal'),
-                                plansViewModel.getMonthlyEmptyTile2 != null? Padding(
-                                  padding: const EdgeInsets.only(top: 5.0),
-                                  child: black14w500(
-                                      data: plansViewModel
-                                          .getMonthlyEmptyTile2!
-                                          .dishesModel
-                                          .name!),
-                                ):Container(),
+                                plansViewModel.getMonthlyEmptyTile2 != null
+                                    ? Padding(
+                                        padding:
+                                            const EdgeInsets.only(top: 5.0),
+                                        child: black14w500(
+                                            data: plansViewModel
+                                                .getMonthlyEmptyTile2!
+                                                .dishesModel
+                                                .name!),
+                                      )
+                                    : Container(),
 
                                 /*     Visibility(
                                   visible: plansViewModel.getScheduleEmptyTile1 == null,
@@ -258,18 +259,16 @@ class MonthlyPlanScreen extends StatelessWidget {
                                   ),
                                 ),
                                 child:
-                                plansViewModel.getMonthlyEmptyTile3 != null
-                                    ? Image.asset(
-                                  plansViewModel
-                                      .getMonthlyEmptyTile3!
-                                      .dishesModel
-                                      .image!,
-                                  height: 52.h,
-                                )
-                                    : SizedBox(
-                                  height: 52.h,
-                                  width: 52.h,
-                                )),
+                                    plansViewModel.getMonthlyEmptyTile3 != null
+                                        ? Image.asset(
+                                            plansViewModel.getMonthlyEmptyTile3!
+                                                .dishesModel.image!,
+                                            height: 52.h,
+                                          )
+                                        : SizedBox(
+                                            height: 52.h,
+                                            width: 52.h,
+                                          )),
                             SizedBox(
                               width: 10.w,
                             ),
@@ -278,17 +277,20 @@ class MonthlyPlanScreen extends StatelessWidget {
                               children: [
                                 plansViewModel.getMonthlyEmptyTile3 != null
                                     ? black16w500(
-                                    data:
-                                    'Days ${plansViewModel.getMonthlyEmptyTile3!.totalDays}')
+                                        data:
+                                            'Days ${plansViewModel.getMonthlyEmptyTile3!.totalDays}')
                                     : black16w500(data: 'Tap to Add Meal'),
-                                plansViewModel.getMonthlyEmptyTile3 != null? Padding(
-                                  padding: const EdgeInsets.only(top: 5.0),
-                                  child: black14w500(
-                                      data: plansViewModel
-                                          .getMonthlyEmptyTile3!
-                                          .dishesModel
-                                          .name!),
-                                ):Container(),
+                                plansViewModel.getMonthlyEmptyTile3 != null
+                                    ? Padding(
+                                        padding:
+                                            const EdgeInsets.only(top: 5.0),
+                                        child: black14w500(
+                                            data: plansViewModel
+                                                .getMonthlyEmptyTile3!
+                                                .dishesModel
+                                                .name!),
+                                      )
+                                    : Container(),
 
                                 /*     Visibility(
                                   visible: plansViewModel.getScheduleEmptyTile1 == null,
@@ -328,7 +330,14 @@ class MonthlyPlanScreen extends StatelessWidget {
                   child: customButton(
                       text: 'Continue',
                       onPressed: () {
-                        Navigator.pushNamed(context, deliveryDatesRoute);
+                        if (plansViewModel.getMonthlyEmptyTile1 == null &&
+                            plansViewModel.getMonthlyEmptyTile2 == null && plansViewModel.getMonthlyEmptyTile3 == null)
+                          {
+                            descriptionDialog(context: context, description: 'Please add at least One Meal', height: 150.h, title: 'Note');
+                          }
+                        else{
+                          Navigator.pushNamed(context, deliveryDatesRoute);
+                        }
                       },
                       colored: true),
                 ),

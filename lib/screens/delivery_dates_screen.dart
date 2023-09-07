@@ -304,11 +304,16 @@ class _DeliveryDatesScreenState extends State<DeliveryDatesScreen> {
                       onPressed: () {
                         final String deliveryDate =  DateTimeFormatter.showDateFormat3(plansViewModel.getSelectedDay!);
                         if (plansViewModel.getPlanType == Plans.monthly.text) {
-                          final List<SelectedDishModel> dishesList = [
-                            plansViewModel.getMonthlyEmptyTile1!,
-                            plansViewModel.getMonthlyEmptyTile2!,
-                            plansViewModel.getMonthlyEmptyTile3!
-                          ];
+                          final List<SelectedDishModel> dishesList = [];
+                          if(plansViewModel.getMonthlyEmptyTile1 != null){
+                            dishesList.add( plansViewModel.getMonthlyEmptyTile1!);
+                          }
+                          if(plansViewModel.getMonthlyEmptyTile2 != null){
+                            dishesList.add( plansViewModel.getMonthlyEmptyTile2!);
+                          }
+                          if(plansViewModel.getMonthlyEmptyTile3 != null){
+                            dishesList.add( plansViewModel.getMonthlyEmptyTile3!);
+                          }
                           context.read<CartViewModel>().addToCartList(CartModel(
                               selectedDish: dishesList,
                               puppy: context

@@ -9,7 +9,7 @@ import '../../utils/custom_font_style.dart';
 void descriptionDialog(
     {required BuildContext context,
     required String description,
-    required double height}) {
+    required double height, required title}) {
   showGeneralDialog(
     context: context,
     barrierLabel: "Barrier",
@@ -33,7 +33,7 @@ void descriptionDialog(
               mainAxisSize: MainAxisSize.min,
               children: [
                 black18w500(
-                  data: 'Description',
+                  data: title,
                 ),
                 const Spacer(),
                 lightBlack14w400Centre(

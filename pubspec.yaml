@@ -60,6 +60,7 @@ dependencies:
   flutter_localization: ^0.1.13
   flutter_google_places: ^0.3.0
   location: ^5.0.3
+  badges: ^3.1.2
   dotted_border: ^2.0.0+3
 
 
