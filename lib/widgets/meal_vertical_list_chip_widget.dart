@@ -1,6 +1,6 @@
 
 import 'package:brunos_kitchen/main.dart';
-import 'package:brunos_kitchen/models/dishes_model.dart';
+import 'package:brunos_kitchen/models/recipe_model.dart';
 import 'package:brunos_kitchen/utils/custom_colors.dart';
 import 'package:brunos_kitchen/view_models/plans_view_model.dart';
 import 'package:brunos_kitchen/widgets/dialogs/schedule_days_range_dialog.dart';
@@ -14,15 +14,16 @@ import 'package:table_calendar/table_calendar.dart';
 import '../route_generator.dart';
 import '../utils/custom_font_style.dart';
 import '../utils/images.dart';
+import 'circular_network_image_widget.dart';
 
-Widget mealVerticalListChipWidget({required DishesModel dishData}) {
+Widget mealVerticalListChipWidget({required RecipeModel recipeModel}) {
   return Column(
     children: [
       InkWell(
         onTap: () async {
           Navigator.pop(navigatorKey.currentContext!);
           navigatorKey.currentContext!.read<PlansViewModel>().getMonthlySelectedDaysController.clear();
-          navigatorKey.currentContext!.read<PlansViewModel>().setSelectedDish(dishData);
+          navigatorKey.currentContext!.read<PlansViewModel>().setSelectedRecipe(recipeModel);
          scheduleDaysRangeDialog();
           /*   final List<DateTime> picked = await DateRagePicker.showDatePicker(
                 context: context,
@@ -54,9 +55,7 @@ Widget mealVerticalListChipWidget({required DishesModel dishData}) {
                         borderRadius: BorderRadius.circular(200),
                       ),
                     ),
-                    child: Image.asset(
-                      dishData.image!,
-                      height: 52.h,
+                    child: circularNetworkImageWidget( image: recipeModel.media!, size: 52.h,
                     )),
                 SizedBox(
                   width: 10.w,
@@ -64,7 +63,7 @@ Widget mealVerticalListChipWidget({required DishesModel dishData}) {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    black16w500(data: dishData.name!),
+                    black16w500(data: recipeModel.name!),
                   ],
                 ),
                 const Spacer(),

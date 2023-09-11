@@ -10,9 +10,10 @@ import '../utils/enums.dart';
 import 'api_base_helper.dart';
 
 class AddressApiServices {
+  final ApiBaseHelper _httpService = ApiBaseHelper();
+
   Future<AllAddressResponse> allAddress() async {
-    ApiBaseHelper httpService = ApiBaseHelper();
-    final response = await httpService.httpRequest(
+    final response = await _httpService.httpRequest(
         endPoint: EndPoints.allAddresses, requestType: 'GET', params: '');
     final parsed = json.decode(response.body);
     AllAddressResponse allAddressResponse = AllAddressResponse.fromJson(parsed);
@@ -21,8 +22,7 @@ class AddressApiServices {
 
   Future<BaseResponseModel> createAddress(
       {required AddAddressRequest addAddressRequest}) async {
-    ApiBaseHelper httpService = ApiBaseHelper();
-    final response = await httpService.httpRequest(
+    final response = await _httpService.httpRequest(
         endPoint: EndPoints.addAddress,
         requestType: 'POST',
         requestBody: addAddressRequest,
@@ -33,8 +33,7 @@ class AddressApiServices {
   }
 
   Future<BaseResponseModel> deleteAddress({required String addressId}) async {
-    ApiBaseHelper httpService = ApiBaseHelper();
-    final response = await httpService.httpRequest(
+    final response = await _httpService.httpRequest(
         endPoint: EndPoints.deleteAddress,
         requestType: 'DEL',
         params: addressId);
@@ -44,8 +43,7 @@ class AddressApiServices {
   }
 
   Future<BaseResponseModel> defaultAddress({required String addressId}) async {
-    ApiBaseHelper httpService = ApiBaseHelper();
-    final response = await httpService.httpRequest(
+    final response = await _httpService.httpRequest(
         endPoint: EndPoints.defaultAddress,
         requestType: 'PUT',
         requestBody: '',
@@ -54,17 +52,4 @@ class AddressApiServices {
     BaseResponseModel baseResponseModel = BaseResponseModel.fromJson(parsed);
     return baseResponseModel;
   }
-
-/*  Future<AllAddressResponse> updateAddress(
-      {required AddressModel addressModel}) async {
-    ApiBaseHelper httpService = ApiBaseHelper();
-    final response = await httpService.httpRequest(
-        endPoint: EndPoints.updateAddress,
-        requestType: 'POST',
-        requestBody: addressModel,
-        params: '');
-    final parsed = json.decode(response.body);
-    AllAddressResponse allAddressResponse = AllAddressResponse.fromJson(parsed);
-    return allAddressResponse;
-  }*/
 }

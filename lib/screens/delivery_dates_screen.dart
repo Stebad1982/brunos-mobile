@@ -11,7 +11,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:table_calendar/table_calendar.dart';
 
-import '../models/dishes_model.dart';
+import '../models/recipe_model.dart';
 import '../utils/custom_buttons.dart';
 import '../utils/date_time_formatter.dart';
 import '../utils/images.dart';
@@ -303,27 +303,30 @@ class _DeliveryDatesScreenState extends State<DeliveryDatesScreen> {
                       text: 'Add To Cart',
                       onPressed: () {
                         final String deliveryDate =  DateTimeFormatter.showDateFormat3(plansViewModel.getSelectedDay!);
+                        final List<RecipeModel> recipeList = [];
+
                         if (plansViewModel.getPlanType == Plans.monthly.text) {
-                          final List<SelectedDishModel> dishesList = [];
                           if(plansViewModel.getMonthlyEmptyTile1 != null){
-                            dishesList.add( plansViewModel.getMonthlyEmptyTile1!);
+                            recipeList.add( plansViewModel.getMonthlyEmptyTile1!);
                           }
                           if(plansViewModel.getMonthlyEmptyTile2 != null){
-                            dishesList.add( plansViewModel.getMonthlyEmptyTile2!);
+                            recipeList.add( plansViewModel.getMonthlyEmptyTile2!);
                           }
                           if(plansViewModel.getMonthlyEmptyTile3 != null){
-                            dishesList.add( plansViewModel.getMonthlyEmptyTile3!);
+                            recipeList.add( plansViewModel.getMonthlyEmptyTile3!);
                           }
-                          context.read<CartViewModel>().addToCartList(CartModel(
-                              selectedDish: dishesList,
-                              puppy: context
-                                  .read<AuthViewModel>()
-                                  .getAuthResponse
-                                  .data!
-                                  .pet!, deliveryDate: deliveryDate),);
+
                         }
-                        Navigator.pushNamed(context, cartRoute);
-                      },
+                        else{
+                          recipeList.add( plansViewModel.getSelectedRecipe);
+                        }
+                        context.read<CartViewModel>().addToCartList(CartModel(
+                            recipe: recipeList,
+                            puppy: context
+                                .read<AuthViewModel>()
+                                .getAuthResponse
+                                .data!
+                                .pet!, deliveryDate: deliveryDate, planType: plansViewModel.getPlanType),);                      },
                       colored: true),
                 ),
               ),

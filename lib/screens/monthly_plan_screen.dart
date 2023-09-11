@@ -15,6 +15,7 @@ import '../view_models/auth_view_model.dart';
 import '../view_models/plans_view_model.dart';
 import '../widgets/add_meal_bottom_sheet_widget.dart';
 import '../widgets/app_bar_with_back_widget.dart';
+import '../widgets/circular_network_image_widget.dart';
 import '../widgets/dialogs/discription_dialog.dart';
 
 class MonthlyPlanScreen extends StatelessWidget {
@@ -78,10 +79,8 @@ class MonthlyPlanScreen extends StatelessWidget {
                                 ),
                                 child:
                                     plansViewModel.getMonthlyEmptyTile1 != null
-                                        ? Image.asset(
-                                            plansViewModel.getMonthlyEmptyTile1!
-                                                .dishesModel.image!,
-                                            height: 52.h,
+                                        ? circularNetworkImageWidget(
+                                            image: plansViewModel.getMonthlyEmptyTile1!.media!, size: 52.h,
                                           )
                                         : SizedBox(
                                             height: 52.h,
@@ -105,7 +104,6 @@ class MonthlyPlanScreen extends StatelessWidget {
                                         child: black14w500(
                                             data: plansViewModel
                                                 .getMonthlyEmptyTile1!
-                                                .dishesModel
                                                 .name!),
                                       )
                                     : Container(),
@@ -169,11 +167,9 @@ class MonthlyPlanScreen extends StatelessWidget {
                                 ),
                                 child:
                                     plansViewModel.getMonthlyEmptyTile2 != null
-                                        ? Image.asset(
-                                            plansViewModel.getMonthlyEmptyTile2!
-                                                .dishesModel.image!,
-                                            height: 52.h,
-                                          )
+                                        ? circularNetworkImageWidget(
+                                      image: plansViewModel.getMonthlyEmptyTile2!.media!, size: 52.h,
+                                    )
                                         : SizedBox(
                                             height: 52.h,
                                             width: 52.h,
@@ -196,7 +192,6 @@ class MonthlyPlanScreen extends StatelessWidget {
                                         child: black14w500(
                                             data: plansViewModel
                                                 .getMonthlyEmptyTile2!
-                                                .dishesModel
                                                 .name!),
                                       )
                                     : Container(),
@@ -260,11 +255,9 @@ class MonthlyPlanScreen extends StatelessWidget {
                                 ),
                                 child:
                                     plansViewModel.getMonthlyEmptyTile3 != null
-                                        ? Image.asset(
-                                            plansViewModel.getMonthlyEmptyTile3!
-                                                .dishesModel.image!,
-                                            height: 52.h,
-                                          )
+                                        ? circularNetworkImageWidget(
+                                      image: plansViewModel.getMonthlyEmptyTile3!.media!, size: 52.h,
+                                    )
                                         : SizedBox(
                                             height: 52.h,
                                             width: 52.h,
@@ -287,7 +280,6 @@ class MonthlyPlanScreen extends StatelessWidget {
                                         child: black14w500(
                                             data: plansViewModel
                                                 .getMonthlyEmptyTile3!
-                                                .dishesModel
                                                 .name!),
                                       )
                                     : Container(),

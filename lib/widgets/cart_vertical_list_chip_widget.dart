@@ -39,7 +39,7 @@ Widget cartVerticalListChipWidget({required CartModel cartDetail}) {
                       children: [
                         orange18w500(
                             data:
-                                '${navigatorKey.currentContext!.watch<PlansViewModel>().getPlanType} Plan'),
+                                '${cartDetail.planType} Plan'),
                         grey12w500(
                             data: 'Delivery Date: ${cartDetail.deliveryDate}')
                       ],
@@ -97,10 +97,10 @@ Widget cartVerticalListChipWidget({required CartModel cartDetail}) {
                 ListView.separated(
                   physics: const NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
-                  itemCount: cartDetail.selectedDish.length,
+                  itemCount: cartDetail.recipe.length,
                   itemBuilder: (BuildContext context, int index) {
                     return cartDishVerticalListChipWidget(
-                        cartDish: cartDetail.selectedDish[index]);
+                        cartRecipeModel: cartDetail.recipe[index]);
                   }, separatorBuilder: (BuildContext context, int index) { return SizedBox(height: 10.h,); },
                 ),
               ],

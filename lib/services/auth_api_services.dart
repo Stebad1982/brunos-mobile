@@ -15,10 +15,10 @@ import 'api_base_helper.dart';
 
 class AuthApiServices {
   final SharedPref _sharedPref = SharedPref();
+  final ApiBaseHelper _httpService = ApiBaseHelper();
 
   Future<AuthResponse> signInApi({required SignInRequest signInRequest}) async {
-    ApiBaseHelper httpService = ApiBaseHelper();
-    final response = await httpService.httpRequest(
+    final response = await _httpService.httpRequest(
         endPoint: EndPoints.signIn,
         requestType: 'POST',
         requestBody: signInRequest,
@@ -32,8 +32,7 @@ class AuthApiServices {
     return authResponse;
   }
   Future<AuthResponse> userRegisterApi({required UserRegisterRequest userRegisterRequest}) async {
-    ApiBaseHelper httpService = ApiBaseHelper();
-    final response = await httpService.httpRequest(
+    final response = await _httpService.httpRequest(
         endPoint: EndPoints.signUp,
         requestType: 'POST',
         requestBody: userRegisterRequest,
@@ -48,8 +47,7 @@ class AuthApiServices {
   }
 
   Future<AuthResponse> guestUserRegisterApi({required UserRegisterRequest userRegisterRequest}) async {
-    ApiBaseHelper httpService = ApiBaseHelper();
-    final response = await httpService.httpRequest(
+    final response = await _httpService.httpRequest(
         endPoint: EndPoints.guest,
         requestType: 'POST',
         requestBody: userRegisterRequest,
@@ -64,8 +62,7 @@ class AuthApiServices {
   }
 
   Future<BaseResponseModel> forgotPasswordApi({required ForgotPasswordRequest forgotPasswordRequest}) async {
-    ApiBaseHelper httpService = ApiBaseHelper();
-    final response = await httpService.httpRequest(
+    final response = await _httpService.httpRequest(
         endPoint: EndPoints.forgotPassword,
         requestType: 'POST',
         requestBody: forgotPasswordRequest,
@@ -76,8 +73,7 @@ class AuthApiServices {
   }
 
   Future<BaseResponseModel> checkPhoneNumberApi({required String phoneNumber}) async {
-    ApiBaseHelper httpService = ApiBaseHelper();
-    final response = await httpService.httpRequest(
+    final response = await _httpService.httpRequest(
         endPoint: EndPoints.checkPhoneNumber,
         requestType: 'GET',
         requestBody: '',
@@ -88,8 +84,7 @@ class AuthApiServices {
   }
 
   Future<AuthResponse> socialMediaLoginApi({required SocialSignInRequest socialSignInRequest}) async {
-    ApiBaseHelper httpService = ApiBaseHelper();
-    final response = await httpService.httpRequest(
+    final response = await _httpService.httpRequest(
         endPoint: EndPoints.socialLogin,
         requestType: 'POST',
         requestBody: socialSignInRequest,
@@ -104,8 +99,7 @@ class AuthApiServices {
   }
 
   Future<AuthResponse> splashApi() async {
-    ApiBaseHelper httpService = ApiBaseHelper();
-    final response = await httpService.httpRequest(
+    final response = await _httpService.httpRequest(
         endPoint: EndPoints.splash,
         requestType: 'GET',
         params: '');
@@ -115,8 +109,7 @@ class AuthApiServices {
   }
 
   Future<AuthResponse> editUserProfileApi({required EditUserProfileRequest editUserProfileRequest}) async {
-    ApiBaseHelper httpService = ApiBaseHelper();
-    final response = await httpService.httpRequest(
+    final response = await _httpService.httpRequest(
         endPoint: EndPoints.editUserProfile,
         requestType: 'PUT',
         requestBody: editUserProfileRequest,

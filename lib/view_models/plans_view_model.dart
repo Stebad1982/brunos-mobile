@@ -1,8 +1,11 @@
 import 'dart:io';
 
-import 'package:brunos_kitchen/models/dishes_model.dart';
+import 'package:brunos_kitchen/models/recipe_model.dart';
+import 'package:brunos_kitchen/models/responses/recipes_list_response.dart';
 import 'package:brunos_kitchen/route_generator.dart';
+import 'package:brunos_kitchen/services/plan_api_services.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:intl/intl.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:table_calendar/table_calendar.dart';
@@ -13,20 +16,25 @@ import '../utils/enums.dart';
 import '../utils/shared_pref .dart';
 
 class PlansViewModel with ChangeNotifier {
+  final PlanApiServices _planApiServices = PlanApiServices();
   String _planType = Plans.transitional.text;
-  //int _radioSelected = 1;
-  DishesModel? _selectedDish;
+  RecipesListResponse _recipesListResponse = RecipesListResponse();
+  RecipeModel _selectedRecipe = RecipeModel();
   int _monthlyEmptyTileNumber = 1;
   final TextEditingController _monthlySelectedDaysController =
       TextEditingController();
-  SelectedDishModel? _monthlyEmptyTile1;
-  SelectedDishModel? _monthlyEmptyTile2;
-  SelectedDishModel? _monthlyEmptyTile3;
-
-/*  DateTime? _rangeStart;
-  DateTime? _rangeEnd;*/
+  RecipeModel? _monthlyEmptyTile1;
+  RecipeModel? _monthlyEmptyTile2;
+  RecipeModel? _monthlyEmptyTile3;
   DateTime _focusedDay = DateTime.now().add(const Duration(days: 4));
   DateTime _selectedDay = DateTime.now().add(const Duration(days: 4));
+
+  RecipesListResponse get getRecipesListResponse => _recipesListResponse;
+
+  void setRecipesListResponse (RecipesListResponse value){
+    _recipesListResponse = value;
+    notifyListeners();
+  }
 
   int get getMonthlyEmptyTileNumber => _monthlyEmptyTileNumber;
 
@@ -35,23 +43,24 @@ class PlansViewModel with ChangeNotifier {
     notifyListeners();
   }
 
-  void setSelectedDish(DishesModel value) {
-    _selectedDish = value;
+  RecipeModel get getSelectedRecipe => _selectedRecipe;
+
+  void setSelectedRecipe(RecipeModel value) {
+    _selectedRecipe = value;
   }
 
   TextEditingController get getMonthlySelectedDaysController =>
       _monthlySelectedDaysController;
 
-  SelectedDishModel? get getMonthlyEmptyTile1 => _monthlyEmptyTile1;
+  RecipeModel? get getMonthlyEmptyTile1 => _monthlyEmptyTile1;
 
-  SelectedDishModel? get getMonthlyEmptyTile2 => _monthlyEmptyTile2;
+  RecipeModel? get getMonthlyEmptyTile2 => _monthlyEmptyTile2;
 
-  SelectedDishModel? get getMonthlyEmptyTile3 => _monthlyEmptyTile3;
+  RecipeModel? get getMonthlyEmptyTile3 => _monthlyEmptyTile3;
 
   void setMonthlySelectedDishModel() {
-    final SelectedDishModel applyDishDetail = SelectedDishModel(
-        dishesModel: _selectedDish!,
-        totalDays: int.parse(_monthlySelectedDaysController.text), qty: 1);
+    _selectedRecipe.totalDays = int.parse(_monthlySelectedDaysController.text);
+    final RecipeModel applyDishDetail = _selectedRecipe;
     if (_monthlyEmptyTileNumber == 1) {
       _monthlyEmptyTile1 = applyDishDetail;
       notifyListeners();
@@ -68,19 +77,6 @@ class PlansViewModel with ChangeNotifier {
 
   DateTime? get getSelectedDay => _selectedDay;
 
-/*  DateTime? get getRangeStart => _rangeStart;
-
-  DateTime? get getRangeEnd => _rangeEnd;*/
-
-//  List<DateTime> get getSelectedDates => _selectedDates;
-
-  //int get getRadioVal => _radioSelected;
-
-/*  void setRadioValue(int value) {
-    _radioSelected = value;
-    notifyListeners();
-  }*/
-
   String get getPlanType => _planType;
 
   void setPlanType(String value) {
@@ -89,58 +85,38 @@ class PlansViewModel with ChangeNotifier {
   }
 
   void clearPlanData() {
-  //  _radioSelected = 1;
-    /*   _rangeStart = DateTime.now().add(const Duration(days: 4));
-    _rangeEnd = DateTime.now().add(const Duration(days: 8));*/
     _monthlyEmptyTileNumber = 1;
     _monthlyEmptyTile1 = null;
     _monthlyEmptyTile2 = null;
     _monthlyEmptyTile3 = null;
     _focusedDay = DateTime.now().add(const Duration(days: 4));
     _selectedDay = DateTime.now().add(const Duration(days: 4));
-    //  _selectedDates.clear();
     notifyListeners();
   }
-
-/*  void onRangeSelected(DateTime? start, DateTime? end, DateTime focusDay){
-    DateFormat inputFormat = DateFormat('dd/MM/yyyy');
-    _selectedDay = inputFormat.parse(start.toString());
-    _rangeStart = inputFormat.parse(start.toString());
-    _rangeEnd = inputFormat.parse(end.toString());
-    notifyListeners();
-  }*/
-
   void onDaySelected(DateTime day, DateTime focusDay) {
-    /*if (_planType == Plans.monthly.text) {
       if (!isSameDay(_selectedDay, day)) {
         _selectedDay = day;
         focusDay = focusDay;
         notifyListeners();
       }
-    } else {*/
-      if (!isSameDay(_selectedDay, day)) {
-        _selectedDay = day;
-        focusDay = focusDay;
-        notifyListeners();
-      }
- /*   }*/
+  }
 
-    /*  if(_planType == Plans.transitional.text){
-      final List<DateTime> allBatches = [
-        day,
-        day.add(const Duration(days: 10)),
-        day.add(const Duration(days: 20))
-      ];
-      _selectedDates = allBatches;
-    }
-    else{
-      if (_selectedDates.contains(day)) {
-        _selectedDates.remove(day);
+  Future<bool> callAllRecipesApi() async {
+    EasyLoading.show(status: 'Please wait...');
+    try {
+      final RecipesListResponse response =
+      await _planApiServices.allRecipes();
+      if (response.isSuccess!) {
+        setRecipesListResponse(response);
+        EasyLoading.dismiss();
+        return true;
       } else {
-        _selectedDates.add(day);
+        EasyLoading.showError('${response.message}');
+        return false;
       }
-    }*/
-
-    notifyListeners();
+    } catch (e) {
+      EasyLoading.showError(e.toString());
+      return false;
+    }
   }
 }

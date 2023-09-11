@@ -3,6 +3,7 @@ import 'package:accordion/accordion_section.dart';
 import 'package:brunos_kitchen/utils/images.dart';
 import 'package:brunos_kitchen/view_models/address_view_model.dart';
 import 'package:brunos_kitchen/view_models/auth_view_model.dart';
+import 'package:brunos_kitchen/view_models/plans_view_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dash/flutter_dash.dart';
@@ -197,20 +198,27 @@ class HomeScreen extends StatelessWidget {
                 child: customButton(
                     text: 'Design Your Doggo\'s Delicious Diet Now',
                     onPressed: () {
-                      if (context
-                              .read<AuthViewModel>()
-                              .getAuthResponse
-                              .data!
-                              .petsCount ==
-                          0) {
-                        context
-                            .read<PuppyViewModel>()
-                            .setRouteToPuppyFrom(Screens.home.text);
-                        context.read<PuppyViewModel>().clearPuppyData();
-                        Navigator.pushNamed(context, puppyCreationRoute);
-                      } else {
-                        Navigator.pushNamed(context, choosePlanRoute);
-                      }
+                      context
+                          .read<PlansViewModel>()
+                          .callAllRecipesApi()
+                          .then((value) {
+                        if (value) {
+                          if (context
+                                  .read<AuthViewModel>()
+                                  .getAuthResponse
+                                  .data!
+                                  .petsCount ==
+                              0) {
+                            context
+                                .read<PuppyViewModel>()
+                                .setRouteToPuppyFrom(Screens.home.text);
+                            context.read<PuppyViewModel>().clearPuppyData();
+                            Navigator.pushNamed(context, puppyCreationRoute);
+                          } else {
+                            Navigator.pushNamed(context, choosePlanRoute);
+                          }
+                        }
+                      });
                     },
                     colored: true),
               ),
@@ -364,16 +372,20 @@ class HomeScreen extends StatelessWidget {
               SingleChildScrollView(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-               // shrinkWrap: true,
+                // shrinkWrap: true,
                 scrollDirection: Axis.horizontal,
-              //  itemCount: 3,
-               /* itemBuilder: (BuildContext context, int index) =>*/
+                //  itemCount: 3,
+                /* itemBuilder: (BuildContext context, int index) =>*/
                 child: Row(
-                  children: foodCategoryList.map((e) =>  Container(
-                    margin: const EdgeInsets.only(right: 20),
-                    width: 159.w,
-                    child: shopItemsHorizontalListChipWidget(),
-                  ),).toList(),
+                  children: foodCategoryList
+                      .map(
+                        (e) => Container(
+                          margin: const EdgeInsets.only(right: 20),
+                          width: 159.w,
+                          child: shopItemsHorizontalListChipWidget(),
+                        ),
+                      )
+                      .toList(),
                 ),
               ),
               SizedBox(

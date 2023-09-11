@@ -1,4 +1,4 @@
-import 'package:brunos_kitchen/models/dishes_model.dart';
+import 'package:brunos_kitchen/models/recipe_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -10,7 +10,7 @@ import '../utils/custom_font_style.dart';
 import '../utils/images.dart';
 import 'circular_network_image_widget.dart';
 
-Widget cartDishVerticalListChipWidget({required SelectedDishModel cartDish}) {
+Widget cartDishVerticalListChipWidget({required RecipeModel cartRecipeModel}) {
   return Column(
     children: [
       InkWell(
@@ -29,14 +29,14 @@ Widget cartDishVerticalListChipWidget({required SelectedDishModel cartDish}) {
               children: [
                 Row(
                   children: [ circularNetworkImageWidget(
-                        image: cartDish.dishesModel.image!, size: 40.h),
+                        image: cartRecipeModel.media!, size: 40.h),
 
                     SizedBox(width: 10.w,),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        black14w500(data: cartDish.dishesModel.name!),
-                        black14w500(data: 'Days: ${cartDish.totalDays}'),
+                        black14w500(data: cartRecipeModel.name!),
+                        black14w500(data: 'Days: ${cartRecipeModel.totalDays}'),
                       ],
                     ),
                   ],

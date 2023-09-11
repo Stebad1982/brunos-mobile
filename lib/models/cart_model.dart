@@ -1,10 +1,11 @@
 import 'package:brunos_kitchen/models/puppy_model.dart';
 
-import 'dishes_model.dart';
+import 'recipe_model.dart';
 
 class CartModel {
   PuppyModel puppy;
-  List<SelectedDishModel> selectedDish;
+  List<RecipeModel> recipe;
   String deliveryDate;
-  CartModel({required this.selectedDish,required this.puppy, required this.deliveryDate});
+  String planType;
+  CartModel({required this.recipe,required this.puppy, required this.deliveryDate,required this.planType});
 }

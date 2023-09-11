@@ -1,4 +1,5 @@
 import 'package:brunos_kitchen/main.dart';
+import 'package:brunos_kitchen/view_models/cart_view_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -17,28 +18,30 @@ import 'circular_network_image_widget.dart';
 
 Widget cartIconWidget() {
   return Consumer<AuthViewModel>(builder: (_, authViewModel, __) {
-    return badges.Badge(
-      position: badges.BadgePosition.topEnd(top: 0, end: 3),
-      badgeStyle: const badges.BadgeStyle(
-        badgeColor: CustomColors.orangeColor,
-      ),
-      badgeContent: const Text(
-        'a',
-        style: TextStyle(color: Colors.white),
-      ),
-      child: InkWell(
-        onTap: () {
-          Navigator.pushNamed(navigatorKey.currentContext!, cartRoute);
-        },
-        child:  SizedBox(
-          height: 30.h,
-          width: 30.h,
-          child: CircleAvatar(
-            backgroundColor: CustomColors.purpleColorTint,
-            child: SizedBox(
-                height: 20.h,
-                width: 20.h,
-                child: SvgPicture.asset(shoppingBagIcon,color: CustomColors.whiteColor,)),
+      return Center(
+      child: SizedBox(
+        height: 30.h,
+        width: 30.h,
+        child: badges.Badge(
+          position: badges.BadgePosition.topEnd(top: -8, end: -2),
+          badgeStyle: const badges.BadgeStyle(
+            badgeColor: CustomColors.orangeColor,
+          ),
+          badgeContent:  Text(
+            navigatorKey.currentContext!.watch<CartViewModel>().getCartList.length.toString(),
+            style: TextStyle(color: Colors.white),
+          ),
+          child: InkWell(
+            onTap: () {
+              Navigator.pushNamed(navigatorKey.currentContext!, cartRoute);
+            },
+            child:  CircleAvatar(
+              backgroundColor: CustomColors.purpleColorTint,
+              child: SizedBox(
+                  height: 20.h,
+                  width: 20.h,
+                  child: SvgPicture.asset(shoppingBagIcon,color: CustomColors.whiteColor,)),
+            ),
           ),
         ),
       ),

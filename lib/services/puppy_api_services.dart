@@ -11,6 +11,7 @@ import '../utils/enums.dart';
 import 'api_base_helper.dart';
 
 class PuppyApiServices {
+  final ApiBaseHelper _httpService = ApiBaseHelper();
 
  /* Future<BreedsResponse> breedsApi() async {
     ApiBaseHelper httpService = ApiBaseHelper();
@@ -25,8 +26,7 @@ class PuppyApiServices {
   }*/
 
   Future<BaseResponseModel> addBreedsApi({required AddBreedRequest addBreedRequest}) async {
-    ApiBaseHelper httpService = ApiBaseHelper();
-    final response = await httpService.httpRequest(
+    final response = await _httpService.httpRequest(
         endPoint: EndPoints.addBreeds,
         requestType: 'POST',
         requestBody: addBreedRequest,
@@ -37,8 +37,7 @@ class PuppyApiServices {
   }
 
   Future<BaseResponseModel> addPuppyApi({required RegisterPuppyRequest registerPuppyRequest}) async {
-    ApiBaseHelper httpService = ApiBaseHelper();
-    final response = await httpService.httpRequest(
+    final response = await _httpService.httpRequest(
         endPoint: EndPoints.registerPuppy,
         requestType: 'POST',
         requestBody: registerPuppyRequest,
@@ -49,8 +48,7 @@ class PuppyApiServices {
   }
 
   Future<BreedsResponse> allBreedsApi() async {
-    ApiBaseHelper httpService = ApiBaseHelper();
-    final response = await httpService.httpRequest(
+    final response = await _httpService.httpRequest(
         endPoint: EndPoints.breeds,
         requestType: 'GET',
         params: '');
@@ -60,8 +58,7 @@ class PuppyApiServices {
   }
 
   Future<PuppiesResponse> puppiesApi() async {
-    ApiBaseHelper httpService = ApiBaseHelper();
-    final response = await httpService.httpRequest(
+    final response = await _httpService.httpRequest(
         endPoint: EndPoints.puppies,
         requestType: 'GET',
         params: '');
@@ -71,8 +68,7 @@ class PuppyApiServices {
   }
 
   Future<BaseResponseModel> editPuppyApi({required EditPuppyRequest editPuppyRequest, required String puppyId}) async {
-    ApiBaseHelper httpService = ApiBaseHelper();
-    final response = await httpService.httpRequest(
+    final response = await _httpService.httpRequest(
         endPoint: EndPoints.registerPuppy,
         requestType: 'PUT',
         requestBody: editPuppyRequest,
@@ -83,8 +79,7 @@ class PuppyApiServices {
   }
 
   Future<BaseResponseModel> deletePuppyApi({required String puppyId}) async {
-    ApiBaseHelper httpService = ApiBaseHelper();
-    final response = await httpService.httpRequest(
+    final response = await _httpService.httpRequest(
         endPoint: EndPoints.registerPuppy,
         requestType: 'DEL',
         params: puppyId);
@@ -94,8 +89,7 @@ class PuppyApiServices {
   }
 
   Future<BaseResponseModel> defaultPuppy({required String puppyId}) async {
-    ApiBaseHelper httpService = ApiBaseHelper();
-    final response = await httpService.httpRequest(
+    final response = await _httpService.httpRequest(
         endPoint: EndPoints.defaultPuppy,
         requestType: 'PUT',
         requestBody: '',

@@ -11,18 +11,24 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
+import '../models/recipe_model.dart';
 import '../utils/custom_colors.dart';
 import '../utils/enums.dart';
 import 'one_time_order_bottom_sheet_widget.dart';
 
-Widget foodDescribedGridChipWidget() {
+Widget foodDescribedGridChipWidget({required RecipeModel recipeModel}) {
   return InkWell(
     onTap: () {
-      navigatorKey.currentContext!.read<PlansViewModel>().getPlanType ==
-              Plans.oneTime.text
-          ? oneTimeOrderBottomSheetWidget()
-          : Navigator.pushNamed(
-              navigatorKey.currentContext!, deliveryDatesRoute);
+      navigatorKey.currentContext!.read<PlansViewModel>().setSelectedRecipe(recipeModel);
+
+      if(navigatorKey.currentContext!.read<PlansViewModel>().getPlanType ==
+          Plans.oneTime.text){
+        oneTimeOrderBottomSheetWidget();
+      }
+      else{
+        Navigator.pushNamed(
+            navigatorKey.currentContext!, deliveryDatesRoute);
+      }
     },
     child: Card(
         elevation: 2,

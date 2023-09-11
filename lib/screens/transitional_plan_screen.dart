@@ -1,3 +1,4 @@
+import 'package:brunos_kitchen/view_models/plans_view_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -64,10 +65,10 @@ class TransitionalPlanScreen extends StatelessWidget {
                   runSpacing: 20.w,
                   spacing: 20.w,
                   alignment: WrapAlignment.center,
-                  children: List.generate(4, (index) {
+                  children: List.generate(context.read<PlansViewModel>().getRecipesListResponse.data!.length, (index) {
                     return SizedBox(
                       width: 157.w,
-                      child: foodDescribedGridChipWidget(),
+                      child: foodDescribedGridChipWidget(recipeModel: context.read<PlansViewModel>().getRecipesListResponse.data![index]),
                     );
                   }),
                 ),

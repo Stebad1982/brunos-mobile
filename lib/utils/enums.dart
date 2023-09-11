@@ -69,6 +69,7 @@ enum EndPoints {
   puppies('pet/user'),
   registerPuppy('pet/'),
   allAddresses('user/locations'),
+  allRecipes('recipe/'),
   addAddress('user/location'),
   defaultAddress('user/default/location/'),
   defaultPuppy('pet/default/'),
