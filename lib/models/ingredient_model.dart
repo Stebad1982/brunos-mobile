@@ -1,6 +1,6 @@
 class Ingredient {
   String? name;
-  int? aggregate;
+  num? aggregate;
 
   Ingredient({this.name, this.aggregate});
 

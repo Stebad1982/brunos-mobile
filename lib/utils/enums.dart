@@ -34,6 +34,14 @@ enum Puppy {
   final String text;
 }
 
+enum PuppyWeight {
+  idealWeight(10),
+  overweight(20),
+  underweight(5);
+  final int value;
+  const PuppyWeight(this.value);
+}
+
 enum AddressLabels {
   home("Home"),
   work("Work"),

@@ -38,13 +38,13 @@ class _DeliveryDatesScreenState extends State<DeliveryDatesScreen> {
     return Consumer<PlansViewModel>(builder: (context, plansViewModel, child) {
       return Scaffold(
         appBar: AppBarWithBackWidget(
-          heading: plansViewModel.getPlanType == Plans.transitional.text
-              ? 'Transitional Plan'
-              : plansViewModel.getPlanType == Plans.monthly.text
-                  ? 'Monthly Plan'
-                  : 'One time Order',
-          showPuppy: true,showCart: true
-        ),
+            heading: plansViewModel.getPlanType == Plans.transitional.text
+                ? 'Transitional Plan'
+                : plansViewModel.getPlanType == Plans.monthly.text
+                    ? 'Monthly Plan'
+                    : 'One time Order',
+            showPuppy: true,
+            showCart: true),
         body: Stack(
           children: [
             SingleChildScrollView(
@@ -302,31 +302,39 @@ class _DeliveryDatesScreenState extends State<DeliveryDatesScreen> {
                   child: customButton(
                       text: 'Add To Cart',
                       onPressed: () {
-                        final String deliveryDate =  DateTimeFormatter.showDateFormat3(plansViewModel.getSelectedDay!);
+                        final String deliveryDate =
+                            DateTimeFormatter.showDateFormat3(
+                                plansViewModel.getSelectedDay!);
                         final List<RecipeModel> recipeList = [];
 
                         if (plansViewModel.getPlanType == Plans.monthly.text) {
-                          if(plansViewModel.getMonthlyEmptyTile1 != null){
-                            recipeList.add( plansViewModel.getMonthlyEmptyTile1!);
+                          if (plansViewModel.getMonthlyEmptyTile1 != null) {
+                            recipeList
+                                .add(plansViewModel.getMonthlyEmptyTile1!);
                           }
-                          if(plansViewModel.getMonthlyEmptyTile2 != null){
-                            recipeList.add( plansViewModel.getMonthlyEmptyTile2!);
+                          if (plansViewModel.getMonthlyEmptyTile2 != null) {
+                            recipeList
+                                .add(plansViewModel.getMonthlyEmptyTile2!);
                           }
-                          if(plansViewModel.getMonthlyEmptyTile3 != null){
-                            recipeList.add( plansViewModel.getMonthlyEmptyTile3!);
+                          if (plansViewModel.getMonthlyEmptyTile3 != null) {
+                            recipeList
+                                .add(plansViewModel.getMonthlyEmptyTile3!);
                           }
-
+                        } else {
+                          recipeList.add(plansViewModel.getSelectedRecipe!);
                         }
-                        else{
-                          recipeList.add( plansViewModel.getSelectedRecipe);
-                        }
-                        context.read<CartViewModel>().addToCartList(CartModel(
-                            recipe: recipeList,
-                            puppy: context
-                                .read<AuthViewModel>()
-                                .getAuthResponse
-                                .data!
-                                .pet!, deliveryDate: deliveryDate, planType: plansViewModel.getPlanType),);                      },
+                        context.read<CartViewModel>().addToCartList(
+                              CartModel(
+                                  recipe: recipeList,
+                                  puppy: context
+                                      .read<AuthViewModel>()
+                                      .getAuthResponse
+                                      .data!
+                                      .pet!,
+                                  deliveryDate: deliveryDate,
+                                  planType: plansViewModel.getPlanType),
+                            );
+                      },
                       colored: true),
                 ),
               ),

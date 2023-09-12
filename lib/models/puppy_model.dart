@@ -14,6 +14,7 @@ class PuppyModel {
   int? currentWeight;
   int? actualWeight;
   bool? isDefault;
+  int? feedingRoutine;
   String? activityLevel;
 
   PuppyModel({
@@ -25,6 +26,7 @@ class PuppyModel {
     this.breed,
     this.gender,
     this.bornOnDate,
+    this.feedingRoutine,
     this.currentWeight,
     this.actualWeight,
     this.activityLevel,
@@ -43,6 +45,7 @@ class PuppyModel {
     currentWeight = json['currentWeight'];
     actualWeight = json['actualWeight'];
     isDefault = json['isDefault'];
+    feedingRoutine =json['feedingRoutine']?? 1;
     activityLevel = json['activityLevel'];
   }
 
@@ -58,6 +61,7 @@ class PuppyModel {
     data['currentWeight'] = this.currentWeight;
     data['actualWeight'] = this.actualWeight;
     data['isDefault'] = this.isDefault;
+    data['feedingRoutine'] = this.feedingRoutine;
     data['activityLevel'] = this.activityLevel;
     return data;
   }

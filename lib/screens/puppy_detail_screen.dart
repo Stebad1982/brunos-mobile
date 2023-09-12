@@ -156,7 +156,7 @@ class PuppyDetailScreen extends StatelessWidget {
                     SizedBox(
                       height: 10.h,
                     ),
-                    Row(
+                   /* Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         black14w500(data: 'Spayed/Neutered?'),
@@ -173,7 +173,7 @@ class PuppyDetailScreen extends StatelessWidget {
                     Divider(),
                     SizedBox(
                       height: 10.h,
-                    ),
+                    ),*/
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -216,7 +216,7 @@ class PuppyDetailScreen extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        black14w500(data: 'Actual Weight'),
+                        black14w500(data: 'Is Weight?'),
                         black14w500(
                             data: puppyViewModel
                                         .getPuppyDetail!.actualWeight! !=
@@ -240,6 +240,21 @@ class PuppyDetailScreen extends StatelessWidget {
                         black14w500(
                             data: toBeginningOfSentenceCase(
                                 puppyViewModel.getPuppyDetail!.activityLevel!)!)
+                      ],
+                    ),
+                    SizedBox(
+                      height: 10.h,
+                    ),
+                    Divider(),
+                    SizedBox(
+                      height: 10.h,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        black14w500(data: 'Feeding Routine Per Day'),
+                        black14w500(
+                            data: puppyViewModel.getPuppyDetail!.feedingRoutine!.toString())
                       ],
                     ),
                     SizedBox(

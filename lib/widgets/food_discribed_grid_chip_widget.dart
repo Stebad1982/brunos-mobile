@@ -1,9 +1,12 @@
+
 import 'package:brunos_kitchen/main.dart';
 import 'package:brunos_kitchen/route_generator.dart';
 import 'package:brunos_kitchen/utils/custom_font_style.dart';
 import 'package:brunos_kitchen/utils/images.dart';
+import 'package:brunos_kitchen/view_models/auth_view_model.dart';
 import 'package:brunos_kitchen/view_models/plans_view_model.dart';
 import 'package:brunos_kitchen/view_models/puppy_view_model.dart';
+import 'package:brunos_kitchen/widgets/circular_network_image_widget.dart';
 import 'package:brunos_kitchen/widgets/recipe_detail_bottom_sheet_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +17,7 @@ import 'package:provider/provider.dart';
 import '../models/recipe_model.dart';
 import '../utils/custom_colors.dart';
 import '../utils/enums.dart';
+import '../utils/recipes_calculation.dart';
 import 'one_time_order_bottom_sheet_widget.dart';
 
 Widget foodDescribedGridChipWidget({required RecipeModel recipeModel}) {
@@ -54,20 +58,18 @@ Widget foodDescribedGridChipWidget({required RecipeModel recipeModel}) {
                   child: Stack(
                     children: [
                       Center(
-                        child: Image.asset(
-                          food,
-                          height: 108.h,
+                        child: Image.network(recipeModel.media!, height: 108.h,
                         ),
                       ),
                       InkWell(
                         onTap: () {
-                          recipeDetailBottomSheetWidget();
+                          recipeDetailBottomSheetWidget(recipeDetail: recipeModel);
                         },
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Align(
                               alignment: Alignment.topRight,
-                              child: SvgPicture.asset(informationButton)),
+                              child: SvgPicture.asset(informationButton),),
                         ),
                       )
                       /*IconButton(
@@ -87,13 +89,14 @@ Widget foodDescribedGridChipWidget({required RecipeModel recipeModel}) {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    lightBlack14w400Centre(data: 'Beefy Barkfest', left: true),
+                    lightBlack14w400Centre(data: recipeModel.name!, left: true),
                     black10w400(
-                        data: 'High protein, grain-free,picky eater approved'),
+                      maxLine: 2,
+                        data: recipeModel.ingredientsComposition!),
                     SizedBox(
                       height: 16.h,
                     ),
-                    brown12w500Centre(data: 'AED 100 / Plan'),
+                    brown12w500Centre(data: 'AED ${recipeModel.pricePerKG} / KG'),
                     SizedBox(
                       height: 2.h,
                     ),

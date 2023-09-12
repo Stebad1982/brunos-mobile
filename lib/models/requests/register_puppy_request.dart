@@ -2,7 +2,8 @@ class RegisterPuppyRequest {
   String name;
   String media;
   String gender;
-  bool isSpayNeuter;
+  int feedingRoutine;
+ // bool isSpayNeuter;
   String breed;
   int bornOnDate;
   int currentWeight;
@@ -13,7 +14,8 @@ class RegisterPuppyRequest {
       {required this.name,
         required this.media,
         required this.gender,
-        required this.isSpayNeuter,
+required this.feedingRoutine,
+       // required this.isSpayNeuter,
         required this.breed,
         required this.bornOnDate,
         required this.currentWeight,
@@ -25,7 +27,9 @@ class RegisterPuppyRequest {
     data['name'] = this.name;
     data['media'] = this.media;
     data['gender'] = this.gender;
-    data['isSpayNeuter'] = this.isSpayNeuter;
+    data['feedingRoutine'] = this.feedingRoutine;
+    //TODO: REMOVE SPAYNEUTER
+    data['isSpayNeuter'] = false;
     data['breed'] = this.breed;
     data['bornOnDate'] = this.bornOnDate;
     data['currentWeight'] = this.currentWeight;

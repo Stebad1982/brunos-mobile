@@ -32,6 +32,7 @@ class PuppyViewModel with ChangeNotifier {
       FirebaseUploadImageService();
   final PuppyApiServices _puppyApiServices = PuppyApiServices();
   bool _isPuppyEdit = false;
+  int _feedingRoutine = 1;
   final ImageGenerator _imageGenerator = ImageGenerator();
   PuppiesResponse _puppiesResponse = PuppiesResponse();
   PuppyModel? _puppyDetail;
@@ -39,24 +40,31 @@ class PuppyViewModel with ChangeNotifier {
   String _puppyImage = '';
   CroppedFile? _imageFile;
   String _puppyGender = Puppy.boy.text;
-  bool _puppyIsSpayNeuter = true;
+ // bool _puppyIsSpayNeuter = true;
   final TextEditingController _puppyBreedController = TextEditingController();
   BreedsResponse _breedsResponse = BreedsResponse();
   List<BreedsData> _breedsList = [];
   String _puppyDob = 'MM   /   DD   /   YYYY';
   DateTime? _formatBirthDate;
-  TextEditingController _puppyCurrentWeight = TextEditingController();
-  TextEditingController _puppyActualWeight = TextEditingController();
+  final TextEditingController _puppyCurrentWeight = TextEditingController();
+   int _puppyActualWeight = PuppyWeight.idealWeight.value;
   String _puppyActivityLevel = Puppy.active.text;
   String _puppyNameFieldError = '';
   String _puppyBreedFieldError = '';
 /*  String _puppyDobFieldError = '';*/
 
-  // String _currentWeightFieldError = '';
+   String _currentWeightFieldError = '';
   // String _actualWeightFieldError = '';
 /*
   String _puppyImageFieldError = '';
 */
+
+  int get getFeedingRoutine => _feedingRoutine;
+
+  void setFeedingRoutine (int value){
+    _feedingRoutine = value;
+    notifyListeners();
+  }
 
   bool get getIsPuppyEdit => _isPuppyEdit;
 
@@ -90,12 +98,12 @@ class PuppyViewModel with ChangeNotifier {
     notifyListeners();
   }*/
 
-  TextEditingController get getPuppyActualWeight => _puppyActualWeight;
+  int get getPuppyActualWeight => _puppyActualWeight;
 
-  /* void setPuppyActualWeight(int value) {
+   void setPuppyActualWeight(int value) {
     _puppyActualWeight = value;
     notifyListeners();
-  }*/
+  }
 
   CroppedFile? get getImageFile => _imageFile;
 
@@ -142,14 +150,12 @@ class PuppyViewModel with ChangeNotifier {
   //   notifyListeners();
   // }
 
-/*
   String get getCurrentWeightFieldError => _currentWeightFieldError;
-*/
 
-  // void setCurrentWeightFieldError(String value) {
-  //   _currentWeightFieldError = value;
-  //   notifyListeners();
-  // }
+  void setCurrentWeightFieldError(String value) {
+    _currentWeightFieldError = value;
+    notifyListeners();
+  }
 
   String get getPuppyBreedFieldError => _puppyBreedFieldError;
 
@@ -176,12 +182,12 @@ class PuppyViewModel with ChangeNotifier {
 
   TextEditingController get getPuppyNameController => _puppyNameController;
 
-  bool get getPuppyIsSpayNeuter => _puppyIsSpayNeuter;
+ // bool get getPuppyIsSpayNeuter => _puppyIsSpayNeuter;
 
-  void setPuppyIsSpayNeuter(bool value) {
+ /* void setPuppyIsSpayNeuter(bool value) {
     _puppyIsSpayNeuter = value;
     notifyListeners();
-  }
+  }*/
 
   String get getPuppyGender => _puppyGender;
 
@@ -217,15 +223,15 @@ class PuppyViewModel with ChangeNotifier {
     }
   }*/
 
-  /* bool puppyCurrentWeightValidation() {
-    if (_puppyCurrentWeight == 0) {
+   bool puppyCurrentWeightValidation() {
+    if (_puppyCurrentWeight.text.isEmpty || _puppyCurrentWeight.text == '0') {
       setCurrentWeightFieldError('Please Select Pet Current Weight');
       return false;
     } else {
       setCurrentWeightFieldError('');
       return true;
     }
-  }*/
+  }
 
   /* bool puppyActualWeightValidation() {
     if (_puppyActualWeight == 0) {
@@ -267,8 +273,8 @@ class PuppyViewModel with ChangeNotifier {
 
   bool puppyAdditionalCreationValidation() {
     if (puppyBreedValidation() /*&&
-            puppyDobValidation() *//*&&
-        puppyCurrentWeightValidation() &&
+            puppyDobValidation() */&&
+        puppyCurrentWeightValidation() /*&&
         puppyActualWeightValidation()*/
         ) {
       return true;
@@ -282,13 +288,13 @@ class PuppyViewModel with ChangeNotifier {
     _puppyImage = data.media!;
     _imageFile = null;
     _puppyGender = data.gender!;
-    _puppyIsSpayNeuter = data.isSpayNeuter!;
+   // _puppyIsSpayNeuter = data.isSpayNeuter!;
     _puppyBreedController.text = data.breed!;
     _puppyDob = data.bornOnDate! != 0
         ? DateTimeFormatter.timeStampToDate(data.bornOnDate!)
         : 'MM   /   DD   /   YYYY';
     _puppyCurrentWeight.text = data.currentWeight!.toString();
-    _puppyActualWeight.text = data.actualWeight!.toString();
+    _puppyActualWeight = data.actualWeight!;
     _puppyActivityLevel = data.activityLevel!;
   }
 
@@ -298,18 +304,19 @@ class PuppyViewModel with ChangeNotifier {
     _puppyImage = '';
     _imageFile = null;
     _puppyGender = Puppy.boy.text;
-    _puppyIsSpayNeuter = true;
+  //  _puppyIsSpayNeuter = true;
     _puppyBreedController.clear();
     _breedsList.clear();
     _puppyDob = 'MM   /   DD   /   YYYY';
     _puppyCurrentWeight.clear();
-    _puppyActualWeight.clear();
+    _feedingRoutine = 1;
+    _puppyActualWeight = PuppyWeight.idealWeight.value;
     _puppyActivityLevel = Puppy.active.text;
     _puppyNameFieldError = '';
     _puppyBreedFieldError = '';
   //  _puppyDobFieldError = '';
-    /*  _currentWeightFieldError = '';
-    _actualWeightFieldError = '';
+      _currentWeightFieldError = '';
+    /*  _actualWeightFieldError = '';
     _puppyImageFieldError = '';*/
   }
 
@@ -352,12 +359,12 @@ class PuppyViewModel with ChangeNotifier {
           name: _puppyNameController.text,
           media: _puppyImage,
           gender: _puppyGender,
-          isSpayNeuter: _puppyIsSpayNeuter,
+         // isSpayNeuter: _puppyIsSpayNeuter,
           breed: _puppyBreedController.text,
           bornOnDate: puppyBirthDate,
-          currentWeight: _puppyCurrentWeight.text.isNotEmpty?int.parse(_puppyCurrentWeight.text):0,
-          actualWeight: _puppyActualWeight.text.isNotEmpty? int.parse(_puppyActualWeight.text):0,
-          activityLevel: _puppyActivityLevel);
+          currentWeight: int.parse(_puppyCurrentWeight.text),
+          actualWeight: _puppyActualWeight,
+          activityLevel: _puppyActivityLevel, feedingRoutine: _feedingRoutine);
       final BaseResponseModel response = await _puppyApiServices.addPuppyApi(
           registerPuppyRequest: registerPuppyRequest);
       if (response.isSuccess!) {
@@ -433,12 +440,12 @@ class PuppyViewModel with ChangeNotifier {
         name: _puppyNameController.text,
         media: _puppyImage,
         gender: _puppyGender,
-        isSpayNeuter: _puppyIsSpayNeuter,
+      //  isSpayNeuter: _puppyIsSpayNeuter,
         breed: _puppyBreedController.text,
         bornOnDate: puppyBirthDate,
-        currentWeight: _puppyCurrentWeight.text.isNotEmpty?int.parse(_puppyCurrentWeight.text):0,
-        actualWeight: _puppyActualWeight.text.isNotEmpty?int.parse(_puppyActualWeight.text): 0,
-        activityLevel: _puppyActivityLevel);
+        currentWeight: int.parse(_puppyCurrentWeight.text),
+        actualWeight: _puppyActualWeight,
+        activityLevel: _puppyActivityLevel, feedingRoutine: _feedingRoutine);
     try {
       final BaseResponseModel response = await _puppyApiServices.editPuppyApi(
           editPuppyRequest: editPuppyRequest, puppyId: _puppyDetail!.sId!);

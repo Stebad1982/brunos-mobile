@@ -1,5 +1,7 @@
+
 import 'package:brunos_kitchen/main.dart';
 import 'package:brunos_kitchen/utils/custom_font_style.dart';
+import 'package:brunos_kitchen/view_models/cart_view_model.dart';
 import 'package:brunos_kitchen/view_models/plans_view_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -37,28 +39,34 @@ Widget cartVerticalListChipWidget({required CartModel cartDetail}) {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        orange18w500(
-                            data:
-                                '${cartDetail.planType} Plan'),
+                        orange18w500(data: '${cartDetail.planType} Plan'),
                         grey12w500(
                             data: 'Delivery Date: ${cartDetail.deliveryDate}')
                       ],
                     ),
-                    Container(
-                      decoration: ShapeDecoration(
-                        color: CustomColors.whiteColor,
-                        shape: RoundedRectangleBorder(
-                          side: const BorderSide(
-                              width: 0.75, color: CustomColors.greyMediumColor),
-                          borderRadius: BorderRadius.circular(12),
+                    InkWell(
+                      onTap: () {
+                        navigatorKey.currentContext!
+                            .read<CartViewModel>()
+                            .removeFromCartList(cartDetail);
+                      },
+                      child: Container(
+                        decoration: ShapeDecoration(
+                          color: CustomColors.whiteColor,
+                          shape: RoundedRectangleBorder(
+                            side: const BorderSide(
+                                width: 0.75,
+                                color: CustomColors.greyMediumColor),
+                            borderRadius: BorderRadius.circular(12),
+                          ),
                         ),
-                      ),
-                      child: const Padding(
-                        padding: EdgeInsets.all(10),
-                        child: Icon(
-                          Icons.delete_outline,
-                          size: 20,
-                          color: CustomColors.orangeColor,
+                        child: const Padding(
+                          padding: EdgeInsets.all(10),
+                          child: Icon(
+                            Icons.delete_outline,
+                            size: 20,
+                            color: CustomColors.orangeColor,
+                          ),
                         ),
                       ),
                     ),
@@ -90,10 +98,11 @@ Widget cartVerticalListChipWidget({required CartModel cartDetail}) {
                         black14w500(data: cartDetail.puppy.breed!),
                       ],
                     ),
-
                   ],
                 ),
-                SizedBox(height: 20.h,),
+                SizedBox(
+                  height: 20.h,
+                ),
                 ListView.separated(
                   physics: const NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
@@ -101,7 +110,12 @@ Widget cartVerticalListChipWidget({required CartModel cartDetail}) {
                   itemBuilder: (BuildContext context, int index) {
                     return cartDishVerticalListChipWidget(
                         cartRecipeModel: cartDetail.recipe[index]);
-                  }, separatorBuilder: (BuildContext context, int index) { return SizedBox(height: 10.h,); },
+                  },
+                  separatorBuilder: (BuildContext context, int index) {
+                    return SizedBox(
+                      height: 10.h,
+                    );
+                  },
                 ),
               ],
             ),

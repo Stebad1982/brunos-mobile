@@ -17,7 +17,7 @@ import '../view_models/puppy_view_model.dart';
 import 'circular_network_image_widget.dart';
 
 Widget cartIconWidget() {
-  return Consumer<AuthViewModel>(builder: (_, authViewModel, __) {
+  return Consumer<CartViewModel>(builder: (_, cartViewModel, __) {
       return Center(
       child: SizedBox(
         height: 30.h,
@@ -28,8 +28,8 @@ Widget cartIconWidget() {
             badgeColor: CustomColors.orangeColor,
           ),
           badgeContent:  Text(
-            navigatorKey.currentContext!.watch<CartViewModel>().getCartList.length.toString(),
-            style: TextStyle(color: Colors.white),
+            cartViewModel.getCartList.length.toString(),
+            style: const TextStyle(color: Colors.white),
           ),
           child: InkWell(
             onTap: () {

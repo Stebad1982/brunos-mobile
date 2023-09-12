@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:js_util';
 
 import 'package:brunos_kitchen/models/recipe_model.dart';
 import 'package:brunos_kitchen/models/responses/recipes_list_response.dart';
@@ -19,7 +20,7 @@ class PlansViewModel with ChangeNotifier {
   final PlanApiServices _planApiServices = PlanApiServices();
   String _planType = Plans.transitional.text;
   RecipesListResponse _recipesListResponse = RecipesListResponse();
-  RecipeModel _selectedRecipe = RecipeModel();
+  RecipeModel? _selectedRecipe;
   int _monthlyEmptyTileNumber = 1;
   final TextEditingController _monthlySelectedDaysController =
       TextEditingController();
@@ -31,7 +32,7 @@ class PlansViewModel with ChangeNotifier {
 
   RecipesListResponse get getRecipesListResponse => _recipesListResponse;
 
-  void setRecipesListResponse (RecipesListResponse value){
+  void setRecipesListResponse(RecipesListResponse value) {
     _recipesListResponse = value;
     notifyListeners();
   }
@@ -43,10 +44,11 @@ class PlansViewModel with ChangeNotifier {
     notifyListeners();
   }
 
-  RecipeModel get getSelectedRecipe => _selectedRecipe;
+  RecipeModel? get getSelectedRecipe => _selectedRecipe;
 
   void setSelectedRecipe(RecipeModel value) {
     _selectedRecipe = value;
+    notifyListeners();
   }
 
   TextEditingController get getMonthlySelectedDaysController =>
@@ -59,8 +61,24 @@ class PlansViewModel with ChangeNotifier {
   RecipeModel? get getMonthlyEmptyTile3 => _monthlyEmptyTile3;
 
   void setMonthlySelectedDishModel() {
-    _selectedRecipe.totalDays = int.parse(_monthlySelectedDaysController.text);
-    final RecipeModel applyDishDetail = _selectedRecipe;
+    final RecipeModel applyDishDetail = RecipeModel(
+        sId: _selectedRecipe!.sId,
+        createdOnDate: _selectedRecipe!.createdOnDate,
+        name: _selectedRecipe!.name,
+        isFeatured: _selectedRecipe!.isFeatured,
+        userId: _selectedRecipe!.userId,
+        ingredient: _selectedRecipe!.ingredient,
+        description: _selectedRecipe!.description,
+        details: _selectedRecipe!.details,
+        instructions: _selectedRecipe!.instructions,
+        nutrition: _selectedRecipe!.nutrition,
+        pricePerKG: _selectedRecipe!.pricePerKG,
+        media: _selectedRecipe!.media,
+        recipeNo: _selectedRecipe!.recipeNo,
+        lifeStage: _selectedRecipe!.lifeStage,
+        caloriesContentNo: _selectedRecipe!.caloriesContentNo,
+        totalDays: int.parse(_monthlySelectedDaysController.text),
+        ingredientsComposition: _selectedRecipe!.ingredientsComposition);
     if (_monthlyEmptyTileNumber == 1) {
       _monthlyEmptyTile1 = applyDishDetail;
       notifyListeners();
@@ -85,7 +103,9 @@ class PlansViewModel with ChangeNotifier {
   }
 
   void clearPlanData() {
+    _monthlySelectedDaysController.clear();
     _monthlyEmptyTileNumber = 1;
+    _selectedRecipe = null;
     _monthlyEmptyTile1 = null;
     _monthlyEmptyTile2 = null;
     _monthlyEmptyTile3 = null;
@@ -93,19 +113,19 @@ class PlansViewModel with ChangeNotifier {
     _selectedDay = DateTime.now().add(const Duration(days: 4));
     notifyListeners();
   }
+
   void onDaySelected(DateTime day, DateTime focusDay) {
-      if (!isSameDay(_selectedDay, day)) {
-        _selectedDay = day;
-        focusDay = focusDay;
-        notifyListeners();
-      }
+    if (!isSameDay(_selectedDay, day)) {
+      _selectedDay = day;
+      focusDay = focusDay;
+      notifyListeners();
+    }
   }
 
   Future<bool> callAllRecipesApi() async {
     EasyLoading.show(status: 'Please wait...');
     try {
-      final RecipesListResponse response =
-      await _planApiServices.allRecipes();
+      final RecipesListResponse response = await _planApiServices.allRecipes();
       if (response.isSuccess!) {
         setRecipesListResponse(response);
         EasyLoading.dismiss();

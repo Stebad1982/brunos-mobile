@@ -15,6 +15,7 @@ import '../utils/images.dart';
 import '../view_models/auth_view_model.dart';
 import '../widgets/app_bar_with_back_widget.dart';
 import '../widgets/date_picker_bottom_sheet_widget.dart';
+import '../widgets/dialogs/discription_dialog.dart';
 
 class PuppyCreationAdditionalScreen extends StatelessWidget {
   const PuppyCreationAdditionalScreen({Key? key}) : super(key: key);
@@ -192,15 +193,15 @@ class PuppyCreationAdditionalScreen extends StatelessWidget {
                     SizedBox(
                       height: 34.h,
                     ),
-                    orange14w400(
+                  /*  orange14w400(
                         data:
                             'If ${puppyViewModel.getPuppyNameController.text.isNotEmpty ? puppyViewModel.getPuppyNameController.text : 'Pet'} is a mixed breed'),
                     SizedBox(
                       height: 40.h,
-                    ),
+                    ),*/
                     black18w500(
                         data:
-                            'When is ${puppyViewModel.getPuppyNameController.text.isNotEmpty ? puppyViewModel.getPuppyNameController.text : 'Pet'} birthday?'),
+                            'When is ${puppyViewModel.getPuppyNameController.text.isNotEmpty ? '${puppyViewModel.getPuppyNameController.text}\'s' : 'Pet\'s'} birthday?'),
                     SizedBox(
                       height: 19.h,
                     ),
@@ -246,7 +247,7 @@ class PuppyCreationAdditionalScreen extends StatelessWidget {
                     SizedBox(
                       height: 18.h,
                     ),
-                    lightBlack14w400Centre(data: 'Current Weight (Optional)'),
+                    lightBlack14w400Centre(data: 'Current Weight'),
                     SizedBox(
                       height: 12.h,
                     ),
@@ -263,20 +264,85 @@ class PuppyCreationAdditionalScreen extends StatelessWidget {
                     SizedBox(
                       height: 5.h,
                     ),
-                    /*   Visibility(
+                       Visibility(
                         visible: puppyViewModel
                             .getCurrentWeightFieldError.isNotEmpty,
                         child: orange14w400(
-                            data: puppyViewModel.getCurrentWeightFieldError)),*/
+                            data: puppyViewModel.getCurrentWeightFieldError)),
                     SizedBox(
                       height: 20.h,
                     ),
-                    lightBlack14w400Centre(data: 'Ideal Weight (Optional)'),
+
+                    Row(
+                      children: [
+                        black18w500(data: 'Is ${puppyViewModel.getPuppyNameController.text.isNotEmpty ? puppyViewModel.getPuppyNameController.text : 'Pet'} ?'),
+                        SizedBox(
+                          width: 5.w,
+                        ),
+                        InkWell(
+                          onTap: () {
+                            descriptionDialog(
+                                context: context,
+                                description:
+                                'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic',
+                                height: 300, title: 'Description');
+                          },
+                          child: const Icon(
+                            Icons.help,
+                            size: 16,
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 24.h,
+                    ),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: customSquareButton(
+                              text: 'Ideal Weight',
+                              onPressed: () {
+                                puppyViewModel
+                                    .setPuppyActualWeight(PuppyWeight.idealWeight.value);
+                              },
+                              colored: puppyViewModel.getPuppyActualWeight ==
+                                  PuppyWeight.idealWeight.value),
+                        ),
+                        SizedBox(
+                          width: 10.w,
+                        ),
+                        Expanded(
+                          child: customSquareButton(
+                              text: 'Overweight',
+                              onPressed: () {
+                                puppyViewModel.setPuppyActualWeight(
+                                    PuppyWeight.overweight.value);
+                              },
+                              colored: puppyViewModel.getPuppyActualWeight ==
+                                  PuppyWeight.overweight.value),
+                        ),
+                        SizedBox(
+                          width: 10.w,
+                        ),
+                        Expanded(
+                          child: customSquareButton(
+                              text: 'Underweight',
+                              onPressed: () {
+                                puppyViewModel.setPuppyActualWeight(
+                                    PuppyWeight.underweight.value);
+                              },
+                              colored: puppyViewModel.getPuppyActualWeight ==
+                                  PuppyWeight.underweight.value),
+                        )
+                      ],
+                    ),
+                   /* lightBlack14w400Centre(data: 'Ideal Weight (Optional)'),
                     TextField(
                       controller: puppyViewModel.getPuppyActualWeight,
-                      /* onChanged: (text) {
+                      *//* onChanged: (text) {
                         puppyViewModel.setPuppyActualWeight(int.parse(text));
-                      },*/
+                      },*//*
                       keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
                           contentPadding: EdgeInsets.all(20.0),
@@ -284,14 +350,14 @@ class PuppyCreationAdditionalScreen extends StatelessWidget {
                     ),
                     SizedBox(
                       height: 5.h,
-                    ),
+                    ),*/
                     /*Visibility(
                         visible:
                             puppyViewModel.getActualWeightFieldError.isNotEmpty,
                         child: orange14w400(
                             data: puppyViewModel.getActualWeightFieldError)),*/
                     SizedBox(
-                      height: 40.h,
+                      height: 25.h,
                     ),
                     black18w500(data: 'Activity Level ?'),
                     SizedBox(
@@ -335,6 +401,74 @@ class PuppyCreationAdditionalScreen extends StatelessWidget {
                               colored: puppyViewModel.getPuppyActivityLevel ==
                                   Puppy.lessActive.text),
                         )
+                      ],
+                    ),
+                    SizedBox(
+                      height: 25.h,
+                    ),
+                    black18w500(data: 'Feeding Routine Per Day'),
+                    SizedBox(
+                      height: 24.h,
+                    ),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: customSquareButton(
+                              text: '1',
+                              onPressed: () {
+                                puppyViewModel
+                                    .setFeedingRoutine(1);
+                              },
+                              colored: puppyViewModel.getFeedingRoutine == 1),
+                        ),
+                        SizedBox(
+                          width: 10.w,
+                        ),
+                        Expanded(
+                          child: customSquareButton(
+                              text: '2',
+                              onPressed: () {
+                                puppyViewModel
+                                    .setFeedingRoutine(2);
+                              },
+                              colored: puppyViewModel.getFeedingRoutine == 2),
+                        ),
+                        SizedBox(
+                          width: 10.w,
+                        ),
+                        Expanded(
+                          child: customSquareButton(
+                              text: '3',
+                              onPressed: () {
+                                puppyViewModel
+                                    .setFeedingRoutine(3);
+                              },
+                              colored: puppyViewModel.getFeedingRoutine == 3),
+                        ),
+                        SizedBox(
+                          width: 10.w,
+                        ),
+                        Expanded(
+                          child: customSquareButton(
+                              text: '4',
+                              onPressed: () {
+                                puppyViewModel
+                                    .setFeedingRoutine(4);
+                              },
+                              colored: puppyViewModel.getFeedingRoutine == 4),
+                        ),
+                        SizedBox(
+                          width: 10.w,
+                        ),
+                        Expanded(
+                          child: customSquareButton(
+                              text: '5',
+                              onPressed: () {
+                                puppyViewModel
+                                    .setFeedingRoutine(5);
+                              },
+                              colored: puppyViewModel.getFeedingRoutine == 5),
+                        ),
                       ],
                     ),
                     SizedBox(

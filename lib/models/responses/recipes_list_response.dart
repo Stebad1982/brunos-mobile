@@ -1,13 +1,13 @@
-import 'package:brunos_kitchen/models/base_response_model.dart';
-
 import '../recipe_model.dart';
 
-class RecipesListResponse extends BaseResponseModel{
+class RecipesListResponse {
+  bool? isSuccess;
   List<RecipeModel>? data;
   bool? isServerError;
+  String? message;
 
   RecipesListResponse(
-      {super.isSuccess, this.data, this.isServerError, super.message});
+      {this.isSuccess, this.data, this.isServerError, this.message});
 
   RecipesListResponse.fromJson(Map<String, dynamic> json) {
     isSuccess = json['isSuccess'];

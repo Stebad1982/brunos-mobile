@@ -19,13 +19,13 @@ class CartScreen extends StatelessWidget {
       return  Scaffold(
         appBar: const AppBarWithBackWidget(
             heading: 'Shopping Bag', showPuppy: true, showCart: false),
-        body: Stack(
+        body: cartViewModel.getCartList.isNotEmpty?Stack(
           children: [
             ListView.builder(
               // physics: const NeverScrollableScrollPhysics(),
                shrinkWrap: true,
               itemCount: cartViewModel.getCartList.length,
-              padding: const EdgeInsets.only(left: 20, right: 20, top: 20,bottom: 40),
+              padding: const EdgeInsets.only(left: 20, right: 20, top: 20,bottom: 100),
               itemBuilder: (BuildContext context, int index) {
                 return cartVerticalListChipWidget( cartDetail: cartViewModel.getCartList[index]);
               },
@@ -60,7 +60,7 @@ class CartScreen extends StatelessWidget {
               ),
             ),
           ],
-        ),
+        ): Center(child: black24w500Centre(data: 'Shopping Bag is Empty'),),
       );
     });
   }

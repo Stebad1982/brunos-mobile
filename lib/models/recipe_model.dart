@@ -10,14 +10,15 @@ class RecipeModel {
   String? description;
   String? details;
   String? instructions;
-  String? nutrition;
+  List<String>? nutrition;
   int? pricePerKG;
   String? media;
   String? recipeNo;
   String? lifeStage;
-  int? caloriesContentNo;
-  int? qty;
   int? totalDays;
+  int? caloriesContentNo;
+  //Ingredient? ingredients;
+  String? ingredientsComposition;
 
   RecipeModel(
       {this.sId,
@@ -35,8 +36,9 @@ class RecipeModel {
         this.recipeNo,
         this.lifeStage,
         this.caloriesContentNo,
-      this.qty,
-      this.totalDays});
+       // this.ingredients,
+        this.totalDays,
+        this.ingredientsComposition});
 
   RecipeModel.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
@@ -51,16 +53,17 @@ class RecipeModel {
       });
     }
     description = json['description'];
+    totalDays=json['totalDays']??1;
     details = json['details'];
     instructions = json['instructions'];
-    nutrition = json['nutrition'];
+    nutrition = json['nutrition'].split(",");
     pricePerKG = json['pricePerKG'];
     media = json['media'];
     recipeNo = json['recipeNo'];
     lifeStage = json['lifeStage'];
     caloriesContentNo = json['caloriesContentNo'];
-    qty = json['qty']??1;
-    totalDays = json['totalDays']??1;
+  //  ingredients = json['ingredients'];
+    ingredientsComposition = json['ingredientsComposition'];
   }
 
   Map<String, dynamic> toJson() {
@@ -70,6 +73,7 @@ class RecipeModel {
     data['name'] = this.name;
     data['isFeatured'] = this.isFeatured;
     data['userId'] = this.userId;
+    data['totalDays'] = this.totalDays??1;
     if (this.ingredient != null) {
       data['ingredient'] = this.ingredient!.map((v) => v.toJson()).toList();
     }
@@ -82,8 +86,8 @@ class RecipeModel {
     data['recipeNo'] = this.recipeNo;
     data['lifeStage'] = this.lifeStage;
     data['caloriesContentNo'] = this.caloriesContentNo;
-    data['qty']= this.qty??1;
-    data['totalDays'] = this.totalDays??1;
+  //  data['ingredients'] = this.ingredients;
+    data['ingredientsComposition'] = this.ingredientsComposition;
     return data;
   }
 }

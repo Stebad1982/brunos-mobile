@@ -201,7 +201,7 @@ class PuppyCreationScreen extends StatelessWidget {
                         )
                       ],
                     ),
-                    SizedBox(
+                  /*  SizedBox(
                       height: 40.h,
                     ),
                     black18w500(
@@ -256,7 +256,7 @@ class PuppyCreationScreen extends StatelessWidget {
                               colored: !puppyViewModel.getPuppyIsSpayNeuter),
                         )
                       ],
-                    ),
+                    ),*/
                     SizedBox(
                       height: 100.h,
                     )

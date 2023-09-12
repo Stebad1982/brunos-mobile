@@ -1,3 +1,4 @@
+import 'package:brunos_kitchen/models/recipe_model.dart';
 import 'package:brunos_kitchen/utils/images.dart';
 import 'package:brunos_kitchen/widgets/recipe_detail_bottom_sheet_widget.dart';
 import 'package:flutter/cupertino.dart';
@@ -37,7 +38,8 @@ Widget foodGridChipWidget (){
                     Center(child: Image.asset(food,height: 108.h,)),
                     InkWell(
                       onTap: () {
-                        recipeDetailBottomSheetWidget();
+                        //TODO: CHANGE RECIPE MODEL
+                        recipeDetailBottomSheetWidget(recipeDetail: RecipeModel());
                       },
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),

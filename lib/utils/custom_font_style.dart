@@ -225,9 +225,10 @@ Widget black12w500Centre({required String data, bool? centre, bool? overFlowText
   );
 }
 
-Widget black10w400({required String data}) {
+Widget black10w400({required String data, int? maxLine}) {
   return Text(
     data,
+    maxLines: maxLine,
     style: TextStyle(
         fontFamily: 'CircularStd',
         fontSize: 10.sp,
