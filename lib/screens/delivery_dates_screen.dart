@@ -306,7 +306,6 @@ class _DeliveryDatesScreenState extends State<DeliveryDatesScreen> {
                             DateTimeFormatter.showDateFormat3(
                                 plansViewModel.getSelectedDay!);
                         final List<RecipeModel> recipeList = [];
-
                         if (plansViewModel.getPlanType == Plans.monthly.text) {
                           if (plansViewModel.getMonthlyEmptyTile1 != null) {
                             recipeList
@@ -334,6 +333,8 @@ class _DeliveryDatesScreenState extends State<DeliveryDatesScreen> {
                                   deliveryDate: deliveryDate,
                                   planType: plansViewModel.getPlanType),
                             );
+                        Navigator.pushNamedAndRemoveUntil(context,
+                            bottomNavigationRoute,  (route) => false);
                       },
                       colored: true),
                 ),

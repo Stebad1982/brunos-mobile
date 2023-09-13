@@ -1,5 +1,5 @@
-import 'dart:io';
-import 'dart:js_util';
+
+import 'dart:convert';
 
 import 'package:brunos_kitchen/models/recipe_model.dart';
 import 'package:brunos_kitchen/models/responses/recipes_list_response.dart';
@@ -20,7 +20,7 @@ class PlansViewModel with ChangeNotifier {
   final PlanApiServices _planApiServices = PlanApiServices();
   String _planType = Plans.transitional.text;
   RecipesListResponse _recipesListResponse = RecipesListResponse();
-  RecipeModel? _selectedRecipe;
+  RecipeModel _selectedRecipe = RecipeModel();
   int _monthlyEmptyTileNumber = 1;
   final TextEditingController _monthlySelectedDaysController =
       TextEditingController();
@@ -44,7 +44,7 @@ class PlansViewModel with ChangeNotifier {
     notifyListeners();
   }
 
-  RecipeModel? get getSelectedRecipe => _selectedRecipe;
+  RecipeModel get getSelectedRecipe => _selectedRecipe;
 
   void setSelectedRecipe(RecipeModel value) {
     _selectedRecipe = value;
@@ -61,7 +61,9 @@ class PlansViewModel with ChangeNotifier {
   RecipeModel? get getMonthlyEmptyTile3 => _monthlyEmptyTile3;
 
   void setMonthlySelectedDishModel() {
-    final RecipeModel applyDishDetail = RecipeModel(
+    final RecipeModel applyDishDetail = RecipeModel.fromJson(_selectedRecipe.toJson());
+    applyDishDetail.totalDays = int.parse(_monthlySelectedDaysController.text);
+    /*final RecipeModel applyDishDetail = RecipeModel(
         sId: _selectedRecipe!.sId,
         createdOnDate: _selectedRecipe!.createdOnDate,
         name: _selectedRecipe!.name,
@@ -78,7 +80,7 @@ class PlansViewModel with ChangeNotifier {
         lifeStage: _selectedRecipe!.lifeStage,
         caloriesContentNo: _selectedRecipe!.caloriesContentNo,
         totalDays: int.parse(_monthlySelectedDaysController.text),
-        ingredientsComposition: _selectedRecipe!.ingredientsComposition);
+        ingredientsComposition: _selectedRecipe!.ingredientsComposition);*/
     if (_monthlyEmptyTileNumber == 1) {
       _monthlyEmptyTile1 = applyDishDetail;
       notifyListeners();
@@ -105,7 +107,6 @@ class PlansViewModel with ChangeNotifier {
   void clearPlanData() {
     _monthlySelectedDaysController.clear();
     _monthlyEmptyTileNumber = 1;
-    _selectedRecipe = null;
     _monthlyEmptyTile1 = null;
     _monthlyEmptyTile2 = null;
     _monthlyEmptyTile3 = null;
