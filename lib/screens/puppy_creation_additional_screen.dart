@@ -16,6 +16,7 @@ import '../view_models/auth_view_model.dart';
 import '../widgets/app_bar_with_back_widget.dart';
 import '../widgets/date_picker_bottom_sheet_widget.dart';
 import '../widgets/dialogs/discription_dialog.dart';
+import '../widgets/dialogs/image_dialog.dart';
 
 class PuppyCreationAdditionalScreen extends StatelessWidget {
   const PuppyCreationAdditionalScreen({Key? key}) : super(key: key);
@@ -281,11 +282,8 @@ class PuppyCreationAdditionalScreen extends StatelessWidget {
                         ),
                         InkWell(
                           onTap: () {
-                            descriptionDialog(
-                                context: context,
-                                description:
-                                'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic',
-                                height: 300, title: 'Description');
+                            imageDialog(
+                                context: context, height: 550.h, title: 'Check Weight',);
                           },
                           child: const Icon(
                             Icons.help,

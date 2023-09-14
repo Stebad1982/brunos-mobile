@@ -154,8 +154,9 @@ Widget grey14w400HeightCentre({required String data}) {
         color: CustomColors.greyColor),
   );
 }
-Widget grey14w400({required String data, bool? lineHeight}) {
+Widget grey14w400({required String data, bool? lineHeight, int? maxLine }) {
   return Text(
+    maxLines: maxLine,
     data,
     style: TextStyle(
       height: lineHeight == true? 1.5: null,

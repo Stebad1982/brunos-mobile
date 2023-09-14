@@ -13,10 +13,12 @@ import 'package:provider/provider.dart';
 
 import '../utils/custom_colors.dart';
 import '../utils/enums.dart';
+import '../view_models/plans_view_model.dart';
 
 Widget shopItemsHorizontalListChipWidget({required RecipeModel productDetail}) {
   return InkWell(
     onTap: () {
+      navigatorKey.currentContext!.read<PlansViewModel>().setPlanType(Plans.product.text);
       Navigator.pushNamed(navigatorKey.currentContext!, shopItemDetailRoute);
     },
     child: Card(
@@ -54,7 +56,9 @@ Widget shopItemsHorizontalListChipWidget({required RecipeModel productDetail}) {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    black14w400(data: productDetail.name!),
+                    SizedBox(
+                      height: 40.h,
+                        child: black14w400(data: productDetail.name!)),
                     SizedBox(
                       height: 6.h,
                     ),

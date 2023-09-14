@@ -20,14 +20,14 @@ Future recipeDetailBottomSheetWidget({required RecipeModel recipeDetail}) {
       context: navigatorKey.currentContext!,
       builder: (context) {
         return SizedBox(
-          height: 650.h,
+          height: 655.h,
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -37,7 +37,8 @@ Future recipeDetailBottomSheetWidget({required RecipeModel recipeDetail}) {
                           height: 5.h,
                         ),
                         SizedBox(
-                            child: grey14w400(data: recipeDetail.description!)),
+                          width: 300.w,
+                            child: grey14w400(maxLine: 2, data: recipeDetail.description!)),
                       ],
                     ),
                     Spacer(),
@@ -186,7 +187,7 @@ Future recipeDetailBottomSheetWidget({required RecipeModel recipeDetail}) {
                                                     grey14w400(data: 'Weight')),
                                             Expanded(
                                                 child: black14w400(
-                                                    data: '1 Pounds')),
+                                                    data: '1 kg')),
                                           ],
                                         ),
                                       ),

@@ -1,6 +1,7 @@
 const intro1 = "assets/images/intro-1.png";
 const intro2 = "assets/images/intro-2.png";
 const intro3 = "assets/images/intro-3.png";
+const weightTest = 'assets/images/weight_test.jpeg';
 const introIndicator1 = "assets/images/intro-indicator1.svg";
 const introIndicator2 = "assets/images/intro-indicator2.svg";
 const introIndicator3 = "assets/images/intro-indicator3.svg";

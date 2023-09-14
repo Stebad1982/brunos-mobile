@@ -58,7 +58,7 @@ class PlansViewModel with ChangeNotifier {
     _recipesList = _recipesListResponse.data!.recipe!.where((element) => element.category!.isEmpty).toList();
     _productsList = _recipesListResponse.data!.recipe!.where((element) => element.category! == _productCategory).toList();
     _featuredRecipesList = _recipesListResponse.data!.recipe!.where((element) => element.category!.isEmpty && element.isFeatured!).toList();
-    _featuredProductsList = _recipesListResponse.data!.recipe!.where((element) => element.category! == _productCategory && element.isFeatured!).toList();
+    _featuredProductsList = _recipesListResponse.data!.recipe!.where((element) => element.category!.isNotEmpty && element.isFeatured!).toList();
     notifyListeners();
   }
 

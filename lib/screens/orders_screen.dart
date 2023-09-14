@@ -1,3 +1,4 @@
+import 'package:brunos_kitchen/screens/monthly_order_screen.dart';
 import 'package:brunos_kitchen/screens/order_completed_screen.dart';
 import 'package:brunos_kitchen/screens/order_inprocess_screen.dart';
 import 'package:brunos_kitchen/utils/custom_font_style.dart';
@@ -22,7 +23,7 @@ class _OrdersScreenState extends State<OrdersScreen>
   @override
   void initState() {
     super.initState();
-    tabController = TabController(length: 2, vsync: this);
+    tabController = TabController(length: 3, vsync: this);
     tabController!.addListener(_getActiveTabIndex);
   }
 
@@ -85,6 +86,18 @@ class _OrdersScreenState extends State<OrdersScreen>
                         width: 170.w,
                         child: Center(
                             child: lightBlack14w400Centre(data: 'Completed')))),
+                Tab(
+                    child: Container(
+                        decoration: BoxDecoration(
+                          color: _selectedIndex == 2
+                              ? CustomColors.orangeColorTint
+                              : null,
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        height: 40.h,
+                        width: 170.w,
+                        child: Center(
+                            child: lightBlack14w400Centre(data: 'Monthly Subscription')))),
               ],
             ),
             Expanded(
@@ -93,6 +106,7 @@ class _OrdersScreenState extends State<OrdersScreen>
                 children: const [
                   OrderInProcessScreen(),
                   OrderCompletedScreen(),
+                  MonthlyOrderScreen()
                 ],
               ),
             ),
