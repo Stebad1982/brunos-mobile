@@ -14,7 +14,8 @@ enum Screens {
 enum Plans {
   transitional("Transitional"),
   monthly("Monthly"),
-  oneTime("OneTime");
+  oneTime("OneTime"),
+  product("Product");
 
   const Plans(this.text);
 

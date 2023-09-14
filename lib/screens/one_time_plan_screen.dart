@@ -8,7 +8,7 @@ import '../utils/images.dart';
 import '../view_models/auth_view_model.dart';
 import '../view_models/plans_view_model.dart';
 import '../widgets/app_bar_with_back_widget.dart';
-import '../widgets/food_discribed_grid_chip_widget.dart';
+import '../widgets/item_discribed_grid_chip_widget.dart';
 
 class OneTimePlanScreen extends StatelessWidget {
   const OneTimePlanScreen({Key? key}) : super(key: key);
@@ -61,10 +61,10 @@ class OneTimePlanScreen extends StatelessWidget {
                   runSpacing: 20.w,
                   spacing: 20.w,
                   alignment: WrapAlignment.center,
-                  children: List.generate(context.read<PlansViewModel>().getRecipesListResponse.data!.length, (index) {
+                  children: List.generate(context.read<PlansViewModel>().getRecipesList.length, (index) {
                     return SizedBox(
                       width: 157.w,
-                      child: foodDescribedGridChipWidget(recipeModel: context.read<PlansViewModel>().getRecipesListResponse.data![index]),
+                      child: itemDescribedGridChipWidget(recipeModel: context.read<PlansViewModel>().getRecipesList[index]),
                     );
                   }),
                 ),
@@ -85,10 +85,10 @@ class OneTimePlanScreen extends StatelessWidget {
                   runSpacing: 20.w,
                   spacing: 20.w,
                   alignment: WrapAlignment.center,
-                  children: List.generate(context.read<PlansViewModel>().getRecipesListResponse.data!.length, (index) {
+                  children: List.generate(context.read<PlansViewModel>().getRecipesList.length, (index) {
                     return SizedBox(
                       width: 157.w,
-                      child: foodDescribedGridChipWidget(recipeModel: context.read<PlansViewModel>().getRecipesListResponse.data![index]),
+                      child: itemDescribedGridChipWidget(recipeModel: context.read<PlansViewModel>().getRecipesList[index]),
                     );
                   }),
                 ),

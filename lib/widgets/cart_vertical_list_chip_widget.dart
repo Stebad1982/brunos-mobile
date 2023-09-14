@@ -39,7 +39,7 @@ Widget cartVerticalListChipWidget({required CartModel cartDetail}) {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        orange18w500(data: '${cartDetail.planType} Plan'),
+                        orange18w500(data: '${cartDetail.planType} ${cartDetail.puppy == null? '': 'Plan'}'),
                         grey12w500(
                             data: 'Delivery Date: ${cartDetail.deliveryDate}')
                       ],
@@ -72,34 +72,39 @@ Widget cartVerticalListChipWidget({required CartModel cartDetail}) {
                     ),
                   ],
                 ),
-                SizedBox(
-                  height: 20.h,
-                ),
-                Row(
+
+                cartDetail.puppy != null ?Column(
                   children: [
-                    cartDetail.puppy.media!.isNotEmpty
-                        ? circularNetworkImageWidget(
-                            image: cartDetail.puppy.media!, size: 40.h)
-                        : SizedBox(
-                            height: 40.h,
-                            width: 40.h,
-                            child: CircleAvatar(
-                              backgroundColor: CustomColors.yellowColor,
-                              child: SvgPicture.asset(dogFace),
-                            ),
-                          ),
                     SizedBox(
-                      width: 10.w,
+                      height: 20.h,
                     ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                    Row(
                       children: [
-                        black14w500(data: cartDetail.puppy.name!),
-                        black14w500(data: cartDetail.puppy.breed!),
+                        cartDetail.puppy!.media!.isNotEmpty
+                            ? circularNetworkImageWidget(
+                                image: cartDetail.puppy!.media!, size: 40.h)
+                            : SizedBox(
+                                height: 40.h,
+                                width: 40.h,
+                                child: CircleAvatar(
+                                  backgroundColor: CustomColors.yellowColor,
+                                  child: SvgPicture.asset(dogFace),
+                                ),
+                              ),
+                        SizedBox(
+                          width: 10.w,
+                        ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            black14w500(data: cartDetail.puppy!.name!),
+                            black14w500(data: cartDetail.puppy!.breed!),
+                          ],
+                        ),
                       ],
                     ),
                   ],
-                ),
+                ): Container(),
                 SizedBox(
                   height: 20.h,
                 ),

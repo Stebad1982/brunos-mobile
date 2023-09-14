@@ -3,7 +3,7 @@ import 'package:brunos_kitchen/models/puppy_model.dart';
 import 'recipe_model.dart';
 
 class CartModel {
-  PuppyModel puppy;
+  PuppyModel? puppy;
   List<RecipeModel> recipe;
   String deliveryDate;
   String planType;

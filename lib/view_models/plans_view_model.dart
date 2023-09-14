@@ -1,4 +1,3 @@
-
 import 'dart:convert';
 
 import 'package:brunos_kitchen/models/recipe_model.dart';
@@ -18,9 +17,14 @@ import '../utils/shared_pref .dart';
 
 class PlansViewModel with ChangeNotifier {
   final PlanApiServices _planApiServices = PlanApiServices();
+  String _productCategory = "Clothing";
   String _planType = Plans.transitional.text;
   RecipesListResponse _recipesListResponse = RecipesListResponse();
   RecipeModel _selectedRecipe = RecipeModel();
+  List<RecipeModel> _recipesList = [];
+  List<RecipeModel> _productsList = [];
+  List<RecipeModel> _featuredRecipesList = [];
+  List<RecipeModel> _featuredProductsList = [];
   int _monthlyEmptyTileNumber = 1;
   final TextEditingController _monthlySelectedDaysController =
       TextEditingController();
@@ -30,10 +34,31 @@ class PlansViewModel with ChangeNotifier {
   DateTime _focusedDay = DateTime.now().add(const Duration(days: 4));
   DateTime _selectedDay = DateTime.now().add(const Duration(days: 4));
 
+  String get getProductCategory => _productCategory;
+
+  void setProductCategory (String value){
+    _productCategory = value;
+    _productsList = _recipesListResponse.data!.recipe!.where((element) => element.category! == _productCategory).toList();
+    notifyListeners();
+  }
+
+  List<RecipeModel> get getFeaturedRecipesList => _featuredRecipesList;
+
+  List<RecipeModel> get getFeaturedProductList => _featuredProductsList;
+
+  List<RecipeModel> get getRecipesList => _recipesList;
+  
+  List<RecipeModel> get getProductList => _productsList;
+
   RecipesListResponse get getRecipesListResponse => _recipesListResponse;
+
 
   void setRecipesListResponse(RecipesListResponse value) {
     _recipesListResponse = value;
+    _recipesList = _recipesListResponse.data!.recipe!.where((element) => element.category!.isEmpty).toList();
+    _productsList = _recipesListResponse.data!.recipe!.where((element) => element.category! == _productCategory).toList();
+    _featuredRecipesList = _recipesListResponse.data!.recipe!.where((element) => element.category!.isEmpty && element.isFeatured!).toList();
+    _featuredProductsList = _recipesListResponse.data!.recipe!.where((element) => element.category! == _productCategory && element.isFeatured!).toList();
     notifyListeners();
   }
 
@@ -61,7 +86,8 @@ class PlansViewModel with ChangeNotifier {
   RecipeModel? get getMonthlyEmptyTile3 => _monthlyEmptyTile3;
 
   void setMonthlySelectedDishModel() {
-    final RecipeModel applyDishDetail = RecipeModel.fromJson(_selectedRecipe.toJson());
+    final RecipeModel applyDishDetail =
+        RecipeModel.fromJson(_selectedRecipe.toJson());
     applyDishDetail.totalDays = int.parse(_monthlySelectedDaysController.text);
     /*final RecipeModel applyDishDetail = RecipeModel(
         sId: _selectedRecipe!.sId,

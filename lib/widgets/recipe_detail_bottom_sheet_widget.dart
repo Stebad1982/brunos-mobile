@@ -36,7 +36,8 @@ Future recipeDetailBottomSheetWidget({required RecipeModel recipeDetail}) {
                         SizedBox(
                           height: 5.h,
                         ),
-                        grey14w400(data: recipeDetail.description!),
+                        SizedBox(
+                            child: grey14w400(data: recipeDetail.description!)),
                       ],
                     ),
                     Spacer(),

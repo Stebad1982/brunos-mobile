@@ -1,4 +1,5 @@
 import 'package:brunos_kitchen/main.dart';
+import 'package:brunos_kitchen/models/recipe_model.dart';
 import 'package:brunos_kitchen/route_generator.dart';
 import 'package:brunos_kitchen/utils/custom_font_style.dart';
 import 'package:brunos_kitchen/utils/images.dart';
@@ -13,7 +14,7 @@ import 'package:provider/provider.dart';
 import '../utils/custom_colors.dart';
 import '../utils/enums.dart';
 
-Widget shopItemsHorizontalListChipWidget() {
+Widget shopItemsHorizontalListChipWidget({required RecipeModel productDetail}) {
   return InkWell(
     onTap: () {
       Navigator.pushNamed(navigatorKey.currentContext!, shopItemDetailRoute);
@@ -43,9 +44,8 @@ Widget shopItemsHorizontalListChipWidget() {
                   child: Padding(
                     padding: const EdgeInsets.all(15),
                     child: Center(
-                      child: Image.asset(
-                        bone,
-                       // height: 108.h,
+                      child: Image.network(
+                        productDetail.media!, height: 108.h,
                       ),
                     ),
                   )),
@@ -54,11 +54,11 @@ Widget shopItemsHorizontalListChipWidget() {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    black14w400(data: 'Wishbone Bacon Chew Toy For Dogs'),
+                    black14w400(data: productDetail.name!),
                     SizedBox(
                       height: 6.h,
                     ),
-                    brown12w500Centre(data: 'AED 50'),
+                    brown12w500Centre(data: 'AED ${productDetail.pricePerKG}'),
                     SizedBox(
                       height: 18.h,
                     ),

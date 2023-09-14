@@ -7,6 +7,7 @@ import 'package:brunos_kitchen/view_models/cart_view_model.dart';
 import 'package:brunos_kitchen/view_models/plans_view_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:table_calendar/table_calendar.dart';
@@ -320,7 +321,7 @@ class _DeliveryDatesScreenState extends State<DeliveryDatesScreen> {
                                 .add(plansViewModel.getMonthlyEmptyTile3!);
                           }
                         } else {
-                          recipeList.add(plansViewModel.getSelectedRecipe!);
+                          recipeList.add(plansViewModel.getSelectedRecipe);
                         }
                         context.read<CartViewModel>().addToCartList(
                               CartModel(
@@ -335,6 +336,7 @@ class _DeliveryDatesScreenState extends State<DeliveryDatesScreen> {
                             );
                         Navigator.pushNamedAndRemoveUntil(context,
                             bottomNavigationRoute,  (route) => false);
+                        EasyLoading.showToast('${plansViewModel.getPlanType} Plan Successfully Added To\nShopping Bag',toastPosition: EasyLoadingToastPosition.center);
                       },
                       colored: true),
                 ),

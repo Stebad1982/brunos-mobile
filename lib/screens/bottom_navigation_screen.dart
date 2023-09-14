@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 
 import '../view_models/auth_view_model.dart';
 import '../view_models/bottom_navigation_view_model.dart';
+import '../view_models/plans_view_model.dart';
 import '../widgets/custom_bottombar_widget.dart';
 import '../widgets/dialogs/share_your_location_dialog.dart';
 
@@ -19,6 +20,9 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      context
+          .read<PlansViewModel>()
+          .callAllRecipesApi();
       if (context
           .read<AuthViewModel>()
           .getAuthResponse

@@ -71,10 +71,10 @@ Future addMealDetailBottomSheetWidget() {
                     child: ListView.builder(
                       //physics: NeverScrollableScrollPhysics(),
                       shrinkWrap: true,
-                      itemCount: context.read<PlansViewModel>().getRecipesListResponse.data!.length,
+                      itemCount: context.read<PlansViewModel>().getRecipesList.length,
                       padding: const EdgeInsets.symmetric(vertical: 20),
                       itemBuilder: (BuildContext context, int index) {
-                        return mealVerticalListChipWidget(recipeModel: context.read<PlansViewModel>().getRecipesListResponse.data![index]);
+                        return mealVerticalListChipWidget(recipeModel: context.read<PlansViewModel>().getRecipesList[index]);
                       },
                     ),
                   ),

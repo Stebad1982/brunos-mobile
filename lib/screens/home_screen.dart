@@ -19,10 +19,12 @@ import '../utils/custom_font_style.dart';
 import '../utils/enums.dart';
 import '../view_models/puppy_view_model.dart';
 import '../widgets/carousel_widget.dart';
+import '../widgets/cart_icon_widget.dart';
+import '../widgets/cart_vertical_list_chip_widget.dart';
 import '../widgets/circular_network_image_widget.dart';
 import '../widgets/deafult_puppy_icon_widget.dart';
 import '../widgets/food_category_grid_chip_widget.dart';
-import '../widgets/food_discribed_grid_chip_widget.dart';
+import '../widgets/item_discribed_grid_chip_widget.dart';
 import '../widgets/food_grid_chip_widget.dart';
 import '../widgets/shop_items_horizontal_list_chip_widget.dart';
 
@@ -73,7 +75,7 @@ class HomeScreen extends StatelessWidget {
                             ],
                           ),
                           SizedBox(
-                            width: 280.w,
+                            width: 260.w,
                             child: lightBlack14w400Centre(
                                 left: true,
                                 data: context
@@ -93,6 +95,7 @@ class HomeScreen extends StatelessWidget {
                         ],
                       ),
                     ),
+                    cartIconWidget(),
                     defaultPuppyIconWidget(),
                   ],
                 ),
@@ -171,10 +174,10 @@ class HomeScreen extends StatelessWidget {
                 runSpacing: 20,
                 spacing: 20,
                 alignment: WrapAlignment.center,
-                children: List.generate(5, (index) {
+                children: List.generate(context.watch<PlansViewModel>().getFeaturedRecipesList.length, (index) {
                   return SizedBox(
                     width: 157.w,
-                    child: foodGridChipWidget(),
+                    child: foodGridChipWidget(recipeDetail: context.watch<PlansViewModel>().getFeaturedRecipesList[index]),
                   );
                 }),
               ),
@@ -198,27 +201,20 @@ class HomeScreen extends StatelessWidget {
                 child: customButton(
                     text: 'Design Your Doggo\'s Delicious Diet Now',
                     onPressed: () {
-                      context
-                          .read<PlansViewModel>()
-                          .callAllRecipesApi()
-                          .then((value) {
-                        if (value) {
-                          if (context
-                                  .read<AuthViewModel>()
-                                  .getAuthResponse
-                                  .data!
-                                  .petsCount ==
-                              0) {
-                            context
-                                .read<PuppyViewModel>()
-                                .setRouteToPuppyFrom(Screens.home.text);
-                            context.read<PuppyViewModel>().clearPuppyData();
-                            Navigator.pushNamed(context, puppyCreationRoute);
-                          } else {
-                            Navigator.pushNamed(context, choosePlanRoute);
-                          }
-                        }
-                      });
+                      if (context
+                              .read<AuthViewModel>()
+                              .getAuthResponse
+                              .data!
+                              .petsCount ==
+                          0) {
+                        context
+                            .read<PuppyViewModel>()
+                            .setRouteToPuppyFrom(Screens.home.text);
+                        context.read<PuppyViewModel>().clearPuppyData();
+                        Navigator.pushNamed(context, puppyCreationRoute);
+                      } else {
+                        Navigator.pushNamed(context, choosePlanRoute);
+                      }
                     },
                     colored: true),
               ),
@@ -377,12 +373,12 @@ class HomeScreen extends StatelessWidget {
                 //  itemCount: 3,
                 /* itemBuilder: (BuildContext context, int index) =>*/
                 child: Row(
-                  children: foodCategoryList
+                  children: context.watch<PlansViewModel>().getFeaturedProductList
                       .map(
-                        (e) => Container(
+                        (data) => Container(
                           margin: const EdgeInsets.only(right: 20),
                           width: 159.w,
-                          child: shopItemsHorizontalListChipWidget(),
+                          child: shopItemsHorizontalListChipWidget(productDetail: data),
                         ),
                       )
                       .toList(),

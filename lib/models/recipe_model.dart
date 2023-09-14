@@ -18,6 +18,7 @@ class RecipeModel {
   String? recipeNo;
   String? lifeStage;
   int? totalDays;
+  String? category;
   int? caloriesContentNo;
 
   //Ingredient? ingredients;
@@ -41,6 +42,7 @@ class RecipeModel {
       this.caloriesContentNo,
       // this.ingredients,
       this.totalDays,
+        this.category,
       this.ingredientsComposition});
 
   RecipeModel.fromJson(Map<String, dynamic> json) {
@@ -62,6 +64,7 @@ class RecipeModel {
     nutrition = json['nutrition'].split(",");
     pricePerKG = json['pricePerKG'];
     media = json['media'];
+    category = json['category'];
     recipeNo = json['recipeNo'];
     lifeStage = json['lifeStage'];
     caloriesContentNo = json['caloriesContentNo'];
@@ -91,6 +94,7 @@ class RecipeModel {
     data['media'] = this.media;
     data['recipeNo'] = this.recipeNo;
     data['lifeStage'] = this.lifeStage;
+    data['category'] = this.category;
     data['caloriesContentNo'] = this.caloriesContentNo;
     //  data['ingredients'] = this.ingredients;
     data['ingredientsComposition'] = this.ingredientsComposition;

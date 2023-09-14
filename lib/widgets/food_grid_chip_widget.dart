@@ -10,7 +10,7 @@ import '../utils/custom_colors.dart';
 import '../utils/custom_font_style.dart';
 import 'add_meal_bottom_sheet_widget.dart';
 
-Widget foodGridChipWidget (){
+Widget foodGridChipWidget ({required RecipeModel recipeDetail}){
   return Card(
       elevation: 2,
       color: CustomColors.whiteColor,
@@ -35,11 +35,11 @@ Widget foodGridChipWidget (){
                 ),
                 child: Stack(
                   children: [
-                    Center(child: Image.asset(food,height: 108.h,)),
+                    Center(child: Image.network(recipeDetail.media!,height: 108.h,)),
                     InkWell(
                       onTap: () {
                         //TODO: CHANGE RECIPE MODEL
-                        recipeDetailBottomSheetWidget(recipeDetail: RecipeModel());
+                        recipeDetailBottomSheetWidget(recipeDetail: recipeDetail);
                       },
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
@@ -52,7 +52,7 @@ Widget foodGridChipWidget (){
                 )),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 12.0),
-              child: black14w500(data: 'Beefy Barkfest'),
+              child: black14w500(data: recipeDetail.name!),
             )
           ],
         ),
