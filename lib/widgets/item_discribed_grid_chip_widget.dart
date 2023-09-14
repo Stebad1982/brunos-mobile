@@ -27,7 +27,6 @@ Widget itemDescribedGridChipWidget({required RecipeModel recipeModel}) {
       onTap: () {
         plansViewModel.setSelectedRecipe(
             recipeModel);
-
         if (plansViewModel.getPlanType ==
             Plans.oneTime.text) {
           oneTimeOrderBottomSheetWidget();

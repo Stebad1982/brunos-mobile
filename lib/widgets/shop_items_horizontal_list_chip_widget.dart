@@ -19,6 +19,8 @@ Widget shopItemsHorizontalListChipWidget({required RecipeModel productDetail}) {
   return InkWell(
     onTap: () {
       navigatorKey.currentContext!.read<PlansViewModel>().setPlanType(Plans.product.text);
+      navigatorKey.currentContext!.read<PlansViewModel>().setSelectedRecipe(
+          productDetail);
       Navigator.pushNamed(navigatorKey.currentContext!, shopItemDetailRoute);
     },
     child: Card(

@@ -169,30 +169,30 @@ class ShopItemDetailScreen extends StatelessWidget {
                       data:
                           'Select a size to check store availability and In-Store pickup options.'),
                   SizedBox(
-                    height: 100.h,
+                    height: 120.h,
                   ),
 
                 ],
               ),
             ),
-            InkWell(
-              onTap: (){
-                final List<RecipeModel> recipeList = [];
-                recipeList.add(plansViewModel.getSelectedRecipe);
-                context.read<CartViewModel>().addToCartList(
-                  CartModel(
-                      recipe: recipeList,
-                      puppy: null,
-                      deliveryDate: '12/may/2023',
-                      planType: plansViewModel.getPlanType),
-                );
-                Navigator.pushNamedAndRemoveUntil(context,
-                    bottomNavigationRoute,  (route) => false);
-                EasyLoading.showToast('${plansViewModel.getPlanType} Successfully Added To\nShopping Bag',toastPosition: EasyLoadingToastPosition.center);
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: InkWell(
+                onTap: (){
+                  final List<RecipeModel> recipeList = [];
+                  recipeList.add(plansViewModel.getSelectedRecipe);
+                  context.read<CartViewModel>().addToCartList(
+                    CartModel(
+                        recipe: recipeList,
+                        puppy: null,
+                        deliveryDate: '12/may/2023',
+                        planType: plansViewModel.getPlanType),
+                  );
+                  Navigator.pushNamedAndRemoveUntil(context,
+                      bottomNavigationRoute,  (route) => false);
+                  EasyLoading.showToast('${plansViewModel.getPlanType} Successfully Added To\nShopping Bag',toastPosition: EasyLoadingToastPosition.center);
 
-              },
-              child: Align(
-                alignment: Alignment.bottomCenter,
+                },
                 child: Container(
                   height: 80.h,
                     width: double.infinity,

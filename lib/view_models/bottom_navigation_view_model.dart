@@ -21,7 +21,6 @@ class BottomNavigationViewModel extends ChangeNotifier {
     if (index == 0) {
       _widget = const HomeScreen();
     } else if (index == 1) {
-      navigatorKey.currentContext!.read<PlansViewModel>().setPlanType(Plans.product.text);
       _widget = const ShopScreen();
     } else if (index == 2) {
       _widget = const ProfileScreen();
@@ -33,6 +32,9 @@ class BottomNavigationViewModel extends ChangeNotifier {
 
   void setHomeViewIndex(int value){
     _homeViewIndex = value;
+    if(_homeViewIndex == 1){
+      navigatorKey.currentContext!.read<PlansViewModel>().setPlanType(Plans.product.text);
+    }
     notifyListeners();
   }
 
