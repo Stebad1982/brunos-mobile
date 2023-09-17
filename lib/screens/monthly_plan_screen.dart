@@ -80,7 +80,7 @@ class MonthlyPlanScreen extends StatelessWidget {
                                 child:
                                     plansViewModel.getMonthlyEmptyTile1 != null
                                         ? circularNetworkImageWidget(
-                                            image: plansViewModel.getMonthlyEmptyTile1!.media!, size: 52.h,
+                                            image: plansViewModel.getMonthlyEmptyTile1!.media![0], size: 52.h,
                                           )
                                         : SizedBox(
                                             height: 52.h,
@@ -168,7 +168,7 @@ class MonthlyPlanScreen extends StatelessWidget {
                                 child:
                                     plansViewModel.getMonthlyEmptyTile2 != null
                                         ? circularNetworkImageWidget(
-                                      image: plansViewModel.getMonthlyEmptyTile2!.media!, size: 52.h,
+                                      image: plansViewModel.getMonthlyEmptyTile2!.media![0], size: 52.h,
                                     )
                                         : SizedBox(
                                             height: 52.h,
@@ -256,7 +256,7 @@ class MonthlyPlanScreen extends StatelessWidget {
                                 child:
                                     plansViewModel.getMonthlyEmptyTile3 != null
                                         ? circularNetworkImageWidget(
-                                      image: plansViewModel.getMonthlyEmptyTile3!.media!, size: 52.h,
+                                      image: plansViewModel.getMonthlyEmptyTile3!.media![0], size: 52.h,
                                     )
                                         : SizedBox(
                                             height: 52.h,

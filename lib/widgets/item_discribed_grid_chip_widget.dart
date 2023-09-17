@@ -66,7 +66,7 @@ Widget itemDescribedGridChipWidget({required RecipeModel recipeModel}) {
                       children: [
                         Center(
                           child: Image.network(
-                            recipeModel.media!, height: 108.h,
+                            recipeModel.media![0], height: 108.h,
                           ),
                         ),
                         Visibility(

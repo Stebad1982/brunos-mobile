@@ -35,7 +35,7 @@ Widget foodGridChipWidget ({required RecipeModel recipeDetail}){
                 ),
                 child: Stack(
                   children: [
-                    Center(child: Image.network(recipeDetail.media!,height: 108.h,)),
+                    Center(child: Image.network(recipeDetail.media![0],height: 108.h,)),
                     InkWell(
                       onTap: () {
                         //TODO: CHANGE RECIPE MODEL
@@ -52,7 +52,15 @@ Widget foodGridChipWidget ({required RecipeModel recipeDetail}){
                 )),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 12.0),
-              child: black14w500(data: recipeDetail.name!),
+              child: Column(
+                children: [
+
+                  black14w500(data: recipeDetail.name!),
+                  SizedBox(height: 5.h,),
+                  black14w500(data: '(${recipeDetail.lifeStage!})'),
+
+                ],
+              ),
             )
           ],
         ),

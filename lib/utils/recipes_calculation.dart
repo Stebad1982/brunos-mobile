@@ -9,15 +9,15 @@ import 'package:provider/provider.dart';
 import 'enums.dart';
 
 int calculateDailyIntake(
-    {required RecipeModel recipeModel, required PuppyModel puppyModel}) {
-  final int activityLevel = puppyModel.activityLevel == Puppy.active.text
+    {required RecipeModel recipeModel, required String puppyActivityLevel , required num currentWeight}) {
+  final int activityLevel = puppyActivityLevel == Puppy.active.text
       ? 110
-      : puppyModel.activityLevel == Puppy.lessActive.text
+      : puppyActivityLevel == Puppy.lessActive.text
           ? 95
           : 125;
 
   final num dailyIntake = (activityLevel *
-          pow(puppyModel.currentWeight!, 0.75) /
+          pow(currentWeight, 0.75) /
           recipeModel.caloriesContentNo!) *
       1000;
 
@@ -26,9 +26,9 @@ int calculateDailyIntake(
   return roundDailyIntake;
 }
 
-int calculateFeedingPlan({required RecipeModel recipeModel}){
-  final PuppyModel puppyModel = navigatorKey.currentContext!.read<AuthViewModel>().getAuthResponse.data!.pet!;
-  final int dailyIntake = calculateDailyIntake(recipeModel: recipeModel, puppyModel: puppyModel);
+int calculateFeedingPlan({required RecipeModel recipeModel, required PuppyModel puppyModel}){
+  final int dailyIntake = calculateDailyIntake(recipeModel: recipeModel, puppyActivityLevel: puppyModel.activityLevel!, currentWeight: puppyModel.currentWeight!);
   final double perTime = dailyIntake/puppyModel.feedingRoutine!;
   return perTime.round();
 }
+

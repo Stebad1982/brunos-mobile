@@ -23,6 +23,7 @@ Widget mealVerticalListChipWidget({required RecipeModel recipeModel}) {
         onTap: () async {
           Navigator.pop(navigatorKey.currentContext!);
           navigatorKey.currentContext!.read<PlansViewModel>().getMonthlySelectedDaysController.clear();
+          navigatorKey.currentContext!.read<PlansViewModel>().setDayRangeValidation(false);
           navigatorKey.currentContext!.read<PlansViewModel>().setSelectedRecipe(recipeModel);
          scheduleDaysRangeDialog();
           /*   final List<DateTime> picked = await DateRagePicker.showDatePicker(
@@ -55,7 +56,7 @@ Widget mealVerticalListChipWidget({required RecipeModel recipeModel}) {
                         borderRadius: BorderRadius.circular(200),
                       ),
                     ),
-                    child: circularNetworkImageWidget( image: recipeModel.media!, size: 52.h,
+                    child: circularNetworkImageWidget( image: recipeModel.media![0], size: 52.h,
                     )),
                 SizedBox(
                   width: 10.w,

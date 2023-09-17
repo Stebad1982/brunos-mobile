@@ -49,7 +49,7 @@ Widget shopItemsHorizontalListChipWidget({required RecipeModel productDetail}) {
                     padding: const EdgeInsets.all(15),
                     child: Center(
                       child: Image.network(
-                        productDetail.media!, height: 108.h,
+                        productDetail.media![0], height: 108.h,
                       ),
                     ),
                   )),

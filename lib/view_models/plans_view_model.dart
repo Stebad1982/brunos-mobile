@@ -18,6 +18,8 @@ import '../utils/shared_pref .dart';
 class PlansViewModel with ChangeNotifier {
   final PlanApiServices _planApiServices = PlanApiServices();
   String _productCategory = "Clothing";
+  int _availableDays = 0;
+  bool _showDaysRangeValidation = false;
   String _planType = Plans.transitional.text;
   RecipesListResponse _recipesListResponse = RecipesListResponse();
   RecipeModel _selectedRecipe = RecipeModel();
@@ -34,6 +36,44 @@ class PlansViewModel with ChangeNotifier {
   DateTime _focusedDay = DateTime.now().add(const Duration(days: 4));
   DateTime _selectedDay = DateTime.now().add(const Duration(days: 4));
 
+  int get getAvailableDays => _availableDays;
+
+  bool get getDayRangeValidation => _showDaysRangeValidation;
+
+  void setDayRangeValidation (bool value){
+    _showDaysRangeValidation = value;
+    notifyListeners();
+  }
+
+  bool checkAndUpdateAvailableDays (){
+    final newAvailableDays = _availableDays + int.parse(_monthlySelectedDaysController.text);
+    if(newAvailableDays > 30){
+      _showDaysRangeValidation= true;
+      notifyListeners();
+      return false;
+    }
+    else{
+      _availableDays = newAvailableDays;
+      setMonthlySelectedDishModel();
+      notifyListeners();
+      return true;
+    }
+  }
+
+  void setMonthlySelectedDishModel() {
+    final RecipeModel applyDishDetail =
+    RecipeModel.fromJson(_selectedRecipe.toJson());
+    applyDishDetail.totalDays = int.parse(_monthlySelectedDaysController.text);
+    if (_monthlyEmptyTileNumber == 1) {
+      _monthlyEmptyTile1 = applyDishDetail;
+    } else if (_monthlyEmptyTileNumber == 2) {
+      _monthlyEmptyTile2 = applyDishDetail;
+    } else {
+      _monthlyEmptyTile3 = applyDishDetail;
+    }
+  }
+
+
   String get getProductCategory => _productCategory;
 
   void setProductCategory (String value){
@@ -47,7 +87,7 @@ class PlansViewModel with ChangeNotifier {
   List<RecipeModel> get getFeaturedProductList => _featuredProductsList;
 
   List<RecipeModel> get getRecipesList => _recipesList;
-  
+
   List<RecipeModel> get getProductList => _productsList;
 
   RecipesListResponse get getRecipesListResponse => _recipesListResponse;
@@ -85,39 +125,6 @@ class PlansViewModel with ChangeNotifier {
 
   RecipeModel? get getMonthlyEmptyTile3 => _monthlyEmptyTile3;
 
-  void setMonthlySelectedDishModel() {
-    final RecipeModel applyDishDetail =
-        RecipeModel.fromJson(_selectedRecipe.toJson());
-    applyDishDetail.totalDays = int.parse(_monthlySelectedDaysController.text);
-    /*final RecipeModel applyDishDetail = RecipeModel(
-        sId: _selectedRecipe!.sId,
-        createdOnDate: _selectedRecipe!.createdOnDate,
-        name: _selectedRecipe!.name,
-        isFeatured: _selectedRecipe!.isFeatured,
-        userId: _selectedRecipe!.userId,
-        ingredient: _selectedRecipe!.ingredient,
-        description: _selectedRecipe!.description,
-        details: _selectedRecipe!.details,
-        instructions: _selectedRecipe!.instructions,
-        nutrition: _selectedRecipe!.nutrition,
-        pricePerKG: _selectedRecipe!.pricePerKG,
-        media: _selectedRecipe!.media,
-        recipeNo: _selectedRecipe!.recipeNo,
-        lifeStage: _selectedRecipe!.lifeStage,
-        caloriesContentNo: _selectedRecipe!.caloriesContentNo,
-        totalDays: int.parse(_monthlySelectedDaysController.text),
-        ingredientsComposition: _selectedRecipe!.ingredientsComposition);*/
-    if (_monthlyEmptyTileNumber == 1) {
-      _monthlyEmptyTile1 = applyDishDetail;
-      notifyListeners();
-    } else if (_monthlyEmptyTileNumber == 2) {
-      _monthlyEmptyTile2 = applyDishDetail;
-      notifyListeners();
-    } else {
-      _monthlyEmptyTile3 = applyDishDetail;
-      notifyListeners();
-    }
-  }
 
   DateTime get getFocusedDay => _focusedDay;
 
@@ -131,6 +138,7 @@ class PlansViewModel with ChangeNotifier {
   }
 
   void clearPlanData() {
+    _availableDays = 0;
     _monthlySelectedDaysController.clear();
     _monthlyEmptyTileNumber = 1;
     _monthlyEmptyTile1 = null;

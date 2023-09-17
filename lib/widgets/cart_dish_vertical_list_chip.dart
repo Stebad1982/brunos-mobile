@@ -29,7 +29,7 @@ Widget cartDishVerticalListChipWidget({required RecipeModel cartRecipeModel}) {
               children: [
                 Row(
                   children: [ circularNetworkImageWidget(
-                        image: cartRecipeModel.media!, size: 40.h),
+                        image: cartRecipeModel.media![0], size: 40.h),
 
                     SizedBox(width: 10.w,),
                     Column(

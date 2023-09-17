@@ -14,7 +14,7 @@ class RecipeModel {
   String? instructions;
   List<String>? nutrition;
   int? pricePerKG;
-  String? media;
+  List<String>? media;
   String? recipeNo;
   String? lifeStage;
   int? totalDays;
@@ -63,7 +63,7 @@ class RecipeModel {
     instructions = json['instructions'];
     nutrition = json['nutrition'].split(",");
     pricePerKG = json['pricePerKG'];
-    media = json['media'];
+    media = json['media'].cast<String>();
     category = json['category'];
     recipeNo = json['recipeNo'];
     lifeStage = json['lifeStage'];

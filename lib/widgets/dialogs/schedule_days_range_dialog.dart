@@ -25,23 +25,49 @@ Future scheduleDaysRangeDialog() {
               mainAxisAlignment: MainAxisAlignment.center,
               mainAxisSize: MainAxisSize.min,
               children: [
+                black12w500Centre(
+                    data:
+                        'Days Acquired: ${planViewModel.getAvailableDays}/30'),
+                SizedBox(
+                  height: 10.h,
+                ),
                 TextField(
                   controller: planViewModel.getMonthlySelectedDaysController,
                   onChanged: (text) {},
                   keyboardType: TextInputType.number,
                   decoration: const InputDecoration(
                     contentPadding: EdgeInsets.all(20),
-                    hintText: 'Days',
+                    hintText: 'Enter Days',
                   ),
                 ),
+                SizedBox(
+                  height: 10.h,
+                ),
+                Visibility(
+                    visible: planViewModel.getDayRangeValidation,
+                    child: planViewModel
+                            .getMonthlySelectedDaysController.text.isNotEmpty
+                        ? orange14w400(
+                            data: 'Your days are greater then available days')
+                        : orange14w400(
+                            data: 'Please enter valid number of days')),
                 SizedBox(
                   height: 40.h,
                 ),
                 customButton(
                     text: 'Submit',
                     onPressed: () {
-                      planViewModel.setMonthlySelectedDishModel();
-                      Navigator.pop(context);
+                      if (planViewModel
+                          .getMonthlySelectedDaysController.text.isNotEmpty && planViewModel
+                          .getMonthlySelectedDaysController.text != '0') {
+                        planViewModel.setDayRangeValidation(true);
+                        final bool status = planViewModel.checkAndUpdateAvailableDays();
+                        if(status){
+                          Navigator.pop(context);
+                        }
+                      } else {
+                        planViewModel.setDayRangeValidation(true);
+                      }
                     },
                     colored: true),
               ],

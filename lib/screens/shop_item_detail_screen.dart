@@ -48,7 +48,7 @@ class ShopItemDetailScreen extends StatelessWidget {
                         padding: const EdgeInsets.all(40),
                         child: Center(
                           child: Image.network(
-                            plansViewModel.getSelectedRecipe.media!,
+                            plansViewModel.getSelectedRecipe.media![0],
                             //height: 200.h,
                           ),
                         ),
