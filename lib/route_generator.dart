@@ -27,7 +27,7 @@ import 'package:brunos_kitchen/screens/register_user_continue_screen.dart';
 import 'package:brunos_kitchen/screens/register_user_screen.dart';
 import 'package:brunos_kitchen/screens/reset_password_screen.dart';
 import 'package:brunos_kitchen/screens/reset_password_success_screen.dart';
-import 'package:brunos_kitchen/screens/shop_item_detail_screen.dart';
+import 'package:brunos_kitchen/screens/product_detail_screen.dart';
 import 'package:brunos_kitchen/screens/splash_screen.dart';
 import 'package:brunos_kitchen/screens/transitional_plan_screen.dart';
 import 'package:brunos_kitchen/screens/user_verified_screen.dart';
@@ -147,7 +147,7 @@ class RouteGenerator {
             builder: (_) => const AddAddressDetailScreen());
       case shopItemDetailRoute:
         return MaterialPageRoute(
-            builder: (_) => const ShopItemDetailScreen());
+            builder: (_) => const ProductDetailScreen());
       case cartRoute:
         return MaterialPageRoute(
             builder: (_) => const CartScreen());

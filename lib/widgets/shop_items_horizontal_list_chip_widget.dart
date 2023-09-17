@@ -21,6 +21,7 @@ Widget shopItemsHorizontalListChipWidget({required RecipeModel productDetail}) {
       navigatorKey.currentContext!.read<PlansViewModel>().setPlanType(Plans.product.text);
       navigatorKey.currentContext!.read<PlansViewModel>().setSelectedRecipe(
           productDetail);
+      navigatorKey.currentContext!.read<PlansViewModel>().clearPlanData();
       Navigator.pushNamed(navigatorKey.currentContext!, shopItemDetailRoute);
     },
     child: Card(

@@ -114,7 +114,7 @@ Widget cartVerticalListChipWidget({required CartModel cartDetail}) {
                   itemCount: cartDetail.recipe.length,
                   itemBuilder: (BuildContext context, int index) {
                     return cartDishVerticalListChipWidget(
-                        cartRecipeModel: cartDetail.recipe[index]);
+                        cartRecipeModel: cartDetail.recipe[index], planType: cartDetail.planType);
                   },
                   separatorBuilder: (BuildContext context, int index) {
                     return SizedBox(

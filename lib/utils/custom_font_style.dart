@@ -63,10 +63,11 @@ Widget black14w500({required String data}) {
   );
 }
 
-Widget black14w400({required String data}) {
+Widget black14w400({required String data, bool? lineSpacing}) {
   return Text(
     data,
     style: TextStyle(
+        height: lineSpacing == true? 1.5 : null,
         fontFamily: 'CircularStd',
         fontSize: 14.sp,
         color: CustomColors.blackColor,

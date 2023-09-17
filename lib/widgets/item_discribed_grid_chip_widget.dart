@@ -20,19 +20,20 @@ import '../utils/enums.dart';
 import '../utils/recipes_calculation.dart';
 import 'one_time_order_bottom_sheet_widget.dart';
 
-Widget itemDescribedGridChipWidget({required RecipeModel recipeModel}) {
+Widget itemDescribedGridChipWidget({required RecipeModel recipeData}) {
   return Consumer<PlansViewModel>(builder: (context, plansViewModel, child)
   {
     return InkWell(
       onTap: () {
         plansViewModel.setSelectedRecipe(
-            recipeModel);
+            recipeData);
         if (plansViewModel.getPlanType ==
             Plans.oneTime.text) {
-          oneTimeOrderBottomSheetWidget();
+          oneTimeOrderBottomSheetWidget(data: recipeData);
         }
         else if(plansViewModel.getPlanType ==
             Plans.product.text){
+          navigatorKey.currentContext!.read<PlansViewModel>().clearPlanData();
           Navigator.pushNamed(
               navigatorKey.currentContext!, shopItemDetailRoute);
         }
@@ -66,7 +67,7 @@ Widget itemDescribedGridChipWidget({required RecipeModel recipeModel}) {
                       children: [
                         Center(
                           child: Image.network(
-                            recipeModel.media![0], height: 108.h,
+                            recipeData.media![0], height: 108.h,
                           ),
                         ),
                         Visibility(
@@ -75,7 +76,7 @@ Widget itemDescribedGridChipWidget({required RecipeModel recipeModel}) {
                           child: InkWell(
                             onTap: () {
                               recipeDetailBottomSheetWidget(
-                                  recipeDetail: recipeModel);
+                                  recipeDetail: recipeData);
                             },
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
@@ -105,18 +106,18 @@ Widget itemDescribedGridChipWidget({required RecipeModel recipeModel}) {
                       SizedBox(
                           height: 40.h,
                           child: lightBlack14w400Centre(
-                              data: recipeModel.name!, left: true)),
+                              data: recipeData.name!, left: true)),
                       Visibility(
-                        visible: recipeModel.ingredientsComposition!.isNotEmpty,
+                        visible: recipeData.ingredientsComposition!.isNotEmpty,
                         child: black10w400(
                             maxLine: 2,
-                            data: recipeModel.ingredientsComposition!),
+                            data: recipeData.ingredientsComposition!),
                       ),
                       SizedBox(
                         height: 16.h,
                       ),
                       brown12w500Centre(
-                          data: 'AED ${recipeModel.pricePerKG} / KG'),
+                          data: 'AED ${recipeData.pricePerKG} / KG'),
                       SizedBox(
                         height: 2.h,
                       ),

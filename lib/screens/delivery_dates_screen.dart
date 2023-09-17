@@ -321,6 +321,7 @@ class _DeliveryDatesScreenState extends State<DeliveryDatesScreen> {
                                 .add(plansViewModel.getMonthlyEmptyTile3!);
                           }
                         } else {
+                          plansViewModel.setSelectedItemQuantity();
                           recipeList.add(plansViewModel.getSelectedRecipe);
                         }
                         context.read<CartViewModel>().addToCartList(

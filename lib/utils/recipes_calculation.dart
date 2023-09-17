@@ -21,7 +21,7 @@ int calculateDailyIntake(
           recipeModel.caloriesContentNo!) *
       1000;
 
-  final int roundDailyIntake = dailyIntake.round();
+  final int roundDailyIntake = dailyIntake.floor();
 
   return roundDailyIntake;
 }
@@ -29,6 +29,6 @@ int calculateDailyIntake(
 int calculateFeedingPlan({required RecipeModel recipeModel, required PuppyModel puppyModel}){
   final int dailyIntake = calculateDailyIntake(recipeModel: recipeModel, puppyActivityLevel: puppyModel.activityLevel!, currentWeight: puppyModel.currentWeight!);
   final double perTime = dailyIntake/puppyModel.feedingRoutine!;
-  return perTime.round();
+  return perTime.floor();
 }
 

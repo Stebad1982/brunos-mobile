@@ -1,4 +1,5 @@
 import 'package:brunos_kitchen/models/recipe_model.dart';
+import 'package:brunos_kitchen/utils/enums.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -10,7 +11,8 @@ import '../utils/custom_font_style.dart';
 import '../utils/images.dart';
 import 'circular_network_image_widget.dart';
 
-Widget cartDishVerticalListChipWidget({required RecipeModel cartRecipeModel}) {
+Widget cartDishVerticalListChipWidget(
+    {required RecipeModel cartRecipeModel, required String planType}) {
   return Column(
     children: [
       InkWell(
@@ -28,15 +30,24 @@ Widget cartDishVerticalListChipWidget({required RecipeModel cartRecipeModel}) {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Row(
-                  children: [ circularNetworkImageWidget(
+                  children: [
+                    circularNetworkImageWidget(
                         image: cartRecipeModel.media![0], size: 40.h),
-
-                    SizedBox(width: 10.w,),
+                    SizedBox(
+                      width: 10.w,
+                    ),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         black14w500(data: cartRecipeModel.name!),
-                        black14w500(data: 'Days: ${cartRecipeModel.totalDays}'),
+                        planType == Plans.monthly.text
+                            ? black14w500(
+                                data: 'Days: ${cartRecipeModel.totalDays}')
+                            : planType == Plans.transitional.text
+                                ? const SizedBox()
+                                : black14w500(
+                                    data:
+                                        'Quantity: ${cartRecipeModel.quantity}'),
                       ],
                     ),
                   ],

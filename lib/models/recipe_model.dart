@@ -18,6 +18,7 @@ class RecipeModel {
   String? recipeNo;
   String? lifeStage;
   int? totalDays;
+  int? quantity;
   String? category;
   int? caloriesContentNo;
 
@@ -40,6 +41,7 @@ class RecipeModel {
       this.recipeNo,
       this.lifeStage,
       this.caloriesContentNo,
+        this.quantity,
       // this.ingredients,
       this.totalDays,
         this.category,
@@ -59,6 +61,7 @@ class RecipeModel {
     }
     description = json['description'];
     totalDays = json['totalDays'] ?? 1;
+    quantity = json['quantity'] ?? 1;
     details = json['details'];
     instructions = json['instructions'];
     nutrition = json['nutrition'].split(",");
@@ -80,6 +83,7 @@ class RecipeModel {
     data['isFeatured'] = this.isFeatured;
     data['userId'] = this.userId;
     data['totalDays'] = this.totalDays ?? 1;
+    data['quantity'] = this.quantity ?? 1;
     if (this.ingredient != null) {
       data['ingredient'] = this.ingredient!.map((v) => v.toJson()).toList();
     }

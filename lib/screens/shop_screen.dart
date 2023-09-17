@@ -85,7 +85,7 @@ class ShopScreen extends StatelessWidget {
                   return SizedBox(
                     width: 157.w,
                     child: itemDescribedGridChipWidget(
-                        recipeModel: plansViewModel.getProductList[index]),
+                        recipeData: plansViewModel.getProductList[index]),
                   );
                 }),
               ),

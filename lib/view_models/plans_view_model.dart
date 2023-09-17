@@ -18,6 +18,7 @@ import '../utils/shared_pref .dart';
 class PlansViewModel with ChangeNotifier {
   final PlanApiServices _planApiServices = PlanApiServices();
   String _productCategory = "Clothing";
+  int _quantity = 1;
   int _availableDays = 0;
   bool _showDaysRangeValidation = false;
   String _planType = Plans.transitional.text;
@@ -35,6 +36,19 @@ class PlansViewModel with ChangeNotifier {
   RecipeModel? _monthlyEmptyTile3;
   DateTime _focusedDay = DateTime.now().add(const Duration(days: 4));
   DateTime _selectedDay = DateTime.now().add(const Duration(days: 4));
+
+  int get getQuantity => _quantity;
+
+  void addQuantity (){
+    _quantity = ++_quantity;
+    notifyListeners();
+  }
+
+  void minusQuantity (){
+    if(_quantity != 1){
+    _quantity = --_quantity;
+    notifyListeners();}
+  }
 
   int get getAvailableDays => _availableDays;
 
@@ -60,10 +74,18 @@ class PlansViewModel with ChangeNotifier {
     }
   }
 
+  void setSelectedItemQuantity() {
+    final RecipeModel applyDishDetail =
+    RecipeModel.fromJson(_selectedRecipe.toJson());
+    applyDishDetail.quantity = _quantity;
+   _selectedRecipe = applyDishDetail;
+  }
+
   void setMonthlySelectedDishModel() {
     final RecipeModel applyDishDetail =
     RecipeModel.fromJson(_selectedRecipe.toJson());
     applyDishDetail.totalDays = int.parse(_monthlySelectedDaysController.text);
+    applyDishDetail.quantity = _quantity;
     if (_monthlyEmptyTileNumber == 1) {
       _monthlyEmptyTile1 = applyDishDetail;
     } else if (_monthlyEmptyTileNumber == 2) {
@@ -138,6 +160,7 @@ class PlansViewModel with ChangeNotifier {
   }
 
   void clearPlanData() {
+    _quantity = 1;
     _availableDays = 0;
     _monthlySelectedDaysController.clear();
     _monthlyEmptyTileNumber = 1;

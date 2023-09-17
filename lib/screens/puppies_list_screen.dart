@@ -37,7 +37,7 @@ class _PuppiesListScreenState extends State<PuppiesListScreen> {
     return Consumer<PuppyViewModel>(builder: (_, puppyViewModel, __) {
       return Scaffold(
       appBar: const AppBarWithBackWidget(
-        heading: 'My Pets', showPuppy: false,showCart: true
+        heading: 'My Pets', showPuppy: false,showCart: false
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 20.0),
