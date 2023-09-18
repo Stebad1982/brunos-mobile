@@ -52,8 +52,9 @@ Widget purple10w500Centre({required String data}) {
   );
 }
 
-Widget black14w500({required String data}) {
+Widget black14w500({required String data, bool? centre}) {
   return Text(
+    textAlign: centre != null?  TextAlign.center: TextAlign.left,
     data,
     style: TextStyle(
         fontFamily: 'CircularStd',

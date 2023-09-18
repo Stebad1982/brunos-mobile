@@ -357,7 +357,7 @@ class PuppyCreationAdditionalScreen extends StatelessWidget {
                     SizedBox(
                       height: 25.h,
                     ),
-                    black18w500(data: 'Activity Level ?'),
+                    black18w500(data: '${puppyViewModel.getPuppyNameController.text.isNotEmpty ? puppyViewModel.getPuppyNameController.text : 'Pet'} Activity Level ?'),
                     SizedBox(
                       height: 24.h,
                     ),
@@ -404,7 +404,7 @@ class PuppyCreationAdditionalScreen extends StatelessWidget {
                     SizedBox(
                       height: 25.h,
                     ),
-                    black18w500(data: 'Feeding Routine Per Day'),
+                    black18w500(data: '${puppyViewModel.getPuppyNameController.text.isNotEmpty ? puppyViewModel.getPuppyNameController.text : 'Pet'} Daily Feeding Routine'),
                     SizedBox(
                       height: 24.h,
                     ),

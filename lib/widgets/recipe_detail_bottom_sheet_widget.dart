@@ -41,7 +41,7 @@ Future recipeDetailBottomSheetWidget({required RecipeModel recipeDetail}) {
                         SizedBox(
                             width: 280.w,
                             child: grey14w400(
-                                maxLine: 2, data: recipeDetail.description!)),
+                                maxLine: 3, data: recipeDetail.description!)),
                         SizedBox(
                           height: 5.h,
                         ),
@@ -99,7 +99,7 @@ Future recipeDetailBottomSheetWidget({required RecipeModel recipeDetail}) {
                         ],
                       ),
                       SizedBox(
-                        height: 450.h,
+                        height: 440.h,
                         //I want to use dynamic height instead of fixed height
                         child: Padding(
                           padding: const EdgeInsets.symmetric(vertical: 20),

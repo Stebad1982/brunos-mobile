@@ -55,7 +55,7 @@ Widget foodGridChipWidget ({required RecipeModel recipeDetail}){
               child: Column(
                 children: [
 
-                  black14w500(data: recipeDetail.name!),
+                  black14w500(data: recipeDetail.name!,centre: true),
                   SizedBox(height: 5.h,),
                   black14w500(data: '(${recipeDetail.lifeStage!})'),
 

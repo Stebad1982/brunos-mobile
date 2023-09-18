@@ -117,11 +117,16 @@ Widget itemDescribedGridChipWidget({required RecipeModel recipeData}) {
                         height: 16.h,
                       ),
                       brown12w500Centre(
-                          data: 'AED ${recipeData.pricePerKG} / KG'),
-                      SizedBox(
-                        height: 2.h,
+                          data: 'AED ${recipeData.pricePerKG} ${plansViewModel.getPlanType ==
+                              Plans.product.text? '':'/ KG'}'),
+                      Visibility(
+                        visible: plansViewModel.getPlanType !=
+                            Plans.product.text,
+                        child: Padding(
+                          padding: const EdgeInsets.only(top: 2),
+                          child: black10w400(data: 'complete trans period'),
+                        ),
                       ),
-                      black10w400(data: 'complete trans period'),
                     ],
                   ),
                 ),

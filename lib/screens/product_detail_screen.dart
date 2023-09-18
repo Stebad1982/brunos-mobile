@@ -164,17 +164,6 @@ class ProductDetailScreen extends StatelessWidget {
                         lineHeight: true,
                         data: plansViewModel.getSelectedRecipe.description!),
                     SizedBox(
-                      height: 24.h,
-                    ),
-                    black14w500(data: 'Store pickup availability'),
-                    SizedBox(
-                      height: 8.h,
-                    ),
-                    grey14w400(
-                        lineHeight: true,
-                        data:
-                            'Select a size to check store availability and In-Store pickup options.'),
-                    SizedBox(
                       height: 120.h,
                     ),
                   ],
