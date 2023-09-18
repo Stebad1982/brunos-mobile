@@ -64,7 +64,9 @@ Widget mealVerticalListChipWidget({required RecipeModel recipeModel}) {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    black16w500(data: recipeModel.name!),
+                    SizedBox(
+                      width:190.w,
+                        child: black16w500(data: recipeModel.name!)),
                   ],
                 ),
                 const Spacer(),

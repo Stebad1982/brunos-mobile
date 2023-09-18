@@ -28,7 +28,7 @@ class FaqScreen extends StatelessWidget {
         children: [
           AccordionSection(
             // isOpen: false,
-            flipRightIconIfOpen: true,
+            //flipRightIconIfOpen: true,
             rightIcon: Icon(Icons.keyboard_arrow_down),
             // leftIcon: const Icon(Icons.insights_rounded, color: Colors.white),
             headerBackgroundColor: CustomColors.whiteColor,
@@ -49,7 +49,7 @@ class FaqScreen extends StatelessWidget {
           ),
           AccordionSection(
             // isOpen: true,
-            flipRightIconIfOpen: true,
+           // flipRightIconIfOpen: true,
             rightIcon: Icon(Icons.keyboard_arrow_down),
             // leftIcon: const Icon(Icons.insights_rounded, color: Colors.white),
             headerBackgroundColor: CustomColors.whiteColor,
@@ -70,7 +70,7 @@ class FaqScreen extends StatelessWidget {
           ),
           AccordionSection(
             // isOpen: true,
-            flipRightIconIfOpen: true,
+           // flipRightIconIfOpen: true,
             rightIcon: Icon(Icons.keyboard_arrow_down),
             // leftIcon: const Icon(Icons.insights_rounded, color: Colors.white),
             headerBackgroundColor: CustomColors.whiteColor,
@@ -91,7 +91,7 @@ class FaqScreen extends StatelessWidget {
           ),
           AccordionSection(
             //isOpen: true,
-            flipRightIconIfOpen: true,
+          //  flipRightIconIfOpen: true,
             rightIcon: Icon(Icons.keyboard_arrow_down),
             // leftIcon: const Icon(Icons.insights_rounded, color: Colors.white),
             headerBackgroundColor: CustomColors.whiteColor,
@@ -112,7 +112,7 @@ class FaqScreen extends StatelessWidget {
           ),
           AccordionSection(
             // isOpen: true,
-            flipRightIconIfOpen: true,
+            //flipRightIconIfOpen: true,
             rightIcon: Icon(Icons.keyboard_arrow_down),
             // leftIcon: const Icon(Icons.insights_rounded, color: Colors.white),
             headerBackgroundColor: CustomColors.whiteColor,

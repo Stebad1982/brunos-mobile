@@ -67,7 +67,7 @@ Future addMealDetailBottomSheetWidget() {
                   ),
 
                   SizedBox(
-                    height: 500.h,
+                    height: 400.h,
                     child: ListView.builder(
                       //physics: NeverScrollableScrollPhysics(),
                       shrinkWrap: true,
@@ -78,6 +78,7 @@ Future addMealDetailBottomSheetWidget() {
                       },
                     ),
                   ),
+                  SizedBox(height: 100,)
                 ],
               ),
             ],
