@@ -88,7 +88,7 @@ Future recipeDetailBottomSheetWidget({required RecipeModel recipeDetail}) {
                     children: <Widget>[
                       const TabBar(
                         isScrollable: true,
-                        indicatorColor: CustomColors.blackColor,
+                        indicatorColor: CustomColors.orangeColor,
                         dividerColor: CustomColors.greyColor,
                         labelColor: CustomColors.blackColor,
                         tabs: <Widget>[
@@ -670,7 +670,7 @@ Future recipeDetailBottomSheetWidget({required RecipeModel recipeDetail}) {
                                                 .data!
                                                 .pet !=
                                             null
-                                        ? black12w500Centre(
+                                        ? black14w500(
                                             data:
                                                 'Feeding plan for ${context.watch<AuthViewModel>().getAuthResponse.data!.pet!.name} – ${calculateFeedingPlan(recipeModel: recipeDetail, puppyModel: context.watch<AuthViewModel>().getAuthResponse.data!.pet!)} grams ${context.watch<AuthViewModel>().getAuthResponse.data!.pet!.feedingRoutine!} times per day')
                                         : const SizedBox(),
