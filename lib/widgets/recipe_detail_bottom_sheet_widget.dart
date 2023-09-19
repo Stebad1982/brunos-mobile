@@ -99,7 +99,7 @@ Future recipeDetailBottomSheetWidget({required RecipeModel recipeDetail}) {
                         ],
                       ),
                       SizedBox(
-                        height: 440.h,
+                        height: 430.h,
                         //I want to use dynamic height instead of fixed height
                         child: Padding(
                           padding: const EdgeInsets.symmetric(vertical: 20),
@@ -348,315 +348,318 @@ Future recipeDetailBottomSheetWidget({required RecipeModel recipeDetail}) {
                                     SizedBox(
                                       height: 10.h,
                                     ),
-                                    Table(
-                                      defaultColumnWidth:
-                                          const IntrinsicColumnWidth(),
-                                      border: TableBorder.all(
-                                          color: CustomColors.blackColor,
-                                          style: BorderStyle.solid),
-                                      children: [
-                                        TableRow(children: [
-                                          Container(
-                                            color: CustomColors
-                                                .greyMediumLightColor,
-                                            child: Padding(
-                                              padding:
-                                                  const EdgeInsets.symmetric(
-                                                      horizontal: 10,
-                                                      vertical: 5.0),
-                                              child: black10w400(
-                                                  data:
-                                                      'Dog\'s Ideal Weight (kg)'),
-                                            ),
-                                          ),
-                                          Container(
-                                            color: CustomColors
-                                                .greyMediumLightColor,
-                                            child: Padding(
-                                              padding:
-                                                  const EdgeInsets.symmetric(
-                                                      horizontal: 10,
-                                                      vertical: 5.0),
-                                              child: Center(
-                                                child: black10w400(data: '4.5'),
+                                    SingleChildScrollView(
+                                      scrollDirection: Axis.horizontal,
+                                      child: Table(
+                                        defaultColumnWidth:
+                                            const IntrinsicColumnWidth(),
+                                        border: TableBorder.all(
+                                            color: CustomColors.blackColor,
+                                            style: BorderStyle.solid),
+                                        children: [
+                                          TableRow(children: [
+                                            Container(
+                                              color: CustomColors
+                                                  .greyMediumLightColor,
+                                              child: Padding(
+                                                padding:
+                                                    const EdgeInsets.symmetric(
+                                                        horizontal: 10,
+                                                        vertical: 5.0),
+                                                child: black10w400(
+                                                    data:
+                                                        'Dog\'s Ideal Weight (kg)'),
                                               ),
                                             ),
-                                          ),
-                                          Container(
-                                            color: CustomColors
-                                                .greyMediumLightColor,
-                                            child: Padding(
-                                              padding:
-                                                  const EdgeInsets.symmetric(
-                                                      horizontal: 10,
-                                                      vertical: 5.0),
-                                              child: Center(
-                                                child: black10w400(data: '9.1'),
+                                            Container(
+                                              color: CustomColors
+                                                  .greyMediumLightColor,
+                                              child: Padding(
+                                                padding:
+                                                    const EdgeInsets.symmetric(
+                                                        horizontal: 10,
+                                                        vertical: 5.0),
+                                                child: Center(
+                                                  child: black10w400(data: '4.5'),
+                                                ),
                                               ),
                                             ),
-                                          ),
-                                          Container(
-                                            color: CustomColors
-                                                .greyMediumLightColor,
-                                            child: Padding(
-                                              padding:
-                                                  const EdgeInsets.symmetric(
-                                                      horizontal: 10,
-                                                      vertical: 5.0),
-                                              child: Center(
-                                                child:
-                                                    black10w400(data: '15.9'),
+                                            Container(
+                                              color: CustomColors
+                                                  .greyMediumLightColor,
+                                              child: Padding(
+                                                padding:
+                                                    const EdgeInsets.symmetric(
+                                                        horizontal: 10,
+                                                        vertical: 5.0),
+                                                child: Center(
+                                                  child: black10w400(data: '9.1'),
+                                                ),
                                               ),
                                             ),
-                                          ),
-                                          Container(
-                                            color: CustomColors
-                                                .greyMediumLightColor,
-                                            child: Padding(
-                                              padding:
-                                                  const EdgeInsets.symmetric(
-                                                      horizontal: 10,
-                                                      vertical: 5.0),
-                                              child: Center(
-                                                child:
-                                                    black10w400(data: '22.7'),
+                                            Container(
+                                              color: CustomColors
+                                                  .greyMediumLightColor,
+                                              child: Padding(
+                                                padding:
+                                                    const EdgeInsets.symmetric(
+                                                        horizontal: 10,
+                                                        vertical: 5.0),
+                                                child: Center(
+                                                  child:
+                                                      black10w400(data: '15.9'),
+                                                ),
                                               ),
                                             ),
-                                          ),
-                                          Container(
-                                            color: CustomColors
-                                                .greyMediumLightColor,
-                                            child: Padding(
-                                              padding:
-                                                  const EdgeInsets.symmetric(
-                                                      horizontal: 10,
-                                                      vertical: 5.0),
-                                              child: Center(
-                                                child:
-                                                    black10w400(data: '27.3'),
+                                            Container(
+                                              color: CustomColors
+                                                  .greyMediumLightColor,
+                                              child: Padding(
+                                                padding:
+                                                    const EdgeInsets.symmetric(
+                                                        horizontal: 10,
+                                                        vertical: 5.0),
+                                                child: Center(
+                                                  child:
+                                                      black10w400(data: '22.7'),
+                                                ),
                                               ),
                                             ),
-                                          ),
-                                          Container(
-                                            color: CustomColors
-                                                .greyMediumLightColor,
-                                            child: Padding(
-                                              padding:
-                                                  const EdgeInsets.symmetric(
-                                                      horizontal: 10,
-                                                      vertical: 5.0),
-                                              child: Center(
-                                                child:
-                                                    black10w400(data: '34.1'),
+                                            Container(
+                                              color: CustomColors
+                                                  .greyMediumLightColor,
+                                              child: Padding(
+                                                padding:
+                                                    const EdgeInsets.symmetric(
+                                                        horizontal: 10,
+                                                        vertical: 5.0),
+                                                child: Center(
+                                                  child:
+                                                      black10w400(data: '27.3'),
+                                                ),
                                               ),
                                             ),
-                                          ),
-                                        ]),
-                                        TableRow(children: [
-                                          Container(
-                                            color: CustomColors
-                                                .greyMediumLightColor,
-                                            child: Padding(
-                                              padding:
-                                                  const EdgeInsets.symmetric(
-                                                      horizontal: 10,
-                                                      vertical: 5.0),
-                                              child: black10w400(
-                                                  data: 'Adult, Less Active'),
+                                            Container(
+                                              color: CustomColors
+                                                  .greyMediumLightColor,
+                                              child: Padding(
+                                                padding:
+                                                    const EdgeInsets.symmetric(
+                                                        horizontal: 10,
+                                                        vertical: 5.0),
+                                                child: Center(
+                                                  child:
+                                                      black10w400(data: '34.1'),
+                                                ),
+                                              ),
                                             ),
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.symmetric(
-                                                horizontal: 5, vertical: 5.0),
-                                            child: Center(
-                                              child: black10w400(
-                                                  data:
-                                                      '${calculateDailyIntake(recipeModel: recipeDetail, puppyActivityLevel: Puppy.lessActive.text, currentWeight: 4.5)} g'),
+                                          ]),
+                                          TableRow(children: [
+                                            Container(
+                                              color: CustomColors
+                                                  .greyMediumLightColor,
+                                              child: Padding(
+                                                padding:
+                                                    const EdgeInsets.symmetric(
+                                                        horizontal: 10,
+                                                        vertical: 5.0),
+                                                child: black10w400(
+                                                    data: 'Adult, Less Active'),
+                                              ),
                                             ),
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.symmetric(
-                                                horizontal: 5, vertical: 5.0),
-                                            child: Center(
-                                              child: black10w400(
-                                                  data:
-                                                      '${calculateDailyIntake(recipeModel: recipeDetail, puppyActivityLevel: Puppy.lessActive.text, currentWeight: 9.1)} g'),
+                                            Padding(
+                                              padding: const EdgeInsets.symmetric(
+                                                  horizontal: 5, vertical: 5.0),
+                                              child: Center(
+                                                child: black10w400(
+                                                    data:
+                                                        '${calculateDailyIntake(recipeModel: recipeDetail, puppyActivityLevel: Puppy.lessActive.text, currentWeight: 4.5)} g'),
+                                              ),
                                             ),
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.symmetric(
-                                                horizontal: 5, vertical: 5.0),
-                                            child: Center(
-                                              child: black10w400(
-                                                  data:
-                                                      '${calculateDailyIntake(recipeModel: recipeDetail, puppyActivityLevel: Puppy.lessActive.text, currentWeight: 15.9)} g'),
+                                            Padding(
+                                              padding: const EdgeInsets.symmetric(
+                                                  horizontal: 5, vertical: 5.0),
+                                              child: Center(
+                                                child: black10w400(
+                                                    data:
+                                                        '${calculateDailyIntake(recipeModel: recipeDetail, puppyActivityLevel: Puppy.lessActive.text, currentWeight: 9.1)} g'),
+                                              ),
                                             ),
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.symmetric(
-                                                horizontal: 5, vertical: 5.0),
-                                            child: Center(
-                                              child: black10w400(
-                                                  data:
-                                                      '${calculateDailyIntake(recipeModel: recipeDetail, puppyActivityLevel: Puppy.lessActive.text, currentWeight: 22.7)} g'),
+                                            Padding(
+                                              padding: const EdgeInsets.symmetric(
+                                                  horizontal: 5, vertical: 5.0),
+                                              child: Center(
+                                                child: black10w400(
+                                                    data:
+                                                        '${calculateDailyIntake(recipeModel: recipeDetail, puppyActivityLevel: Puppy.lessActive.text, currentWeight: 15.9)} g'),
+                                              ),
                                             ),
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.symmetric(
-                                                horizontal: 5, vertical: 5.0),
-                                            child: Center(
-                                              child: black10w400(
-                                                  data:
-                                                      '${calculateDailyIntake(recipeModel: recipeDetail, puppyActivityLevel: Puppy.lessActive.text, currentWeight: 27.3)} g'),
+                                            Padding(
+                                              padding: const EdgeInsets.symmetric(
+                                                  horizontal: 5, vertical: 5.0),
+                                              child: Center(
+                                                child: black10w400(
+                                                    data:
+                                                        '${calculateDailyIntake(recipeModel: recipeDetail, puppyActivityLevel: Puppy.lessActive.text, currentWeight: 22.7)} g'),
+                                              ),
                                             ),
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.symmetric(
-                                                horizontal: 5, vertical: 5.0),
-                                            child: Center(
-                                              child: black10w400(
-                                                  data:
-                                                      '${calculateDailyIntake(recipeModel: recipeDetail, puppyActivityLevel: Puppy.lessActive.text, currentWeight: 34.1)} g'),
+                                            Padding(
+                                              padding: const EdgeInsets.symmetric(
+                                                  horizontal: 5, vertical: 5.0),
+                                              child: Center(
+                                                child: black10w400(
+                                                    data:
+                                                        '${calculateDailyIntake(recipeModel: recipeDetail, puppyActivityLevel: Puppy.lessActive.text, currentWeight: 27.3)} g'),
+                                              ),
                                             ),
-                                          ),
-                                        ]),
-                                        TableRow(children: [
-                                          Container(
-                                            color: CustomColors
-                                                .greyMediumLightColor,
-                                            child: Padding(
-                                              padding:
-                                                  const EdgeInsets.symmetric(
-                                                      horizontal: 10,
-                                                      vertical: 5.0),
-                                              child: black10w400(
-                                                  data: 'Adult, Active'),
+                                            Padding(
+                                              padding: const EdgeInsets.symmetric(
+                                                  horizontal: 5, vertical: 5.0),
+                                              child: Center(
+                                                child: black10w400(
+                                                    data:
+                                                        '${calculateDailyIntake(recipeModel: recipeDetail, puppyActivityLevel: Puppy.lessActive.text, currentWeight: 34.1)} g'),
+                                              ),
                                             ),
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.symmetric(
-                                                horizontal: 5, vertical: 5.0),
-                                            child: Center(
-                                              child: black10w400(
-                                                  data:
-                                                      '${calculateDailyIntake(recipeModel: recipeDetail, puppyActivityLevel: Puppy.active.text, currentWeight: 4.5)} g'),
+                                          ]),
+                                          TableRow(children: [
+                                            Container(
+                                              color: CustomColors
+                                                  .greyMediumLightColor,
+                                              child: Padding(
+                                                padding:
+                                                    const EdgeInsets.symmetric(
+                                                        horizontal: 10,
+                                                        vertical: 5.0),
+                                                child: black10w400(
+                                                    data: 'Adult, Active'),
+                                              ),
                                             ),
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.symmetric(
-                                                horizontal: 5, vertical: 5.0),
-                                            child: Center(
-                                              child: black10w400(
-                                                  data:
-                                                      '${calculateDailyIntake(recipeModel: recipeDetail, puppyActivityLevel: Puppy.active.text, currentWeight: 9.1)} g'),
+                                            Padding(
+                                              padding: const EdgeInsets.symmetric(
+                                                  horizontal: 5, vertical: 5.0),
+                                              child: Center(
+                                                child: black10w400(
+                                                    data:
+                                                        '${calculateDailyIntake(recipeModel: recipeDetail, puppyActivityLevel: Puppy.active.text, currentWeight: 4.5)} g'),
+                                              ),
                                             ),
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.symmetric(
-                                                horizontal: 5, vertical: 5.0),
-                                            child: Center(
-                                              child: black10w400(
-                                                  data:
-                                                      '${calculateDailyIntake(recipeModel: recipeDetail, puppyActivityLevel: Puppy.active.text, currentWeight: 15.9)} g'),
+                                            Padding(
+                                              padding: const EdgeInsets.symmetric(
+                                                  horizontal: 5, vertical: 5.0),
+                                              child: Center(
+                                                child: black10w400(
+                                                    data:
+                                                        '${calculateDailyIntake(recipeModel: recipeDetail, puppyActivityLevel: Puppy.active.text, currentWeight: 9.1)} g'),
+                                              ),
                                             ),
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.symmetric(
-                                                horizontal: 5, vertical: 5.0),
-                                            child: Center(
-                                              child: black10w400(
-                                                  data:
-                                                      '${calculateDailyIntake(recipeModel: recipeDetail, puppyActivityLevel: Puppy.active.text, currentWeight: 22.7)} g'),
+                                            Padding(
+                                              padding: const EdgeInsets.symmetric(
+                                                  horizontal: 5, vertical: 5.0),
+                                              child: Center(
+                                                child: black10w400(
+                                                    data:
+                                                        '${calculateDailyIntake(recipeModel: recipeDetail, puppyActivityLevel: Puppy.active.text, currentWeight: 15.9)} g'),
+                                              ),
                                             ),
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.symmetric(
-                                                horizontal: 5, vertical: 5.0),
-                                            child: Center(
-                                              child: black10w400(
-                                                  data:
-                                                      '${calculateDailyIntake(recipeModel: recipeDetail, puppyActivityLevel: Puppy.active.text, currentWeight: 27.3)} g'),
+                                            Padding(
+                                              padding: const EdgeInsets.symmetric(
+                                                  horizontal: 5, vertical: 5.0),
+                                              child: Center(
+                                                child: black10w400(
+                                                    data:
+                                                        '${calculateDailyIntake(recipeModel: recipeDetail, puppyActivityLevel: Puppy.active.text, currentWeight: 22.7)} g'),
+                                              ),
                                             ),
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.symmetric(
-                                                horizontal: 5, vertical: 5.0),
-                                            child: Center(
-                                              child: black10w400(
-                                                  data:
-                                                      '${calculateDailyIntake(recipeModel: recipeDetail, puppyActivityLevel: Puppy.active.text, currentWeight: 34.1)} g'),
+                                            Padding(
+                                              padding: const EdgeInsets.symmetric(
+                                                  horizontal: 5, vertical: 5.0),
+                                              child: Center(
+                                                child: black10w400(
+                                                    data:
+                                                        '${calculateDailyIntake(recipeModel: recipeDetail, puppyActivityLevel: Puppy.active.text, currentWeight: 27.3)} g'),
+                                              ),
                                             ),
-                                          ),
-                                        ]),
-                                        TableRow(children: [
-                                          Container(
-                                            color: CustomColors
-                                                .greyMediumLightColor,
-                                            child: Padding(
-                                              padding:
-                                                  const EdgeInsets.symmetric(
-                                                      horizontal: 10,
-                                                      vertical: 5.0),
-                                              child: black10w400(
-                                                  data: 'Adult, More Active'),
+                                            Padding(
+                                              padding: const EdgeInsets.symmetric(
+                                                  horizontal: 5, vertical: 5.0),
+                                              child: Center(
+                                                child: black10w400(
+                                                    data:
+                                                        '${calculateDailyIntake(recipeModel: recipeDetail, puppyActivityLevel: Puppy.active.text, currentWeight: 34.1)} g'),
+                                              ),
                                             ),
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.symmetric(
-                                                horizontal: 5, vertical: 5.0),
-                                            child: Center(
-                                              child: black10w400(
-                                                  data:
-                                                      '${calculateDailyIntake(recipeModel: recipeDetail, puppyActivityLevel: Puppy.veryActive.text, currentWeight: 4.5)} g'),
+                                          ]),
+                                          TableRow(children: [
+                                            Container(
+                                              color: CustomColors
+                                                  .greyMediumLightColor,
+                                              child: Padding(
+                                                padding:
+                                                    const EdgeInsets.symmetric(
+                                                        horizontal: 10,
+                                                        vertical: 5.0),
+                                                child: black10w400(
+                                                    data: 'Adult, More Active'),
+                                              ),
                                             ),
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.symmetric(
-                                                horizontal: 5, vertical: 5.0),
-                                            child: Center(
-                                              child: black10w400(
-                                                  data:
-                                                      '${calculateDailyIntake(recipeModel: recipeDetail, puppyActivityLevel: Puppy.veryActive.text, currentWeight: 9.1)} g'),
+                                            Padding(
+                                              padding: const EdgeInsets.symmetric(
+                                                  horizontal: 5, vertical: 5.0),
+                                              child: Center(
+                                                child: black10w400(
+                                                    data:
+                                                        '${calculateDailyIntake(recipeModel: recipeDetail, puppyActivityLevel: Puppy.veryActive.text, currentWeight: 4.5)} g'),
+                                              ),
                                             ),
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.symmetric(
-                                                horizontal: 5, vertical: 5.0),
-                                            child: Center(
-                                              child: black10w400(
-                                                  data:
-                                                      '${calculateDailyIntake(recipeModel: recipeDetail, puppyActivityLevel: Puppy.veryActive.text, currentWeight: 15.9)} g'),
+                                            Padding(
+                                              padding: const EdgeInsets.symmetric(
+                                                  horizontal: 5, vertical: 5.0),
+                                              child: Center(
+                                                child: black10w400(
+                                                    data:
+                                                        '${calculateDailyIntake(recipeModel: recipeDetail, puppyActivityLevel: Puppy.veryActive.text, currentWeight: 9.1)} g'),
+                                              ),
                                             ),
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.symmetric(
-                                                horizontal: 5, vertical: 5.0),
-                                            child: Center(
-                                              child: black10w400(
-                                                  data:
-                                                      '${calculateDailyIntake(recipeModel: recipeDetail, puppyActivityLevel: Puppy.veryActive.text, currentWeight: 22.7)} g'),
+                                            Padding(
+                                              padding: const EdgeInsets.symmetric(
+                                                  horizontal: 5, vertical: 5.0),
+                                              child: Center(
+                                                child: black10w400(
+                                                    data:
+                                                        '${calculateDailyIntake(recipeModel: recipeDetail, puppyActivityLevel: Puppy.veryActive.text, currentWeight: 15.9)} g'),
+                                              ),
                                             ),
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.symmetric(
-                                                horizontal: 5, vertical: 5.0),
-                                            child: Center(
-                                              child: black10w400(
-                                                  data:
-                                                      '${calculateDailyIntake(recipeModel: recipeDetail, puppyActivityLevel: Puppy.veryActive.text, currentWeight: 27.3)} g'),
+                                            Padding(
+                                              padding: const EdgeInsets.symmetric(
+                                                  horizontal: 5, vertical: 5.0),
+                                              child: Center(
+                                                child: black10w400(
+                                                    data:
+                                                        '${calculateDailyIntake(recipeModel: recipeDetail, puppyActivityLevel: Puppy.veryActive.text, currentWeight: 22.7)} g'),
+                                              ),
                                             ),
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.symmetric(
-                                                horizontal: 5, vertical: 5.0),
-                                            child: Center(
-                                              child: black10w400(
-                                                  data:
-                                                      '${calculateDailyIntake(recipeModel: recipeDetail, puppyActivityLevel: Puppy.veryActive.text, currentWeight: 34.1)} g'),
+                                            Padding(
+                                              padding: const EdgeInsets.symmetric(
+                                                  horizontal: 5, vertical: 5.0),
+                                              child: Center(
+                                                child: black10w400(
+                                                    data:
+                                                        '${calculateDailyIntake(recipeModel: recipeDetail, puppyActivityLevel: Puppy.veryActive.text, currentWeight: 27.3)} g'),
+                                              ),
                                             ),
-                                          ),
-                                        ]),
-                                      ],
+                                            Padding(
+                                              padding: const EdgeInsets.symmetric(
+                                                  horizontal: 5, vertical: 5.0),
+                                              child: Center(
+                                                child: black10w400(
+                                                    data:
+                                                        '${calculateDailyIntake(recipeModel: recipeDetail, puppyActivityLevel: Puppy.veryActive.text, currentWeight: 34.1)} g'),
+                                              ),
+                                            ),
+                                          ]),
+                                        ],
+                                      ),
                                     ),
                                     SizedBox(
                                       height: 20.h,
