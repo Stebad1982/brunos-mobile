@@ -288,6 +288,7 @@ class PuppyViewModel with ChangeNotifier {
     _puppyImage = data.media!;
     _imageFile = null;
     _puppyGender = data.gender!;
+    _feedingRoutine = data.feedingRoutine!;
    // _puppyIsSpayNeuter = data.isSpayNeuter!;
     _puppyBreedController.text = data.breed!;
     _puppyDob = data.bornOnDate! != 0

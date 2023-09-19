@@ -174,7 +174,7 @@ class PuppyDetailScreen extends StatelessWidget {
                     SizedBox(
                       height: 10.h,
                     ),*/
-                    Row(
+                 /*   Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         black14w500(data: 'BirthDay'),
@@ -192,7 +192,7 @@ class PuppyDetailScreen extends StatelessWidget {
                     Divider(),
                     SizedBox(
                       height: 10.h,
-                    ),
+                    ),*/
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -213,7 +213,7 @@ class PuppyDetailScreen extends StatelessWidget {
                     SizedBox(
                       height: 10.h,
                     ),
-                    Row(
+                  /*  Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         black14w500(data: 'Is Weight?'),
@@ -232,7 +232,7 @@ class PuppyDetailScreen extends StatelessWidget {
                     Divider(),
                     SizedBox(
                       height: 10.h,
-                    ),
+                    ),*/
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
