@@ -1,9 +1,11 @@
 import 'dart:convert';
 
+import 'package:brunos_kitchen/main.dart';
 import 'package:brunos_kitchen/models/recipe_model.dart';
 import 'package:brunos_kitchen/models/responses/recipes_list_response.dart';
 import 'package:brunos_kitchen/route_generator.dart';
 import 'package:brunos_kitchen/services/plan_api_services.dart';
+import 'package:brunos_kitchen/view_models/auth_view_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:intl/intl.dart';
@@ -13,6 +15,7 @@ import 'package:table_calendar/table_calendar.dart';
 import '../screens/logIn_screen.dart';
 import '../screens/intro_slides_screen.dart';
 import '../utils/enums.dart';
+import '../utils/recipes_calculation.dart';
 import '../utils/shared_pref .dart';
 
 class PlansViewModel with ChangeNotifier {
@@ -74,10 +77,18 @@ class PlansViewModel with ChangeNotifier {
     }
   }
 
+  void setTransitionalItemQuantity() {
+    final RecipeModel applyDishDetail =
+    RecipeModel.fromJson(_selectedRecipe.toJson());
+    applyDishDetail.finalPrice = calculateFinalPricePerDay(recipeModel: _selectedRecipe);
+    _selectedRecipe = applyDishDetail;
+  }
+
   void setSelectedItemQuantity() {
     final RecipeModel applyDishDetail =
     RecipeModel.fromJson(_selectedRecipe.toJson());
     applyDishDetail.quantity = _quantity;
+    applyDishDetail.finalPrice = _selectedRecipe.pricePerKG! * _quantity;
    _selectedRecipe = applyDishDetail;
   }
 
@@ -86,6 +97,7 @@ class PlansViewModel with ChangeNotifier {
     RecipeModel.fromJson(_selectedRecipe.toJson());
     applyDishDetail.totalDays = int.parse(_monthlySelectedDaysController.text);
     applyDishDetail.quantity = _quantity;
+   applyDishDetail.finalPrice = calculateFinalPricePerDay(recipeModel: _selectedRecipe)*int.parse(_monthlySelectedDaysController.text);
     if (_monthlyEmptyTileNumber == 1) {
       _monthlyEmptyTile1 = applyDishDetail;
     } else if (_monthlyEmptyTileNumber == 2) {

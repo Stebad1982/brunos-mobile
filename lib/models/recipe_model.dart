@@ -14,6 +14,7 @@ class RecipeModel {
   String? instructions;
   List<String>? nutrition;
   int? pricePerKG;
+  num? finalPrice;
   List<String>? media;
   String? recipeNo;
   String? lifeStage;
@@ -42,6 +43,7 @@ class RecipeModel {
       this.lifeStage,
       this.caloriesContentNo,
         this.quantity,
+        this.finalPrice,
       // this.ingredients,
       this.totalDays,
         this.category,
@@ -53,6 +55,7 @@ class RecipeModel {
     name = json['name'];
     isFeatured = json['isFeatured'];
     userId = json['userId'];
+    finalPrice = json['finalPrice']??json['pricePerKG'];
     if (json['ingredient'] != null) {
       ingredient = <Ingredient>[];
       json['ingredient'].forEach((v) {
@@ -84,6 +87,7 @@ class RecipeModel {
     data['userId'] = this.userId;
     data['totalDays'] = this.totalDays ?? 1;
     data['quantity'] = this.quantity ?? 1;
+    data['finalPrice'] = this.finalPrice?? this.pricePerKG;
     if (this.ingredient != null) {
       data['ingredient'] = this.ingredient!.map((v) => v.toJson()).toList();
     }

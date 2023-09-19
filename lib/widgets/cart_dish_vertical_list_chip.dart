@@ -12,7 +12,7 @@ import '../utils/images.dart';
 import 'circular_network_image_widget.dart';
 
 Widget cartDishVerticalListChipWidget(
-    {required RecipeModel cartRecipeModel, required String planType}) {
+    {required RecipeModel cartRecipeModel, required String planType, String? petName}) {
   return Column(
     children: [
       InkWell(
@@ -42,12 +42,20 @@ Widget cartDishVerticalListChipWidget(
                         black14w500(data: cartRecipeModel.name!),
                         planType == Plans.monthly.text
                             ? black14w500(
-                                data: 'Days: ${cartRecipeModel.totalDays}')
+                            data: 'Days: ${cartRecipeModel.totalDays}')
                             : planType == Plans.transitional.text
-                                ? const SizedBox()
-                                : black14w500(
-                                    data:
-                                        'Quantity: ${cartRecipeModel.quantity}'),
+                            ? const SizedBox()
+                            : black14w500(
+                            data:
+                            'Quantity: ${cartRecipeModel.quantity}'),
+                        grey14w400(data: 'Price per Kg: AED ${cartRecipeModel
+                            .pricePerKG}'),
+                        petName != null ? orange14w500(
+                            data: 'As per $petName\'s: AED ${cartRecipeModel
+                                .finalPrice}'):
+                        orange14w500(
+                            data: 'Total Price: AED ${cartRecipeModel
+                                .finalPrice}')
                       ],
                     ),
                   ],

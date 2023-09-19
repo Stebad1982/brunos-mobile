@@ -320,7 +320,12 @@ class _DeliveryDatesScreenState extends State<DeliveryDatesScreen> {
                             recipeList
                                 .add(plansViewModel.getMonthlyEmptyTile3!);
                           }
-                        } else {
+                        }
+                        else if(plansViewModel.getPlanType == Plans.transitional.text){
+                          plansViewModel.setTransitionalItemQuantity();
+                          recipeList.add(plansViewModel.getSelectedRecipe);
+                        }
+                        else {
                           plansViewModel.setSelectedItemQuantity();
                           recipeList.add(plansViewModel.getSelectedRecipe);
                         }
