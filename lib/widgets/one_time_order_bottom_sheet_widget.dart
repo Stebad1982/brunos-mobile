@@ -14,7 +14,7 @@ import 'meal_vertical_list_chip_widget.dart';
 
 Future oneTimeOrderBottomSheetWidget({required RecipeModel data}) {
   return showModalBottomSheet(
-      isScrollControlled: false,
+      isScrollControlled: true,
       backgroundColor: CustomColors.whiteColor,
       shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(top: Radius.circular(20))),
@@ -57,11 +57,11 @@ Future oneTimeOrderBottomSheetWidget({required RecipeModel data}) {
                   Center(
                     child: Image.asset(
                       food,
-                      height: 122.h,
+                      height: 150.h,
                     ),
                   ),
                   SizedBox(
-                    height: 30.h,
+                    height: 10.h,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -71,10 +71,13 @@ Future oneTimeOrderBottomSheetWidget({required RecipeModel data}) {
                         children: [
                           lightBlack14w400Centre(data: data.name!),
                           SizedBox(
-                            width: 200.w,
+                            height: 5.h,
+                          ),
+                          SizedBox(
+                            width: 150.w,
                               child: black10w400(data: data.ingredientsComposition!)),
                           SizedBox(
-                            height: 5.h,
+                            height: 10.h,
                           ),
                           orange14w400(
                               data:

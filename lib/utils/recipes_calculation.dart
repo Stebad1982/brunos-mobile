@@ -32,10 +32,10 @@ int calculateFeedingPlan({required RecipeModel recipeModel, required PuppyModel 
   return perTime.floor();
 }
 
-num calculateFinalPricePerDay({required RecipeModel recipeModel}){
+int calculateFinalPricePerDay({required RecipeModel recipeModel}){
   final PuppyModel puppy = navigatorKey.currentContext!.read<AuthViewModel>().getAuthResponse.data!.pet!;
   final int dailyInTake = calculateDailyIntake(recipeModel: recipeModel, puppyActivityLevel: puppy.activityLevel!, currentWeight: puppy.currentWeight!);
   final num pricePerDay = dailyInTake*recipeModel.pricePerKG!/1000;
-  return pricePerDay;
+  return pricePerDay.round();
 }
 
