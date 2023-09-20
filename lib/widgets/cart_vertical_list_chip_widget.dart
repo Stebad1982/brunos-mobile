@@ -1,4 +1,3 @@
-
 import 'package:brunos_kitchen/main.dart';
 import 'package:brunos_kitchen/utils/custom_font_style.dart';
 import 'package:brunos_kitchen/view_models/cart_view_model.dart';
@@ -11,6 +10,7 @@ import 'package:provider/provider.dart';
 
 import '../models/address_model.dart';
 import '../models/cart_model.dart';
+import '../utils/calculations.dart';
 import '../utils/custom_colors.dart';
 import '../utils/images.dart';
 import 'cart_dish_vertical_list_chip.dart';
@@ -39,7 +39,9 @@ Widget cartVerticalListChipWidget({required CartModel cartDetail}) {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        orange18w500(data: '${cartDetail.planType} ${cartDetail.puppy == null? '': 'Plan'}'),
+                        orange18w500(
+                            data:
+                                '${cartDetail.planType} ${cartDetail.puppy == null ? '' : 'Plan'}'),
                         grey12w500(
                             data: 'Delivery Date: ${cartDetail.deliveryDate}')
                       ],
@@ -72,39 +74,42 @@ Widget cartVerticalListChipWidget({required CartModel cartDetail}) {
                     ),
                   ],
                 ),
-
-                cartDetail.puppy != null ?Column(
-                  children: [
-                    SizedBox(
-                      height: 20.h,
-                    ),
-                    Row(
-                      children: [
-                        cartDetail.puppy!.media!.isNotEmpty
-                            ? circularNetworkImageWidget(
-                                image: cartDetail.puppy!.media!, size: 40.h)
-                            : SizedBox(
-                                height: 40.h,
-                                width: 40.h,
-                                child: CircleAvatar(
-                                  backgroundColor: CustomColors.yellowColor,
-                                  child: SvgPicture.asset(dogFace),
-                                ),
+                cartDetail.puppy != null
+                    ? Column(
+                        children: [
+                          SizedBox(
+                            height: 20.h,
+                          ),
+                          Row(
+                            children: [
+                              cartDetail.puppy!.media!.isNotEmpty
+                                  ? circularNetworkImageWidget(
+                                      image: cartDetail.puppy!.media!,
+                                      size: 40.h)
+                                  : SizedBox(
+                                      height: 40.h,
+                                      width: 40.h,
+                                      child: CircleAvatar(
+                                        backgroundColor:
+                                            CustomColors.yellowColor,
+                                        child: SvgPicture.asset(dogFace),
+                                      ),
+                                    ),
+                              SizedBox(
+                                width: 10.w,
                               ),
-                        SizedBox(
-                          width: 10.w,
-                        ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            black14w500(data: cartDetail.puppy!.name!),
-                            black14w500(data: cartDetail.puppy!.breed!),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ],
-                ): Container(),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  black14w500(data: cartDetail.puppy!.name!),
+                                  black14w500(data: cartDetail.puppy!.breed!),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ],
+                      )
+                    : Container(),
                 SizedBox(
                   height: 20.h,
                 ),
@@ -114,7 +119,11 @@ Widget cartVerticalListChipWidget({required CartModel cartDetail}) {
                   itemCount: cartDetail.recipe.length,
                   itemBuilder: (BuildContext context, int index) {
                     return cartDishVerticalListChipWidget(
-                        cartRecipeModel: cartDetail.recipe[index], planType: cartDetail.planType, petName: cartDetail.puppy != null? cartDetail.puppy!.name!: null);
+                        cartRecipeModel: cartDetail.recipe[index],
+                        planType: cartDetail.planType,
+                        petName: cartDetail.puppy != null
+                            ? cartDetail.puppy!.name!
+                            : null);
                   },
                   separatorBuilder: (BuildContext context, int index) {
                     return SizedBox(
@@ -122,6 +131,12 @@ Widget cartVerticalListChipWidget({required CartModel cartDetail}) {
                     );
                   },
                 ),
+                SizedBox(
+                  height: 20.h,
+                ),
+                Align(
+                  alignment: Alignment.centerRight,
+                    child: black14w500(data: 'Payable: AED ${cartDetail.planTotal}'))
               ],
             ),
           ),

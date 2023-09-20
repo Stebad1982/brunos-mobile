@@ -14,7 +14,7 @@ class RecipeModel {
   String? instructions;
   List<String>? nutrition;
   int? pricePerKG;
-  num? finalPrice;
+  int? finalPrice;
   List<String>? media;
   String? recipeNo;
   String? lifeStage;

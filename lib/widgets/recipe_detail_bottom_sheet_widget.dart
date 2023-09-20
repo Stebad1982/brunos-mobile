@@ -10,7 +10,7 @@ import 'package:provider/provider.dart';
 
 import '../utils/custom_colors.dart';
 import '../utils/enums.dart';
-import '../utils/recipes_calculation.dart';
+import '../utils/calculations.dart';
 import '../view_models/plans_view_model.dart';
 
 Future recipeDetailBottomSheetWidget({required RecipeModel recipeDetail}) {

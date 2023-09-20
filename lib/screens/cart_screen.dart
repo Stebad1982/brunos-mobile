@@ -3,6 +3,7 @@ import 'package:brunos_kitchen/utils/custom_font_style.dart';
 import 'package:brunos_kitchen/view_models/cart_view_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
 import '../utils/custom_buttons.dart';
@@ -50,12 +51,19 @@ class CartScreen extends StatelessWidget {
                 ),
                 child: Padding(
                   padding: const EdgeInsets.all(20),
-                  child: customButton(
-                      text: 'CheckOut',
-                      onPressed: () {
-                        Navigator.pushNamed(context, checkOutRoute);
-                      },
-                      colored: true),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      orange14w500(data: 'Total: AED ${cartViewModel.getCartTotalPrice}'),
+                      SizedBox(height: 10.h,),
+                      customButton(
+                          text: 'CheckOut',
+                          onPressed: () {
+                            Navigator.pushNamed(context, checkOutRoute);
+                          },
+                          colored: true),
+                    ],
+                  ),
                 ),
               ),
             ),

@@ -9,6 +9,7 @@ import 'package:provider/provider.dart';
 import '../models/cart_model.dart';
 import '../models/recipe_model.dart';
 import '../route_generator.dart';
+import '../utils/calculations.dart';
 import '../utils/custom_colors.dart';
 import '../utils/images.dart';
 import '../view_models/cart_view_model.dart';
@@ -181,7 +182,7 @@ class ProductDetailScreen extends StatelessWidget {
                               recipe: recipeList,
                               puppy: null,
                               deliveryDate: '12/may/2023',
-                              planType: plansViewModel.getPlanType),
+                              planType: plansViewModel.getPlanType, planTotal: calculatePlanTotal( listOfItems: recipeList)),
                         );
                     Navigator.pushNamedAndRemoveUntil(
                         context, bottomNavigationRoute, (route) => false);

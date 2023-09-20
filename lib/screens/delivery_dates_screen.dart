@@ -13,6 +13,7 @@ import 'package:provider/provider.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 import '../models/recipe_model.dart';
+import '../utils/calculations.dart';
 import '../utils/custom_buttons.dart';
 import '../utils/date_time_formatter.dart';
 import '../utils/images.dart';
@@ -338,7 +339,7 @@ class _DeliveryDatesScreenState extends State<DeliveryDatesScreen> {
                                       .data!
                                       .pet!,
                                   deliveryDate: deliveryDate,
-                                  planType: plansViewModel.getPlanType),
+                                  planType: plansViewModel.getPlanType, planTotal: calculatePlanTotal( listOfItems: recipeList)),
                             );
                         Navigator.pushNamedAndRemoveUntil(context,
                             bottomNavigationRoute,  (route) => false);

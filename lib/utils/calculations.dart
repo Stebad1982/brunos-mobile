@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:brunos_kitchen/main.dart';
+import 'package:brunos_kitchen/models/cart_model.dart';
 import 'package:brunos_kitchen/models/puppy_model.dart';
 import 'package:brunos_kitchen/models/recipe_model.dart';
 import 'package:brunos_kitchen/view_models/auth_view_model.dart';
@@ -37,5 +38,19 @@ int calculateFinalPricePerDay({required RecipeModel recipeModel}){
   final int dailyInTake = calculateDailyIntake(recipeModel: recipeModel, puppyActivityLevel: puppy.activityLevel!, currentWeight: puppy.currentWeight!);
   final num pricePerDay = dailyInTake*recipeModel.pricePerKG!/1000;
   return pricePerDay.round();
+}
+
+int calculatePlanTotal({required List<RecipeModel> listOfItems}){
+  final int finalPriceSum = listOfItems.fold(0, (i, element){
+    return i + element.finalPrice!;
+  });
+  return finalPriceSum;
+}
+
+int calculateCartTotal({required List<CartModel> cartItems}){
+  final int finalPriceSum = cartItems.fold(0, (i, element){
+    return i + element.planTotal;
+  });
+  return finalPriceSum;
 }
 
