@@ -3,6 +3,7 @@ import 'package:accordion/accordion_section.dart';
 import 'package:brunos_kitchen/utils/images.dart';
 import 'package:brunos_kitchen/view_models/address_view_model.dart';
 import 'package:brunos_kitchen/view_models/auth_view_model.dart';
+import 'package:brunos_kitchen/view_models/cart_view_model.dart';
 import 'package:brunos_kitchen/view_models/plans_view_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -23,6 +24,8 @@ import '../widgets/cart_icon_widget.dart';
 import '../widgets/cart_vertical_list_chip_widget.dart';
 import '../widgets/circular_network_image_widget.dart';
 import '../widgets/deafult_puppy_icon_widget.dart';
+import '../widgets/dialogs/address_label_dialog.dart';
+import '../widgets/dialogs/discription_dialog.dart';
 import '../widgets/food_category_grid_chip_widget.dart';
 import '../widgets/item_discribed_grid_chip_widget.dart';
 import '../widgets/food_grid_chip_widget.dart';
@@ -213,7 +216,17 @@ class HomeScreen extends StatelessWidget {
                         context.read<PuppyViewModel>().clearPuppyData();
                         Navigator.pushNamed(context, puppyCreationRoute);
                       } else {
-                        Navigator.pushNamed(context, choosePlanRoute);
+                        final int index = context.read<CartViewModel>().getCartList.indexWhere((element) => element.puppy!.sId == context
+                            .read<AuthViewModel>()
+                            .getAuthResponse
+                            .data!.pet!.sId);
+                        if(index != -1){
+                          Navigator.pushNamed(context, cartRoute);
+                          descriptionDialog(context: context, description: '', height: 100.h, title: 'asasas');
+                        }
+                        else{
+                          Navigator.pushNamed(context, choosePlanRoute);
+                        }
                       }
                     },
                     colored: true),

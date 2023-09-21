@@ -77,7 +77,7 @@ class PlansViewModel with ChangeNotifier {
     }
   }
 
-  void setTransitionalItemQuantity() {
+  void setTransitionalItem() {
     final RecipeModel applyDishDetail =
     RecipeModel.fromJson(_selectedRecipe.toJson());
     applyDishDetail.finalPrice = calculateFinalPricePerDay(recipeModel: _selectedRecipe);

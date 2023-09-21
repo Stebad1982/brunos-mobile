@@ -323,7 +323,7 @@ class _DeliveryDatesScreenState extends State<DeliveryDatesScreen> {
                           }
                         }
                         else if(plansViewModel.getPlanType == Plans.transitional.text){
-                          plansViewModel.setTransitionalItemQuantity();
+                          plansViewModel.setTransitionalItem();
                           recipeList.add(plansViewModel.getSelectedRecipe);
                         }
                         else {

@@ -54,7 +54,7 @@ class CartScreen extends StatelessWidget {
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      orange14w500(data: 'Total: AED ${cartViewModel.getCartTotalPrice}'),
+                      orange14w500(data: 'Total Amount: AED ${cartViewModel.getCartTotalPrice}'),
                       SizedBox(height: 10.h,),
                       customButton(
                           text: 'CheckOut',
