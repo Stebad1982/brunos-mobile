@@ -23,7 +23,7 @@ Widget mealVerticalListChipWidget({required RecipeModel recipeModel}) {
         onTap: () async {
           Navigator.pop(navigatorKey.currentContext!);
           navigatorKey.currentContext!.read<PlansViewModel>().getMonthlySelectedDaysController.clear();
-          navigatorKey.currentContext!.read<PlansViewModel>().setDayRangeValidation(false);
+        //  navigatorKey.currentContext!.read<PlansViewModel>().setDayRangeValidation(false);
           navigatorKey.currentContext!.read<PlansViewModel>().setSelectedRecipe(recipeModel);
          scheduleDaysRangeDialog();
           /*   final List<DateTime> picked = await DateRagePicker.showDatePicker(

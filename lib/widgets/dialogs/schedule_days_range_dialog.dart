@@ -40,7 +40,7 @@ Future scheduleDaysRangeDialog() {
                     hintText: 'Enter Days',
                   ),
                 ),
-                SizedBox(
+             /*   SizedBox(
                   height: 10.h,
                 ),
                 Visibility(
@@ -50,7 +50,7 @@ Future scheduleDaysRangeDialog() {
                         ? orange14w400(
                             data: 'Your days are greater then available days')
                         : orange14w400(
-                            data: 'Please enter valid number of days')),
+                            data: 'Please enter valid number of days')),*/
                 SizedBox(
                   height: 40.h,
                 ),
@@ -60,13 +60,14 @@ Future scheduleDaysRangeDialog() {
                       if (planViewModel
                           .getMonthlySelectedDaysController.text.isNotEmpty && planViewModel
                           .getMonthlySelectedDaysController.text != '0') {
-                        planViewModel.setDayRangeValidation(true);
+                        planViewModel.setMonthlySelectedDishModel();
+                     /*   planViewModel.setDayRangeValidation(true);
                         final bool status = planViewModel.checkAndUpdateAvailableDays();
                         if(status){
                           Navigator.pop(context);
                         }
                       } else {
-                        planViewModel.setDayRangeValidation(true);
+                        planViewModel.setDayRangeValidation(true);*/
                       }
                     },
                     colored: true),

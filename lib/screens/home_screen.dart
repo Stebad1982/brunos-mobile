@@ -222,7 +222,13 @@ class HomeScreen extends StatelessWidget {
                             .data!.pet!.sId);
                         if(index != -1){
                           Navigator.pushNamed(context, cartRoute);
-                          descriptionDialog(context: context, description: '', height: 100.h, title: 'asasas');
+                          descriptionDialog(context: context, description: 'To add new plan for ${context
+                              .read<AuthViewModel>()
+                              .getAuthResponse
+                              .data!.pet!.name} you have to remove current ${context
+                              .read<AuthViewModel>()
+                              .getAuthResponse
+                              .data!.pet!.name} plan from shopping bag', height: 180.h, title: 'New Plan Creation');
                         }
                         else{
                           Navigator.pushNamed(context, choosePlanRoute);

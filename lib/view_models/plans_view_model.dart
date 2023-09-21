@@ -23,7 +23,7 @@ class PlansViewModel with ChangeNotifier {
   String _productCategory = "Clothing";
   int _quantity = 1;
   int _availableDays = 0;
-  bool _showDaysRangeValidation = false;
+  //bool _showDaysRangeValidation = false;
   String _planType = Plans.transitional.text;
   RecipesListResponse _recipesListResponse = RecipesListResponse();
   RecipeModel _selectedRecipe = RecipeModel();
@@ -55,14 +55,14 @@ class PlansViewModel with ChangeNotifier {
 
   int get getAvailableDays => _availableDays;
 
-  bool get getDayRangeValidation => _showDaysRangeValidation;
+//  bool get getDayRangeValidation => _showDaysRangeValidation;
 
-  void setDayRangeValidation (bool value){
+  /*void setDayRangeValidation (bool value){
     _showDaysRangeValidation = value;
     notifyListeners();
-  }
+  }*/
 
-  bool checkAndUpdateAvailableDays (){
+ /* bool checkAndUpdateAvailableDays (){
     final newAvailableDays = _availableDays + int.parse(_monthlySelectedDaysController.text);
     if(newAvailableDays > 30){
       _showDaysRangeValidation= true;
@@ -75,7 +75,7 @@ class PlansViewModel with ChangeNotifier {
       notifyListeners();
       return true;
     }
-  }
+  }*/
 
   void setTransitionalItem() {
     final RecipeModel applyDishDetail =

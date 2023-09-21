@@ -80,7 +80,10 @@ class MonthlyPlanScreen extends StatelessWidget {
                                 child:
                                     plansViewModel.getMonthlyEmptyTile1 != null
                                         ? circularNetworkImageWidget(
-                                            image: plansViewModel.getMonthlyEmptyTile1!.media![0], size: 52.h,
+                                            image: plansViewModel
+                                                .getMonthlyEmptyTile1!
+                                                .media![0],
+                                            size: 52.h,
                                           )
                                         : SizedBox(
                                             height: 52.h,
@@ -103,8 +106,7 @@ class MonthlyPlanScreen extends StatelessWidget {
                                             const EdgeInsets.only(top: 5.0),
                                         child: black14w500(
                                             data: plansViewModel
-                                                .getMonthlyEmptyTile1!
-                                                .name!),
+                                                .getMonthlyEmptyTile1!.name!),
                                       )
                                     : Container(),
 
@@ -168,8 +170,11 @@ class MonthlyPlanScreen extends StatelessWidget {
                                 child:
                                     plansViewModel.getMonthlyEmptyTile2 != null
                                         ? circularNetworkImageWidget(
-                                      image: plansViewModel.getMonthlyEmptyTile2!.media![0], size: 52.h,
-                                    )
+                                            image: plansViewModel
+                                                .getMonthlyEmptyTile2!
+                                                .media![0],
+                                            size: 52.h,
+                                          )
                                         : SizedBox(
                                             height: 52.h,
                                             width: 52.h,
@@ -191,8 +196,7 @@ class MonthlyPlanScreen extends StatelessWidget {
                                             const EdgeInsets.only(top: 5.0),
                                         child: black14w500(
                                             data: plansViewModel
-                                                .getMonthlyEmptyTile2!
-                                                .name!),
+                                                .getMonthlyEmptyTile2!.name!),
                                       )
                                     : Container(),
 
@@ -256,8 +260,11 @@ class MonthlyPlanScreen extends StatelessWidget {
                                 child:
                                     plansViewModel.getMonthlyEmptyTile3 != null
                                         ? circularNetworkImageWidget(
-                                      image: plansViewModel.getMonthlyEmptyTile3!.media![0], size: 52.h,
-                                    )
+                                            image: plansViewModel
+                                                .getMonthlyEmptyTile3!
+                                                .media![0],
+                                            size: 52.h,
+                                          )
                                         : SizedBox(
                                             height: 52.h,
                                             width: 52.h,
@@ -279,8 +286,7 @@ class MonthlyPlanScreen extends StatelessWidget {
                                             const EdgeInsets.only(top: 5.0),
                                         child: black14w500(
                                             data: plansViewModel
-                                                .getMonthlyEmptyTile3!
-                                                .name!),
+                                                .getMonthlyEmptyTile3!.name!),
                                       )
                                     : Container(),
 
@@ -323,12 +329,30 @@ class MonthlyPlanScreen extends StatelessWidget {
                       text: 'Continue',
                       onPressed: () {
                         if (plansViewModel.getMonthlyEmptyTile1 == null &&
-                            plansViewModel.getMonthlyEmptyTile2 == null && plansViewModel.getMonthlyEmptyTile3 == null)
-                          {
-                            descriptionDialog(context: context, description: 'Please add at least One Meal', height: 150.h, title: 'Note');
+                            plansViewModel.getMonthlyEmptyTile2 == null &&
+                            plansViewModel.getMonthlyEmptyTile3 == null) {
+                          descriptionDialog(
+                              context: context,
+                              description: 'Please add at least One Meal',
+                              height: 150.h,
+                              title: 'Note');
+                        } else {
+                          if ((plansViewModel.getMonthlyEmptyTile1!.totalDays! +
+                                  plansViewModel
+                                      .getMonthlyEmptyTile2!.totalDays! +
+                                  plansViewModel
+                                      .getMonthlyEmptyTile3!.totalDays!) >
+                              30) {
+                            descriptionDialog(
+                                context: context,
+                                description:
+                                    'Total Number of Days must be less then 30',
+                                height: 150.h,
+                                title: 'Alert');
                           }
-                        else{
-                          Navigator.pushNamed(context, deliveryDatesRoute);
+                          {
+                            Navigator.pushNamed(context, deliveryDatesRoute);
+                          }
                         }
                       },
                       colored: true),
