@@ -61,6 +61,7 @@ Future scheduleDaysRangeDialog() {
                           .getMonthlySelectedDaysController.text.isNotEmpty && planViewModel
                           .getMonthlySelectedDaysController.text != '0') {
                         planViewModel.setMonthlySelectedDishModel();
+                        Navigator.pop(context);
                      /*   planViewModel.setDayRangeValidation(true);
                         final bool status = planViewModel.checkAndUpdateAvailableDays();
                         if(status){

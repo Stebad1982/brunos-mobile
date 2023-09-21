@@ -177,10 +177,17 @@ class HomeScreen extends StatelessWidget {
                 runSpacing: 20,
                 spacing: 20,
                 alignment: WrapAlignment.center,
-                children: List.generate(context.watch<PlansViewModel>().getFeaturedRecipesList.length, (index) {
+                children: List.generate(
+                    context
+                        .watch<PlansViewModel>()
+                        .getFeaturedRecipesList
+                        .length, (index) {
                   return SizedBox(
                     width: 157.w,
-                    child: foodGridChipWidget(recipeDetail: context.watch<PlansViewModel>().getFeaturedRecipesList[index]),
+                    child: foodGridChipWidget(
+                        recipeDetail: context
+                            .watch<PlansViewModel>()
+                            .getFeaturedRecipesList[index]),
                   );
                 }),
               ),
@@ -216,21 +223,30 @@ class HomeScreen extends StatelessWidget {
                         context.read<PuppyViewModel>().clearPuppyData();
                         Navigator.pushNamed(context, puppyCreationRoute);
                       } else {
-                        final int index = context.read<CartViewModel>().getCartList.indexWhere((element) => element.puppy!.sId == context
-                            .read<AuthViewModel>()
-                            .getAuthResponse
-                            .data!.pet!.sId);
-                        if(index != -1){
+                        final int index = context
+                            .read<CartViewModel>()
+                            .getCartList
+                            .indexWhere((element) {
+                              if(element.puppy != null){
+                                return  element.puppy!.sId ==
+                                    context
+                                        .read<AuthViewModel>()
+                                        .getAuthResponse
+                                        .data!
+                                        .pet!
+                                        .sId!;
+                              }
+                              else{return false;}
+                        });
+                        if (index != -1) {
                           Navigator.pushNamed(context, cartRoute);
-                          descriptionDialog(context: context, description: 'To add new plan for ${context
-                              .read<AuthViewModel>()
-                              .getAuthResponse
-                              .data!.pet!.name} you have to remove current ${context
-                              .read<AuthViewModel>()
-                              .getAuthResponse
-                              .data!.pet!.name} plan from shopping bag', height: 180.h, title: 'New Plan Creation');
-                        }
-                        else{
+                          descriptionDialog(
+                              context: context,
+                              description:
+                                  'To add new plan for ${context.read<AuthViewModel>().getAuthResponse.data!.pet!.name} you have to remove current ${context.read<AuthViewModel>().getAuthResponse.data!.pet!.name} plan from shopping bag',
+                              height: 180.h,
+                              title: 'New Plan Creation');
+                        } else {
                           Navigator.pushNamed(context, choosePlanRoute);
                         }
                       }
@@ -392,12 +408,15 @@ class HomeScreen extends StatelessWidget {
                 //  itemCount: 3,
                 /* itemBuilder: (BuildContext context, int index) =>*/
                 child: Row(
-                  children: context.watch<PlansViewModel>().getFeaturedProductList
+                  children: context
+                      .watch<PlansViewModel>()
+                      .getFeaturedProductList
                       .map(
                         (data) => Container(
                           margin: const EdgeInsets.only(right: 20),
                           width: 159.w,
-                          child: shopItemsHorizontalListChipWidget(productDetail: data),
+                          child: shopItemsHorizontalListChipWidget(
+                              productDetail: data),
                         ),
                       )
                       .toList(),
@@ -424,7 +443,7 @@ class HomeScreen extends StatelessWidget {
                 children: [
                   AccordionSection(
                     // isOpen: false,
-                   // flipRightIconIfOpen: true,
+                    // flipRightIconIfOpen: true,
                     rightIcon: Icon(Icons.keyboard_arrow_down),
                     // leftIcon: const Icon(Icons.insights_rounded, color: Colors.white),
                     headerBackgroundColor: CustomColors.whiteColor,
@@ -446,7 +465,7 @@ class HomeScreen extends StatelessWidget {
                   ),
                   AccordionSection(
                     // isOpen: true,
-                   // flipRightIconIfOpen: true,
+                    // flipRightIconIfOpen: true,
                     rightIcon: Icon(Icons.keyboard_arrow_down),
                     // leftIcon: const Icon(Icons.insights_rounded, color: Colors.white),
                     headerBackgroundColor: CustomColors.whiteColor,
@@ -468,7 +487,7 @@ class HomeScreen extends StatelessWidget {
                   ),
                   AccordionSection(
                     // isOpen: true,
-                   // flipRightIconIfOpen: true,
+                    // flipRightIconIfOpen: true,
                     rightIcon: Icon(Icons.keyboard_arrow_down),
                     // leftIcon: const Icon(Icons.insights_rounded, color: Colors.white),
                     headerBackgroundColor: CustomColors.whiteColor,
@@ -490,7 +509,7 @@ class HomeScreen extends StatelessWidget {
                   ),
                   AccordionSection(
                     //isOpen: true,
-                  //  flipRightIconIfOpen: true,
+                    //  flipRightIconIfOpen: true,
                     rightIcon: Icon(Icons.keyboard_arrow_down),
                     // leftIcon: const Icon(Icons.insights_rounded, color: Colors.white),
                     headerBackgroundColor: CustomColors.whiteColor,
@@ -512,7 +531,7 @@ class HomeScreen extends StatelessWidget {
                   ),
                   AccordionSection(
                     // isOpen: true,
-                   // flipRightIconIfOpen: true,
+                    // flipRightIconIfOpen: true,
                     rightIcon: Icon(Icons.keyboard_arrow_down),
                     // leftIcon: const Icon(Icons.insights_rounded, color: Colors.white),
                     headerBackgroundColor: CustomColors.whiteColor,

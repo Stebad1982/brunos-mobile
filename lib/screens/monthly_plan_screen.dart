@@ -350,6 +350,7 @@ class MonthlyPlanScreen extends StatelessWidget {
                                 height: 150.h,
                                 title: 'Alert');
                           }
+                          else
                           {
                             Navigator.pushNamed(context, deliveryDatesRoute);
                           }

@@ -105,6 +105,7 @@ class PlansViewModel with ChangeNotifier {
     } else {
       _monthlyEmptyTile3 = applyDishDetail;
     }
+    notifyListeners();
   }
 
 
