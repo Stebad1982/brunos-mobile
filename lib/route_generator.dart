@@ -9,6 +9,7 @@ import 'package:brunos_kitchen/screens/choose_your_plan_screen.dart';
 import 'package:brunos_kitchen/screens/delivery_dates_screen.dart';
 import 'package:brunos_kitchen/screens/edit_profile_screen.dart';
 import 'package:brunos_kitchen/screens/faq_screen.dart';
+import 'package:brunos_kitchen/screens/feeding_plan_screen.dart';
 import 'package:brunos_kitchen/screens/forget_password_screen.dart';
 import 'package:brunos_kitchen/screens/logIn_screen.dart';
 import 'package:brunos_kitchen/screens/monthly_plan_screen.dart';
@@ -48,6 +49,7 @@ const String shareAddressRoute = '/share_address';
 const String editProfileRoute = '/edit_profile';
 const String ordersRoute = '/orders';
 const String puppiesListRoute = '/puppiesList';
+const String feedingPlanRoute = '/feedingPlan';
 const String deliveryDatesRoute = '/delivery_dates';
 const String puppyCreationRoute = '/puppy_creation';
 const String puppyAdditionalRoute = '/puppyAdditional';
@@ -116,6 +118,8 @@ class RouteGenerator {
             builder: (_) => const TransitionalPlanScreen());
       case monthlyPlanRoute:
         return MaterialPageRoute(builder: (_) => const MonthlyPlanScreen());
+      case feedingPlanRoute:
+        return MaterialPageRoute(builder: (_) => const FeedingPlanScreen());
       case deliveryDatesRoute:
         return MaterialPageRoute(builder: (_) => const DeliveryDatesScreen());
       case checkOutRoute:

@@ -307,39 +307,12 @@ class _DeliveryDatesScreenState extends State<DeliveryDatesScreen> {
                         final String deliveryDate =
                             DateTimeFormatter.showDateFormat3(
                                 plansViewModel.getSelectedDay!);
-                        final List<RecipeModel> recipeList = [];
-                        if (plansViewModel.getPlanType == Plans.monthly.text) {
-                          if (plansViewModel.getMonthlyEmptyTile1 != null) {
-                            recipeList
-                                .add(plansViewModel.getMonthlyEmptyTile1!);
-                          }
-                          if (plansViewModel.getMonthlyEmptyTile2 != null) {
-                            recipeList
-                                .add(plansViewModel.getMonthlyEmptyTile2!);
-                          }
-                          if (plansViewModel.getMonthlyEmptyTile3 != null) {
-                            recipeList
-                                .add(plansViewModel.getMonthlyEmptyTile3!);
-                          }
-                        }
-                        else if(plansViewModel.getPlanType == Plans.transitional.text){
-                          plansViewModel.setTransitionalItem();
-                          recipeList.add(plansViewModel.getSelectedRecipe);
-                        }
-                        else {
-                          plansViewModel.setSelectedItemQuantity();
-                          recipeList.add(plansViewModel.getSelectedRecipe);
-                        }
                         context.read<CartViewModel>().addToCartList(
                               CartModel(
-                                  recipe: recipeList,
-                                  puppy: context
-                                      .read<AuthViewModel>()
-                                      .getAuthResponse
-                                      .data!
-                                      .pet!,
+                                  recipe: plansViewModel.getFeedingPlan!.recipe,
+                                  puppy: plansViewModel.getFeedingPlan!.puppy,
                                   deliveryDate: deliveryDate,
-                                  planType: plansViewModel.getPlanType, planTotal: calculatePlanTotal( listOfItems: recipeList)),
+                                  planType: plansViewModel.getFeedingPlan!.planType, planTotal: plansViewModel.getFeedingPlan!.planTotal),
                             );
                         Navigator.pushNamedAndRemoveUntil(context,
                             bottomNavigationRoute,  (route) => false);

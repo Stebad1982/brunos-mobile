@@ -166,7 +166,7 @@ Future oneTimeOrderBottomSheetWidget({required RecipeModel data}) {
                       text: 'Continue',
                       onPressed: () {
                         Navigator.pop(context);
-                        Navigator.pushNamed(context, deliveryDatesRoute);
+                        Navigator.pushNamed(context, feedingPlanRoute);
                       },
                       colored: true),
                 ],
