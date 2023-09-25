@@ -356,8 +356,10 @@ class MonthlyPlanScreen extends StatelessWidget {
                                     'Total Number of Days must be less then 30',
                                 height: 150.h,
                                 title: 'Alert');
-                          } else {
-                            Navigator.pushNamed(context, deliveryDatesRoute);
+                          }
+                          else
+                          {
+                            Navigator.pushNamed(context, feedingPlanRoute);
                           }
                         }
                       },

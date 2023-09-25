@@ -1,6 +1,8 @@
 import 'dart:convert';
 
 import 'package:brunos_kitchen/main.dart';
+import 'package:brunos_kitchen/models/cart_model.dart';
+import 'package:brunos_kitchen/models/puppy_model.dart';
 import 'package:brunos_kitchen/models/recipe_model.dart';
 import 'package:brunos_kitchen/models/responses/recipes_list_response.dart';
 import 'package:brunos_kitchen/route_generator.dart';
@@ -23,6 +25,8 @@ class PlansViewModel with ChangeNotifier {
   String _productCategory = "Clothing";
   int _quantity = 1;
   int _availableDays = 0;
+  CartModel? _feedingPlan;
+
   //bool _showDaysRangeValidation = false;
   String _planType = Plans.transitional.text;
   RecipesListResponse _recipesListResponse = RecipesListResponse();
@@ -42,15 +46,16 @@ class PlansViewModel with ChangeNotifier {
 
   int get getQuantity => _quantity;
 
-  void addQuantity (){
+  void addQuantity() {
     _quantity = ++_quantity;
     notifyListeners();
   }
 
-  void minusQuantity (){
-    if(_quantity != 1){
-    _quantity = --_quantity;
-    notifyListeners();}
+  void minusQuantity() {
+    if (_quantity != 1) {
+      _quantity = --_quantity;
+      notifyListeners();
+    }
   }
 
   int get getAvailableDays => _availableDays;
@@ -62,7 +67,7 @@ class PlansViewModel with ChangeNotifier {
     notifyListeners();
   }*/
 
- /* bool checkAndUpdateAvailableDays (){
+  /* bool checkAndUpdateAvailableDays (){
     final newAvailableDays = _availableDays + int.parse(_monthlySelectedDaysController.text);
     if(newAvailableDays > 30){
       _showDaysRangeValidation= true;
@@ -77,27 +82,60 @@ class PlansViewModel with ChangeNotifier {
     }
   }*/
 
+  CartModel? get getFeedingPlan => _feedingPlan;
+
+  void setFeedingPlan({required PuppyModel petData}) {
+    final List<RecipeModel> recipeList = [];
+    if (_planType == Plans.monthly.text) {
+      if (_monthlyEmptyTile1 != null) {
+        recipeList.add(_monthlyEmptyTile1!);
+      }
+      if (_monthlyEmptyTile2 != null) {
+        recipeList.add(_monthlyEmptyTile2!);
+      }
+      if (_monthlyEmptyTile3 != null) {
+        recipeList.add(_monthlyEmptyTile3!);
+      }
+    } else if (_planType == Plans.transitional.text) {
+      setTransitionalItem();
+      recipeList.add(_selectedRecipe);
+    } else {
+      setSelectedItemQuantity();
+      recipeList.add(_selectedRecipe);
+    }
+    _feedingPlan = CartModel(
+        planTotal: calculatePlanTotal(listOfItems: recipeList),
+        recipe: recipeList,
+        puppy: petData,
+        deliveryDate: '',
+        planType: _planType);
+    notifyListeners();
+  }
+
   void setTransitionalItem() {
     final RecipeModel applyDishDetail =
-    RecipeModel.fromJson(_selectedRecipe.toJson());
-    applyDishDetail.finalPrice = calculateFinalPricePerDay(recipeModel: _selectedRecipe);
+        RecipeModel.fromJson(_selectedRecipe.toJson());
+    applyDishDetail.finalPrice =
+        calculateFinalPricePerDay(recipeModel: _selectedRecipe);
     _selectedRecipe = applyDishDetail;
   }
 
   void setSelectedItemQuantity() {
     final RecipeModel applyDishDetail =
-    RecipeModel.fromJson(_selectedRecipe.toJson());
+        RecipeModel.fromJson(_selectedRecipe.toJson());
     applyDishDetail.quantity = _quantity;
     applyDishDetail.finalPrice = _selectedRecipe.pricePerKG! * _quantity;
-   _selectedRecipe = applyDishDetail;
+    _selectedRecipe = applyDishDetail;
   }
 
   void setMonthlySelectedDishModel() {
     final RecipeModel applyDishDetail =
-    RecipeModel.fromJson(_selectedRecipe.toJson());
+        RecipeModel.fromJson(_selectedRecipe.toJson());
     applyDishDetail.totalDays = int.parse(_monthlySelectedDaysController.text);
     applyDishDetail.quantity = _quantity;
-   applyDishDetail.finalPrice = calculateFinalPricePerDay(recipeModel: _selectedRecipe)*int.parse(_monthlySelectedDaysController.text);
+    applyDishDetail.finalPrice =
+        calculateFinalPricePerDay(recipeModel: _selectedRecipe) *
+            int.parse(_monthlySelectedDaysController.text);
     if (_monthlyEmptyTileNumber == 1) {
       _monthlyEmptyTile1 = applyDishDetail;
     } else if (_monthlyEmptyTileNumber == 2) {
@@ -108,12 +146,13 @@ class PlansViewModel with ChangeNotifier {
     notifyListeners();
   }
 
-
   String get getProductCategory => _productCategory;
 
-  void setProductCategory (String value){
+  void setProductCategory(String value) {
     _productCategory = value;
-    _productsList = _recipesListResponse.data!.recipe!.where((element) => element.category! == _productCategory).toList();
+    _productsList = _recipesListResponse.data!.recipe!
+        .where((element) => element.category! == _productCategory)
+        .toList();
     notifyListeners();
   }
 
@@ -127,13 +166,20 @@ class PlansViewModel with ChangeNotifier {
 
   RecipesListResponse get getRecipesListResponse => _recipesListResponse;
 
-
   void setRecipesListResponse(RecipesListResponse value) {
     _recipesListResponse = value;
-    _recipesList = _recipesListResponse.data!.recipe!.where((element) => element.category!.isEmpty).toList();
-    _productsList = _recipesListResponse.data!.recipe!.where((element) => element.category! == _productCategory).toList();
-    _featuredRecipesList = _recipesListResponse.data!.recipe!.where((element) => element.category!.isEmpty && element.isFeatured!).toList();
-    _featuredProductsList = _recipesListResponse.data!.recipe!.where((element) => element.category!.isNotEmpty && element.isFeatured!).toList();
+    _recipesList = _recipesListResponse.data!.recipe!
+        .where((element) => element.category!.isEmpty)
+        .toList();
+    _productsList = _recipesListResponse.data!.recipe!
+        .where((element) => element.category! == _productCategory)
+        .toList();
+    _featuredRecipesList = _recipesListResponse.data!.recipe!
+        .where((element) => element.category!.isEmpty && element.isFeatured!)
+        .toList();
+    _featuredProductsList = _recipesListResponse.data!.recipe!
+        .where((element) => element.category!.isNotEmpty && element.isFeatured!)
+        .toList();
     notifyListeners();
   }
 
@@ -159,7 +205,6 @@ class PlansViewModel with ChangeNotifier {
   RecipeModel? get getMonthlyEmptyTile2 => _monthlyEmptyTile2;
 
   RecipeModel? get getMonthlyEmptyTile3 => _monthlyEmptyTile3;
-
 
   DateTime get getFocusedDay => _focusedDay;
 
