@@ -66,7 +66,7 @@ const String resetPasswordSuccessRoute = '/resetPasswordSuccess';
 const String puppyDetailRoute = '/puppyDetail';
 const String addAddressRoute = '/addAddress';
 const String addressDetailRoute = '/addressDetail';
-const String shopItemDetailRoute = '/shopItemDetail';
+const String productDetailRoute = '/productDetail';
 const String addAddressDetailRoute = '/addAddressDetail';
 const String cartRoute = '/cart';
 
@@ -145,7 +145,7 @@ class RouteGenerator {
       case addAddressDetailRoute:
         return MaterialPageRoute(
             builder: (_) => const AddAddressDetailScreen());
-      case shopItemDetailRoute:
+      case productDetailRoute:
         return MaterialPageRoute(
             builder: (_) => const ProductDetailScreen());
       case cartRoute:

@@ -32,10 +32,6 @@ Future addMealDetailBottomSheetWidget() {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           black24w500Centre(data: 'Add Meal'),
-                          SizedBox(
-                            height: 5.h,
-                          ),
-                          grey14w400(data: 'Day 1-11'),
                         ],
                       ),
                       const Spacer(),

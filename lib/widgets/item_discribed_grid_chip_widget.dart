@@ -35,7 +35,7 @@ Widget itemDescribedGridChipWidget({required RecipeModel recipeData}) {
             Plans.product.text){
           navigatorKey.currentContext!.read<PlansViewModel>().clearPlanData();
           Navigator.pushNamed(
-              navigatorKey.currentContext!, shopItemDetailRoute);
+              navigatorKey.currentContext!, productDetailRoute);
         }
         else {
           Navigator.pushNamed(

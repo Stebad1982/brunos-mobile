@@ -337,11 +337,18 @@ class MonthlyPlanScreen extends StatelessWidget {
                               height: 150.h,
                               title: 'Note');
                         } else {
-                          if ((plansViewModel.getMonthlyEmptyTile1!.totalDays! +
-                                  plansViewModel
-                                      .getMonthlyEmptyTile2!.totalDays! +
-                                  plansViewModel
-                                      .getMonthlyEmptyTile3!.totalDays!) >
+                          if (((plansViewModel.getMonthlyEmptyTile1 != null
+                                      ? plansViewModel
+                                          .getMonthlyEmptyTile1!.totalDays!
+                                      : 0) +
+                                  (plansViewModel.getMonthlyEmptyTile2 != null
+                                      ? plansViewModel
+                                          .getMonthlyEmptyTile2!.totalDays!
+                                      : 0) +
+                                  (plansViewModel.getMonthlyEmptyTile3 != null
+                                      ? plansViewModel
+                                          .getMonthlyEmptyTile3!.totalDays!
+                                      : 0)) >
                               30) {
                             descriptionDialog(
                                 context: context,
@@ -349,9 +356,7 @@ class MonthlyPlanScreen extends StatelessWidget {
                                     'Total Number of Days must be less then 30',
                                 height: 150.h,
                                 title: 'Alert');
-                          }
-                          else
-                          {
+                          } else {
                             Navigator.pushNamed(context, deliveryDatesRoute);
                           }
                         }
