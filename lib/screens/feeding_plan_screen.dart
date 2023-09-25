@@ -49,14 +49,53 @@ class _FeedingPlanScreenState extends State<FeedingPlanScreen> {
                 ? ListView.builder(
                     // physics: const NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
-                    itemCount:
-                        plansViewModel.getFeedingPlan!.recipe.length,
+                    itemCount: plansViewModel.getFeedingPlan!.recipe.length,
                     padding: const EdgeInsets.only(
                         left: 20, right: 20, top: 20, bottom: 200),
                     itemBuilder: (BuildContext context, int index) {
-                      final num totalPlanQuantity = calculateDailyIntake(recipeModel: plansViewModel.getFeedingPlan!.recipe[index], puppyActivityLevel: plansViewModel.getFeedingPlan!.puppy!.activityLevel!, currentWeight: plansViewModel.getFeedingPlan!.puppy!.currentWeight!) * (plansViewModel.getFeedingPlan!.recipe[index].totalDays!);
-                      final num perPouchQuantity = calculateFeedingPlan(recipeModel: plansViewModel.getFeedingPlan!.recipe[index], puppyModel: plansViewModel.getFeedingPlan!.puppy!);
-                      final num totalPouches = (totalPlanQuantity/perPouchQuantity).round();
+                      final num totalPlanQuantity = calculateDailyIntake(
+                              recipeModel:
+                                  plansViewModel.getFeedingPlan!.recipe[index],
+                              puppyActivityLevel: plansViewModel
+                                  .getFeedingPlan!.puppy!.activityLevel!,
+                              currentWeight: plansViewModel
+                                  .getFeedingPlan!.puppy!.currentWeight!) *
+                          (plansViewModel
+                              .getFeedingPlan!.recipe[index].totalDays!);
+                      final num perPouchQuantity = calculateFeedingPlan(
+                          recipeModel:
+                              plansViewModel.getFeedingPlan!.recipe[index],
+                          puppyModel: plansViewModel.getFeedingPlan!.puppy!);
+                      final num transitionalPlanTotalQuantity =
+                          plansViewModel.getTotalTransitionalGrams();
+                      final num transitional1to3PerPouchQty =
+                          calculateFeedingPlan(
+                              recipeModel:
+                                  plansViewModel.getFeedingPlan!.recipe[index],
+                              puppyModel: plansViewModel.getFeedingPlan!.puppy!,
+                              gramsForTransitional:
+                                  plansViewModel.getTransitionalGrams1to3Days);
+                      final num transitional4to6PerPouchQty =
+                          calculateFeedingPlan(
+                              recipeModel:
+                                  plansViewModel.getFeedingPlan!.recipe[index],
+                              puppyModel: plansViewModel.getFeedingPlan!.puppy!,
+                              gramsForTransitional:
+                                  plansViewModel.getTransitionalGrams4to6Days);
+                      final num transitional7to9PerPouchQty =
+                          calculateFeedingPlan(
+                              recipeModel:
+                                  plansViewModel.getFeedingPlan!.recipe[index],
+                              puppyModel: plansViewModel.getFeedingPlan!.puppy!,
+                              gramsForTransitional:
+                                  plansViewModel.getTransitionalGrams7to9Days);
+                      final num transitional10thPerPouchQty =
+                          calculateFeedingPlan(
+                              recipeModel:
+                                  plansViewModel.getFeedingPlan!.recipe[index],
+                              puppyModel: plansViewModel.getFeedingPlan!.puppy!,
+                              gramsForTransitional:
+                                  plansViewModel.getTransitionalGrams10thDay);
                       return ListTile(
                         minVerticalPadding: 20,
                         title: orange18w500(
@@ -75,21 +114,43 @@ class _FeedingPlanScreenState extends State<FeedingPlanScreen> {
                               alignment: Alignment.centerRight,
                               child: orange14w500(
                                   data:
-                                  '$totalPlanQuantity Grams/Plan'),
+                                      '${plansViewModel.getPlanType == Plans.transitional.text ? transitionalPlanTotalQuantity : totalPlanQuantity} Grams/Plan'),
                             ),
                             black14w500(data: 'You will receive:'),
                             SizedBox(
                               height: 5.h,
                             ),
-                            orange14w400(
-                                data:
-                                    '$totalPouches pouches x $perPouchQuantity grams for ${plansViewModel.getFeedingPlan!.recipe[index].totalDays} days'),
+                            Visibility(
+                              visible: plansViewModel.getPlanType ==
+                                  Plans.transitional.text,
+                              replacement: orange14w400(
+                                  data:
+                                      '${(totalPlanQuantity / perPouchQuantity).round()} pouches x $perPouchQuantity grams for ${plansViewModel.getFeedingPlan!.recipe[index].totalDays} days'),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  orange14w400(
+                                      data:
+                                          '${(plansViewModel.getTransitionalGrams1to3Days / transitional1to3PerPouchQty * 3).round()} pouches x $transitional1to3PerPouchQty grams for (1 to 3) days'),
+                                  orange14w400(
+                                      data:
+                                          '${(plansViewModel.getTransitionalGrams4to6Days / transitional4to6PerPouchQty * 3).round()} pouches x $transitional4to6PerPouchQty grams for (4 to 6) days'),
+                                  orange14w400(
+                                      data:
+                                          '${(plansViewModel.getTransitionalGrams7to9Days / transitional7to9PerPouchQty * 3).round()} pouches x $transitional7to9PerPouchQty grams for (7 to 9) days'),
+                                  orange14w400(
+                                      data:
+                                          '${(plansViewModel.getTransitionalGrams10thDay / transitional10thPerPouchQty).round()} pouches x $transitional10thPerPouchQty grams for (10 to onwards)'),
+                                ],
+                              ),
+                            ),
                             SizedBox(
                               height: 10.h,
                             ),
                             Center(
                                 child: black16w500(
-                                    data: 'Total Meal Price: ${plansViewModel.getFeedingPlan!.recipe[index].finalPrice} AED')),
+                                    data:
+                                        'Total Meal Price: ${plansViewModel.getFeedingPlan!.recipe[index].finalPrice} AED')),
                           ],
                         ),
                       );
@@ -119,11 +180,21 @@ class _FeedingPlanScreenState extends State<FeedingPlanScreen> {
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      orange14w500(data: 'Total ${plansViewModel.getPlanType} Plan Price = ${plansViewModel.getFeedingPlan!.planTotal} AED'),
-                      SizedBox(height: 10.h,),
+                      orange14w500(
+                          data:
+                              'Total ${plansViewModel.getPlanType} Plan Price = ${plansViewModel.getFeedingPlan!.planTotal} AED'),
                       SizedBox(
-                          width:250.w,child: black12w500Centre(data: 'The above plan is calculated based on ${plansViewModel.getFeedingPlan!.puppy!.name!}\'s profile data',centre: true)),
-                      SizedBox(height: 20.h,),
+                        height: 10.h,
+                      ),
+                      SizedBox(
+                          width: 250.w,
+                          child: black12w500Centre(
+                              data:
+                                  'The above plan is calculated based on ${plansViewModel.getFeedingPlan!.puppy!.name!}\'s profile data',
+                              centre: true)),
+                      SizedBox(
+                        height: 20.h,
+                      ),
                       customButton(
                           text: 'Let\'s go',
                           onPressed: () {

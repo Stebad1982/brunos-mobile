@@ -7,6 +7,6 @@ class CartModel {
   List<RecipeModel> recipe;
   String deliveryDate;
   String planType;
-  int planTotal;
+  num planTotal;
   CartModel({required this.planTotal,required this.recipe,required this.puppy, required this.deliveryDate,required this.planType});
 }

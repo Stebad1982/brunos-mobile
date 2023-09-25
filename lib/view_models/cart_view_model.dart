@@ -6,11 +6,11 @@ import '../models/cart_model.dart';
 class CartViewModel with ChangeNotifier {
 
   final List<CartModel> _cartList = [];
-  int _cartTotalPrice = 0;
+  num _cartTotalPrice = 0;
 
   List<CartModel> get getCartList => _cartList;
 
-  int get getCartTotalPrice => _cartTotalPrice;
+  num get getCartTotalPrice => _cartTotalPrice;
 
   void addToCartList (CartModel value){
     _cartList.add(value);

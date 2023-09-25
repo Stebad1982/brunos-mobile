@@ -26,6 +26,10 @@ class PlansViewModel with ChangeNotifier {
   int _quantity = 1;
   int _availableDays = 0;
   CartModel? _feedingPlan;
+  num _transitionalGrams1to3Days = 0;
+  num _transitionalGrams4to6Days = 0;
+  num _transitionalGrams7to9Days = 0;
+  num _transitionalGrams10thDay = 0;
 
   //bool _showDaysRangeValidation = false;
   String _planType = Plans.transitional.text;
@@ -43,6 +47,14 @@ class PlansViewModel with ChangeNotifier {
   RecipeModel? _monthlyEmptyTile3;
   DateTime _focusedDay = DateTime.now().add(const Duration(days: 4));
   DateTime _selectedDay = DateTime.now().add(const Duration(days: 4));
+
+  num get getTransitionalGrams1to3Days => _transitionalGrams1to3Days;
+
+  num get getTransitionalGrams4to6Days => _transitionalGrams4to6Days;
+
+  num get getTransitionalGrams7to9Days => _transitionalGrams7to9Days;
+
+  num get getTransitionalGrams10thDay => _transitionalGrams10thDay;
 
   int get getQuantity => _quantity;
 
@@ -112,11 +124,55 @@ class PlansViewModel with ChangeNotifier {
     notifyListeners();
   }
 
+  num getTotalTransitionalGrams() {
+    final num totalGrams = _transitionalGrams1to3Days +
+        _transitionalGrams4to6Days +
+        _transitionalGrams7to9Days +
+        _transitionalGrams10thDay;
+    return totalGrams.floor();
+  }
+
   void setTransitionalItem() {
+    _transitionalGrams1to3Days = calculateTransitionalGram(
+        recipeModel: _selectedRecipe,
+        percentage: 25,
+        days: 3,
+        calculatePrice: true);
+    _transitionalGrams4to6Days = calculateTransitionalGram(
+        recipeModel: _selectedRecipe,
+        percentage: 50,
+        days: 3,
+        calculatePrice: true);
+    _transitionalGrams7to9Days = calculateTransitionalGram(
+        recipeModel: _selectedRecipe,
+        percentage: 75,
+        days: 3,
+        calculatePrice: true);
+    _transitionalGrams10thDay = calculateTransitionalGram(
+        recipeModel: _selectedRecipe,
+        percentage: 100,
+        days: 1,
+        calculatePrice: true);
+
+    final num priceFor1to3Days = calculateTransitionalPrice(
+        gramWithPercent: _transitionalGrams1to3Days,
+        pricePerKG: _selectedRecipe.pricePerKG!);
+    final num priceFor4to6Days = calculateTransitionalPrice(
+        gramWithPercent: _transitionalGrams4to6Days,
+        pricePerKG: _selectedRecipe.pricePerKG!);
+    final num priceFor7to9Days = calculateTransitionalPrice(
+        gramWithPercent: _transitionalGrams7to9Days,
+        pricePerKG: _selectedRecipe.pricePerKG!);
+    final num priceFor10thDay = calculateTransitionalPrice(
+        gramWithPercent: _transitionalGrams10thDay,
+        pricePerKG: _selectedRecipe.pricePerKG!);
+
     final RecipeModel applyDishDetail =
         RecipeModel.fromJson(_selectedRecipe.toJson());
-    applyDishDetail.finalPrice =
-        calculateFinalPricePerDay(recipeModel: _selectedRecipe);
+    applyDishDetail.finalPrice = priceFor1to3Days +
+        priceFor4to6Days +
+        priceFor7to9Days +
+        priceFor10thDay;
     _selectedRecipe = applyDishDetail;
   }
 
