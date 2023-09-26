@@ -41,12 +41,12 @@ class _FeedingPlanScreenState extends State<FeedingPlanScreen> {
                 : plansViewModel.getPlanType == Plans.monthly.text
                     ? 'Monthly Feeding Plan'
                     : 'One time Feeding Order',
-            showPuppy: true,
-            showCart: false),
+            showPuppy: false,
+            showCart: true),
         body: Stack(
           children: [
             plansViewModel.getFeedingPlan != null
-                ? ListView.builder(
+                ? ListView.separated(
                     // physics: const NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
                     itemCount: plansViewModel.getFeedingPlan!.recipe.length,
@@ -120,30 +120,30 @@ class _FeedingPlanScreenState extends State<FeedingPlanScreen> {
                             SizedBox(
                               height: 5.h,
                             ),
-                            Visibility(
-                              visible: plansViewModel.getPlanType ==
-                                  Plans.transitional.text,
-                              replacement: orange14w400(
-                                  data:
-                                      '${(totalPlanQuantity / perPouchQuantity).round()} pouches x $perPouchQuantity grams for ${plansViewModel.getFeedingPlan!.recipe[index].totalDays} days'),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  orange14w400(
-                                      data:
-                                          '${(plansViewModel.getTransitionalGrams1to3Days / transitional1to3PerPouchQty * 3).round()} pouches x $transitional1to3PerPouchQty grams for (1 to 3) days'),
-                                  orange14w400(
-                                      data:
-                                          '${(plansViewModel.getTransitionalGrams4to6Days / transitional4to6PerPouchQty * 3).round()} pouches x $transitional4to6PerPouchQty grams for (4 to 6) days'),
-                                  orange14w400(
-                                      data:
-                                          '${(plansViewModel.getTransitionalGrams7to9Days / transitional7to9PerPouchQty * 3).round()} pouches x $transitional7to9PerPouchQty grams for (7 to 9) days'),
-                                  orange14w400(
-                                      data:
-                                          '${(plansViewModel.getTransitionalGrams10thDay / transitional10thPerPouchQty).round()} pouches x $transitional10thPerPouchQty grams for (10 to onwards)'),
-                                ],
-                              ),
-                            ),
+                            plansViewModel.getPlanType ==
+                                Plans.transitional.text?  Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    orange14w400(
+                                        data:
+                                            '${(plansViewModel.getTransitionalGrams1to3Days / transitional1to3PerPouchQty * 3).round()} pouches x $transitional1to3PerPouchQty grams (for days 1 to 3)'),
+                                    SizedBox(height: 5.h,),
+                                    orange14w400(
+                                        data:
+                                            '${(plansViewModel.getTransitionalGrams4to6Days / transitional4to6PerPouchQty * 3).round()} pouches x $transitional4to6PerPouchQty grams (for days 4 to 6)'),
+                                    SizedBox(height: 5.h,),
+                                    orange14w400(
+                                        data:
+                                            '${(plansViewModel.getTransitionalGrams7to9Days / transitional7to9PerPouchQty * 3).round()} pouches x $transitional7to9PerPouchQty grams (for days 7 to 9)'),
+                                    SizedBox(height: 5.h,),
+                                    orange14w400(
+                                        data:
+                                            '${(plansViewModel.getTransitionalGrams10thDay / transitional10thPerPouchQty).round()} pouches x $transitional10thPerPouchQty grams (for day 10 to onwards)'),
+                                  ],
+                                )
+                            : orange14w400(
+                                data:
+                                '${(totalPlanQuantity / perPouchQuantity).round()} pouches x $perPouchQuantity grams for ${plansViewModel.getFeedingPlan!.recipe[index].totalDays} days'),
                             SizedBox(
                               height: 10.h,
                             ),
@@ -154,7 +154,9 @@ class _FeedingPlanScreenState extends State<FeedingPlanScreen> {
                           ],
                         ),
                       );
-                    },
+                    }, separatorBuilder: (BuildContext context, int index) {
+                      return SizedBox(height: 20.h,);
+            },
                   )
                 : const SizedBox(),
             Align(

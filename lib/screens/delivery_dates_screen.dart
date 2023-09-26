@@ -45,7 +45,7 @@ class _DeliveryDatesScreenState extends State<DeliveryDatesScreen> {
                 : plansViewModel.getPlanType == Plans.monthly.text
                     ? 'Monthly Plan'
                     : 'One time Order',
-            showPuppy: true,
+            showPuppy: false,
             showCart: true),
         body: Stack(
           children: [

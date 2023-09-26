@@ -223,32 +223,7 @@ class HomeScreen extends StatelessWidget {
                         context.read<PuppyViewModel>().clearPuppyData();
                         Navigator.pushNamed(context, puppyCreationRoute);
                       } else {
-                        final int index = context
-                            .read<CartViewModel>()
-                            .getCartList
-                            .indexWhere((element) {
-                              if(element.puppy != null){
-                                return  element.puppy!.sId ==
-                                    context
-                                        .read<AuthViewModel>()
-                                        .getAuthResponse
-                                        .data!
-                                        .pet!
-                                        .sId!;
-                              }
-                              else{return false;}
-                        });
-                        if (index != -1) {
-                          Navigator.pushNamed(context, cartRoute);
-                          descriptionDialog(
-                              context: context,
-                              description:
-                                  'To add new plan for ${context.read<AuthViewModel>().getAuthResponse.data!.pet!.name} you have to remove current ${context.read<AuthViewModel>().getAuthResponse.data!.pet!.name} plan from shopping bag',
-                              height: 180.h,
-                              title: 'New Plan Creation');
-                        } else {
-                          Navigator.pushNamed(context, choosePlanRoute);
-                        }
+                        Navigator.pushNamed(context, choosePlanRoute);
                       }
                     },
                     colored: true),

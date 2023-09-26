@@ -14,6 +14,7 @@ class RecipeModel {
   String? instructions;
   List<String>? nutrition;
   int? pricePerKG;
+  int? isComboRecipe;
   num? finalPrice;
   List<String>? media;
   String? recipeNo;
@@ -42,11 +43,12 @@ class RecipeModel {
       this.recipeNo,
       this.lifeStage,
       this.caloriesContentNo,
-        this.quantity,
-        this.finalPrice,
+      this.quantity,
+      this.finalPrice,
+      this.isComboRecipe,
       // this.ingredients,
       this.totalDays,
-        this.category,
+      this.category,
       this.ingredientsComposition});
 
   RecipeModel.fromJson(Map<String, dynamic> json) {
@@ -55,7 +57,7 @@ class RecipeModel {
     name = json['name'];
     isFeatured = json['isFeatured'];
     userId = json['userId'];
-    finalPrice = json['finalPrice']??json['pricePerKG'];
+    finalPrice = json['finalPrice'] ?? json['pricePerKG'];
     if (json['ingredient'] != null) {
       ingredient = <Ingredient>[];
       json['ingredient'].forEach((v) {
@@ -63,6 +65,7 @@ class RecipeModel {
       });
     }
     description = json['description'];
+    isComboRecipe = json['isComboRecipe'];
     totalDays = json['totalDays'] ?? 1;
     quantity = json['quantity'] ?? 1;
     details = json['details'];
@@ -84,10 +87,11 @@ class RecipeModel {
     data['createdOnDate'] = this.createdOnDate;
     data['name'] = this.name;
     data['isFeatured'] = this.isFeatured;
+    data['isComboRecipe'] = this.isComboRecipe;
     data['userId'] = this.userId;
     data['totalDays'] = this.totalDays ?? 1;
     data['quantity'] = this.quantity ?? 1;
-    data['finalPrice'] = this.finalPrice?? this.pricePerKG;
+    data['finalPrice'] = this.finalPrice ?? this.pricePerKG;
     if (this.ingredient != null) {
       data['ingredient'] = this.ingredient!.map((v) => v.toJson()).toList();
     }
@@ -97,7 +101,7 @@ class RecipeModel {
     data['description'] = this.description;
     data['details'] = this.details;
     data['instructions'] = this.instructions;
-   // data['nutrition'] = this.nutrition;
+    // data['nutrition'] = this.nutrition;
     data['pricePerKG'] = this.pricePerKG;
     data['media'] = this.media;
     data['recipeNo'] = this.recipeNo;

@@ -61,10 +61,10 @@ class OneTimePlanScreen extends StatelessWidget {
                   runSpacing: 20.w,
                   spacing: 20.w,
                   alignment: WrapAlignment.center,
-                  children: List.generate(context.read<PlansViewModel>().getRecipesList.length, (index) {
+                  children: List.generate(context.read<PlansViewModel>().getRecommendedRecipesList.length, (index) {
                     return SizedBox(
                       width: 157.w,
-                      child: itemDescribedGridChipWidget(recipeData: context.read<PlansViewModel>().getRecipesList[index]),
+                      child: itemDescribedGridChipWidget(recipeData: context.read<PlansViewModel>().getRecommendedRecipesList[index]),
                     );
                   }),
                 ),
@@ -85,10 +85,10 @@ class OneTimePlanScreen extends StatelessWidget {
                   runSpacing: 20.w,
                   spacing: 20.w,
                   alignment: WrapAlignment.center,
-                  children: List.generate(context.read<PlansViewModel>().getRecipesList.length, (index) {
+                  children: List.generate(context.read<PlansViewModel>().getComboRecipesList.length, (index) {
                     return SizedBox(
                       width: 157.w,
-                      child: itemDescribedGridChipWidget(recipeData: context.read<PlansViewModel>().getRecipesList[index]),
+                      child: itemDescribedGridChipWidget(recipeData: context.read<PlansViewModel>().getComboRecipesList[index]),
                     );
                   }),
                 ),

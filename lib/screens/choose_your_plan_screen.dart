@@ -1,6 +1,7 @@
 import 'package:brunos_kitchen/route_generator.dart';
 import 'package:brunos_kitchen/utils/custom_font_style.dart';
 import 'package:brunos_kitchen/utils/images.dart';
+import 'package:brunos_kitchen/view_models/cart_view_model.dart';
 import 'package:brunos_kitchen/view_models/plans_view_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -12,6 +13,7 @@ import '../utils/custom_colors.dart';
 import '../utils/enums.dart';
 import '../view_models/auth_view_model.dart';
 import '../widgets/app_bar_with_back_widget.dart';
+import '../widgets/dialogs/discription_dialog.dart';
 
 class ChooseYourPlanScreen extends StatelessWidget {
   const ChooseYourPlanScreen({Key? key}) : super(key: key);
@@ -20,8 +22,7 @@ class ChooseYourPlanScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const AppBarWithBackWidget(
-        heading: 'Choose your plan', showPuppy: true,showCart: true
-      ),
+          heading: 'Choose your plan', showPuppy: true, showCart: true),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(20),
@@ -41,7 +42,8 @@ class ChooseYourPlanScreen extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 10.0),
                   child: black24w500Centre(
-                      data: 'Create A Paw-Licking\nGood Meal Plan For ${context.watch<AuthViewModel>().getAuthResponse.data!.pet!.name!}'),
+                      data:
+                          'Create A Paw-Licking\nGood Meal Plan For ${context.watch<AuthViewModel>().getAuthResponse.data!.pet!.name!}'),
                 ),
               ),
               SizedBox(
@@ -49,9 +51,23 @@ class ChooseYourPlanScreen extends StatelessWidget {
               ),
               InkWell(
                 onTap: () {
-                  context.read<PlansViewModel>().setPlanType(Plans.transitional.text);
-                  context.read<PlansViewModel>().clearPlanData();
-                  Navigator.pushNamed(context, transitionPlanRoute);
+                  if (context
+                      .read<CartViewModel>()
+                      .checkCartForPlanValidation(planType: Plans.transitional.text)) {
+                    context
+                        .read<PlansViewModel>()
+                        .setPlanType(Plans.transitional.text);
+                    context.read<PlansViewModel>().clearPlanData();
+                    Navigator.pushNamed(context, transitionPlanRoute);
+                  } else {
+                    Navigator.pushNamed(context, cartRoute);
+                    descriptionDialog(
+                        context: context,
+                        description:
+                            'To add new plan for ${context.read<AuthViewModel>().getAuthResponse.data!.pet!.name} you have to remove current ${context.read<AuthViewModel>().getAuthResponse.data!.pet!.name} plan from shopping bag',
+                        height: 180.h,
+                        title: 'New Plan Creation');
+                  }
                 },
                 child: Container(
                   decoration: ShapeDecoration(
@@ -97,9 +113,23 @@ class ChooseYourPlanScreen extends StatelessWidget {
               ),
               InkWell(
                 onTap: () {
-                  context.read<PlansViewModel>().setPlanType(Plans.monthly.text);
-                  context.read<PlansViewModel>().clearPlanData();
-                  Navigator.pushNamed(context, monthlyPlanRoute);
+                  if (context
+                      .read<CartViewModel>()
+                      .checkCartForPlanValidation(planType: Plans.monthly.text)) {
+                    context
+                        .read<PlansViewModel>()
+                        .setPlanType(Plans.monthly.text);
+                    context.read<PlansViewModel>().clearPlanData();
+                    Navigator.pushNamed(context, monthlyPlanRoute);
+                  } else {
+                    Navigator.pushNamed(context, cartRoute);
+                    descriptionDialog(
+                        context: context,
+                        description:
+                            'To add new plan for ${context.read<AuthViewModel>().getAuthResponse.data!.pet!.name} you have to remove current ${context.read<AuthViewModel>().getAuthResponse.data!.pet!.name} plan from shopping bag',
+                        height: 180.h,
+                        title: 'New Plan Creation');
+                  }
                 },
                 child: Container(
                   decoration: ShapeDecoration(
@@ -145,9 +175,23 @@ class ChooseYourPlanScreen extends StatelessWidget {
               ),
               InkWell(
                 onTap: () {
-                  context.read<PlansViewModel>().setPlanType(Plans.oneTime.text);
-                  context.read<PlansViewModel>().clearPlanData();
-                  Navigator.pushNamed(context, oneTimePlanRoute);
+                  if (context
+                      .read<CartViewModel>()
+                      .checkCartForPlanValidation(planType: Plans.oneTime.text)) {
+                    context
+                        .read<PlansViewModel>()
+                        .setPlanType(Plans.oneTime.text);
+                    context.read<PlansViewModel>().clearPlanData();
+                    Navigator.pushNamed(context, oneTimePlanRoute);
+                  } else {
+                    Navigator.pushNamed(context, cartRoute);
+                    descriptionDialog(
+                        context: context,
+                        description:
+                            'To add new plan for ${context.read<AuthViewModel>().getAuthResponse.data!.pet!.name} you have to remove current ${context.read<AuthViewModel>().getAuthResponse.data!.pet!.name} plan from shopping bag',
+                        height: 180.h,
+                        title: 'New Plan Creation');
+                  }
                 },
                 child: Container(
                   decoration: ShapeDecoration(

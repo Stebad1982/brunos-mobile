@@ -46,7 +46,9 @@ Widget cartDishVerticalListChipWidget(
                             data: 'Days: ${cartRecipeModel.totalDays}')
                             : planType == Plans.transitional.text
                             ? const SizedBox()
-                            : black14w500(
+                            : planType == Plans.oneTime.text
+                            ? black14w500(
+                            data: 'Quantity: ${cartRecipeModel.totalDays}'): black14w500(
                             data:
                             'Quantity: ${cartRecipeModel.quantity}'),
                        /* Visibility(

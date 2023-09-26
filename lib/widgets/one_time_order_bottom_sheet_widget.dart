@@ -81,7 +81,7 @@ Future oneTimeOrderBottomSheetWidget({required RecipeModel data}) {
                           ),
                           orange14w400(
                               data:
-                                  'AED ${data.pricePerKG! * navigatorKey.currentContext!.watch<PlansViewModel>().getQuantity} / plan')
+                                  'AED ${data.pricePerKG! * navigatorKey.currentContext!.watch<PlansViewModel>().getDaysCount} / plan')
                         ],
                       ),
                       Column(
@@ -97,7 +97,7 @@ Future oneTimeOrderBottomSheetWidget({required RecipeModel data}) {
                                 onTap: () {
                                   navigatorKey.currentContext!
                                       .read<PlansViewModel>()
-                                      .minusQuantity();
+                                      .minusDaysCount();
                                 },
                                 child: Container(
                                   decoration: ShapeDecoration(
@@ -125,13 +125,13 @@ Future oneTimeOrderBottomSheetWidget({required RecipeModel data}) {
                                       child: black18w500(
                                           data: navigatorKey.currentContext!
                                               .watch<PlansViewModel>()
-                                              .getQuantity
+                                              .getDaysCount
                                               .toString()))),
                               InkWell(
                                 onTap: () {
                                   navigatorKey.currentContext!
                                       .read<PlansViewModel>()
-                                      .addQuantity();
+                                      .addDaysCount();
                                 },
                                 child: Container(
                                   decoration: ShapeDecoration(

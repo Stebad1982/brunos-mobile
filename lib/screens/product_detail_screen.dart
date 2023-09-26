@@ -175,7 +175,7 @@ class ProductDetailScreen extends StatelessWidget {
                 child: InkWell(
                   onTap: () {
                     final List<RecipeModel> recipeList = [];
-                    plansViewModel.setSelectedItemQuantity();
+                    plansViewModel.setProductModel();
                     recipeList.add(plansViewModel.getSelectedRecipe);
                     context.read<CartViewModel>().addToCartList(
                           CartModel(

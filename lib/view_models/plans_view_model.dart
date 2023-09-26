@@ -25,6 +25,7 @@ class PlansViewModel with ChangeNotifier {
   String _productCategory = "Clothing";
   int _quantity = 1;
   int _availableDays = 0;
+  int _daysCount = 1;
   CartModel? _feedingPlan;
   num _transitionalGrams1to3Days = 0;
   num _transitionalGrams4to6Days = 0;
@@ -39,6 +40,8 @@ class PlansViewModel with ChangeNotifier {
   List<RecipeModel> _productsList = [];
   List<RecipeModel> _featuredRecipesList = [];
   List<RecipeModel> _featuredProductsList = [];
+  List<RecipeModel> _comboRecipesList = [];
+  List<RecipeModel> _recommendedRecipesList = [];
   int _monthlyEmptyTileNumber = 1;
   final TextEditingController _monthlySelectedDaysController =
       TextEditingController();
@@ -56,7 +59,22 @@ class PlansViewModel with ChangeNotifier {
 
   num get getTransitionalGrams10thDay => _transitionalGrams10thDay;
 
+  int get getDaysCount => _daysCount;
+
+
   int get getQuantity => _quantity;
+
+  void addDaysCount() {
+    _daysCount = ++_daysCount;
+    notifyListeners();
+  }
+
+  void minusDaysCount() {
+    if (_daysCount != 1) {
+      _daysCount = --_daysCount;
+      notifyListeners();
+    }
+  }
 
   void addQuantity() {
     _quantity = ++_quantity;
@@ -109,10 +127,16 @@ class PlansViewModel with ChangeNotifier {
         recipeList.add(_monthlyEmptyTile3!);
       }
     } else if (_planType == Plans.transitional.text) {
-      setTransitionalItem();
+      setTransitionalDishModel();
       recipeList.add(_selectedRecipe);
-    } else {
-      setSelectedItemQuantity();
+
+    }
+    else if (_planType == Plans.oneTime.text) {
+      setOnTimeSelectedDishModel();
+      recipeList.add(_selectedRecipe);
+    }
+    else {
+      setProductModel();
       recipeList.add(_selectedRecipe);
     }
     _feedingPlan = CartModel(
@@ -132,7 +156,7 @@ class PlansViewModel with ChangeNotifier {
     return totalGrams.floor();
   }
 
-  void setTransitionalItem() {
+  void setTransitionalDishModel() {
     _transitionalGrams1to3Days = calculateTransitionalGram(
         recipeModel: _selectedRecipe,
         percentage: 25,
@@ -176,7 +200,7 @@ class PlansViewModel with ChangeNotifier {
     _selectedRecipe = applyDishDetail;
   }
 
-  void setSelectedItemQuantity() {
+  void setProductModel() {
     final RecipeModel applyDishDetail =
         RecipeModel.fromJson(_selectedRecipe.toJson());
     applyDishDetail.quantity = _quantity;
@@ -184,11 +208,18 @@ class PlansViewModel with ChangeNotifier {
     _selectedRecipe = applyDishDetail;
   }
 
-  void setMonthlySelectedDishModel() {
+  void setOnTimeSelectedDishModel(){
+    final RecipeModel applyDishDetail =
+    RecipeModel.fromJson(_selectedRecipe.toJson());
+    applyDishDetail.totalDays = _daysCount;
+    applyDishDetail.finalPrice = calculateFinalPricePerDay(recipeModel: _selectedRecipe) * _daysCount;
+    _selectedRecipe = applyDishDetail;
+  }
+
+  void setMonthlySelectedItem() {
     final RecipeModel applyDishDetail =
         RecipeModel.fromJson(_selectedRecipe.toJson());
     applyDishDetail.totalDays = int.parse(_monthlySelectedDaysController.text);
-    applyDishDetail.quantity = _quantity;
     applyDishDetail.finalPrice =
         calculateFinalPricePerDay(recipeModel: _selectedRecipe) *
             int.parse(_monthlySelectedDaysController.text);
@@ -211,6 +242,10 @@ class PlansViewModel with ChangeNotifier {
         .toList();
     notifyListeners();
   }
+
+  List<RecipeModel> get getComboRecipesList => _comboRecipesList;
+  List<RecipeModel> get getRecommendedRecipesList => _recommendedRecipesList;
+
 
   List<RecipeModel> get getFeaturedRecipesList => _featuredRecipesList;
 
@@ -235,6 +270,12 @@ class PlansViewModel with ChangeNotifier {
         .toList();
     _featuredProductsList = _recipesListResponse.data!.recipe!
         .where((element) => element.category!.isNotEmpty && element.isFeatured!)
+        .toList();
+    _comboRecipesList = _recipesListResponse.data!.recipe!
+        .where((element) => element.isComboRecipe == 1)
+        .toList();
+    _recommendedRecipesList = _recipesListResponse.data!.recipe!
+        .where((element) => element.isComboRecipe == 0)
         .toList();
     notifyListeners();
   }
@@ -275,6 +316,7 @@ class PlansViewModel with ChangeNotifier {
 
   void clearPlanData() {
     _quantity = 1;
+    _daysCount = 1;
     _availableDays = 0;
     _monthlySelectedDaysController.clear();
     _monthlyEmptyTileNumber = 1;
