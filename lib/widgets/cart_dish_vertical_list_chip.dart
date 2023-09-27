@@ -59,13 +59,13 @@ Widget cartDishVerticalListChipWidget(
                                 .finalPrice!/cartRecipeModel.totalDays!/cartRecipeModel.quantity!).round()} / ${planType == Plans.monthly.text? 'Day': 'Item'}'),
                           ),
                         ),*/
-                        SizedBox(height: 2,),
+                        const SizedBox(height: 2,),
                         petName != null ? orange14w500(
                             data: 'AED ${cartRecipeModel
-                                .finalPrice} / Order'):
+                                .finalPrice}${planType == Plans.oneTime.text?'':' / Order'}'):
                         orange14w500(
-                            data: 'Total Price: AED ${cartRecipeModel
-                                .finalPrice}')
+                            data: 'AED ${cartRecipeModel
+                                .pricePerKG} / Item')
                       ],
                     ),
                   ],

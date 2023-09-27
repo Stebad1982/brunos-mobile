@@ -286,7 +286,7 @@ class PuppyCreationAdditionalScreen extends StatelessWidget {
                           onTap: () {
                             imageDialog(
                               context: context,
-                              height: 550.h,
+                              height: 560.h,
                               title: 'Check Weight',
                             );
                           },

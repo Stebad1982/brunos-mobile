@@ -1,9 +1,12 @@
+import 'package:brunos_kitchen/main.dart';
 import 'package:brunos_kitchen/utils/custom_font_style.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../utils/custom_buttons.dart';
 import '../utils/images.dart';
+import 'dialogs/address_label_dialog.dart';
+import 'dialogs/cancel_order_dialog.dart';
 
 Widget ordersVerticalListChipWidget({required bool showButtons}) {
   return Column(
@@ -28,15 +31,14 @@ Widget ordersVerticalListChipWidget({required bool showButtons}) {
                 child: Padding(
                   padding: const EdgeInsets.only(top: 10),
                   child: Container(
-                    width: 250.w,
+                    width: 270.w,
                     child: Row(
                       children: [
                         Expanded(
                           child: customSquareButton(
                               text: 'Cancel',
                               onPressed: () {
-                                /*puppyViewModel
-                                    .setPuppyActivityLevel(Puppy.active.text);*/
+                                cancelOrderDialog(context: navigatorKey.currentContext!);
                               },
                               colored: true),
                         ),
@@ -55,7 +57,7 @@ Widget ordersVerticalListChipWidget({required bool showButtons}) {
                         ),
                         Expanded(
                           child: customSquareButton(
-                              text: 'Hold it',
+                              text: 'Update It',
                               onPressed: () {
                               },
                               colored: true),

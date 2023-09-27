@@ -53,7 +53,7 @@ class _OrdersScreenState extends State<OrdersScreen>
               height: 30.h,
             ),
             TabBar(
-              padding: EdgeInsets.symmetric(horizontal: 20),
+              padding: const EdgeInsets.symmetric(horizontal: 20),
               indicatorPadding: EdgeInsets.zero,
               labelPadding: EdgeInsets.zero,
               isScrollable: true,

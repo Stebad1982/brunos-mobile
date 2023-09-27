@@ -77,34 +77,54 @@ class ChooseYourPlanScreen extends StatelessWidget {
                       borderRadius: BorderRadius.circular(12),
                     ),
                   ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(20),
-                    child: Row(
-                      children: [
-                        SvgPicture.asset(
-                          transitionPlan,
-                          height: 44.h,
+                  child: Stack(
+                    children: [
+                      InkWell(
+                        onTap: () {
+                          descriptionDialog(
+                              context: context,
+                              description:
+                              'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown ',
+                              height: 250.h,
+                              title: 'Transitional Plan');
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Align(
+                              alignment: Alignment.topRight,
+                              child: SvgPicture.asset(informationButton)),
                         ),
-                        SizedBox(
-                          width: 20.w,
-                        ),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              black18w500(data: 'Transitional Plan'),
-                              SizedBox(
-                                height: 5.h,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(20),
+                        child: Row(
+                          children: [
+                            SvgPicture.asset(
+                              transitionPlan,
+                              height: 44.h,
+                            ),
+                            SizedBox(
+                              width: 20.w,
+                            ),
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  black18w500(data: 'Transitional Plan'),
+                                  SizedBox(
+                                    height: 5.h,
+                                  ),
+                                  lightBlack14w400Centre(
+                                      data:
+                                          'First-Timers: Ease your pup into Bruno\'s recipes. Post-transition, enjoy a wider menu!',
+                                      left: true)
+                                ],
                               ),
-                              lightBlack14w400Centre(
-                                  data:
-                                      'First-Timers: Ease your pup into Bruno\'s recipes. Post-transition, enjoy a wider menu!',
-                                  left: true)
-                            ],
-                          ),
-                        )
-                      ],
-                    ),
+                            )
+                          ],
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ),
@@ -139,34 +159,54 @@ class ChooseYourPlanScreen extends StatelessWidget {
                       borderRadius: BorderRadius.circular(12),
                     ),
                   ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(20),
-                    child: Row(
-                      children: [
-                        SvgPicture.asset(
-                          monthlyPlan,
-                          height: 44.h,
+                  child: Stack(
+                    children: [
+                      InkWell(
+                        onTap: () {
+                          descriptionDialog(
+                              context: context,
+                              description:
+                              'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown ',
+                              height: 250.h,
+                              title: 'Monthly Plan');
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Align(
+                              alignment: Alignment.topRight,
+                              child: SvgPicture.asset(informationButton)),
                         ),
-                        SizedBox(
-                          width: 20.w,
-                        ),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              black18w500(data: 'Monthly Plan'),
-                              SizedBox(
-                                height: 5.h,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(20),
+                        child: Row(
+                          children: [
+                            SvgPicture.asset(
+                              monthlyPlan,
+                              height: 44.h,
+                            ),
+                            SizedBox(
+                              width: 20.w,
+                            ),
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  black18w500(data: 'Monthly Plan'),
+                                  SizedBox(
+                                    height: 5.h,
+                                  ),
+                                  lightBlack14w400Centre(
+                                      data:
+                                          'For an affordable, varied meal adventure. Three monthly meal choices for your pup\'s delight!',
+                                      left: true)
+                                ],
                               ),
-                              lightBlack14w400Centre(
-                                  data:
-                                      'For an affordable, varied meal adventure. Three monthly meal choices for your pup\'s delight!',
-                                  left: true)
-                            ],
-                          ),
-                        )
-                      ],
-                    ),
+                            )
+                          ],
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ),
@@ -201,34 +241,54 @@ class ChooseYourPlanScreen extends StatelessWidget {
                       borderRadius: BorderRadius.circular(12),
                     ),
                   ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(20),
-                    child: Row(
-                      children: [
-                        SvgPicture.asset(
-                          onetimePlan,
-                          height: 44.h,
+                  child: Stack(
+                    children: [
+                      InkWell(
+                        onTap: () {
+                          descriptionDialog(
+                              context: context,
+                              description:
+                              'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown ',
+                              height: 250.h,
+                              title: 'One-time Plan');
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Align(
+                              alignment: Alignment.topRight,
+                              child: SvgPicture.asset(informationButton)),
                         ),
-                        SizedBox(
-                          width: 20.w,
-                        ),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              black18w500(data: 'One-time Order'),
-                              SizedBox(
-                                height: 5.h,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(20),
+                        child: Row(
+                          children: [
+                            SvgPicture.asset(
+                              onetimePlan,
+                              height: 44.h,
+                            ),
+                            SizedBox(
+                              width: 20.w,
+                            ),
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  black18w500(data: 'One-time Order'),
+                                  SizedBox(
+                                    height: 5.h,
+                                  ),
+                                  lightBlack14w400Centre(
+                                      data:
+                                          'Hesitant? Sample our meals and let your doggie be the gourmet judge!',
+                                      left: true)
+                                ],
                               ),
-                              lightBlack14w400Centre(
-                                  data:
-                                      'Hesitant? Sample our meals and let your doggie be the gourmet judge!',
-                                  left: true)
-                            ],
-                          ),
-                        )
-                      ],
-                    ),
+                            )
+                          ],
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               )

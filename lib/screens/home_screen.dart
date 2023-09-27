@@ -19,7 +19,7 @@ import '../utils/custom_colors.dart';
 import '../utils/custom_font_style.dart';
 import '../utils/enums.dart';
 import '../view_models/puppy_view_model.dart';
-import '../widgets/carousel_widget.dart';
+import '../widgets/carousels/home_carousel_widget.dart';
 import '../widgets/cart_icon_widget.dart';
 import '../widgets/cart_vertical_list_chip_widget.dart';
 import '../widgets/circular_network_image_widget.dart';
@@ -108,7 +108,7 @@ class HomeScreen extends StatelessWidget {
               ),
               SizedBox(
                 height: 200.w,
-                child: const CarouselWidget(),
+                child: const HomeCarouselWidget(),
               ),
               SizedBox(
                 height: 24.h,

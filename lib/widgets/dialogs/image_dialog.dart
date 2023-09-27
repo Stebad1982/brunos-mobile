@@ -36,7 +36,7 @@ void imageDialog(
                       data: title,
                     ),
                     const Spacer(),
-                    Image.asset(weightTest),
+                    Image.asset(weightTest,height: 400.h,),
                     const Spacer(),
                     customButton(
                       height: 40,

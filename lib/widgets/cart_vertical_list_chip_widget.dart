@@ -50,7 +50,7 @@ Widget cartVerticalListChipWidget({required CartModel cartDetail}) {
                         ],
                       ),
                     ),
-                    InkWell(
+                    /*InkWell(
                       onTap: () {
                         cartDetail.planType == Plans.monthly.text
                             ? Navigator.pushNamed(
@@ -89,7 +89,7 @@ Widget cartVerticalListChipWidget({required CartModel cartDetail}) {
                     ),
                     SizedBox(
                       width: 10.w,
-                    ),
+                    ),*/
                     InkWell(
                       onTap: () {
                         navigatorKey.currentContext!

@@ -12,6 +12,8 @@ import '../utils/custom_colors.dart';
 import '../utils/enums.dart';
 import '../utils/calculations.dart';
 import '../view_models/plans_view_model.dart';
+import 'carousels/home_carousel_widget.dart';
+import 'carousels/recipes_carousel_widget.dart';
 
 Future recipeDetailBottomSheetWidget({required RecipeModel recipeDetail}) {
   return showModalBottomSheet(
@@ -22,9 +24,9 @@ Future recipeDetailBottomSheetWidget({required RecipeModel recipeDetail}) {
       context: navigatorKey.currentContext!,
       builder: (context) {
         return SizedBox(
-          height: 655.h,
+          height: 670.h,
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+            padding: const EdgeInsets.only(left: 20, right: 20,top: 20, ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -99,7 +101,7 @@ Future recipeDetailBottomSheetWidget({required RecipeModel recipeDetail}) {
                         ],
                       ),
                       SizedBox(
-                        height: 430.h,
+                        height: 460.h,
                         //I want to use dynamic height instead of fixed height
                         child: Padding(
                           padding: const EdgeInsets.symmetric(vertical: 20),
@@ -111,43 +113,9 @@ Future recipeDetailBottomSheetWidget({required RecipeModel recipeDetail}) {
                                     SizedBox(
                                       height: 20.h,
                                     ),
-                                    SingleChildScrollView(
-                                      scrollDirection: Axis.horizontal,
-                                      child: Row(
-                                        children: recipeDetail.media!
-                                            .map(
-                                              (data) => Container(
-                                                margin: const EdgeInsets.only(
-                                                    right: 20),
-                                                width: 170.w,
-                                                child: Container(
-                                                    height: 150.h,
-                                                    width: double.infinity,
-                                                    decoration: ShapeDecoration(
-                                                      color: CustomColors
-                                                          .lightGreyColor,
-                                                      shape:
-                                                          RoundedRectangleBorder(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(12),
-                                                      ),
-                                                    ),
-                                                    child: Padding(
-                                                      padding:
-                                                          const EdgeInsets.all(
-                                                              15),
-                                                      child: Center(
-                                                        child: Image.network(
-                                                          data,
-                                                          height: 150.h,
-                                                        ),
-                                                      ),
-                                                    )),
-                                              ),
-                                            )
-                                            .toList(),
-                                      ),
+                                    SizedBox(
+                                      height: 200.w,
+                                      child:  RecipesCarouselWidget(recipesImages: recipeDetail.media!,),
                                     ),
                                     SizedBox(
                                       height: 20.h,
@@ -661,19 +629,28 @@ Future recipeDetailBottomSheetWidget({required RecipeModel recipeDetail}) {
                                         ],
                                       ),
                                     ),
-                                    SizedBox(
-                                      height: 20.h,
-                                    ),
                                     context
-                                                .watch<AuthViewModel>()
-                                                .getAuthResponse
-                                                .data!
-                                                .pet !=
-                                            null
-                                        ? black14w500(
-                                            data:
-                                                'Feeding plan for ${context.watch<AuthViewModel>().getAuthResponse.data!.pet!.name} – ${calculateFeedingPlan(recipeModel: recipeDetail, puppyModel: context.watch<AuthViewModel>().getAuthResponse.data!.pet!)} grams ${context.watch<AuthViewModel>().getAuthResponse.data!.pet!.feedingRoutine!} times per day')
-                                        : const SizedBox(),
+                                        .watch<AuthViewModel>()
+                                        .getAuthResponse
+                                        .data!
+                                        .pet !=
+                                        null
+                                        ?Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        SizedBox(
+                                          height: 20.h,
+                                        ),
+                                        black18w500(data: 'Recommended daily feeding plan for ${context.watch<AuthViewModel>().getAuthResponse.data!.pet!.name}'),
+                                        SizedBox(
+                                          height: 5.h,
+                                        ),
+                                        black14w500(
+                                                data:
+                                                    '${calculateFeedingPlan(recipeModel: recipeDetail, puppyModel: context.watch<AuthViewModel>().getAuthResponse.data!.pet!)} grams ${context.watch<AuthViewModel>().getAuthResponse.data!.pet!.feedingRoutine!} times per day')
+
+                                      ],
+                                    ): const SizedBox(),
                                     /*Container(
                                       width: double.infinity,
                                       decoration: const ShapeDecoration(

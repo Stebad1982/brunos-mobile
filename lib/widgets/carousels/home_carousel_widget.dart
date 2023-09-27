@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
-import '../utils/custom_colors.dart';
-import '../view_models/auth_view_model.dart';
+import '../../utils/custom_colors.dart';
+import '../../view_models/auth_view_model.dart';
 
 final List<Widget> slidersList = [
   Image.asset(slider1),
@@ -16,14 +16,14 @@ final List<Widget> slidersList = [
 
 
 
-class CarouselWidget extends StatefulWidget {
-  const CarouselWidget({Key? key}) : super(key: key);
+class HomeCarouselWidget extends StatefulWidget {
+  const HomeCarouselWidget({Key? key}) : super(key: key);
 
   @override
-  _CarouselWidgetState createState() => _CarouselWidgetState();
+  _HomeCarouselWidgetState createState() => _HomeCarouselWidgetState();
 }
 
-class _CarouselWidgetState extends State<CarouselWidget> {
+class _HomeCarouselWidgetState extends State<HomeCarouselWidget> {
 
   int _current = 0;
   final CarouselController _controller = CarouselController();

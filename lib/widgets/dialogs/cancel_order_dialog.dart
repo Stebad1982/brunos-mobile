@@ -11,7 +11,7 @@ import '../../utils/custom_colors.dart';
 import '../../utils/custom_font_style.dart';
 import '../../view_models/auth_view_model.dart';
 
-void addressLabelDialog({required BuildContext context}) {
+void cancelOrderDialog({required BuildContext context}) {
   TextEditingController labelText = TextEditingController();
   showGeneralDialog(
     context: context,
@@ -29,62 +29,51 @@ void addressLabelDialog({required BuildContext context}) {
             return true;
           },
           child: Container(
-            height: 270.h,
+            height: 230.h,
             margin: const EdgeInsets.symmetric(horizontal: 30),
             decoration: BoxDecoration(
                 color: CustomColors.whiteColor,
                 borderRadius: BorderRadius.circular(40)),
             child: SizedBox.expand(
                 child: Padding(
-              padding: const EdgeInsets.all(20),
-              child: Column(
-                children: [
-                  black18w500(
-                    data: 'Enter New Address Label',
-                  ),
-                  SizedBox(
-                    height: 20.h,
-                  ),
-                  TextField(
-                    controller: labelText,
-                    keyboardType: TextInputType.text,
-                    decoration: const InputDecoration(
-                      contentPadding: EdgeInsets.all(20),
-                      hintText: 'Label Name',
-                    ),
-                  ),
-                  SizedBox(
-                    height: 20.h,
-                  ),
-                  customButton(
-                    height: 40,
-                    colored: true,
-                    text: 'Submit',
-                    onPressed: () async {
-                      Navigator.pop(context);
-                      context
-                          .read<AddressViewModel>()
-                          .setOtherLabel(labelText.text);
-                    },
-                  ),
-                  SizedBox(
-                    height: 20.h,
-                  ),
-                  customButton(
-                    height: 40,
-                    colored: false,
-                    text: 'Not Now',
-                    onPressed: () async {
-                      context
-                          .read<AddressViewModel>()
-                          .setSelectedLabel(AddressLabels.home.text);
-                      Navigator.pop(context);
-                    },
-                  ),
+                  padding: const EdgeInsets.all(20),
+                  child: Column(
+                    children: [
+                      black18w500(
+                        data: 'Cancel Order',
+                      ),
+                      SizedBox(
+                        height: 20.h,
+                      ),
+                      black14w500(
+                        data: 'Are u sure you want to cancel ?',
+                      ),
+                      SizedBox(
+                        height: 20.h,
+                      ),
+                      customButton(
+                        height: 40,
+                        colored: true,
+                        text: 'Yes',
+                        onPressed: () async {
+                          Navigator.pop(context);
+                        },
+                      ),
+                      SizedBox(
+                        height: 20.h,
+                      ),
+                      customButton(
+                        height: 40,
+                        colored: false,
+                        text: 'Not Now',
+                        onPressed: () async {
+                          Navigator.pop(context);
+                        },
+                      ),
 
-                ],
-              ),
-            )),
+                    ],
+                  ),
+                )),
           ),
         ),
       );
