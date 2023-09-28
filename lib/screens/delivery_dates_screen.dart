@@ -314,8 +314,14 @@ class _DeliveryDatesScreenState extends State<DeliveryDatesScreen> {
                                   deliveryDate: deliveryDate,
                                   planType: plansViewModel.getFeedingPlan!.planType, planTotal: plansViewModel.getFeedingPlan!.planTotal),
                             );
-                        Navigator.pushNamedAndRemoveUntil(context,
-                            bottomNavigationRoute,  (route) => false);
+                        if( context.read<CartViewModel>().getSelectedIndex == null){
+                          Navigator.pushNamedAndRemoveUntil(context,
+                              bottomNavigationRoute,  (route) => false);
+                        }
+                        else{
+                          Navigator.pushNamedAndRemoveUntil(context, cartRoute, (Route route) => route.isFirst);
+                        }
+
                         EasyLoading.showToast('${plansViewModel.getPlanType} Plan Successfully Added To\nShopping Bag',toastPosition: EasyLoadingToastPosition.center);
                       },
                       colored: true),

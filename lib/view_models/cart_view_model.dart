@@ -20,20 +20,18 @@ class CartViewModel with ChangeNotifier {
   void setSelectedIndex(int? value) {
     _selectedIndex = value;
     if (_selectedIndex != null) {
-      navigatorKey.currentContext!
-          .read<AuthViewModel>()
-          .setPuppy(_cartList[_selectedIndex!].puppy!);
+      if(_cartList[_selectedIndex!].puppy != null){
+        navigatorKey.currentContext!
+            .read<AuthViewModel>()
+            .setPuppy(_cartList[_selectedIndex!].puppy!);
+      }
     }
     notifyListeners();
   }
 
-  void replaceSelectedIndex(CartModel value) {
-    _cartList[_selectedIndex!] = value;
-    notifyListeners();
-  }
 
   bool checkCartForPlanValidation({required String planType}) {
-    navigatorKey.currentContext!.read<CartViewModel>().setSelectedIndex(null);
+    setSelectedIndex(null);
     final int index = _cartList.indexWhere((element) {
       if (element.puppy != null) {
         return element.puppy!.sId ==
@@ -52,7 +50,12 @@ class CartViewModel with ChangeNotifier {
   }
 
   void addToCartList(CartModel value) {
-    _cartList.add(value);
+    if(_selectedIndex == null){
+      _cartList.add(value);
+    }
+    else{
+      _cartList[_selectedIndex!] = value;
+    }
     _cartTotalPrice = calculateCartTotal(cartItems: _cartList);
     notifyListeners();
   }

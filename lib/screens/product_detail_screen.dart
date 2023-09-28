@@ -27,7 +27,8 @@ class ProductDetailScreen extends StatelessWidget {
         appBar: AppBarWithBackWidget(
             heading: toBeginningOfSentenceCase('Product Detail'),
             showPuppy: false,
-            showCart: true),
+            showCart:
+                context.read<CartViewModel>().getSelectedIndex == null?true: false),
         body: Padding(
           padding: const EdgeInsets.symmetric(vertical: 20.0),
           child: Stack(
@@ -198,11 +199,17 @@ class ProductDetailScreen extends StatelessWidget {
                             CartModel(
                                 recipe: recipeList,
                                 puppy: null,
-                                deliveryDate: '12/may/2023',
+                                deliveryDate: '03 Oct 2023',
                                 planType: plansViewModel.getPlanType, planTotal: calculatePlanTotal( listOfItems: recipeList)),
                           );
-                      Navigator.pushNamedAndRemoveUntil(
-                          context, bottomNavigationRoute, (route) => false);
+                      if( context.read<CartViewModel>().getSelectedIndex == null){
+                        Navigator.pushNamedAndRemoveUntil(context,
+                            bottomNavigationRoute,  (route) => false);
+                      }
+                      else{
+                        context.read<CartViewModel>().setSelectedIndex(null);
+                        Navigator.pushNamedAndRemoveUntil(context, cartRoute, (Route route) => route.isFirst);
+                      }
                       EasyLoading.showToast(
                           '${plansViewModel.getPlanType} Successfully Added To\nShopping Bag',
                           toastPosition: EasyLoadingToastPosition.center);

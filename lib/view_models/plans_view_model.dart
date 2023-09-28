@@ -131,7 +131,8 @@ class PlansViewModel with ChangeNotifier {
 
   void setCartDataToFeedingPlan({required CartModel cartData}) {
     _planType = cartData.planType;
-    _selectedDay =  DateTime.parse('cartData.deliveryDate');
+    _quantity = cartData.recipe[0].quantity!;
+    _selectedDay =  DateFormat('dd MMM yyyy').parse(cartData.deliveryDate);
     if (_planType == Plans.monthly.text) {
       if (cartData.recipe.length == 1) {
         _monthlyEmptyTile1 = cartData.recipe[0];
@@ -148,10 +149,10 @@ class PlansViewModel with ChangeNotifier {
     } else {
       _selectedRecipe = cartData.recipe.first;
     }
-    setFeedingPlan(petData: cartData.puppy!);
+    setFeedingPlan(petData: cartData.puppy);
   }
 
-  void setFeedingPlan({required PuppyModel petData}) {
+  void setFeedingPlan({required PuppyModel? petData}) {
     final List<RecipeModel> recipeList = [];
     if (_planType == Plans.monthly.text) {
       if (_monthlyEmptyTile1 != null) {
