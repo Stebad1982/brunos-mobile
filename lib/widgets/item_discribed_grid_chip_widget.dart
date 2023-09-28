@@ -39,7 +39,7 @@ Widget itemDescribedGridChipWidget({required RecipeModel recipeData}) {
         }
         else {
           Navigator.pushNamed(
-              navigatorKey.currentContext!, feedingPlanRoute);
+              navigatorKey.currentContext!, feedingPlanRoute, arguments: true);
         }
       },
       child: Card(

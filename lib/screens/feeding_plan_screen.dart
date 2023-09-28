@@ -14,7 +14,9 @@ import '../view_models/plans_view_model.dart';
 import '../widgets/app_bar_with_back_widget.dart';
 
 class FeedingPlanScreen extends StatefulWidget {
-  const FeedingPlanScreen({super.key});
+  final bool showContinueButton;
+
+  const FeedingPlanScreen({super.key, required this.showContinueButton});
 
   @override
   State<FeedingPlanScreen> createState() => _FeedingPlanScreenState();
@@ -42,7 +44,7 @@ class _FeedingPlanScreenState extends State<FeedingPlanScreen> {
                     ? 'Monthly Feeding Plan'
                     : 'One time Feeding Order',
             showPuppy: false,
-            showCart: true),
+            showCart: widget.showContinueButton),
         body: Stack(
           children: [
             plansViewModel.getFeedingPlan != null
@@ -121,29 +123,37 @@ class _FeedingPlanScreenState extends State<FeedingPlanScreen> {
                               height: 5.h,
                             ),
                             plansViewModel.getPlanType ==
-                                Plans.transitional.text?  Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    orange14w400(
-                                        data:
-                                            '${(plansViewModel.getTransitionalGrams1to3Days / transitional1to3PerPouchQty * 3).round()} pouches x $transitional1to3PerPouchQty grams (for days 1 to 3)'),
-                                    SizedBox(height: 5.h,),
-                                    orange14w400(
-                                        data:
-                                            '${(plansViewModel.getTransitionalGrams4to6Days / transitional4to6PerPouchQty * 3).round()} pouches x $transitional4to6PerPouchQty grams (for days 4 to 6)'),
-                                    SizedBox(height: 5.h,),
-                                    orange14w400(
-                                        data:
-                                            '${(plansViewModel.getTransitionalGrams7to9Days / transitional7to9PerPouchQty * 3).round()} pouches x $transitional7to9PerPouchQty grams (for days 7 to 9)'),
-                                    SizedBox(height: 5.h,),
-                                    orange14w400(
-                                        data:
-                                            '${(plansViewModel.getTransitionalGrams10thDay / transitional10thPerPouchQty).round()} pouches x $transitional10thPerPouchQty grams (for day 10 to onwards)'),
-                                  ],
-                                )
-                            : orange14w400(
-                                data:
-                                '${(totalPlanQuantity / perPouchQuantity).round()} pouches x $perPouchQuantity grams for ${plansViewModel.getFeedingPlan!.recipe[index].totalDays} days'),
+                                    Plans.transitional.text
+                                ? Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      orange14w400(
+                                          data:
+                                              '${(plansViewModel.getTransitionalGrams1to3Days / transitional1to3PerPouchQty * 3).round()} pouches x $transitional1to3PerPouchQty grams (for days 1 to 3)'),
+                                      SizedBox(
+                                        height: 5.h,
+                                      ),
+                                      orange14w400(
+                                          data:
+                                              '${(plansViewModel.getTransitionalGrams4to6Days / transitional4to6PerPouchQty * 3).round()} pouches x $transitional4to6PerPouchQty grams (for days 4 to 6)'),
+                                      SizedBox(
+                                        height: 5.h,
+                                      ),
+                                      orange14w400(
+                                          data:
+                                              '${(plansViewModel.getTransitionalGrams7to9Days / transitional7to9PerPouchQty * 3).round()} pouches x $transitional7to9PerPouchQty grams (for days 7 to 9)'),
+                                      SizedBox(
+                                        height: 5.h,
+                                      ),
+                                      orange14w400(
+                                          data:
+                                              '${(plansViewModel.getTransitionalGrams10thDay / transitional10thPerPouchQty).round()} pouches x $transitional10thPerPouchQty grams (for day 10 to onwards)'),
+                                    ],
+                                  )
+                                : orange14w400(
+                                    data:
+                                        '${(totalPlanQuantity / perPouchQuantity).round()} pouches x $perPouchQuantity grams for ${plansViewModel.getFeedingPlan!.recipe[index].totalDays} days'),
                             SizedBox(
                               height: 10.h,
                             ),
@@ -154,9 +164,12 @@ class _FeedingPlanScreenState extends State<FeedingPlanScreen> {
                           ],
                         ),
                       );
-                    }, separatorBuilder: (BuildContext context, int index) {
-                      return SizedBox(height: 20.h,);
-            },
+                    },
+                    separatorBuilder: (BuildContext context, int index) {
+                      return SizedBox(
+                        height: 20.h,
+                      );
+                    },
                   )
                 : const SizedBox(),
             Align(
@@ -198,9 +211,13 @@ class _FeedingPlanScreenState extends State<FeedingPlanScreen> {
                         height: 20.h,
                       ),
                       customButton(
-                          text: 'Let\'s go',
+                          text: widget.showContinueButton
+                              ?'Let\'s go': 'Shopping Bag',
                           onPressed: () {
-                            Navigator.pushNamed(context, deliveryDatesRoute);
+                            widget.showContinueButton
+                                ? Navigator.pushNamed(
+                                    context, deliveryDatesRoute)
+                                : Navigator.pop(context);
                           },
                           colored: true),
                     ],

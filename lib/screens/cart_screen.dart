@@ -28,7 +28,7 @@ class CartScreen extends StatelessWidget {
               itemCount: cartViewModel.getCartList.length,
               padding: const EdgeInsets.only(left: 20, right: 20, top: 20,bottom: 100),
               itemBuilder: (BuildContext context, int index) {
-                return cartVerticalListChipWidget( cartDetail: cartViewModel.getCartList[index]);
+                return cartVerticalListChipWidget( cartDetail: cartViewModel.getCartList[index], itemIndex: index);
               },
             ),
             Align(

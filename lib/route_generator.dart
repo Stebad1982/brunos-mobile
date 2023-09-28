@@ -119,7 +119,8 @@ class RouteGenerator {
       case monthlyPlanRoute:
         return MaterialPageRoute(builder: (_) => const MonthlyPlanScreen());
       case feedingPlanRoute:
-        return MaterialPageRoute(builder: (_) => const FeedingPlanScreen());
+        return MaterialPageRoute(
+            builder: (_) => FeedingPlanScreen(showContinueButton: args as bool));
       case deliveryDatesRoute:
         return MaterialPageRoute(builder: (_) => const DeliveryDatesScreen());
       case checkOutRoute:
@@ -150,11 +151,9 @@ class RouteGenerator {
         return MaterialPageRoute(
             builder: (_) => const AddAddressDetailScreen());
       case productDetailRoute:
-        return MaterialPageRoute(
-            builder: (_) => const ProductDetailScreen());
+        return MaterialPageRoute(builder: (_) => const ProductDetailScreen());
       case cartRoute:
-        return MaterialPageRoute(
-            builder: (_) => const CartScreen());
+        return MaterialPageRoute(builder: (_) => const CartScreen());
 
       case '/tasting_details':
       /*return MaterialPageRoute(

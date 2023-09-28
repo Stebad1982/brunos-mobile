@@ -1,6 +1,7 @@
 import 'package:brunos_kitchen/main.dart';
 import 'package:brunos_kitchen/route_generator.dart';
 import 'package:brunos_kitchen/utils/custom_font_style.dart';
+import 'package:brunos_kitchen/view_models/auth_view_model.dart';
 import 'package:brunos_kitchen/view_models/cart_view_model.dart';
 import 'package:brunos_kitchen/view_models/plans_view_model.dart';
 import 'package:flutter/cupertino.dart';
@@ -18,11 +19,18 @@ import '../utils/images.dart';
 import 'cart_dish_vertical_list_chip.dart';
 import 'circular_network_image_widget.dart';
 
-Widget cartVerticalListChipWidget({required CartModel cartDetail}) {
+Widget cartVerticalListChipWidget(
+    {required CartModel cartDetail, required int itemIndex}) {
   return Column(
     children: [
       InkWell(
-        onTap: () {},
+        onTap: () {
+          navigatorKey.currentContext!
+              .read<PlansViewModel>()
+              .setCartDataToFeedingPlan(cartData: cartDetail);
+          Navigator.pushNamed(navigatorKey.currentContext!, feedingPlanRoute,
+              arguments: false);
+        },
         child: Container(
           decoration: ShapeDecoration(
             color: CustomColors.lightGreyColor,
@@ -50,11 +58,18 @@ Widget cartVerticalListChipWidget({required CartModel cartDetail}) {
                         ],
                       ),
                     ),
-                    /*InkWell(
+                    InkWell(
                       onTap: () {
+                        navigatorKey.currentContext!
+                            .read<CartViewModel>()
+                            .setSelectedIndex(itemIndex);
+                        navigatorKey.currentContext!.read<PlansViewModel>().setCartDataToFeedingPlan(cartData: cartDetail);
                         cartDetail.planType == Plans.monthly.text
-                            ? Navigator.pushNamed(
-                                navigatorKey.currentContext!, monthlyPlanRoute)
+                            ? {
+                                Navigator.pushNamed(
+                                    navigatorKey.currentContext!,
+                                    monthlyPlanRoute)
+                              }
                             : cartDetail.planType == Plans.transitional.text
                                 ? Navigator.pushNamed(
                                     navigatorKey.currentContext!,
@@ -89,7 +104,7 @@ Widget cartVerticalListChipWidget({required CartModel cartDetail}) {
                     ),
                     SizedBox(
                       width: 10.w,
-                    ),*/
+                    ),
                     InkWell(
                       onTap: () {
                         navigatorKey.currentContext!

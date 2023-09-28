@@ -359,7 +359,7 @@ class MonthlyPlanScreen extends StatelessWidget {
                           }
                           else
                           {
-                            Navigator.pushNamed(context, feedingPlanRoute);
+                            Navigator.pushNamed(context, feedingPlanRoute,arguments: true);
                           }
                         }
                       },

@@ -51,6 +51,8 @@ class PlansViewModel with ChangeNotifier {
   DateTime _focusedDay = DateTime.now().add(const Duration(days: 4));
   DateTime _selectedDay = DateTime.now().add(const Duration(days: 4));
 
+  String get getProductCategory => _productCategory;
+
   num get getTransitionalGrams1to3Days => _transitionalGrams1to3Days;
 
   num get getTransitionalGrams4to6Days => _transitionalGrams4to6Days;
@@ -61,6 +63,21 @@ class PlansViewModel with ChangeNotifier {
 
   int get getDaysCount => _daysCount;
 
+  List<RecipeModel> get getComboRecipesList => _comboRecipesList;
+
+  List<RecipeModel> get getRecommendedRecipesList => _recommendedRecipesList;
+
+  List<RecipeModel> get getFeaturedRecipesList => _featuredRecipesList;
+
+  List<RecipeModel> get getFeaturedProductList => _featuredProductsList;
+
+  List<RecipeModel> get getRecipesList => _recipesList;
+
+  List<RecipeModel> get getProductList => _productsList;
+
+  RecipesListResponse get getRecipesListResponse => _recipesListResponse;
+
+  int get getAvailableDays => _availableDays;
 
   int get getQuantity => _quantity;
 
@@ -88,8 +105,6 @@ class PlansViewModel with ChangeNotifier {
     }
   }
 
-  int get getAvailableDays => _availableDays;
-
 //  bool get getDayRangeValidation => _showDaysRangeValidation;
 
   /*void setDayRangeValidation (bool value){
@@ -114,6 +129,28 @@ class PlansViewModel with ChangeNotifier {
 
   CartModel? get getFeedingPlan => _feedingPlan;
 
+  void setCartDataToFeedingPlan({required CartModel cartData}) {
+    _planType = cartData.planType;
+    _selectedDay =  DateTime.parse('cartData.deliveryDate');
+    if (_planType == Plans.monthly.text) {
+      if (cartData.recipe.length == 1) {
+        _monthlyEmptyTile1 = cartData.recipe[0];
+      }
+      else if (cartData.recipe.length == 2) {
+        _monthlyEmptyTile1 = cartData.recipe[0];
+        _monthlyEmptyTile2 = cartData.recipe[1];
+      }
+      else {
+        _monthlyEmptyTile1 = cartData.recipe[0];
+        _monthlyEmptyTile2 = cartData.recipe[1];
+        _monthlyEmptyTile3 = cartData.recipe[2];
+      }
+    } else {
+      _selectedRecipe = cartData.recipe.first;
+    }
+    setFeedingPlan(petData: cartData.puppy!);
+  }
+
   void setFeedingPlan({required PuppyModel petData}) {
     final List<RecipeModel> recipeList = [];
     if (_planType == Plans.monthly.text) {
@@ -129,13 +166,10 @@ class PlansViewModel with ChangeNotifier {
     } else if (_planType == Plans.transitional.text) {
       setTransitionalDishModel();
       recipeList.add(_selectedRecipe);
-
-    }
-    else if (_planType == Plans.oneTime.text) {
+    } else if (_planType == Plans.oneTime.text) {
       setOnTimeSelectedDishModel();
       recipeList.add(_selectedRecipe);
-    }
-    else {
+    } else {
       setProductModel();
       recipeList.add(_selectedRecipe);
     }
@@ -208,11 +242,12 @@ class PlansViewModel with ChangeNotifier {
     _selectedRecipe = applyDishDetail;
   }
 
-  void setOnTimeSelectedDishModel(){
+  void setOnTimeSelectedDishModel() {
     final RecipeModel applyDishDetail =
-    RecipeModel.fromJson(_selectedRecipe.toJson());
+        RecipeModel.fromJson(_selectedRecipe.toJson());
     applyDishDetail.totalDays = _daysCount;
-    applyDishDetail.finalPrice = calculateFinalPricePerDay(recipeModel: _selectedRecipe) * _daysCount;
+    applyDishDetail.finalPrice =
+        calculateFinalPricePerDay(recipeModel: _selectedRecipe) * _daysCount;
     _selectedRecipe = applyDishDetail;
   }
 
@@ -233,8 +268,6 @@ class PlansViewModel with ChangeNotifier {
     notifyListeners();
   }
 
-  String get getProductCategory => _productCategory;
-
   void setProductCategory(String value) {
     _productCategory = value;
     _productsList = _recipesListResponse.data!.recipe!
@@ -242,20 +275,6 @@ class PlansViewModel with ChangeNotifier {
         .toList();
     notifyListeners();
   }
-
-  List<RecipeModel> get getComboRecipesList => _comboRecipesList;
-  List<RecipeModel> get getRecommendedRecipesList => _recommendedRecipesList;
-
-
-  List<RecipeModel> get getFeaturedRecipesList => _featuredRecipesList;
-
-  List<RecipeModel> get getFeaturedProductList => _featuredProductsList;
-
-  List<RecipeModel> get getRecipesList => _recipesList;
-
-  List<RecipeModel> get getProductList => _productsList;
-
-  RecipesListResponse get getRecipesListResponse => _recipesListResponse;
 
   void setRecipesListResponse(RecipesListResponse value) {
     _recipesListResponse = value;
