@@ -25,11 +25,18 @@ Widget cartVerticalListChipWidget(
     children: [
       InkWell(
         onTap: () {
-          navigatorKey.currentContext!
-              .read<PlansViewModel>()
-              .setCartDataToFeedingPlan(cartData: cartDetail);
-          Navigator.pushNamed(navigatorKey.currentContext!, feedingPlanRoute,
-              arguments: false);
+          navigatorKey.currentContext!.read<CartViewModel>().setViewCartItemDetail(true);
+          if(cartDetail.planType == Plans.product.text){
+            navigatorKey.currentContext!.read<PlansViewModel>().setCartDataToFeedingPlan(cartData: cartDetail);
+            Navigator.pushNamed(
+                navigatorKey.currentContext!,
+                productDetailRoute);          }
+          else{
+            navigatorKey.currentContext!
+                .read<PlansViewModel>()
+                .setCartDataToFeedingPlan(cartData: cartDetail);
+            Navigator.pushNamed(navigatorKey.currentContext!, feedingPlanRoute);
+          }
         },
         child: Container(
           decoration: ShapeDecoration(

@@ -18,6 +18,7 @@ import '../models/recipe_model.dart';
 import '../utils/custom_colors.dart';
 import '../utils/enums.dart';
 import '../utils/calculations.dart';
+import '../view_models/cart_view_model.dart';
 import 'one_time_order_bottom_sheet_widget.dart';
 
 Widget itemDescribedGridChipWidget({required RecipeModel recipeData}) {
@@ -38,8 +39,9 @@ Widget itemDescribedGridChipWidget({required RecipeModel recipeData}) {
               navigatorKey.currentContext!, productDetailRoute);
         }
         else {
+          context.read<CartViewModel>().setViewCartItemDetail(false);
           Navigator.pushNamed(
-              navigatorKey.currentContext!, feedingPlanRoute, arguments: true);
+              navigatorKey.currentContext!, feedingPlanRoute);
         }
       },
       child: Card(

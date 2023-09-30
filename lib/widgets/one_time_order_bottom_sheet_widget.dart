@@ -10,6 +10,7 @@ import '../main.dart';
 import '../utils/custom_buttons.dart';
 import '../utils/custom_colors.dart';
 import '../utils/images.dart';
+import '../view_models/cart_view_model.dart';
 import 'meal_vertical_list_chip_widget.dart';
 
 Future oneTimeOrderBottomSheetWidget({required RecipeModel data}) {
@@ -74,8 +75,9 @@ Future oneTimeOrderBottomSheetWidget({required RecipeModel data}) {
                             height: 5.h,
                           ),
                           SizedBox(
-                            width: 150.w,
-                              child: black10w400(data: data.ingredientsComposition!)),
+                              width: 150.w,
+                              child: black10w400(
+                                  data: data.ingredientsComposition!)),
                           SizedBox(
                             height: 10.h,
                           ),
@@ -165,8 +167,11 @@ Future oneTimeOrderBottomSheetWidget({required RecipeModel data}) {
                   customButton(
                       text: 'Continue',
                       onPressed: () {
+                        context
+                            .read<CartViewModel>()
+                            .setViewCartItemDetail(false);
                         Navigator.pop(context);
-                        Navigator.pushNamed(context, feedingPlanRoute,arguments: true);
+                        Navigator.pushNamed(context, feedingPlanRoute);
                       },
                       colored: true),
                 ],

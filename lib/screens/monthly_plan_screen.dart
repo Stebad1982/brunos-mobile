@@ -1,6 +1,7 @@
 import 'package:brunos_kitchen/route_generator.dart';
 import 'package:brunos_kitchen/utils/custom_font_style.dart';
 import 'package:brunos_kitchen/utils/images.dart';
+import 'package:brunos_kitchen/view_models/cart_view_model.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -359,7 +360,8 @@ class MonthlyPlanScreen extends StatelessWidget {
                           }
                           else
                           {
-                            Navigator.pushNamed(context, feedingPlanRoute,arguments: true);
+                            context.read<CartViewModel>().setViewCartItemDetail(false);
+                            Navigator.pushNamed(context, feedingPlanRoute);
                           }
                         }
                       },

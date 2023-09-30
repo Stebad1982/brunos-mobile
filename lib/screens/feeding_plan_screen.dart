@@ -10,13 +10,13 @@ import '../utils/calculations.dart';
 import '../utils/custom_buttons.dart';
 import '../utils/custom_colors.dart';
 import '../utils/enums.dart';
+import '../view_models/cart_view_model.dart';
 import '../view_models/plans_view_model.dart';
 import '../widgets/app_bar_with_back_widget.dart';
 
 class FeedingPlanScreen extends StatefulWidget {
-  final bool showContinueButton;
 
-  const FeedingPlanScreen({super.key, required this.showContinueButton});
+  const FeedingPlanScreen({super.key});
 
   @override
   State<FeedingPlanScreen> createState() => _FeedingPlanScreenState();
@@ -44,7 +44,8 @@ class _FeedingPlanScreenState extends State<FeedingPlanScreen> {
                     ? 'Monthly Feeding Plan'
                     : 'One time Feeding Order',
             showPuppy: false,
-            showCart: widget.showContinueButton),
+            showCart: !context.read<CartViewModel>().getViewCartItemDetail
+        ),
         body: Stack(
           children: [
             plansViewModel.getFeedingPlan != null
@@ -211,10 +212,10 @@ class _FeedingPlanScreenState extends State<FeedingPlanScreen> {
                         height: 20.h,
                       ),
                       customButton(
-                          text: widget.showContinueButton
+                          text: !context.read<CartViewModel>().getViewCartItemDetail
                               ?'Let\'s go': 'Shopping Bag',
                           onPressed: () {
-                            widget.showContinueButton
+                            !context.read<CartViewModel>().getViewCartItemDetail
                                 ? Navigator.pushNamed(
                                     context, deliveryDatesRoute)
                                 : Navigator.pop(context);

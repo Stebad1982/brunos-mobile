@@ -17,6 +17,7 @@ class RecipeModel {
   int? isComboRecipe;
   num? finalPrice;
   List<String>? media;
+  List<ItemSizes>? sizes;
   String? recipeNo;
   String? lifeStage;
   int? totalDays;
@@ -46,6 +47,7 @@ class RecipeModel {
       this.quantity,
       this.finalPrice,
       this.isComboRecipe,
+      this.sizes,
       // this.ingredients,
       this.totalDays,
       this.category,
@@ -71,7 +73,18 @@ class RecipeModel {
     details = json['details'];
     instructions = json['instructions'];
     nutrition = json['nutrition'].split(",");
-    pricePerKG = json['pricePerKG'];
+    if (json['sizes'] != null) {
+      sizes = <ItemSizes>[];
+      json['sizes'].forEach((v) {
+        sizes!.add(ItemSizes.fromJson(v));
+      });
+      if(sizes!.isNotEmpty){
+        pricePerKG = sizes![0].price;
+      }
+    else{
+      pricePerKG = json['pricePerKG'];
+    }
+    }
     media = json['media'].cast<String>();
     category = json['category'];
     recipeNo = json['recipeNo'];
@@ -98,6 +111,9 @@ class RecipeModel {
     if (this.nutrition != null) {
       data['nutrition'] = jsonEncode(this.nutrition);
     }
+    if (this.sizes != null) {
+      data['sizes'] = this.sizes!.map((v) => v.toJson()).toList();
+    }
     data['description'] = this.description;
     data['details'] = this.details;
     data['instructions'] = this.instructions;
@@ -110,6 +126,25 @@ class RecipeModel {
     data['caloriesContentNo'] = this.caloriesContentNo;
     //  data['ingredients'] = this.ingredients;
     data['ingredientsComposition'] = this.ingredientsComposition;
+    return data;
+  }
+}
+
+class ItemSizes {
+  String? name;
+  int? price;
+
+  ItemSizes({this.name, this.price});
+
+  ItemSizes.fromJson(Map<String, dynamic> json) {
+    name = json['name'];
+    price = json['price'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['name'] = this.name;
+    data['price'] = this.price;
     return data;
   }
 }

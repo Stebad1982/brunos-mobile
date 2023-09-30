@@ -10,6 +10,14 @@ class CartViewModel with ChangeNotifier {
   final List<CartModel> _cartList = [];
   num _cartTotalPrice = 0;
   int? _selectedIndex;
+  bool _viewCartItemDetail = false;
+
+  bool get getViewCartItemDetail => _viewCartItemDetail;
+
+  void setViewCartItemDetail (bool value){
+    _viewCartItemDetail = value;
+    notifyListeners();
+  }
 
   List<CartModel> get getCartList => _cartList;
 

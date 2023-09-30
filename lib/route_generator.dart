@@ -120,7 +120,7 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const MonthlyPlanScreen());
       case feedingPlanRoute:
         return MaterialPageRoute(
-            builder: (_) => FeedingPlanScreen(showContinueButton: args as bool));
+            builder: (_) => FeedingPlanScreen());
       case deliveryDatesRoute:
         return MaterialPageRoute(builder: (_) => const DeliveryDatesScreen());
       case checkOutRoute:

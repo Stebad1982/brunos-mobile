@@ -10,6 +10,7 @@ import '../models/cart_model.dart';
 import '../models/recipe_model.dart';
 import '../route_generator.dart';
 import '../utils/calculations.dart';
+import '../utils/custom_buttons.dart';
 import '../utils/custom_colors.dart';
 import '../utils/images.dart';
 import '../view_models/cart_view_model.dart';
@@ -25,10 +26,12 @@ class ProductDetailScreen extends StatelessWidget {
     return Consumer<PlansViewModel>(builder: (context, plansViewModel, child) {
       return Scaffold(
         appBar: AppBarWithBackWidget(
-            heading: toBeginningOfSentenceCase('Product Detail'),
+            heading: toBeginningOfSentenceCase(
+                '${plansViewModel.getSelectedRecipe.name}'),
             showPuppy: false,
-            showCart:
-                context.read<CartViewModel>().getSelectedIndex == null?true: false),
+            showCart: context.read<CartViewModel>().getSelectedIndex == null
+                ? true
+                : false),
         body: Padding(
           padding: const EdgeInsets.symmetric(vertical: 20.0),
           child: Stack(
@@ -38,8 +41,11 @@ class ProductDetailScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SizedBox(
-                      height: 300.h,
-                        child: ProductCarouselWidget(productImages: plansViewModel.getSelectedRecipe.media!,)),
+                        height: 300.h,
+                        child: ProductCarouselWidget(
+                          productImages:
+                              plansViewModel.getSelectedRecipe.media!,
+                        )),
 /*
                     Container(
                         width: double.infinity,
@@ -109,7 +115,8 @@ class ProductDetailScreen extends StatelessWidget {
                                               width: 0.75,
                                               color:
                                                   CustomColors.greyMediumColor),
-                                          borderRadius: BorderRadius.circular(12),
+                                          borderRadius:
+                                              BorderRadius.circular(12),
                                         ),
                                       ),
                                       child: const Padding(
@@ -140,7 +147,8 @@ class ProductDetailScreen extends StatelessWidget {
                                               width: 0.75,
                                               color:
                                                   CustomColors.greyMediumColor),
-                                          borderRadius: BorderRadius.circular(12),
+                                          borderRadius:
+                                              BorderRadius.circular(12),
                                         ),
                                       ),
                                       child: const Padding(
@@ -156,8 +164,44 @@ class ProductDetailScreen extends StatelessWidget {
                                 ],
                               )
                             ],
-                          )
+                          ),
                         ],
+                      ),
+                    ),
+                    Visibility(
+                      visible: plansViewModel.getSelectedRecipe.sizes!.isNotEmpty,
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 20),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            SizedBox(
+                              height: 20.h,
+                            ),
+                            black14w500(data: 'Select Sizes'),
+                            SizedBox(
+                              height: 20.h,
+                            ),
+                            Wrap(
+                              runSpacing: 10,
+                              spacing: 10,
+                              children: [
+                                for (var sizes
+                                    in plansViewModel.getSelectedRecipe.sizes!)
+                                  SizedBox(
+                                    width: 100.w,
+                                    child: customSquareButton(
+                                        text: '${sizes.name}',
+                                        onPressed: () {
+                                          plansViewModel
+                                              .setSelectedItemSize(sizes);
+                                        },
+                                        colored: plansViewModel.getSelectedItemSize.contains(sizes)? true: false),
+                                  )
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                     SizedBox(
@@ -200,15 +244,18 @@ class ProductDetailScreen extends StatelessWidget {
                                 recipe: recipeList,
                                 puppy: null,
                                 deliveryDate: '03 Oct 2023',
-                                planType: plansViewModel.getPlanType, planTotal: calculatePlanTotal( listOfItems: recipeList)),
+                                planType: plansViewModel.getPlanType,
+                                planTotal: calculatePlanTotal(
+                                    listOfItems: recipeList)),
                           );
-                      if( context.read<CartViewModel>().getSelectedIndex == null){
-                        Navigator.pushNamedAndRemoveUntil(context,
-                            bottomNavigationRoute,  (route) => false);
-                      }
-                      else{
+                      if (context.read<CartViewModel>().getSelectedIndex ==
+                          null) {
+                        Navigator.pushNamedAndRemoveUntil(
+                            context, bottomNavigationRoute, (route) => false);
+                      } else {
                         context.read<CartViewModel>().setSelectedIndex(null);
-                        Navigator.pushNamedAndRemoveUntil(context, cartRoute, (Route route) => route.isFirst);
+                        Navigator.pushNamedAndRemoveUntil(
+                            context, cartRoute, (Route route) => route.isFirst);
                       }
                       EasyLoading.showToast(
                           '${plansViewModel.getPlanType} Successfully Added To\nShopping Bag',

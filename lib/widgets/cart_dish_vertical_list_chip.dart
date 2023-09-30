@@ -40,7 +40,12 @@ Widget cartDishVerticalListChipWidget(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         black14w500(data: cartRecipeModel.name!),
-                        SizedBox(height: 2,),
+                        const SizedBox(height: 2,),
+                        cartRecipeModel.sizes!.isNotEmpty?  Padding(
+                          padding: const EdgeInsets.only(bottom: 2.0),
+                          child: black14w500(data: ''
+                          'Size: ${cartRecipeModel.sizes![0].name!}'),
+                        ):SizedBox(),
                         planType == Plans.monthly.text
                             ? black14w500(
                             data: 'Days: ${cartRecipeModel.totalDays}')
@@ -60,6 +65,7 @@ Widget cartDishVerticalListChipWidget(
                           ),
                         ),*/
                         const SizedBox(height: 2,),
+
                         petName != null ? orange14w500(
                             data: 'AED ${cartRecipeModel
                                 .finalPrice}${planType == Plans.oneTime.text?'':' / Order'}'):

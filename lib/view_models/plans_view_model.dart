@@ -26,6 +26,7 @@ class PlansViewModel with ChangeNotifier {
   int _quantity = 1;
   int _availableDays = 0;
   int _daysCount = 1;
+  final List<ItemSizes> _selectedItemSize = [];
   CartModel? _feedingPlan;
   num _transitionalGrams1to3Days = 0;
   num _transitionalGrams4to6Days = 0;
@@ -50,6 +51,15 @@ class PlansViewModel with ChangeNotifier {
   RecipeModel? _monthlyEmptyTile3;
   DateTime _focusedDay = DateTime.now().add(const Duration(days: 4));
   DateTime _selectedDay = DateTime.now().add(const Duration(days: 4));
+
+  List<ItemSizes> get getSelectedItemSize => _selectedItemSize;
+
+  void setSelectedItemSize(ItemSizes value) {
+    _selectedItemSize.clear();
+    _selectedItemSize.add(value);
+    _selectedRecipe.pricePerKG = value.price;
+    notifyListeners();
+  }
 
   String get getProductCategory => _productCategory;
 
@@ -132,16 +142,14 @@ class PlansViewModel with ChangeNotifier {
   void setCartDataToFeedingPlan({required CartModel cartData}) {
     _planType = cartData.planType;
     _quantity = cartData.recipe[0].quantity!;
-    _selectedDay =  DateFormat('dd MMM yyyy').parse(cartData.deliveryDate);
+    _selectedDay = DateFormat('dd MMM yyyy').parse(cartData.deliveryDate);
     if (_planType == Plans.monthly.text) {
       if (cartData.recipe.length == 1) {
         _monthlyEmptyTile1 = cartData.recipe[0];
-      }
-      else if (cartData.recipe.length == 2) {
+      } else if (cartData.recipe.length == 2) {
         _monthlyEmptyTile1 = cartData.recipe[0];
         _monthlyEmptyTile2 = cartData.recipe[1];
-      }
-      else {
+      } else {
         _monthlyEmptyTile1 = cartData.recipe[0];
         _monthlyEmptyTile2 = cartData.recipe[1];
         _monthlyEmptyTile3 = cartData.recipe[2];
@@ -240,6 +248,8 @@ class PlansViewModel with ChangeNotifier {
         RecipeModel.fromJson(_selectedRecipe.toJson());
     applyDishDetail.quantity = _quantity;
     applyDishDetail.finalPrice = _selectedRecipe.pricePerKG! * _quantity;
+    applyDishDetail.pricePerKG = _selectedRecipe.pricePerKG!;
+    //applyDishDetail.sizes = _selectedItemSize;
     _selectedRecipe = applyDishDetail;
   }
 
@@ -311,6 +321,13 @@ class PlansViewModel with ChangeNotifier {
 
   void setSelectedRecipe(RecipeModel value) {
     _selectedRecipe = value;
+    if(_selectedRecipe.sizes!.isNotEmpty){
+      _selectedItemSize.clear();
+      _selectedItemSize.add(_selectedRecipe.sizes![0]);
+    }
+    else{
+      _selectedItemSize.clear();
+    }
     notifyListeners();
   }
 

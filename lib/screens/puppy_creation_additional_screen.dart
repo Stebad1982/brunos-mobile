@@ -413,7 +413,7 @@ class PuppyCreationAdditionalScreen extends StatelessWidget {
                     ),
                     black18w500(
                         data:
-                            '${puppyViewModel.getPuppyNameController.text.isNotEmpty ? puppyViewModel.getPuppyNameController.text : 'Pet'}\'s Daily Feeding Routine?'),
+                            'How many times you feed ${puppyViewModel.getPuppyNameController.text.isNotEmpty ? puppyViewModel.getPuppyNameController.text : 'Pet'}\'s a day?'),
                     SizedBox(
                       height: 24.h,
                     ),
