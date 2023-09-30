@@ -44,7 +44,7 @@ Widget cartDishVerticalListChipWidget(
                         cartRecipeModel.sizes!.isNotEmpty?  Padding(
                           padding: const EdgeInsets.only(bottom: 2.0),
                           child: black14w500(data: ''
-                          'Size: ${cartRecipeModel.sizes![0].name!}'),
+                          'Size: ${cartRecipeModel.selectedItemSize!.name!}'),
                         ):SizedBox(),
                         planType == Plans.monthly.text
                             ? black14w500(

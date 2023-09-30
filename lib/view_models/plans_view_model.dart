@@ -26,7 +26,7 @@ class PlansViewModel with ChangeNotifier {
   int _quantity = 1;
   int _availableDays = 0;
   int _daysCount = 1;
-  final List<ItemSizes> _selectedItemSize = [];
+  //ItemSizes? _selectedItemSize;
   CartModel? _feedingPlan;
   num _transitionalGrams1to3Days = 0;
   num _transitionalGrams4to6Days = 0;
@@ -52,11 +52,10 @@ class PlansViewModel with ChangeNotifier {
   DateTime _focusedDay = DateTime.now().add(const Duration(days: 4));
   DateTime _selectedDay = DateTime.now().add(const Duration(days: 4));
 
-  List<ItemSizes> get getSelectedItemSize => _selectedItemSize;
+  //ItemSizes? get getSelectedItemSize => _selectedItemSize;
 
   void setSelectedItemSize(ItemSizes value) {
-    _selectedItemSize.clear();
-    _selectedItemSize.add(value);
+    _selectedRecipe.selectedItemSize = value;
     _selectedRecipe.pricePerKG = value.price;
     notifyListeners();
   }
@@ -248,8 +247,9 @@ class PlansViewModel with ChangeNotifier {
         RecipeModel.fromJson(_selectedRecipe.toJson());
     applyDishDetail.quantity = _quantity;
     applyDishDetail.finalPrice = _selectedRecipe.pricePerKG! * _quantity;
-    applyDishDetail.pricePerKG = _selectedRecipe.pricePerKG!;
-    //applyDishDetail.sizes = _selectedItemSize;
+   applyDishDetail.pricePerKG = _selectedRecipe.pricePerKG!;
+   applyDishDetail.selectedItemSize = _selectedRecipe.selectedItemSize;
+   applyDishDetail.sizes = _selectedRecipe.sizes;
     _selectedRecipe = applyDishDetail;
   }
 
@@ -321,13 +321,12 @@ class PlansViewModel with ChangeNotifier {
 
   void setSelectedRecipe(RecipeModel value) {
     _selectedRecipe = value;
-    if(_selectedRecipe.sizes!.isNotEmpty){
-      _selectedItemSize.clear();
-      _selectedItemSize.add(_selectedRecipe.sizes![0]);
+   /* if(_selectedRecipe.sizes!.isNotEmpty){
+      _selectedItemSize = _selectedRecipe.sizes![0];
     }
     else{
-      _selectedItemSize.clear();
-    }
+      _selectedItemSize = null;
+    }*/
     notifyListeners();
   }
 
@@ -352,6 +351,9 @@ class PlansViewModel with ChangeNotifier {
   }
 
   void clearPlanData() {
+/*
+    _selectedItemSize = null;
+*/
     _quantity = 1;
     _daysCount = 1;
     _availableDays = 0;

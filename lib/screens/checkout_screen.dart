@@ -1,6 +1,7 @@
 import 'package:brunos_kitchen/route_generator.dart';
 import 'package:brunos_kitchen/view_models/address_view_model.dart';
 import 'package:brunos_kitchen/view_models/auth_view_model.dart';
+import 'package:brunos_kitchen/view_models/cart_view_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -30,7 +31,7 @@ class CheckoutScreen extends StatelessWidget {
               ? 'Transitional Plan'
               : plansViewModel.getPlanType == Plans.monthly.text
                   ? 'Monthly Plan'
-                  : 'One time Order', showPuppy: true,showCart: true
+                  : 'One time Order', showPuppy: false,showCart: false
         ),
         body: Stack(
           children: [
@@ -296,7 +297,7 @@ class CheckoutScreen extends StatelessWidget {
                                 SizedBox(
                                   width: 2.w,
                                 ),
-                                lightBlack14w400Centre(data: 'AED 100'),
+                                lightBlack14w400Centre(data: 'AED ${context.watch<CartViewModel>().getCartTotalPrice}'),
                               ],
                             ),
                             SizedBox(
@@ -488,7 +489,7 @@ class CheckoutScreen extends StatelessWidget {
                         children: [
                           lightBlack14w400Centre(data: 'Total'),
                           const Spacer(),
-                          black16w500(data: 'AED 95')
+                          black16w500(data: 'AED ${context.watch<CartViewModel>().getCartTotalPrice + 10}')
                         ],
                       ),
                       SizedBox(

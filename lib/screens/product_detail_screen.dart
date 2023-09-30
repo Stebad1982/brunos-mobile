@@ -169,7 +169,7 @@ class ProductDetailScreen extends StatelessWidget {
                       ),
                     ),
                     Visibility(
-                      visible: plansViewModel.getSelectedRecipe.sizes!.isNotEmpty,
+                      visible: plansViewModel.getSelectedRecipe.selectedItemSize != null,
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 20),
                         child: Column(
@@ -196,7 +196,7 @@ class ProductDetailScreen extends StatelessWidget {
                                           plansViewModel
                                               .setSelectedItemSize(sizes);
                                         },
-                                        colored: plansViewModel.getSelectedItemSize.contains(sizes)? true: false),
+                                        colored: plansViewModel.getSelectedRecipe.selectedItemSize == sizes? true: false),
                                   )
                               ],
                             ),

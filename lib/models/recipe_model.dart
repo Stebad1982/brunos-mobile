@@ -18,6 +18,7 @@ class RecipeModel {
   num? finalPrice;
   List<String>? media;
   List<ItemSizes>? sizes;
+  ItemSizes? selectedItemSize;
   String? recipeNo;
   String? lifeStage;
   int? totalDays;
@@ -30,28 +31,29 @@ class RecipeModel {
 
   RecipeModel(
       {this.sId,
-      this.createdOnDate,
-      this.name,
-      this.isFeatured,
-      this.userId,
-      this.ingredient,
-      this.description,
-      this.details,
-      this.instructions,
-      this.nutrition,
-      this.pricePerKG,
-      this.media,
-      this.recipeNo,
-      this.lifeStage,
-      this.caloriesContentNo,
-      this.quantity,
-      this.finalPrice,
-      this.isComboRecipe,
-      this.sizes,
-      // this.ingredients,
-      this.totalDays,
-      this.category,
-      this.ingredientsComposition});
+        this.createdOnDate,
+        this.name,
+        this.isFeatured,
+        this.userId,
+        this.ingredient,
+        this.description,
+        this.details,
+        this.instructions,
+        this.nutrition,
+        this.pricePerKG,
+        this.media,
+        this.recipeNo,
+        this.lifeStage,
+        this.caloriesContentNo,
+        this.quantity,
+        this.finalPrice,
+        this.isComboRecipe,
+        this.sizes,
+        this.selectedItemSize,
+        // this.ingredients,
+        this.totalDays,
+        this.category,
+        this.ingredientsComposition});
 
   RecipeModel.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
@@ -79,11 +81,16 @@ class RecipeModel {
         sizes!.add(ItemSizes.fromJson(v));
       });
       if(sizes!.isNotEmpty){
+        selectedItemSize = sizes![0];
         pricePerKG = sizes![0].price;
       }
-    else{
-      pricePerKG = json['pricePerKG'];
+      else{
+        pricePerKG = json['pricePerKG'];
+      }
     }
+    else{
+      sizes = <ItemSizes>[];
+      pricePerKG = json['pricePerKG'];
     }
     media = json['media'].cast<String>();
     category = json['category'];
@@ -114,6 +121,7 @@ class RecipeModel {
     if (this.sizes != null) {
       data['sizes'] = this.sizes!.map((v) => v.toJson()).toList();
     }
+    data['selectedItemSize'] = this.selectedItemSize;
     data['description'] = this.description;
     data['details'] = this.details;
     data['instructions'] = this.instructions;
