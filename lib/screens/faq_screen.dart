@@ -1,138 +1,74 @@
 import 'package:accordion/accordion.dart';
+import 'package:brunos_kitchen/models/responses/faqs_response.dart';
+import 'package:brunos_kitchen/view_models/faqs_view_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../utils/custom_colors.dart';
 import '../utils/custom_font_style.dart';
 import '../widgets/app_bar_with_back_widget.dart';
 
-class FaqScreen extends StatelessWidget {
+class FaqScreen extends StatefulWidget {
   const FaqScreen({Key? key}) : super(key: key);
 
   @override
+  State<FaqScreen> createState() => _FaqScreenState();
+}
+
+class _FaqScreenState extends State<FaqScreen> {
+  @override
+  void initState() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      context.read<FaqsViewModel>().callFaqsApi();
+    });
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: const AppBarWithBackWidget(
-        heading: 'FAQ', showPuppy: false,showCart: true
-      ),
-      body: Accordion(
-        disableScrolling: true,
-        paddingListHorizontal: 20,
-        maxOpenSections: 2,
-        headerBackgroundColorOpened: Colors.black54,
-        scaleWhenAnimating: true,
-        openAndCloseAnimation: true,
-        headerPadding: const EdgeInsets.symmetric(vertical: 7, horizontal: 15),
-        // sectionOpeningHapticFeedback: SectionHapticFeedback.heavy,
-        // sectionClosingHapticFeedback: SectionHapticFeedback.light,
-        children: [
-          AccordionSection(
-            // isOpen: false,
-            //flipRightIconIfOpen: true,
-            rightIcon: Icon(Icons.keyboard_arrow_down),
-            // leftIcon: const Icon(Icons.insights_rounded, color: Colors.white),
-            headerBackgroundColor: CustomColors.whiteColor,
-            headerBackgroundColorOpened: CustomColors.whiteColor,
-            header: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 5),
-              child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: lightBlack14w400Centre(data: 'About Bruno’s Kitchen')),
-            ),
-            content: black12w500Centre(
-                data:
-                    'When you start and order you can cancel it by clicking the logo on home page. You can find cancel button there.'),
-            contentHorizontalPadding: 20,
-            contentBorderWidth: 1,
-            // onOpenSection: () => print('onOpenSection ...'),
-            // onCloseSection: () => print('onCloseSection ...'),
-          ),
-          AccordionSection(
-            // isOpen: true,
-           // flipRightIconIfOpen: true,
-            rightIcon: Icon(Icons.keyboard_arrow_down),
-            // leftIcon: const Icon(Icons.insights_rounded, color: Colors.white),
-            headerBackgroundColor: CustomColors.whiteColor,
-            headerBackgroundColorOpened: CustomColors.whiteColor,
-            header: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 5),
-              child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: lightBlack14w400Centre(data: 'About Bruno’s Kitchen')),
-            ),
-            content: black12w500Centre(
-                data:
-                    'When you start and order you can cancel it by clicking the logo on home page. You can find cancel button there.'),
-            contentHorizontalPadding: 20,
-            contentBorderWidth: 1,
-            // onOpenSection: () => print('onOpenSection ...'),
-            // onCloseSection: () => print('onCloseSection ...'),
-          ),
-          AccordionSection(
-            // isOpen: true,
-           // flipRightIconIfOpen: true,
-            rightIcon: Icon(Icons.keyboard_arrow_down),
-            // leftIcon: const Icon(Icons.insights_rounded, color: Colors.white),
-            headerBackgroundColor: CustomColors.whiteColor,
-            headerBackgroundColorOpened: CustomColors.whiteColor,
-            header: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 5),
-              child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: lightBlack14w400Centre(data: 'About Bruno’s Kitchen')),
-            ),
-            content: black12w500Centre(
-                data:
-                    'When you start and order you can cancel it by clicking the logo on home page. You can find cancel button there.'),
-            contentHorizontalPadding: 20,
-            contentBorderWidth: 1,
-            // onOpenSection: () => print('onOpenSection ...'),
-            // onCloseSection: () => print('onCloseSection ...'),
-          ),
-          AccordionSection(
-            //isOpen: true,
-          //  flipRightIconIfOpen: true,
-            rightIcon: Icon(Icons.keyboard_arrow_down),
-            // leftIcon: const Icon(Icons.insights_rounded, color: Colors.white),
-            headerBackgroundColor: CustomColors.whiteColor,
-            headerBackgroundColorOpened: CustomColors.whiteColor,
-            header: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 5),
-              child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: lightBlack14w400Centre(data: 'About Bruno’s Kitchen')),
-            ),
-            content: black12w500Centre(
-                data:
-                    'When you start and order you can cancel it by clicking the logo on home page. You can find cancel button there.'),
-            contentHorizontalPadding: 20,
-            contentBorderWidth: 1,
-            // onOpenSection: () => print('onOpenSection ...'),
-            // onCloseSection: () => print('onCloseSection ...'),
-          ),
-          AccordionSection(
-            // isOpen: true,
-            //flipRightIconIfOpen: true,
-            rightIcon: Icon(Icons.keyboard_arrow_down),
-            // leftIcon: const Icon(Icons.insights_rounded, color: Colors.white),
-            headerBackgroundColor: CustomColors.whiteColor,
-            headerBackgroundColorOpened: CustomColors.whiteColor,
-            header: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 5),
-              child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: lightBlack14w400Centre(data: 'About Bruno’s Kitchen')),
-            ),
-            content: black12w500Centre(
-                data:
-                    'When you start and order you can cancel it by clicking the logo on home page. You can find cancel button there.'),
-            contentHorizontalPadding: 20,
-            contentBorderWidth: 1,
-            // onOpenSection: () => print('onOpenSection ...'),
-            // onCloseSection: () => print('onCloseSection ...'),
-          ),
-        ],
-      ),
-    );
+    return Consumer<FaqsViewModel>(builder: (_, faqsViewModel, __) {
+      return Scaffold(
+        appBar: const AppBarWithBackWidget(
+            heading: 'FAQ', showPuppy: false, showCart: true),
+        body: faqsViewModel.getFaqsResponse.data != null
+            ? Accordion(
+                disableScrolling: true,
+                paddingListHorizontal: 20,
+                maxOpenSections: 2,
+                headerBackgroundColorOpened: Colors.black54,
+                scaleWhenAnimating: true,
+                openAndCloseAnimation: true,
+                headerPadding:
+                    const EdgeInsets.symmetric(vertical: 7, horizontal: 15),
+                // sectionOpeningHapticFeedback: SectionHapticFeedback.heavy,
+                // sectionClosingHapticFeedback: SectionHapticFeedback.light,
+                children: [
+                  for (FaqsData item in faqsViewModel.getFaqsResponse.data!)
+                    AccordionSection(
+                      // isOpen: false,
+                      //flipRightIconIfOpen: true,
+                      rightIcon: const Icon(Icons.keyboard_arrow_down),
+                      // leftIcon: const Icon(Icons.insights_rounded, color: Colors.white),
+                      headerBackgroundColor: CustomColors.greyMediumLightColor,
+                      headerBackgroundColorOpened: CustomColors.greyMediumLightColor,
+                      header: Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 5),
+                        child: Align(
+                            alignment: Alignment.centerLeft,
+                            child: lightBlack14w400Centre(data: item.title!)),
+                      ),
+                      content: black12w500Centre(data: item.description!),
+                      contentBackgroundColor: CustomColors.greyMediumLightColor,
+                      contentHorizontalPadding: 20,
+                      contentBorderWidth: 1,
+                      // onOpenSection: () => print('onOpenSection ...'),
+                      // onCloseSection: () => print('onCloseSection ...'),
+                    )
+                ],
+              )
+            : const SizedBox(),
+      );
+    });
   }
 }

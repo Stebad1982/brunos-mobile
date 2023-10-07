@@ -37,51 +37,50 @@ class _DeliveryDatesScreenState extends State<DeliveryDatesScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<PlansViewModel>(builder: (context, plansViewModel, child) {
-      return Scaffold(
-        appBar: AppBarWithBackWidget(
-            heading: plansViewModel.getPlanType == Plans.transitional.text
-                ? 'Transitional Plan'
-                : plansViewModel.getPlanType == Plans.monthly.text
-                    ? 'Monthly Plan'
-                    : 'One time Order',
-            showPuppy: false,
-            showCart: true),
-        body: Stack(
-          children: [
-            SingleChildScrollView(
-              child: Padding(
-                padding: const EdgeInsets.all(20),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    SizedBox(
-                      height: 10.h,
-                    ),
-                    Center(
-                      child: Image.asset(
-                        buyBulits2,
-                        height: 57.h,
+    return Consumer<CartViewModel>(builder: (context, cartViewModel, child) {
+      return Consumer<PlansViewModel>(builder: (context, planViewModel, child)
+      {
+        return Scaffold(
+          appBar: const AppBarWithBackWidget(
+              heading: 'Select Date',
+              showPuppy: false,
+              showCart: true),
+          body: Stack(
+            children: [
+              SingleChildScrollView(
+                child: Padding(
+                  padding: const EdgeInsets.all(20),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                     /* SizedBox(
+                        height: 10.h,
                       ),
-                    ),
-                    SizedBox(
-                      height: 40.h,
-                    ),
-                    black24w500Centre(
-                        data: /* plansViewModel.getPlanType == Plans.monthly.text
+                      Center(
+                        child: Image.asset(
+                          buyBulits2,
+                          height: 57.h,
+                        ),
+                      ),*/
+                      SizedBox(
+                        height: 40.h,
+                      ),
+                      black24w500Centre(
+                          data: /* plansViewModel.getPlanType == Plans.monthly.text
                             ? 'Schedule Your Meal Deliveries'
                             :*/
-                            'Select Your Delivery Date'),
-                    SizedBox(
-                      height: 10.h,
-                    ),
-                    lightBlack14w400Centre(
-                        data:
-                            'Order by 4pm to receive your doggies dishes\nbetween 9am- 12noon the following day'),
-                    SizedBox(
-                      height: 30.h,
-                    ),
-                    /*    Visibility(
+                          'Select Your Delivery Date'),
+                      SizedBox(
+                        height: 10.h,
+                      ),
+                      lightBlack14w400Centre(
+                          data:
+                          'Order by 4pm to receive your doggies dishes\nbetween 9am- 12noon the following day'),
+                      SizedBox(
+                        height: 30.h,
+                      ),
+                      /*    Visibility(
                       visible: plansViewModel.getPlanType == Plans.monthly.text,
                       child: Padding(
                         padding: const EdgeInsets.only(bottom: 20),
@@ -132,29 +131,29 @@ class _DeliveryDatesScreenState extends State<DeliveryDatesScreen> {
                         ),
                       ),
                     ),*/
-                    TableCalendar(
-                      rowHeight: 45,
-                      headerStyle: const HeaderStyle(
-                        formatButtonVisible: false,
-                        titleCentered: true,
+                      TableCalendar(
+                        rowHeight: 45,
+                        headerStyle: const HeaderStyle(
+                          formatButtonVisible: false,
+                          titleCentered: true,
+                        ),
+                        availableGestures: AvailableGestures.all,
+                        selectedDayPredicate: (day) =>
+                            isSameDay(cartViewModel.getSelectedDay, day),
+                        locale: 'en_US',
+                        firstDay: cartViewModel.getFocusedDay,
+                        lastDay: DateTime.utc(2030, 3, 14),
+                        focusedDay: cartViewModel.getFocusedDay,
+                        onDaySelected: cartViewModel.onDaySelected,
+                        calendarStyle: const CalendarStyle(
+                            selectedDecoration: BoxDecoration(
+                                color: CustomColors.orangeColor,
+                                shape: BoxShape.circle),
+                            todayDecoration: BoxDecoration(
+                                color: CustomColors.yellowColor,
+                                shape: BoxShape.circle)),
                       ),
-                      availableGestures: AvailableGestures.all,
-                      selectedDayPredicate: (day) =>
-                          isSameDay(plansViewModel.getSelectedDay, day),
-                      locale: 'en_US',
-                      firstDay: plansViewModel.getFocusedDay,
-                      lastDay: DateTime.utc(2030, 3, 14),
-                      focusedDay: plansViewModel.getFocusedDay,
-                      onDaySelected: plansViewModel.onDaySelected,
-                      calendarStyle: const CalendarStyle(
-                          selectedDecoration: BoxDecoration(
-                              color: CustomColors.orangeColor,
-                              shape: BoxShape.circle),
-                          todayDecoration: BoxDecoration(
-                              color: CustomColors.yellowColor,
-                              shape: BoxShape.circle)),
-                    ),
-                    /*SizedBox(
+                      /*SizedBox(
                       height: 20.h,
                     ),
                     Visibility(
@@ -267,70 +266,57 @@ class _DeliveryDatesScreenState extends State<DeliveryDatesScreen> {
                         ],
                       ),
                     ),*/
-                    SizedBox(
-                      height: 30.h,
-                    ),
-                    brown14w400Centre(
-                        data:
-                            'Great! Now tell us where we will be delivering\nour tail-wagging meals',
-                        centre: true),
-                    SizedBox(
-                      height: 100.h,
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: Container(
-                decoration: const BoxDecoration(
-                  color: CustomColors.whiteColor,
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(30.0),
-                    topRight: Radius.circular(30.0),
+                      SizedBox(
+                        height: 30.h,
+                      ),
+                      brown14w400Centre(
+                          data:
+                          'Great! Now tell us where we will be delivering\nour tail-wagging meals',
+                          centre: true),
+                      SizedBox(
+                        height: 100.h,
+                      ),
+                    ],
                   ),
-                  boxShadow: [
-                    BoxShadow(
-                      offset: Offset(0, 0),
-                      blurRadius: 5,
-                      spreadRadius: 2,
-                      color: Colors.black12,
-                    ),
-                  ],
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(20),
-                  child: customButton(
-                      text: 'Add To Cart',
-                      onPressed: () {
-                        final String deliveryDate =
-                            DateTimeFormatter.showDateFormat3(
-                                plansViewModel.getSelectedDay!);
-                        context.read<CartViewModel>().addToCartList(
-                              CartModel(
-                                  recipe: plansViewModel.getFeedingPlan!.recipe,
-                                  puppy: plansViewModel.getFeedingPlan!.puppy,
-                                  deliveryDate: deliveryDate,
-                                  planType: plansViewModel.getFeedingPlan!.planType, planTotal: plansViewModel.getFeedingPlan!.planTotal),
-                            );
-                        if( context.read<CartViewModel>().getSelectedIndex == null){
-                          Navigator.pushNamedAndRemoveUntil(context,
-                              bottomNavigationRoute,  (route) => false);
-                        }
-                        else{
-                          Navigator.pushNamedAndRemoveUntil(context, cartRoute, (Route route) => route.isFirst);
-                        }
-
-                        EasyLoading.showToast('${plansViewModel.getPlanType} Plan Successfully Added To\nShopping Bag',toastPosition: EasyLoadingToastPosition.center);
-                      },
-                      colored: true),
                 ),
               ),
-            ),
-          ],
-        ),
-      );
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: Container(
+                  decoration: const BoxDecoration(
+                    color: CustomColors.whiteColor,
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(30.0),
+                      topRight: Radius.circular(30.0),
+                    ),
+                    boxShadow: [
+                      BoxShadow(
+                        offset: Offset(0, 0),
+                        blurRadius: 5,
+                        spreadRadius: 2,
+                        color: Colors.black12,
+                      ),
+                    ],
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(20),
+                    child: customButton(
+                        text: 'CheckOut',
+                        onPressed: () {
+                          Navigator.pushNamed(context, checkOutRoute);
+                          /*final String deliveryDate =
+                          DateTimeFormatter.showDateFormat3(
+                              cartViewModel.getSelectedDay!);*/
+
+                        },
+                        colored: true),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        );
+      });
     });
   }
 }

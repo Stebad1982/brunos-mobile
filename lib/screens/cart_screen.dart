@@ -65,9 +65,9 @@ class CartScreen extends StatelessWidget {
                               height: 10.h,
                             ),
                             customButton(
-                                text: 'CheckOut',
+                                text: 'Next',
                                 onPressed: () {
-                                  Navigator.pushNamed(context, checkOutRoute);
+                                  Navigator.pushNamed(context, deliveryDatesRoute);
                                 },
                                 colored: true),
                           ],

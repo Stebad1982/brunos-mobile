@@ -1,5 +1,6 @@
 import 'package:brunos_kitchen/route_generator.dart';
 import 'package:brunos_kitchen/utils/images.dart';
+import 'package:brunos_kitchen/view_models/cart_view_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -22,11 +23,7 @@ class OrderConfirmationScreen extends StatelessWidget {
     {
       return Scaffold(
         appBar:  AppBarWithBackWidget(
-          heading: plansViewModel.getPlanType == Plans.transitional.text
-              ? 'Transitional Plan'
-              : plansViewModel.getPlanType == Plans.monthly.text
-              ? 'Monthly Plan'
-              : 'One time Order', showPuppy: false,showCart: true
+          heading: 'Order Confirmation', showPuppy: false,showCart: false
         ),
         body: SafeArea(
           child: Padding(
@@ -93,7 +90,7 @@ class OrderConfirmationScreen extends StatelessWidget {
                                 SizedBox(
                                   width: 2.w,
                                 ),
-                                lightBlack14w400Centre(data: '45 AED'),
+                                lightBlack14w400Centre(data: '${context.watch<CartViewModel>().getCartTotalPrice + 10} AED'),
                               ],
                             ),
                           ],
@@ -104,7 +101,7 @@ class OrderConfirmationScreen extends StatelessWidget {
                       height: 40,
                     ),
                     customButton(
-                        text: 'Save and Continue',
+                        text: 'Continue',
                         onPressed: () {
                           Navigator.of(context).pushNamedAndRemoveUntil(
                               bottomNavigationRoute,

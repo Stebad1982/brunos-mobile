@@ -54,16 +54,9 @@ Widget cartVerticalListChipWidget(
                   // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          orange18w500(
-                              data:
-                                  '${cartDetail.planType} ${cartDetail.puppy == null ? '' : 'Plan'}'),
-                          grey12w500(
-                              data: 'Delivery Date: ${cartDetail.deliveryDate}')
-                        ],
-                      ),
+                      child: orange18w500(
+                          data:
+                              '${cartDetail.planType} ${cartDetail.puppy == null ? '' : 'Plan'}'),
                     ),
                     InkWell(
                       onTap: () {

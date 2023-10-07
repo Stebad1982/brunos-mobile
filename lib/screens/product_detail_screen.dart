@@ -13,10 +13,12 @@ import '../utils/calculations.dart';
 import '../utils/custom_buttons.dart';
 import '../utils/custom_colors.dart';
 import '../utils/images.dart';
+import '../view_models/auth_view_model.dart';
 import '../view_models/cart_view_model.dart';
 import '../view_models/plans_view_model.dart';
 import '../widgets/app_bar_with_back_widget.dart';
 import '../widgets/carousels/product_carousel_widget.dart';
+import '../widgets/dialogs/discription_dialog.dart';
 
 class ProductDetailScreen extends StatelessWidget {
   const ProductDetailScreen({Key? key}) : super(key: key);
@@ -236,30 +238,60 @@ class ProductDetailScreen extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: InkWell(
                     onTap: () {
-                      final List<RecipeModel> recipeList = [];
-                      plansViewModel.setProductModel();
-                      recipeList.add(plansViewModel.getSelectedRecipe);
-                      context.read<CartViewModel>().addToCartList(
+                      if(context.read<CartViewModel>().getSelectedIndex == null){
+                        if(context.read<CartViewModel>().checkProductValidation(recipe: plansViewModel.getSelectedRecipe)){
+                          final List<RecipeModel> recipeList = [];
+                          plansViewModel.setProductModel();
+                          recipeList.add(plansViewModel.getSelectedRecipe);
+                          context.read<CartViewModel>().addToCartList(
                             CartModel(
                                 recipe: recipeList,
                                 puppy: null,
+/*
                                 deliveryDate: '03 Oct 2023',
+*/
                                 planType: plansViewModel.getPlanType,
                                 planTotal: calculatePlanTotal(
                                     listOfItems: recipeList)),
                           );
-                      if (context.read<CartViewModel>().getSelectedIndex ==
-                          null) {
-                        Navigator.pushNamedAndRemoveUntil(
-                            context, bottomNavigationRoute, (route) => false);
-                      } else {
+
+                            Navigator.pushNamedAndRemoveUntil(
+                                context, bottomNavigationRoute, (route) => false);
+
+                          EasyLoading.showToast(
+                              '${plansViewModel.getPlanType} Successfully Added To\nShopping Bag',
+                              toastPosition: EasyLoadingToastPosition.center);
+                        }
+                        else{
+                          Navigator.pushNamed(context, cartRoute);
+                          descriptionDialog(
+                              context: context,
+                              description:
+                              '${plansViewModel.getSelectedRecipe.name} is already added to shopping bag',
+                              height: 180.h,
+                              title: 'Alert');
+                        }
+                      }
+                      else{
+                        final List<RecipeModel> recipeList = [];
+                        plansViewModel.setProductModel();
+                        recipeList.add(plansViewModel.getSelectedRecipe);
+                        context.read<CartViewModel>().addToCartList(
+                          CartModel(
+                              recipe: recipeList,
+                              puppy: null,
+/*
+                              deliveryDate: '03 Oct 2023',
+*/
+                              planType: plansViewModel.getPlanType,
+                              planTotal: calculatePlanTotal(
+                                  listOfItems: recipeList)),
+                        );
                         context.read<CartViewModel>().setSelectedIndex(null);
                         Navigator.pushNamedAndRemoveUntil(
                             context, cartRoute, (Route route) => route.isFirst);
                       }
-                      EasyLoading.showToast(
-                          '${plansViewModel.getPlanType} Successfully Added To\nShopping Bag',
-                          toastPosition: EasyLoadingToastPosition.center);
+
                     },
                     child: Container(
                         height: 90.h,

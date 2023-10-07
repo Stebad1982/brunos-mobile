@@ -3,9 +3,11 @@ import 'package:brunos_kitchen/utils/custom_font_style.dart';
 import 'package:brunos_kitchen/view_models/auth_view_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
+import '../models/cart_model.dart';
 import '../utils/calculations.dart';
 import '../utils/custom_buttons.dart';
 import '../utils/custom_colors.dart';
@@ -15,7 +17,6 @@ import '../view_models/plans_view_model.dart';
 import '../widgets/app_bar_with_back_widget.dart';
 
 class FeedingPlanScreen extends StatefulWidget {
-
   const FeedingPlanScreen({super.key});
 
   @override
@@ -44,8 +45,7 @@ class _FeedingPlanScreenState extends State<FeedingPlanScreen> {
                     ? 'Monthly Feeding Plan'
                     : 'One time Feeding Order',
             showPuppy: false,
-            showCart: !context.read<CartViewModel>().getViewCartItemDetail
-        ),
+            showCart: !context.read<CartViewModel>().getViewCartItemDetail),
         body: Stack(
           children: [
             plansViewModel.getFeedingPlan != null
@@ -149,7 +149,7 @@ class _FeedingPlanScreenState extends State<FeedingPlanScreen> {
                                       ),
                                       orange14w400(
                                           data:
-                                              '${(plansViewModel.getTransitionalGrams10thDay / transitional10thPerPouchQty).round()} pouches x $transitional10thPerPouchQty grams (for day 10 to onwards)'),
+                                              '${(plansViewModel.getTransitionalGrams10thDay / transitional10thPerPouchQty).round()} pouches x $transitional10thPerPouchQty grams (from day 10 to onwards)'),
                                     ],
                                   )
                                 : orange14w400(
@@ -212,13 +212,47 @@ class _FeedingPlanScreenState extends State<FeedingPlanScreen> {
                         height: 20.h,
                       ),
                       customButton(
-                          text: !context.read<CartViewModel>().getViewCartItemDetail
-                              ?'Let\'s go': 'Shopping Bag',
+                          text: !context
+                                  .read<CartViewModel>()
+                                  .getViewCartItemDetail
+                              ? 'Add to Sopping Bag'
+                              : 'Shopping Bag',
                           onPressed: () {
-                            !context.read<CartViewModel>().getViewCartItemDetail
-                                ? Navigator.pushNamed(
-                                    context, deliveryDatesRoute)
-                                : Navigator.pop(context);
+                            if (!context
+                                .read<CartViewModel>()
+                                .getViewCartItemDetail) {
+                              context.read<CartViewModel>().addToCartList(
+                                    CartModel(
+                                        recipe: plansViewModel
+                                            .getFeedingPlan!.recipe,
+                                        puppy: plansViewModel
+                                            .getFeedingPlan!.puppy,
+/*
+                                deliveryDate: deliveryDate,
+*/
+                                        planType: plansViewModel
+                                            .getFeedingPlan!.planType,
+                                        planTotal: plansViewModel
+                                            .getFeedingPlan!.planTotal),
+                                  );
+                              if (context
+                                      .read<CartViewModel>()
+                                      .getSelectedIndex ==
+                                  null) {
+                                Navigator.pushNamedAndRemoveUntil(context,
+                                    bottomNavigationRoute, (route) => false);
+                              } else {
+                                Navigator.pushNamedAndRemoveUntil(context,
+                                    cartRoute, (Route route) => route.isFirst);
+                              }
+
+                              EasyLoading.showToast(
+                                  '${plansViewModel.getPlanType} Plan Successfully Added To\nShopping Bag',
+                                  toastPosition:
+                                      EasyLoadingToastPosition.center);
+                            } else {
+                              Navigator.pop(context);
+                            }
                           },
                           colored: true),
                     ],

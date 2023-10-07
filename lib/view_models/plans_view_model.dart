@@ -49,8 +49,6 @@ class PlansViewModel with ChangeNotifier {
   RecipeModel? _monthlyEmptyTile1;
   RecipeModel? _monthlyEmptyTile2;
   RecipeModel? _monthlyEmptyTile3;
-  DateTime _focusedDay = DateTime.now().add(const Duration(days: 4));
-  DateTime _selectedDay = DateTime.now().add(const Duration(days: 4));
 
   //ItemSizes? get getSelectedItemSize => _selectedItemSize;
 
@@ -141,7 +139,9 @@ class PlansViewModel with ChangeNotifier {
   void setCartDataToFeedingPlan({required CartModel cartData}) {
     _planType = cartData.planType;
     _quantity = cartData.recipe[0].quantity!;
+/*
     _selectedDay = DateFormat('dd MMM yyyy').parse(cartData.deliveryDate);
+*/
     if (_planType == Plans.monthly.text) {
       if (cartData.recipe.length == 1) {
         _monthlyEmptyTile1 = cartData.recipe[0];
@@ -185,7 +185,9 @@ class PlansViewModel with ChangeNotifier {
         planTotal: calculatePlanTotal(listOfItems: recipeList),
         recipe: recipeList,
         puppy: petData,
+/*
         deliveryDate: '',
+*/
         planType: _planType);
     notifyListeners();
   }
@@ -339,9 +341,7 @@ class PlansViewModel with ChangeNotifier {
 
   RecipeModel? get getMonthlyEmptyTile3 => _monthlyEmptyTile3;
 
-  DateTime get getFocusedDay => _focusedDay;
 
-  DateTime? get getSelectedDay => _selectedDay;
 
   String get getPlanType => _planType;
 
@@ -362,18 +362,11 @@ class PlansViewModel with ChangeNotifier {
     _monthlyEmptyTile1 = null;
     _monthlyEmptyTile2 = null;
     _monthlyEmptyTile3 = null;
-    _focusedDay = DateTime.now().add(const Duration(days: 4));
-    _selectedDay = DateTime.now().add(const Duration(days: 4));
+
     notifyListeners();
   }
 
-  void onDaySelected(DateTime day, DateTime focusDay) {
-    if (!isSameDay(_selectedDay, day)) {
-      _selectedDay = day;
-      focusDay = focusDay;
-      notifyListeners();
-    }
-  }
+
 
   Future<bool> callAllRecipesApi() async {
     EasyLoading.show(status: 'Please wait...');

@@ -68,6 +68,7 @@ enum EndPoints {
   signIn('auth/login'),
   signUp('auth/'),
   guest('auth/guest'),
+  allFaqs('news-FAQ/type/newsAndBlog'),
   forgotPassword('auth/forgot-password'),
   splash('user/'),
   editUserProfile('user/'),

@@ -12,6 +12,7 @@ import 'package:provider/provider.dart';
 import '../utils/custom_buttons.dart';
 import '../utils/custom_colors.dart';
 import '../utils/custom_font_style.dart';
+import '../utils/date_time_formatter.dart';
 import '../utils/enums.dart';
 import '../utils/images.dart';
 import '../view_models/plans_view_model.dart';
@@ -26,12 +27,8 @@ class CheckoutScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<PlansViewModel>(builder: (context, plansViewModel, child) {
       return Scaffold(
-        appBar: AppBarWithBackWidget(
-          heading: plansViewModel.getPlanType == Plans.transitional.text
-              ? 'Transitional Plan'
-              : plansViewModel.getPlanType == Plans.monthly.text
-                  ? 'Monthly Plan'
-                  : 'One time Order', showPuppy: false,showCart: false
+        appBar: const AppBarWithBackWidget(
+          heading:'CheckOut', showPuppy: false,showCart: false
         ),
         body: Stack(
           children: [
@@ -232,6 +229,28 @@ class CheckoutScreen extends StatelessWidget {
                               ],
                             ),
                           ],
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 24.h,
+                    ),
+                    Container(
+                      width: double.infinity,
+                      decoration: ShapeDecoration(
+                        color: CustomColors.whiteColor,
+                        shape: RoundedRectangleBorder(
+                          side: const BorderSide(
+                              width: 0.50, color: CustomColors.greyColor),
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                      ),
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: Padding(
+                          padding: const EdgeInsets.all(20),
+                          child: lightBlack14w400Centre(data: 'Delivery Date: ${DateTimeFormatter.showDateFormat3(
+                              context.watch<CartViewModel>().getSelectedDay!)}'),
                         ),
                       ),
                     ),
