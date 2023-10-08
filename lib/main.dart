@@ -4,7 +4,7 @@ import 'package:brunos_kitchen/utils/custom_colors.dart';
 import 'package:brunos_kitchen/view_models/auth_view_model.dart';
 import 'package:brunos_kitchen/view_models/bottom_navigation_view_model.dart';
 import 'package:brunos_kitchen/view_models/cart_view_model.dart';
-import 'package:brunos_kitchen/view_models/faqs_view_model.dart';
+import 'package:brunos_kitchen/view_models/faqs_blogs_news_view_model.dart';
 import 'package:brunos_kitchen/view_models/plans_view_model.dart';
 import 'package:brunos_kitchen/view_models/puppy_view_model.dart';
 import 'package:country_code_picker/country_code_picker.dart';
@@ -78,7 +78,7 @@ Future<void> main() async{
         create: (_) => AddressViewModel(),
       ),
       ChangeNotifierProvider(
-        create: (_) => FaqsViewModel(),
+        create: (_) => FaqsBlogsNewsViewModel(),
       ),
     ],
         child: const MyApp(),

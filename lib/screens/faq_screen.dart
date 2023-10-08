@@ -1,6 +1,6 @@
 import 'package:accordion/accordion.dart';
 import 'package:brunos_kitchen/models/responses/faqs_response.dart';
-import 'package:brunos_kitchen/view_models/faqs_view_model.dart';
+import 'package:brunos_kitchen/view_models/faqs_blogs_news_view_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -20,14 +20,14 @@ class _FaqScreenState extends State<FaqScreen> {
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      context.read<FaqsViewModel>().callFaqsApi();
+      context.read<FaqsBlogsNewsViewModel>().callFaqsApi();
     });
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<FaqsViewModel>(builder: (_, faqsViewModel, __) {
+    return Consumer<FaqsBlogsNewsViewModel>(builder: (_, faqsViewModel, __) {
       return Scaffold(
         appBar: const AppBarWithBackWidget(
             heading: 'FAQ', showPuppy: false, showCart: true),
