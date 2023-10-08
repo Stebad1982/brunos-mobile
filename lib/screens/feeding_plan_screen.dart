@@ -131,25 +131,25 @@ class _FeedingPlanScreenState extends State<FeedingPlanScreen> {
                                     children: [
                                       orange14w400(
                                           data:
-                                              '${(plansViewModel.getTransitionalGrams1to3Days / transitional1to3PerPouchQty * 3).round()} pouches x $transitional1to3PerPouchQty grams (for days 1 to 3)'),
+                                              '${(plansViewModel.getTransitionalGrams1to3Days / transitional1to3PerPouchQty * 3).round()} pouches x ${(transitional1to3PerPouchQty / 3).toStringAsFixed(1)} grams (for days 1 to 3)'),
                                       SizedBox(
                                         height: 5.h,
                                       ),
                                       orange14w400(
                                           data:
-                                              '${(plansViewModel.getTransitionalGrams4to6Days / transitional4to6PerPouchQty * 3).round()} pouches x $transitional4to6PerPouchQty grams (for days 4 to 6)'),
+                                              '${(plansViewModel.getTransitionalGrams4to6Days / transitional4to6PerPouchQty * 3).round()} pouches x ${(transitional4to6PerPouchQty / 3).toStringAsFixed(1)} grams (for days 4 to 6)'),
                                       SizedBox(
                                         height: 5.h,
                                       ),
                                       orange14w400(
                                           data:
-                                              '${(plansViewModel.getTransitionalGrams7to9Days / transitional7to9PerPouchQty * 3).round()} pouches x $transitional7to9PerPouchQty grams (for days 7 to 9)'),
+                                              '${(plansViewModel.getTransitionalGrams7to9Days / transitional7to9PerPouchQty * 3).round()} pouches x ${(transitional7to9PerPouchQty / 3).toStringAsFixed(1)} grams (for days 7 to 9)'),
                                       SizedBox(
                                         height: 5.h,
                                       ),
                                       orange14w400(
                                           data:
-                                              '${(plansViewModel.getTransitionalGrams10thDay / transitional10thPerPouchQty).round()} pouches x $transitional10thPerPouchQty grams (from day 10 to onwards)'),
+                                              '${(plansViewModel.getTransitionalGrams10thDay / transitional10thPerPouchQty).round()} pouches x ${transitional10thPerPouchQty.toStringAsFixed(1)} grams (for day 10 onwards)'),
                                     ],
                                   )
                                 : orange14w400(

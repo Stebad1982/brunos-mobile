@@ -29,14 +29,14 @@ int calculateDailyIntake(
   return roundDailyIntake;
 }
 
-int calculateFeedingPlan(
+num calculateFeedingPlan(
     {required RecipeModel recipeModel, required PuppyModel puppyModel, num? gramsForTransitional}) {
   final int dailyIntake = calculateDailyIntake(
       recipeModel: recipeModel,
       puppyActivityLevel: puppyModel.activityLevel!,
       currentWeight: puppyModel.currentWeight!);
   final double perTime = (gramsForTransitional ?? dailyIntake) / puppyModel.feedingRoutine!;
-  return perTime.floor();
+  return perTime;
 }
 
 int calculateFinalPricePerDay({required RecipeModel recipeModel}) {
