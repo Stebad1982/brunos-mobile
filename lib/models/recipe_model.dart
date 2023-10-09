@@ -4,11 +4,17 @@ import 'ingredient_model.dart';
 
 class RecipeModel {
   String? sId;
+/*
   int? createdOnDate;
+*/
   String? name;
   bool? isFeatured;
+/*
   String? userId;
+*/
+/*
   List<Ingredient>? ingredient;
+*/
   String? description;
   String? details;
   String? instructions;
@@ -31,11 +37,17 @@ class RecipeModel {
 
   RecipeModel(
       {this.sId,
+/*
         this.createdOnDate,
+*/
         this.name,
         this.isFeatured,
+/*
         this.userId,
+*/
+/*
         this.ingredient,
+*/
         this.description,
         this.details,
         this.instructions,
@@ -57,17 +69,21 @@ class RecipeModel {
 
   RecipeModel.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
+/*
     createdOnDate = json['createdOnDate'];
+*/
     name = json['name'];
     isFeatured = json['isFeatured'];
+/*
     userId = json['userId'];
+*/
     finalPrice = json['finalPrice'] ?? json['pricePerKG'];
-    if (json['ingredient'] != null) {
+    /*if (json['ingredient'] != null) {
       ingredient = <Ingredient>[];
       json['ingredient'].forEach((v) {
         ingredient!.add(new Ingredient.fromJson(v));
       });
-    }
+    }*/
     description = json['description'];
     isComboRecipe = json['isComboRecipe'];
     totalDays = json['totalDays'] ?? 1;
@@ -104,17 +120,21 @@ class RecipeModel {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['_id'] = this.sId;
+/*
     data['createdOnDate'] = this.createdOnDate;
+*/
     data['name'] = this.name;
     data['isFeatured'] = this.isFeatured;
     data['isComboRecipe'] = this.isComboRecipe;
+/*
     data['userId'] = this.userId;
+*/
     data['totalDays'] = this.totalDays ?? 1;
     data['quantity'] = this.quantity ?? 1;
     data['finalPrice'] = this.finalPrice ?? this.pricePerKG;
-    if (this.ingredient != null) {
+  /*  if (this.ingredient != null) {
       data['ingredient'] = this.ingredient!.map((v) => v.toJson()).toList();
-    }
+    }*/
     if (this.nutrition != null) {
       data['nutrition'] = jsonEncode(this.nutrition);
     }

@@ -1,9 +1,10 @@
 import 'package:brunos_kitchen/models/base_response_model.dart';
+import 'package:brunos_kitchen/models/responses/faqs_response.dart';
 
 import '../recipe_model.dart';
 
 class RecipesListResponse extends BaseResponseModel{
-  Data? data;
+  AllData? data;
 
 
   RecipesListResponse(
@@ -11,7 +12,7 @@ class RecipesListResponse extends BaseResponseModel{
 
   RecipesListResponse.fromJson(Map<String, dynamic> json) {
     isSuccess = json['isSuccess'];
-    data = json['data'] != null ? new Data.fromJson(json['data']) : null;
+    data = json['data'] != null ? new AllData.fromJson(json['data']) : null;
     message = json['message'];
   }
 
@@ -27,13 +28,14 @@ class RecipesListResponse extends BaseResponseModel{
 }
 
 
-class Data {
+class AllData {
   List<Categories>? categories;
   List<RecipeModel>? recipe;
+  List<FaqsData>? faqs;
 
-  Data({this.categories, this.recipe});
+  AllData({this.categories, this.recipe, this.faqs});
 
-  Data.fromJson(Map<String, dynamic> json) {
+  AllData.fromJson(Map<String, dynamic> json) {
     if (json['categories'] != null) {
       categories = <Categories>[];
       json['categories'].forEach((v) {
@@ -46,6 +48,12 @@ class Data {
         recipe!.add(new RecipeModel.fromJson(v));
       });
     }
+    if (json['faqs'] != null) {
+      faqs = <FaqsData>[];
+      json['faqs'].forEach((v) {
+        faqs!.add(new FaqsData.fromJson(v));
+      });
+    }
   }
 
   Map<String, dynamic> toJson() {
@@ -55,6 +63,9 @@ class Data {
     }
     if (this.recipe != null) {
       data['recipe'] = this.recipe!.map((v) => v.toJson()).toList();
+    }
+    if (this.faqs != null) {
+      data['faqs'] = this.faqs!.map((v) => v.toJson()).toList();
     }
     return data;
   }

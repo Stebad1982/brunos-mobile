@@ -138,25 +138,25 @@ class PlansViewModel with ChangeNotifier {
 
   void setCartDataToFeedingPlan({required CartModel cartData}) {
     _planType = cartData.planType;
-    _quantity = cartData.recipe[0].quantity!;
+    _quantity = cartData.recipes[0].quantity!;
 /*
     _selectedDay = DateFormat('dd MMM yyyy').parse(cartData.deliveryDate);
 */
     if (_planType == Plans.monthly.text) {
-      if (cartData.recipe.length == 1) {
-        _monthlyEmptyTile1 = cartData.recipe[0];
-      } else if (cartData.recipe.length == 2) {
-        _monthlyEmptyTile1 = cartData.recipe[0];
-        _monthlyEmptyTile2 = cartData.recipe[1];
+      if (cartData.recipes.length == 1) {
+        _monthlyEmptyTile1 = cartData.recipes[0];
+      } else if (cartData.recipes.length == 2) {
+        _monthlyEmptyTile1 = cartData.recipes[0];
+        _monthlyEmptyTile2 = cartData.recipes[1];
       } else {
-        _monthlyEmptyTile1 = cartData.recipe[0];
-        _monthlyEmptyTile2 = cartData.recipe[1];
-        _monthlyEmptyTile3 = cartData.recipe[2];
+        _monthlyEmptyTile1 = cartData.recipes[0];
+        _monthlyEmptyTile2 = cartData.recipes[1];
+        _monthlyEmptyTile3 = cartData.recipes[2];
       }
     } else {
-      _selectedRecipe = cartData.recipe.first;
+      _selectedRecipe = cartData.recipes.first;
     }
-    setFeedingPlan(petData: cartData.puppy);
+    setFeedingPlan(petData: cartData.pet);
   }
 
   void setFeedingPlan({required PuppyModel? petData}) {
@@ -183,8 +183,8 @@ class PlansViewModel with ChangeNotifier {
     }
     _feedingPlan = CartModel(
         planTotal: calculatePlanTotal(listOfItems: recipeList),
-        recipe: recipeList,
-        puppy: petData,
+        recipes: recipeList,
+        pet: petData,
 /*
         deliveryDate: '',
 */

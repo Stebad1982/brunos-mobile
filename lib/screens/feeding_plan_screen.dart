@@ -52,58 +52,58 @@ class _FeedingPlanScreenState extends State<FeedingPlanScreen> {
                 ? ListView.separated(
                     // physics: const NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
-                    itemCount: plansViewModel.getFeedingPlan!.recipe.length,
+                    itemCount: plansViewModel.getFeedingPlan!.recipes.length,
                     padding: const EdgeInsets.only(
                         left: 20, right: 20, top: 20, bottom: 200),
                     itemBuilder: (BuildContext context, int index) {
                       final num totalPlanQuantity = calculateDailyIntake(
                               recipeModel:
-                                  plansViewModel.getFeedingPlan!.recipe[index],
+                                  plansViewModel.getFeedingPlan!.recipes[index],
                               puppyActivityLevel: plansViewModel
-                                  .getFeedingPlan!.puppy!.activityLevel!,
+                                  .getFeedingPlan!.pet!.activityLevel!,
                               currentWeight: plansViewModel
-                                  .getFeedingPlan!.puppy!.currentWeight!) *
+                                  .getFeedingPlan!.pet!.currentWeight!) *
                           (plansViewModel
-                              .getFeedingPlan!.recipe[index].totalDays!);
+                              .getFeedingPlan!.recipes[index].totalDays!);
                       final num perPouchQuantity = calculateFeedingPlan(
                           recipeModel:
-                              plansViewModel.getFeedingPlan!.recipe[index],
-                          puppyModel: plansViewModel.getFeedingPlan!.puppy!);
+                              plansViewModel.getFeedingPlan!.recipes[index],
+                          puppyModel: plansViewModel.getFeedingPlan!.pet!);
                       final num transitionalPlanTotalQuantity =
                           plansViewModel.getTotalTransitionalGrams();
                       final num transitional1to3PerPouchQty =
                           calculateFeedingPlan(
                               recipeModel:
-                                  plansViewModel.getFeedingPlan!.recipe[index],
-                              puppyModel: plansViewModel.getFeedingPlan!.puppy!,
+                                  plansViewModel.getFeedingPlan!.recipes[index],
+                              puppyModel: plansViewModel.getFeedingPlan!.pet!,
                               gramsForTransitional:
                                   plansViewModel.getTransitionalGrams1to3Days);
                       final num transitional4to6PerPouchQty =
                           calculateFeedingPlan(
                               recipeModel:
-                                  plansViewModel.getFeedingPlan!.recipe[index],
-                              puppyModel: plansViewModel.getFeedingPlan!.puppy!,
+                                  plansViewModel.getFeedingPlan!.recipes[index],
+                              puppyModel: plansViewModel.getFeedingPlan!.pet!,
                               gramsForTransitional:
                                   plansViewModel.getTransitionalGrams4to6Days);
                       final num transitional7to9PerPouchQty =
                           calculateFeedingPlan(
                               recipeModel:
-                                  plansViewModel.getFeedingPlan!.recipe[index],
-                              puppyModel: plansViewModel.getFeedingPlan!.puppy!,
+                                  plansViewModel.getFeedingPlan!.recipes[index],
+                              puppyModel: plansViewModel.getFeedingPlan!.pet!,
                               gramsForTransitional:
                                   plansViewModel.getTransitionalGrams7to9Days);
                       final num transitional10thPerPouchQty =
                           calculateFeedingPlan(
                               recipeModel:
-                                  plansViewModel.getFeedingPlan!.recipe[index],
-                              puppyModel: plansViewModel.getFeedingPlan!.puppy!,
+                                  plansViewModel.getFeedingPlan!.recipes[index],
+                              puppyModel: plansViewModel.getFeedingPlan!.pet!,
                               gramsForTransitional:
                                   plansViewModel.getTransitionalGrams10thDay);
                       return ListTile(
                         minVerticalPadding: 20,
                         title: orange18w500(
                             data: plansViewModel
-                                .getFeedingPlan!.recipe[index].name!),
+                                .getFeedingPlan!.recipes[index].name!),
                         tileColor: CustomColors.lightGreyColor,
                         subtitle: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -112,7 +112,7 @@ class _FeedingPlanScreenState extends State<FeedingPlanScreen> {
                                 width: 230.w,
                                 child: black12w500Centre(
                                     data:
-                                        'Recommended total feeding amount for ${plansViewModel.getFeedingPlan!.puppy!.name!} is:')),
+                                        'Recommended total feeding amount for ${plansViewModel.getFeedingPlan!.pet!.name!} is:')),
                             Align(
                               alignment: Alignment.centerRight,
                               child: orange14w500(
@@ -154,14 +154,14 @@ class _FeedingPlanScreenState extends State<FeedingPlanScreen> {
                                   )
                                 : orange14w400(
                                     data:
-                                        '${(totalPlanQuantity / perPouchQuantity).round()} pouches x $perPouchQuantity grams for ${plansViewModel.getFeedingPlan!.recipe[index].totalDays} days'),
+                                        '${(totalPlanQuantity / perPouchQuantity).round()} pouches x $perPouchQuantity grams for ${plansViewModel.getFeedingPlan!.recipes[index].totalDays} days'),
                             SizedBox(
                               height: 10.h,
                             ),
                             Center(
                                 child: black16w500(
                                     data:
-                                        'Total Meal Price: ${plansViewModel.getFeedingPlan!.recipe[index].finalPrice} AED')),
+                                        'Total Meal Price: ${plansViewModel.getFeedingPlan!.recipes[index].finalPrice} AED')),
                           ],
                         ),
                       );
@@ -206,7 +206,7 @@ class _FeedingPlanScreenState extends State<FeedingPlanScreen> {
                           width: 250.w,
                           child: black12w500Centre(
                               data:
-                                  'The above plan is calculated based on ${plansViewModel.getFeedingPlan!.puppy!.name!}\'s profile data',
+                                  'The above plan is calculated based on ${plansViewModel.getFeedingPlan!.pet!.name!}\'s profile data',
                               centre: true)),
                       SizedBox(
                         height: 20.h,
@@ -223,10 +223,10 @@ class _FeedingPlanScreenState extends State<FeedingPlanScreen> {
                                 .getViewCartItemDetail) {
                               context.read<CartViewModel>().addToCartList(
                                     CartModel(
-                                        recipe: plansViewModel
-                                            .getFeedingPlan!.recipe,
-                                        puppy: plansViewModel
-                                            .getFeedingPlan!.puppy,
+                                        recipes: plansViewModel
+                                            .getFeedingPlan!.recipes,
+                                        pet: plansViewModel
+                                            .getFeedingPlan!.pet,
 /*
                                 deliveryDate: deliveryDate,
 */

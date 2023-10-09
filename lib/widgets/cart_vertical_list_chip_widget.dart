@@ -56,7 +56,7 @@ Widget cartVerticalListChipWidget(
                     Expanded(
                       child: orange18w500(
                           data:
-                              '${cartDetail.planType} ${cartDetail.puppy == null ? '' : 'Plan'}'),
+                              '${cartDetail.planType} ${cartDetail.pet == null ? '' : 'Plan'}'),
                     ),
                     InkWell(
                       onTap: () {
@@ -133,7 +133,7 @@ Widget cartVerticalListChipWidget(
                     ),
                   ],
                 ),
-                cartDetail.puppy != null
+                cartDetail.pet != null
                     ? Column(
                         children: [
                           SizedBox(
@@ -141,9 +141,9 @@ Widget cartVerticalListChipWidget(
                           ),
                           Row(
                             children: [
-                              cartDetail.puppy!.media!.isNotEmpty
+                              cartDetail.pet!.media!.isNotEmpty
                                   ? circularNetworkImageWidget(
-                                      image: cartDetail.puppy!.media!,
+                                      image: cartDetail.pet!.media!,
                                       size: 40.h)
                                   : SizedBox(
                                       height: 40.h,
@@ -160,8 +160,8 @@ Widget cartVerticalListChipWidget(
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  black14w500(data: cartDetail.puppy!.name!),
-                                  black14w500(data: cartDetail.puppy!.breed!),
+                                  black14w500(data: cartDetail.pet!.name!),
+                                  black14w500(data: cartDetail.pet!.breed!),
                                 ],
                               ),
                             ],
@@ -175,13 +175,13 @@ Widget cartVerticalListChipWidget(
                 ListView.separated(
                   physics: const NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
-                  itemCount: cartDetail.recipe.length,
+                  itemCount: cartDetail.recipes.length,
                   itemBuilder: (BuildContext context, int index) {
                     return cartDishVerticalListChipWidget(
-                        cartRecipeModel: cartDetail.recipe[index],
+                        cartRecipeModel: cartDetail.recipes[index],
                         planType: cartDetail.planType,
-                        petName: cartDetail.puppy != null
-                            ? cartDetail.puppy!.name!
+                        petName: cartDetail.pet != null
+                            ? cartDetail.pet!.name!
                             : null);
                   },
                   separatorBuilder: (BuildContext context, int index) {

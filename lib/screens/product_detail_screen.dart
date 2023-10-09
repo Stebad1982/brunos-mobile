@@ -245,8 +245,8 @@ class ProductDetailScreen extends StatelessWidget {
                           recipeList.add(plansViewModel.getSelectedRecipe);
                           context.read<CartViewModel>().addToCartList(
                             CartModel(
-                                recipe: recipeList,
-                                puppy: null,
+                                recipes: recipeList,
+                                pet: null,
 /*
                                 deliveryDate: '03 Oct 2023',
 */
@@ -278,8 +278,8 @@ class ProductDetailScreen extends StatelessWidget {
                         recipeList.add(plansViewModel.getSelectedRecipe);
                         context.read<CartViewModel>().addToCartList(
                           CartModel(
-                              recipe: recipeList,
-                              puppy: null,
+                              recipes: recipeList,
+                              pet: null,
 /*
                               deliveryDate: '03 Oct 2023',
 */

@@ -37,10 +37,10 @@ class CartViewModel with ChangeNotifier {
   void setSelectedIndex(int? value) {
     _selectedIndex = value;
     if (_selectedIndex != null) {
-      if (_cartList[_selectedIndex!].puppy != null) {
+      if (_cartList[_selectedIndex!].pet != null) {
         navigatorKey.currentContext!
             .read<AuthViewModel>()
-            .setPuppy(_cartList[_selectedIndex!].puppy!);
+            .setPuppy(_cartList[_selectedIndex!].pet!);
       }
     }
     notifyListeners();
@@ -61,8 +61,8 @@ class CartViewModel with ChangeNotifier {
   bool checkCartForPlanValidation({required String planType}) {
     setSelectedIndex(null);
     final int index = _cartList.indexWhere((element) {
-      if (element.puppy != null) {
-        return element.puppy!.sId ==
+      if (element.pet != null) {
+        return element.pet!.sId ==
             navigatorKey.currentContext!
                 .read<AuthViewModel>()
                 .getAuthResponse
@@ -80,9 +80,9 @@ class CartViewModel with ChangeNotifier {
   bool checkProductValidation({required RecipeModel recipe}) {
     setSelectedIndex(null);
     final int index = _cartList.indexWhere((element) =>
-    element.recipe[0].sId == recipe.sId &&
-        (element.recipe[0].selectedItemSize != null ? element.recipe[0]
-            .selectedItemSize!.name == recipe.selectedItemSize!.name : element.recipe[0].selectedItemSize == element.recipe[0].selectedItemSize));
+    element.recipes[0].sId == recipe.sId &&
+        (element.recipes[0].selectedItemSize != null ? element.recipes[0]
+            .selectedItemSize!.name == recipe.selectedItemSize!.name : element.recipes[0].selectedItemSize == element.recipes[0].selectedItemSize));
     return index == -1 ? true : false;
   }
 
