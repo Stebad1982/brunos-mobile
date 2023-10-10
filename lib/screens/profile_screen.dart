@@ -198,6 +198,9 @@ class ProfileScreen extends StatelessWidget {
                 height: 14.h,
               ),
               ListTile(
+                  onTap: () {
+                    Navigator.pushNamed(context, helpRoute);
+                  },
                   leading: SvgPicture.asset(
                     helpIcon,
                     height: 24.h,
@@ -237,6 +240,9 @@ class ProfileScreen extends StatelessWidget {
                     color: CustomColors.greyColor,
                   )),
               ListTile(
+                  onTap: () {
+                    Navigator.pushNamed(context, blogsRoute);
+                  },
                   leading: SvgPicture.asset(
                     faqIcon,
                     height: 24.h,
@@ -255,6 +261,9 @@ class ProfileScreen extends StatelessWidget {
                     color: CustomColors.greyColor,
                   )),
               ListTile(
+                  onTap: () {
+                    Navigator.pushNamed(context, newsRoute);
+                  },
                   leading: SvgPicture.asset(
                     faqIcon,
                     height: 24.h,

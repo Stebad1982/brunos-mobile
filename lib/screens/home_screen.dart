@@ -12,7 +12,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
-import '../models/responses/faqs_response.dart';
+import '../models/responses/faqs_blogs_news_response.dart';
 import '../utils/food_category_list_data.dart';
 import '../route_generator.dart';
 import '../utils/custom_buttons.dart';
@@ -418,7 +418,7 @@ class HomeScreen extends StatelessWidget {
                 // sectionOpeningHapticFeedback: SectionHapticFeedback.heavy,
                 // sectionClosingHapticFeedback: SectionHapticFeedback.light,
                 children: [
-                  for (FaqsData item in context
+                  for (FaqsBlogsNewsData item in context
                       .watch<PlansViewModel>().getRecipesListResponse.data!.faqs!)
                     AccordionSection(
                     // isOpen: false,
