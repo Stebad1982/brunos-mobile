@@ -2,6 +2,7 @@ import 'package:brunos_kitchen/screens/add_address_detail_screen.dart';
 import 'package:brunos_kitchen/screens/add_address_screen.dart';
 import 'package:brunos_kitchen/screens/address_detail_screen.dart';
 import 'package:brunos_kitchen/screens/address_screen.dart';
+import 'package:brunos_kitchen/screens/blogs_screen.dart';
 import 'package:brunos_kitchen/screens/bottom_navigation_screen.dart';
 import 'package:brunos_kitchen/screens/cart_screen.dart';
 import 'package:brunos_kitchen/screens/checkout_screen.dart';
@@ -11,8 +12,10 @@ import 'package:brunos_kitchen/screens/edit_profile_screen.dart';
 import 'package:brunos_kitchen/screens/faq_screen.dart';
 import 'package:brunos_kitchen/screens/feeding_plan_screen.dart';
 import 'package:brunos_kitchen/screens/forget_password_screen.dart';
+import 'package:brunos_kitchen/screens/help_screen.dart';
 import 'package:brunos_kitchen/screens/logIn_screen.dart';
 import 'package:brunos_kitchen/screens/monthly_plan_screen.dart';
+import 'package:brunos_kitchen/screens/news_screen.dart';
 import 'package:brunos_kitchen/screens/one_time_plan_screen.dart';
 import 'package:brunos_kitchen/screens/order_completed_screen.dart';
 import 'package:brunos_kitchen/screens/order_confirmation_screen.dart';
@@ -71,6 +74,10 @@ const String addressDetailRoute = '/addressDetail';
 const String productDetailRoute = '/productDetail';
 const String addAddressDetailRoute = '/addAddressDetail';
 const String cartRoute = '/cart';
+const String blogsRoute = '/blogs';
+const String helpRoute = '/help';
+const String newsRoute = '/news';
+
 
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -154,6 +161,13 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const ProductDetailScreen());
       case cartRoute:
         return MaterialPageRoute(builder: (_) => const CartScreen());
+      case blogsRoute:
+        return MaterialPageRoute(builder: (_) => const BlogsScreen());
+      case helpRoute:
+        return MaterialPageRoute(builder: (_) => const HelpScreen());
+      case newsRoute:
+        return MaterialPageRoute(builder: (_) => const NewsScreen());
+
 
       case '/tasting_details':
       /*return MaterialPageRoute(

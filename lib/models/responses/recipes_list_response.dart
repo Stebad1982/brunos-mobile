@@ -1,5 +1,5 @@
 import 'package:brunos_kitchen/models/base_response_model.dart';
-import 'package:brunos_kitchen/models/responses/faqs_response.dart';
+import 'package:brunos_kitchen/models/responses/faqs_blogs_news_response.dart';
 
 import '../recipe_model.dart';
 
@@ -31,7 +31,7 @@ class RecipesListResponse extends BaseResponseModel{
 class AllData {
   List<Categories>? categories;
   List<RecipeModel>? recipe;
-  List<FaqsData>? faqs;
+  List<FaqsBlogsNewsData>? faqs;
 
   AllData({this.categories, this.recipe, this.faqs});
 
@@ -49,9 +49,9 @@ class AllData {
       });
     }
     if (json['faqs'] != null) {
-      faqs = <FaqsData>[];
+      faqs = <FaqsBlogsNewsData>[];
       json['faqs'].forEach((v) {
-        faqs!.add(new FaqsData.fromJson(v));
+        faqs!.add(new FaqsBlogsNewsData.fromJson(v));
       });
     }
   }

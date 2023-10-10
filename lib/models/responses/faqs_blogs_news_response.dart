@@ -1,16 +1,16 @@
 import 'package:brunos_kitchen/models/base_response_model.dart';
 
-class FaqsResponse extends BaseResponseModel {
-  List<FaqsData>? data;
+class FaqsBlogsNewsResponse extends BaseResponseModel {
+  List<FaqsBlogsNewsData>? data;
 
-  FaqsResponse({super.isSuccess, this.data, super.message});
+  FaqsBlogsNewsResponse({super.isSuccess, this.data, super.message});
 
-  FaqsResponse.fromJson(Map<String, dynamic> json) {
+  FaqsBlogsNewsResponse.fromJson(Map<String, dynamic> json) {
     isSuccess = json['isSuccess'];
     if (json['data'] != null) {
-      data = <FaqsData>[];
+      data = <FaqsBlogsNewsData>[];
       json['data'].forEach((v) {
-        data!.add(new FaqsData.fromJson(v));
+        data!.add(new FaqsBlogsNewsData.fromJson(v));
       });
     }
     message = json['message'];
@@ -27,15 +27,15 @@ class FaqsResponse extends BaseResponseModel {
   }
 }
 
-class FaqsData {
+class FaqsBlogsNewsData {
   String? sId;
   String? title;
   String? description;
   List<String>? media;
 
-  FaqsData({this.sId, this.title, this.description, this.media});
+  FaqsBlogsNewsData({this.sId, this.title, this.description, this.media});
 
-  FaqsData.fromJson(Map<String, dynamic> json) {
+  FaqsBlogsNewsData.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
     title = json['title'];
     description = json['description'];

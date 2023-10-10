@@ -1,5 +1,5 @@
 import 'package:accordion/accordion.dart';
-import 'package:brunos_kitchen/models/responses/faqs_response.dart';
+import 'package:brunos_kitchen/models/responses/faqs_blogs_news_response.dart';
 import 'package:brunos_kitchen/view_models/faqs_blogs_news_view_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -27,11 +27,11 @@ class _FaqScreenState extends State<FaqScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<FaqsBlogsNewsViewModel>(builder: (_, faqsViewModel, __) {
+    return Consumer<FaqsBlogsNewsViewModel>(builder: (_, faqsBlogsNewsViewModel, __) {
       return Scaffold(
         appBar: const AppBarWithBackWidget(
-            heading: 'FAQ', showPuppy: false, showCart: true),
-        body: faqsViewModel.getFaqsResponse.data != null
+            heading: 'FAQ', showPuppy: false, showCart: false),
+        body: faqsBlogsNewsViewModel.getFaqsResponse.data != null
             ? Accordion(
                 disableScrolling: true,
                 paddingListHorizontal: 20,
@@ -44,7 +44,7 @@ class _FaqScreenState extends State<FaqScreen> {
                 // sectionOpeningHapticFeedback: SectionHapticFeedback.heavy,
                 // sectionClosingHapticFeedback: SectionHapticFeedback.light,
                 children: [
-                  for (FaqsData item in faqsViewModel.getFaqsResponse.data!)
+                  for (FaqsBlogsNewsData item in faqsBlogsNewsViewModel.getFaqsResponse.data!)
                     AccordionSection(
                       // isOpen: false,
                       //flipRightIconIfOpen: true,

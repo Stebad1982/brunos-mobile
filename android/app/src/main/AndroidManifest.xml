@@ -6,7 +6,8 @@
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
    <application
-        android:label="Bruno's Kitchen"
+       android:usesCleartextTraffic="true"
+       android:label="Bruno's Kitchen"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
        <activity
