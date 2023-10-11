@@ -243,10 +243,7 @@ class ProfileScreen extends StatelessWidget {
                   onTap: () {
                     Navigator.pushNamed(context, blogsRoute);
                   },
-                  leading: SvgPicture.asset(
-                    faqIcon,
-                    height: 24.h,
-                  ),
+                  leading: const Icon(Icons.message_outlined,color: CustomColors.blackColor,),
                   shape: const Border(
                     bottom: BorderSide(color: CustomColors.greyMediumColor),
                   ),
@@ -264,10 +261,7 @@ class ProfileScreen extends StatelessWidget {
                   onTap: () {
                     Navigator.pushNamed(context, newsRoute);
                   },
-                  leading: SvgPicture.asset(
-                    faqIcon,
-                    height: 24.h,
-                  ),
+                  leading: const Icon(Icons.newspaper,color: CustomColors.blackColor,),
                   title: Align(
                       alignment: Alignment.centerLeft,
                       child: lightBlack14w400Centre(data: 'News Updates')),

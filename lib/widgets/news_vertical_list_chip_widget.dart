@@ -1,3 +1,4 @@
+import 'package:brunos_kitchen/utils/custom_font_style.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
@@ -22,6 +23,8 @@ Widget newsVerticalListChipWidget({required BlogsNewsData data}) {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
+                black18w500(data: data.title!),
+                SizedBox(height: 20.h,),
                 SizedBox(
                     height: 200.h,
                     child: RecipesCarouselWidget(recipesImages: data.media!,)),
