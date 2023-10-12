@@ -25,7 +25,7 @@ class PuppyApiServices {
     return breedsResponse;
   }*/
 
-  Future<BaseResponseModel> addBreedsApi({required AddBreedRequest addBreedRequest}) async {
+ /* Future<BaseResponseModel> addBreedsApi({required AddBreedRequest addBreedRequest}) async {
     final response = await _httpService.httpRequest(
         endPoint: EndPoints.addBreeds,
         requestType: 'POST',
@@ -34,7 +34,7 @@ class PuppyApiServices {
     final parsed = json.decode(response.body);
     BaseResponseModel baseResponseModel = BaseResponseModel.fromJson(parsed);
     return baseResponseModel;
-  }
+  }*/
 
   Future<BaseResponseModel> addPuppyApi({required RegisterPuppyRequest registerPuppyRequest}) async {
     final response = await _httpService.httpRequest(

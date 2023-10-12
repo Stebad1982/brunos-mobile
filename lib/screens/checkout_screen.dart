@@ -1,7 +1,9 @@
+import 'package:brunos_kitchen/models/requests/order_request.dart';
 import 'package:brunos_kitchen/route_generator.dart';
 import 'package:brunos_kitchen/view_models/address_view_model.dart';
 import 'package:brunos_kitchen/view_models/auth_view_model.dart';
 import 'package:brunos_kitchen/view_models/cart_view_model.dart';
+import 'package:brunos_kitchen/view_models/order_view_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -28,8 +30,7 @@ class CheckoutScreen extends StatelessWidget {
     return Consumer<PlansViewModel>(builder: (context, plansViewModel, child) {
       return Scaffold(
         appBar: const AppBarWithBackWidget(
-          heading:'CheckOut', showPuppy: false,showCart: false
-        ),
+            heading: 'CheckOut', showPuppy: false, showCart: false),
         body: Stack(
           children: [
             SingleChildScrollView(
@@ -84,75 +85,79 @@ class CheckoutScreen extends StatelessWidget {
                                 SizedBox(
                                   width: 2.w,
                                 ),
-                                lightBlack14w400Centre(data: 'Delivery Address'),
+                                lightBlack14w400Centre(
+                                    data: 'Delivery Address'),
                               ],
                             ),
                             SizedBox(
                               height: 10.h,
                             ),
-
                             context
-                                .read<AuthViewModel>()
-                                .getAuthResponse
-                                .data!
-                                .location != null?SizedBox(
-                              height: 130.h,
-                              child: ClipRRect(
-                                borderRadius:
-                                    const BorderRadius.all(Radius.circular(20)),
-                                child:
-                                GoogleMap(
-                                 // zoomControlsEnabled: false,
-                                  //liteModeEnabled: true,
-                                 // myLocationEnabled: true,
-                                 // myLocationButtonEnabled: true,
-                                  mapType: MapType.terrain,
-                                  onCameraMove: (position) {
-                                    LatLng(position.target.latitude,
-                                        position.target.longitude);
-                                  },
-                                  initialCameraPosition: CameraPosition(
-                                      target: LatLng(
-                                          double.parse(context
-                                              .read<AuthViewModel>()
-                                              .getAuthResponse
-                                              .data!
-                                              .location!
-                                              .coordinates![0]),
-                                          double.parse(context
-                                              .read<AuthViewModel>()
-                                              .getAuthResponse
-                                              .data!
-                                              .location!
-                                              .coordinates![1]))),
-                                  markers: <Marker>{
-                                    Marker(
-                                      markerId: const MarkerId("1"),
-                                      position: LatLng(
-                                          double.parse(context
-                                              .read<AuthViewModel>()
-                                              .getAuthResponse
-                                              .data!
-                                              .location!
-                                              .coordinates![0]),
-                                          double.parse(context
-                                              .read<AuthViewModel>()
-                                              .getAuthResponse
-                                              .data!
-                                              .location!
-                                              .coordinates![1])),
-                                      icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueOrange),
-                                      infoWindow: const InfoWindow(
-                                        title: '',
+                                        .read<AuthViewModel>()
+                                        .getAuthResponse
+                                        .data!
+                                        .location !=
+                                    null
+                                ? SizedBox(
+                                    height: 130.h,
+                                    child: ClipRRect(
+                                      borderRadius: const BorderRadius.all(
+                                          Radius.circular(20)),
+                                      child: GoogleMap(
+                                        // zoomControlsEnabled: false,
+                                        //liteModeEnabled: true,
+                                        // myLocationEnabled: true,
+                                        // myLocationButtonEnabled: true,
+                                        mapType: MapType.terrain,
+                                        onCameraMove: (position) {
+                                          LatLng(position.target.latitude,
+                                              position.target.longitude);
+                                        },
+                                        initialCameraPosition: CameraPosition(
+                                            target: LatLng(
+                                                double.parse(context
+                                                    .read<AuthViewModel>()
+                                                    .getAuthResponse
+                                                    .data!
+                                                    .location!
+                                                    .coordinates![0]),
+                                                double.parse(context
+                                                    .read<AuthViewModel>()
+                                                    .getAuthResponse
+                                                    .data!
+                                                    .location!
+                                                    .coordinates![1]))),
+                                        markers: <Marker>{
+                                          Marker(
+                                            markerId: const MarkerId("1"),
+                                            position: LatLng(
+                                                double.parse(context
+                                                    .read<AuthViewModel>()
+                                                    .getAuthResponse
+                                                    .data!
+                                                    .location!
+                                                    .coordinates![0]),
+                                                double.parse(context
+                                                    .read<AuthViewModel>()
+                                                    .getAuthResponse
+                                                    .data!
+                                                    .location!
+                                                    .coordinates![1])),
+                                            icon: BitmapDescriptor
+                                                .defaultMarkerWithHue(
+                                                    BitmapDescriptor.hueOrange),
+                                            infoWindow: const InfoWindow(
+                                              title: '',
+                                            ),
+                                          )
+                                        },
+                                        onMapCreated: context
+                                            .read<AddressViewModel>()
+                                            .getUserLocation,
                                       ),
-                                    )
-                                  },
-                                  onMapCreated: context
-                                      .read<AddressViewModel>()
-                                      .getUserLocation,
-                                ),
-                              ),
-                            ): Container(),
+                                    ),
+                                  )
+                                : Container(),
                             SizedBox(
                               height: 10.h,
                             ),
@@ -167,39 +172,49 @@ class CheckoutScreen extends StatelessWidget {
                                         width: 240.w,
                                         child: black18w500(
                                             data: context
-                                                .read<AuthViewModel>()
-                                                .getAuthResponse
-                                                .data!
-                                                .location != null? context
-                                                .read<AuthViewModel>()
-                                                .getAuthResponse
-                                                .data!
-                                                .location!
-                                                .address!: 'Click to add Address')),
+                                                        .read<AuthViewModel>()
+                                                        .getAuthResponse
+                                                        .data!
+                                                        .location !=
+                                                    null
+                                                ? context
+                                                    .read<AuthViewModel>()
+                                                    .getAuthResponse
+                                                    .data!
+                                                    .location!
+                                                    .address!
+                                                : 'Click to add Address')),
                                     SizedBox(
                                         width: 240.w,
                                         child: lightBlack14w400Centre(
                                             left: true,
                                             data: context
-                                                .read<AuthViewModel>()
-                                                .getAuthResponse
-                                                .data!
-                                                .location != null? context
-                                                .read<AuthViewModel>()
-                                                .getAuthResponse
-                                                .data!
-                                                .location!
-                                                .flatHouseNumber!:''))
+                                                        .read<AuthViewModel>()
+                                                        .getAuthResponse
+                                                        .data!
+                                                        .location !=
+                                                    null
+                                                ? context
+                                                    .read<AuthViewModel>()
+                                                    .getAuthResponse
+                                                    .data!
+                                                    .location!
+                                                    .flatHouseNumber!
+                                                : ''))
                                   ],
                                 ),
                                 InkWell(
-                                  onTap: () {context
-                                      .read<AuthViewModel>()
-                                      .getAuthResponse
-                                      .data!
-                                      .location != null?
-                                    Navigator.pushNamed(context, addressRoute):
-                                  Navigator.pushNamed(context, addAddressRoute);
+                                  onTap: () {
+                                    context
+                                                .read<AuthViewModel>()
+                                                .getAuthResponse
+                                                .data!
+                                                .location !=
+                                            null
+                                        ? Navigator.pushNamed(
+                                            context, addressRoute)
+                                        : Navigator.pushNamed(
+                                            context, addAddressRoute);
                                   },
                                   child: Container(
                                     decoration: ShapeDecoration(
@@ -212,14 +227,17 @@ class CheckoutScreen extends StatelessWidget {
                                         borderRadius: BorderRadius.circular(12),
                                       ),
                                     ),
-                                    child:  Padding(
+                                    child: Padding(
                                       padding: EdgeInsets.all(10),
                                       child: Icon(
                                         context
-                                            .read<AuthViewModel>()
-                                            .getAuthResponse
-                                            .data!
-                                            .location != null? Icons.edit: Icons.add,
+                                                    .read<AuthViewModel>()
+                                                    .getAuthResponse
+                                                    .data!
+                                                    .location !=
+                                                null
+                                            ? Icons.edit
+                                            : Icons.add,
                                         size: 20,
                                         color: CustomColors.orangeColor,
                                       ),
@@ -249,8 +267,9 @@ class CheckoutScreen extends StatelessWidget {
                         alignment: Alignment.centerLeft,
                         child: Padding(
                           padding: const EdgeInsets.all(20),
-                          child: lightBlack14w400Centre(data: 'Delivery Date: ${DateTimeFormatter.showDateFormat3(
-                              context.watch<CartViewModel>().getSelectedDay!)}'),
+                          child: lightBlack14w400Centre(
+                              data:
+                                  'Delivery Date: ${DateTimeFormatter.showDateFormat3(context.watch<CartViewModel>().getSelectedDay!)}'),
                         ),
                       ),
                     ),
@@ -316,7 +335,9 @@ class CheckoutScreen extends StatelessWidget {
                                 SizedBox(
                                   width: 2.w,
                                 ),
-                                lightBlack14w400Centre(data: 'AED ${context.watch<CartViewModel>().getCartTotalPrice}'),
+                                lightBlack14w400Centre(
+                                    data:
+                                        'AED ${context.watch<CartViewModel>().getCartTotalPrice}'),
                               ],
                             ),
                             SizedBox(
@@ -415,16 +436,18 @@ class CheckoutScreen extends StatelessWidget {
                             ),
                             Row(
                               children: [
-                                lightBlack14w400Centre(data: 'Generate coupon code'),
+                                lightBlack14w400Centre(
+                                    data: 'Generate coupon code'),
                                 const Spacer(),
                                 InkWell(
-                                  onTap: (){
-                                    descriptionDialog(
-                                        context: context,
-                                        description:
-                                        'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic',
-                                        height: 300, title: 'Description');
-                                  },
+                                    onTap: () {
+                                      descriptionDialog(
+                                          context: context,
+                                          description:
+                                              'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic',
+                                          height: 300,
+                                          title: 'Description');
+                                    },
                                     child: orange14w400(data: 'How it works?')),
                               ],
                             ),
@@ -508,7 +531,9 @@ class CheckoutScreen extends StatelessWidget {
                         children: [
                           lightBlack14w400Centre(data: 'Total'),
                           const Spacer(),
-                          black16w500(data: 'AED ${context.watch<CartViewModel>().getCartTotalPrice + 10}')
+                          black16w500(
+                              data:
+                                  'AED ${context.watch<CartViewModel>().getCartTotalPrice + 10}')
                         ],
                       ),
                       SizedBox(
@@ -516,7 +541,8 @@ class CheckoutScreen extends StatelessWidget {
                       ),
                       Row(
                         children: [
-                          lightBlack14w400Centre(data: 'Points Rewarded Amount'),
+                          lightBlack14w400Centre(
+                              data: 'Points Rewarded Amount'),
                           const Spacer(),
                           black16w500(data: '5')
                         ],
@@ -527,8 +553,16 @@ class CheckoutScreen extends StatelessWidget {
                       customButton(
                           text: 'Place Order',
                           onPressed: () {
-                            Navigator.pushNamed(
-                                context, orderConfirmationRoute);
+                            context.read<CartViewModel>().setOrderRequest();
+                            context
+                                .read<OrderViewModel>()
+                                .callCreateOrderApi()
+                                .then((value) {
+                              if (value) {
+                                Navigator.pushNamed(
+                                    context, orderConfirmationRoute);
+                              }
+                            });
                           },
                           colored: true),
                     ],

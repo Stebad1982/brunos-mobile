@@ -84,6 +84,7 @@ enum EndPoints {
   addAddress('user/location'),
   defaultAddress('user/default/location/'),
   defaultPuppy('pet/default/'),
+  createOrder('order/'),
   deleteAddress('user/location/');
 
 

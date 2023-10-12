@@ -1,11 +1,14 @@
 import 'package:brunos_kitchen/main.dart';
 import 'package:brunos_kitchen/utils/calculations.dart';
+import 'package:brunos_kitchen/view_models/order_view_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 import '../models/cart_model.dart';
 import '../models/recipe_model.dart';
+import '../models/requests/order_request.dart';
+import '../utils/date_time_formatter.dart';
 import 'auth_view_model.dart';
 
 class CartViewModel with ChangeNotifier {
@@ -16,12 +19,29 @@ class CartViewModel with ChangeNotifier {
   DateTime _focusedDay = DateTime.now().add(const Duration(days: 4));
   DateTime _selectedDay = DateTime.now().add(const Duration(days: 4));
 
-
   bool get getViewCartItemDetail => _viewCartItemDetail;
 
   void setViewCartItemDetail(bool value) {
     _viewCartItemDetail = value;
     notifyListeners();
+  }
+
+  void setOrderRequest() {
+    final OrderRequest orderData = OrderRequest(
+        totalAmount: _cartTotalPrice,
+        locationId: navigatorKey.currentContext!
+            .read<AuthViewModel>()
+            .getAuthResponse
+            .data!
+            .location!
+            .sId!,
+        paymentMethod: '',
+        discountPercentage: 10,
+        deliveryDate: DateTimeFormatter.showDateFormat3(_selectedDay),
+        promoCodeId: '',
+        cartItems: _cartList);
+    navigatorKey.currentContext!.read<OrderViewModel>().setOrderRequest(orderData);
+
   }
 
   DateTime get getFocusedDay => _focusedDay;
@@ -54,21 +74,22 @@ class CartViewModel with ChangeNotifier {
     }
   }
 
-  void clearDates(){
+  void clearDates() {
     _focusedDay = DateTime.now().add(const Duration(days: 4));
     _selectedDay = DateTime.now().add(const Duration(days: 4));
   }
+
   bool checkCartForPlanValidation({required String planType}) {
     setSelectedIndex(null);
     final int index = _cartList.indexWhere((element) {
       if (element.pet != null) {
         return element.pet!.sId ==
-            navigatorKey.currentContext!
-                .read<AuthViewModel>()
-                .getAuthResponse
-                .data!
-                .pet!
-                .sId! &&
+                navigatorKey.currentContext!
+                    .read<AuthViewModel>()
+                    .getAuthResponse
+                    .data!
+                    .pet!
+                    .sId! &&
             element.planType == planType;
       } else {
         return false;
@@ -80,9 +101,12 @@ class CartViewModel with ChangeNotifier {
   bool checkProductValidation({required RecipeModel recipe}) {
     setSelectedIndex(null);
     final int index = _cartList.indexWhere((element) =>
-    element.recipes[0].sId == recipe.sId &&
-        (element.recipes[0].selectedItemSize != null ? element.recipes[0]
-            .selectedItemSize!.name == recipe.selectedItemSize!.name : element.recipes[0].selectedItemSize == element.recipes[0].selectedItemSize));
+        element.recipes[0].sId == recipe.sId &&
+        (element.recipes[0].selectedItemSize != null
+            ? element.recipes[0].selectedItemSize!.name ==
+                recipe.selectedItemSize!.name
+            : element.recipes[0].selectedItemSize ==
+                element.recipes[0].selectedItemSize));
     return index == -1 ? true : false;
   }
 
