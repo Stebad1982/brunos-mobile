@@ -149,12 +149,12 @@ class _FeedingPlanScreenState extends State<FeedingPlanScreen> {
                                       ),
                                       orange14w400(
                                           data:
-                                              '${(plansViewModel.getTransitionalGrams10thDay / transitional10thPerPouchQty).round()} pouches x ${transitional10thPerPouchQty.toStringAsFixed(1)} grams (for day 10 onwards)'),
+                                              '${(plansViewModel.getTransitionalGrams10thDay / transitional10thPerPouchQty).round()} pouches x ${transitional10thPerPouchQty.toStringAsFixed(2)} grams (for day 10 onwards)'),
                                     ],
                                   )
                                 : orange14w400(
                                     data:
-                                        '${(totalPlanQuantity / perPouchQuantity).round()} pouches x $perPouchQuantity grams for ${plansViewModel.getFeedingPlan!.recipes[index].totalDays} days'),
+                                        '${(totalPlanQuantity / perPouchQuantity).round()} pouches x ${perPouchQuantity.toStringAsFixed(2)} grams for ${plansViewModel.getFeedingPlan!.recipes[index].totalDays} days'),
                             SizedBox(
                               height: 10.h,
                             ),
@@ -191,71 +191,76 @@ class _FeedingPlanScreenState extends State<FeedingPlanScreen> {
                     ),
                   ],
                 ),
-                child: Padding(
-                  padding: const EdgeInsets.all(20),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      orange14w500(
-                          data:
-                              'Total ${plansViewModel.getPlanType} Plan Price = ${plansViewModel.getFeedingPlan!.planTotal} AED'),
-                      SizedBox(
-                        height: 10.h,
-                      ),
-                      SizedBox(
-                          width: 250.w,
-                          child: black12w500Centre(
-                              data:
-                                  'The above plan is calculated based on ${plansViewModel.getFeedingPlan!.pet!.name!}\'s profile data',
-                              centre: true)),
-                      SizedBox(
-                        height: 20.h,
-                      ),
-                      customButton(
-                          text: !context
-                                  .read<CartViewModel>()
-                                  .getViewCartItemDetail
-                              ? 'Add to Sopping Bag'
-                              : 'Shopping Bag',
-                          onPressed: () {
-                            if (!context
-                                .read<CartViewModel>()
-                                .getViewCartItemDetail) {
-                              context.read<CartViewModel>().addToCartList(
-                                    CartModel(
-                                        recipes: plansViewModel
-                                            .getFeedingPlan!.recipes,
-                                        pet: plansViewModel
-                                            .getFeedingPlan!.pet,
-/*
-                                deliveryDate: deliveryDate,
-*/
-                                        planType: plansViewModel
-                                            .getFeedingPlan!.planType,
-                                        planTotal: plansViewModel
-                                            .getFeedingPlan!.planTotal),
-                                  );
-                              if (context
-                                      .read<CartViewModel>()
-                                      .getSelectedIndex ==
-                                  null) {
-                                Navigator.pushNamedAndRemoveUntil(context,
-                                    bottomNavigationRoute, (route) => false);
-                              } else {
-                                Navigator.pushNamedAndRemoveUntil(context,
-                                    cartRoute, (Route route) => route.isFirst);
-                              }
+                child: SizedBox(
+                  width: double.infinity,
+                  child: Padding(
+                    padding: const EdgeInsets.all(20),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        orange14w500(
+                            data:
+                                'Total ${plansViewModel.getPlanType} Plan Price = ${plansViewModel.getFeedingPlan!.planTotal} AED'),
+                        SizedBox(
+                          height: 10.h,
+                        ),
+                        SizedBox(
+                            width: 250.w,
+                            child: black12w500Centre(
+                                data:
+                                    'The above plan is calculated based on ${plansViewModel.getFeedingPlan!.pet!.name!}\'s profile data',
+                                centre: true)),
 
-                              EasyLoading.showToast(
-                                  '${plansViewModel.getPlanType} Plan Successfully Added To\nShopping Bag',
-                                  toastPosition:
-                                      EasyLoadingToastPosition.center);
-                            } else {
-                              Navigator.pop(context);
-                            }
-                          },
-                          colored: true),
-                    ],
+                        Visibility(
+                          visible: context
+                              .read<CartViewModel>()
+                              .getViewCartItemDetail == false,
+                          child: Padding(
+                            padding: const EdgeInsets.only(top: 20.0),
+                            child: customButton(
+                                text: 'Add to Sopping Bag',
+                                onPressed: () {
+                                  if (!context
+                                      .read<CartViewModel>()
+                                      .getViewCartItemDetail) {
+                                    context.read<CartViewModel>().addToCartList(
+                                          CartModel(
+                                              recipes: plansViewModel
+                                                  .getFeedingPlan!.recipes,
+                                              pet: plansViewModel
+                                                  .getFeedingPlan!.pet,
+/*
+                                      deliveryDate: deliveryDate,
+*/
+                                              planType: plansViewModel
+                                                  .getFeedingPlan!.planType,
+                                              planTotal: plansViewModel
+                                                  .getFeedingPlan!.planTotal),
+                                        );
+                                    if (context
+                                            .read<CartViewModel>()
+                                            .getSelectedIndex ==
+                                        null) {
+                                      Navigator.pushNamedAndRemoveUntil(context,
+                                          bottomNavigationRoute, (route) => false);
+                                    } else {
+                                      Navigator.pushNamedAndRemoveUntil(context,
+                                          cartRoute, (Route route) => route.isFirst);
+                                    }
+
+                                    EasyLoading.showToast(
+                                        '${plansViewModel.getPlanType} Plan Successfully Added To\nShopping Bag',
+                                        toastPosition:
+                                            EasyLoadingToastPosition.center);
+                                  } else {
+                                    Navigator.pop(context);
+                                  }
+                                },
+                                colored: true),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),

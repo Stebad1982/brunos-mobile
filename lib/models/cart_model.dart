@@ -16,7 +16,11 @@ class CartModel {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data['pet'] = pet!.toJson();
+    if(pet != null){
+      data['pet'] = pet!.toJson();
+    }
+    data['planType'] = planType;
+    data['planTotal'] = planTotal;
     data['recipes'] = recipes.map((v) => v.toJson()).toList();
     return data;
   }

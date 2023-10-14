@@ -1,26 +1,23 @@
-import 'package:brunos_kitchen/main.dart';
-import 'package:brunos_kitchen/route_generator.dart';
-import 'package:brunos_kitchen/utils/custom_font_style.dart';
-import 'package:brunos_kitchen/view_models/auth_view_model.dart';
-import 'package:brunos_kitchen/view_models/cart_view_model.dart';
-import 'package:brunos_kitchen/view_models/plans_view_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 
-import '../models/address_model.dart';
-import '../models/cart_model.dart';
-import '../utils/calculations.dart';
+import '../main.dart';
+import '../models/responses/order_response.dart';
+import '../route_generator.dart';
 import '../utils/custom_colors.dart';
+import '../utils/custom_font_style.dart';
 import '../utils/enums.dart';
 import '../utils/images.dart';
+import '../view_models/cart_view_model.dart';
+import '../view_models/plans_view_model.dart';
 import 'cart_dish_vertical_list_chip.dart';
 import 'circular_network_image_widget.dart';
 
-Widget cartVerticalListChipWidget(
-    {required CartModel cartDetail, required int itemIndex}) {
+Widget orderItemsVerticalListChipWidget(
+    {required OrderItems orderItems, required int itemIndex}) {
   return Column(
     children: [
       InkWell(
@@ -30,8 +27,8 @@ Widget cartVerticalListChipWidget(
               .setViewCartItemDetail(true);
           navigatorKey.currentContext!
               .read<PlansViewModel>()
-              .setDataToFeedingPlan(data: cartDetail);
-          if (cartDetail.planType == Plans.product.text) {
+              .setDataToFeedingPlan(data: orderItems);
+          if (orderItems.planType == Plans.product.text) {
             Navigator.pushNamed(
                 navigatorKey.currentContext!, productDetailRoute);
           } else {
@@ -56,55 +53,9 @@ Widget cartVerticalListChipWidget(
                     Expanded(
                       child: orange18w500(
                           data:
-                              '${cartDetail.planType} ${cartDetail.pet == null ? '' : 'Plan'}'),
+                              '${orderItems.planType} ${orderItems.pet == null ? '' : 'Plan'}'),
                     ),
-                    InkWell(
-                      onTap: () {
-                        navigatorKey.currentContext!
-                            .read<CartViewModel>()
-                            .setSelectedIndex(itemIndex);
-                        navigatorKey.currentContext!
-                            .read<PlansViewModel>()
-                            .setDataToFeedingPlan(data: cartDetail);
-                        cartDetail.planType == Plans.monthly.text
-                            ? {
-                                Navigator.pushNamed(
-                                    navigatorKey.currentContext!,
-                                    monthlyPlanRoute)
-                              }
-                            : cartDetail.planType == Plans.transitional.text
-                                ? Navigator.pushNamed(
-                                    navigatorKey.currentContext!,
-                                    transitionPlanRoute)
-                                : cartDetail.planType == Plans.oneTime.text
-                                    ? Navigator.pushNamed(
-                                        navigatorKey.currentContext!,
-                                        oneTimePlanRoute)
-                                    : Navigator.pushNamed(
-                                        navigatorKey.currentContext!,
-                                        productDetailRoute);
-                      },
-                      child: Container(
-                        decoration: ShapeDecoration(
-                          color: CustomColors.whiteColor,
-                          shape: RoundedRectangleBorder(
-                            side: const BorderSide(
-                                width: 0.75,
-                                color: CustomColors.greyMediumColor),
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                        ),
-                        child: const Padding(
-                          padding: EdgeInsets.all(10),
-                          child: Icon(
-                            Icons.edit,
-                            size: 20,
-                            color: CustomColors.orangeColor,
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
+                    /*  SizedBox(
                       width: 10.w,
                     ),
                     InkWell(
@@ -132,10 +83,10 @@ Widget cartVerticalListChipWidget(
                           ),
                         ),
                       ),
-                    ),
+                    ),*/
                   ],
                 ),
-                cartDetail.pet != null
+                orderItems.pet != null
                     ? Column(
                         children: [
                           SizedBox(
@@ -143,9 +94,9 @@ Widget cartVerticalListChipWidget(
                           ),
                           Row(
                             children: [
-                              cartDetail.pet!.media!.isNotEmpty
+                              orderItems.pet!.media!.isNotEmpty
                                   ? circularNetworkImageWidget(
-                                      image: cartDetail.pet!.media!, size: 40.h)
+                                      image: orderItems.pet!.media!, size: 40.h)
                                   : SizedBox(
                                       height: 40.h,
                                       width: 40.h,
@@ -161,8 +112,8 @@ Widget cartVerticalListChipWidget(
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  black14w500(data: cartDetail.pet!.name!),
-                                  black14w500(data: cartDetail.pet!.breed!),
+                                  black14w500(data: orderItems.pet!.name!),
+                                  black14w500(data: orderItems.pet!.breed!),
                                 ],
                               ),
                             ],
@@ -176,13 +127,13 @@ Widget cartVerticalListChipWidget(
                 ListView.separated(
                   physics: const NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
-                  itemCount: cartDetail.recipes.length,
+                  itemCount: orderItems.recipes!.length,
                   itemBuilder: (BuildContext context, int index) {
                     return cartDishVerticalListChipWidget(
-                        cartRecipeModel: cartDetail.recipes[index],
-                        planType: cartDetail.planType,
-                        petName: cartDetail.pet != null
-                            ? cartDetail.pet!.name!
+                        cartRecipeModel: orderItems.recipes![index],
+                        planType: orderItems.planType!,
+                        petName: orderItems.pet != null
+                            ? orderItems.pet!.name!
                             : null);
                   },
                   separatorBuilder: (BuildContext context, int index) {
@@ -197,7 +148,7 @@ Widget cartVerticalListChipWidget(
                 Align(
                     alignment: Alignment.centerRight,
                     child: black14w500(
-                        data: 'Payable: AED ${cartDetail.planTotal}'))
+                        data: 'Payable: AED ${orderItems.planTotal}'))
               ],
             ),
           ),

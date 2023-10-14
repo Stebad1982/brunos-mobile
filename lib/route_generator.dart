@@ -19,6 +19,7 @@ import 'package:brunos_kitchen/screens/news_screen.dart';
 import 'package:brunos_kitchen/screens/one_time_plan_screen.dart';
 import 'package:brunos_kitchen/screens/order_completed_screen.dart';
 import 'package:brunos_kitchen/screens/order_confirmation_screen.dart';
+import 'package:brunos_kitchen/screens/order_detail_screen.dart';
 import 'package:brunos_kitchen/screens/orders_screen.dart';
 import 'package:brunos_kitchen/screens/otp_screen.dart';
 import 'package:brunos_kitchen/screens/paw_points_screen.dart';
@@ -77,7 +78,7 @@ const String cartRoute = '/cart';
 const String blogsRoute = '/blogs';
 const String helpRoute = '/help';
 const String newsRoute = '/news';
-
+const String orderDetailRoute = '/orderDetail';
 
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -126,8 +127,7 @@ class RouteGenerator {
       case monthlyPlanRoute:
         return MaterialPageRoute(builder: (_) => const MonthlyPlanScreen());
       case feedingPlanRoute:
-        return MaterialPageRoute(
-            builder: (_) => FeedingPlanScreen());
+        return MaterialPageRoute(builder: (_) => FeedingPlanScreen());
       case deliveryDatesRoute:
         return MaterialPageRoute(builder: (_) => const DeliveryDatesScreen());
       case checkOutRoute:
@@ -167,7 +167,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const HelpScreen());
       case newsRoute:
         return MaterialPageRoute(builder: (_) => const NewsScreen());
-
+      case orderDetailRoute:
+        return MaterialPageRoute(builder: (_) => const OrderDetailScreen());
 
       case '/tasting_details':
       /*return MaterialPageRoute(

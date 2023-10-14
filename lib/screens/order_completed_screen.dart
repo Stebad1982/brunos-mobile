@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
+import 'package:provider/provider.dart';
 
+import '../view_models/order_view_model.dart';
 import '../widgets/orders_vertical_list_chip_widget.dart';
 
 class OrderCompletedScreen extends StatelessWidget {
@@ -7,12 +9,16 @@ class OrderCompletedScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: 20,
-      padding: const EdgeInsets.only(left: 20,right: 20,top: 30),
-      itemBuilder: (BuildContext context, int index) {
-        return ordersVerticalListChipWidget(showButtons: false);
-      },
-    );
+    return Consumer<OrderViewModel>(builder: (_, orderViewModel, __) {
+      return ListView.builder(
+        itemCount: orderViewModel.getOrderResponse.data!.length,
+        padding: const EdgeInsets.only(left: 20, right: 20, top: 30),
+        itemBuilder: (BuildContext context, int index) {
+          return ordersVerticalListChipWidget(
+              showButtons: false,
+              orderListData: orderViewModel.getOrderResponse.data![index]);
+        },
+      );
+    });
   }
 }

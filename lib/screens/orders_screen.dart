@@ -1,10 +1,12 @@
-import 'package:brunos_kitchen/screens/monthly_order_screen.dart';
+import 'package:brunos_kitchen/screens/order_Monthly_screen.dart';
 import 'package:brunos_kitchen/screens/order_completed_screen.dart';
 import 'package:brunos_kitchen/screens/order_inprocess_screen.dart';
 import 'package:brunos_kitchen/utils/custom_font_style.dart';
+import 'package:brunos_kitchen/view_models/order_view_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 
 import '../utils/custom_colors.dart';
 import '../widgets/app_bar_with_back_widget.dart';
@@ -23,6 +25,10 @@ class _OrdersScreenState extends State<OrdersScreen>
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      context.read<OrderViewModel>().callOrderListApi();
+    });
+
     tabController = TabController(length: 3, vsync: this);
     tabController!.addListener(_getActiveTabIndex);
   }
@@ -45,7 +51,7 @@ class _OrdersScreenState extends State<OrdersScreen>
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: const AppBarWithBackWidget(
-          heading: 'My Orders', showPuppy: false,showCart: true
+          heading: 'My Orders', showPuppy: false,showCart: false
         ),
         body: Column(
           children: [
@@ -106,7 +112,7 @@ class _OrdersScreenState extends State<OrdersScreen>
                 children: const [
                   OrderInProcessScreen(),
                   OrderCompletedScreen(),
-                  MonthlyOrderScreen()
+                  OrderMonthlyScreen()
                 ],
               ),
             ),
