@@ -109,10 +109,10 @@ class _OrdersScreenState extends State<OrdersScreen>
             Expanded(
               child: TabBarView(
                 controller: tabController,
-                children: const [
-                  OrderInProcessScreen(),
-                  OrderCompletedScreen(),
-                  OrderMonthlyScreen()
+                children:  [
+                  context.watch<OrderViewModel>().getOrderResponse.data != null? OrderInProcessScreen(): SizedBox(),
+                  context.watch<OrderViewModel>().getOrderResponse.data != null?OrderCompletedScreen(): SizedBox(),
+                  context.watch<OrderViewModel>().getOrderResponse.data != null? OrderMonthlyScreen(): SizedBox()
                 ],
               ),
             ),

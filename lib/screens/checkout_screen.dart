@@ -27,7 +27,7 @@ class CheckoutScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<PlansViewModel>(builder: (context, plansViewModel, child) {
+    return Consumer<CartViewModel>(builder: (context, cartViewModel, child) {
       return Scaffold(
         appBar: const AppBarWithBackWidget(
             heading: 'CheckOut', showPuppy: false, showCart: false),
@@ -269,7 +269,7 @@ class CheckoutScreen extends StatelessWidget {
                           padding: const EdgeInsets.all(20),
                           child: lightBlack14w400Centre(
                               data:
-                                  'Delivery Date: ${DateTimeFormatter.showDateFormat3(context.watch<CartViewModel>().getSelectedDay!)}'),
+                                  'Delivery Date: ${DateTimeFormatter.showDateFormat3(cartViewModel.getSelectedDay!)}'),
                         ),
                       ),
                     ),
@@ -337,7 +337,7 @@ class CheckoutScreen extends StatelessWidget {
                                 ),
                                 lightBlack14w400Centre(
                                     data:
-                                        'AED ${context.watch<CartViewModel>().getCartTotalPrice}'),
+                                        'AED ${cartViewModel.getCartTotalPrice}'),
                               ],
                             ),
                             SizedBox(
@@ -454,7 +454,25 @@ class CheckoutScreen extends StatelessWidget {
                             SizedBox(
                               height: 10.h,
                             ),
-                            Container(
+                            TextField(
+                             // controller: puppyViewModel.getPuppyBreedController,
+                              onChanged: (value) {
+                               // puppyViewModel.searchBreeds(value);
+                              },
+                              keyboardType: TextInputType.text,
+                              decoration:  InputDecoration(
+                                prefixIcon: Padding(
+                                  padding: const EdgeInsets.all(16.0),
+                                  child: SvgPicture.asset(couponIcon),
+                                ),
+                                /*suffixIcon: Icon(
+                            Icons.keyboard_arrow_down,
+                            size: 25,
+                          ),*/
+                                  contentPadding: EdgeInsets.all(20.0),
+                                  hintText: 'Code'),
+                            ),
+                           /* Container(
                               width: double.infinity,
                               decoration: ShapeDecoration(
                                 color: CustomColors.greyMediumLightColor,
@@ -475,7 +493,7 @@ class CheckoutScreen extends StatelessWidget {
                                   ],
                                 ),
                               ),
-                            ),
+                            ),*/
                             SizedBox(
                               height: 10.h,
                             ),
@@ -504,68 +522,71 @@ class CheckoutScreen extends StatelessWidget {
                 ),
               ),
             ),
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: Container(
-                decoration: const BoxDecoration(
-                  color: CustomColors.whiteColor,
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(30.0),
-                    topRight: Radius.circular(30.0),
-                  ),
-                  boxShadow: [
-                    BoxShadow(
-                      offset: Offset(0, 0),
-                      blurRadius: 5,
-                      spreadRadius: 2,
-                      color: Colors.black12,
+            Visibility(
+              visible: MediaQuery.of(context).viewInsets.bottom == 0,
+              child: Align(
+                alignment: Alignment.bottomCenter,
+                child: Container(
+                  decoration: const BoxDecoration(
+                    color: CustomColors.whiteColor,
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(30.0),
+                      topRight: Radius.circular(30.0),
                     ),
-                  ],
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(20),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Row(
-                        children: [
-                          lightBlack14w400Centre(data: 'Total'),
-                          const Spacer(),
-                          black16w500(
-                              data:
-                                  'AED ${context.watch<CartViewModel>().getCartTotalPrice + 10}')
-                        ],
+                    boxShadow: [
+                      BoxShadow(
+                        offset: Offset(0, 0),
+                        blurRadius: 5,
+                        spreadRadius: 2,
+                        color: Colors.black12,
                       ),
-                      SizedBox(
-                        height: 16.h,
-                      ),
-                      Row(
-                        children: [
-                          lightBlack14w400Centre(
-                              data: 'Points Rewarded Amount'),
-                          const Spacer(),
-                          black16w500(data: '5')
-                        ],
-                      ),
-                      SizedBox(
-                        height: 40.h,
-                      ),
-                      customButton(
-                          text: 'Place Order',
-                          onPressed: () {
-                            context.read<CartViewModel>().setOrderRequest();
-                            context
-                                .read<OrderViewModel>()
-                                .callCreateOrderApi()
-                                .then((value) {
-                              if (value) {
-                                Navigator.pushNamed(
-                                    context, orderConfirmationRoute);
-                              }
-                            });
-                          },
-                          colored: true),
                     ],
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(20),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Row(
+                          children: [
+                            lightBlack14w400Centre(data: 'Total'),
+                            const Spacer(),
+                            black16w500(
+                                data:
+                                    'AED ${cartViewModel.getCartTotalPrice + 10}')
+                          ],
+                        ),
+                        SizedBox(
+                          height: 16.h,
+                        ),
+                        Row(
+                          children: [
+                            lightBlack14w400Centre(
+                                data: 'Points Rewarded Amount'),
+                            const Spacer(),
+                            black16w500(data: '5')
+                          ],
+                        ),
+                        SizedBox(
+                          height: 40.h,
+                        ),
+                        customButton(
+                            text: 'Place Order',
+                            onPressed: () {
+                              cartViewModel.setOrderRequest();
+                              context
+                                  .read<OrderViewModel>()
+                                  .callCreateOrderApi()
+                                  .then((value) {
+                                if (value) {
+                                  Navigator.pushNamed(
+                                      context, orderConfirmationRoute);
+                                }
+                              });
+                            },
+                            colored: true),
+                      ],
+                    ),
                   ),
                 ),
               ),

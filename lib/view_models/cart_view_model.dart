@@ -14,10 +14,19 @@ import 'auth_view_model.dart';
 class CartViewModel with ChangeNotifier {
   final List<CartModel> _cartList = [];
   num _cartTotalPrice = 0;
+  num _promoCodeDiscount = 0;
   int? _selectedIndex;
   bool _viewCartItemDetail = false;
   DateTime _focusedDay = DateTime.now().add(const Duration(days: 4));
   DateTime _selectedDay = DateTime.now().add(const Duration(days: 4));
+
+  num get getPromoCodeDiscount => _promoCodeDiscount;
+
+  void setPromoCodeDiscount (int value){
+    _promoCodeDiscount = value;
+    _cartTotalPrice = _cartTotalPrice - _promoCodeDiscount;
+    notifyListeners();
+  }
 
   bool get getViewCartItemDetail => _viewCartItemDetail;
 
