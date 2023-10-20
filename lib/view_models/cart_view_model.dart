@@ -2,9 +2,11 @@ import 'package:brunos_kitchen/main.dart';
 import 'package:brunos_kitchen/utils/calculations.dart';
 import 'package:brunos_kitchen/view_models/order_view_model.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:provider/provider.dart';
 import 'package:table_calendar/table_calendar.dart';
 
+import '../models/base_response_model.dart';
 import '../models/cart_model.dart';
 import '../models/recipe_model.dart';
 import '../models/requests/order_request.dart';
@@ -15,16 +17,29 @@ class CartViewModel with ChangeNotifier {
   final List<CartModel> _cartList = [];
   num _cartTotalPrice = 0;
   num _promoCodeDiscount = 0;
+  num _checkOutTotal = 0;
+  final int _deliveryCharges = 10;
   int? _selectedIndex;
   bool _viewCartItemDetail = false;
+  TextEditingController _promoCodeController = TextEditingController();
   DateTime _focusedDay = DateTime.now().add(const Duration(days: 4));
   DateTime _selectedDay = DateTime.now().add(const Duration(days: 4));
 
   num get getPromoCodeDiscount => _promoCodeDiscount;
 
-  void setPromoCodeDiscount (int value){
+  TextEditingController get getPromoCodeController => _promoCodeController;
+
+  int get getDeliveryCharges => _deliveryCharges;
+
+  void setPromoCodeDiscount(int value) {
     _promoCodeDiscount = value;
-    _cartTotalPrice = _cartTotalPrice - _promoCodeDiscount;
+    setCheckOutTotal();
+  }
+
+  num get getCheckOutTotal => _checkOutTotal;
+
+  void setCheckOutTotal() {
+    _checkOutTotal = _cartTotalPrice - _promoCodeDiscount + _deliveryCharges;
     notifyListeners();
   }
 
@@ -49,8 +64,9 @@ class CartViewModel with ChangeNotifier {
         deliveryDate: DateTimeFormatter.showDateFormat3(_selectedDay),
         promoCodeId: '',
         cartItems: _cartList);
-    navigatorKey.currentContext!.read<OrderViewModel>().setOrderRequest(orderData);
-
+    navigatorKey.currentContext!
+        .read<OrderViewModel>()
+        .setOrderRequest(orderData);
   }
 
   DateTime get getFocusedDay => _focusedDay;
@@ -134,4 +150,23 @@ class CartViewModel with ChangeNotifier {
     _cartTotalPrice = calculateCartTotal(cartItems: _cartList);
     notifyListeners();
   }
+
+  Future<bool> callPromoCodeApi() async {
+    EasyLoading.show(status: 'Please Wait ...');
+    try {
+      final BaseResponseModel response = await _puppyApiServices.deletePuppyApi(puppyId: _puppyDetail!.sId!);
+      if (response.isSuccess!) {
+        EasyLoading.dismiss();
+        await callPuppiesApi();
+        return true;
+      } else {
+        EasyLoading.showError('${response.message}');
+        return false;
+      }
+    } catch (e) {
+      EasyLoading.showError(e.toString());
+      return false;
+    }
+  }
+
 }

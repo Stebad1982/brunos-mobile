@@ -303,6 +303,7 @@ class _DeliveryDatesScreenState extends State<DeliveryDatesScreen> {
                     child: customButton(
                         text: 'CheckOut',
                         onPressed: () {
+                          cartViewModel.setCheckOutTotal();
                           Navigator.pushNamed(context, checkOutRoute);
                           /*final String deliveryDate =
                           DateTimeFormatter.showDateFormat3(

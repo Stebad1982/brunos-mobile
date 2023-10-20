@@ -351,7 +351,7 @@ class CheckoutScreen extends StatelessWidget {
                                   width: 2.w,
                                 ),
                                 lightBlack14w400Centre(
-                                    data: '10 AED (One time  Fee)'),
+                                    data: '${cartViewModel.getDeliveryCharges} AED (One time  Fee)'),
                               ],
                             ),
                           ],
@@ -455,7 +455,7 @@ class CheckoutScreen extends StatelessWidget {
                               height: 10.h,
                             ),
                             TextField(
-                             // controller: puppyViewModel.getPuppyBreedController,
+                              controller: cartViewModel.getPromoCodeController,
                               onChanged: (value) {
                                // puppyViewModel.searchBreeds(value);
                               },
@@ -497,21 +497,26 @@ class CheckoutScreen extends StatelessWidget {
                             SizedBox(
                               height: 10.h,
                             ),
-                            Container(
-                              width: double.infinity,
-                              decoration: ShapeDecoration(
-                                color: CustomColors.whiteColor,
-                                shape: RoundedRectangleBorder(
-                                  side: const BorderSide(
-                                      width: 0.50,
-                                      color: CustomColors.greyColor),
-                                  borderRadius: BorderRadius.circular(12),
+                            InkWell(
+                              onTap: (){
+                                cartViewModel.setPromoCodeDiscount(value);
+                              },
+                              child: Container(
+                                width: double.infinity,
+                                decoration: ShapeDecoration(
+                                  color: CustomColors.whiteColor,
+                                  shape: RoundedRectangleBorder(
+                                    side: const BorderSide(
+                                        width: 0.50,
+                                        color: CustomColors.greyColor),
+                                    borderRadius: BorderRadius.circular(12),
+                                  ),
                                 ),
-                              ),
-                              child: Padding(
-                                padding: const EdgeInsets.all(20),
-                                child: lightBlack14w400Centre(
-                                    data: 'Apply coupon code'),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(20),
+                                  child: lightBlack14w400Centre(
+                                      data: 'Apply coupon code'),
+                                ),
                               ),
                             ),
                           ],
@@ -553,7 +558,7 @@ class CheckoutScreen extends StatelessWidget {
                             const Spacer(),
                             black16w500(
                                 data:
-                                    'AED ${cartViewModel.getCartTotalPrice + 10}')
+                                    'AED ${cartViewModel.getCheckOutTotal}')
                           ],
                         ),
                         SizedBox(
