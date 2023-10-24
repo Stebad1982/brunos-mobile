@@ -1,5 +1,6 @@
 import 'package:brunos_kitchen/screens/add_address_detail_screen.dart';
 import 'package:brunos_kitchen/screens/add_address_screen.dart';
+import 'package:brunos_kitchen/screens/add_card_screen.dart';
 import 'package:brunos_kitchen/screens/address_detail_screen.dart';
 import 'package:brunos_kitchen/screens/address_screen.dart';
 import 'package:brunos_kitchen/screens/blogs_screen.dart';
@@ -79,6 +80,7 @@ const String blogsRoute = '/blogs';
 const String helpRoute = '/help';
 const String newsRoute = '/news';
 const String orderDetailRoute = '/orderDetail';
+const String addCardRoute = 'addCard';
 
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -169,6 +171,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const NewsScreen());
       case orderDetailRoute:
         return MaterialPageRoute(builder: (_) => const OrderDetailScreen());
+      case addCardRoute:
+        return MaterialPageRoute(builder: (_) => const AddCardScreen());
 
       case '/tasting_details':
       /*return MaterialPageRoute(

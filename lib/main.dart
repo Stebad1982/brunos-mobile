@@ -3,6 +3,7 @@ import 'package:brunos_kitchen/view_models/address_view_model.dart';
 import 'package:brunos_kitchen/utils/custom_colors.dart';
 import 'package:brunos_kitchen/view_models/auth_view_model.dart';
 import 'package:brunos_kitchen/view_models/bottom_navigation_view_model.dart';
+import 'package:brunos_kitchen/view_models/card_view_model.dart';
 import 'package:brunos_kitchen/view_models/cart_view_model.dart';
 import 'package:brunos_kitchen/view_models/faqs_blogs_news_view_model.dart';
 import 'package:brunos_kitchen/view_models/order_view_model.dart';
@@ -83,6 +84,9 @@ Future<void> main() async{
       ),
       ChangeNotifierProvider(
         create: (_) => OrderViewModel(),
+      ),
+      ChangeNotifierProvider(
+        create: (_) => CardViewModel(),
       ),
     ],
         child: const MyApp(),

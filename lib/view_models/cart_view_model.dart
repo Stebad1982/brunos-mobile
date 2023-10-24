@@ -1,4 +1,5 @@
 import 'package:brunos_kitchen/main.dart';
+import 'package:brunos_kitchen/services/promo_api_services.dart';
 import 'package:brunos_kitchen/utils/calculations.dart';
 import 'package:brunos_kitchen/view_models/order_view_model.dart';
 import 'package:flutter/cupertino.dart';
@@ -15,6 +16,7 @@ import 'auth_view_model.dart';
 
 class CartViewModel with ChangeNotifier {
   final List<CartModel> _cartList = [];
+  PromoApiServices _promoApiServices = PromoApiServices();
   num _cartTotalPrice = 0;
   num _promoCodeDiscount = 0;
   num _checkOutTotal = 0;
@@ -154,10 +156,9 @@ class CartViewModel with ChangeNotifier {
   Future<bool> callPromoCodeApi() async {
     EasyLoading.show(status: 'Please Wait ...');
     try {
-      final BaseResponseModel response = await _puppyApiServices.deletePuppyApi(puppyId: _puppyDetail!.sId!);
+      final BaseResponseModel response = await _promoApiServices.checkPromoCodeApi();
       if (response.isSuccess!) {
         EasyLoading.dismiss();
-        await callPuppiesApi();
         return true;
       } else {
         EasyLoading.showError('${response.message}');

@@ -276,33 +276,38 @@ class CheckoutScreen extends StatelessWidget {
                     SizedBox(
                       height: 24.h,
                     ),
-                    Container(
-                      width: double.infinity,
-                      decoration: ShapeDecoration(
-                        color: CustomColors.whiteColor,
-                        shape: RoundedRectangleBorder(
-                          side: const BorderSide(
-                              width: 0.50, color: CustomColors.greyColor),
-                          borderRadius: BorderRadius.circular(12),
+                    InkWell(
+                      onTap: () {
+                        Navigator.pushNamed(context, addCardRoute);
+                      },
+                      child: Container(
+                        width: double.infinity,
+                        decoration: ShapeDecoration(
+                          color: CustomColors.whiteColor,
+                          shape: RoundedRectangleBorder(
+                            side: const BorderSide(
+                                width: 0.50, color: CustomColors.greyColor),
+                            borderRadius: BorderRadius.circular(12),
+                          ),
                         ),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(20),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            SvgPicture.asset(payCardIcon),
-                            SizedBox(
-                              width: 2.w,
-                            ),
-                            lightBlack14w400Centre(data: 'Payment method'),
-                            const Spacer(),
-                            const Icon(
-                              Icons.arrow_forward_ios_rounded,
-                              size: 15,
-                              color: CustomColors.greyColor,
-                            )
-                          ],
+                        child: Padding(
+                          padding: const EdgeInsets.all(20),
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              SvgPicture.asset(payCardIcon),
+                              SizedBox(
+                                width: 2.w,
+                              ),
+                              lightBlack14w400Centre(data: 'Payment method'),
+                              const Spacer(),
+                              const Icon(
+                                Icons.arrow_forward_ios_rounded,
+                                size: 15,
+                                color: CustomColors.greyColor,
+                              )
+                            ],
+                          ),
                         ),
                       ),
                     ),
@@ -351,7 +356,8 @@ class CheckoutScreen extends StatelessWidget {
                                   width: 2.w,
                                 ),
                                 lightBlack14w400Centre(
-                                    data: '${cartViewModel.getDeliveryCharges} AED (One time  Fee)'),
+                                    data:
+                                        '${cartViewModel.getDeliveryCharges} AED (One time  Fee)'),
                               ],
                             ),
                           ],
@@ -457,22 +463,22 @@ class CheckoutScreen extends StatelessWidget {
                             TextField(
                               controller: cartViewModel.getPromoCodeController,
                               onChanged: (value) {
-                               // puppyViewModel.searchBreeds(value);
+                                // puppyViewModel.searchBreeds(value);
                               },
                               keyboardType: TextInputType.text,
-                              decoration:  InputDecoration(
-                                prefixIcon: Padding(
-                                  padding: const EdgeInsets.all(16.0),
-                                  child: SvgPicture.asset(couponIcon),
-                                ),
-                                /*suffixIcon: Icon(
+                              decoration: InputDecoration(
+                                  prefixIcon: Padding(
+                                    padding: const EdgeInsets.all(16.0),
+                                    child: SvgPicture.asset(couponIcon),
+                                  ),
+                                  /*suffixIcon: Icon(
                             Icons.keyboard_arrow_down,
                             size: 25,
                           ),*/
                                   contentPadding: EdgeInsets.all(20.0),
                                   hintText: 'Code'),
                             ),
-                           /* Container(
+                            /* Container(
                               width: double.infinity,
                               decoration: ShapeDecoration(
                                 color: CustomColors.greyMediumLightColor,
@@ -498,8 +504,8 @@ class CheckoutScreen extends StatelessWidget {
                               height: 10.h,
                             ),
                             InkWell(
-                              onTap: (){
-                                cartViewModel.setPromoCodeDiscount(value);
+                              onTap: () {
+                                //cartViewModel.setPromoCodeDiscount(value);
                               },
                               child: Container(
                                 width: double.infinity,
@@ -557,8 +563,7 @@ class CheckoutScreen extends StatelessWidget {
                             lightBlack14w400Centre(data: 'Total'),
                             const Spacer(),
                             black16w500(
-                                data:
-                                    'AED ${cartViewModel.getCheckOutTotal}')
+                                data: 'AED ${cartViewModel.getCheckOutTotal}')
                           ],
                         ),
                         SizedBox(
