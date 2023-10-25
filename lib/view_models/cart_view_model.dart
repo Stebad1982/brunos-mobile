@@ -11,19 +11,20 @@ import '../models/base_response_model.dart';
 import '../models/cart_model.dart';
 import '../models/recipe_model.dart';
 import '../models/requests/order_request.dart';
+import '../models/responses/promo_code_response.dart';
 import '../utils/date_time_formatter.dart';
 import 'auth_view_model.dart';
 
 class CartViewModel with ChangeNotifier {
   final List<CartModel> _cartList = [];
-  PromoApiServices _promoApiServices = PromoApiServices();
+  final PromoApiServices _promoApiServices = PromoApiServices();
   num _cartTotalPrice = 0;
   num _promoCodeDiscount = 0;
   num _checkOutTotal = 0;
   final int _deliveryCharges = 10;
   int? _selectedIndex;
   bool _viewCartItemDetail = false;
-  TextEditingController _promoCodeController = TextEditingController();
+  final TextEditingController _promoCodeController = TextEditingController();
   DateTime _focusedDay = DateTime.now().add(const Duration(days: 4));
   DateTime _selectedDay = DateTime.now().add(const Duration(days: 4));
 
@@ -34,7 +35,7 @@ class CartViewModel with ChangeNotifier {
   int get getDeliveryCharges => _deliveryCharges;
 
   void setPromoCodeDiscount(int value) {
-    _promoCodeDiscount = value;
+    _promoCodeDiscount = _cartTotalPrice*(value/100);
     setCheckOutTotal();
   }
 
@@ -43,6 +44,11 @@ class CartViewModel with ChangeNotifier {
   void setCheckOutTotal() {
     _checkOutTotal = _cartTotalPrice - _promoCodeDiscount + _deliveryCharges;
     notifyListeners();
+  }
+
+  clearData(){
+    _promoCodeController.clear();
+    _promoCodeDiscount = 0;
   }
 
   bool get getViewCartItemDetail => _viewCartItemDetail;
@@ -64,7 +70,7 @@ class CartViewModel with ChangeNotifier {
         paymentMethod: '',
         discountPercentage: 10,
         deliveryDate: DateTimeFormatter.showDateFormat3(_selectedDay),
-        promoCodeId: '',
+        promoCodeId: _promoCodeController.text,
         cartItems: _cartList);
     navigatorKey.currentContext!
         .read<OrderViewModel>()
@@ -156,9 +162,10 @@ class CartViewModel with ChangeNotifier {
   Future<bool> callPromoCodeApi() async {
     EasyLoading.show(status: 'Please Wait ...');
     try {
-      final BaseResponseModel response = await _promoApiServices.checkPromoCodeApi();
+      final PromoCodeResponse response = await _promoApiServices.checkPromoCodeApi(code: _promoCodeController.text);
       if (response.isSuccess!) {
         EasyLoading.dismiss();
+        setPromoCodeDiscount(response.data!.discount!);
         return true;
       } else {
         EasyLoading.showError('${response.message}');

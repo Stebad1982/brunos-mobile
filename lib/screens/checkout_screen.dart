@@ -505,6 +505,8 @@ class CheckoutScreen extends StatelessWidget {
                             ),
                             InkWell(
                               onTap: () {
+                                FocusScope.of(context).unfocus();
+                                cartViewModel.callPromoCodeApi();
                                 //cartViewModel.setPromoCodeDiscount(value);
                               },
                               child: Container(
@@ -572,11 +574,19 @@ class CheckoutScreen extends StatelessWidget {
                         Row(
                           children: [
                             lightBlack14w400Centre(
+                                data: 'Promo Rewarded Amount'),
+                            const Spacer(),
+                            black16w500(data: cartViewModel.getPromoCodeDiscount.toString())
+                          ],
+                        ),
+                       /* Row(
+                          children: [
+                            lightBlack14w400Centre(
                                 data: 'Points Rewarded Amount'),
                             const Spacer(),
                             black16w500(data: '5')
                           ],
-                        ),
+                        ),*/
                         SizedBox(
                           height: 40.h,
                         ),
