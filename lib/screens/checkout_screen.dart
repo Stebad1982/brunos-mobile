@@ -2,6 +2,7 @@ import 'package:brunos_kitchen/models/requests/order_request.dart';
 import 'package:brunos_kitchen/route_generator.dart';
 import 'package:brunos_kitchen/view_models/address_view_model.dart';
 import 'package:brunos_kitchen/view_models/auth_view_model.dart';
+import 'package:brunos_kitchen/view_models/card_view_model.dart';
 import 'package:brunos_kitchen/view_models/cart_view_model.dart';
 import 'package:brunos_kitchen/view_models/order_view_model.dart';
 import 'package:flutter/cupertino.dart';
@@ -278,6 +279,7 @@ class CheckoutScreen extends StatelessWidget {
                     ),
                     InkWell(
                       onTap: () {
+                        context.read<CardViewModel>().setIsCardAdd(true);
                         Navigator.pushNamed(context, addCardRoute);
                       },
                       child: Container(

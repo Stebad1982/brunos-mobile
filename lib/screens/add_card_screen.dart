@@ -22,50 +22,17 @@ class _AddCardScreenState extends State<AddCardScreen> {
   Widget build(BuildContext context) {
     return Consumer<CardViewModel>(builder: (context, cardViewModel, child) {
       return Scaffold(
-        backgroundColor: CustomColors.orangeColorTint,
-        appBar: const AppBarWithBackWidget(showPuppy: false, showCart: false,),
+        appBar: AppBarWithBackWidget(
+          showPuppy: false,
+          showCart: false,
+          heading: cardViewModel.getIsCardAdd ? 'Add New Card' : 'Card Detail',
+        ),
         body: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(
-                height: 10.h,
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: black18w500(
-                        data: cardViewModel.getIsCardAdd
-                            ? 'Add New Card'
-                            : 'Card Detail',
-                      ),
-                    ),
-                    SizedBox(
-                      width: 10.w,
-                    ),
-                    Visibility(
-                      visible: !cardViewModel.getIsCardAdd,
-                      child: TextButton(
-                        onPressed: () {
-                       /*   cardViewModel.callDeleteCardsApi().then((value) {
-                            if (value) {
-                              Navigator.pop(context);
-                              context.read<WalletViewModel>().callWalletDetailApi();
-                            }
-                          });*/
-                        },
-                        child: black14w500(
-                          data: 'Remove',
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: 10.h,
+                height: 20.h,
               ),
               CreditCardWidget(
                 cardNumber: cardViewModel.getCardNumber,
@@ -83,16 +50,16 @@ class _AddCardScreenState extends State<AddCardScreen> {
                 obscureInitialCardNumber: true,
                 obscureCardCvv: true,
                 isHolderNameVisible: true,
-                height: 175.h,
-                chipColor: CustomColors.color5,
+                height: 230.h,
+                chipColor: CustomColors.whiteColor,
                 textStyle: const TextStyle(
-                    color: CustomColors.color5, fontWeight: FontWeight.bold),
+                    color: CustomColors.whiteColor, fontWeight: FontWeight.bold),
                 width: MediaQuery.of(context).size.width,
                 isChipVisible: true,
                 isSwipeGestureEnabled: true,
                 animationDuration: const Duration(milliseconds: 1000),
-                frontCardBorder: Border.all(color: CustomColors.color5),
-                backCardBorder: Border.all(color: CustomColors.color5),
+                frontCardBorder: Border.all(color: CustomColors.orangeColorTint),
+                backCardBorder: Border.all(color: CustomColors.orangeColorTint),
                 /*customCardTypeIcons: <customCardTypeIcons>[
                   CustomCardTypeImage(
                     cardType: CardType.mastercard,
@@ -130,7 +97,7 @@ class _AddCardScreenState extends State<AddCardScreen> {
                     // callback to execute at the end of filling card data
                   },
                   cardNumberDecoration: InputDecoration(
-                    border:  OutlineInputBorder(
+                    border: const OutlineInputBorder(
                         borderSide: BorderSide(color: CustomColors.color5)),
                     labelText: 'Number',
                     labelStyle:
@@ -138,7 +105,7 @@ class _AddCardScreenState extends State<AddCardScreen> {
                     hintText: 'XXXX XXXX XXXX XXXX',
                   ),
                   expiryDateDecoration: InputDecoration(
-                    border:  OutlineInputBorder(
+                    border: const OutlineInputBorder(
                         borderSide: BorderSide(color: CustomColors.color5)),
                     labelText: 'Expired Date',
                     labelStyle:
@@ -146,7 +113,7 @@ class _AddCardScreenState extends State<AddCardScreen> {
                     hintText: 'XX/XX',
                   ),
                   cvvCodeDecoration: InputDecoration(
-                    border:  OutlineInputBorder(
+                    border: const OutlineInputBorder(
                         borderSide: BorderSide(color: CustomColors.color5)),
                     labelText: 'CVV',
                     labelStyle:
@@ -154,7 +121,7 @@ class _AddCardScreenState extends State<AddCardScreen> {
                     hintText: 'XXX',
                   ),
                   cardHolderDecoration: InputDecoration(
-                    border:  OutlineInputBorder(
+                    border: OutlineInputBorder(
                         borderSide: BorderSide(color: CustomColors.color5)),
                     labelText: 'Card Holder',
                     labelStyle:
@@ -182,7 +149,7 @@ class _AddCardScreenState extends State<AddCardScreen> {
                               activeColor: CustomColors.color6,
                               value: cardViewModel.getIsPrimaryCard,
                               onChanged: (value) async {
-                               /* await cardViewModel
+                                /* await cardViewModel
                                     .callSetCardPrimaryApi()
                                     .then((status) {
                                   if (status) {
@@ -212,7 +179,7 @@ class _AddCardScreenState extends State<AddCardScreen> {
                     colored: true,
                     text: 'Submit',
                     onPressed: () async {
-                     /* cardViewModel.callAddCardApi().then((value) {
+                      /* cardViewModel.callAddCardApi().then((value) {
                         if (value) {
                           Navigator.pop(context);
                           //context.read<WalletViewModel>().callWalletDetailApi();
