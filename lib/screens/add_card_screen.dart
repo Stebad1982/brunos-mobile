@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_credit_card/flutter_credit_card.dart';
 
@@ -18,6 +19,23 @@ class AddCardScreen extends StatefulWidget {
 }
 
 class _AddCardScreenState extends State<AddCardScreen> {
+  final controller = CardFormEditController();
+
+  @override
+  void initState() {
+    controller.addListener(update);
+    super.initState();
+  }
+
+  void update() => setState(() {});
+
+  @override
+  void dispose() {
+    controller.removeListener(update);
+    controller.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Consumer<CardViewModel>(builder: (context, cardViewModel, child) {
@@ -34,7 +52,43 @@ class _AddCardScreenState extends State<AddCardScreen> {
               SizedBox(
                 height: 20.h,
               ),
-              CreditCardWidget(
+              CardFormField(
+                controller: controller,
+              ),
+              customButton(
+                colored: true,
+                text: 'Submit',
+                onPressed: () async {
+                  await Stripe.instance.dangerouslyUpdateCardDetails(CardDetails(
+                    number: '4242424242424242',
+                    cvc: '123',
+                    expirationMonth: 12,
+                    expirationYear: 24,
+                  ));
+
+                  var token = await Stripe.instance.createToken(
+                    const CreateTokenParams.card(
+                      params: CardTokenParams(
+                        name: "test",
+                        address: Address(
+                          line1: "abc",
+                          line2: "xyz",
+                          city: "Alpha",
+                          state: "Beta",
+                          country: "xy",
+                          postalCode: "237482",
+                        ),
+                        currency: "aed",
+                        type: TokenType.Card,
+                      ),
+                    ),
+                  );
+
+                  String tokenId=token.id;
+                  print(tokenId);
+                },
+              ),
+              /*CreditCardWidget(
                 cardNumber: cardViewModel.getCardNumber,
                 expiryDate: cardViewModel.getExpiryDate,
                 cardHolderName: cardViewModel.getCardHolderName,
@@ -60,7 +114,7 @@ class _AddCardScreenState extends State<AddCardScreen> {
                 animationDuration: const Duration(milliseconds: 1000),
                 frontCardBorder: Border.all(color: CustomColors.orangeColorTint),
                 backCardBorder: Border.all(color: CustomColors.orangeColorTint),
-                /*customCardTypeIcons: <customCardTypeIcons>[
+                */ /*customCardTypeIcons: <customCardTypeIcons>[
                   CustomCardTypeImage(
                     cardType: CardType.mastercard,
                     cardImage: Image.asset(
@@ -69,7 +123,7 @@ class _AddCardScreenState extends State<AddCardScreen> {
                       width: 48,
                     ),
                   ),
-                ],*/
+                ],*/ /*
                 onCreditCardWidgetChange: (CreditCardBrand) {},
               ),
               Visibility(
@@ -149,14 +203,14 @@ class _AddCardScreenState extends State<AddCardScreen> {
                               activeColor: CustomColors.color6,
                               value: cardViewModel.getIsPrimaryCard,
                               onChanged: (value) async {
-                                /* await cardViewModel
+                                */ /* await cardViewModel
                                     .callSetCardPrimaryApi()
                                     .then((status) {
                                   if (status) {
                                     cardViewModel.setPrimaryCard(value);
                                    // context.read<WalletViewModel>().callWalletDetailApi();
                                   }
-                                });*/
+                                });*/ /*
                                 //addressViewModel.setIsDefault(value);
                               },
                             ),
@@ -179,16 +233,16 @@ class _AddCardScreenState extends State<AddCardScreen> {
                     colored: true,
                     text: 'Submit',
                     onPressed: () async {
-                      /* cardViewModel.callAddCardApi().then((value) {
+                      */ /* cardViewModel.callAddCardApi().then((value) {
                         if (value) {
                           Navigator.pop(context);
                           //context.read<WalletViewModel>().callWalletDetailApi();
                         }
-                      });*/
+                      });*/ /*
                     },
                   ),
                 ),
-              ),
+              ),*/
             ],
           ),
         ),

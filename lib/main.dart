@@ -15,6 +15,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
@@ -57,6 +58,7 @@ Future<void> main() async{
     statusBarIconBrightness: Brightness.dark, // status bar icon color
     systemNavigationBarIconBrightness: Brightness.dark, // color of navigation controls
   ));
+  Stripe.publishableKey = "pk_test_51O6BroGm97cexwqwxfjjreBlfINzslaj3IIVEvHsyuVEi96r3PHjQFFJxFdN7Bw2Tcbj07SG9pX3BHV9w7mELpAg00C53LHoNJ";
 
   configLoading();
   runApp(MultiProvider(
