@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_credit_card/credit_card_model.dart';
-
+import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
 
 class CardViewModel with ChangeNotifier {
   String _cardNumber = '';
@@ -10,14 +11,16 @@ class CardViewModel with ChangeNotifier {
   bool _isCardAdd = false;
   String _cvvCode = '';
   bool _isPrimaryCard = false;
- // CardDetailData? _cardDetailData;
+
+  // CardDetailData? _cardDetailData;
 //  final CardApiServices _cardApiServices = CardApiServices();
   bool _isCvvFocused = false;
   bool _cardTypeVisa = true;
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
- // AllCardResponse _allCardResponse = AllCardResponse();
 
- // AllCardResponse get getAllCardResponse => _allCardResponse;
+  // AllCardResponse _allCardResponse = AllCardResponse();
+
+  // AllCardResponse get getAllCardResponse => _allCardResponse;
 
   bool get getIsCardAdd => _isCardAdd;
 
@@ -25,7 +28,7 @@ class CardViewModel with ChangeNotifier {
 
   String get getCardNumber => _cardNumber;
 
- // CardDetailData get getCardDetailData => _cardDetailData!;
+  // CardDetailData get getCardDetailData => _cardDetailData!;
 
   bool get getCardTypeVisa => _cardTypeVisa;
 
@@ -43,12 +46,12 @@ class CardViewModel with ChangeNotifier {
   // }
 
   void setIsCardAdd(bool value) {
-    _isCardAdd =  value;
+    _isCardAdd = value;
     notifyListeners();
   }
 
   void setPrimaryCard(bool value) {
-    _isPrimaryCard =  value;
+    _isPrimaryCard = value;
     notifyListeners();
   }
 
@@ -92,76 +95,48 @@ class CardViewModel with ChangeNotifier {
     }
   }
 
-/*  Future<bool> callAllCardsApi() async {
-    EasyLoading.show(status: 'Please wait...');
+  Future<void> addCard() async {
     try {
-      final AllCardResponse response = await _cardApiServices.allCards();
-      setAllCardResponse(response);
-      if (_allCardResponse.status!) {
-        EasyLoading.dismiss();
-        return true;
-      } else {
-        EasyLoading.showError('${_allCardResponse.message}');
-        return false;
-      }
-    } catch (e) {
-      EasyLoading.showError(e.toString());
-      return false;
+      EasyLoading.show(status: 'Please Wait...');
+
+      final List<String> expMonthYear = _expiryDate.split('/');
+      print(expMonthYear);
+      await Stripe.instance.dangerouslyUpdateCardDetails(CardDetails(
+        number: _cardNumber,
+        cvc: _cvvCode,
+        expirationMonth: int.parse(expMonthYear[0]),
+        expirationYear: int.parse(expMonthYear[1]),
+      ));
+
+      var token = await Stripe.instance.createToken(
+        CreateTokenParams.card(
+          params: CardTokenParams(
+            name: _cardHolderName,
+            /*address: Address(
+            */ /*line1: "abc",
+            line2: "xyz",
+            city: "Alpha",
+            state: "Beta",
+            country: "xy",
+            postalCode: "237482",*/ /*
+          ),*/
+            currency: "aed",
+            type: TokenType.Card,
+          ),
+        ),
+      );
+
+      String tokenId = token.id;
+
+      final payment = await Stripe.instance.createPaymentMethod(
+        params: PaymentMethodParams.card(
+            paymentMethodData: PaymentMethodData.fromJson(
+                {"type": "card", "card[token]": tokenId})),
+      );
+      EasyLoading.dismiss();
+      print(payment.id);
+    } catch (exception) {
+      EasyLoading.showError(exception.toString());
     }
   }
-
-  Future<bool> callSetCardPrimaryApi() async {
-    EasyLoading.show(status: 'Please wait...');
-    try {
-      final AllCardResponse response = await _cardApiServices.primaryCard(cardId: _cardDetailData!.id!);
-      setAllCardResponse(response);
-      if (_allCardResponse.status!) {
-        EasyLoading.dismiss();
-        return true;
-      } else {
-        EasyLoading.showError('${_allCardResponse.message}');
-        return false;
-      }
-    } catch (e) {
-      EasyLoading.showError(e.toString());
-      return false;
-    }
-  }
-
-  Future<bool> callDeleteCardsApi() async {
-    EasyLoading.show(status: 'Please wait...');
-    try {
-      final AllCardResponse response = await _cardApiServices.deleteCards(cardId: _cardDetailData!.id!);
-      setAllCardResponse(response);
-      if (_allCardResponse.status!) {
-        EasyLoading.dismiss();
-        return true;
-      } else {
-        EasyLoading.showError('${_allCardResponse.message}');
-        return false;
-      }
-    } catch (e) {
-      EasyLoading.showError(e.toString());
-      return false;
-    }
-  }
-
-  Future<bool> callAddCardApi() async {
-    EasyLoading.show(status: 'Please wait...');
-    AddCardRequest addCartRequest = AddCardRequest(number: _cardNumber, type: _cardTypeVisa? 'VISA' : 'MASTER CARD', expDate: _expiryDate, cvc: _cvvCode, cardHolder:_cardHolderName);
-    try {
-      final AllCardResponse response = await _cardApiServices.addCards(addCardRequest: addCartRequest);
-      setAllCardResponse(response);
-      if (_allCardResponse.status!) {
-        EasyLoading.showSuccess(_allCardResponse.message!);
-        return true;
-      } else {
-        EasyLoading.showError('${_allCardResponse.message}');
-        return false;
-      }
-    } catch (e) {
-      EasyLoading.showError(e.toString());
-      return false;
-    }
-  }*/
 }
