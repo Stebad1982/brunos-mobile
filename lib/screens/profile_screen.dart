@@ -142,6 +142,9 @@ class ProfileScreen extends StatelessWidget {
                     color: CustomColors.greyColor,
                   )),
               ListTile(
+                onTap: (){
+                  Navigator.pushNamed(context, chooseCardRoute);
+                },
                   leading: SvgPicture.asset(
                     payCardIcon,
                     height: 24.h,

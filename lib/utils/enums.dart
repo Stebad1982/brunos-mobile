@@ -86,6 +86,8 @@ enum EndPoints {
   defaultPuppy('pet/default/'),
   createOrder('order/'),
   allOrder('order/'),
+  addCard('card/'),
+  allCards('card'),
   promoIsValid('promo-code/name/'),
   deleteAddress('user/location/');
 

@@ -1,3 +1,7 @@
+import 'package:brunos_kitchen/models/base_response_model.dart';
+import 'package:brunos_kitchen/models/requests/add_card_request.dart';
+import 'package:brunos_kitchen/models/responses/cards_response.dart';
+import 'package:brunos_kitchen/services/card_api_services.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_credit_card/credit_card_model.dart';
@@ -5,6 +9,8 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 
 class CardViewModel with ChangeNotifier {
+  final CardApiServices _cardApiServices = CardApiServices();
+  CardsResponse _cardsResponse = CardsResponse();
   String _cardNumber = '';
   String _expiryDate = '';
   String _cardHolderName = '';
@@ -21,6 +27,13 @@ class CardViewModel with ChangeNotifier {
   // AllCardResponse _allCardResponse = AllCardResponse();
 
   // AllCardResponse get getAllCardResponse => _allCardResponse;
+
+  CardsResponse get getCardResponse => _cardsResponse;
+
+  void setCardResponse (CardsResponse value){
+    _cardsResponse = value;
+    notifyListeners();
+  }
 
   bool get getIsCardAdd => _isCardAdd;
 
@@ -95,7 +108,7 @@ class CardViewModel with ChangeNotifier {
     }
   }
 
-  Future<void> addCard() async {
+  Future<bool> callAddCard() async {
     try {
       EasyLoading.show(status: 'Please Wait...');
 
@@ -133,10 +146,39 @@ class CardViewModel with ChangeNotifier {
             paymentMethodData: PaymentMethodData.fromJson(
                 {"type": "card", "card[token]": tokenId})),
       );
-      EasyLoading.dismiss();
-      print(payment.id);
+
+      AddCardRequest addCardRequest = AddCardRequest(cardPM: payment.id);
+
+      final BaseResponseModel response =
+          await _cardApiServices.addCardApi(addCardRequest: addCardRequest);
+      if (response.isSuccess!) {
+        EasyLoading.dismiss();
+        return true;
+      } else {
+        EasyLoading.showError('${response.message}');
+        return false;
+      }
     } catch (exception) {
       EasyLoading.showError(exception.toString());
+      return false;
+    }
+  }
+
+  Future<bool> callCardsApi() async {
+    EasyLoading.show(status: 'Please Wait ...');
+    try {
+      final CardsResponse response = await _cardApiServices.allCardsApi();
+      if (response.isSuccess!) {
+        setCardResponse(response);
+        EasyLoading.dismiss();
+        return true;
+      } else {
+        EasyLoading.showError('${response.message}');
+        return false;
+      }
+    } catch (e) {
+      EasyLoading.showError(e.toString());
+      return false;
     }
   }
 }

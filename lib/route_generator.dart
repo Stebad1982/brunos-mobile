@@ -5,6 +5,7 @@ import 'package:brunos_kitchen/screens/address_detail_screen.dart';
 import 'package:brunos_kitchen/screens/address_screen.dart';
 import 'package:brunos_kitchen/screens/blogs_screen.dart';
 import 'package:brunos_kitchen/screens/bottom_navigation_screen.dart';
+import 'package:brunos_kitchen/screens/card_list_screen.dart';
 import 'package:brunos_kitchen/screens/cart_screen.dart';
 import 'package:brunos_kitchen/screens/checkout_screen.dart';
 import 'package:brunos_kitchen/screens/choose_your_plan_screen.dart';
@@ -81,6 +82,8 @@ const String helpRoute = '/help';
 const String newsRoute = '/news';
 const String orderDetailRoute = '/orderDetail';
 const String addCardRoute = 'addCard';
+const String chooseCardRoute = 'chooseCard';
+
 
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -171,6 +174,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const NewsScreen());
       case orderDetailRoute:
         return MaterialPageRoute(builder: (_) => const OrderDetailScreen());
+      case chooseCardRoute:
+        return MaterialPageRoute(builder: (_) => const CardListScreen());
       case addCardRoute:
         return MaterialPageRoute(builder: (_) => const AddCardScreen());
 
