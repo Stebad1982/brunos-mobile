@@ -369,46 +369,50 @@ class CheckoutScreen extends StatelessWidget {
                     SizedBox(
                       height: 24.h,
                     ),
-                    InkWell(
-                      onTap: () {
-                        redeemPawPointsBottomSheetWidget();
-                      },
-                      child: Container(
-                        width: double.infinity,
-                        decoration: ShapeDecoration(
-                          color: CustomColors.whiteColor,
-                          shape: RoundedRectangleBorder(
-                            side: const BorderSide(
-                                width: 0.50, color: CustomColors.greyColor),
-                            borderRadius: BorderRadius.circular(12),
+                    Visibility(
+                      visible: context.watch<AuthViewModel>().getAuthResponse.data!.availablePoints != 0,
+                      child: InkWell(
+                        onTap: () {
+                          cartViewModel.setPawPoints(context.read<AuthViewModel>().getAuthResponse.data!.availablePoints!/3);
+                          redeemPawPointsBottomSheetWidget();
+                        },
+                        child: Container(
+                          width: double.infinity,
+                          decoration: ShapeDecoration(
+                            color: CustomColors.whiteColor,
+                            shape: RoundedRectangleBorder(
+                              side: const BorderSide(
+                                  width: 0.50, color: CustomColors.greyColor),
+                              borderRadius: BorderRadius.circular(12),
+                            ),
                           ),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.all(20),
-                          child: Row(
-                            children: [
-                              SvgPicture.asset(
-                                couponCoin,
-                                height: 40.h,
-                              ),
-                              SizedBox(
-                                width: 10.w,
-                              ),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  black12w500Centre(
-                                      data: 'Your accumulated Paw Points'),
-                                  black16w500(data: '64468'),
-                                ],
-                              ),
-                              const Spacer(),
-                              const Icon(
-                                Icons.arrow_forward_ios_rounded,
-                                size: 15,
-                                color: CustomColors.greyColor,
-                              )
-                            ],
+                          child: Padding(
+                            padding: const EdgeInsets.all(20),
+                            child: Row(
+                              children: [
+                                SvgPicture.asset(
+                                  couponCoin,
+                                  height: 40.h,
+                                ),
+                                SizedBox(
+                                  width: 10.w,
+                                ),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    black12w500Centre(
+                                        data: 'Your accumulated Paw Points'),
+                                    black16w500(data: context.watch<AuthViewModel>().getAuthResponse.data!.availablePoints.toString()),
+                                  ],
+                                ),
+                                const Spacer(),
+                                const Icon(
+                                  Icons.arrow_forward_ios_rounded,
+                                  size: 15,
+                                  color: CustomColors.greyColor,
+                                )
+                              ],
+                            ),
                           ),
                         ),
                       ),

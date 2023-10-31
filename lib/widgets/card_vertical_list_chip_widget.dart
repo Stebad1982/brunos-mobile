@@ -34,7 +34,48 @@ Widget cardVerticalListChipWidget({required CardModel cardDetail}) {
           ),
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 20),
-            child: black10w400(data: cardDetail.cardPM!),
+            child: Row(
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(width: 230.w, child: black14w500(data: 'Waleed Ahmed'),),
+                    SizedBox(width: 300, child: grey12w500(data: '**** **** **** 4242'),),
+                    SizedBox(width: 300, child: grey12w500(data: 'Expiry: 12/24'),)
+                  ],
+                ),
+                const Spacer(),
+                Column(
+                  children: [
+                    InkWell(
+                      onTap: () {
+                      },
+                      child: Container(
+                        decoration: ShapeDecoration(
+                          color: CustomColors.whiteColor,
+                          shape: RoundedRectangleBorder(
+                            side: const BorderSide(
+                                width: 0.75,
+                                color: CustomColors.greyMediumColor),
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                        ),
+                        child: const Padding(
+                          padding: EdgeInsets.all(10),
+                          child: Icon(
+                            Icons.delete_outline,
+                            size: 20,
+                            color: CustomColors.orangeColor,
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 20.h,),
+                    orange14w500(data: 'Visa'),
+                  ],
+                )
+              ],
+            ),
           ),
         ),
       ),
