@@ -67,7 +67,7 @@ class CartViewModel with ChangeNotifier {
             .data!
             .location!
             .sId!,
-        paymentMethod: '',
+        paymentMethod: 'pm_1O87QsGm97cexwqwxqWlI7zZ',
         discountPercentage: 10,
         deliveryDate: DateTimeFormatter.showDateFormat3(_selectedDay),
         promoCodeId: _promoCodeController.text,

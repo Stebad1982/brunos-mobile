@@ -147,7 +147,8 @@ class CardViewModel with ChangeNotifier {
                 {"type": "card", "card[token]": tokenId})),
       );
 
-      AddCardRequest addCardRequest = AddCardRequest(cardPM: payment.id);
+      print(payment.id);
+      AddCardRequest addCardRequest = AddCardRequest(cardPM: payment.id, cardHolder: _cardHolderName);
 
       final BaseResponseModel response =
           await _cardApiServices.addCardApi(addCardRequest: addCardRequest);
