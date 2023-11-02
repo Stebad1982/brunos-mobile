@@ -20,6 +20,8 @@ class CartViewModel with ChangeNotifier {
   final PromoApiServices _promoApiServices = PromoApiServices();
   num _cartTotalPrice = 0;
   num _promoCodeDiscount = 0;
+  double _pawPoints = 0;
+  double _pawSelectedPoints = 0;
   num _checkOutTotal = 0;
   final int _deliveryCharges = 10;
   int? _selectedIndex;
@@ -27,6 +29,20 @@ class CartViewModel with ChangeNotifier {
   final TextEditingController _promoCodeController = TextEditingController();
   DateTime _focusedDay = DateTime.now().add(const Duration(days: 4));
   DateTime _selectedDay = DateTime.now().add(const Duration(days: 4));
+
+  double get getPawPoints => _pawPoints;
+
+  void setPawPoints(double value){
+    _pawPoints = value;
+    notifyListeners();
+  }
+
+  double get getPawSelectedPoints => _pawSelectedPoints;
+
+  void setPawSelectedPoints(double value){
+    _pawSelectedPoints = value;
+    notifyListeners();
+  }
 
   num get getPromoCodeDiscount => _promoCodeDiscount;
 
