@@ -100,7 +100,7 @@ Future redeemPawPointsBottomSheetWidget() {
                         .watch<AuthViewModel>()
                         .getAuthResponse
                         .data!
-                        .availablePoints!,
+                        .availablePoints!.toDouble(),
                     onChanged: (double value) {
                       cartViewModel.setPawPoints(value);
                     },

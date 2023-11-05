@@ -9,6 +9,7 @@ import 'package:flutter_credit_card/flutter_credit_card.dart';
 import '../utils/custom_buttons.dart';
 import '../utils/custom_colors.dart';
 import '../utils/custom_font_style.dart';
+import '../view_models/auth_view_model.dart';
 import '../view_models/card_view_model.dart';
 import '../widgets/app_bar_with_back_widget.dart';
 
@@ -20,7 +21,6 @@ class AddCardScreen extends StatefulWidget {
 }
 
 class _AddCardScreenState extends State<AddCardScreen> {
-  bool _showSubmitButton = false;
 
   /* final controller = CardFormEditController();
 
@@ -124,9 +124,7 @@ class _AddCardScreenState extends State<AddCardScreen> {
                       cvvValidator: (String? cvv) {},
                       cardHolderValidator: (String? cardHolderName) {},
                       onFormComplete: () {
-                        setState(() {
-                          _showSubmitButton = true;
-                        });
+
                         // callback to execute at the end of filling card data
                       },
                       cardNumberDecoration: InputDecoration(
@@ -245,17 +243,21 @@ class _AddCardScreenState extends State<AddCardScreen> {
                   child: Padding(
                     padding: const EdgeInsets.all(20),
                     child: Visibility(
-                      visible: cardViewModel.getIsCardAdd && _showSubmitButton,
+                      visible: cardViewModel.getIsCardAdd ,
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 20),
                         child: customButton(
                           colored: true,
                           text: 'Submit',
                           onPressed: () async {
-                            await cardViewModel.callAddCard().then((value) {
+                            await context
+                                .read<CardViewModel>()
+                                .callAddCard().then((value) => {
                               if(value){
-                                Navigator.pop(context);
-                                cardViewModel.callCardsApi();
+                                Navigator.pop(context),
+                                context
+                                    .read<AuthViewModel>()
+                                    .callSplash(showLoader: true)
                               }
                             });
                           },

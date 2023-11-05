@@ -87,6 +87,7 @@ enum EndPoints {
   createOrder('order/'),
   allOrder('order/'),
   addCard('card/'),
+  deleteCard('card/'),
   allCards('card'),
   promoIsValid('promo-code/name/'),
   deleteAddress('user/location/');

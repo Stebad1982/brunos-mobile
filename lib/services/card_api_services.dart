@@ -30,4 +30,14 @@ class CardApiServices {
     CardsResponse cardsResponse = CardsResponse.fromJson(parsed);
     return cardsResponse;
   }
+
+  Future<BaseResponseModel> deleteCardApi({required String cardId}) async {
+    final response = await _httpService.httpRequest(
+        endPoint: EndPoints.deleteCard,
+        requestType: 'DEL',
+        params: cardId);
+    final parsed = json.decode(response.body);
+    BaseResponseModel baseResponseModel = BaseResponseModel.fromJson(parsed);
+    return baseResponseModel;
+  }
 }

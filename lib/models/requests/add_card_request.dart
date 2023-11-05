@@ -1,14 +1,11 @@
 class AddCardRequest {
-  String cardPM;
-  String cardHolder;
-
-  AddCardRequest({required this.cardPM, required this.cardHolder});
+  String paymentMethodId;
+  AddCardRequest({required this.paymentMethodId});
 
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['cardPM'] = this.cardPM;
-    data['cardHolder'] = this.cardHolder;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['paymentMethodId'] = paymentMethodId;
     return data;
   }
 }

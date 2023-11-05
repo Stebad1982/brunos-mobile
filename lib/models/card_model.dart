@@ -1,21 +1,36 @@
 class CardModel {
   String? sId;
-  String? cardPM;
-  String? userId;
+  bool? isDefault;
+  String? brand;
+  String? paymentMethodId;
+  int? expMonth;
+  int? expYear;
+  String? last4;
 
-  CardModel({this.sId, this.cardPM, this.userId});
+  CardModel(
+      {this.sId,
+      this.isDefault,
+      this.brand,
+      this.paymentMethodId,
+      this.expMonth,
+      this.expYear,
+      this.last4});
 
   CardModel.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
-    cardPM = json['cardPM'];
-    userId = json['userId'];
+    isDefault = json['isDefault'];
+    brand = json['brand'];
+    paymentMethodId = json['paymentMethodId'];
+    expMonth = json['expMonth'];
+    expYear = json['expYear'];
+    last4 = json['last4'];
   }
 
-  Map<String, dynamic> toJson() {
+/*  Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['_id'] = this.sId;
     data['cardPM'] = this.cardPM;
     data['userId'] = this.userId;
     return data;
-  }
+  }*/
 }

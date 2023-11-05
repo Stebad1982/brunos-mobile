@@ -48,7 +48,7 @@ class _CardListScreenState extends State<CardListScreen> {
               children: [
                 InkWell(
                   onTap: (){
-                    context.read<CardViewModel>().setIsCardAdd(true);
+                    cardViewModel.setIsCardAdd(true);
                     Navigator.pushNamed(context, addCardRoute);
                   },
                   child: Padding(

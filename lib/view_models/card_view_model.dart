@@ -1,4 +1,5 @@
 import 'package:brunos_kitchen/models/base_response_model.dart';
+import 'package:brunos_kitchen/models/card_model.dart';
 import 'package:brunos_kitchen/models/requests/add_card_request.dart';
 import 'package:brunos_kitchen/models/responses/cards_response.dart';
 import 'package:brunos_kitchen/services/card_api_services.dart';
@@ -18,7 +19,7 @@ class CardViewModel with ChangeNotifier {
   String _cvvCode = '';
   bool _isPrimaryCard = false;
 
-  // CardDetailData? _cardDetailData;
+   CardModel? _cardDetailData;
 //  final CardApiServices _cardApiServices = CardApiServices();
   bool _isCvvFocused = false;
   bool _cardTypeVisa = true;
@@ -41,7 +42,7 @@ class CardViewModel with ChangeNotifier {
 
   String get getCardNumber => _cardNumber;
 
-  // CardDetailData get getCardDetailData => _cardDetailData!;
+  CardModel get getCardDetailData => _cardDetailData!;
 
   bool get getCardTypeVisa => _cardTypeVisa;
 
@@ -76,15 +77,15 @@ class CardViewModel with ChangeNotifier {
     notifyListeners();
   }
 
-  // void setCardDetailData(CardDetailData value) {
-  //   _cardDetailData = value;
-  //   _expiryDate = _cardDetailData!.expDate!;
-  //   _cardNumber = '0000 0000 0000 ${_cardDetailData!.endFourDigit}';
-  //   _cardHolderName = _cardDetailData!.cardHolder!;
-  //   _cvvCode = _cardDetailData!.cvc!;
-  //   setPrimaryCard(_cardDetailData!.isPrimary!);
-  //   notifyListeners();
-  // }
+  void setCardDetailData(CardModel value) {
+    _cardDetailData = value;
+    _expiryDate = '${_cardDetailData!.expMonth!}/${_cardDetailData!.expYear!}';
+    _cardNumber = '0000 0000 0000 ${_cardDetailData!.last4}';
+    //_cardHolderName = _cardDetailData!.name!;
+   // _cvvCode = _cardDetailData!.cvc!;
+    setPrimaryCard(true);
+    notifyListeners();
+  }
 
   void onCreditCardModelChange(CreditCardModel? creditCardModel) {
     _cardNumber = creditCardModel!.cardNumber;
@@ -148,12 +149,13 @@ class CardViewModel with ChangeNotifier {
       );
 
       print(payment.id);
-      AddCardRequest addCardRequest = AddCardRequest(cardPM: payment.id, cardHolder: _cardHolderName);
+      AddCardRequest addCardRequest = AddCardRequest(paymentMethodId: payment.id);
 
       final BaseResponseModel response =
           await _cardApiServices.addCardApi(addCardRequest: addCardRequest);
       if (response.isSuccess!) {
         EasyLoading.dismiss();
+        await callCardsApi();
         return true;
       } else {
         EasyLoading.showError('${response.message}');
@@ -182,4 +184,24 @@ class CardViewModel with ChangeNotifier {
       return false;
     }
   }
+
+  Future<bool> callDeleteCard({required String cardId}) async {
+    try {
+      EasyLoading.show(status: 'Please Wait...');
+      final BaseResponseModel response =
+      await _cardApiServices.deleteCardApi(cardId: cardId);
+      if (response.isSuccess!) {
+        EasyLoading.dismiss();
+        await callCardsApi();
+        return true;
+      } else {
+        EasyLoading.showError('${response.message}');
+        return false;
+      }
+    } catch (exception) {
+      EasyLoading.showError(exception.toString());
+      return false;
+    }
+  }
+
 }

@@ -33,7 +33,7 @@ class AuthData {
   String? phoneNumber;
   bool? isVerified;
   bool? isGuest;
-  double? availablePoints;
+  num? availablePoints;
   String? media;
   int? petsCount;
   PuppyModel? pet;
