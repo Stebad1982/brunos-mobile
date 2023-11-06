@@ -21,7 +21,6 @@ class AddCardScreen extends StatefulWidget {
 }
 
 class _AddCardScreenState extends State<AddCardScreen> {
-
   /* final controller = CardFormEditController();
 
   @override
@@ -124,39 +123,95 @@ class _AddCardScreenState extends State<AddCardScreen> {
                       cvvValidator: (String? cvv) {},
                       cardHolderValidator: (String? cardHolderName) {},
                       onFormComplete: () {
-
                         // callback to execute at the end of filling card data
                       },
                       cardNumberDecoration: InputDecoration(
-                        border: const OutlineInputBorder(
-                            borderSide: BorderSide(color: CustomColors.color5)),
-                        labelText: 'Number',
+                        enabledBorder: const OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.transparent),
+                            borderRadius: BorderRadius.all(Radius.circular(15))),
+                        hintStyle: TextStyle(
+                          fontFamily: 'CircularStd',
+                          fontSize: 14.sp,
+                          color: CustomColors.greyColor,
+                        ),
+                        fillColor: CustomColors.lightGreyColor,
+                        filled: true,
+                        focusColor: CustomColors.orangeColor,
+                        //  labelText: 'Number',
                         labelStyle: TextStyle(
-                            color: CustomColors.color6, fontSize: 12.sp),
-                        hintText: 'XXXX XXXX XXXX XXXX',
+                            color: CustomColors.orangeColor, fontSize: 12.sp),
+                        hintText: 'Card Number',
+                        focusedBorder: const OutlineInputBorder(
+                            borderSide:
+                                BorderSide(color: CustomColors.orangeColor),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(15))),
                       ),
                       expiryDateDecoration: InputDecoration(
-                        border: const OutlineInputBorder(
-                            borderSide: BorderSide(color: CustomColors.color5)),
-                        labelText: 'Expired Date',
+                        enabledBorder: const OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.transparent),
+                            borderRadius: BorderRadius.all(Radius.circular(15))),
+                        hintStyle: TextStyle(
+                          fontFamily: 'CircularStd',
+                          fontSize: 14.sp,
+                          color: CustomColors.greyColor,
+                        ),
+                        fillColor: CustomColors.lightGreyColor,
+                        filled: true,
+                        focusColor: CustomColors.orangeColor,
+                        //  labelText: 'Number',
                         labelStyle: TextStyle(
-                            color: CustomColors.color6, fontSize: 12.sp),
-                        hintText: 'XX/XX',
+                            color: CustomColors.orangeColor, fontSize: 12.sp),
+                        hintText: 'Expiry Date',
+                        focusedBorder: const OutlineInputBorder(
+                            borderSide:
+                            BorderSide(color: CustomColors.orangeColor),
+                            borderRadius:
+                            BorderRadius.all(Radius.circular(15))),
                       ),
                       cvvCodeDecoration: InputDecoration(
-                        border: const OutlineInputBorder(
-                            borderSide: BorderSide(color: CustomColors.color5)),
-                        labelText: 'CVV',
+                        enabledBorder: const OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.transparent),
+                            borderRadius: BorderRadius.all(Radius.circular(15))),
+                        hintStyle: TextStyle(
+                          fontFamily: 'CircularStd',
+                          fontSize: 14.sp,
+                          color: CustomColors.greyColor,
+                        ),
+                        fillColor: CustomColors.lightGreyColor,
+                        filled: true,
+                        focusColor: CustomColors.orangeColor,
+                        //  labelText: 'Number',
                         labelStyle: TextStyle(
-                            color: CustomColors.color6, fontSize: 12.sp),
-                        hintText: 'XXX',
+                            color: CustomColors.orangeColor, fontSize: 12.sp),
+                        hintText: 'cvv',
+                        focusedBorder: const OutlineInputBorder(
+                            borderSide:
+                            BorderSide(color: CustomColors.orangeColor),
+                            borderRadius:
+                            BorderRadius.all(Radius.circular(15))),
                       ),
                       cardHolderDecoration: InputDecoration(
-                        border: const OutlineInputBorder(
-                            borderSide: BorderSide(color: CustomColors.color5)),
-                        labelText: 'Card Holder',
+                        enabledBorder: const OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.transparent),
+                            borderRadius: BorderRadius.all(Radius.circular(15))),
+                        hintStyle: TextStyle(
+                          fontFamily: 'CircularStd',
+                          fontSize: 14.sp,
+                          color: CustomColors.greyColor,
+                        ),
+                        fillColor: CustomColors.lightGreyColor,
+                        filled: true,
+                        focusColor: CustomColors.orangeColor,
+                        //  labelText: 'Number',
                         labelStyle: TextStyle(
-                            color: CustomColors.color6, fontSize: 12.sp),
+                            color: CustomColors.orangeColor, fontSize: 12.sp),
+                        hintText: 'Card Holder Name',
+                        focusedBorder: const OutlineInputBorder(
+                            borderSide:
+                            BorderSide(color: CustomColors.orangeColor),
+                            borderRadius:
+                            BorderRadius.all(Radius.circular(15))),
                       ),
                     ),
                   ),
@@ -243,7 +298,7 @@ class _AddCardScreenState extends State<AddCardScreen> {
                   child: Padding(
                     padding: const EdgeInsets.all(20),
                     child: Visibility(
-                      visible: cardViewModel.getIsCardAdd ,
+                      visible: cardViewModel.getIsCardAdd,
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 20),
                         child: customButton(
@@ -252,14 +307,16 @@ class _AddCardScreenState extends State<AddCardScreen> {
                           onPressed: () async {
                             await context
                                 .read<CardViewModel>()
-                                .callAddCard().then((value) => {
-                              if(value){
-                                Navigator.pop(context),
-                                context
-                                    .read<AuthViewModel>()
-                                    .callSplash(showLoader: true)
-                              }
-                            });
+                                .callAddCard()
+                                .then((value) => {
+                                      if (value)
+                                        {
+                                          Navigator.pop(context),
+                                          context
+                                              .read<AuthViewModel>()
+                                              .callSplash(showLoader: true)
+                                        }
+                                    });
                           },
                         ),
                       ),
