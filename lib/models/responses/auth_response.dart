@@ -1,4 +1,5 @@
 import 'package:brunos_kitchen/models/base_response_model.dart';
+import 'package:brunos_kitchen/models/card_model.dart';
 
 import '../address_model.dart';
 import '../puppy_model.dart';
@@ -33,6 +34,7 @@ class AuthData {
   String? phoneNumber;
   bool? isVerified;
   bool? isGuest;
+  CardModel? card;
   num? availablePoints;
   String? media;
   int? petsCount;
@@ -51,6 +53,7 @@ class AuthData {
         this.media,
         this.petsCount,
         this.pet,
+        this.card,
         this.isGuest,
         this.location,
         this.availablePoints,
@@ -66,6 +69,7 @@ class AuthData {
     isVerified = json['isVerified'];
     media = json['media'];
     isGuest = json['isGuest'];
+    card = json['card'] != null ? CardModel.fromJson(json['card']) : null;
     availablePoints = json['availablePoints'];
     petsCount = json['petsCount'];
     pet = json['pet'] != null ? PuppyModel.fromJson(json['pet']) : null;
@@ -87,6 +91,9 @@ class AuthData {
     data['isVerified'] = this.isVerified;
     data['availablePoints'] = this.availablePoints;
     data['media'] = this.media;
+    if (this.card != null) {
+      data['card'] = this.card!.toJson();
+    }
     data['petsCount'] = this.petsCount;
     if (this.pet != null) {
       data['pet'] = this.pet!.toJson();

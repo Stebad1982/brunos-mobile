@@ -26,11 +26,15 @@ class CardModel {
     last4 = json['last4'];
   }
 
-/*  Map<String, dynamic> toJson() {
+  Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['_id'] = this.sId;
-    data['cardPM'] = this.cardPM;
-    data['userId'] = this.userId;
+    data['isDefault'] = this.isDefault;
+    data['brand'] = this.brand;
+    data['paymentMethodId'] = this.paymentMethodId;
+    data['expMonth'] = this.expMonth;
+    data['expYear'] = this.expYear;
+    data['last4'] = this.last4;
     return data;
-  }*/
+  }
 }

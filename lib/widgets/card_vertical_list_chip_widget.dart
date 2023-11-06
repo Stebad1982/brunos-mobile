@@ -25,7 +25,9 @@ Widget cardVerticalListChipWidget({required CardModel cardDetail}) {
   return Column(
     children: [
       InkWell(
-        onTap: () {},
+        onTap: () {
+          navigatorKey.currentContext!.read<AuthViewModel>().setCard(cardDetail);
+        },
         child: Container(
           width: double.infinity,
           decoration: ShapeDecoration(
@@ -55,31 +57,49 @@ Widget cardVerticalListChipWidget({required CardModel cardDetail}) {
                   ],
                 ),
                 const Spacer(),
-                InkWell(
-                  onTap: () async {
-                    navigatorKey.currentContext!.read<CardViewModel>().setIsCardAdd(false);
-                    navigatorKey.currentContext!.read<CardViewModel>().setCardDetailData(cardDetail);
-                    Navigator.pushNamed(navigatorKey.currentContext!, addCardRoute);
-                  //  deleteCardConfirmationDialog(context: navigatorKey.currentContext!, cardId: cardDetail.sId!, );
-                  },
-                  child: Container(
-                    decoration: ShapeDecoration(
-                      color: CustomColors.whiteColor,
-                      shape: RoundedRectangleBorder(
-                        side: const BorderSide(
-                            width: 0.75, color: CustomColors.greyMediumColor),
-                        borderRadius: BorderRadius.circular(12),
+                Column(
+                  children: [
+                    Visibility(
+                      visible: cardDetail.isDefault!,
+                      child: Container(
+                          decoration: const BoxDecoration(
+                              borderRadius:
+                              BorderRadius.all(Radius.circular(20)),
+                              color: CustomColors.orangeColor),
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 10.0, vertical: 2),
+                            child: white12w400(data: 'Default'),
+                          )),
+                    ),
+                    SizedBox(height: 10.h,),
+                    InkWell(
+                      onTap: () async {
+                        navigatorKey.currentContext!.read<CardViewModel>().setIsCardAdd(false);
+                        navigatorKey.currentContext!.read<CardViewModel>().setCardDetailData(cardDetail);
+                        Navigator.pushNamed(navigatorKey.currentContext!, addCardRoute);
+                      //  deleteCardConfirmationDialog(context: navigatorKey.currentContext!, cardId: cardDetail.sId!, );
+                      },
+                      child: Container(
+                        decoration: ShapeDecoration(
+                          color: CustomColors.whiteColor,
+                          shape: RoundedRectangleBorder(
+                            side: const BorderSide(
+                                width: 0.75, color: CustomColors.greyMediumColor),
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                        ),
+                        child: const Padding(
+                          padding: EdgeInsets.all(10),
+                          child: Icon(
+                            Icons.delete_outline,
+                            size: 20,
+                            color: CustomColors.orangeColor,
+                          ),
+                        ),
                       ),
                     ),
-                    child: const Padding(
-                      padding: EdgeInsets.all(10),
-                      child: Icon(
-                        Icons.delete_outline,
-                        size: 20,
-                        color: CustomColors.orangeColor,
-                      ),
-                    ),
-                  ),
+                  ],
                 ),
               ],
             ),

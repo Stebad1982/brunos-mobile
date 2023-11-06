@@ -280,7 +280,7 @@ class CheckoutScreen extends StatelessWidget {
                     InkWell(
                       onTap: () {
                         context.read<CardViewModel>().setIsCardAdd(true);
-                        Navigator.pushNamed(context, addCardRoute);
+                        Navigator.pushNamed(context, chooseCardRoute);
                       },
                       child: Container(
                         width: double.infinity,
@@ -295,13 +295,53 @@ class CheckoutScreen extends StatelessWidget {
                         child: Padding(
                           padding: const EdgeInsets.all(20),
                           child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               SvgPicture.asset(payCardIcon),
+                              SizedBox(width: 5.w,),
                               SizedBox(
                                 width: 2.w,
                               ),
-                              lightBlack14w400Centre(data: 'Payment method'),
+                              context
+                                          .watch<AuthViewModel>()
+                                          .getAuthResponse
+                                          .data!
+                                          .card !=
+                                      null
+                                  ? Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  orange18w500(data: context
+                                      .watch<AuthViewModel>()
+                                      .getAuthResponse
+                                      .data!
+                                      .card!.brand!),
+                                  SizedBox(
+                                    height: 5.h,
+                                  ),
+                                  grey12w500(data: '**** **** **** ${context
+                                      .watch<AuthViewModel>()
+                                      .getAuthResponse
+                                      .data!
+                                      .card!.last4}'),
+                                  SizedBox(
+                                    height: 5.h,
+                                  ),
+                                  grey12w500(
+                                      data:
+                                      'Expiry: ${context
+                                          .watch<AuthViewModel>()
+                                          .getAuthResponse
+                                          .data!
+                                          .card!.expMonth}/${context
+                                          .watch<AuthViewModel>()
+                                          .getAuthResponse
+                                          .data!
+                                          .card!.expYear}'),
+                                ],
+                              )
+                                  : lightBlack14w400Centre(
+                                      data: 'Payment method'),
                               const Spacer(),
                               const Icon(
                                 Icons.arrow_forward_ios_rounded,
@@ -370,10 +410,20 @@ class CheckoutScreen extends StatelessWidget {
                       height: 24.h,
                     ),
                     Visibility(
-                      visible: context.watch<AuthViewModel>().getAuthResponse.data!.availablePoints != 0,
+                      visible: context
+                              .watch<AuthViewModel>()
+                              .getAuthResponse
+                              .data!
+                              .availablePoints !=
+                          0,
                       child: InkWell(
                         onTap: () {
-                          cartViewModel.setPawPoints(context.read<AuthViewModel>().getAuthResponse.data!.availablePoints!/3);
+                          cartViewModel.setPawPoints(context
+                                  .read<AuthViewModel>()
+                                  .getAuthResponse
+                                  .data!
+                                  .availablePoints! /
+                              3);
                           redeemPawPointsBottomSheetWidget();
                         },
                         child: Container(
@@ -402,7 +452,13 @@ class CheckoutScreen extends StatelessWidget {
                                   children: [
                                     black12w500Centre(
                                         data: 'Your accumulated Paw Points'),
-                                    black16w500(data: context.watch<AuthViewModel>().getAuthResponse.data!.availablePoints.toString()),
+                                    black16w500(
+                                        data: context
+                                            .watch<AuthViewModel>()
+                                            .getAuthResponse
+                                            .data!
+                                            .availablePoints
+                                            .toString()),
                                   ],
                                 ),
                                 const Spacer(),
@@ -582,10 +638,12 @@ class CheckoutScreen extends StatelessWidget {
                             lightBlack14w400Centre(
                                 data: 'Promo Rewarded Amount'),
                             const Spacer(),
-                            black16w500(data: cartViewModel.getPromoCodeDiscount.toString())
+                            black16w500(
+                                data: cartViewModel.getPromoCodeDiscount
+                                    .toString())
                           ],
                         ),
-                       /* Row(
+                        /* Row(
                           children: [
                             lightBlack14w400Centre(
                                 data: 'Points Rewarded Amount'),
