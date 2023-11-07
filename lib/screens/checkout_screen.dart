@@ -20,6 +20,7 @@ import '../utils/enums.dart';
 import '../utils/images.dart';
 import '../view_models/plans_view_model.dart';
 import '../widgets/app_bar_with_back_widget.dart';
+import '../widgets/dialogs/checkout_confirmation_dialog.dart';
 import '../widgets/dialogs/discription_dialog.dart';
 import '../widgets/redeem_paw_points_bottom_sheet_widget.dart';
 
@@ -410,45 +411,55 @@ class CheckoutScreen extends StatelessWidget {
                     SizedBox(
                       height: 24.h,
                     ),
-                    Visibility(
-                      visible: context
-                              .watch<AuthViewModel>()
-                              .getAuthResponse
-                              .data!
-                              .availablePoints !=
-                          0,
-                      child: InkWell(
-                        onTap: () {
-                          cartViewModel.setPawPoints(context
-                                  .read<AuthViewModel>()
-                                  .getAuthResponse
-                                  .data!
-                                  .availablePoints! /
-                              3);
-                          redeemPawPointsBottomSheetWidget();
-                        },
-                        child: Container(
-                          width: double.infinity,
-                          decoration: ShapeDecoration(
-                            color: CustomColors.whiteColor,
-                            shape: RoundedRectangleBorder(
-                              side: const BorderSide(
-                                  width: 0.50, color: CustomColors.greyColor),
-                              borderRadius: BorderRadius.circular(12),
-                            ),
+                    InkWell(
+                      onTap: context
+                          .watch<AuthViewModel>()
+                          .getAuthResponse
+                          .data!
+                          .availablePoints !=
+                          0? () {
+                        cartViewModel.setPawPoints(context
+                                .read<AuthViewModel>()
+                                .getAuthResponse
+                                .data!
+                                .availablePoints! /
+                            3);
+                        redeemPawPointsBottomSheetWidget();
+                      }: (){},
+                      child: Container(
+                        width: double.infinity,
+                        decoration: ShapeDecoration(
+                          color: CustomColors.whiteColor,
+                          shape: RoundedRectangleBorder(
+                            side: const BorderSide(
+                                width: 0.50, color: CustomColors.greyColor),
+                            borderRadius: BorderRadius.circular(12),
                           ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(20),
-                            child: Row(
-                              children: [
-                                SvgPicture.asset(
-                                  couponCoin,
-                                  height: 40.h,
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(20),
+                          child: Row(
+                            children: [
+                              SvgPicture.asset(
+                                couponCoin,
+                                height: 40.h,
+                              ),
+                              SizedBox(
+                                width: 10.w,
+                              ),
+                              Visibility(
+                                visible: context
+                                    .watch<AuthViewModel>()
+                                    .getAuthResponse
+                                    .data!
+                                    .availablePoints !=
+                                    0,
+                                replacement: SizedBox(
+                                  width: 200.w,
+                                  child: black12w500Centre(
+                                      data: 'You don\'t have any accumulated Paw Points'),
                                 ),
-                                SizedBox(
-                                  width: 10.w,
-                                ),
-                                Column(
+                                child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     black12w500Centre(
@@ -462,14 +473,22 @@ class CheckoutScreen extends StatelessWidget {
                                             .toString()),
                                   ],
                                 ),
-                                const Spacer(),
-                                const Icon(
+                              ),
+                              const Spacer(),
+                              Visibility(
+                                visible: context
+                                    .watch<AuthViewModel>()
+                                    .getAuthResponse
+                                    .data!
+                                    .availablePoints !=
+                                    0,
+                                child: const Icon(
                                   Icons.arrow_forward_ios_rounded,
                                   size: 15,
                                   color: CustomColors.greyColor,
-                                )
-                              ],
-                            ),
+                                ),
+                              )
+                            ],
                           ),
                         ),
                       ),
@@ -631,18 +650,21 @@ class CheckoutScreen extends StatelessWidget {
                                 data: 'AED ${cartViewModel.getCheckOutTotal}')
                           ],
                         ),
-                        SizedBox(
-                          height: 16.h,
-                        ),
-                        Row(
-                          children: [
-                            lightBlack14w400Centre(
-                                data: 'Promo Rewarded Amount'),
-                            const Spacer(),
-                            black16w500(
-                                data: cartViewModel.getPromoCodeDiscount
-                                    .toString())
-                          ],
+                        Visibility(
+                          visible: cartViewModel.getPawSelectedPoints != 0 || cartViewModel.getPromoCodeDiscount != 0,
+                          child: Padding(
+                            padding: const EdgeInsets.only(top: 16),
+                            child: Row(
+                              children: [
+                                lightBlack14w400Centre(
+                                    data: cartViewModel.getPawSelectedPoints == 0?'Promo Rewarded Amount':'Loyalty Points'),
+                                const Spacer(),
+                                black16w500(
+                                    data: cartViewModel.getPawSelectedPoints == 0? cartViewModel.getPromoCodeDiscount
+                                        .toString(): cartViewModel.getPawSelectedPoints.toString())
+                              ],
+                            ),
+                          ),
                         ),
                         /* Row(
                           children: [
@@ -652,22 +674,11 @@ class CheckoutScreen extends StatelessWidget {
                             black16w500(data: '5')
                           ],
                         ),*/
-                        SizedBox(
-                          height: 40.h,
-                        ),
+                        SizedBox(height: 40.h,),
                         customButton(
                             text: 'Place Order',
                             onPressed: () {
-                              cartViewModel.setOrderRequest();
-                              context
-                                  .read<OrderViewModel>()
-                                  .callCreateOrderApi()
-                                  .then((value) {
-                                if (value) {
-                                  Navigator.pushNamed(
-                                      context, orderConfirmationRoute);
-                                }
-                              });
+                              checkOutConfirmationDialog(context: context);
                             },
                             colored: true),
                       ],

@@ -32,16 +32,18 @@ class CartViewModel with ChangeNotifier {
 
   double get getPawPoints => _pawPoints;
 
-  void setPawPoints(double value){
+  void setPawPoints(double value) {
     _pawPoints = value;
     notifyListeners();
   }
 
   double get getPawSelectedPoints => _pawSelectedPoints;
 
-  void setPawSelectedPoints(double value){
-    _pawSelectedPoints = value;
-    notifyListeners();
+  void setPawSelectedPoints() {
+    _pawSelectedPoints = _pawPoints;
+    _promoCodeDiscount = 0;
+    _promoCodeController.clear();
+    setCheckOutTotal();
   }
 
   num get getPromoCodeDiscount => _promoCodeDiscount;
@@ -51,20 +53,25 @@ class CartViewModel with ChangeNotifier {
   int get getDeliveryCharges => _deliveryCharges;
 
   void setPromoCodeDiscount(int value) {
-    _promoCodeDiscount = _cartTotalPrice*(value/100);
+    _pawSelectedPoints = 0;
+    _promoCodeDiscount = _cartTotalPrice * (value / 100);
     setCheckOutTotal();
   }
 
   num get getCheckOutTotal => _checkOutTotal;
 
   void setCheckOutTotal() {
-    _checkOutTotal = _cartTotalPrice - _promoCodeDiscount + _deliveryCharges;
+    _checkOutTotal = _cartTotalPrice -
+        _promoCodeDiscount +
+        _deliveryCharges -
+        _pawSelectedPoints;
     notifyListeners();
   }
 
-  clearData(){
+  clearData() {
     _promoCodeController.clear();
     _promoCodeDiscount = 0;
+    _pawSelectedPoints = 0;
   }
 
   bool get getViewCartItemDetail => _viewCartItemDetail;
@@ -83,7 +90,12 @@ class CartViewModel with ChangeNotifier {
             .data!
             .location!
             .sId!,
-        paymentMethod: navigatorKey.currentContext!.read<AuthViewModel>().getAuthResponse.data!.card!.paymentMethodId!,
+        paymentMethod: navigatorKey.currentContext!
+            .read<AuthViewModel>()
+            .getAuthResponse
+            .data!
+            .card!
+            .paymentMethodId!,
         discountPercentage: 10,
         deliveryDate: DateTimeFormatter.showDateFormat3(_selectedDay),
         promoCodeId: _promoCodeController.text,
@@ -91,6 +103,11 @@ class CartViewModel with ChangeNotifier {
     navigatorKey.currentContext!
         .read<OrderViewModel>()
         .setOrderRequest(orderData);
+  }
+
+  void clearCart() {
+    _cartTotalPrice = 0;
+    _cartList.clear();
   }
 
   DateTime get getFocusedDay => _focusedDay;
@@ -178,7 +195,8 @@ class CartViewModel with ChangeNotifier {
   Future<bool> callPromoCodeApi() async {
     EasyLoading.show(status: 'Please Wait ...');
     try {
-      final PromoCodeResponse response = await _promoApiServices.checkPromoCodeApi(code: _promoCodeController.text);
+      final PromoCodeResponse response = await _promoApiServices
+          .checkPromoCodeApi(code: _promoCodeController.text);
       if (response.isSuccess!) {
         EasyLoading.dismiss();
         setPromoCodeDiscount(response.data!.discount!);
@@ -192,5 +210,4 @@ class CartViewModel with ChangeNotifier {
       return false;
     }
   }
-
 }

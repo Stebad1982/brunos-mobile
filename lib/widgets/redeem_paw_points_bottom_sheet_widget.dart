@@ -158,6 +158,7 @@ Future redeemPawPointsBottomSheetWidget() {
               customButton(
                   text: 'Use Paw Points',
                   onPressed: () {
+                    cartViewModel.setPawSelectedPoints();
                     Navigator.pop(context);
                   },
                   colored: true),
