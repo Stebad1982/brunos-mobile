@@ -70,6 +70,7 @@ void deleteCardConfirmationDialog(
                                   .read<CardViewModel>()
                                   .callDeleteCard(cardId: cardId).then((value) => {
                                 if(value){
+                                  Navigator.pop(context),
                                   context
                                       .read<AuthViewModel>()
                                       .callSplash(showLoader: true)

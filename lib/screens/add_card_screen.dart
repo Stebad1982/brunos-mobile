@@ -1,3 +1,4 @@
+import 'package:brunos_kitchen/widgets/dialogs/delete_card_confirmation_dialog.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -53,6 +54,60 @@ class _AddCardScreenState extends State<AddCardScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  SizedBox(
+                    height: 20.h,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: Visibility(
+                      visible: !cardViewModel.getIsCardAdd,
+                      child: Row(
+                        children: [
+                          Visibility(
+                            visible: cardViewModel.getIsDefaultCard,
+                            child: Container(
+                                decoration: const BoxDecoration(
+                                    borderRadius:
+                                    BorderRadius.all(Radius.circular(20)),
+                                    color: CustomColors.orangeColor),
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(horizontal: 10.0,vertical: 2),
+                                  child: white12w400(data: 'Default'),
+                                )),
+                          ),
+                          Expanded(
+                            child: Align(
+                              alignment: Alignment.centerRight,
+                              child: InkWell(
+                                onTap: () {
+                                  deleteCardConfirmationDialog(
+                                      context: context, cardId: cardViewModel.getCardDetailData.sId!);
+                                },
+                                child: Container(
+                                  decoration: ShapeDecoration(
+                                    //color: CustomColors.orangeColor,
+                                    shape: RoundedRectangleBorder(
+                                      side: const BorderSide(
+                                          width: 0.75, color: CustomColors.orangeColor),
+                                      borderRadius: BorderRadius.circular(12),
+                                    ),
+                                  ),
+                                  child: const Padding(
+                                    padding: EdgeInsets.all(10),
+                                    child: Icon(
+                                      Icons.delete_outline,
+                                      size: 20,
+                                      color: CustomColors.orangeColor,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
                   SizedBox(
                     height: 20.h,
                   ),
@@ -216,39 +271,42 @@ class _AddCardScreenState extends State<AddCardScreen> {
                     ),
                   ),
                   Visibility(
-                    visible: !cardViewModel.getIsCardAdd &&
-                        !cardViewModel.getIsPrimaryCard,
+                    visible: !cardViewModel.getIsDefaultCard && !cardViewModel.getIsCardAdd,
                     child: Column(
                       children: [
                         SizedBox(
-                          height: 5.h,
+                          height: 30.h,
                         ),
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 20),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              black14w500(data: 'Set As Primary'),
+                              black16w500(data: 'Set As Default'),
                               Transform.scale(
                                 scale: 0.8,
                                 child: CupertinoSwitch(
-                                  activeColor: CustomColors.color6,
-                                  value: cardViewModel.getIsPrimaryCard,
-                                  onChanged: (value) async {
-                                    /* await cardViewModel
-                                        .callSetCardPrimaryApi()
-                                        .then((status) {
-                                      if (status) {
-                                        cardViewModel.setPrimaryCard(value);
-                                       // context.read<WalletViewModel>().callWalletDetailApi();
-                                      }
-                                    }); */
-                                    //addressViewModel.setIsDefault(value);
+                                  activeColor: CustomColors.orangeColor,
+                                  value: cardViewModel.getIsDefaultCard,
+                                  onChanged: (isDefault) {
+                                    cardViewModel.callDefaultCardApi().then((
+                                        value) async => {
+                                      if(value){
+                                        cardViewModel.setIsDefaultCard(
+                                            isDefault),
+                                        context
+                                            .read<AuthViewModel>()
+                                            .callSplash(showLoader: true),
+                                        Navigator.pop(context)
+                                      }});
                                   },
                                 ),
                               ),
                             ],
                           ),
+                        ),
+                        SizedBox(
+                          height: 100.h,
                         ),
                       ],
                     ),
@@ -276,7 +334,7 @@ class _AddCardScreenState extends State<AddCardScreen> {
               ),
             ),
             Visibility(
-              visible: MediaQuery.of(context).viewInsets.bottom == 0,
+              visible: MediaQuery.of(context).viewInsets.bottom == 0 && cardViewModel.getIsCardAdd,
               child: Align(
                 alignment: Alignment.bottomCenter,
                 child: Container(
@@ -297,28 +355,25 @@ class _AddCardScreenState extends State<AddCardScreen> {
                   ),
                   child: Padding(
                     padding: const EdgeInsets.all(20),
-                    child: Visibility(
-                      visible: cardViewModel.getIsCardAdd,
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 20),
-                        child: customButton(
-                          colored: true,
-                          text: 'Submit',
-                          onPressed: () async {
-                            await context
-                                .read<CardViewModel>()
-                                .callAddCard()
-                                .then((value) => {
-                                      if (value)
-                                        {
-                                          Navigator.pop(context),
-                                          context
-                                              .read<AuthViewModel>()
-                                              .callSplash(showLoader: true)
-                                        }
-                                    });
-                          },
-                        ),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: customButton(
+                        colored: true,
+                        text: 'Submit',
+                        onPressed: () async {
+                          await context
+                              .read<CardViewModel>()
+                              .callAddCard()
+                              .then((value) => {
+                                    if (value)
+                                      {
+                                        Navigator.pop(context),
+                                        context
+                                            .read<AuthViewModel>()
+                                            .callSplash(showLoader: true)
+                                      }
+                                  });
+                        },
                       ),
                     ),
                   ),

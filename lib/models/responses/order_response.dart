@@ -38,6 +38,7 @@ class OrderData {
   int? discountPercentage;
   String? deliveryDate;
   String? promoCodeId;
+  bool? isCompleted;
   List<OrderItems>? orderItems;
 
   OrderData(
@@ -48,6 +49,7 @@ class OrderData {
       this.discountPercentage,
       this.deliveryDate,
       this.promoCodeId,
+        this.isCompleted,
       this.orderItems});
 
   OrderData.fromJson(Map<String, dynamic> json) {
@@ -57,6 +59,7 @@ class OrderData {
     paymentMethod = json['paymentMethod'];
     discountPercentage = json['discountPercentage'];
     deliveryDate = json['deliveryDate'];
+    isCompleted = json['isCompleted'];
     promoCodeId = json['promoCodeId'];
     if (json['orderItems'] != null) {
       orderItems = <OrderItems>[];
@@ -74,6 +77,7 @@ class OrderData {
     data['paymentMethod'] = this.paymentMethod;
     data['discountPercentage'] = this.discountPercentage;
     data['deliveryDate'] = this.deliveryDate;
+    data['isCompleted'] = this.isCompleted;
     data['promoCodeId'] = this.promoCodeId;
     if (this.orderItems != null) {
       data['orderItems'] = this.orderItems!.map((v) => v.toJson()).toList();

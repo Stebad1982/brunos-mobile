@@ -12,8 +12,9 @@ class AppBarWithBackWidget extends StatelessWidget
   final String? heading;
   final bool showPuppy;
   final bool showCart;
+  final Function? onBackPress;
 
-  const AppBarWithBackWidget({Key? key, this.heading, required this.showPuppy, required this.showCart}) : super(key: key);
+  const AppBarWithBackWidget({Key? key, this.heading, required this.showPuppy, required this.showCart, this.onBackPress}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,6 +26,7 @@ class AppBarWithBackWidget extends StatelessWidget
       title: heading != null ? Text(heading!) : Container(),
       leading: InkWell(
         onTap: () {
+          onBackPress != null? onBackPress!():
           Navigator.pop(context);
         },
         child: const Padding(

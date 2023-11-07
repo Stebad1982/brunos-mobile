@@ -39,7 +39,7 @@ Widget ordersVerticalListChipWidget({required bool showButtons, required OrderDa
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    lightBlack14w400Centre(data: 'Oder Id: ${orderListData.sId!.substring(orderListData.sId!.length - 5)}'),
+                    lightBlack14w400Centre(data: 'Order Number: ${orderListData.sId!.substring(orderListData.sId!.length - 5)}'),
                     grey14w400(data: 'Delivery Date: ${orderListData.deliveryDate}'),
                     SizedBox(
                       height: 14.h,

@@ -25,8 +25,16 @@ Widget cardVerticalListChipWidget({required CardModel cardDetail}) {
   return Column(
     children: [
       InkWell(
-        onTap: () {
-          navigatorKey.currentContext!.read<AuthViewModel>().setCard(cardDetail);
+        onTap: (){
+          if (navigatorKey.currentContext!
+              .read<BottomNavigationViewModel>()
+              .getHomeViewIndex !=
+              2) {
+            navigatorKey.currentContext!
+                .read<AuthViewModel>()
+                .setCard(cardDetail);
+            Navigator.pop(navigatorKey.currentContext!);
+          }
         },
         child: Container(
           width: double.infinity,
@@ -92,7 +100,7 @@ Widget cardVerticalListChipWidget({required CardModel cardDetail}) {
                         child: const Padding(
                           padding: EdgeInsets.all(10),
                           child: Icon(
-                            Icons.delete_outline,
+                            Icons.list_alt,
                             size: 20,
                             color: CustomColors.orangeColor,
                           ),

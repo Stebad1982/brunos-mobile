@@ -279,6 +279,7 @@ class CheckoutScreen extends StatelessWidget {
                     ),
                     InkWell(
                       onTap: () {
+                        context.read<CardViewModel>().clearCardData();
                         context.read<CardViewModel>().setIsCardAdd(true);
                         Navigator.pushNamed(context, chooseCardRoute);
                       },

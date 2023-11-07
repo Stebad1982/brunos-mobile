@@ -29,7 +29,7 @@ class _CardListScreenState extends State<CardListScreen> {
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      context.read<CardViewModel>().callCardsApi();
+      context.read<CardViewModel>().callAllCardsApi();
     });
     super.initState();
   }
@@ -48,6 +48,7 @@ class _CardListScreenState extends State<CardListScreen> {
               children: [
                 InkWell(
                   onTap: (){
+                    context.read<CardViewModel>().clearCardData();
                     cardViewModel.setIsCardAdd(true);
                     Navigator.pushNamed(context, addCardRoute);
                   },

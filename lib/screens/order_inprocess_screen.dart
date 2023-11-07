@@ -12,12 +12,12 @@ class OrderInProcessScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<OrderViewModel>(builder: (_, orderViewModel, __) {
       return ListView.builder(
-        itemCount: orderViewModel.getOrderResponse.data!.length,
+        itemCount: orderViewModel.getInProcessOrders.length,
         padding: const EdgeInsets.only(left: 20, right: 20, top: 30),
         itemBuilder: (BuildContext context, int index) {
           return ordersVerticalListChipWidget(
               showButtons: false,
-              orderListData: orderViewModel.getOrderResponse.data![index]);
+              orderListData: orderViewModel.getInProcessOrders[index]);
         },
       );
     });

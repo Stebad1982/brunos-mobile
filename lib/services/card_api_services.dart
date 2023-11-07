@@ -40,4 +40,15 @@ class CardApiServices {
     BaseResponseModel baseResponseModel = BaseResponseModel.fromJson(parsed);
     return baseResponseModel;
   }
+
+  Future<BaseResponseModel> defaultCardApi({required String cardId}) async {
+    final response = await _httpService.httpRequest(
+        endPoint: EndPoints.defaultCard,
+        requestType: 'PUT',
+        requestBody: '',
+        params: cardId);
+    final parsed = json.decode(response.body);
+    BaseResponseModel baseResponseModel = BaseResponseModel.fromJson(parsed);
+    return baseResponseModel;
+  }
 }

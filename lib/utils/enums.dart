@@ -83,6 +83,7 @@ enum EndPoints {
   allRecipes('recipe/'),
   addAddress('user/location'),
   defaultAddress('user/default/location/'),
+  defaultCard('user/default/card/'),
   defaultPuppy('pet/default/'),
   createOrder('order/'),
   allOrder('order/'),

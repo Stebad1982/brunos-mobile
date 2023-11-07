@@ -17,7 +17,7 @@ class CardViewModel with ChangeNotifier {
   String _cardHolderName = '';
   bool _isCardAdd = false;
   String _cvvCode = '';
-  bool _isPrimaryCard = false;
+  bool _isDefaultCard = false;
 
    CardModel? _cardDetailData;
 //  final CardApiServices _cardApiServices = CardApiServices();
@@ -38,7 +38,7 @@ class CardViewModel with ChangeNotifier {
 
   bool get getIsCardAdd => _isCardAdd;
 
-  bool get getIsPrimaryCard => _isPrimaryCard;
+  bool get getIsDefaultCard => _isDefaultCard;
 
   String get getCardNumber => _cardNumber;
 
@@ -64,16 +64,22 @@ class CardViewModel with ChangeNotifier {
     notifyListeners();
   }
 
-  void setPrimaryCard(bool value) {
-    _isPrimaryCard = value;
+  void setIsDefaultCard(bool value) {
+    _isDefaultCard = value;
     notifyListeners();
   }
+
+ /* void setPrimaryCard(bool value) {
+    _isPrimaryCard = value;
+    notifyListeners();
+  }*/
 
   void clearCardData() {
     _cardNumber = "";
     _expiryDate = "";
     _cardHolderName = "";
     _cvvCode = "";
+    _isDefaultCard = false;
     notifyListeners();
   }
 
@@ -83,7 +89,7 @@ class CardViewModel with ChangeNotifier {
     _cardNumber = '0000 0000 0000 ${_cardDetailData!.last4}';
     //_cardHolderName = _cardDetailData!.name!;
    // _cvvCode = _cardDetailData!.cvc!;
-    setPrimaryCard(true);
+    setIsDefaultCard(_cardDetailData!.isDefault!);
     notifyListeners();
   }
 
@@ -155,7 +161,7 @@ class CardViewModel with ChangeNotifier {
           await _cardApiServices.addCardApi(addCardRequest: addCardRequest);
       if (response.isSuccess!) {
         EasyLoading.dismiss();
-        await callCardsApi();
+        await callAllCardsApi();
         return true;
       } else {
         EasyLoading.showError('${response.message}');
@@ -167,7 +173,7 @@ class CardViewModel with ChangeNotifier {
     }
   }
 
-  Future<bool> callCardsApi() async {
+  Future<bool> callAllCardsApi() async {
     EasyLoading.show(status: 'Please Wait ...');
     try {
       final CardsResponse response = await _cardApiServices.allCardsApi();
@@ -192,7 +198,7 @@ class CardViewModel with ChangeNotifier {
       await _cardApiServices.deleteCardApi(cardId: cardId);
       if (response.isSuccess!) {
         EasyLoading.dismiss();
-        await callCardsApi();
+        await callAllCardsApi();
         return true;
       } else {
         EasyLoading.showError('${response.message}');
@@ -200,6 +206,25 @@ class CardViewModel with ChangeNotifier {
       }
     } catch (exception) {
       EasyLoading.showError(exception.toString());
+      return false;
+    }
+  }
+
+  Future<bool> callDefaultCardApi() async {
+    EasyLoading.show(status: 'Please wait...');
+    try {
+      final BaseResponseModel response = await _cardApiServices
+          .defaultCardApi(cardId: _cardDetailData!.sId!);
+      if (response.isSuccess!) {
+        EasyLoading.dismiss();
+        callAllCardsApi();
+        return true;
+      } else {
+        EasyLoading.showError('${response.message}');
+        return false;
+      }
+    } catch (e) {
+      EasyLoading.showError(e.toString());
       return false;
     }
   }
