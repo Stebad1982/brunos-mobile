@@ -12,6 +12,7 @@ import 'package:brunos_kitchen/screens/choose_your_plan_screen.dart';
 import 'package:brunos_kitchen/screens/delivery_dates_screen.dart';
 import 'package:brunos_kitchen/screens/edit_profile_screen.dart';
 import 'package:brunos_kitchen/screens/faq_screen.dart';
+import 'package:brunos_kitchen/screens/feedback_screen.dart';
 import 'package:brunos_kitchen/screens/feeding_plan_screen.dart';
 import 'package:brunos_kitchen/screens/forget_password_screen.dart';
 import 'package:brunos_kitchen/screens/help_screen.dart';
@@ -83,6 +84,7 @@ const String newsRoute = '/news';
 const String orderDetailRoute = '/orderDetail';
 const String addCardRoute = 'addCard';
 const String chooseCardRoute = 'chooseCard';
+const String feedbackRoute = 'feedback';
 
 
 class RouteGenerator {
@@ -178,7 +180,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const CardListScreen());
       case addCardRoute:
         return MaterialPageRoute(builder: (_) => const AddCardScreen());
-
+      case feedbackRoute:
+        return MaterialPageRoute(builder: (_) => const FeedbackScreen());
       case '/tasting_details':
       /*return MaterialPageRoute(
             builder: (_) => const TastingDetailsScreen(),

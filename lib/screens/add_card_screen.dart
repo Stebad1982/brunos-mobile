@@ -68,10 +68,11 @@ class _AddCardScreenState extends State<AddCardScreen> {
                             child: Container(
                                 decoration: const BoxDecoration(
                                     borderRadius:
-                                    BorderRadius.all(Radius.circular(20)),
+                                        BorderRadius.all(Radius.circular(20)),
                                     color: CustomColors.orangeColor),
                                 child: Padding(
-                                  padding: const EdgeInsets.symmetric(horizontal: 10.0,vertical: 2),
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 10.0, vertical: 2),
                                   child: white12w400(data: 'Default'),
                                 )),
                           ),
@@ -81,14 +82,17 @@ class _AddCardScreenState extends State<AddCardScreen> {
                               child: InkWell(
                                 onTap: () {
                                   deleteCardConfirmationDialog(
-                                      context: context, cardId: cardViewModel.getCardDetailData.sId!);
+                                      context: context,
+                                      cardId:
+                                          cardViewModel.getCardDetailData.sId!);
                                 },
                                 child: Container(
                                   decoration: ShapeDecoration(
                                     //color: CustomColors.orangeColor,
                                     shape: RoundedRectangleBorder(
                                       side: const BorderSide(
-                                          width: 0.75, color: CustomColors.orangeColor),
+                                          width: 0.75,
+                                          color: CustomColors.orangeColor),
                                       borderRadius: BorderRadius.circular(12),
                                     ),
                                   ),
@@ -122,16 +126,32 @@ class _AddCardScreenState extends State<AddCardScreen> {
                     cvvCode: cardViewModel.getCvvCode,
                     showBackView: cardViewModel.getIsCvvFocused,
                     cardBgColor: CustomColors.orangeColor,
-                    cardType: cardViewModel.getCardTypeVisa
-                        ? CardType.visa
-                        : CardType.mastercard,
+                    cardType: !cardViewModel.getIsCardAdd
+                        ? cardViewModel.getCardType == 'visa'
+                            ? CardType.visa
+                            : cardViewModel.getCardType == 'mastercard'
+                                ? CardType.mastercard
+                                : cardViewModel.getCardType == 'americanExpress'
+                                    ? CardType.americanExpress
+                                    : cardViewModel.getCardType == 'unionpay'
+                                        ? CardType.unionpay
+                                        : cardViewModel.getCardType ==
+                                                'discover'
+                                            ? CardType.discover
+                                            : cardViewModel.getCardType == 'elo'
+                                                ? CardType.elo
+                                                : cardViewModel.getCardType ==
+                                                        'hipercard'
+                                                    ? CardType.hipercard
+                                                    : CardType.otherBrand
+                        : null,
                     //glassmorphismConfig: Glassmorphism.defaultConfig(),
                     //backgroundImage: 'assets/card_bg.png',
                     obscureCardNumber: true,
                     obscureInitialCardNumber: true,
                     obscureCardCvv: true,
                     isHolderNameVisible: true,
-                    height: 230.h,
+                    height: 210.h,
                     chipColor: CustomColors.whiteColor,
                     textStyle: const TextStyle(
                         color: CustomColors.whiteColor,
@@ -154,7 +174,9 @@ class _AddCardScreenState extends State<AddCardScreen> {
                         ),
                       ),
                     ],*/
-                    onCreditCardWidgetChange: (CreditCardBrand) {},
+                    onCreditCardWidgetChange: (CreditCardBrand) {
+                      print(CreditCardBrand.brandName);
+                    },
                   ),
                   Visibility(
                     visible: cardViewModel.getIsCardAdd,
@@ -183,7 +205,8 @@ class _AddCardScreenState extends State<AddCardScreen> {
                       cardNumberDecoration: InputDecoration(
                         enabledBorder: const OutlineInputBorder(
                             borderSide: BorderSide(color: Colors.transparent),
-                            borderRadius: BorderRadius.all(Radius.circular(15))),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(15))),
                         hintStyle: TextStyle(
                           fontFamily: 'CircularStd',
                           fontSize: 14.sp,
@@ -205,7 +228,8 @@ class _AddCardScreenState extends State<AddCardScreen> {
                       expiryDateDecoration: InputDecoration(
                         enabledBorder: const OutlineInputBorder(
                             borderSide: BorderSide(color: Colors.transparent),
-                            borderRadius: BorderRadius.all(Radius.circular(15))),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(15))),
                         hintStyle: TextStyle(
                           fontFamily: 'CircularStd',
                           fontSize: 14.sp,
@@ -220,14 +244,15 @@ class _AddCardScreenState extends State<AddCardScreen> {
                         hintText: 'Expiry Date',
                         focusedBorder: const OutlineInputBorder(
                             borderSide:
-                            BorderSide(color: CustomColors.orangeColor),
+                                BorderSide(color: CustomColors.orangeColor),
                             borderRadius:
-                            BorderRadius.all(Radius.circular(15))),
+                                BorderRadius.all(Radius.circular(15))),
                       ),
                       cvvCodeDecoration: InputDecoration(
                         enabledBorder: const OutlineInputBorder(
                             borderSide: BorderSide(color: Colors.transparent),
-                            borderRadius: BorderRadius.all(Radius.circular(15))),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(15))),
                         hintStyle: TextStyle(
                           fontFamily: 'CircularStd',
                           fontSize: 14.sp,
@@ -242,14 +267,15 @@ class _AddCardScreenState extends State<AddCardScreen> {
                         hintText: 'cvv',
                         focusedBorder: const OutlineInputBorder(
                             borderSide:
-                            BorderSide(color: CustomColors.orangeColor),
+                                BorderSide(color: CustomColors.orangeColor),
                             borderRadius:
-                            BorderRadius.all(Radius.circular(15))),
+                                BorderRadius.all(Radius.circular(15))),
                       ),
                       cardHolderDecoration: InputDecoration(
                         enabledBorder: const OutlineInputBorder(
                             borderSide: BorderSide(color: Colors.transparent),
-                            borderRadius: BorderRadius.all(Radius.circular(15))),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(15))),
                         hintStyle: TextStyle(
                           fontFamily: 'CircularStd',
                           fontSize: 14.sp,
@@ -264,14 +290,15 @@ class _AddCardScreenState extends State<AddCardScreen> {
                         hintText: 'Card Holder Name',
                         focusedBorder: const OutlineInputBorder(
                             borderSide:
-                            BorderSide(color: CustomColors.orangeColor),
+                                BorderSide(color: CustomColors.orangeColor),
                             borderRadius:
-                            BorderRadius.all(Radius.circular(15))),
+                                BorderRadius.all(Radius.circular(15))),
                       ),
                     ),
                   ),
                   Visibility(
-                    visible: !cardViewModel.getIsDefaultCard && !cardViewModel.getIsCardAdd,
+                    visible: !cardViewModel.getIsDefaultCard &&
+                        !cardViewModel.getIsCardAdd,
                     child: Column(
                       children: [
                         SizedBox(
@@ -289,16 +316,21 @@ class _AddCardScreenState extends State<AddCardScreen> {
                                   activeColor: CustomColors.orangeColor,
                                   value: cardViewModel.getIsDefaultCard,
                                   onChanged: (isDefault) {
-                                    cardViewModel.callDefaultCardApi().then((
-                                        value) async => {
-                                      if(value){
-                                        cardViewModel.setIsDefaultCard(
-                                            isDefault),
-                                        context
-                                            .read<AuthViewModel>()
-                                            .callSplash(showLoader: true),
-                                        Navigator.pop(context)
-                                      }});
+                                    cardViewModel
+                                        .callDefaultCardApi()
+                                        .then((value) async => {
+                                              if (value)
+                                                {
+                                                  cardViewModel
+                                                      .setIsDefaultCard(
+                                                          isDefault),
+                                                  context
+                                                      .read<AuthViewModel>()
+                                                      .callSplash(
+                                                          showLoader: true),
+                                                  Navigator.pop(context)
+                                                }
+                                            });
                                   },
                                 ),
                               ),
@@ -334,7 +366,8 @@ class _AddCardScreenState extends State<AddCardScreen> {
               ),
             ),
             Visibility(
-              visible: MediaQuery.of(context).viewInsets.bottom == 0 && cardViewModel.getIsCardAdd,
+              visible: MediaQuery.of(context).viewInsets.bottom == 0 &&
+                  cardViewModel.getIsCardAdd,
               child: Align(
                 alignment: Alignment.bottomCenter,
                 child: Container(

@@ -2,6 +2,7 @@ import 'package:brunos_kitchen/utils/custom_font_style.dart';
 import 'package:brunos_kitchen/utils/images.dart';
 import 'package:brunos_kitchen/view_models/auth_view_model.dart';
 import 'package:brunos_kitchen/view_models/bottom_navigation_view_model.dart';
+import 'package:brunos_kitchen/view_models/faqs_blogs_news_view_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -142,9 +143,9 @@ class ProfileScreen extends StatelessWidget {
                     color: CustomColors.greyColor,
                   )),
               ListTile(
-                onTap: (){
-                  Navigator.pushNamed(context, chooseCardRoute);
-                },
+                  onTap: () {
+                    Navigator.pushNamed(context, chooseCardRoute);
+                  },
                   leading: SvgPicture.asset(
                     payCardIcon,
                     height: 24.h,
@@ -186,6 +187,28 @@ class ProfileScreen extends StatelessWidget {
                   title: Align(
                       alignment: Alignment.centerLeft,
                       child: lightBlack14w400Centre(data: 'Shipping Address')),
+                  contentPadding: const EdgeInsets.all(0),
+                  minLeadingWidth: 12,
+                  trailing: const Icon(
+                    Icons.arrow_forward_ios_rounded,
+                    size: 15,
+                    color: CustomColors.greyColor,
+                  )),
+              ListTile(
+                  onTap: () {
+                    context.read<FaqsBlogsNewsViewModel>().clearFeedbackForm();
+                    Navigator.pushNamed(context, feedbackRoute);
+                  },
+                  leading: const Icon(
+                    Icons.feedback_outlined,
+                    color: CustomColors.blackColor,
+                  ),
+                  shape: const Border(
+                    bottom: BorderSide(color: CustomColors.greyMediumColor),
+                  ),
+                  title: Align(
+                      alignment: Alignment.centerLeft,
+                      child: lightBlack14w400Centre(data: 'Feedback')),
                   contentPadding: const EdgeInsets.all(0),
                   minLeadingWidth: 12,
                   trailing: const Icon(
@@ -246,7 +269,10 @@ class ProfileScreen extends StatelessWidget {
                   onTap: () {
                     Navigator.pushNamed(context, blogsRoute);
                   },
-                  leading: const Icon(Icons.message_outlined,color: CustomColors.blackColor,),
+                  leading: const Icon(
+                    Icons.message_outlined,
+                    color: CustomColors.blackColor,
+                  ),
                   shape: const Border(
                     bottom: BorderSide(color: CustomColors.greyMediumColor),
                   ),
@@ -264,7 +290,10 @@ class ProfileScreen extends StatelessWidget {
                   onTap: () {
                     Navigator.pushNamed(context, newsRoute);
                   },
-                  leading: const Icon(Icons.newspaper,color: CustomColors.blackColor,),
+                  leading: const Icon(
+                    Icons.newspaper,
+                    color: CustomColors.blackColor,
+                  ),
                   title: Align(
                       alignment: Alignment.centerLeft,
                       child: lightBlack14w400Centre(data: 'News Updates')),

@@ -22,7 +22,7 @@ class CardViewModel with ChangeNotifier {
    CardModel? _cardDetailData;
 //  final CardApiServices _cardApiServices = CardApiServices();
   bool _isCvvFocused = false;
-  bool _cardTypeVisa = true;
+  String _cardType = '';
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   // AllCardResponse _allCardResponse = AllCardResponse();
@@ -44,7 +44,7 @@ class CardViewModel with ChangeNotifier {
 
   CardModel get getCardDetailData => _cardDetailData!;
 
-  bool get getCardTypeVisa => _cardTypeVisa;
+  String get getCardType => _cardType;
 
   String get getExpiryDate => _expiryDate;
 
@@ -87,7 +87,8 @@ class CardViewModel with ChangeNotifier {
     _cardDetailData = value;
     _expiryDate = '${_cardDetailData!.expMonth!}/${_cardDetailData!.expYear!}';
     _cardNumber = '0000 0000 0000 ${_cardDetailData!.last4}';
-    //_cardHolderName = _cardDetailData!.name!;
+    _cardHolderName = ' ';
+    _cardType = _cardDetailData!.brand!;
    // _cvvCode = _cardDetailData!.cvc!;
     setIsDefaultCard(_cardDetailData!.isDefault!);
     notifyListeners();
@@ -99,11 +100,11 @@ class CardViewModel with ChangeNotifier {
     _cardHolderName = creditCardModel.cardHolderName;
     _cvvCode = creditCardModel.cvvCode;
     _isCvvFocused = creditCardModel.isCvvFocused;
-    if (_cardNumber.startsWith('5')) {
+   /* if (_cardNumber.startsWith('5')) {
       _cardTypeVisa = false;
     } else {
       _cardTypeVisa = true;
-    }
+    }*/
     notifyListeners();
   }
 

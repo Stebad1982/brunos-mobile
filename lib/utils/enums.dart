@@ -70,6 +70,7 @@ enum EndPoints {
   guest('auth/guest'),
   allBlogsAndNews('news-FAQ/type/newsAndBlog'),
   allFaqs('news-FAQ/type/FAQ'),
+  addFeedback('news-FAQ/'),
   forgotPassword('auth/forgot-password'),
   splash('user/'),
   editUserProfile('user/'),

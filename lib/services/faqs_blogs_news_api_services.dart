@@ -1,4 +1,6 @@
 import 'dart:convert';
+import 'package:brunos_kitchen/models/base_response_model.dart';
+import 'package:brunos_kitchen/models/requests/feedback_request.dart';
 import 'package:brunos_kitchen/models/responses/blogs_news_response.dart';
 import 'package:brunos_kitchen/models/responses/faqs_blogs_news_response.dart';
 
@@ -14,6 +16,18 @@ class FaqsBlogsNewsApiServices {
     final parsed = json.decode(response.body);
     FaqsBlogsNewsResponse faqsResponse = FaqsBlogsNewsResponse.fromJson(parsed);
     return faqsResponse;
+  }
+
+  Future<BaseResponseModel> addFeedbackApi(
+      {required FeedbackRequest feedbackRequest}) async {
+    final response = await _httpService.httpRequest(
+        endPoint: EndPoints.addFeedback,
+        requestType: 'POST',
+        params: '',
+        requestBody: feedbackRequest);
+    final parsed = json.decode(response.body);
+    BaseResponseModel baseResponseModel = BaseResponseModel.fromJson(parsed);
+    return baseResponseModel;
   }
 
   Future<BlogsNewsResponse> allBlogsAndNewsApi() async {
