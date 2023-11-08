@@ -678,7 +678,15 @@ class CheckoutScreen extends StatelessWidget {
                         customButton(
                             text: 'Place Order',
                             onPressed: () {
-                              checkOutConfirmationDialog(context: context);
+                              if(context.read<AuthViewModel>().getAuthResponse.data!.card == null){
+                                descriptionDialog(context: context, description: 'Kindly Select Payment Method', height: 200.h, title: 'Alert');
+                              }
+                              else if(context.read<AuthViewModel>().getAuthResponse.data!.location == null){
+                                descriptionDialog(context: context, description: 'Kindly Select Location', height: 130.h, title: 'Alert');
+                              }
+                              else{
+                                checkOutConfirmationDialog(context: context);
+                              }
                             },
                             colored: true),
                       ],
