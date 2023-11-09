@@ -111,6 +111,32 @@ class OrderConfirmationScreen extends StatelessWidget {
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
+                                  grey14w400(data: 'Order total'),
+                                  SizedBox(
+                                    width: 2.w,
+                                  ),
+                                  lightBlack14w400Centre(data: 'AED ${orderViewModel.getOrderCreateResponse.data!.cartTotal}'),
+                                ],
+                              ),
+                              SizedBox(
+                                height: 20.h,
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  grey14w400(data: 'Shipping Fee'),
+                                  SizedBox(
+                                    width: 2.w,
+                                  ),
+                                  lightBlack14w400Centre(data: 'AED ${orderViewModel.getOrderCreateResponse.data!.shippingFees}'),
+                                ],
+                              ),
+                              SizedBox(
+                                height: 20.h,
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
                                   grey14w400(data: 'Amount paid'),
                                   SizedBox(
                                     width: 2.w,

@@ -7,6 +7,8 @@ class OrderRequest {
   num discountPercentage;
   String deliveryDate;
   String promoCodeId;
+  num shippingFees;
+  num cartTotal;
   List<CartModel> cartItems;
 
   OrderRequest(
@@ -15,6 +17,8 @@ class OrderRequest {
         required this.paymentMethod,
         required this.discountPercentage,
         required this.deliveryDate,
+        required this.cartTotal,
+        required this.shippingFees,
         required this.promoCodeId,
         required this.cartItems});
 
@@ -25,6 +29,8 @@ class OrderRequest {
     data['paymentMethod'] = paymentMethod;
     data['discountPercentage'] = discountPercentage;
     data['deliveryDate'] = deliveryDate;
+    data['cartTotal'] = cartTotal;
+    data['shippingFees'] = shippingFees;
     data['promoCodeId'] = promoCodeId;
     data['orderItems'] = cartItems.map((v) => v.toJson()).toList();
     return data;

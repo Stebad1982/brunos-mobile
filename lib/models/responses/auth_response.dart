@@ -35,7 +35,7 @@ class AuthData {
   bool? isVerified;
   bool? isGuest;
   CardModel? card;
-  num? availablePoints;
+  int? availablePoints;
   String? media;
   int? petsCount;
   PuppyModel? pet;
@@ -70,7 +70,7 @@ class AuthData {
     media = json['media'];
     isGuest = json['isGuest'];
     card = json['card'] != null ? CardModel.fromJson(json['card']) : null;
-    availablePoints = json['availablePoints'];
+    availablePoints = (json['availablePoints']).round();
     petsCount = json['petsCount'];
     pet = json['pet'] != null ? PuppyModel.fromJson(json['pet']) : null;
     location = json['location'] != null

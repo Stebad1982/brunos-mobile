@@ -300,7 +300,9 @@ class CheckoutScreen extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               SvgPicture.asset(payCardIcon),
-                              SizedBox(width: 5.w,),
+                              SizedBox(
+                                width: 5.w,
+                              ),
                               SizedBox(
                                 width: 2.w,
                               ),
@@ -311,37 +313,30 @@ class CheckoutScreen extends StatelessWidget {
                                           .card !=
                                       null
                                   ? Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  orange18w500(data: context
-                                      .watch<AuthViewModel>()
-                                      .getAuthResponse
-                                      .data!
-                                      .card!.brand!),
-                                  SizedBox(
-                                    height: 5.h,
-                                  ),
-                                  grey12w500(data: '**** **** **** ${context
-                                      .watch<AuthViewModel>()
-                                      .getAuthResponse
-                                      .data!
-                                      .card!.last4}'),
-                                  SizedBox(
-                                    height: 5.h,
-                                  ),
-                                  grey12w500(
-                                      data:
-                                      'Expiry: ${context
-                                          .watch<AuthViewModel>()
-                                          .getAuthResponse
-                                          .data!
-                                          .card!.expMonth}/${context
-                                          .watch<AuthViewModel>()
-                                          .getAuthResponse
-                                          .data!
-                                          .card!.expYear}'),
-                                ],
-                              )
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        orange18w500(
+                                            data: context
+                                                .watch<AuthViewModel>()
+                                                .getAuthResponse
+                                                .data!
+                                                .card!
+                                                .brand!),
+                                        SizedBox(
+                                          height: 5.h,
+                                        ),
+                                        grey12w500(
+                                            data:
+                                                '**** **** **** ${context.watch<AuthViewModel>().getAuthResponse.data!.card!.last4}'),
+                                        SizedBox(
+                                          height: 5.h,
+                                        ),
+                                        grey12w500(
+                                            data:
+                                                'Expiry: ${context.watch<AuthViewModel>().getAuthResponse.data!.card!.expMonth}/${context.watch<AuthViewModel>().getAuthResponse.data!.card!.expYear}'),
+                                      ],
+                                    )
                                   : lightBlack14w400Centre(
                                       data: 'Payment method'),
                               const Spacer(),
@@ -413,19 +408,16 @@ class CheckoutScreen extends StatelessWidget {
                     ),
                     InkWell(
                       onTap: context
-                          .watch<AuthViewModel>()
-                          .getAuthResponse
-                          .data!
-                          .availablePoints !=
-                          0? () {
-                        cartViewModel.setPawPoints(context
-                                .read<AuthViewModel>()
-                                .getAuthResponse
-                                .data!
-                                .availablePoints! /
-                            3);
-                        redeemPawPointsBottomSheetWidget();
-                      }: (){},
+                                  .watch<AuthViewModel>()
+                                  .getAuthResponse
+                                  .data!
+                                  .availablePoints !=
+                              0
+                          ? () {
+                              cartViewModel.setPawPoints(5);
+                              redeemPawPointsBottomSheetWidget();
+                            }
+                          : () {},
                       child: Container(
                         width: double.infinity,
                         decoration: ShapeDecoration(
@@ -449,15 +441,16 @@ class CheckoutScreen extends StatelessWidget {
                               ),
                               Visibility(
                                 visible: context
-                                    .watch<AuthViewModel>()
-                                    .getAuthResponse
-                                    .data!
-                                    .availablePoints !=
+                                        .watch<AuthViewModel>()
+                                        .getAuthResponse
+                                        .data!
+                                        .availablePoints !=
                                     0,
                                 replacement: SizedBox(
                                   width: 200.w,
                                   child: black12w500Centre(
-                                      data: 'You don\'t have any accumulated Paw Points'),
+                                      data:
+                                          'You don\'t have any accumulated Paw Points'),
                                 ),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -477,10 +470,10 @@ class CheckoutScreen extends StatelessWidget {
                               const Spacer(),
                               Visibility(
                                 visible: context
-                                    .watch<AuthViewModel>()
-                                    .getAuthResponse
-                                    .data!
-                                    .availablePoints !=
+                                        .watch<AuthViewModel>()
+                                        .getAuthResponse
+                                        .data!
+                                        .availablePoints !=
                                     0,
                                 child: const Icon(
                                   Icons.arrow_forward_ios_rounded,
@@ -651,17 +644,25 @@ class CheckoutScreen extends StatelessWidget {
                           ],
                         ),
                         Visibility(
-                          visible: cartViewModel.getPawSelectedPoints != 0 || cartViewModel.getPromoCodeDiscount != 0,
+                          visible: cartViewModel.getPawSelectedPoints != 0 ||
+                              cartViewModel.getPromoCodeDiscount != 0,
                           child: Padding(
                             padding: const EdgeInsets.only(top: 16),
                             child: Row(
                               children: [
                                 lightBlack14w400Centre(
-                                    data: cartViewModel.getPawSelectedPoints == 0?'Promo Rewarded Amount':'Loyalty Points'),
+                                    data:
+                                        cartViewModel.getPawSelectedPoints == 0
+                                            ? 'Promo Rewarded Amount'
+                                            : 'Loyalty Points'),
                                 const Spacer(),
                                 black16w500(
-                                    data: cartViewModel.getPawSelectedPoints == 0? cartViewModel.getPromoCodeDiscount
-                                        .toString(): cartViewModel.getPawSelectedPoints.toString())
+                                    data:
+                                        cartViewModel.getPawSelectedPoints == 0
+                                            ? cartViewModel.getPromoCodeDiscount
+                                                .toString()
+                                            : cartViewModel.getPawSelectedPoints
+                                                .toString())
                               ],
                             ),
                           ),
@@ -674,17 +675,35 @@ class CheckoutScreen extends StatelessWidget {
                             black16w500(data: '5')
                           ],
                         ),*/
-                        SizedBox(height: 40.h,),
+                        SizedBox(
+                          height: 40.h,
+                        ),
                         customButton(
                             text: 'Place Order',
                             onPressed: () {
-                              if(context.read<AuthViewModel>().getAuthResponse.data!.card == null){
-                                descriptionDialog(context: context, description: 'Kindly Select Payment Method', height: 200.h, title: 'Alert');
-                              }
-                              else if(context.read<AuthViewModel>().getAuthResponse.data!.location == null){
-                                descriptionDialog(context: context, description: 'Kindly Select Location', height: 130.h, title: 'Alert');
-                              }
-                              else{
+                              if (context
+                                      .read<AuthViewModel>()
+                                      .getAuthResponse
+                                      .data!
+                                      .card ==
+                                  null) {
+                                descriptionDialog(
+                                    context: context,
+                                    description: 'Kindly Select Payment Method',
+                                    height: 200.h,
+                                    title: 'Alert');
+                              } else if (context
+                                      .read<AuthViewModel>()
+                                      .getAuthResponse
+                                      .data!
+                                      .location ==
+                                  null) {
+                                descriptionDialog(
+                                    context: context,
+                                    description: 'Kindly Select Location',
+                                    height: 150.h,
+                                    title: 'Alert');
+                              } else {
                                 checkOutConfirmationDialog(context: context);
                               }
                             },

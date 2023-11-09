@@ -21,7 +21,7 @@ class CartViewModel with ChangeNotifier {
   num _cartTotalPrice = 0;
   num _promoCodeDiscount = 0;
   double _pawPoints = 0;
-  double _pawSelectedPoints = 0;
+  int _pawSelectedPoints = 0;
   num _checkOutTotal = 0;
   final int _deliveryCharges = 10;
   int? _selectedIndex;
@@ -37,10 +37,10 @@ class CartViewModel with ChangeNotifier {
     notifyListeners();
   }
 
-  double get getPawSelectedPoints => _pawSelectedPoints;
+  int get getPawSelectedPoints => _pawSelectedPoints;
 
   void setPawSelectedPoints() {
-    _pawSelectedPoints = _pawPoints;
+    _pawSelectedPoints = _pawPoints.round();
     _promoCodeDiscount = 0;
     _promoCodeController.clear();
     setCheckOutTotal();
@@ -83,7 +83,7 @@ class CartViewModel with ChangeNotifier {
 
   void setOrderRequest() {
     final OrderRequest orderData = OrderRequest(
-        totalAmount: _cartTotalPrice,
+        totalAmount: _checkOutTotal,
         locationId: navigatorKey.currentContext!
             .read<AuthViewModel>()
             .getAuthResponse
@@ -99,7 +99,7 @@ class CartViewModel with ChangeNotifier {
         discountPercentage: 10,
         deliveryDate: DateTimeFormatter.showDateFormat3(_selectedDay),
         promoCodeId: _promoCodeController.text,
-        cartItems: _cartList);
+        cartItems: _cartList, cartTotal: _cartTotalPrice, shippingFees: _deliveryCharges);
     navigatorKey.currentContext!
         .read<OrderViewModel>()
         .setOrderRequest(orderData);

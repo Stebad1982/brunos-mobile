@@ -96,11 +96,15 @@ Future redeemPawPointsBottomSheetWidget() {
                     label: cartViewModel
                         .getPawPoints
                         .toString(),
-                    max: context
+                    max: cartViewModel.getCartTotalPrice >= context
+                        .read<AuthViewModel>()
+                        .getAuthResponse
+                        .data!
+                        .availablePoints!? context
                         .watch<AuthViewModel>()
                         .getAuthResponse
                         .data!
-                        .availablePoints!.toDouble(),
+                        .availablePoints!.toDouble() : cartViewModel.getCartTotalPrice.toDouble(),
                     onChanged: (double value) {
                       cartViewModel.setPawPoints(value);
                     },
@@ -112,11 +116,17 @@ Future redeemPawPointsBottomSheetWidget() {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   lightBlack14w400Centre(data: '0'),
-                  lightBlack14w400Centre(data: '${context
-                      .watch<AuthViewModel>()
-                      .getAuthResponse
-                      .data!
-                      .availablePoints!} Points'),
+                  lightBlack14w400Centre(data: '${
+                      cartViewModel.getCartTotalPrice >= context
+                          .read<AuthViewModel>()
+                          .getAuthResponse
+                          .data!
+                          .availablePoints!? context
+                          .watch<AuthViewModel>()
+                          .getAuthResponse
+                          .data!
+                          .availablePoints!.toDouble() : cartViewModel.getCartTotalPrice.toDouble()
+                  } Points'),
                 ],
               ),
                SizedBox(
@@ -127,7 +137,7 @@ Future redeemPawPointsBottomSheetWidget() {
                     children: [
                       lightBlack14w400Centre(data: 'Selected Paw Points'),
                       lightBlack14w400Centre(data: cartViewModel
-                          .getPawPoints.toStringAsFixed(2)
+                          .getPawPoints.round()
                           .toString()),
                     ],
                   ),

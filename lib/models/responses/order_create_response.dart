@@ -1,13 +1,15 @@
-class OrderCreateResponse {
-  bool? isSuccess;
-  Data? data;
-  String? message;
+import 'package:brunos_kitchen/models/base_response_model.dart';
 
-  OrderCreateResponse({this.isSuccess, this.data, this.message});
+import '../order_model.dart';
+
+class OrderCreateResponse extends BaseResponseModel{
+    OrderData? data;
+
+  OrderCreateResponse({super.isSuccess, this.data, super.message});
 
   OrderCreateResponse.fromJson(Map<String, dynamic> json) {
     isSuccess = json['isSuccess'];
-    data = json['data'] != null ? new Data.fromJson(json['data']) : null;
+    data = json['data'] != null ? new OrderData.fromJson(json['data']) : null;
     message = json['message'];
   }
 
@@ -18,47 +20,6 @@ class OrderCreateResponse {
       data['data'] = this.data!.toJson();
     }
     data['message'] = this.message;
-    return data;
-  }
-}
-
-class Data {
-  String? sId;
-  int? totalAmount;
-  String? locationId;
-  String? paymentMethod;
-  int? discountPercentage;
-  String? deliveryDate;
-  String? promoCodeId;
-
-  Data(
-      {this.sId,
-        this.totalAmount,
-        this.locationId,
-        this.paymentMethod,
-        this.discountPercentage,
-        this.deliveryDate,
-        this.promoCodeId});
-
-  Data.fromJson(Map<String, dynamic> json) {
-    sId = json['_id'];
-    totalAmount = json['totalAmount'];
-    locationId = json['locationId'];
-    paymentMethod = json['paymentMethod'];
-    discountPercentage = json['discountPercentage'];
-    deliveryDate = json['deliveryDate'];
-    promoCodeId = json['promoCodeId'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['_id'] = this.sId;
-    data['totalAmount'] = this.totalAmount;
-    data['locationId'] = this.locationId;
-    data['paymentMethod'] = this.paymentMethod;
-    data['discountPercentage'] = this.discountPercentage;
-    data['deliveryDate'] = this.deliveryDate;
-    data['promoCodeId'] = this.promoCodeId;
     return data;
   }
 }

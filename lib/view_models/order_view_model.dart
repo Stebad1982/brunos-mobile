@@ -5,6 +5,7 @@ import 'package:brunos_kitchen/services/order_api_services.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 
+import '../models/order_model.dart';
 import '../models/responses/order_create_response.dart';
 
 class OrderViewModel with ChangeNotifier {

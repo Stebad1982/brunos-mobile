@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
+import '../models/order_model.dart';
 import '../route_generator.dart';
 import '../utils/custom_buttons.dart';
 import '../utils/custom_colors.dart';

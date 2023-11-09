@@ -5,6 +5,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 
 import '../main.dart';
+import '../models/order_model.dart';
 import '../models/responses/order_response.dart';
 import '../route_generator.dart';
 import '../utils/custom_colors.dart';
