@@ -40,7 +40,7 @@ class OrderDetailScreen extends StatelessWidget {
                     padding: const EdgeInsets.all(20),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [AWFDaz`  aA  Q432
+                      children: [
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
