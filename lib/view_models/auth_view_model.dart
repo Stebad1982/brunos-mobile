@@ -302,30 +302,37 @@ class AuthViewModel with ChangeNotifier {
 
   Future<bool> callUserRegisterApi() async {
     EasyLoading.show(status: 'Please Wait ...');
-    try {
-      final UserRegisterRequest userRegisterRequest = UserRegisterRequest(
-          password: _passwordController.text,
-          email: _emailController.text,
-          deviceToken: _fcmToken ?? '',
-          deviceType: _operatingSystem,
-          fullName: _nameController.text,
-          phoneNumber: _countryCode + _phoneController.text);
+    final bool otpVerification = await verifyOTP();
+    if(otpVerification){
+      try {
+        final UserRegisterRequest userRegisterRequest = UserRegisterRequest(
+            password: _passwordController.text,
+            email: _emailController.text,
+            deviceToken: _fcmToken ?? '',
+            deviceType: _operatingSystem,
+            fullName: _nameController.text,
+            phoneNumber: _countryCode + _phoneController.text);
 
-      final AuthResponse response = await _authApiServices.userRegisterApi(
-          userRegisterRequest: userRegisterRequest);
-      if (response.isSuccess!) {
-        setAuthResponse(response);
-        //  setImageSlider();
-        EasyLoading.dismiss();
-        return true;
-      } else {
-        EasyLoading.showError('${response.message}');
+        final AuthResponse response = await _authApiServices.userRegisterApi(
+            userRegisterRequest: userRegisterRequest);
+        if (response.isSuccess!) {
+          setAuthResponse(response);
+          //  setImageSlider();
+          EasyLoading.dismiss();
+          return true;
+        } else {
+          EasyLoading.showError('${response.message}');
+          return false;
+        }
+      } catch (e) {
+        EasyLoading.showError(e.toString());
         return false;
       }
-    } catch (e) {
-      EasyLoading.showError(e.toString());
+    }
+    else{
       return false;
     }
+
   }
 
   Future<bool> callGuestUserRegisterApi() async {
@@ -460,7 +467,6 @@ class AuthViewModel with ChangeNotifier {
           PhoneAuthProvider.credential(
               verificationId: _verificationId, smsCode: _otpController.text));
       EasyLoading.dismiss();
-
       return credentials.user != null ? true : false;
     } catch (exception) {
       EasyLoading.showToast(exception.toString());

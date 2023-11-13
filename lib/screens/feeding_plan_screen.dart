@@ -220,6 +220,7 @@ class _FeedingPlanScreenState extends State<FeedingPlanScreen> {
                             child: customButton(
                                 text: 'Add to Sopping Bag',
                                 onPressed: () {
+                                  plansViewModel.generatePouchesDetailList();
                                   if (!context
                                       .read<CartViewModel>()
                                       .getViewCartItemDetail) {
