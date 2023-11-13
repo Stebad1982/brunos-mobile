@@ -27,12 +27,15 @@ class PlansViewModel with ChangeNotifier {
   int _quantity = 1;
   int _availableDays = 0;
   int _daysCount = 1;
+
   //ItemSizes? _selectedItemSize;
   CartModel? _feedingPlan;
   num _transitionalGrams1to3Days = 0;
   num _transitionalGrams4to6Days = 0;
   num _transitionalGrams7to9Days = 0;
   num _transitionalGrams10thDay = 0;
+
+  List<String> _poucehsDetail = [];
 
   //bool _showDaysRangeValidation = false;
   String _planType = Plans.transitional.text;
@@ -193,6 +196,45 @@ class PlansViewModel with ChangeNotifier {
     notifyListeners();
   }
 
+  void generatePouchesDetailList() {
+    _poucehsDetail.clear();
+    for (var index = 0; index < _feedingPlan!.recipes.length; index++) {
+      /*final num totalPlanQuantity = calculateDailyIntake(
+              recipeModel: _feedingPlan!.recipes[index],
+              puppyActivityLevel: _feedingPlan!.pet!.activityLevel!,
+              currentWeight: _feedingPlan!.pet!.currentWeight!) *
+          (_feedingPlan!.recipes[index].totalDays!);
+      final num perPouchQuantity = calculateFeedingPlan(
+          recipeModel: _feedingPlan!.recipes[index],
+          puppyModel: _feedingPlan!.pet!);
+      final num transitionalPlanTotalQuantity = getTotalTransitionalGrams();*/
+      final num transitional1to3PerPouchQty = calculateFeedingPlan(
+          recipeModel: _feedingPlan!.recipes[index],
+          puppyModel: _feedingPlan!.pet!,
+          gramsForTransitional: getTransitionalGrams1to3Days);
+      final num transitional4to6PerPouchQty = calculateFeedingPlan(
+          recipeModel: _feedingPlan!.recipes[index],
+          puppyModel: _feedingPlan!.pet!,
+          gramsForTransitional: getTransitionalGrams4to6Days);
+      final num transitional7to9PerPouchQty = calculateFeedingPlan(
+          recipeModel: _feedingPlan!.recipes[index],
+          puppyModel: _feedingPlan!.pet!,
+          gramsForTransitional: getTransitionalGrams7to9Days);
+      final num transitional10thPerPouchQty = calculateFeedingPlan(
+          recipeModel: _feedingPlan!.recipes[index],
+          puppyModel: _feedingPlan!.pet!,
+          gramsForTransitional: getTransitionalGrams10thDay);
+      if (_planType == Plans.transitional.text) {
+        _poucehsDetail.add(
+            '${(_transitionalGrams1to3Days / transitional1to3PerPouchQty * 3).round()} pouches x ${(transitional1to3PerPouchQty / 3).toStringAsFixed(2)} grams (for days 1 to 3) \n ${(_transitionalGrams4to6Days / transitional4to6PerPouchQty * 3).round()} pouches x ${(transitional4to6PerPouchQty / 3).toStringAsFixed(2)} grams (for days 4 to 6) \n ${(_transitionalGrams7to9Days / transitional7to9PerPouchQty * 3).round()} pouches x ${(transitional7to9PerPouchQty / 3).toStringAsFixed(2)} grams (for days 7 to 9)');
+      } else {
+        _poucehsDetail.add(
+            '${(_transitionalGrams10thDay / transitional10thPerPouchQty).round()} pouches x ${transitional10thPerPouchQty.toStringAsFixed(2)} grams (for day 10 onwards)');
+      }
+      print(_poucehsDetail);
+    }
+  }
+
   num getTotalTransitionalGrams() {
     final num totalGrams = _transitionalGrams1to3Days +
         _transitionalGrams4to6Days +
@@ -248,9 +290,9 @@ class PlansViewModel with ChangeNotifier {
         RecipeModel.fromJson(_selectedRecipe.toJson());
     applyDishDetail.quantity = _quantity;
     applyDishDetail.finalPrice = _selectedRecipe.pricePerKG! * _quantity;
-   applyDishDetail.pricePerKG = _selectedRecipe.pricePerKG!;
-   applyDishDetail.selectedItemSize = _selectedRecipe.selectedItemSize;
-   applyDishDetail.sizes = _selectedRecipe.sizes;
+    applyDishDetail.pricePerKG = _selectedRecipe.pricePerKG!;
+    applyDishDetail.selectedItemSize = _selectedRecipe.selectedItemSize;
+    applyDishDetail.sizes = _selectedRecipe.sizes;
     _selectedRecipe = applyDishDetail;
   }
 
@@ -322,7 +364,7 @@ class PlansViewModel with ChangeNotifier {
 
   void setSelectedRecipe(RecipeModel value) {
     _selectedRecipe = value;
-   /* if(_selectedRecipe.sizes!.isNotEmpty){
+    /* if(_selectedRecipe.sizes!.isNotEmpty){
       _selectedItemSize = _selectedRecipe.sizes![0];
     }
     else{
@@ -339,8 +381,6 @@ class PlansViewModel with ChangeNotifier {
   RecipeModel? get getMonthlyEmptyTile2 => _monthlyEmptyTile2;
 
   RecipeModel? get getMonthlyEmptyTile3 => _monthlyEmptyTile3;
-
-
 
   String get getPlanType => _planType;
 
@@ -364,8 +404,6 @@ class PlansViewModel with ChangeNotifier {
 
     notifyListeners();
   }
-
-
 
   Future<bool> callAllRecipesApi() async {
     EasyLoading.show(status: 'Please wait...');
