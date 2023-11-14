@@ -7,6 +7,7 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 import '../models/order_model.dart';
 import '../models/responses/order_create_response.dart';
+import '../utils/enums.dart';
 
 class OrderViewModel with ChangeNotifier {
   final OrderApiServices _orderApiServices = OrderApiServices();
@@ -14,6 +15,7 @@ class OrderViewModel with ChangeNotifier {
   OrderCreateResponse _orderCreateResponse = OrderCreateResponse();
   final List<OrderData> _completedOrders = [];
   final List<OrderData> _inProcessOrders = [];
+  final List<OrderItems> _monthlyOrders = [];
   OrderResponse _orderResponse = OrderResponse();
   OrderData _selectedOrder = OrderData();
 
@@ -28,6 +30,8 @@ class OrderViewModel with ChangeNotifier {
     _orderRequest = value;
   }
   OrderData get getSelectedOrder => _selectedOrder;
+
+  List<OrderItems> get getMonthlyOrders => _monthlyOrders;
 
   List<OrderData> get getCompletedOrders => _completedOrders;
 
@@ -44,10 +48,18 @@ class OrderViewModel with ChangeNotifier {
     _orderResponse = value;
     _completedOrders.clear();
     _inProcessOrders.clear();
+    _monthlyOrders.clear();
     _completedOrders.addAll(value.data!.where((element) => element.isCompleted!)) ;
     _inProcessOrders.addAll(value.data!.where((element) => !element.isCompleted!)) ;
+    for (var index = 0; index < value.data!.length; index++) {
+      for (var monthlyIndex = 0; monthlyIndex < value.data![index].orderItems!.length; monthlyIndex++) {
+        _monthlyOrders.addAll(value.data![index].orderItems!.where((element) => element.planType == Plans.monthly.text));
+      }
+    }
     print(_completedOrders);
     print(_inProcessOrders);
+    print(_monthlyOrders);
+
     notifyListeners();
   }
 

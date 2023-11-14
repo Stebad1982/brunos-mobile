@@ -275,7 +275,7 @@ class ProductDetailScreen extends StatelessWidget {
 */
                                   planType: plansViewModel.getPlanType,
                                   planTotal: calculatePlanTotal(
-                                      listOfItems: recipeList), pouchesDetail: plansViewModel.getPouchesDetail),
+                                      listOfItems: recipeList), pouchesDetail: []),
                             );
 
                               Navigator.pushNamedAndRemoveUntil(

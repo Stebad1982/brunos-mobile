@@ -18,7 +18,7 @@ import 'cart_dish_vertical_list_chip.dart';
 import 'circular_network_image_widget.dart';
 
 Widget orderItemsVerticalListChipWidget(
-    {required OrderItems orderItems, required int itemIndex}) {
+    {required OrderItems orderItems, required int itemIndex, bool? showButtons}) {
   return Column(
     children: [
       InkWell(

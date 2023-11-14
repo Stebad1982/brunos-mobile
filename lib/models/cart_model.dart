@@ -15,7 +15,7 @@ class CartModel {
       {required this.planTotal,
       required this.recipes,
       required this.pet,
-        required  this.pouchesDetail,
+      required this.pouchesDetail,
       required this.planType});
 
   Map<String, dynamic> toJson() {
@@ -23,13 +23,10 @@ class CartModel {
     if (this.pet != null) {
       data['pet'] = this.pet!.toJson();
     }
-    data['pouchesDetail'] = this.pouchesDetail;
+    data['pouchesDetail'] = json.encode(this.pouchesDetail);
     data['planType'] = this.planType;
     data['planTotal'] = this.planTotal;
     data['recipes'] = this.recipes.map((v) => v.toJson()).toList();
-      return data;
+    return data;
   }
 }
-
-
-

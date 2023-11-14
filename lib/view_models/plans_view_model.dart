@@ -35,7 +35,7 @@ class PlansViewModel with ChangeNotifier {
   num _transitionalGrams7to9Days = 0;
   num _transitionalGrams10thDay = 0;
 
-  final List<String> _pouchesDetail = [];
+  //final List<String> _pouchesDetail = [];
 
   //bool _showDaysRangeValidation = false;
   String _planType = Plans.transitional.text;
@@ -62,7 +62,7 @@ class PlansViewModel with ChangeNotifier {
     notifyListeners();
   }
 
-  List<String> get getPouchesDetail => _pouchesDetail;
+  //List<String> get getPouchesDetail => _pouchesDetail;
 
   String get getProductCategory => _productCategory;
 
@@ -188,7 +188,8 @@ class PlansViewModel with ChangeNotifier {
       recipeList.add(_selectedRecipe);
     }
 
-    generatePouchesDetailList(recipes: recipeList, pet: petData);
+    final List<String> pouchesData =
+        generatePouchesDetailList(recipes: recipeList, pet: petData);
 
     _feedingPlan = CartModel(
         planTotal: calculatePlanTotal(listOfItems: recipeList),
@@ -198,14 +199,14 @@ class PlansViewModel with ChangeNotifier {
         deliveryDate: '',
 */
         planType: _planType,
-        pouchesDetail: _pouchesDetail);
+        pouchesDetail: pouchesData);
 
     notifyListeners();
   }
 
-  void generatePouchesDetailList(
+  List<String> generatePouchesDetailList(
       {required List<RecipeModel> recipes, PuppyModel? pet}) {
-    _pouchesDetail.clear();
+    List<String> pouchesDetail = [];
     for (var index = 0; index < recipes.length; index++) {
       final num totalPlanQuantity = calculateDailyIntake(
               recipeModel: recipes[index],
@@ -240,13 +241,14 @@ class PlansViewModel with ChangeNotifier {
       print(transitional10thPerPouchQty);
 
       if (_planType == Plans.transitional.text) {
-        _pouchesDetail.add(
-            '${(_transitionalGrams1to3Days / transitional1to3PerPouchQty * 3).round()} pouches x ${(transitional1to3PerPouchQty / 3).toStringAsFixed(2)} grams (for days 1 to 3) \n ${(_transitionalGrams4to6Days / transitional4to6PerPouchQty * 3).round()} pouches x ${(transitional4to6PerPouchQty / 3).toStringAsFixed(2)} grams (for days 4 to 6) \n ${(_transitionalGrams7to9Days / transitional7to9PerPouchQty * 3).round()} pouches x ${(transitional7to9PerPouchQty / 3).toStringAsFixed(2)} grams (for days 7 to 9) \n ${(_transitionalGrams10thDay / transitional10thPerPouchQty).round()} pouches x ${transitional10thPerPouchQty.toStringAsFixed(2)} grams (for day 10 onwards)');
+        pouchesDetail.add(
+            '${(_transitionalGrams1to3Days / transitional1to3PerPouchQty * 3).round()} pouches x ${(transitional1to3PerPouchQty / 3).toStringAsFixed(2)} grams (for days 1 to 3) | ${(_transitionalGrams4to6Days / transitional4to6PerPouchQty * 3).round()} pouches x ${(transitional4to6PerPouchQty / 3).toStringAsFixed(2)} grams (for days 4 to 6) | ${(_transitionalGrams7to9Days / transitional7to9PerPouchQty * 3).round()} pouches x ${(transitional7to9PerPouchQty / 3).toStringAsFixed(2)} grams (for days 7 to 9) | ${(_transitionalGrams10thDay / transitional10thPerPouchQty).round()} pouches x ${transitional10thPerPouchQty.toStringAsFixed(2)} grams (for day 10 onwards)');
       } else {
-        _pouchesDetail.add(
+        pouchesDetail.add(
             '${(totalPlanQuantity / perPouchQuantity).round()} pouches x ${perPouchQuantity.toStringAsFixed(2)} grams for ${recipes[index].totalDays} days');
       }
     }
+    return pouchesDetail;
   }
 
   num getTotalTransitionalGrams() {
