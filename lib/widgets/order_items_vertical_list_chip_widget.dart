@@ -8,6 +8,7 @@ import '../main.dart';
 import '../models/order_model.dart';
 import '../models/responses/order_response.dart';
 import '../route_generator.dart';
+import '../utils/custom_buttons.dart';
 import '../utils/custom_colors.dart';
 import '../utils/custom_font_style.dart';
 import '../utils/enums.dart';
@@ -18,7 +19,9 @@ import 'cart_dish_vertical_list_chip.dart';
 import 'circular_network_image_widget.dart';
 
 Widget orderItemsVerticalListChipWidget(
-    {required OrderItems orderItems, required int itemIndex, bool? showButtons}) {
+    {required OrderItems orderItems,
+    required int itemIndex,
+    required bool showButtons}) {
   return Column(
     children: [
       InkWell(
@@ -48,45 +51,9 @@ Widget orderItemsVerticalListChipWidget(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Row(
-                  // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Expanded(
-                      child: orange18w500(
-                          data:
-                              '${orderItems.planType} ${orderItems.pet == null ? '' : 'Plan'}'),
-                    ),
-                    /*  SizedBox(
-                      width: 10.w,
-                    ),
-                    InkWell(
-                      onTap: () {
-                        navigatorKey.currentContext!
-                            .read<CartViewModel>()
-                            .removeFromCartList(cartDetail);
-                      },
-                      child: Container(
-                        decoration: ShapeDecoration(
-                          color: CustomColors.whiteColor,
-                          shape: RoundedRectangleBorder(
-                            side: const BorderSide(
-                                width: 0.75,
-                                color: CustomColors.greyMediumColor),
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                        ),
-                        child: const Padding(
-                          padding: EdgeInsets.all(10),
-                          child: Icon(
-                            Icons.delete_outline,
-                            size: 20,
-                            color: CustomColors.orangeColor,
-                          ),
-                        ),
-                      ),
-                    ),*/
-                  ],
-                ),
+                orange18w500(
+                    data:
+                        '${orderItems.planType} ${orderItems.pet == null ? '' : 'Plan'}'),
                 orderItems.pet != null
                     ? Column(
                         children: [
@@ -124,6 +91,30 @@ Widget orderItemsVerticalListChipWidget(
                     : Container(),
                 SizedBox(
                   height: 20.h,
+                ),
+                Visibility(
+                  visible: showButtons,
+                  child: Padding(
+                    padding: const EdgeInsets.only(bottom: 20),
+                    child: Row(
+                      children: [
+                        Expanded(
+                            child: customButton(
+                                height: 40.h,
+                                text: 'Freeze',
+                                onPressed: () {},
+                                colored: true)),
+                        SizedBox(
+                          width: 20.w,
+                        ),
+                        Expanded(
+                            child: customButton(
+                                height: 40.h,
+
+                                text: 'Cancel', onPressed: () {}, colored: true))
+                      ],
+                    ),
+                  ),
                 ),
                 ListView.separated(
                   physics: const NeverScrollableScrollPhysics(),

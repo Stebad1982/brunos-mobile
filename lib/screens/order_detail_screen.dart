@@ -111,18 +111,20 @@ class OrderDetailScreen extends StatelessWidget {
               const SizedBox(
                 height: 20,
               ),
-              ListView.builder(
-                // physics: const NeverScrollableScrollPhysics(),
-                shrinkWrap: true,
-                itemCount: orderViewModel.getSelectedOrder.orderItems!.length,
-                padding: const EdgeInsets.only(
-                    left: 20, right: 20, bottom: 120),
-                itemBuilder: (BuildContext context, int index) {
-                  return orderItemsVerticalListChipWidget(
-                      itemIndex: index,
-                      orderItems: orderViewModel.getSelectedOrder
-                          .orderItems![index]);
-                },
+              Expanded(
+                child: ListView.builder(
+                  // physics: const NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  itemCount: orderViewModel.getSelectedOrder.orderItems!.length,
+                  padding: const EdgeInsets.only(
+                      left: 20, right: 20, bottom: 20),
+                  itemBuilder: (BuildContext context, int index) {
+                    return orderItemsVerticalListChipWidget(
+                        itemIndex: index,
+                        orderItems: orderViewModel.getSelectedOrder
+                            .orderItems![index], showButtons: false);
+                  },
+                ),
               ),
             ],
           ),

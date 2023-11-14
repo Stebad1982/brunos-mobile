@@ -20,7 +20,7 @@ class OrderMonthlyScreen extends StatelessWidget {
         itemBuilder: (BuildContext context, int index) {
           return orderItemsVerticalListChipWidget(
               itemIndex: index,
-              orderItems: orderViewModel.getMonthlyOrders[index]);
+              orderItems: orderViewModel.getMonthlyOrders[index],showButtons: true);
         },
       );
     });
