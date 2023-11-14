@@ -179,6 +179,7 @@ class CartViewModel with ChangeNotifier {
   void addToCartList(CartModel value) {
     if (_selectedIndex == null) {
       _cartList.add(value);
+      print(_cartList);
     } else {
       _cartList[_selectedIndex!] = value;
     }

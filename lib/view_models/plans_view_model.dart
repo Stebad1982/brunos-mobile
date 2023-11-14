@@ -35,7 +35,7 @@ class PlansViewModel with ChangeNotifier {
   num _transitionalGrams7to9Days = 0;
   num _transitionalGrams10thDay = 0;
 
-  List<String> _poucehsDetail = [];
+  final List<String> _pouchesDetail = [];
 
   //bool _showDaysRangeValidation = false;
   String _planType = Plans.transitional.text;
@@ -61,6 +61,8 @@ class PlansViewModel with ChangeNotifier {
     _selectedRecipe.pricePerKG = value.price;
     notifyListeners();
   }
+
+  List<String> get getPouchesDetail => _pouchesDetail;
 
   String get getProductCategory => _productCategory;
 
@@ -185,6 +187,9 @@ class PlansViewModel with ChangeNotifier {
       setProductModel();
       recipeList.add(_selectedRecipe);
     }
+
+    generatePouchesDetailList(recipes: recipeList, pet: petData);
+
     _feedingPlan = CartModel(
         planTotal: calculatePlanTotal(listOfItems: recipeList),
         recipes: recipeList,
@@ -192,46 +197,55 @@ class PlansViewModel with ChangeNotifier {
 /*
         deliveryDate: '',
 */
-        planType: _planType);
+        planType: _planType,
+        pouchesDetail: _pouchesDetail);
+
     notifyListeners();
   }
 
-  void generatePouchesDetailList() {
-    _poucehsDetail.clear();
-    for (var index = 0; index < _feedingPlan!.recipes.length; index++) {
-      /*final num totalPlanQuantity = calculateDailyIntake(
-              recipeModel: _feedingPlan!.recipes[index],
-              puppyActivityLevel: _feedingPlan!.pet!.activityLevel!,
-              currentWeight: _feedingPlan!.pet!.currentWeight!) *
-          (_feedingPlan!.recipes[index].totalDays!);
-      final num perPouchQuantity = calculateFeedingPlan(
-          recipeModel: _feedingPlan!.recipes[index],
-          puppyModel: _feedingPlan!.pet!);
-      final num transitionalPlanTotalQuantity = getTotalTransitionalGrams();*/
+  void generatePouchesDetailList(
+      {required List<RecipeModel> recipes, PuppyModel? pet}) {
+    _pouchesDetail.clear();
+    for (var index = 0; index < recipes.length; index++) {
+      final num totalPlanQuantity = calculateDailyIntake(
+              recipeModel: recipes[index],
+              puppyActivityLevel: pet!.activityLevel!,
+              currentWeight: pet.currentWeight!) *
+          (recipes[index].totalDays!);
+      final num perPouchQuantity =
+          calculateFeedingPlan(recipeModel: recipes[index], puppyModel: pet);
+      //final num transitionalPlanTotalQuantity = getTotalTransitionalGrams();
       final num transitional1to3PerPouchQty = calculateFeedingPlan(
-          recipeModel: _feedingPlan!.recipes[index],
-          puppyModel: _feedingPlan!.pet!,
-          gramsForTransitional: getTransitionalGrams1to3Days);
+          recipeModel: recipes[index],
+          puppyModel: pet,
+          gramsForTransitional: _transitionalGrams1to3Days);
+      print(transitional1to3PerPouchQty);
+
       final num transitional4to6PerPouchQty = calculateFeedingPlan(
-          recipeModel: _feedingPlan!.recipes[index],
-          puppyModel: _feedingPlan!.pet!,
-          gramsForTransitional: getTransitionalGrams4to6Days);
+          recipeModel: recipes[index],
+          puppyModel: pet,
+          gramsForTransitional: _transitionalGrams4to6Days);
+      print(transitional4to6PerPouchQty);
+
       final num transitional7to9PerPouchQty = calculateFeedingPlan(
-          recipeModel: _feedingPlan!.recipes[index],
-          puppyModel: _feedingPlan!.pet!,
-          gramsForTransitional: getTransitionalGrams7to9Days);
-      final num transitional10thPerPouchQty = calculateFeedingPlan(
-          recipeModel: _feedingPlan!.recipes[index],
-          puppyModel: _feedingPlan!.pet!,
-          gramsForTransitional: getTransitionalGrams10thDay);
+          recipeModel: recipes[index],
+          puppyModel: pet,
+          gramsForTransitional: _transitionalGrams7to9Days);
+      print(transitional7to9PerPouchQty);
+
+      num transitional10thPerPouchQty = calculateFeedingPlan(
+          recipeModel: recipes[index],
+          puppyModel: pet,
+          gramsForTransitional: _transitionalGrams10thDay);
+      print(transitional10thPerPouchQty);
+
       if (_planType == Plans.transitional.text) {
-        _poucehsDetail.add(
-            '${(_transitionalGrams1to3Days / transitional1to3PerPouchQty * 3).round()} pouches x ${(transitional1to3PerPouchQty / 3).toStringAsFixed(2)} grams (for days 1 to 3) \n ${(_transitionalGrams4to6Days / transitional4to6PerPouchQty * 3).round()} pouches x ${(transitional4to6PerPouchQty / 3).toStringAsFixed(2)} grams (for days 4 to 6) \n ${(_transitionalGrams7to9Days / transitional7to9PerPouchQty * 3).round()} pouches x ${(transitional7to9PerPouchQty / 3).toStringAsFixed(2)} grams (for days 7 to 9)');
+        _pouchesDetail.add(
+            '${(_transitionalGrams1to3Days / transitional1to3PerPouchQty * 3).round()} pouches x ${(transitional1to3PerPouchQty / 3).toStringAsFixed(2)} grams (for days 1 to 3) \n ${(_transitionalGrams4to6Days / transitional4to6PerPouchQty * 3).round()} pouches x ${(transitional4to6PerPouchQty / 3).toStringAsFixed(2)} grams (for days 4 to 6) \n ${(_transitionalGrams7to9Days / transitional7to9PerPouchQty * 3).round()} pouches x ${(transitional7to9PerPouchQty / 3).toStringAsFixed(2)} grams (for days 7 to 9) \n ${(_transitionalGrams10thDay / transitional10thPerPouchQty).round()} pouches x ${transitional10thPerPouchQty.toStringAsFixed(2)} grams (for day 10 onwards)');
       } else {
-        _poucehsDetail.add(
-            '${(_transitionalGrams10thDay / transitional10thPerPouchQty).round()} pouches x ${transitional10thPerPouchQty.toStringAsFixed(2)} grams (for day 10 onwards)');
+        _pouchesDetail.add(
+            '${(totalPlanQuantity / perPouchQuantity).round()} pouches x ${perPouchQuantity.toStringAsFixed(2)} grams for ${recipes[index].totalDays} days');
       }
-      print(_poucehsDetail);
     }
   }
 

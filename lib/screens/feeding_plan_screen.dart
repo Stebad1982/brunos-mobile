@@ -220,7 +220,6 @@ class _FeedingPlanScreenState extends State<FeedingPlanScreen> {
                             child: customButton(
                                 text: 'Add to Sopping Bag',
                                 onPressed: () {
-                                  plansViewModel.generatePouchesDetailList();
                                   if (!context
                                       .read<CartViewModel>()
                                       .getViewCartItemDetail) {
@@ -236,7 +235,7 @@ class _FeedingPlanScreenState extends State<FeedingPlanScreen> {
                                               planType: plansViewModel
                                                   .getFeedingPlan!.planType,
                                               planTotal: plansViewModel
-                                                  .getFeedingPlan!.planTotal),
+                                                  .getFeedingPlan!.planTotal, pouchesDetail: plansViewModel.getFeedingPlan!.pouchesDetail),
                                         );
                                     if (context
                                             .read<CartViewModel>()
