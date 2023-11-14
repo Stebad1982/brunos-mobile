@@ -5,17 +5,17 @@ import 'item_sizes_model.dart';
 
 class RecipeModel {
   String? sId;
+
 /*
   int? createdOnDate;
 */
   String? name;
   bool? isFeatured;
+
 /*
   String? userId;
 */
-/*
   List<Ingredient>? ingredient;
-*/
   String? description;
   String? details;
   String? instructions;
@@ -33,7 +33,7 @@ class RecipeModel {
   String? category;
   int? caloriesContentNo;
 
-  //Ingredient? ingredients;
+ // Ingredient? ingredient;
   String? ingredientsComposition;
 
   RecipeModel(
@@ -41,32 +41,30 @@ class RecipeModel {
 /*
         this.createdOnDate,
 */
-        this.name,
-        this.isFeatured,
+      this.name,
+      this.isFeatured,
 /*
         this.userId,
 */
-/*
-        this.ingredient,
-*/
-        this.description,
-        this.details,
-        this.instructions,
-        this.nutrition,
-        this.pricePerKG,
-        this.media,
-        this.recipeNo,
-        this.lifeStage,
-        this.caloriesContentNo,
-        this.quantity,
-        this.finalPrice,
-        this.isComboRecipe,
-        this.sizes,
-        this.selectedItemSize,
-        // this.ingredients,
-        this.totalDays,
-        this.category,
-        this.ingredientsComposition});
+      this.ingredient,
+      this.description,
+      this.details,
+      this.instructions,
+      this.nutrition,
+      this.pricePerKG,
+      this.media,
+      this.recipeNo,
+      this.lifeStage,
+      this.caloriesContentNo,
+      this.quantity,
+      this.finalPrice,
+      this.isComboRecipe,
+      this.sizes,
+      this.selectedItemSize,
+      // this.ingredients,
+      this.totalDays,
+      this.category,
+      this.ingredientsComposition});
 
   RecipeModel.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
@@ -79,12 +77,12 @@ class RecipeModel {
     userId = json['userId'];
 */
     finalPrice = json['finalPrice'] ?? json['pricePerKG'];
-    /*if (json['ingredient'] != null) {
+    if (json['ingredient'] != null) {
       ingredient = <Ingredient>[];
       json['ingredient'].forEach((v) {
         ingredient!.add(new Ingredient.fromJson(v));
       });
-    }*/
+    }
     description = json['description'];
     isComboRecipe = json['isComboRecipe'];
     totalDays = json['totalDays'] ?? 1;
@@ -97,15 +95,13 @@ class RecipeModel {
       json['sizes'].forEach((v) {
         sizes!.add(ItemSizes.fromJson(v));
       });
-      if(sizes!.isNotEmpty){
+      if (sizes!.isNotEmpty) {
         selectedItemSize = sizes![0];
         pricePerKG = sizes![0].price;
-      }
-      else{
+      } else {
         pricePerKG = json['pricePerKG'];
       }
-    }
-    else{
+    } else {
       sizes = <ItemSizes>[];
       pricePerKG = json['pricePerKG'];
     }
@@ -133,9 +129,9 @@ class RecipeModel {
     data['totalDays'] = this.totalDays ?? 1;
     data['quantity'] = this.quantity ?? 1;
     data['finalPrice'] = this.finalPrice ?? this.pricePerKG;
-  /*  if (this.ingredient != null) {
+      if (this.ingredient != null) {
       data['ingredient'] = this.ingredient!.map((v) => v.toJson()).toList();
-    }*/
+    }
     if (this.nutrition != null) {
       data['nutrition'] = jsonEncode(this.nutrition);
     }
@@ -158,5 +154,3 @@ class RecipeModel {
     return data;
   }
 }
-
-
