@@ -235,7 +235,7 @@ class _FeedingPlanScreenState extends State<FeedingPlanScreen> {
                                               planType: plansViewModel
                                                   .getFeedingPlan!.planType,
                                               planTotal: plansViewModel
-                                                  .getFeedingPlan!.planTotal, pouchesDetail: plansViewModel.getFeedingPlan!.pouchesDetail),
+                                                  .getFeedingPlan!.planTotal, pouchesDetail: plansViewModel.getFeedingPlan!.pouchesDetail, totalWeight: plansViewModel.getFeedingPlan!.totalWeight),
                                         );
                                     if (context
                                             .read<CartViewModel>()

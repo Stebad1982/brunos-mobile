@@ -8,6 +8,7 @@ class CartModel {
   PuppyModel? pet;
   List<RecipeModel> recipes;
   String planType;
+  List<num> totalWeight;
   List<String> pouchesDetail;
   num planTotal;
 
@@ -16,7 +17,8 @@ class CartModel {
       required this.recipes,
       required this.pet,
       required this.pouchesDetail,
-      required this.planType});
+      required this.planType,
+      required this.totalWeight});
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
@@ -26,6 +28,7 @@ class CartModel {
     data['pouchesDetail'] = json.encode(this.pouchesDetail);
     data['planType'] = this.planType;
     data['planTotal'] = this.planTotal;
+    data['totalWeight'] = this.totalWeight;
     data['recipes'] = this.recipes.map((v) => v.toJson()).toList();
     return data;
   }

@@ -275,7 +275,7 @@ class ProductDetailScreen extends StatelessWidget {
 */
                                   planType: plansViewModel.getPlanType,
                                   planTotal: calculatePlanTotal(
-                                      listOfItems: recipeList), pouchesDetail: []),
+                                      listOfItems: recipeList), pouchesDetail: [], totalWeight: []),
                             );
 
                               Navigator.pushNamedAndRemoveUntil(
@@ -308,7 +308,7 @@ class ProductDetailScreen extends StatelessWidget {
 */
                                 planType: plansViewModel.getPlanType,
                                 planTotal: calculatePlanTotal(
-                                    listOfItems: recipeList), pouchesDetail: []),
+                                    listOfItems: recipeList), pouchesDetail: [], totalWeight: []),
                           );
                           context.read<CartViewModel>().setSelectedIndex(null);
                           Navigator.pushNamedAndRemoveUntil(
