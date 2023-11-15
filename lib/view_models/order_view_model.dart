@@ -53,7 +53,9 @@ class OrderViewModel with ChangeNotifier {
     _inProcessOrders.addAll(value.data!.where((element) => !element.isCompleted!)) ;
     for (var index = 0; index < value.data!.length; index++) {
       for (var monthlyIndex = 0; monthlyIndex < value.data![index].orderItems!.length; monthlyIndex++) {
-        _monthlyOrders.addAll(value.data![index].orderItems!.where((element) => element.planType == Plans.monthly.text));
+        if(value.data![index].orderItems![monthlyIndex].planType == Plans.monthly.text){
+          _monthlyOrders.add(value.data![index].orderItems![monthlyIndex]);
+        }
       }
     }
     print(_completedOrders);

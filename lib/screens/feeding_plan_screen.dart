@@ -218,7 +218,7 @@ class _FeedingPlanScreenState extends State<FeedingPlanScreen> {
                           child: Padding(
                             padding: const EdgeInsets.only(top: 20.0),
                             child: customButton(
-                                text: 'Add to Sopping Bag',
+                                text: 'Add to Shopping Bag',
                                 onPressed: () {
                                   if (!context
                                       .read<CartViewModel>()

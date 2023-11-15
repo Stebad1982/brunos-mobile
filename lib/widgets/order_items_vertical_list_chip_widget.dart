@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
@@ -51,9 +52,32 @@ Widget orderItemsVerticalListChipWidget(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                orange18w500(
-                    data:
-                        '${orderItems.planType} ${orderItems.pet == null ? '' : 'Plan'}'),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    orange18w500(
+                        data:
+                            '${orderItems.planType} ${orderItems.pet == null ? '' : 'Plan'}'),
+                    Container(
+                      decoration: ShapeDecoration(
+                        color: CustomColors.whiteColor,
+                        shape: RoundedRectangleBorder(
+                          side: const BorderSide(
+                              width: 0.75, color: CustomColors.greyMediumColor),
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                      ),
+                      child: const Padding(
+                        padding: EdgeInsets.all(10),
+                        child: Icon(
+                          Icons.sticky_note_2_outlined,
+                          size: 20,
+                          color: CustomColors.orangeColor,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
                 orderItems.pet != null
                     ? Column(
                         children: [
@@ -102,7 +126,10 @@ Widget orderItemsVerticalListChipWidget(
                             child: customButton(
                                 height: 40.h,
                                 text: 'Freeze',
-                                onPressed: () {},
+                                onPressed: () {
+                                  EasyLoading.showSuccess(
+                                      'Status Updated to Admin');
+                                },
                                 colored: true)),
                         SizedBox(
                           width: 20.w,
@@ -110,8 +137,12 @@ Widget orderItemsVerticalListChipWidget(
                         Expanded(
                             child: customButton(
                                 height: 40.h,
-
-                                text: 'Cancel', onPressed: () {}, colored: true))
+                                text: 'Cancel',
+                                onPressed: () {
+                                  EasyLoading.showSuccess(
+                                      'Status Updated to Admin');
+                                },
+                                colored: true))
                       ],
                     ),
                   ),
