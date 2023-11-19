@@ -10,8 +10,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
-import '../utils/custom_colors.dart';
-import '../utils/enums.dart';
+import '../../utils/custom_colors.dart';
+import '../../utils/enums.dart';
 
 Widget foodCategoryGridChipWidget ({required FoodCategory listItems}){
   return Card(

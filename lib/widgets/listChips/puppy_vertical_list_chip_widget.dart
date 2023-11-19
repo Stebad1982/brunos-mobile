@@ -10,11 +10,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
-import '../models/puppy_model.dart';
-import '../route_generator.dart';
-import '../utils/custom_font_style.dart';
-import '../utils/images.dart';
-import '../view_models/bottom_navigation_view_model.dart';
+import '../../models/puppy_model.dart';
+import '../../route_generator.dart';
+import '../../utils/custom_font_style.dart';
+import '../../utils/images.dart';
+import '../../view_models/bottom_navigation_view_model.dart';
 
 Widget puppyVerticalListChipWidget({required PuppyModel puppyDetail}) {
   return Column(

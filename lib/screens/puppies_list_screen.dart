@@ -13,8 +13,8 @@ import '../utils/custom_colors.dart';
 import '../utils/images.dart';
 import '../view_models/puppy_view_model.dart';
 import '../widgets/app_bar_with_back_widget.dart';
-import '../widgets/orders_vertical_list_chip_widget.dart';
-import '../widgets/puppy_vertical_list_chip_widget.dart';
+import '../widgets/listChips/orders_vertical_list_chip_widget.dart';
+import '../widgets/listChips/puppy_vertical_list_chip_widget.dart';
 class PuppiesListScreen extends StatefulWidget {
   const PuppiesListScreen({Key? key}) : super(key: key);
 

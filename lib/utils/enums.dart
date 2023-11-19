@@ -14,10 +14,20 @@ enum Screens {
 enum Plans {
   transitional("Transitional"),
   monthly("Monthly"),
-  oneTime("OneTime"),
+  //oneTime("OneTime"),
   product("Product");
 
   const Plans(this.text);
+
+  final String text;
+}
+
+enum ProductCategories {
+  standardRecipes("Standard Recipes"),
+  clothing("Clothing"),
+  toys("Toys");
+
+  const ProductCategories(this.text);
 
   final String text;
 }
@@ -53,6 +63,16 @@ enum AddressLabels {
 
   final String text;
 }
+
+enum FeaturedRecipeType {
+  adult("Adult"),
+  puppy('Puppy');
+
+  const FeaturedRecipeType(this.text);
+
+  final String text;
+}
+
 
 
 

@@ -19,18 +19,19 @@ import '../utils/custom_buttons.dart';
 import '../utils/custom_colors.dart';
 import '../utils/custom_font_style.dart';
 import '../utils/enums.dart';
+import '../view_models/bottom_navigation_view_model.dart';
 import '../view_models/puppy_view_model.dart';
 import '../widgets/carousels/home_carousel_widget.dart';
 import '../widgets/cart_icon_widget.dart';
-import '../widgets/cart_vertical_list_chip_widget.dart';
+import '../widgets/listChips/cart_vertical_list_chip_widget.dart';
 import '../widgets/circular_network_image_widget.dart';
 import '../widgets/deafult_puppy_icon_widget.dart';
 import '../widgets/dialogs/address_label_dialog.dart';
 import '../widgets/dialogs/discription_dialog.dart';
-import '../widgets/food_category_grid_chip_widget.dart';
-import '../widgets/item_discribed_grid_chip_widget.dart';
-import '../widgets/food_grid_chip_widget.dart';
-import '../widgets/shop_items_horizontal_list_chip_widget.dart';
+import '../widgets/gridChip/food_category_grid_chip_widget.dart';
+import '../widgets/gridChip/item_discribed_grid_chip_widget.dart';
+import '../widgets/gridChip/food_grid_chip_widget.dart';
+import '../widgets/listChips/shop_items_horizontal_list_chip_widget.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -174,6 +175,45 @@ class HomeScreen extends StatelessWidget {
                     data: 'Check out our delicious doggie dishes'),
               ),
               SizedBox(height: 20.h),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                child: Row(
+                  children: [
+                    Expanded(
+                        child: customButton(
+                          height: 40.h,
+                            text: FeaturedRecipeType.adult.text,
+                            onPressed: () {
+                              context
+                                  .read<PlansViewModel>()
+                                  .setSelectedFeaturedRecipe(
+                                      FeaturedRecipeType.adult.text);
+                            },
+                            colored: context
+                                    .watch<PlansViewModel>()
+                                    .getSelectedFeaturedRecipe ==
+                                FeaturedRecipeType.adult.text)),
+                    SizedBox(
+                      width: 20.w,
+                    ),
+                    Expanded(
+                        child: customButton(
+                            height: 40.h,
+                            text: FeaturedRecipeType.puppy.text,
+                            onPressed: () {
+                              context
+                                  .read<PlansViewModel>()
+                                  .setSelectedFeaturedRecipe(
+                                      FeaturedRecipeType.puppy.text);
+                            },
+                            colored: context
+                                    .watch<PlansViewModel>()
+                                    .getSelectedFeaturedRecipe ==
+                                FeaturedRecipeType.puppy.text)),
+                  ],
+                ),
+              ),
+              SizedBox(height: 20.h),
               Wrap(
                 runSpacing: 20,
                 spacing: 20,
@@ -181,14 +221,14 @@ class HomeScreen extends StatelessWidget {
                 children: List.generate(
                     context
                         .watch<PlansViewModel>()
-                        .getFeaturedRecipesList
+                        .getSelectedFeaturedRecipesList
                         .length, (index) {
                   return SizedBox(
                     width: 157.w,
                     child: foodGridChipWidget(
                         recipeDetail: context
                             .watch<PlansViewModel>()
-                            .getFeaturedRecipesList[index]),
+                            .getSelectedFeaturedRecipesList[index]),
                   );
                 }),
               ),
@@ -371,7 +411,11 @@ class HomeScreen extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                child: Image.asset(dogBanner),
+                child: InkWell(
+                  onTap: (){
+                    context.read<BottomNavigationViewModel>().setHomeViewIndex(1);
+                  },
+                    child: Image.asset(dogBanner)),
               ),
               SizedBox(
                 height: 20.h,
@@ -405,45 +449,49 @@ class HomeScreen extends StatelessWidget {
               SizedBox(
                 height: 20.h,
               ),
-              context
-                  .watch<PlansViewModel>().getRecipesListResponse.data != null? Accordion(
-                disableScrolling: true,
-                paddingListHorizontal: 20,
-                maxOpenSections: 2,
-                headerBackgroundColorOpened: Colors.black54,
-                scaleWhenAnimating: true,
-                openAndCloseAnimation: true,
-                headerPadding:
-                    const EdgeInsets.symmetric(vertical: 7, horizontal: 15),
-                // sectionOpeningHapticFeedback: SectionHapticFeedback.heavy,
-                // sectionClosingHapticFeedback: SectionHapticFeedback.light,
-                children: [
-                  for (FaqsBlogsNewsData item in context
-                      .watch<PlansViewModel>().getRecipesListResponse.data!.faqs!)
-                    AccordionSection(
-                    // isOpen: false,
-                    // flipRightIconIfOpen: true,
-                    rightIcon: Icon(Icons.keyboard_arrow_down),
-                    // leftIcon: const Icon(Icons.insights_rounded, color: Colors.white),
-                    headerBackgroundColor: CustomColors.whiteColor,
-                    headerBackgroundColorOpened: CustomColors.whiteColor,
-                    header: Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 5),
-                      child: Align(
-                          alignment: Alignment.centerLeft,
-                          child: lightBlack14w400Centre(
-                              data: item.title!)),
-                    ),
-                    content: black12w500Centre(
-                        data: item.description!),
-                    contentHorizontalPadding: 20,
-                    contentBorderWidth: 1,
-                    // onOpenSection: () => print('onOpenSection ...'),
-                    // onCloseSection: () => print('onCloseSection ...'),
-                  )
-                ],
-              ):
-              SizedBox(),
+              context.watch<PlansViewModel>().getRecipesListResponse.data !=
+                      null
+                  ? Accordion(
+                      disableScrolling: true,
+                      paddingListHorizontal: 20,
+                      maxOpenSections: 2,
+                      headerBackgroundColorOpened: Colors.black54,
+                      scaleWhenAnimating: true,
+                      openAndCloseAnimation: true,
+                      headerPadding: const EdgeInsets.symmetric(
+                          vertical: 7, horizontal: 15),
+                      // sectionOpeningHapticFeedback: SectionHapticFeedback.heavy,
+                      // sectionClosingHapticFeedback: SectionHapticFeedback.light,
+                      children: [
+                        for (FaqsBlogsNewsData item in context
+                            .watch<PlansViewModel>()
+                            .getRecipesListResponse
+                            .data!
+                            .faqs!)
+                          AccordionSection(
+                            // isOpen: false,
+                            // flipRightIconIfOpen: true,
+                            rightIcon: Icon(Icons.keyboard_arrow_down),
+                            // leftIcon: const Icon(Icons.insights_rounded, color: Colors.white),
+                            headerBackgroundColor: CustomColors.whiteColor,
+                            headerBackgroundColorOpened:
+                                CustomColors.whiteColor,
+                            header: Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 5),
+                              child: Align(
+                                  alignment: Alignment.centerLeft,
+                                  child: lightBlack14w400Centre(
+                                      data: item.title!)),
+                            ),
+                            content: black12w500Centre(data: item.description!),
+                            contentHorizontalPadding: 20,
+                            contentBorderWidth: 1,
+                            // onOpenSection: () => print('onOpenSection ...'),
+                            // onCloseSection: () => print('onCloseSection ...'),
+                          )
+                      ],
+                    )
+                  : SizedBox(),
             ],
           ),
         ),

@@ -217,10 +217,10 @@ class ChooseYourPlanScreen extends StatelessWidget {
                 onTap: () {
                   if (context
                       .read<CartViewModel>()
-                      .checkCartForPlanValidation(planType: Plans.oneTime.text)) {
+                      .checkCartForPlanValidation(planType: Plans.product.text)) {
                     context
                         .read<PlansViewModel>()
-                        .setPlanType(Plans.oneTime.text);
+                        .setPlanType(Plans.product.text);
                     context.read<PlansViewModel>().clearPlanData();
                     Navigator.pushNamed(context, oneTimePlanRoute);
                   } else {

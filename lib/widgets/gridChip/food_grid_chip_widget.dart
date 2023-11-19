@@ -1,14 +1,14 @@
 import 'package:brunos_kitchen/models/recipe_model.dart';
 import 'package:brunos_kitchen/utils/images.dart';
-import 'package:brunos_kitchen/widgets/recipe_detail_bottom_sheet_widget.dart';
+import 'package:brunos_kitchen/widgets/bottomSheet/recipe_detail_bottom_sheet_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../utils/custom_colors.dart';
-import '../utils/custom_font_style.dart';
-import 'add_meal_bottom_sheet_widget.dart';
+import '../../utils/custom_colors.dart';
+import '../../utils/custom_font_style.dart';
+import '../bottomSheet/add_meal_bottom_sheet_widget.dart';
 
 Widget foodGridChipWidget ({required RecipeModel recipeDetail}){
   return Card(

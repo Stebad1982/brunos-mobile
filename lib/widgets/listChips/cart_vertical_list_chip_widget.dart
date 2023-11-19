@@ -10,14 +10,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 
-import '../models/address_model.dart';
-import '../models/cart_model.dart';
-import '../utils/calculations.dart';
-import '../utils/custom_colors.dart';
-import '../utils/enums.dart';
-import '../utils/images.dart';
+import '../../models/address_model.dart';
+import '../../models/cart_model.dart';
+import '../../utils/calculations.dart';
+import '../../utils/custom_colors.dart';
+import '../../utils/enums.dart';
+import '../../utils/images.dart';
 import 'cart_dish_vertical_list_chip.dart';
-import 'circular_network_image_widget.dart';
+import '../circular_network_image_widget.dart';
 
 Widget cartVerticalListChipWidget(
     {required CartModel cartDetail, required int itemIndex}) {
@@ -61,6 +61,8 @@ Widget cartVerticalListChipWidget(
                     InkWell(
                       onTap: () {
                         navigatorKey.currentContext!
+                            .read<CartViewModel>()
+                            .setViewCartItemDetail(false);                        navigatorKey.currentContext!
                             .read<CartViewModel>()
                             .setSelectedIndex(itemIndex);
                         navigatorKey.currentContext!

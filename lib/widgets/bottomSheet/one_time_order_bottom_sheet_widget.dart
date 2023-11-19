@@ -6,12 +6,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
-import '../main.dart';
-import '../utils/custom_buttons.dart';
-import '../utils/custom_colors.dart';
-import '../utils/images.dart';
-import '../view_models/cart_view_model.dart';
-import 'meal_vertical_list_chip_widget.dart';
+import '../../main.dart';
+import '../../utils/custom_buttons.dart';
+import '../../utils/custom_colors.dart';
+import '../../utils/images.dart';
+import '../../view_models/cart_view_model.dart';
+import '../listChips/meal_vertical_list_chip_widget.dart';
 
 Future oneTimeOrderBottomSheetWidget({required RecipeModel data}) {
   return showModalBottomSheet(

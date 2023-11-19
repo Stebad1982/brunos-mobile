@@ -13,13 +13,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
-import '../models/puppy_model.dart';
-import '../route_generator.dart';
-import '../utils/custom_font_style.dart';
-import '../utils/images.dart';
-import '../view_models/bottom_navigation_view_model.dart';
-import 'dialogs/delete_card_confirmation_dialog.dart';
-import 'dialogs/delete_pet_confirmation_dialog.dart';
+import '../../models/puppy_model.dart';
+import '../../route_generator.dart';
+import '../../utils/custom_font_style.dart';
+import '../../utils/images.dart';
+import '../../view_models/bottom_navigation_view_model.dart';
+import '../dialogs/delete_card_confirmation_dialog.dart';
+import '../dialogs/delete_pet_confirmation_dialog.dart';
 
 Widget cardVerticalListChipWidget({required CardModel cardDetail}) {
   return Column(

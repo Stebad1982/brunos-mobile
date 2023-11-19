@@ -8,7 +8,7 @@ import '../utils/images.dart';
 import '../view_models/auth_view_model.dart';
 import '../view_models/plans_view_model.dart';
 import '../widgets/app_bar_with_back_widget.dart';
-import '../widgets/item_discribed_grid_chip_widget.dart';
+import '../widgets/gridChip/item_discribed_grid_chip_widget.dart';
 
 class OneTimePlanScreen extends StatelessWidget {
   const OneTimePlanScreen({Key? key}) : super(key: key);

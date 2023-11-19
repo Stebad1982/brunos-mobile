@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
 
 import '../view_models/order_view_model.dart';
-import '../widgets/orders_vertical_list_chip_widget.dart';
+import '../widgets/listChips/orders_vertical_list_chip_widget.dart';
 
 class OrderCompletedScreen extends StatelessWidget {
   const OrderCompletedScreen({Key? key}) : super(key: key);

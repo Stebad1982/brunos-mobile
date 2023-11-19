@@ -4,11 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
-import '../main.dart';
-import '../utils/custom_buttons.dart';
-import '../utils/custom_colors.dart';
-import '../utils/custom_colors.dart';
-import '../utils/custom_font_style.dart';
+import '../../main.dart';
+import '../../utils/custom_buttons.dart';
+import '../../utils/custom_colors.dart';
+import '../../utils/custom_colors.dart';
+import '../../utils/custom_font_style.dart';
 
 Future redeemPawPointsBottomSheetWidget() {
   return showModalBottomSheet(

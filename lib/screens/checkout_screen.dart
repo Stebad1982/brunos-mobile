@@ -22,7 +22,7 @@ import '../view_models/plans_view_model.dart';
 import '../widgets/app_bar_with_back_widget.dart';
 import '../widgets/dialogs/checkout_confirmation_dialog.dart';
 import '../widgets/dialogs/discription_dialog.dart';
-import '../widgets/redeem_paw_points_bottom_sheet_widget.dart';
+import '../widgets/bottomSheet/redeem_paw_points_bottom_sheet_widget.dart';
 
 class CheckoutScreen extends StatelessWidget {
   const CheckoutScreen({Key? key}) : super(key: key);

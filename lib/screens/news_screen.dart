@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 
 import '../view_models/faqs_blogs_news_view_model.dart';
 import '../widgets/app_bar_with_back_widget.dart';
-import '../widgets/news_vertical_list_chip_widget.dart';
+import '../widgets/listChips/news_vertical_list_chip_widget.dart';
 
 class NewsScreen extends StatefulWidget {
   const NewsScreen({super.key});

@@ -23,7 +23,8 @@ import '../utils/shared_pref .dart';
 
 class PlansViewModel with ChangeNotifier {
   final PlanApiServices _planApiServices = PlanApiServices();
-  String _productCategory = "Clothing";
+  String _productCategory = ProductCategories.standardRecipes.text;
+  String _selectedFeaturedRecipe = FeaturedRecipeType.adult.text;
   int _quantity = 1;
   int _availableDays = 0;
   int _daysCount = 1;
@@ -44,12 +45,13 @@ class PlansViewModel with ChangeNotifier {
   List<RecipeModel> _recipesList = [];
   List<RecipeModel> _productsList = [];
   List<RecipeModel> _featuredRecipesList = [];
+  List<RecipeModel> _selectedFeaturedRecipesList = [];
   List<RecipeModel> _featuredProductsList = [];
   List<RecipeModel> _comboRecipesList = [];
   List<RecipeModel> _recommendedRecipesList = [];
   int _monthlyEmptyTileNumber = 1;
   final TextEditingController _monthlySelectedDaysController =
-  TextEditingController();
+      TextEditingController();
   RecipeModel? _monthlyEmptyTile1;
   RecipeModel? _monthlyEmptyTile2;
   RecipeModel? _monthlyEmptyTile3;
@@ -63,6 +65,19 @@ class PlansViewModel with ChangeNotifier {
   }
 
   //List<String> get getPouchesDetail => _pouchesDetail;
+
+  String get getSelectedFeaturedRecipe => _selectedFeaturedRecipe;
+
+  List<RecipeModel> get getSelectedFeaturedRecipesList =>
+      _selectedFeaturedRecipesList;
+
+  void setSelectedFeaturedRecipe(String value) {
+    _selectedFeaturedRecipe = value;
+    _selectedFeaturedRecipesList = _featuredRecipesList
+        .where((element) => element.lifeStage == value)
+        .toList();
+    notifyListeners();
+  }
 
   String get getProductCategory => _productCategory;
 
@@ -167,6 +182,8 @@ class PlansViewModel with ChangeNotifier {
 
   void setFeedingPlan({required PuppyModel? petData}) {
     final List<RecipeModel> recipeList = [];
+    List<num> totalWeightData = [];
+    List<String> pouchesData = [];
     if (_planType == Plans.monthly.text) {
       if (_monthlyEmptyTile1 != null) {
         recipeList.add(_monthlyEmptyTile1!);
@@ -188,9 +205,11 @@ class PlansViewModel with ChangeNotifier {
       recipeList.add(_selectedRecipe);
     }
 
-    final List<num> totalWeightData = calculateTotalWight(recipes: recipeList, pet: petData);
-    final List<String> pouchesData =
-    generatePouchesDetailList(recipes: recipeList, pet: petData);
+    if (_planType != Plans.product.text) {
+      totalWeightData = calculateTotalWight(recipes: recipeList, pet: petData);
+      pouchesData =
+          generatePouchesDetailList(recipes: recipeList, pet: petData);
+    }
 
     _feedingPlan = CartModel(
         planTotal: calculatePlanTotal(listOfItems: recipeList),
@@ -206,13 +225,14 @@ class PlansViewModel with ChangeNotifier {
     notifyListeners();
   }
 
-  List<num> calculateTotalWight({required List<RecipeModel> recipes,PuppyModel? pet}) {
+  List<num> calculateTotalWight(
+      {required List<RecipeModel> recipes, PuppyModel? pet}) {
     List<num> totalWeight = [];
     for (var index = 0; index < recipes.length; index++) {
       final num totalPlanQuantity = calculateDailyIntake(
-          recipeModel:recipes[index],
-          puppyActivityLevel: pet!.activityLevel!,
-          currentWeight:pet.currentWeight!) *
+              recipeModel: recipes[index],
+              puppyActivityLevel: pet!.activityLevel!,
+              currentWeight: pet.currentWeight!) *
           (recipes[index].totalDays!);
       final num transitionalPlanTotalQuantity = getTotalTransitionalGrams();
       final num weight = _planType == Plans.transitional.text
@@ -228,12 +248,12 @@ class PlansViewModel with ChangeNotifier {
     List<String> pouchesDetail = [];
     for (var index = 0; index < recipes.length; index++) {
       final num totalPlanQuantity = calculateDailyIntake(
-          recipeModel: recipes[index],
-          puppyActivityLevel: pet!.activityLevel!,
-          currentWeight: pet.currentWeight!) *
+              recipeModel: recipes[index],
+              puppyActivityLevel: pet!.activityLevel!,
+              currentWeight: pet.currentWeight!) *
           (recipes[index].totalDays!);
       final num perPouchQuantity =
-      calculateFeedingPlan(recipeModel: recipes[index], puppyModel: pet);
+          calculateFeedingPlan(recipeModel: recipes[index], puppyModel: pet);
       final num transitional1to3PerPouchQty = calculateFeedingPlan(
           recipeModel: recipes[index],
           puppyModel: pet,
@@ -260,26 +280,10 @@ class PlansViewModel with ChangeNotifier {
 
       if (_planType == Plans.transitional.text) {
         pouchesDetail.add(
-            '${(_transitionalGrams1to3Days / transitional1to3PerPouchQty * 3)
-                .round()} pouches x ${(transitional1to3PerPouchQty / 3)
-                .toStringAsFixed(
-                2)} grams (for days 1 to 3) | ${(_transitionalGrams4to6Days /
-                transitional4to6PerPouchQty * 3)
-                .round()} pouches x ${(transitional4to6PerPouchQty / 3)
-                .toStringAsFixed(
-                2)} grams (for days 4 to 6) | ${(_transitionalGrams7to9Days /
-                transitional7to9PerPouchQty * 3)
-                .round()} pouches x ${(transitional7to9PerPouchQty / 3)
-                .toStringAsFixed(
-                2)} grams (for days 7 to 9) | ${(_transitionalGrams10thDay /
-                transitional10thPerPouchQty)
-                .round()} pouches x ${transitional10thPerPouchQty
-                .toStringAsFixed(2)} grams (for day 10 onwards)');
+            '${(_transitionalGrams1to3Days / transitional1to3PerPouchQty * 3).round()} pouches x ${(transitional1to3PerPouchQty / 3).toStringAsFixed(2)} grams (for days 1 to 3) | ${(_transitionalGrams4to6Days / transitional4to6PerPouchQty * 3).round()} pouches x ${(transitional4to6PerPouchQty / 3).toStringAsFixed(2)} grams (for days 4 to 6) | ${(_transitionalGrams7to9Days / transitional7to9PerPouchQty * 3).round()} pouches x ${(transitional7to9PerPouchQty / 3).toStringAsFixed(2)} grams (for days 7 to 9) | ${(_transitionalGrams10thDay / transitional10thPerPouchQty).round()} pouches x ${transitional10thPerPouchQty.toStringAsFixed(2)} grams (for day 10 onwards)');
       } else {
         pouchesDetail.add(
-            '${(totalPlanQuantity / perPouchQuantity)
-                .round()} pouches x ${perPouchQuantity.toStringAsFixed(
-                2)} grams for ${recipes[index].totalDays} days');
+            '${(totalPlanQuantity / perPouchQuantity).round()} pouches x ${perPouchQuantity.toStringAsFixed(2)} grams for ${recipes[index].totalDays} days');
       }
     }
     return pouchesDetail;
@@ -327,7 +331,7 @@ class PlansViewModel with ChangeNotifier {
         gramWithPercent: _transitionalGrams10thDay,
         pricePerKG: _selectedRecipe.pricePerKG!);
     final RecipeModel applyDishDetail =
-    RecipeModel.fromJson(_selectedRecipe.toJson());
+        RecipeModel.fromJson(_selectedRecipe.toJson());
     applyDishDetail.finalPrice = priceFor1to3Days +
         priceFor4to6Days +
         priceFor7to9Days +
@@ -337,7 +341,7 @@ class PlansViewModel with ChangeNotifier {
 
   void setProductModel() {
     final RecipeModel applyDishDetail =
-    RecipeModel.fromJson(_selectedRecipe.toJson());
+        RecipeModel.fromJson(_selectedRecipe.toJson());
     applyDishDetail.quantity = _quantity;
     applyDishDetail.finalPrice = _selectedRecipe.pricePerKG! * _quantity;
     applyDishDetail.pricePerKG = _selectedRecipe.pricePerKG!;
@@ -348,7 +352,7 @@ class PlansViewModel with ChangeNotifier {
 
   void setOnTimeSelectedDishModel() {
     final RecipeModel applyDishDetail =
-    RecipeModel.fromJson(_selectedRecipe.toJson());
+        RecipeModel.fromJson(_selectedRecipe.toJson());
     applyDishDetail.totalDays = _daysCount;
     applyDishDetail.finalPrice =
         calculateFinalPricePerDay(recipeModel: _selectedRecipe) * _daysCount;
@@ -357,7 +361,7 @@ class PlansViewModel with ChangeNotifier {
 
   void setMonthlySelectedItem() {
     final RecipeModel applyDishDetail =
-    RecipeModel.fromJson(_selectedRecipe.toJson());
+        RecipeModel.fromJson(_selectedRecipe.toJson());
     applyDishDetail.totalDays = int.parse(_monthlySelectedDaysController.text);
     applyDishDetail.finalPrice =
         calculateFinalPricePerDay(recipeModel: _selectedRecipe) *
@@ -391,6 +395,7 @@ class PlansViewModel with ChangeNotifier {
     _featuredRecipesList = _recipesListResponse.data!.recipe!
         .where((element) => element.category!.isEmpty && element.isFeatured!)
         .toList();
+    setSelectedFeaturedRecipe(FeaturedRecipeType.adult.text);
     _featuredProductsList = _recipesListResponse.data!.recipe!
         .where((element) => element.category!.isNotEmpty && element.isFeatured!)
         .toList();

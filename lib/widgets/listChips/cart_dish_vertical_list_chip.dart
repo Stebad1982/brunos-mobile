@@ -5,11 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../models/cart_model.dart';
-import '../utils/custom_colors.dart';
-import '../utils/custom_font_style.dart';
-import '../utils/images.dart';
-import 'circular_network_image_widget.dart';
+import '../../models/cart_model.dart';
+import '../../utils/custom_colors.dart';
+import '../../utils/custom_font_style.dart';
+import '../../utils/images.dart';
+import '../circular_network_image_widget.dart';
 
 Widget cartDishVerticalListChipWidget(
     {required RecipeModel cartRecipeModel, required String planType, String? petName}) {
@@ -51,9 +51,9 @@ Widget cartDishVerticalListChipWidget(
                             data: 'Days: ${cartRecipeModel.totalDays}')
                             : planType == Plans.transitional.text
                             ? const SizedBox()
-                            : planType == Plans.oneTime.text
+                            : /*planType == Plans.oneTime.text
                             ? black14w500(
-                            data: 'Quantity: ${cartRecipeModel.totalDays}'): black14w500(
+                            data: 'Quantity: ${cartRecipeModel.totalDays}'):*/ black14w500(
                             data:
                             'Quantity: ${cartRecipeModel.quantity}'),
                        /* Visibility(

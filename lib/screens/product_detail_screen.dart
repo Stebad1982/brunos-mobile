@@ -12,6 +12,7 @@ import '../route_generator.dart';
 import '../utils/calculations.dart';
 import '../utils/custom_buttons.dart';
 import '../utils/custom_colors.dart';
+import '../utils/enums.dart';
 import '../utils/images.dart';
 import '../view_models/auth_view_model.dart';
 import '../view_models/cart_view_model.dart';
@@ -31,9 +32,7 @@ class ProductDetailScreen extends StatelessWidget {
             heading: toBeginningOfSentenceCase(
                 '${plansViewModel.getSelectedRecipe.name}'),
             showPuppy: false,
-            showCart: context.read<CartViewModel>().getSelectedIndex == null
-                ? true
-                : false),
+            showCart: context.read<CartViewModel>().getSelectedIndex == null),
         body: Padding(
           padding: const EdgeInsets.symmetric(vertical: 20.0),
           child: Stack(
@@ -78,7 +77,12 @@ class ProductDetailScreen extends StatelessWidget {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              black14w500(data: 'Unit Price'),
+                              black14w500(
+                                  data: plansViewModel
+                                              .getSelectedRecipe.category ==
+                                      ProductCategories.standardRecipes.text
+                                      ? 'Pouch Price'
+                                      : 'Unit Price'),
                               SizedBox(
                                 height: 15.h,
                               ),
@@ -106,7 +110,10 @@ class ProductDetailScreen extends StatelessWidget {
                               Row(
                                 children: [
                                   Visibility(
-                                    visible: context.read<CartViewModel>().getViewCartItemDetail == false,
+                                    visible: context
+                                            .read<CartViewModel>()
+                                            .getViewCartItemDetail ==
+                                        false,
                                     child: InkWell(
                                       onTap: () {
                                         plansViewModel.minusQuantity();
@@ -117,8 +124,8 @@ class ProductDetailScreen extends StatelessWidget {
                                           shape: RoundedRectangleBorder(
                                             side: const BorderSide(
                                                 width: 0.75,
-                                                color:
-                                                    CustomColors.greyMediumColor),
+                                                color: CustomColors
+                                                    .greyMediumColor),
                                             borderRadius:
                                                 BorderRadius.circular(12),
                                           ),
@@ -141,7 +148,10 @@ class ProductDetailScreen extends StatelessWidget {
                                               data: plansViewModel.getQuantity
                                                   .toString()))),
                                   Visibility(
-                                    visible: context.read<CartViewModel>().getViewCartItemDetail == false,
+                                    visible: context
+                                            .read<CartViewModel>()
+                                            .getViewCartItemDetail ==
+                                        false,
                                     child: InkWell(
                                       onTap: () {
                                         plansViewModel.addQuantity();
@@ -152,8 +162,8 @@ class ProductDetailScreen extends StatelessWidget {
                                           shape: RoundedRectangleBorder(
                                             side: const BorderSide(
                                                 width: 0.75,
-                                                color:
-                                                    CustomColors.greyMediumColor),
+                                                color: CustomColors
+                                                    .greyMediumColor),
                                             borderRadius:
                                                 BorderRadius.circular(12),
                                           ),
@@ -176,57 +186,88 @@ class ProductDetailScreen extends StatelessWidget {
                         ],
                       ),
                     ),
+                    SizedBox(
+                      height: 10.h,
+                    ),
                     Visibility(
-                      visible: plansViewModel.getSelectedRecipe.selectedItemSize != null,
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 20),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            SizedBox(
-                              height: 20.h,
-                            ),
-                            context.read<CartViewModel>().getViewCartItemDetail?
-                            Column(
+                        visible: plansViewModel.getSelectedRecipe.category ==
+                            ProductCategories.standardRecipes.text,
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 20),
+                          child: orange14w500(
+                              data: 'Single Pouch Consists of 400 grams'),
+                        )),
+                    plansViewModel.getSelectedRecipe.selectedItemSize != null
+                        ? Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 20),
+                            child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                black14w500(data: 'Size'),
-                                SizedBox(height: 20.h,),
-                                black18w500(
-                                    data: plansViewModel.getSelectedRecipe.selectedItemSize!.name!)
+                                SizedBox(
+                                  height: 20.h,
+                                ),
+                                context
+                                        .read<CartViewModel>()
+                                        .getViewCartItemDetail
+                                    ? Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          black14w500(data: 'Size'),
+                                          SizedBox(
+                                            height: 20.h,
+                                          ),
+                                          black18w500(
+                                              data: plansViewModel
+                                                  .getSelectedRecipe
+                                                  .selectedItemSize!
+                                                  .name!)
+                                        ],
+                                      )
+                                    : Visibility(
+                                        visible: context
+                                                .read<CartViewModel>()
+                                                .getViewCartItemDetail ==
+                                            false,
+                                        child: Padding(
+                                          padding: const EdgeInsets.only(
+                                              bottom: 20.0),
+                                          child:
+                                              black14w500(data: 'Select Sizes'),
+                                        )),
+                                Visibility(
+                                  visible: context
+                                          .read<CartViewModel>()
+                                          .getViewCartItemDetail ==
+                                      false,
+                                  child: Wrap(
+                                    runSpacing: 10,
+                                    spacing: 10,
+                                    children: [
+                                      for (var sizes in plansViewModel
+                                          .getSelectedRecipe.sizes!)
+                                        SizedBox(
+                                          width: 100.w,
+                                          child: customSquareButton(
+                                              text: '${sizes.name}',
+                                              onPressed: () {
+                                                plansViewModel
+                                                    .setSelectedItemSize(sizes);
+                                              },
+                                              colored: plansViewModel
+                                                          .getSelectedRecipe
+                                                          .selectedItemSize ==
+                                                      sizes
+                                                  ? true
+                                                  : false),
+                                        )
+                                    ],
+                                  ),
+                                ),
                               ],
-                            ):
-                            Visibility(
-                              visible: context.read<CartViewModel>().getViewCartItemDetail == false,
-                                child: Padding(
-                                  padding: const EdgeInsets.only(bottom: 20.0),
-                                  child: black14w500(data: 'Select Sizes'),
-                                )),
-                            Visibility(
-                              visible: context.read<CartViewModel>().getViewCartItemDetail == false,
-                              child: Wrap(
-                                runSpacing: 10,
-                                spacing: 10,
-                                children: [
-                                  for (var sizes
-                                      in plansViewModel.getSelectedRecipe.sizes!)
-                                    SizedBox(
-                                      width: 100.w,
-                                      child: customSquareButton(
-                                          text: '${sizes.name}',
-                                          onPressed: () {
-                                            plansViewModel
-                                                .setSelectedItemSize(sizes);
-                                          },
-                                          colored: plansViewModel.getSelectedRecipe.selectedItemSize == sizes? true: false),
-                                    )
-                                ],
-                              ),
                             ),
-                          ],
-                        ),
-                      ),
-                    ),
+                          )
+                        : SizedBox(),
                     SizedBox(
                       height: 24.h,
                     ),
@@ -254,67 +295,73 @@ class ProductDetailScreen extends StatelessWidget {
                 ),
               ),
               Visibility(
-                visible: context.read<CartViewModel>().getViewCartItemDetail == false,
+                visible: context.read<CartViewModel>().getViewCartItemDetail ==
+                    false,
                 child: Align(
                   alignment: Alignment.bottomCenter,
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: InkWell(
                       onTap: () {
-                        if(context.read<CartViewModel>().getSelectedIndex == null){
-                          if(context.read<CartViewModel>().checkProductValidation(recipe: plansViewModel.getSelectedRecipe)){
+                        if (context.read<CartViewModel>().getSelectedIndex ==
+                            null) {
+                          if (context
+                              .read<CartViewModel>()
+                              .checkProductValidation(
+                                  recipe: plansViewModel.getSelectedRecipe)) {
                             final List<RecipeModel> recipeList = [];
                             plansViewModel.setProductModel();
                             recipeList.add(plansViewModel.getSelectedRecipe);
                             context.read<CartViewModel>().addToCartList(
-                              CartModel(
-                                  recipes: recipeList,
-                                  pet: null,
+                                  CartModel(
+                                      recipes: recipeList,
+                                      pet: null,
 /*
                                   deliveryDate: '03 Oct 2023',
 */
-                                  planType: plansViewModel.getPlanType,
-                                  planTotal: calculatePlanTotal(
-                                      listOfItems: recipeList), pouchesDetail: [], totalWeight: []),
-                            );
+                                      planType: plansViewModel.getPlanType,
+                                      planTotal: calculatePlanTotal(
+                                          listOfItems: recipeList),
+                                      pouchesDetail: [],
+                                      totalWeight: []),
+                                );
 
-                              Navigator.pushNamedAndRemoveUntil(
-                                  context, bottomNavigationRoute, (route) => false);
+                            Navigator.pushNamedAndRemoveUntil(context,
+                                bottomNavigationRoute, (route) => false);
 
                             EasyLoading.showToast(
                                 '${plansViewModel.getPlanType} Successfully Added To\nShopping Bag',
                                 toastPosition: EasyLoadingToastPosition.center);
-                          }
-                          else{
+                          } else {
                             Navigator.pushNamed(context, cartRoute);
                             descriptionDialog(
                                 context: context,
                                 description:
-                                '${plansViewModel.getSelectedRecipe.name} is already added to shopping bag',
+                                    '${plansViewModel.getSelectedRecipe.name} is already added to shopping bag',
                                 height: 180.h,
                                 title: 'Alert');
                           }
-                        }
-                        else{
+                        } else {
                           final List<RecipeModel> recipeList = [];
                           plansViewModel.setProductModel();
                           recipeList.add(plansViewModel.getSelectedRecipe);
                           context.read<CartViewModel>().addToCartList(
-                            CartModel(
-                                recipes: recipeList,
-                                pet: null,
+                                CartModel(
+                                    recipes: recipeList,
+                                    pet: null,
 /*
                                 deliveryDate: '03 Oct 2023',
 */
-                                planType: plansViewModel.getPlanType,
-                                planTotal: calculatePlanTotal(
-                                    listOfItems: recipeList), pouchesDetail: [], totalWeight: []),
-                          );
+                                    planType: plansViewModel.getPlanType,
+                                    planTotal: calculatePlanTotal(
+                                        listOfItems: recipeList),
+                                    pouchesDetail: [],
+                                    totalWeight: []),
+                              );
                           context.read<CartViewModel>().setSelectedIndex(null);
-                          Navigator.pushNamedAndRemoveUntil(
-                              context, cartRoute, (Route route) => route.isFirst);
+                          Navigator.pushNamedAndRemoveUntil(context, cartRoute,
+                              (Route route) => route.isFirst);
                         }
-
                       },
                       child: Container(
                           height: 90.h,

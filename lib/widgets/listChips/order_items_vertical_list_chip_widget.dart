@@ -5,19 +5,19 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 
-import '../main.dart';
-import '../models/order_model.dart';
-import '../models/responses/order_response.dart';
-import '../route_generator.dart';
-import '../utils/custom_buttons.dart';
-import '../utils/custom_colors.dart';
-import '../utils/custom_font_style.dart';
-import '../utils/enums.dart';
-import '../utils/images.dart';
-import '../view_models/cart_view_model.dart';
-import '../view_models/plans_view_model.dart';
+import '../../main.dart';
+import '../../models/order_model.dart';
+import '../../models/responses/order_response.dart';
+import '../../route_generator.dart';
+import '../../utils/custom_buttons.dart';
+import '../../utils/custom_colors.dart';
+import '../../utils/custom_font_style.dart';
+import '../../utils/enums.dart';
+import '../../utils/images.dart';
+import '../../view_models/cart_view_model.dart';
+import '../../view_models/plans_view_model.dart';
 import 'cart_dish_vertical_list_chip.dart';
-import 'circular_network_image_widget.dart';
+import '../circular_network_image_widget.dart';
 
 Widget orderItemsVerticalListChipWidget(
     {required OrderItems orderItems,

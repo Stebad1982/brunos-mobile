@@ -8,12 +8,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
-import '../utils/custom_colors.dart';
-import '../utils/enums.dart';
-import '../utils/calculations.dart';
-import '../view_models/plans_view_model.dart';
-import 'carousels/home_carousel_widget.dart';
-import 'carousels/recipes_carousel_widget.dart';
+import '../../utils/custom_colors.dart';
+import '../../utils/enums.dart';
+import '../../utils/calculations.dart';
+import '../../view_models/plans_view_model.dart';
+import '../carousels/home_carousel_widget.dart';
+import '../carousels/recipes_carousel_widget.dart';
 
 Future recipeDetailBottomSheetWidget({required RecipeModel recipeDetail}) {
   return showModalBottomSheet(

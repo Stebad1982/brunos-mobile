@@ -17,7 +17,7 @@ import '../view_models/puppy_view_model.dart';
 import '../widgets/app_bar_with_back_widget.dart';
 import '../widgets/circular_network_image_widget.dart';
 import '../widgets/dialogs/discription_dialog.dart';
-import '../widgets/image_taking_bottom_sheet_widget.dart';
+import '../widgets/bottomSheet/image_taking_bottom_sheet_widget.dart';
 
 class PuppyCreationScreen extends StatelessWidget {
   const PuppyCreationScreen({Key? key}) : super(key: key);

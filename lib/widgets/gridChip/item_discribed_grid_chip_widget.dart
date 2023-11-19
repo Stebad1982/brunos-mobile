@@ -7,19 +7,19 @@ import 'package:brunos_kitchen/view_models/auth_view_model.dart';
 import 'package:brunos_kitchen/view_models/plans_view_model.dart';
 import 'package:brunos_kitchen/view_models/puppy_view_model.dart';
 import 'package:brunos_kitchen/widgets/circular_network_image_widget.dart';
-import 'package:brunos_kitchen/widgets/recipe_detail_bottom_sheet_widget.dart';
+import 'package:brunos_kitchen/widgets/bottomSheet/recipe_detail_bottom_sheet_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
-import '../models/recipe_model.dart';
-import '../utils/custom_colors.dart';
-import '../utils/enums.dart';
-import '../utils/calculations.dart';
-import '../view_models/cart_view_model.dart';
-import 'one_time_order_bottom_sheet_widget.dart';
+import '../../models/recipe_model.dart';
+import '../../utils/custom_colors.dart';
+import '../../utils/enums.dart';
+import '../../utils/calculations.dart';
+import '../../view_models/cart_view_model.dart';
+import '../bottomSheet/one_time_order_bottom_sheet_widget.dart';
 
 Widget itemDescribedGridChipWidget({required RecipeModel recipeData}) {
   return Consumer<PlansViewModel>(builder: (context, plansViewModel, child)
@@ -34,6 +34,7 @@ Widget itemDescribedGridChipWidget({required RecipeModel recipeData}) {
         }
         else if(plansViewModel.getPlanType ==
             Plans.product.text){
+          context.read<CartViewModel>().setViewCartItemDetail(false);
           navigatorKey.currentContext!.read<PlansViewModel>().clearPlanData();
           Navigator.pushNamed(
               navigatorKey.currentContext!, productDetailRoute);
@@ -109,7 +110,7 @@ Widget itemDescribedGridChipWidget({required RecipeModel recipeData}) {
                           height: 40.h,
                           child: lightBlack14w400Centre(
                               data: recipeData.name!, left: true)),
-                      Visibility(
+                    /*  Visibility(
                         visible: recipeData.ingredientsComposition!.isNotEmpty,
                         child: black10w400(
                             maxLine: 2,
@@ -117,10 +118,14 @@ Widget itemDescribedGridChipWidget({required RecipeModel recipeData}) {
                       ),
                       SizedBox(
                         height: 16.h,
+                      ),*/
+                      SizedBox(
+                        height: 10.h,
                       ),
                       brown12w500Centre(
-                          data: 'AED ${recipeData.pricePerKG} ${plansViewModel.getPlanType ==
+                          data: 'Starting From AED ${recipeData.pricePerKG} ${plansViewModel.getPlanType ==
                               Plans.product.text? '':'/ KG'}'),
+/*
                       Visibility(
                         visible: plansViewModel.getPlanType !=
                             Plans.product.text,
@@ -129,6 +134,7 @@ Widget itemDescribedGridChipWidget({required RecipeModel recipeData}) {
                           child: black10w400(data: 'complete trans period'),
                         ),
                       ),
+*/
                     ],
                   ),
                 ),

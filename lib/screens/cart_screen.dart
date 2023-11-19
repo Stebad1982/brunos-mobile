@@ -9,7 +9,7 @@ import 'package:provider/provider.dart';
 import '../utils/custom_buttons.dart';
 import '../utils/custom_colors.dart';
 import '../widgets/app_bar_with_back_widget.dart';
-import '../widgets/cart_vertical_list_chip_widget.dart';
+import '../widgets/listChips/cart_vertical_list_chip_widget.dart';
 
 class CartScreen extends StatelessWidget {
   const CartScreen({super.key});

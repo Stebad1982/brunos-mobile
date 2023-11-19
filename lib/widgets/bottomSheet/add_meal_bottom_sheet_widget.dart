@@ -1,16 +1,16 @@
-import 'package:brunos_kitchen/view_models/puppy_view_model.dart';
-import 'package:flutter/cupertino.dart';
+
+import 'package:brunos_kitchen/models/recipe_model.dart';
+import 'package:brunos_kitchen/utils/custom_font_style.dart';
+import 'package:brunos_kitchen/view_models/plans_view_model.dart';
+import 'package:brunos_kitchen/widgets/listChips/meal_vertical_list_chip_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
-import '../main.dart';
-import '../utils/custom_buttons.dart';
-import '../utils/custom_colors.dart';
-import '../utils/custom_font_style.dart';
-import '../view_models/auth_view_model.dart';
+import '../../main.dart';
+import '../../utils/custom_colors.dart';
 
-Future datePickerBottomSheetWidget() {
+Future addMealDetailBottomSheetWidget() {
   return showModalBottomSheet(
       isScrollControlled: false,
       backgroundColor: CustomColors.whiteColor,
@@ -28,12 +28,15 @@ Future datePickerBottomSheetWidget() {
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      black18w500(
-                          data:
-                              'Select ${navigatorKey.currentContext!.watch<PuppyViewModel>().getPuppyNameController.text.isNotEmpty ? navigatorKey.currentContext!.watch<PuppyViewModel>().getPuppyNameController.text : 'Pet'}\'s BirthDay'),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          black24w500Centre(data: 'Add Meal'),
+                        ],
+                      ),
                       const Spacer(),
                       InkWell(
-                        onTap: () {
+                        onTap: (){
                           Navigator.pop(context);
                         },
                         child: Container(
@@ -58,41 +61,20 @@ Future datePickerBottomSheetWidget() {
                       )
                     ],
                   ),
+
                   SizedBox(
-                    height: 20.h,
-                  ),
-                  SizedBox(
-                    height: 150.h,
-                    child: CupertinoTheme(
-                      data: CupertinoThemeData(
-                        brightness: Brightness.light,
-                        textTheme: CupertinoTextThemeData(
-                          dateTimePickerTextStyle: TextStyle(
-                            fontSize: 20.sp,
-                          ),
-                        ),
-                      ),
-                      child: CupertinoDatePicker(
-                          mode: CupertinoDatePickerMode.date,
-                          initialDateTime: DateTime.now(),
-                          maximumDate: DateTime.now(),
-                          onDateTimeChanged: (value) {
-                            context.read<PuppyViewModel>().setPuppyDob(value);
-                            /*setState(() {
-                                    _chosenDateTime = val;
-                                  });*/
-                          }),
+                    height: 400.h,
+                    child: ListView.builder(
+                      //physics: NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
+                      itemCount: context.read<PlansViewModel>().getRecipesList.length,
+                      padding: const EdgeInsets.symmetric(vertical: 20),
+                      itemBuilder: (BuildContext context, int index) {
+                        return mealVerticalListChipWidget(recipeModel: context.read<PlansViewModel>().getRecipesList[index]);
+                      },
                     ),
                   ),
-                  SizedBox(
-                    height: 30.h,
-                  ),
-                  customButton(
-                      text: 'Submit',
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      colored: true),
+                  SizedBox(height: 100,)
                 ],
               ),
             ],

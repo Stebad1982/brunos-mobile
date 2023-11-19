@@ -4,20 +4,22 @@ import 'package:brunos_kitchen/route_generator.dart';
 import 'package:brunos_kitchen/utils/custom_font_style.dart';
 import 'package:brunos_kitchen/utils/images.dart';
 import 'package:brunos_kitchen/view_models/puppy_view_model.dart';
-import 'package:brunos_kitchen/widgets/recipe_detail_bottom_sheet_widget.dart';
+import 'package:brunos_kitchen/widgets/bottomSheet/recipe_detail_bottom_sheet_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
-import '../utils/custom_colors.dart';
-import '../utils/enums.dart';
-import '../view_models/plans_view_model.dart';
+import '../../utils/custom_colors.dart';
+import '../../utils/enums.dart';
+import '../../view_models/cart_view_model.dart';
+import '../../view_models/plans_view_model.dart';
 
 Widget shopItemsHorizontalListChipWidget({required RecipeModel productDetail}) {
   return InkWell(
     onTap: () {
+      navigatorKey.currentContext!.read<CartViewModel>().setViewCartItemDetail(false);
       navigatorKey.currentContext!.read<PlansViewModel>().setPlanType(Plans.product.text);
       navigatorKey.currentContext!.read<PlansViewModel>().setSelectedRecipe(
           productDetail);

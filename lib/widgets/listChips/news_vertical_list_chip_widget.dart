@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../models/recipe_model.dart';
-import '../models/responses/blogs_news_response.dart';
-import '../models/responses/faqs_blogs_news_response.dart';
-import 'carousels/recipes_carousel_widget.dart';
+import '../../models/recipe_model.dart';
+import '../../models/responses/blogs_news_response.dart';
+import '../../models/responses/faqs_blogs_news_response.dart';
+import '../carousels/recipes_carousel_widget.dart';
 
 Widget newsVerticalListChipWidget({required BlogsNewsData data}) {
   return Column(

@@ -11,10 +11,10 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 import 'package:table_calendar/table_calendar.dart';
 
-import '../route_generator.dart';
-import '../utils/custom_font_style.dart';
-import '../utils/images.dart';
-import 'circular_network_image_widget.dart';
+import '../../route_generator.dart';
+import '../../utils/custom_font_style.dart';
+import '../../utils/images.dart';
+import '../circular_network_image_widget.dart';
 
 Widget mealVerticalListChipWidget({required RecipeModel recipeModel}) {
   return Column(

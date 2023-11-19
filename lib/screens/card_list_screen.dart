@@ -14,9 +14,9 @@ import '../utils/custom_colors.dart';
 import '../utils/images.dart';
 import '../view_models/puppy_view_model.dart';
 import '../widgets/app_bar_with_back_widget.dart';
-import '../widgets/card_vertical_list_chip_widget.dart';
-import '../widgets/orders_vertical_list_chip_widget.dart';
-import '../widgets/puppy_vertical_list_chip_widget.dart';
+import '../widgets/listChips/card_vertical_list_chip_widget.dart';
+import '../widgets/listChips/orders_vertical_list_chip_widget.dart';
+import '../widgets/listChips/puppy_vertical_list_chip_widget.dart';
 
 class CardListScreen extends StatefulWidget {
   const CardListScreen({Key? key}) : super(key: key);

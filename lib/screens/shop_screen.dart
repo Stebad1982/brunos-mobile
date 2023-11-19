@@ -13,8 +13,8 @@ import '../utils/enums.dart';
 import '../utils/food_category_list_data.dart';
 import '../utils/images.dart';
 import '../view_models/plans_view_model.dart';
-import '../widgets/item_discribed_grid_chip_widget.dart';
-import '../widgets/shop_items_horizontal_list_chip_widget.dart';
+import '../widgets/gridChip/item_discribed_grid_chip_widget.dart';
+import '../widgets/listChips/shop_items_horizontal_list_chip_widget.dart';
 
 class ShopScreen extends StatelessWidget {
   const ShopScreen({Key? key}) : super(key: key);

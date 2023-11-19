@@ -10,9 +10,9 @@ import '../utils/custom_font_style.dart';
 import '../utils/images.dart';
 import '../view_models/auth_view_model.dart';
 import '../widgets/app_bar_with_back_widget.dart';
-import '../widgets/food_category_grid_chip_widget.dart';
-import '../widgets/item_discribed_grid_chip_widget.dart';
-import '../widgets/food_grid_chip_widget.dart';
+import '../widgets/gridChip/food_category_grid_chip_widget.dart';
+import '../widgets/gridChip/item_discribed_grid_chip_widget.dart';
+import '../widgets/gridChip/food_grid_chip_widget.dart';
 
 class TransitionalPlanScreen extends StatelessWidget {
   const TransitionalPlanScreen({Key? key}) : super(key: key);

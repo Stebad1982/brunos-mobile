@@ -10,9 +10,9 @@ import '../route_generator.dart';
 import '../utils/custom_font_style.dart';
 import '../utils/images.dart';
 import '../view_models/address_view_model.dart';
-import '../widgets/address_vertical_list_chip_widget.dart';
+import '../widgets/listChips/address_vertical_list_chip_widget.dart';
 import '../widgets/app_bar_with_back_widget.dart';
-import '../widgets/puppy_vertical_list_chip_widget.dart';
+import '../widgets/listChips/puppy_vertical_list_chip_widget.dart';
 
 class AddressScreen extends StatefulWidget {
   const AddressScreen({Key? key}) : super(key: key);
