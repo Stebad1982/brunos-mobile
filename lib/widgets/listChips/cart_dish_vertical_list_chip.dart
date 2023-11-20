@@ -51,9 +51,11 @@ Widget cartDishVerticalListChipWidget(
                             data: 'Days: ${cartRecipeModel.totalDays}')
                             : planType == Plans.transitional.text
                             ? const SizedBox()
-                            : planType == Plans.oneTime.text
+                            :
+                        //TODO: REMOVE ONETIME ORDER
+                        /*planType == Plans.oneTime.text
                             ? black14w500(
-                            data: 'Quantity: ${cartRecipeModel.totalDays}'): black14w500(
+                            data: 'Quantity: ${cartRecipeModel.totalDays}'):*/ black14w500(
                             data:
                             'Quantity: ${cartRecipeModel.quantity}'),
                        /* Visibility(
@@ -65,10 +67,11 @@ Widget cartDishVerticalListChipWidget(
                           ),
                         ),*/
                         const SizedBox(height: 2,),
+                        //TODO: REMOVE ONETIME ORDER
 
-                        petName != null ? orange14w500(
+                        /*petName != null ? orange14w500(
                             data: 'AED ${cartRecipeModel
-                                .finalPrice}${planType == Plans.oneTime.text?'':' / Order'}'):
+                                .finalPrice}${planType == Plans.oneTime.text?'':' / Order'}'):*/
                         orange14w500(
                             data: 'AED ${cartRecipeModel
                                 .pricePerKG} / Item')

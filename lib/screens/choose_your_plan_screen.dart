@@ -215,12 +215,13 @@ class ChooseYourPlanScreen extends StatelessWidget {
               ),
               InkWell(
                 onTap: () {
+                  //TODO: REMOVE ONETIME ORDER
                   if (context
                       .read<CartViewModel>()
-                      .checkCartForPlanValidation(planType: Plans.oneTime.text)) {
+                      .checkCartForPlanValidation(planType: Plans.product/*oneTime*/.text)) {
                     context
                         .read<PlansViewModel>()
-                        .setPlanType(Plans.oneTime.text);
+                        .setPlanType(Plans.product/*oneTime*/.text);
                     context.read<PlansViewModel>().clearPlanData();
                     Navigator.pushNamed(context, oneTimePlanRoute);
                   } else {

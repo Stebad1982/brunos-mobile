@@ -197,10 +197,12 @@ class PlansViewModel with ChangeNotifier {
     } else if (_planType == Plans.transitional.text) {
       setTransitionalDishModel();
       recipeList.add(_selectedRecipe);
-    } else if (_planType == Plans.oneTime.text) {
+    }
+    //TODO: REMOVE ONETIME ORDER
+    /*else if (_planType == Plans.oneTime.text) {
       setOnTimeSelectedDishModel();
       recipeList.add(_selectedRecipe);
-    } else {
+    }*/ else {
       setProductModel();
       recipeList.add(_selectedRecipe);
     }

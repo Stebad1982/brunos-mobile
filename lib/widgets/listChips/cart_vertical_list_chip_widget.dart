@@ -78,11 +78,13 @@ Widget cartVerticalListChipWidget(
                                 ? Navigator.pushNamed(
                                     navigatorKey.currentContext!,
                                     transitionPlanRoute)
-                                : cartDetail.planType == Plans.oneTime.text
+                                :
+                        //TODO: REMOVE ONETIME ORDER
+                        /*cartDetail.planType == Plans.oneTime.text
                                     ? Navigator.pushNamed(
                                         navigatorKey.currentContext!,
                                         oneTimePlanRoute)
-                                    : Navigator.pushNamed(
+                                    :*/ Navigator.pushNamed(
                                         navigatorKey.currentContext!,
                                         productDetailRoute);
                       },

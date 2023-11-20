@@ -28,11 +28,12 @@ Widget itemDescribedGridChipWidget({required RecipeModel recipeData}) {
       onTap: () {
         plansViewModel.setSelectedRecipe(
             recipeData);
-        if (plansViewModel.getPlanType ==
+        //TODO: REMOVE ONETIME ORDER
+        /*if (plansViewModel.getPlanType ==
             Plans.oneTime.text) {
           oneTimeOrderBottomSheetWidget(data: recipeData);
         }
-        else if(plansViewModel.getPlanType ==
+        else*/ if(plansViewModel.getPlanType ==
             Plans.product.text){
           context.read<CartViewModel>().setViewCartItemDetail(false);
           navigatorKey.currentContext!.read<PlansViewModel>().clearPlanData();
