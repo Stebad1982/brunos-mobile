@@ -304,6 +304,19 @@ class PuppyCreationAdditionalScreen extends StatelessWidget {
                       children: [
                         Expanded(
                           child: customSquareButton(
+                              text: 'Underweight',
+                              onPressed: () {
+                                puppyViewModel.setPuppyActualWeight(
+                                    PuppyWeight.underweight.value);
+                              },
+                              colored: puppyViewModel.getPuppyActualWeight ==
+                                  PuppyWeight.underweight.value),
+                        ),
+                        SizedBox(
+                          width: 10.w,
+                        ),
+                        Expanded(
+                          child: customSquareButton(
                               text: 'Ideal Weight',
                               onPressed: () {
                                 puppyViewModel.setPuppyActualWeight(
@@ -325,19 +338,6 @@ class PuppyCreationAdditionalScreen extends StatelessWidget {
                               colored: puppyViewModel.getPuppyActualWeight ==
                                   PuppyWeight.overweight.value),
                         ),
-                        SizedBox(
-                          width: 10.w,
-                        ),
-                        Expanded(
-                          child: customSquareButton(
-                              text: 'Underweight',
-                              onPressed: () {
-                                puppyViewModel.setPuppyActualWeight(
-                                    PuppyWeight.underweight.value);
-                              },
-                              colored: puppyViewModel.getPuppyActualWeight ==
-                                  PuppyWeight.underweight.value),
-                        )
                       ],
                     ),
                     /* lightBlack14w400Centre(data: 'Ideal Weight (Optional)'),
@@ -372,6 +372,19 @@ class PuppyCreationAdditionalScreen extends StatelessWidget {
                       children: [
                         Expanded(
                           child: customSquareButton(
+                              text: 'Less Active',
+                              onPressed: () {
+                                puppyViewModel.setPuppyActivityLevel(
+                                    Puppy.lessActive.text);
+                              },
+                              colored: puppyViewModel.getPuppyActivityLevel ==
+                                  Puppy.lessActive.text),
+                        ),
+                        SizedBox(
+                          width: 10.w,
+                        ),
+                        Expanded(
+                          child: customSquareButton(
                               text: 'Active',
                               onPressed: () {
                                 puppyViewModel
@@ -393,19 +406,6 @@ class PuppyCreationAdditionalScreen extends StatelessWidget {
                               colored: puppyViewModel.getPuppyActivityLevel ==
                                   Puppy.veryActive.text),
                         ),
-                        SizedBox(
-                          width: 10.w,
-                        ),
-                        Expanded(
-                          child: customSquareButton(
-                              text: 'Less Active',
-                              onPressed: () {
-                                puppyViewModel.setPuppyActivityLevel(
-                                    Puppy.lessActive.text);
-                              },
-                              colored: puppyViewModel.getPuppyActivityLevel ==
-                                  Puppy.lessActive.text),
-                        )
                       ],
                     ),
                     SizedBox(

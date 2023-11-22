@@ -54,7 +54,7 @@ class CartViewModel with ChangeNotifier {
 
   void setPromoCodeDiscount(int value) {
     _pawSelectedPoints = 0;
-    _promoCodeDiscount = _cartTotalPrice * (value / 100);
+    _promoCodeDiscount = value/*_cartTotalPrice * (value / 100)*/;
     setCheckOutTotal();
   }
 
