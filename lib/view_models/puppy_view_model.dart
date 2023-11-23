@@ -70,8 +70,12 @@ class PuppyViewModel with ChangeNotifier {
 
   String get getPuppyImage => _puppyImage;
 
-  void setIsPuppyEdit(bool value) {
-    _isPuppyEdit = value;
+  void setIsPuppyEdit(/*bool value*/) {
+    _isPuppyEdit = !_isPuppyEdit;
+    if(_isPuppyEdit){
+      callPuppyBreedsApi();
+      setSelectedPuppyModel();
+    }
     notifyListeners();
   }
 
@@ -79,8 +83,8 @@ class PuppyViewModel with ChangeNotifier {
 
   void setPuppyDetail(PuppyModel value) {
     _puppyDetail = value;
-    _isPuppyEdit = true;
-    setSelectedPuppyModel(data: value);
+    _isPuppyEdit = false;
+   // setSelectedPuppyModel(data: value);
     notifyListeners();
   }
 
@@ -283,20 +287,20 @@ class PuppyViewModel with ChangeNotifier {
     }
   }
 
-  void setSelectedPuppyModel({required PuppyModel data}) {
-    _puppyNameController.text = data.name!;
-    _puppyImage = data.media!;
+  void setSelectedPuppyModel(/*{required PuppyModel data}*/) {
+    _puppyNameController.text = _puppyDetail!.name!;
+    _puppyImage = _puppyDetail!.media!;
     _imageFile = null;
-    _puppyGender = data.gender!;
-    _feedingRoutine = data.feedingRoutine!;
+    _puppyGender = _puppyDetail!.gender!;
+    _feedingRoutine = _puppyDetail!.feedingRoutine!;
    // _puppyIsSpayNeuter = data.isSpayNeuter!;
-    _puppyBreedController.text = data.breed!;
-    _puppyDob = data.bornOnDate! != 0
-        ? DateTimeFormatter.timeStampToDate(data.bornOnDate!)
+    _puppyBreedController.text = _puppyDetail!.breed!;
+    _puppyDob = _puppyDetail!.bornOnDate! != 0
+        ? DateTimeFormatter.timeStampToDate(_puppyDetail!.bornOnDate!)
         : 'MM   /   DD   /   YYYY';
-    _puppyCurrentWeight.text = data.currentWeight!.toString();
-    _puppyActualWeight = data.actualWeight!;
-    _puppyActivityLevel = data.activityLevel!;
+    _puppyCurrentWeight.text = _puppyDetail!.currentWeight!.toString();
+    _puppyActualWeight = _puppyDetail!.actualWeight!;
+    _puppyActivityLevel = _puppyDetail!.activityLevel!;
   }
 
   void clearPuppyData() {
