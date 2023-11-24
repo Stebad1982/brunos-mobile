@@ -16,6 +16,7 @@ import '../utils/images.dart';
 import '../view_models/auth_view_model.dart';
 import '../view_models/puppy_view_model.dart';
 import '../widgets/app_bar_with_back_widget.dart';
+import '../widgets/bottomSheet/date_picker_bottom_sheet_widget.dart';
 import '../widgets/bottomSheet/image_taking_bottom_sheet_widget.dart';
 import '../widgets/dialogs/delete_pet_confirmation_dialog.dart';
 import '../widgets/circular_network_image_widget.dart';
@@ -99,8 +100,8 @@ class PuppyDetailScreen extends StatelessWidget {
                                       .callPuppyBreedsApi()
                                       .then((value) {
                                     if (value) {*/
-                                      puppyViewModel.setIsPuppyEdit();
-                                   /* }
+                                  puppyViewModel.setIsPuppyEdit();
+                                  /* }
                                   });*/
                                 },
                                 child: Container(
@@ -382,16 +383,76 @@ class PuppyDetailScreen extends StatelessWidget {
                     SizedBox(
                       height: 10.h,
                     ),
-                    /* Row(
+                    Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        black14w500(data: 'Spayed/Neutered?'),
-                        black14w500(
-                            data: toBeginningOfSentenceCase(
-                                puppyViewModel.getPuppyDetail!.isSpayNeuter!
-                                    ? 'Yes'
-                                    : 'No')!)
+                        black14w500(data: 'Actual Weight'),
+                        SizedBox(
+                          width: 10.w,
+                        ),
+                        Visibility(
+                          visible: !puppyViewModel.getIsPuppyEdit,
+                          child: black14w500(
+                              data: toBeginningOfSentenceCase(puppyViewModel
+                                          .getPuppyDetail!.actualWeight! ==
+                                      PuppyWeight.idealWeight.value
+                                  ? 'ideal Weight'
+                                  : puppyViewModel
+                                              .getPuppyDetail!.actualWeight! ==
+                                          PuppyWeight.underweight.value
+                                      ? 'underWeight'
+                                      : 'overWeight')!),
+                        ),
                       ],
+                    ),
+                    Visibility(
+                      visible: puppyViewModel.getIsPuppyEdit,
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 10.0),
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: customSquareButton(
+                                  text: 'Underweight',
+                                  onPressed: () {
+                                    puppyViewModel.setPuppyActualWeight(
+                                        PuppyWeight.underweight.value);
+                                  },
+                                  colored:
+                                      puppyViewModel.getPuppyActualWeight ==
+                                          PuppyWeight.underweight.value),
+                            ),
+                            SizedBox(
+                              width: 10.w,
+                            ),
+                            Expanded(
+                              child: customSquareButton(
+                                  text: 'Ideal Weight',
+                                  onPressed: () {
+                                    puppyViewModel.setPuppyActualWeight(
+                                        PuppyWeight.idealWeight.value);
+                                  },
+                                  colored:
+                                      puppyViewModel.getPuppyActualWeight ==
+                                          PuppyWeight.idealWeight.value),
+                            ),
+                            SizedBox(
+                              width: 10.w,
+                            ),
+                            Expanded(
+                              child: customSquareButton(
+                                  text: 'Overweight',
+                                  onPressed: () {
+                                    puppyViewModel.setPuppyActualWeight(
+                                        PuppyWeight.overweight.value);
+                                  },
+                                  colored:
+                                      puppyViewModel.getPuppyActualWeight ==
+                                          PuppyWeight.overweight.value),
+                            ),
+                          ],
+                        ),
+                      ),
                     ),
                     SizedBox(
                       height: 10.h,
@@ -399,17 +460,47 @@ class PuppyDetailScreen extends StatelessWidget {
                     Divider(),
                     SizedBox(
                       height: 10.h,
-                    ),*/
-                    /*   Row(
+                    ),
+                    Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         black14w500(data: 'BirthDay'),
-                        black14w500(
-                            data: puppyViewModel.getPuppyDetail!.bornOnDate! !=
-                                    0
-                                ? DateTimeFormatter.timeStampToDate(
-                                    puppyViewModel.getPuppyDetail!.bornOnDate!)
-                                : 'N/A')
+                        Visibility(
+                          visible: puppyViewModel.getIsPuppyEdit,
+                          replacement: black14w500(
+                              data:
+                                  puppyViewModel.getPuppyDetail!.bornOnDate! !=
+                                          0
+                                      ? DateTimeFormatter.timeStampToDate(
+                                          puppyViewModel
+                                              .getPuppyDetail!.bornOnDate!)
+                                      : 'N/A'),
+                          child: Expanded(
+                            child: Padding(
+                              padding: const EdgeInsets.only(left: 80.0),
+                              child: InkWell(
+                                onTap: () {
+                                  datePickerBottomSheetWidget();
+                                },
+                                child: Container(
+                                  width: double.infinity,
+                                  decoration: ShapeDecoration(
+                                    color: CustomColors.lightGreyColor,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(12),
+                                    ),
+                                  ),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(20),
+                                    child: Center(
+                                        child: lightBlack14w400Centre(
+                                            data: puppyViewModel.getPuppyDob)),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
                       ],
                     ),
                     SizedBox(
@@ -418,7 +509,7 @@ class PuppyDetailScreen extends StatelessWidget {
                     Divider(),
                     SizedBox(
                       height: 10.h,
-                    ),*/
+                    ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -433,11 +524,12 @@ class PuppyDetailScreen extends StatelessWidget {
                                       .getPuppyDetail!.currentWeight!
                                       .toString()
                                   : 'N/A'),
-                          child: Expanded(
-                            child: Column(
-                              children: [
-                                TextField(
-                                  controller: puppyViewModel.getPuppyCurrentWeight,
+                          child: Column(
+                            children: [
+                              IntrinsicWidth(
+                                child: TextField(
+                                  controller:
+                                      puppyViewModel.getPuppyCurrentWeight,
                                   /*onChanged: (text) {
                                 puppyViewModel.setPuppyCurrentWeight(int.parse(text));
                       },*/
@@ -446,16 +538,17 @@ class PuppyDetailScreen extends StatelessWidget {
                                       contentPadding: EdgeInsets.all(20.0),
                                       hintText: 'Weight in KG'),
                                 ),
-                                SizedBox(
-                                  height: 5.h,
-                                ),
-                                Visibility(
-                                    visible: puppyViewModel
-                                        .getCurrentWeightFieldError.isNotEmpty,
-                                    child: orange14w400(
-                                        data: puppyViewModel.getCurrentWeightFieldError)),
-                              ],
-                            ),
+                              ),
+                              SizedBox(
+                                height: 5.h,
+                              ),
+                              Visibility(
+                                  visible: puppyViewModel
+                                      .getCurrentWeightFieldError.isNotEmpty,
+                                  child: orange14w400(
+                                      data: puppyViewModel
+                                          .getCurrentWeightFieldError)),
+                            ],
                           ),
                         ),
                       ],
@@ -491,55 +584,59 @@ class PuppyDetailScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         black14w500(data: 'Activity Level'),
-                        Expanded(
-                          child: Visibility(
-                            visible: puppyViewModel.getIsPuppyEdit,
-                            replacement:  black14w500(
-                                data: toBeginningOfSentenceCase(
-                                    puppyViewModel.getPuppyDetail!.activityLevel!)!),
-                            child: Row(
-                              children: [
-                                Expanded(
-                                  child: customSquareButton(
-                                      text: 'Less Active',
-                                      onPressed: () {
-                                        puppyViewModel.setPuppyActivityLevel(
-                                            Puppy.lessActive.text);
-                                      },
-                                      colored: puppyViewModel.getPuppyActivityLevel ==
-                                          Puppy.lessActive.text),
-                                ),
-                                SizedBox(
-                                  width: 10.w,
-                                ),
-                                Expanded(
-                                  child: customSquareButton(
-                                      text: 'Active',
-                                      onPressed: () {
-                                        puppyViewModel
-                                            .setPuppyActivityLevel(Puppy.active.text);
-                                      },
-                                      colored: puppyViewModel.getPuppyActivityLevel ==
-                                          Puppy.active.text),
-                                ),
-                                SizedBox(
-                                  width: 10.w,
-                                ),
-                                Expanded(
-                                  child: customSquareButton(
-                                      text: 'Very Active',
-                                      onPressed: () {
-                                        puppyViewModel.setPuppyActivityLevel(
-                                            Puppy.veryActive.text);
-                                      },
-                                      colored: puppyViewModel.getPuppyActivityLevel ==
-                                          Puppy.veryActive.text),
-                                ),
-                              ],
-                            ),
-                          ),
+                        Visibility(
+                          visible: !puppyViewModel.getIsPuppyEdit,
+                          child: black14w500(
+                              data: toBeginningOfSentenceCase(puppyViewModel
+                                  .getPuppyDetail!.activityLevel!)!),
                         ),
                       ],
+                    ),
+                    Visibility(
+                      visible: puppyViewModel.getIsPuppyEdit,
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 10.0),
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: customSquareButton(
+                                  text: 'Less Active',
+                                  onPressed: () {
+                                    puppyViewModel.setPuppyActivityLevel(
+                                        Puppy.lessActive.text);
+                                  },
+                                  colored: puppyViewModel.getPuppyActivityLevel ==
+                                      Puppy.lessActive.text),
+                            ),
+                            SizedBox(
+                              width: 10.w,
+                            ),
+                            Expanded(
+                              child: customSquareButton(
+                                  text: 'Active',
+                                  onPressed: () {
+                                    puppyViewModel
+                                        .setPuppyActivityLevel(Puppy.active.text);
+                                  },
+                                  colored: puppyViewModel.getPuppyActivityLevel ==
+                                      Puppy.active.text),
+                            ),
+                            SizedBox(
+                              width: 10.w,
+                            ),
+                            Expanded(
+                              child: customSquareButton(
+                                  text: 'Very Active',
+                                  onPressed: () {
+                                    puppyViewModel.setPuppyActivityLevel(
+                                        Puppy.veryActive.text);
+                                  },
+                                  colored: puppyViewModel.getPuppyActivityLevel ==
+                                      Puppy.veryActive.text),
+                            ),
+                          ],
+                        ),
+                      ),
                     ),
                     SizedBox(
                       height: 10.h,
@@ -551,70 +648,77 @@ class PuppyDetailScreen extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Expanded(child: black14w500(data: 'Feeding Routine Per Day')),
+                        black14w500(data: 'Feeding Routine Per Day'),
                         Visibility(
-                          visible: puppyViewModel.getIsPuppyEdit,
-                          replacement:  black14w500(
-                              data: puppyViewModel.getPuppyDetail!.feedingRoutine!
+                          visible: !puppyViewModel.getIsPuppyEdit,
+                          child: black14w500(
+                              data: puppyViewModel
+                                  .getPuppyDetail!.feedingRoutine!
                                   .toString()),
-                          child: Row(
-                            children: [
-                              Expanded(
-                                child: customSquareButton(
-                                    text: '1',
-                                    onPressed: () {
-                                      puppyViewModel.setFeedingRoutine(1);
-                                    },
-                                    colored: puppyViewModel.getFeedingRoutine == 1),
-                              ),
-                              SizedBox(
-                                width: 10.w,
-                              ),
-                              Expanded(
-                                child: customSquareButton(
-                                    text: '2',
-                                    onPressed: () {
-                                      puppyViewModel.setFeedingRoutine(2);
-                                    },
-                                    colored: puppyViewModel.getFeedingRoutine == 2),
-                              ),
-                              SizedBox(
-                                width: 10.w,
-                              ),
-                              Expanded(
-                                child: customSquareButton(
-                                    text: '3',
-                                    onPressed: () {
-                                      puppyViewModel.setFeedingRoutine(3);
-                                    },
-                                    colored: puppyViewModel.getFeedingRoutine == 3),
-                              ),
-                              SizedBox(
-                                width: 10.w,
-                              ),
-                              Expanded(
-                                child: customSquareButton(
-                                    text: '4',
-                                    onPressed: () {
-                                      puppyViewModel.setFeedingRoutine(4);
-                                    },
-                                    colored: puppyViewModel.getFeedingRoutine == 4),
-                              ),
-                              SizedBox(
-                                width: 10.w,
-                              ),
-                              Expanded(
-                                child: customSquareButton(
-                                    text: '5',
-                                    onPressed: () {
-                                      puppyViewModel.setFeedingRoutine(5);
-                                    },
-                                    colored: puppyViewModel.getFeedingRoutine == 5),
-                              ),
-                            ],
-                          ),
                         ),
                       ],
+                    ),
+                    Visibility(
+                      visible: puppyViewModel.getIsPuppyEdit,
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 10.0),
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: customSquareButton(
+                                  text: '1',
+                                  onPressed: () {
+                                    puppyViewModel.setFeedingRoutine(1);
+                                  },
+                                  colored: puppyViewModel.getFeedingRoutine == 1),
+                            ),
+                            SizedBox(
+                              width: 10.w,
+                            ),
+                            Expanded(
+                              child: customSquareButton(
+                                  text: '2',
+                                  onPressed: () {
+                                    puppyViewModel.setFeedingRoutine(2);
+                                  },
+                                  colored: puppyViewModel.getFeedingRoutine == 2),
+                            ),
+                            SizedBox(
+                              width: 10.w,
+                            ),
+                            Expanded(
+                              child: customSquareButton(
+                                  text: '3',
+                                  onPressed: () {
+                                    puppyViewModel.setFeedingRoutine(3);
+                                  },
+                                  colored: puppyViewModel.getFeedingRoutine == 3),
+                            ),
+                            SizedBox(
+                              width: 10.w,
+                            ),
+                            Expanded(
+                              child: customSquareButton(
+                                  text: '4',
+                                  onPressed: () {
+                                    puppyViewModel.setFeedingRoutine(4);
+                                  },
+                                  colored: puppyViewModel.getFeedingRoutine == 4),
+                            ),
+                            SizedBox(
+                              width: 10.w,
+                            ),
+                            Expanded(
+                              child: customSquareButton(
+                                  text: '5',
+                                  onPressed: () {
+                                    puppyViewModel.setFeedingRoutine(5);
+                                  },
+                                  colored: puppyViewModel.getFeedingRoutine == 5),
+                            ),
+                          ],
+                        ),
+                      ),
                     ),
                     SizedBox(
                       height: 100.h,
@@ -623,30 +727,49 @@ class PuppyDetailScreen extends StatelessWidget {
                 ),
               ),
             ),
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: Padding(
-                padding: const EdgeInsets.all(20),
-                child: customButton(
-                    text: 'Edit',
-                    onPressed: () {
-                      if (puppyViewModel
-                          .puppyAdditionalCreationValidation()){
-                        puppyViewModel
-                            .callEditPuppyApi()
-                            .then((value) async => {
-                          if (value)
-                            {
-                              await context
-                                  .read<AuthViewModel>()
-                                  .callSplash(showLoader: true),
-                              Navigator.of(context)
-                                ..pop()
-                                ..pop(),
-                            }
-                        });
-                      }                    },
-                    colored: true),
+            Visibility(
+              visible: MediaQuery.of(context).viewInsets.bottom == 0 && puppyViewModel.getIsPuppyEdit,
+              child: Align(
+                alignment: Alignment.bottomCenter,
+                child: Container(
+                  decoration: const BoxDecoration(
+                    color: CustomColors.whiteColor,
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(30.0),
+                      topRight: Radius.circular(30.0),
+                    ),
+                    boxShadow: [
+                      BoxShadow(
+                        offset: Offset(0, 0),
+                        blurRadius: 5,
+                        spreadRadius: 2,
+                        color: Colors.black12,
+                      ),
+                    ],
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(20),
+                    child: customButton(
+                        text: 'Update',
+                        onPressed: () {
+                          if (puppyViewModel
+                              .puppyAdditionalCreationValidation()) {
+                           puppyViewModel
+                                .callEditPuppyApi()
+                                .then((value) async => {
+                              if (value)
+                                {
+                                  await context
+                                      .read<AuthViewModel>()
+                                      .callSplash(showLoader: true),
+                                }
+                            });
+
+                          }
+                        },
+                        colored: true),
+                  ),
+                ),
               ),
             ),
           ],

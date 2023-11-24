@@ -25,11 +25,11 @@ class PuppyCreationAdditionalScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<PuppyViewModel>(builder: (_, puppyViewModel, __) {
       return Scaffold(
-        appBar: AppBarWithBackWidget(
-            heading: context.read<PuppyViewModel>().getRouteToPuppyFrom ==
+        appBar: const AppBarWithBackWidget(
+            heading: /*context.read<PuppyViewModel>().getRouteToPuppyFrom ==
                     Screens.home.text
-                ? 'Add Pet'
-                : 'My Pets',
+                ? */'Add Pet'
+                /*: 'My Pets'*/,
             showPuppy: false,
             showCart: true),
         body: Stack(
@@ -507,7 +507,7 @@ class PuppyCreationAdditionalScreen extends StatelessWidget {
                         onPressed: () {
                           if (puppyViewModel
                               .puppyAdditionalCreationValidation()) {
-                            puppyViewModel.getIsPuppyEdit
+                           /* puppyViewModel.getIsPuppyEdit
                                 ? puppyViewModel
                                     .callEditPuppyApi()
                                     .then((value) async => {
@@ -521,7 +521,7 @@ class PuppyCreationAdditionalScreen extends StatelessWidget {
                                                 ..pop(),
                                             }
                                         })
-                                : puppyViewModel
+                                :*/ puppyViewModel
                                     .callRegisterPuppyApi()
                                     .then((value) async => {
                                           if (value)
