@@ -62,7 +62,8 @@ class _FeedingPlanScreenState extends State<FeedingPlanScreen> {
                               puppyActivityLevel: plansViewModel
                                   .getFeedingPlan!.pet!.activityLevel!,
                               currentWeight: plansViewModel
-                                  .getFeedingPlan!.pet!.currentWeight!) *
+                                  .getFeedingPlan!.pet!.currentWeight!, puppyActualWeight: plansViewModel
+                          .getFeedingPlan!.pet!.actualWeight!) *
                           (plansViewModel
                               .getFeedingPlan!.recipes[index].totalDays!);
                       final num perPouchQuantity = calculateFeedingPlan(

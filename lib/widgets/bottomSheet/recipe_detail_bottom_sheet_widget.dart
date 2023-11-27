@@ -441,7 +441,7 @@ Future recipeDetailBottomSheetWidget({required RecipeModel recipeDetail}) {
                                               child: Center(
                                                 child: black10w400(
                                                     data:
-                                                        '${calculateDailyIntake(recipeModel: recipeDetail, puppyActivityLevel: Puppy.lessActive.text, currentWeight: 4.5)} g'),
+                                                        '${calculateDailyIntake(recipeModel: recipeDetail, puppyActivityLevel: Puppy.lessActive.text, currentWeight: 4.5, puppyActualWeight: 0)} g'),
                                               ),
                                             ),
                                             Padding(
@@ -450,7 +450,7 @@ Future recipeDetailBottomSheetWidget({required RecipeModel recipeDetail}) {
                                               child: Center(
                                                 child: black10w400(
                                                     data:
-                                                        '${calculateDailyIntake(recipeModel: recipeDetail, puppyActivityLevel: Puppy.lessActive.text, currentWeight: 9.1)} g'),
+                                                        '${calculateDailyIntake(recipeModel: recipeDetail, puppyActivityLevel: Puppy.lessActive.text, currentWeight: 9.1, puppyActualWeight: 0)} g'),
                                               ),
                                             ),
                                             Padding(
@@ -459,7 +459,7 @@ Future recipeDetailBottomSheetWidget({required RecipeModel recipeDetail}) {
                                               child: Center(
                                                 child: black10w400(
                                                     data:
-                                                        '${calculateDailyIntake(recipeModel: recipeDetail, puppyActivityLevel: Puppy.lessActive.text, currentWeight: 15.9)} g'),
+                                                        '${calculateDailyIntake(recipeModel: recipeDetail, puppyActivityLevel: Puppy.lessActive.text, currentWeight: 15.9, puppyActualWeight: 0)} g'),
                                               ),
                                             ),
                                             Padding(
@@ -468,7 +468,7 @@ Future recipeDetailBottomSheetWidget({required RecipeModel recipeDetail}) {
                                               child: Center(
                                                 child: black10w400(
                                                     data:
-                                                        '${calculateDailyIntake(recipeModel: recipeDetail, puppyActivityLevel: Puppy.lessActive.text, currentWeight: 22.7)} g'),
+                                                        '${calculateDailyIntake(recipeModel: recipeDetail, puppyActivityLevel: Puppy.lessActive.text, currentWeight: 22.7, puppyActualWeight: 0)} g'),
                                               ),
                                             ),
                                             Padding(
@@ -477,7 +477,7 @@ Future recipeDetailBottomSheetWidget({required RecipeModel recipeDetail}) {
                                               child: Center(
                                                 child: black10w400(
                                                     data:
-                                                        '${calculateDailyIntake(recipeModel: recipeDetail, puppyActivityLevel: Puppy.lessActive.text, currentWeight: 27.3)} g'),
+                                                        '${calculateDailyIntake(recipeModel: recipeDetail, puppyActivityLevel: Puppy.lessActive.text, currentWeight: 27.3, puppyActualWeight: 0)} g'),
                                               ),
                                             ),
                                             Padding(
@@ -486,7 +486,7 @@ Future recipeDetailBottomSheetWidget({required RecipeModel recipeDetail}) {
                                               child: Center(
                                                 child: black10w400(
                                                     data:
-                                                        '${calculateDailyIntake(recipeModel: recipeDetail, puppyActivityLevel: Puppy.lessActive.text, currentWeight: 34.1)} g'),
+                                                        '${calculateDailyIntake(recipeModel: recipeDetail, puppyActivityLevel: Puppy.lessActive.text, currentWeight: 34.1, puppyActualWeight: 0)} g'),
                                               ),
                                             ),
                                           ]),
@@ -509,7 +509,7 @@ Future recipeDetailBottomSheetWidget({required RecipeModel recipeDetail}) {
                                               child: Center(
                                                 child: black10w400(
                                                     data:
-                                                        '${calculateDailyIntake(recipeModel: recipeDetail, puppyActivityLevel: Puppy.active.text, currentWeight: 4.5)} g'),
+                                                        '${calculateDailyIntake(recipeModel: recipeDetail, puppyActivityLevel: Puppy.active.text, currentWeight: 4.5, puppyActualWeight: 0)} g'),
                                               ),
                                             ),
                                             Padding(
@@ -518,7 +518,7 @@ Future recipeDetailBottomSheetWidget({required RecipeModel recipeDetail}) {
                                               child: Center(
                                                 child: black10w400(
                                                     data:
-                                                        '${calculateDailyIntake(recipeModel: recipeDetail, puppyActivityLevel: Puppy.active.text, currentWeight: 9.1)} g'),
+                                                        '${calculateDailyIntake(recipeModel: recipeDetail, puppyActivityLevel: Puppy.active.text, currentWeight: 9.1, puppyActualWeight: 0)} g'),
                                               ),
                                             ),
                                             Padding(
@@ -527,7 +527,7 @@ Future recipeDetailBottomSheetWidget({required RecipeModel recipeDetail}) {
                                               child: Center(
                                                 child: black10w400(
                                                     data:
-                                                        '${calculateDailyIntake(recipeModel: recipeDetail, puppyActivityLevel: Puppy.active.text, currentWeight: 15.9)} g'),
+                                                        '${calculateDailyIntake(recipeModel: recipeDetail, puppyActivityLevel: Puppy.active.text, currentWeight: 15.9, puppyActualWeight: 0)} g'),
                                               ),
                                             ),
                                             Padding(
@@ -536,7 +536,7 @@ Future recipeDetailBottomSheetWidget({required RecipeModel recipeDetail}) {
                                               child: Center(
                                                 child: black10w400(
                                                     data:
-                                                        '${calculateDailyIntake(recipeModel: recipeDetail, puppyActivityLevel: Puppy.active.text, currentWeight: 22.7)} g'),
+                                                        '${calculateDailyIntake(recipeModel: recipeDetail, puppyActivityLevel: Puppy.active.text, currentWeight: 22.7, puppyActualWeight: 0)} g'),
                                               ),
                                             ),
                                             Padding(
@@ -545,7 +545,7 @@ Future recipeDetailBottomSheetWidget({required RecipeModel recipeDetail}) {
                                               child: Center(
                                                 child: black10w400(
                                                     data:
-                                                        '${calculateDailyIntake(recipeModel: recipeDetail, puppyActivityLevel: Puppy.active.text, currentWeight: 27.3)} g'),
+                                                        '${calculateDailyIntake(recipeModel: recipeDetail, puppyActivityLevel: Puppy.active.text, currentWeight: 27.3, puppyActualWeight: 0)} g'),
                                               ),
                                             ),
                                             Padding(
@@ -554,7 +554,7 @@ Future recipeDetailBottomSheetWidget({required RecipeModel recipeDetail}) {
                                               child: Center(
                                                 child: black10w400(
                                                     data:
-                                                        '${calculateDailyIntake(recipeModel: recipeDetail, puppyActivityLevel: Puppy.active.text, currentWeight: 34.1)} g'),
+                                                        '${calculateDailyIntake(recipeModel: recipeDetail, puppyActivityLevel: Puppy.active.text, currentWeight: 34.1, puppyActualWeight: 0)} g'),
                                               ),
                                             ),
                                           ]),
@@ -577,7 +577,7 @@ Future recipeDetailBottomSheetWidget({required RecipeModel recipeDetail}) {
                                               child: Center(
                                                 child: black10w400(
                                                     data:
-                                                        '${calculateDailyIntake(recipeModel: recipeDetail, puppyActivityLevel: Puppy.veryActive.text, currentWeight: 4.5)} g'),
+                                                        '${calculateDailyIntake(recipeModel: recipeDetail, puppyActivityLevel: Puppy.veryActive.text, currentWeight: 4.5, puppyActualWeight: 0)} g'),
                                               ),
                                             ),
                                             Padding(
@@ -586,7 +586,7 @@ Future recipeDetailBottomSheetWidget({required RecipeModel recipeDetail}) {
                                               child: Center(
                                                 child: black10w400(
                                                     data:
-                                                        '${calculateDailyIntake(recipeModel: recipeDetail, puppyActivityLevel: Puppy.veryActive.text, currentWeight: 9.1)} g'),
+                                                        '${calculateDailyIntake(recipeModel: recipeDetail, puppyActivityLevel: Puppy.veryActive.text, currentWeight: 9.1, puppyActualWeight: 0)} g'),
                                               ),
                                             ),
                                             Padding(
@@ -595,7 +595,7 @@ Future recipeDetailBottomSheetWidget({required RecipeModel recipeDetail}) {
                                               child: Center(
                                                 child: black10w400(
                                                     data:
-                                                        '${calculateDailyIntake(recipeModel: recipeDetail, puppyActivityLevel: Puppy.veryActive.text, currentWeight: 15.9)} g'),
+                                                        '${calculateDailyIntake(recipeModel: recipeDetail, puppyActivityLevel: Puppy.veryActive.text, currentWeight: 15.9, puppyActualWeight: 0)} g'),
                                               ),
                                             ),
                                             Padding(
@@ -604,7 +604,7 @@ Future recipeDetailBottomSheetWidget({required RecipeModel recipeDetail}) {
                                               child: Center(
                                                 child: black10w400(
                                                     data:
-                                                        '${calculateDailyIntake(recipeModel: recipeDetail, puppyActivityLevel: Puppy.veryActive.text, currentWeight: 22.7)} g'),
+                                                        '${calculateDailyIntake(recipeModel: recipeDetail, puppyActivityLevel: Puppy.veryActive.text, currentWeight: 22.7, puppyActualWeight: 0)} g'),
                                               ),
                                             ),
                                             Padding(
@@ -613,7 +613,7 @@ Future recipeDetailBottomSheetWidget({required RecipeModel recipeDetail}) {
                                               child: Center(
                                                 child: black10w400(
                                                     data:
-                                                        '${calculateDailyIntake(recipeModel: recipeDetail, puppyActivityLevel: Puppy.veryActive.text, currentWeight: 27.3)} g'),
+                                                        '${calculateDailyIntake(recipeModel: recipeDetail, puppyActivityLevel: Puppy.veryActive.text, currentWeight: 27.3, puppyActualWeight: 0)} g'),
                                               ),
                                             ),
                                             Padding(
@@ -622,7 +622,7 @@ Future recipeDetailBottomSheetWidget({required RecipeModel recipeDetail}) {
                                               child: Center(
                                                 child: black10w400(
                                                     data:
-                                                        '${calculateDailyIntake(recipeModel: recipeDetail, puppyActivityLevel: Puppy.veryActive.text, currentWeight: 34.1)} g'),
+                                                        '${calculateDailyIntake(recipeModel: recipeDetail, puppyActivityLevel: Puppy.veryActive.text, currentWeight: 34.1, puppyActualWeight: 0)} g'),
                                               ),
                                             ),
                                           ]),

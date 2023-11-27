@@ -1,9 +1,11 @@
 import 'package:brunos_kitchen/view_models/order_view_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
+import '../utils/custom_buttons.dart';
 import '../utils/custom_colors.dart';
 import '../utils/custom_font_style.dart';
 import '../widgets/app_bar_with_back_widget.dart';
@@ -22,7 +24,7 @@ class OrderDetailScreen extends StatelessWidget {
           ),
           body: Column(
             children: [
-              SizedBox(height: 20,),
+              const SizedBox(height: 20,),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Container(
@@ -103,7 +105,19 @@ class OrderDetailScreen extends StatelessWidget {
                             lightBlack14w400Centre(data: 'AED ${orderViewModel.getSelectedOrder.totalAmount}'),
                           ],
                         ),
-                      ],
+                      SizedBox(
+                        height: 20.h,
+                      ),
+                      customButton(
+                          height: 40.h,
+                          text: 'Re-order',
+                          onPressed: () {
+                            EasyLoading.showSuccess(
+                                'Order Created Successfully');
+                          },
+                          colored: true)
+
+                    ],
                     ),
                   ),
                 ),

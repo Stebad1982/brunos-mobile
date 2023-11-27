@@ -29,7 +29,7 @@ class _OrdersScreenState extends State<OrdersScreen>
       context.read<OrderViewModel>().callOrderListApi();
     });
 
-    tabController = TabController(length: 3, vsync: this);
+    tabController = TabController(length: 2, vsync: this);
     tabController!.addListener(_getActiveTabIndex);
   }
 
@@ -92,7 +92,7 @@ class _OrdersScreenState extends State<OrdersScreen>
                         width: 170.w,
                         child: Center(
                             child: lightBlack14w400Centre(data: 'Completed')))),
-                Tab(
+              /*  Tab(
                     child: Container(
                         decoration: BoxDecoration(
                           color: _selectedIndex == 2
@@ -103,7 +103,7 @@ class _OrdersScreenState extends State<OrdersScreen>
                         height: 40.h,
                         width: 170.w,
                         child: Center(
-                            child: lightBlack14w400Centre(data: 'Monthly Subscription')))),
+                            child: lightBlack14w400Centre(data: 'Monthly Subscription')))),*/
               ],
             ),
             Expanded(
@@ -112,7 +112,9 @@ class _OrdersScreenState extends State<OrdersScreen>
                 children:  [
                   context.watch<OrderViewModel>().getOrderResponse.data != null? OrderInProcessScreen(): SizedBox(),
                   context.watch<OrderViewModel>().getOrderResponse.data != null?OrderCompletedScreen(): SizedBox(),
+/*
                   context.watch<OrderViewModel>().getOrderResponse.data != null? OrderMonthlyScreen(): SizedBox()
+*/
                 ],
               ),
             ),

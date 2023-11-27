@@ -250,7 +250,7 @@ class HomeScreen extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20.0),
                 child: customButton(
-                    text: 'Design Your Doggo\'s Delicious Diet Now',
+                    text: 'Ready to Order? , Tap Here',
                     onPressed: () {
                       if (context
                               .read<AuthViewModel>()

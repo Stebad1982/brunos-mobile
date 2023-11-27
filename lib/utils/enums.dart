@@ -46,8 +46,8 @@ enum Puppy {
 }
 
 enum PuppyWeight {
-  idealWeight(10),
-  overweight(20),
+  idealWeight(0),
+  overweight(5),
   underweight(5);
   final int value;
   const PuppyWeight(this.value);

@@ -8,7 +8,7 @@ import 'package:flutter_svg/svg.dart';
 
 import '../../utils/custom_colors.dart';
 import '../../utils/custom_font_style.dart';
-import '../bottomSheet/add_meal_bottom_sheet_widget.dart';
+import '../add_meal_bottom_sheet_widget.dart';
 
 Widget foodGridChipWidget ({required RecipeModel recipeDetail}){
   return Card(

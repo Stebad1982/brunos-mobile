@@ -48,28 +48,28 @@ class OneTimePlanScreen extends StatelessWidget {
               SizedBox(
                 height: 30.h,
               ),
-              Padding(
+             /* Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20.0),
                 child: black18w500(
                     data: 'Recommended Dishes'),
               ),
               SizedBox(
                 height: 20.h,
-              ),
+              ),*/
               Center(
                 child: Wrap(
                   runSpacing: 20.w,
                   spacing: 20.w,
                   alignment: WrapAlignment.center,
-                  children: List.generate(context.read<PlansViewModel>().getRecommendedRecipesList.length, (index) {
+                  children: List.generate(context.read<PlansViewModel>().getOneTimeRecipesList.length, (index) {
                     return SizedBox(
                       width: 157.w,
-                      child: itemDescribedGridChipWidget(recipeData: context.read<PlansViewModel>().getRecommendedRecipesList[index]),
+                      child: itemDescribedGridChipWidget(recipeData: context.read<PlansViewModel>().getOneTimeRecipesList[index]),
                     );
                   }),
                 ),
               ),
-              SizedBox(
+             /* SizedBox(
                 height: 30.h,
               ),
               Padding(
@@ -92,7 +92,7 @@ class OneTimePlanScreen extends StatelessWidget {
                     );
                   }),
                 ),
-              ),
+              ),*/
             ],
           ),
         ),

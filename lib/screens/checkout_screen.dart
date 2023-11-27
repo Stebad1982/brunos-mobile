@@ -23,6 +23,7 @@ import '../widgets/app_bar_with_back_widget.dart';
 import '../widgets/dialogs/checkout_confirmation_dialog.dart';
 import '../widgets/dialogs/discription_dialog.dart';
 import '../widgets/bottomSheet/redeem_paw_points_bottom_sheet_widget.dart';
+import '../widgets/dialogs/promo_code_validation_dialog.dart';
 
 class CheckoutScreen extends StatelessWidget {
   const CheckoutScreen({Key? key}) : super(key: key);
@@ -581,7 +582,16 @@ class CheckoutScreen extends StatelessWidget {
                             InkWell(
                               onTap: () {
                                 FocusScope.of(context).unfocus();
-                                cartViewModel.callPromoCodeApi();
+                                cartViewModel.callPromoCodeApi().then((value) {
+                                  if(value){
+                                    if(cartViewModel.getPromoCodeDiscount > cartViewModel.getCartTotalPrice){
+                                      promoCodeValidationDialog(context: context, description: 'To use this promo code the cart total must be more than ${cartViewModel.getPromoCodeDiscount}', height: 200, title: 'Alert');
+                                    }
+                                    else{
+                                      cartViewModel.setCheckOutTotal();
+                                    }
+                                  }
+                                });
                                 //cartViewModel.setPromoCodeDiscount(value);
                               },
                               child: Container(

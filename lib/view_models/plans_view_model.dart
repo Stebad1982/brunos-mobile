@@ -49,6 +49,8 @@ class PlansViewModel with ChangeNotifier {
   List<RecipeModel> _featuredProductsList = [];
   List<RecipeModel> _comboRecipesList = [];
   List<RecipeModel> _recommendedRecipesList = [];
+  List<RecipeModel> _oneTimeRecipesList = [];
+
   int _monthlyEmptyTileNumber = 1;
   final TextEditingController _monthlySelectedDaysController =
       TextEditingController();
@@ -94,6 +96,7 @@ class PlansViewModel with ChangeNotifier {
   List<RecipeModel> get getComboRecipesList => _comboRecipesList;
 
   List<RecipeModel> get getRecommendedRecipesList => _recommendedRecipesList;
+  List<RecipeModel> get getOneTimeRecipesList => _oneTimeRecipesList;
 
   List<RecipeModel> get getFeaturedRecipesList => _featuredRecipesList;
 
@@ -234,7 +237,7 @@ class PlansViewModel with ChangeNotifier {
       final num totalPlanQuantity = calculateDailyIntake(
               recipeModel: recipes[index],
               puppyActivityLevel: pet!.activityLevel!,
-              currentWeight: pet.currentWeight!) *
+              currentWeight: pet.currentWeight!, puppyActualWeight: pet.actualWeight!) *
           (recipes[index].totalDays!);
       final num transitionalPlanTotalQuantity = getTotalTransitionalGrams();
       final num weight = _planType == Plans.transitional.text
@@ -252,7 +255,7 @@ class PlansViewModel with ChangeNotifier {
       final num totalPlanQuantity = calculateDailyIntake(
               recipeModel: recipes[index],
               puppyActivityLevel: pet!.activityLevel!,
-              currentWeight: pet.currentWeight!) *
+              currentWeight: pet.currentWeight!, puppyActualWeight: pet.actualWeight!) *
           (recipes[index].totalDays!);
       final num perPouchQuantity =
           calculateFeedingPlan(recipeModel: recipes[index], puppyModel: pet);
@@ -407,6 +410,10 @@ class PlansViewModel with ChangeNotifier {
     _recommendedRecipesList = _recipesListResponse.data!.recipe!
         .where((element) => element.isComboRecipe == 0)
         .toList();
+    _oneTimeRecipesList = _recipesListResponse.data!.recipe!
+        .where((element) => element.category == ProductCategories.standardRecipes.text)
+        .toList();
+
     notifyListeners();
   }
 
