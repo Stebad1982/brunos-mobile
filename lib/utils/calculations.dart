@@ -25,13 +25,12 @@ int calculateDailyIntake(
           pow(currentWeight, 0.75) /
           recipeModel.caloriesContentNo!) *
       1000;
+  final weightPercent = finalGram * 5 / 100;
 
   if (puppyActualWeight == PuppyWeight.underweight.value) {
-    final underWeightPercent = finalGram * PuppyWeight.underweight.value / 100;
-    dailyIntake = finalGram + underWeightPercent;
+    dailyIntake = finalGram + weightPercent;
   } else if (puppyActualWeight == PuppyWeight.overweight.value) {
-    final overWeightPercent = finalGram * PuppyWeight.overweight.value / 100;
-    dailyIntake = finalGram - overWeightPercent;
+    dailyIntake = finalGram - weightPercent;
   } else {
     dailyIntake = finalGram;
   }
@@ -101,9 +100,22 @@ num calculatePlanTotal({required List<RecipeModel> listOfItems}) {
   return finalPriceSum;
 }
 
+num calculatePlanDiscount({required planTotal, required num discountedPer}){
+  final num planDiscountedPer = planTotal * discountedPer / 100 ;
+  final num planDiscountedPrice = planTotal - planDiscountedPer;
+  return planDiscountedPrice.round();
+}
+
 num calculateCartTotal({required List<CartModel> cartItems}) {
   final num finalPriceSum = cartItems.fold(0, (i, element) {
-    return i + element.planTotal;
+    num planPrice = 0;
+    if(element.planType == Plans.monthly.text){
+      planPrice = i + element.planDiscountedPrice;
+    }
+    else{
+      i + element.planTotal;
+    }
+    return planPrice;
   });
   return finalPriceSum;
 }

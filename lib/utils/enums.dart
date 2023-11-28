@@ -46,11 +46,19 @@ enum Puppy {
 }
 
 enum PuppyWeight {
-  idealWeight(0),
-  overweight(5),
+  idealWeight(10),
+  overweight(20),
   underweight(5);
   final int value;
   const PuppyWeight(this.value);
+}
+
+enum Discounts {
+  discountPercentageOnMonthlyPlan('discountPercentageOnMonthlyPlan'),
+  discountOnPointsRedeem('discountOnPointsRedeem'),
+  pointsToAEDRatio('pointsToAEDRatio');
+  final String text;
+  const Discounts(this.text);
 }
 
 enum AddressLabels {

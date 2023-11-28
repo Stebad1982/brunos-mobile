@@ -30,7 +30,7 @@ class _FeedingPlanScreenState extends State<FeedingPlanScreen> {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       context.read<PlansViewModel>().setFeedingPlan(
-          petData: context.read<AuthViewModel>().getAuthResponse.data!.pet!);
+          petData: context.read<AuthViewModel>().getAuthResponse.data!.pet!, planDiscountPer: context.read<AuthViewModel>().getAuthResponse.data!.discounts![0].aggregate!);
     });
   }
 
@@ -62,8 +62,9 @@ class _FeedingPlanScreenState extends State<FeedingPlanScreen> {
                               puppyActivityLevel: plansViewModel
                                   .getFeedingPlan!.pet!.activityLevel!,
                               currentWeight: plansViewModel
-                                  .getFeedingPlan!.pet!.currentWeight!, puppyActualWeight: plansViewModel
-                          .getFeedingPlan!.pet!.actualWeight!) *
+                                  .getFeedingPlan!.pet!.currentWeight!,
+                              puppyActualWeight: plansViewModel
+                                  .getFeedingPlan!.pet!.actualWeight!) *
                           (plansViewModel
                               .getFeedingPlan!.recipes[index].totalDays!);
                       final num perPouchQuantity = calculateFeedingPlan(
@@ -199,9 +200,29 @@ class _FeedingPlanScreenState extends State<FeedingPlanScreen> {
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
+                        Visibility(
+                          visible:
+                              plansViewModel.getPlanType == Plans.monthly.text,
+                          child: Column(
+                            children: [
+                              orange14w500(
+                                  data:
+                                      'Total Price = ${plansViewModel.getFeedingPlan!.planTotal} AED'),
+                              SizedBox(
+                                height: 5.h,
+                              ),
+                              orange14w500(
+                                  data:
+                                      'Discount = ${context.watch<AuthViewModel>().getAuthResponse.data!.discounts![0].aggregate} %'),
+                              SizedBox(
+                                height: 5.h,
+                              ),
+                            ],
+                          ),
+                        ),
                         orange14w500(
                             data:
-                                'Total ${plansViewModel.getPlanType} Plan Price = ${plansViewModel.getFeedingPlan!.planTotal} AED'),
+                                'Total ${plansViewModel.getPlanType} Plan Price = ${plansViewModel.getPlanType == Plans.monthly.text ? plansViewModel.getFeedingPlan!.planDiscountedPrice : plansViewModel.getFeedingPlan!.planTotal} AED'),
                         SizedBox(
                           height: 10.h,
                         ),
@@ -211,11 +232,11 @@ class _FeedingPlanScreenState extends State<FeedingPlanScreen> {
                                 data:
                                     'The above plan is calculated based on ${plansViewModel.getFeedingPlan!.pet!.name!}\'s profile data',
                                 centre: true)),
-
                         Visibility(
                           visible: context
-                              .read<CartViewModel>()
-                              .getViewCartItemDetail == false,
+                                  .read<CartViewModel>()
+                                  .getViewCartItemDetail ==
+                              false,
                           child: Padding(
                             padding: const EdgeInsets.only(top: 20.0),
                             child: customButton(
@@ -236,17 +257,30 @@ class _FeedingPlanScreenState extends State<FeedingPlanScreen> {
                                               planType: plansViewModel
                                                   .getFeedingPlan!.planType,
                                               planTotal: plansViewModel
-                                                  .getFeedingPlan!.planTotal, pouchesDetail: plansViewModel.getFeedingPlan!.pouchesDetail, totalWeight: plansViewModel.getFeedingPlan!.totalWeight),
+                                                  .getFeedingPlan!.planTotal,
+                                              pouchesDetail: plansViewModel
+                                                  .getFeedingPlan!
+                                                  .pouchesDetail,
+                                              totalWeight: plansViewModel
+                                                  .getFeedingPlan!.totalWeight,
+                                              planDiscountedPrice:
+                                                  plansViewModel.getFeedingPlan!
+                                                      .planDiscountedPrice, planDiscountPer: plansViewModel.getFeedingPlan!
+                                              .planDiscountPer),
                                         );
                                     if (context
                                             .read<CartViewModel>()
                                             .getSelectedIndex ==
                                         null) {
-                                      Navigator.pushNamedAndRemoveUntil(context,
-                                          bottomNavigationRoute, (route) => false);
+                                      Navigator.pushNamedAndRemoveUntil(
+                                          context,
+                                          bottomNavigationRoute,
+                                          (route) => false);
                                     } else {
-                                      Navigator.pushNamedAndRemoveUntil(context,
-                                          cartRoute, (Route route) => route.isFirst);
+                                      Navigator.pushNamedAndRemoveUntil(
+                                          context,
+                                          cartRoute,
+                                          (Route route) => route.isFirst);
                                     }
 
                                     EasyLoading.showToast(

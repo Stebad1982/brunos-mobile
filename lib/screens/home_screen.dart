@@ -250,7 +250,8 @@ class HomeScreen extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20.0),
                 child: customButton(
-                    text: 'Ready to Order? , Tap Here',
+                    text: 'Ready to Order? ',
+                    boldText: 'Tap Here',
                     onPressed: () {
                       if (context
                               .read<AuthViewModel>()

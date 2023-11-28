@@ -42,6 +42,7 @@ class AuthData {
   AddressModel? location;
   String? refreshToken;
   String? clientToken;
+  List<Discounts>? discounts;
 
   AuthData(
       {this.sId,
@@ -58,6 +59,7 @@ class AuthData {
         this.location,
         this.availablePoints,
         this.refreshToken,
+        this.discounts,
         this.clientToken});
 
   AuthData.fromJson(Map<String, dynamic> json) {
@@ -78,6 +80,12 @@ class AuthData {
         : null;
     refreshToken = json['refreshToken'];
     clientToken = json['clientToken'];
+    if (json['discounts'] != null) {
+      discounts = <Discounts>[];
+      json['discounts'].forEach((v) {
+        discounts!.add(new Discounts.fromJson(v));
+      });
+    }
   }
 
   Map<String, dynamic> toJson() {
@@ -100,10 +108,36 @@ class AuthData {
     }
     data['refreshToken'] = this.refreshToken;
     data['clientToken'] = this.clientToken;
+    if (this.discounts != null) {
+      data['discounts'] = this.discounts!.map((v) => v.toJson()).toList();
+    }
     return data;
   }
 }
 
+class Discounts {
+  String? sId;
+  int? createdOnDate;
+  int? aggregate;
+  String? name;
+
+  Discounts({this.sId, this.createdOnDate, this.aggregate, this.name});
+
+  Discounts.fromJson(Map<String, dynamic> json) {
+    sId = json['_id'];
+    createdOnDate = json['createdOnDate'];
+    aggregate = json['aggregate'];
+    name = json['name'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['_id'] = this.sId;
+    data['createdOnDate'] = this.createdOnDate;
+    data['aggregate'] = this.aggregate;
+    data['name'] = this.name;
+    return data;
+  }
 
 
-
+}

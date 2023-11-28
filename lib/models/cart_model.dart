@@ -11,6 +11,8 @@ class CartModel {
   List<num> totalWeight;
   List<String> pouchesDetail;
   num planTotal;
+  num planDiscountPer;
+  num planDiscountedPrice;
 
   CartModel(
       {required this.planTotal,
@@ -18,6 +20,8 @@ class CartModel {
       required this.pet,
       required this.pouchesDetail,
       required this.planType,
+        required this.planDiscountPer,
+      required this.planDiscountedPrice,
       required this.totalWeight});
 
   Map<String, dynamic> toJson() {
@@ -28,6 +32,8 @@ class CartModel {
     data['pouchesDetail'] = json.encode(this.pouchesDetail);
     data['planType'] = this.planType;
     data['planTotal'] = this.planTotal;
+    data['planDiscountPer'] = this.planDiscountPer;
+    data['planDiscountedPrice'] = this.planDiscountedPrice;
     data['totalWeight'] = this.totalWeight;
     data['recipes'] = this.recipes.map((v) => v.toJson()).toList();
     return data;

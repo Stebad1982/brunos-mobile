@@ -199,7 +199,11 @@ class ChooseYourPlanScreen extends StatelessWidget {
                                   lightBlack14w400Centre(
                                       data:
                                           'For an affordable, varied meal adventure. Three monthly meal choices for your pup\'s delight!',
-                                      left: true)
+                                      left: true),
+                                  SizedBox(height: 10.h,),
+                                  Align(
+                                    alignment: Alignment.centerRight,
+                                      child: orange14w500(data: 'Save upto 20%'))
                                 ],
                               ),
                             )

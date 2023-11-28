@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'custom_colors.dart';
 
-Widget customButton ({required String text,required VoidCallback onPressed, required bool colored, IconData? icon, double? height}){
+Widget customButton ({required String text,required VoidCallback onPressed, required bool colored, IconData? icon, double? height, String? boldText}){
   return SizedBox(
     height: height == null? 50.h : height.h,
     width: double.infinity,
@@ -27,6 +27,12 @@ Widget customButton ({required String text,required VoidCallback onPressed, requ
                 fontSize: 14.sp,
                   fontWeight: FontWeight.w500,
                   color: colored ? CustomColors.whiteColor : CustomColors.orangeColor,)),
+          boldText != null?Text(boldText,
+              style: TextStyle(
+                fontFamily: 'CircularStd',
+                fontSize: 14.sp,
+                fontWeight: FontWeight.w900,
+                color: colored ? CustomColors.whiteColor : CustomColors.orangeColor,)):SizedBox()
         ],
       ),
     ),
