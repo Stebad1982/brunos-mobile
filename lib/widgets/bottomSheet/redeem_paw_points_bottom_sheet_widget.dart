@@ -96,7 +96,7 @@ Future redeemPawPointsBottomSheetWidget() {
                     label: cartViewModel
                         .getPawPoints
                         .toString(),
-                    max: cartViewModel.getCartTotalPrice >= context
+                    max: cartViewModel.getRequiredPawPoints >= context
                         .read<AuthViewModel>()
                         .getAuthResponse
                         .data!
@@ -104,7 +104,7 @@ Future redeemPawPointsBottomSheetWidget() {
                         .watch<AuthViewModel>()
                         .getAuthResponse
                         .data!
-                        .availablePoints!.toDouble() : cartViewModel.getCartTotalPrice.toDouble(),
+                        .availablePoints!.toDouble() : cartViewModel.getRequiredPawPoints.toDouble(),
                     onChanged: (double value) {
                       cartViewModel.setPawPoints(value);
                     },

@@ -109,12 +109,12 @@ num calculatePlanDiscount({required planTotal, required num discountedPer}){
 num calculateCartTotal({required List<CartModel> cartItems}) {
   final num finalPriceSum = cartItems.fold(0, (i, element) {
     num planPrice = 0;
-    if(element.planType == Plans.monthly.text){
+   /* if(element.planType == Plans.monthly.text){*/
       planPrice = i + element.planDiscountedPrice;
-    }
+    /*}
     else{
       i + element.planTotal;
-    }
+    }*/
     return planPrice;
   });
   return finalPriceSum;

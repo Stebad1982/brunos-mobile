@@ -5,7 +5,6 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
-
 import '../models/cart_model.dart';
 import '../models/recipe_model.dart';
 import '../route_generator.dart';
@@ -13,8 +12,6 @@ import '../utils/calculations.dart';
 import '../utils/custom_buttons.dart';
 import '../utils/custom_colors.dart';
 import '../utils/enums.dart';
-import '../utils/images.dart';
-import '../view_models/auth_view_model.dart';
 import '../view_models/cart_view_model.dart';
 import '../view_models/plans_view_model.dart';
 import '../widgets/app_bar_with_back_widget.dart';
@@ -312,6 +309,8 @@ class ProductDetailScreen extends StatelessWidget {
                             final List<RecipeModel> recipeList = [];
                             plansViewModel.setProductModel();
                             recipeList.add(plansViewModel.getSelectedRecipe);
+                            final planTotalPrice = calculatePlanTotal(
+                                listOfItems: recipeList);
                             context.read<CartViewModel>().addToCartList(
                                   CartModel(
                                       recipes: recipeList,
@@ -320,10 +319,9 @@ class ProductDetailScreen extends StatelessWidget {
                                   deliveryDate: '03 Oct 2023',
 */
                                       planType: plansViewModel.getPlanType,
-                                      planTotal: calculatePlanTotal(
-                                          listOfItems: recipeList),
+                                      planTotal: planTotalPrice,
                                       pouchesDetail: [],
-                                      totalWeight: [], planDiscountedPrice: 0, planDiscountPer: 0),
+                                      totalWeight: [], planDiscountedPrice: planTotalPrice, planDiscountPer: 0),
                                 );
 
                             Navigator.pushNamedAndRemoveUntil(context,
@@ -345,6 +343,8 @@ class ProductDetailScreen extends StatelessWidget {
                           final List<RecipeModel> recipeList = [];
                           plansViewModel.setProductModel();
                           recipeList.add(plansViewModel.getSelectedRecipe);
+                          final planTotalPrice = calculatePlanTotal(
+                              listOfItems: recipeList);
                           context.read<CartViewModel>().addToCartList(
                                 CartModel(
                                     recipes: recipeList,
@@ -353,10 +353,9 @@ class ProductDetailScreen extends StatelessWidget {
                                 deliveryDate: '03 Oct 2023',
 */
                                     planType: plansViewModel.getPlanType,
-                                    planTotal: calculatePlanTotal(
-                                        listOfItems: recipeList),
+                                    planTotal: planTotalPrice,
                                     pouchesDetail: [],
-                                    totalWeight: [], planDiscountedPrice: 0, planDiscountPer: 0),
+                                    totalWeight: [], planDiscountedPrice: planTotalPrice, planDiscountPer: 0),
                               );
                           context.read<CartViewModel>().setSelectedIndex(null);
                           Navigator.pushNamedAndRemoveUntil(context, cartRoute,

@@ -292,7 +292,7 @@ class PuppyDetailScreen extends StatelessWidget {
                       ),
                     ),
                     Visibility(
-                      visible: !puppyViewModel.getPuppyDetail!.isDefault!,
+                      visible: !puppyViewModel.getPuppyDetail!.isDefault! && !puppyViewModel.getIsPuppyEdit,
                       child: Column(
                         children: [
                           SizedBox(
@@ -386,7 +386,7 @@ class PuppyDetailScreen extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        black14w500(data: 'Actual Weight'),
+                        black14w500(data: 'Is ${puppyViewModel.getPuppyNameController.text.isNotEmpty ? puppyViewModel.getPuppyNameController.text : 'Pet'}?'),
                         SizedBox(
                           width: 10.w,
                         ),
@@ -464,7 +464,7 @@ class PuppyDetailScreen extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        black14w500(data: 'BirthDay'),
+                        black14w500(data: 'Birthday'),
                         Visibility(
                           visible: puppyViewModel.getIsPuppyEdit,
                           replacement: black14w500(

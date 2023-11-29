@@ -29,7 +29,7 @@ class CartModel {
     if (this.pet != null) {
       data['pet'] = this.pet!.toJson();
     }
-    data['pouchesDetail'] = json.encode(this.pouchesDetail);
+    data['pouchesDetail'] = this.pouchesDetail;
     data['planType'] = this.planType;
     data['planTotal'] = this.planTotal;
     data['planDiscountPer'] = this.planDiscountPer;

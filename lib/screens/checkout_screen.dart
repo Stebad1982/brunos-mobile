@@ -61,7 +61,7 @@ class CheckoutScreen extends StatelessWidget {
                     ),
                     lightBlack14w400Centre(
                         data:
-                            'You’re just two clicks away to serve up the finest meals tailored for your fluffy companion\'s ultimate joy'),
+                        'You’re just two clicks away to serve up the finest meals tailored for your fluffy companion\'s ultimate joy'),
                     SizedBox(
                       height: 30.h,
                     ),
@@ -96,70 +96,70 @@ class CheckoutScreen extends StatelessWidget {
                               height: 10.h,
                             ),
                             context
-                                        .read<AuthViewModel>()
-                                        .getAuthResponse
-                                        .data!
-                                        .location !=
-                                    null
+                                .read<AuthViewModel>()
+                                .getAuthResponse
+                                .data!
+                                .location !=
+                                null
                                 ? SizedBox(
-                                    height: 130.h,
-                                    child: ClipRRect(
-                                      borderRadius: const BorderRadius.all(
-                                          Radius.circular(20)),
-                                      child: GoogleMap(
-                                        // zoomControlsEnabled: false,
-                                        //liteModeEnabled: true,
-                                        // myLocationEnabled: true,
-                                        // myLocationButtonEnabled: true,
-                                        mapType: MapType.terrain,
-                                        onCameraMove: (position) {
-                                          LatLng(position.target.latitude,
-                                              position.target.longitude);
-                                        },
-                                        initialCameraPosition: CameraPosition(
-                                            target: LatLng(
-                                                double.parse(context
-                                                    .read<AuthViewModel>()
-                                                    .getAuthResponse
-                                                    .data!
-                                                    .location!
-                                                    .coordinates![0]),
-                                                double.parse(context
-                                                    .read<AuthViewModel>()
-                                                    .getAuthResponse
-                                                    .data!
-                                                    .location!
-                                                    .coordinates![1]))),
-                                        markers: <Marker>{
-                                          Marker(
-                                            markerId: const MarkerId("1"),
-                                            position: LatLng(
-                                                double.parse(context
-                                                    .read<AuthViewModel>()
-                                                    .getAuthResponse
-                                                    .data!
-                                                    .location!
-                                                    .coordinates![0]),
-                                                double.parse(context
-                                                    .read<AuthViewModel>()
-                                                    .getAuthResponse
-                                                    .data!
-                                                    .location!
-                                                    .coordinates![1])),
-                                            icon: BitmapDescriptor
-                                                .defaultMarkerWithHue(
-                                                    BitmapDescriptor.hueOrange),
-                                            infoWindow: const InfoWindow(
-                                              title: '',
-                                            ),
-                                          )
-                                        },
-                                        onMapCreated: context
-                                            .read<AddressViewModel>()
-                                            .getUserLocation,
+                              height: 130.h,
+                              child: ClipRRect(
+                                borderRadius: const BorderRadius.all(
+                                    Radius.circular(20)),
+                                child: GoogleMap(
+                                  // zoomControlsEnabled: false,
+                                  //liteModeEnabled: true,
+                                  // myLocationEnabled: true,
+                                  // myLocationButtonEnabled: true,
+                                  mapType: MapType.terrain,
+                                  onCameraMove: (position) {
+                                    LatLng(position.target.latitude,
+                                        position.target.longitude);
+                                  },
+                                  initialCameraPosition: CameraPosition(
+                                      target: LatLng(
+                                          double.parse(context
+                                              .read<AuthViewModel>()
+                                              .getAuthResponse
+                                              .data!
+                                              .location!
+                                              .coordinates![0]),
+                                          double.parse(context
+                                              .read<AuthViewModel>()
+                                              .getAuthResponse
+                                              .data!
+                                              .location!
+                                              .coordinates![1]))),
+                                  markers: <Marker>{
+                                    Marker(
+                                      markerId: const MarkerId("1"),
+                                      position: LatLng(
+                                          double.parse(context
+                                              .read<AuthViewModel>()
+                                              .getAuthResponse
+                                              .data!
+                                              .location!
+                                              .coordinates![0]),
+                                          double.parse(context
+                                              .read<AuthViewModel>()
+                                              .getAuthResponse
+                                              .data!
+                                              .location!
+                                              .coordinates![1])),
+                                      icon: BitmapDescriptor
+                                          .defaultMarkerWithHue(
+                                          BitmapDescriptor.hueOrange),
+                                      infoWindow: const InfoWindow(
+                                        title: '',
                                       ),
-                                    ),
-                                  )
+                                    )
+                                  },
+                                  onMapCreated: context
+                                      .read<AddressViewModel>()
+                                      .getUserLocation,
+                                ),
+                              ),
+                            )
                                 : Container(),
                             SizedBox(
                               height: 10.h,
@@ -175,49 +175,49 @@ class CheckoutScreen extends StatelessWidget {
                                         width: 240.w,
                                         child: black18w500(
                                             data: context
-                                                        .read<AuthViewModel>()
-                                                        .getAuthResponse
-                                                        .data!
-                                                        .location !=
-                                                    null
+                                                .read<AuthViewModel>()
+                                                .getAuthResponse
+                                                .data!
+                                                .location !=
+                                                null
                                                 ? context
-                                                    .read<AuthViewModel>()
-                                                    .getAuthResponse
-                                                    .data!
-                                                    .location!
-                                                    .address!
+                                                .read<AuthViewModel>()
+                                                .getAuthResponse
+                                                .data!
+                                                .location!
+                                                .address!
                                                 : 'Click to add Address')),
                                     SizedBox(
                                         width: 240.w,
                                         child: lightBlack14w400Centre(
                                             left: true,
                                             data: context
-                                                        .read<AuthViewModel>()
-                                                        .getAuthResponse
-                                                        .data!
-                                                        .location !=
-                                                    null
+                                                .read<AuthViewModel>()
+                                                .getAuthResponse
+                                                .data!
+                                                .location !=
+                                                null
                                                 ? context
-                                                    .read<AuthViewModel>()
-                                                    .getAuthResponse
-                                                    .data!
-                                                    .location!
-                                                    .flatHouseNumber!
+                                                .read<AuthViewModel>()
+                                                .getAuthResponse
+                                                .data!
+                                                .location!
+                                                .flatHouseNumber!
                                                 : ''))
                                   ],
                                 ),
                                 InkWell(
                                   onTap: () {
                                     context
-                                                .read<AuthViewModel>()
-                                                .getAuthResponse
-                                                .data!
-                                                .location !=
-                                            null
+                                        .read<AuthViewModel>()
+                                        .getAuthResponse
+                                        .data!
+                                        .location !=
+                                        null
                                         ? Navigator.pushNamed(
-                                            context, addressRoute)
+                                        context, addressRoute)
                                         : Navigator.pushNamed(
-                                            context, addAddressRoute);
+                                        context, addAddressRoute);
                                   },
                                   child: Container(
                                     decoration: ShapeDecoration(
@@ -226,7 +226,7 @@ class CheckoutScreen extends StatelessWidget {
                                         side: const BorderSide(
                                             width: 0.75,
                                             color:
-                                                CustomColors.greyMediumColor),
+                                            CustomColors.greyMediumColor),
                                         borderRadius: BorderRadius.circular(12),
                                       ),
                                     ),
@@ -234,11 +234,11 @@ class CheckoutScreen extends StatelessWidget {
                                       padding: EdgeInsets.all(10),
                                       child: Icon(
                                         context
-                                                    .read<AuthViewModel>()
-                                                    .getAuthResponse
-                                                    .data!
-                                                    .location !=
-                                                null
+                                            .read<AuthViewModel>()
+                                            .getAuthResponse
+                                            .data!
+                                            .location !=
+                                            null
                                             ? Icons.edit
                                             : Icons.add,
                                         size: 20,
@@ -272,7 +272,9 @@ class CheckoutScreen extends StatelessWidget {
                           padding: const EdgeInsets.all(20),
                           child: lightBlack14w400Centre(
                               data:
-                                  'Delivery Date: ${DateTimeFormatter.showDateFormat3(cartViewModel.getSelectedDay!)}'),
+                              'Delivery Date: ${DateTimeFormatter
+                                  .showDateFormat3(
+                                  cartViewModel.getSelectedDay!)}'),
                         ),
                       ),
                     ),
@@ -308,38 +310,53 @@ class CheckoutScreen extends StatelessWidget {
                                 width: 2.w,
                               ),
                               context
+                                  .watch<AuthViewModel>()
+                                  .getAuthResponse
+                                  .data!
+                                  .card !=
+                                  null
+                                  ? Column(
+                                crossAxisAlignment:
+                                CrossAxisAlignment.start,
+                                children: [
+                                  orange18w500(
+                                      data: context
                                           .watch<AuthViewModel>()
                                           .getAuthResponse
                                           .data!
-                                          .card !=
-                                      null
-                                  ? Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        orange18w500(
-                                            data: context
-                                                .watch<AuthViewModel>()
-                                                .getAuthResponse
-                                                .data!
-                                                .card!
-                                                .brand!),
-                                        SizedBox(
-                                          height: 5.h,
-                                        ),
-                                        grey12w500(
-                                            data:
-                                                '**** **** **** ${context.watch<AuthViewModel>().getAuthResponse.data!.card!.last4}'),
-                                        SizedBox(
-                                          height: 5.h,
-                                        ),
-                                        grey12w500(
-                                            data:
-                                                'Expiry: ${context.watch<AuthViewModel>().getAuthResponse.data!.card!.expMonth}/${context.watch<AuthViewModel>().getAuthResponse.data!.card!.expYear}'),
-                                      ],
-                                    )
+                                          .card!
+                                          .brand!),
+                                  SizedBox(
+                                    height: 5.h,
+                                  ),
+                                  grey12w500(
+                                      data:
+                                      '**** **** **** ${context
+                                          .watch<AuthViewModel>()
+                                          .getAuthResponse
+                                          .data!
+                                          .card!
+                                          .last4}'),
+                                  SizedBox(
+                                    height: 5.h,
+                                  ),
+                                  grey12w500(
+                                      data:
+                                      'Expiry: ${context
+                                          .watch<AuthViewModel>()
+                                          .getAuthResponse
+                                          .data!
+                                          .card!
+                                          .expMonth}/${context
+                                          .watch<AuthViewModel>()
+                                          .getAuthResponse
+                                          .data!
+                                          .card!
+                                          .expYear}'),
+                                ],
+                              )
                                   : lightBlack14w400Centre(
-                                      data: 'Payment method'),
+                                  data: 'Payment method'),
                               const Spacer(),
                               const Icon(
                                 Icons.arrow_forward_ios_rounded,
@@ -382,7 +399,7 @@ class CheckoutScreen extends StatelessWidget {
                                 ),
                                 lightBlack14w400Centre(
                                     data:
-                                        'AED ${cartViewModel.getCartTotalPrice}'),
+                                    'AED ${cartViewModel.getCartTotalPrice}'),
                               ],
                             ),
                             SizedBox(
@@ -397,7 +414,8 @@ class CheckoutScreen extends StatelessWidget {
                                 ),
                                 lightBlack14w400Centre(
                                     data:
-                                        '${cartViewModel.getDeliveryCharges} AED (One time  Fee)'),
+                                    '${cartViewModel
+                                        .getDeliveryCharges} AED (One time  Fee)'),
                               ],
                             ),
                           ],
@@ -409,15 +427,20 @@ class CheckoutScreen extends StatelessWidget {
                     ),
                     InkWell(
                       onTap: context
-                                  .watch<AuthViewModel>()
-                                  .getAuthResponse
-                                  .data!
-                                  .availablePoints !=
-                              0
+                          .watch<AuthViewModel>()
+                          .getAuthResponse
+                          .data!
+                          .availablePoints !=
+                          0
                           ? () {
-                              cartViewModel.setPawPoints(5);
-                              redeemPawPointsBottomSheetWidget();
-                            }
+                        cartViewModel.setPawPoints(5);
+                        cartViewModel.setRequiredPawPoints(context
+                            .read<AuthViewModel>()
+                            .getAuthResponse
+                            .data!
+                            .discounts![2].aggregate!);
+                        redeemPawPointsBottomSheetWidget();
+                      }
                           : () {},
                       child: Container(
                         width: double.infinity,
@@ -442,16 +465,16 @@ class CheckoutScreen extends StatelessWidget {
                               ),
                               Visibility(
                                 visible: context
-                                        .watch<AuthViewModel>()
-                                        .getAuthResponse
-                                        .data!
-                                        .availablePoints !=
+                                    .watch<AuthViewModel>()
+                                    .getAuthResponse
+                                    .data!
+                                    .availablePoints !=
                                     0,
                                 replacement: SizedBox(
                                   width: 200.w,
                                   child: black12w500Centre(
                                       data:
-                                          'You don\'t have any accumulated Paw Points'),
+                                      'You don\'t have any accumulated Paw Points'),
                                 ),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -471,10 +494,10 @@ class CheckoutScreen extends StatelessWidget {
                               const Spacer(),
                               Visibility(
                                 visible: context
-                                        .watch<AuthViewModel>()
-                                        .getAuthResponse
-                                        .data!
-                                        .availablePoints !=
+                                    .watch<AuthViewModel>()
+                                    .getAuthResponse
+                                    .data!
+                                    .availablePoints !=
                                     0,
                                 child: const Icon(
                                   Icons.arrow_forward_ios_rounded,
@@ -512,7 +535,7 @@ class CheckoutScreen extends StatelessWidget {
                             lightBlack14w400Centre(
                                 left: true,
                                 data:
-                                    'You can only use your PawPoints or a Promo Code per transaction. Promo codes are one-time use only.'),
+                                'You can only use your PawPoints or a Promo Code per transaction. Promo codes are one-time use only.'),
                             SizedBox(
                               height: 17.h,
                             ),
@@ -526,7 +549,7 @@ class CheckoutScreen extends StatelessWidget {
                                       descriptionDialog(
                                           context: context,
                                           description:
-                                              'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic',
+                                          'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic',
                                           height: 300,
                                           title: 'Description');
                                     },
@@ -583,11 +606,17 @@ class CheckoutScreen extends StatelessWidget {
                               onTap: () {
                                 FocusScope.of(context).unfocus();
                                 cartViewModel.callPromoCodeApi().then((value) {
-                                  if(value){
-                                    if(cartViewModel.getPromoCodeDiscount > cartViewModel.getCartTotalPrice){
-                                      promoCodeValidationDialog(context: context, description: 'To use this promo code the cart total must be more than ${cartViewModel.getPromoCodeDiscount}', height: 200, title: 'Alert');
+                                  if (value) {
+                                    if (cartViewModel.getPromoCodeDiscount >
+                                        cartViewModel.getCartTotalPrice) {
+                                      promoCodeValidationDialog(
+                                          context: context,
+                                          description: 'To use this promo code the cart total must be more than ${cartViewModel
+                                              .getPromoCodeDiscount}',
+                                          height: 200,
+                                          title: 'Alert');
                                     }
-                                    else{
+                                    else {
                                       cartViewModel.setCheckOutTotal();
                                     }
                                   }
@@ -621,7 +650,10 @@ class CheckoutScreen extends StatelessWidget {
               ),
             ),
             Visibility(
-              visible: MediaQuery.of(context).viewInsets.bottom == 0,
+              visible: MediaQuery
+                  .of(context)
+                  .viewInsets
+                  .bottom == 0,
               child: Align(
                 alignment: Alignment.bottomCenter,
                 child: Container(
@@ -662,17 +694,17 @@ class CheckoutScreen extends StatelessWidget {
                               children: [
                                 lightBlack14w400Centre(
                                     data:
-                                        cartViewModel.getPawSelectedPoints == 0
-                                            ? 'Promo Rewarded Amount'
-                                            : 'Loyalty Points'),
+                                    cartViewModel.getPawSelectedPoints == 0
+                                        ? 'Promo Rewarded Amount'
+                                        : 'Loyalty Points'),
                                 const Spacer(),
                                 black16w500(
                                     data:
-                                        cartViewModel.getPawSelectedPoints == 0
-                                            ? cartViewModel.getPromoCodeDiscount
-                                                .toString()
-                                            : cartViewModel.getPawSelectedPoints
-                                                .toString())
+                                    cartViewModel.getPawSelectedPoints == 0
+                                        ? cartViewModel.getPromoCodeDiscount
+                                        .toString()
+                                        : cartViewModel.getPawSelectedPoints
+                                        .toString())
                               ],
                             ),
                           ),
@@ -692,10 +724,10 @@ class CheckoutScreen extends StatelessWidget {
                             text: 'Place Order',
                             onPressed: () {
                               if (context
-                                      .read<AuthViewModel>()
-                                      .getAuthResponse
-                                      .data!
-                                      .card ==
+                                  .read<AuthViewModel>()
+                                  .getAuthResponse
+                                  .data!
+                                  .card ==
                                   null) {
                                 descriptionDialog(
                                     context: context,
@@ -703,10 +735,10 @@ class CheckoutScreen extends StatelessWidget {
                                     height: 200.h,
                                     title: 'Alert');
                               } else if (context
-                                      .read<AuthViewModel>()
-                                      .getAuthResponse
-                                      .data!
-                                      .location ==
+                                  .read<AuthViewModel>()
+                                  .getAuthResponse
+                                  .data!
+                                  .location ==
                                   null) {
                                 descriptionDialog(
                                     context: context,

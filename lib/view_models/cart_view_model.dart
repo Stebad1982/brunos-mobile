@@ -22,6 +22,7 @@ class CartViewModel with ChangeNotifier {
   num _promoCodeDiscount = 0;
   double _pawPoints = 0;
   int _pawSelectedPoints = 0;
+  int _requiredPawPoints = 0;
   num _checkOutTotal = 0;
   final int _deliveryCharges = 10;
   int? _selectedIndex;
@@ -34,6 +35,13 @@ class CartViewModel with ChangeNotifier {
 
   void setPawPoints(double value) {
     _pawPoints = value;
+    notifyListeners();
+  }
+
+  int get getRequiredPawPoints => _requiredPawPoints;
+
+  void setRequiredPawPoints(num pointsAggregate) {
+    _requiredPawPoints = (getCartTotalPrice/pointsAggregate).floor();
     notifyListeners();
   }
 
@@ -54,6 +62,7 @@ class CartViewModel with ChangeNotifier {
 
   void setPromoCodeDiscount(int value) {
     _pawSelectedPoints = 0;
+    _requiredPawPoints= 0 ;
     _promoCodeDiscount = value/*_cartTotalPrice * (value / 100)*/;
     setCheckOutTotal();
   }
@@ -61,10 +70,11 @@ class CartViewModel with ChangeNotifier {
   num get getCheckOutTotal => _checkOutTotal;
 
   void setCheckOutTotal() {
+    final int finalPoints = _pawSelectedPoints * navigatorKey.currentContext!.read<AuthViewModel>().getAuthResponse.data!.discounts![2].aggregate!;
     _checkOutTotal = _cartTotalPrice -
         _promoCodeDiscount +
         _deliveryCharges -
-        _pawSelectedPoints;
+        finalPoints;
     notifyListeners();
   }
 
@@ -72,6 +82,7 @@ class CartViewModel with ChangeNotifier {
     _promoCodeController.clear();
     _promoCodeDiscount = 0;
     _pawSelectedPoints = 0;
+    _requiredPawPoints = 0;
   }
 
   bool get getViewCartItemDetail => _viewCartItemDetail;

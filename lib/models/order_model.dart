@@ -66,35 +66,55 @@ class OrderData {
 }
 
 class OrderItems {
-  List<RecipeModel>? recipes;
+
   PuppyModel? pet;
+  List<String>? pouchesDetail;
   String? planType;
   num? planTotal;
+  num? planDiscountPer;
+  num? planDiscountedPrice;
+  List<num>? totalWeight;
+  List<RecipeModel>? recipes;
 
-  OrderItems({this.recipes, this.pet, this.planType, this.planTotal});
+  OrderItems({this.pet,
+    this.pouchesDetail,
+    this.planType,
+    this.planTotal,
+    this.planDiscountPer,
+    this.planDiscountedPrice,
+    this.totalWeight,
+    this.recipes});
 
   OrderItems.fromJson(Map<String, dynamic> json) {
+    pet = json['pet'] != null ? new PuppyModel.fromJson(json['pet']) : null;
+    pouchesDetail = json['pouchesDetail'].cast<String>();
+    planType = json['planType'];
+    planTotal = json['planTotal'];
+    planDiscountPer = json['planDiscountPer'];
+    planDiscountedPrice = json['planDiscountedPrice'];
+    totalWeight = json['totalWeight'].cast<int>();
     if (json['recipes'] != null) {
       recipes = <RecipeModel>[];
       json['recipes'].forEach((v) {
         recipes!.add(new RecipeModel.fromJson(v));
       });
     }
-    pet = json['pet'] != null ? new PuppyModel.fromJson(json['pet']) : null;
-    planType = json['planType'];
-    planTotal = json['planTotal'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.recipes != null) {
-      data['recipes'] = this.recipes!.map((v) => v.toJson()).toList();
-    }
     if (this.pet != null) {
       data['pet'] = this.pet!.toJson();
     }
+    data['pouchesDetail'] = this.pouchesDetail;
+    data['planType'] = this.planType;
     data['planTotal'] = this.planTotal;
-    data['planType'] = planType;
+    data['planDiscountPer'] = this.planDiscountPer;
+    data['planDiscountedPrice'] = this.planDiscountedPrice;
+    data['totalWeight'] = this.totalWeight;
+    if (this.recipes != null) {
+      data['recipes'] = this.recipes!.map((v) => v.toJson()).toList();
+    }
     return data;
   }
 }

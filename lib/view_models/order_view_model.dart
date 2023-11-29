@@ -1,4 +1,5 @@
 import 'package:brunos_kitchen/models/base_response_model.dart';
+import 'package:brunos_kitchen/models/cart_model.dart';
 import 'package:brunos_kitchen/models/requests/order_request.dart';
 import 'package:brunos_kitchen/models/responses/order_response.dart';
 import 'package:brunos_kitchen/services/order_api_services.dart';
@@ -21,7 +22,7 @@ class OrderViewModel with ChangeNotifier {
 
   OrderCreateResponse get getOrderCreateResponse => _orderCreateResponse;
 
-  void setOrderCreateResponse (OrderCreateResponse value){
+  void setOrderCreateResponse(OrderCreateResponse value) {
     _orderCreateResponse = value;
     notifyListeners();
   }
@@ -29,6 +30,7 @@ class OrderViewModel with ChangeNotifier {
   void setOrderRequest(OrderRequest value) {
     _orderRequest = value;
   }
+
   OrderData get getSelectedOrder => _selectedOrder;
 
   List<OrderItems> get getMonthlyOrders => _monthlyOrders;
@@ -37,23 +39,41 @@ class OrderViewModel with ChangeNotifier {
 
   List<OrderData> get getInProcessOrders => _inProcessOrders;
 
-
-  void setSelectedOrder(OrderData value){
+  void setSelectedOrder(OrderData value) {
     _selectedOrder = value;
     notifyListeners();
   }
+
   OrderResponse get getOrderResponse => _orderResponse;
 
-  void setOrderResponse(OrderResponse value){
+  CartModel setToCartModel({required int index}) {
+    final CartModel cartItem = CartModel(
+        planTotal: _selectedOrder.orderItems![index].planTotal!,
+        recipes: _selectedOrder.orderItems![index].recipes!,
+        pet: _selectedOrder.orderItems![index].pet,
+        pouchesDetail: _selectedOrder.orderItems![index].pouchesDetail!,
+        planType: _selectedOrder.orderItems![index].planType!,
+        planDiscountPer: _selectedOrder.orderItems![index].planDiscountPer!,
+        planDiscountedPrice: _selectedOrder.orderItems![index].planDiscountedPrice!,
+        totalWeight: _selectedOrder.orderItems![index].totalWeight!);
+    return cartItem;
+  }
+
+  void setOrderResponse(OrderResponse value) {
     _orderResponse = value;
     _completedOrders.clear();
     _inProcessOrders.clear();
     _monthlyOrders.clear();
-    _completedOrders.addAll(value.data!.where((element) => element.isCompleted!)) ;
-    _inProcessOrders.addAll(value.data!.where((element) => !element.isCompleted!)) ;
+    _completedOrders
+        .addAll(value.data!.where((element) => element.isCompleted!));
+    _inProcessOrders
+        .addAll(value.data!.where((element) => !element.isCompleted!));
     for (var index = 0; index < value.data!.length; index++) {
-      for (var monthlyIndex = 0; monthlyIndex < value.data![index].orderItems!.length; monthlyIndex++) {
-        if(value.data![index].orderItems![monthlyIndex].planType == Plans.monthly.text){
+      for (var monthlyIndex = 0;
+          monthlyIndex < value.data![index].orderItems!.length;
+          monthlyIndex++) {
+        if (value.data![index].orderItems![monthlyIndex].planType ==
+            Plans.monthly.text) {
           _monthlyOrders.add(value.data![index].orderItems![monthlyIndex]);
         }
       }
