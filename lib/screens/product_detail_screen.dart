@@ -357,7 +357,6 @@ class ProductDetailScreen extends StatelessWidget {
                                     pouchesDetail: [],
                                     totalWeight: [], planDiscountedPrice: planTotalPrice, planDiscountPer: 0),
                               );
-                          context.read<CartViewModel>().setSelectedIndex(null);
                           Navigator.pushNamedAndRemoveUntil(context, cartRoute,
                               (Route route) => route.isFirst);
                         }

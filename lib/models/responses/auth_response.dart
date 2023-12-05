@@ -117,8 +117,8 @@ class AuthData {
 
 class Discounts {
   String? sId;
-  int? createdOnDate;
-  int? aggregate;
+  num? createdOnDate;
+  num? aggregate;
   String? name;
 
   Discounts({this.sId, this.createdOnDate, this.aggregate, this.name});

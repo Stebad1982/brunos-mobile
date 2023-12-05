@@ -6,13 +6,30 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
+import '../main.dart';
 import '../utils/custom_buttons.dart';
 import '../utils/custom_colors.dart';
 import '../widgets/app_bar_with_back_widget.dart';
 import '../widgets/listChips/cart_vertical_list_chip_widget.dart';
 
-class CartScreen extends StatelessWidget {
+class CartScreen extends StatefulWidget {
   const CartScreen({super.key});
+
+  @override
+  State<CartScreen> createState() => _CartScreenState();
+}
+
+class _CartScreenState extends State<CartScreen> with RouteAware {
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    routeObserver.subscribe(this, ModalRoute.of(context)!);
+  }
+
+  @override
+  void didPop() {
+    context.read<CartViewModel>().setSelectedIndex(null);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -67,7 +84,8 @@ class CartScreen extends StatelessWidget {
                             customButton(
                                 text: 'Next',
                                 onPressed: () {
-                                  Navigator.pushNamed(context, deliveryDatesRoute);
+                                  Navigator.pushNamed(
+                                      context, deliveryDatesRoute);
                                 },
                                 colored: true),
                           ],

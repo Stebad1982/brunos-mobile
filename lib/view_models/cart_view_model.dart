@@ -70,7 +70,7 @@ class CartViewModel with ChangeNotifier {
   num get getCheckOutTotal => _checkOutTotal;
 
   void setCheckOutTotal() {
-    final int finalPoints = _pawSelectedPoints * navigatorKey.currentContext!.read<AuthViewModel>().getAuthResponse.data!.discounts![2].aggregate!;
+    final num finalPoints = _pawSelectedPoints * navigatorKey.currentContext!.read<AuthViewModel>().getAuthResponse.data!.discounts![2].aggregate!;
     _checkOutTotal = _cartTotalPrice -
         _promoCodeDiscount +
         _deliveryCharges -
@@ -117,6 +117,7 @@ class CartViewModel with ChangeNotifier {
   }
 
   void clearCart() {
+    _selectedIndex = null;
     _cartTotalPrice = 0;
     _cartList.clear();
   }
@@ -157,7 +158,7 @@ class CartViewModel with ChangeNotifier {
   }
 
   bool checkCartForPlanValidation({required String planType}) {
-    setSelectedIndex(null);
+   // setSelectedIndex(null);
     final int index = _cartList.indexWhere((element) {
       if (element.pet != null) {
         return element.pet!.sId ==
@@ -176,7 +177,7 @@ class CartViewModel with ChangeNotifier {
   }
 
   bool checkProductValidation({required RecipeModel recipe}) {
-    setSelectedIndex(null);
+   // setSelectedIndex(null);
     final int index = _cartList.indexWhere((element) =>
         element.recipes[0].sId == recipe.sId &&
         (element.recipes[0].selectedItemSize != null
