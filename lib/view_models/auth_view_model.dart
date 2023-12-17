@@ -255,7 +255,7 @@ class AuthViewModel with ChangeNotifier {
       final SignInRequest signInRequest = SignInRequest(
           password: _passwordController.text,
           email: _emailController.text,
-          deviceToken: _fcmToken ?? '',
+          deviceToken: _fcmToken ?? 'token',
           deviceType: _operatingSystem);
 
       final AuthResponse response =
@@ -308,7 +308,7 @@ class AuthViewModel with ChangeNotifier {
         final UserRegisterRequest userRegisterRequest = UserRegisterRequest(
             password: _passwordController.text,
             email: _emailController.text,
-            deviceToken: _fcmToken ?? '',
+            deviceToken: _fcmToken ?? 'token',
             deviceType: _operatingSystem,
             fullName: _nameController.text,
             phoneNumber: _countryCode + _phoneController.text);
@@ -341,7 +341,7 @@ class AuthViewModel with ChangeNotifier {
       final UserRegisterRequest userRegisterRequest = UserRegisterRequest(
           password: '',
           email: '',
-          deviceToken: _fcmToken ?? '',
+          deviceToken: _fcmToken ?? 'token',
           deviceType: _operatingSystem,
           fullName: 'Guest',
           phoneNumber: '');
@@ -478,8 +478,10 @@ class AuthViewModel with ChangeNotifier {
     //PackageInfo packageInfo = await PackageInfo.fromPlatform();
     //setVersion(packageInfo.version);
     // setBuild(packageInfo.buildNumber);
-    _fcmToken = await _firebaseMessaging.getToken();
-    print(_fcmToken);
+
+    //TODO: ENABLE FCM
+   // _fcmToken = await _firebaseMessaging.getToken();
+    //print(_fcmToken);
     if (Platform.isAndroid) {
       _operatingSystem = 'Android';
     } else {
@@ -529,7 +531,7 @@ class AuthViewModel with ChangeNotifier {
             fullName: userDetails.user!.displayName!,
             phoneNumber: userDetails.user!.phoneNumber ?? '+923340394150',
             deviceType: _operatingSystem,
-            deviceToken: _fcmToken ?? '',
+            deviceToken: _fcmToken ?? 'token',
             media: userDetails.user!.photoURL!,
             platform: 'Google');
 
@@ -567,7 +569,7 @@ class AuthViewModel with ChangeNotifier {
             fullName: userDetails.user!.displayName!,
             phoneNumber: userDetails.user!.phoneNumber ?? '+923340394150',
             deviceType: _operatingSystem,
-            deviceToken: _fcmToken ?? '',
+            deviceToken: _fcmToken ?? 'token',
             media: userDetails.user!.photoURL!,
             platform: 'Facebook');
         return await callSocialMediaLoginApi(userDetails: socialSignInRequest);
