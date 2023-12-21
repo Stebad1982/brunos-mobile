@@ -480,8 +480,8 @@ class AuthViewModel with ChangeNotifier {
     // setBuild(packageInfo.buildNumber);
 
     //TODO: ENABLE FCM
-   // _fcmToken = await _firebaseMessaging.getToken();
-    //print(_fcmToken);
+    _fcmToken = await _firebaseMessaging.getToken();
+    print(_fcmToken);
     if (Platform.isAndroid) {
       _operatingSystem = 'Android';
     } else {
