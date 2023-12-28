@@ -72,7 +72,7 @@ int calculateFinalPricePerDay({required RecipeModel recipeModel}) {
 }
 
 int getPriceFromWeight(
-    {required RecipeModel recipeModel, required int dailyGram}) {
+    {required RecipeModel recipeModel, required num dailyGram}) {
   if(dailyGram >= 1 && dailyGram <= 200){
     return recipeModel.price1!;
   }
@@ -114,8 +114,10 @@ num calculateTransitionalGram(
 }
 
 num calculateTransitionalPrice(
-    {required num gramWithPercent, required int pricePerKG}) {
-  final num priceWithPercent = gramWithPercent * pricePerKG / 1000;
+    {required num gramWithPercent, required RecipeModel recipeModel}) {
+  final int priceFromWeight = getPriceFromWeight(
+      recipeModel: recipeModel, dailyGram: gramWithPercent);
+  final num priceWithPercent = gramWithPercent * priceFromWeight / 1000;
   return priceWithPercent.round();
 }
 

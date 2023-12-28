@@ -341,16 +341,16 @@ class PlansViewModel with ChangeNotifier {
         calculatePrice: true);
     final num priceFor1to3Days = calculateTransitionalPrice(
         gramWithPercent: _transitionalGrams1to3Days,
-        pricePerKG: _selectedRecipe.pricePerKG!);
+        recipeModel: _selectedRecipe);
     final num priceFor4to6Days = calculateTransitionalPrice(
         gramWithPercent: _transitionalGrams4to6Days,
-        pricePerKG: _selectedRecipe.pricePerKG!);
+        recipeModel: _selectedRecipe);
     final num priceFor7to9Days = calculateTransitionalPrice(
         gramWithPercent: _transitionalGrams7to9Days,
-        pricePerKG: _selectedRecipe.pricePerKG!);
+        recipeModel: _selectedRecipe);
     final num priceFor10thDay = calculateTransitionalPrice(
         gramWithPercent: _transitionalGrams10thDay,
-        pricePerKG: _selectedRecipe.pricePerKG!);
+        recipeModel: _selectedRecipe);
     final RecipeModel applyDishDetail =
         RecipeModel.fromJson(_selectedRecipe.toJson());
     applyDishDetail.finalPrice = priceFor1to3Days +
