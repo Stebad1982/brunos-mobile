@@ -63,9 +63,34 @@ int calculateFinalPricePerDay({required RecipeModel recipeModel}) {
   final int dailyInTake = calculateDailyIntake(
       recipeModel: recipeModel,
       puppyActivityLevel: puppy.activityLevel!,
-      currentWeight: puppy.currentWeight!, puppyActualWeight: puppy.actualWeight!);
-  final num pricePerDay = dailyInTake * recipeModel.pricePerKG! / 1000;
+      currentWeight: puppy.currentWeight!,
+      puppyActualWeight: puppy.actualWeight!);
+  final int priceFromWeight = getPriceFromWeight(
+      recipeModel: recipeModel, dailyGram: dailyInTake);
+  final num pricePerDay = dailyInTake * priceFromWeight / 1000;
   return pricePerDay.round();
+}
+
+int getPriceFromWeight(
+    {required RecipeModel recipeModel, required int dailyGram}) {
+  if(dailyGram >= 1 && dailyGram <= 200){
+    return recipeModel.price1!;
+  }
+  else if(dailyGram >= 201 && dailyGram <= 400){
+    return recipeModel.price2!;
+  }
+  else if(dailyGram >= 401 && dailyGram <= 600){
+    return recipeModel.price2!;
+  }
+  else if(dailyGram >= 601 && dailyGram <= 800){
+    return recipeModel.price2!;
+  }
+  else if(dailyGram >= 801 && dailyGram <= 1000){
+    return recipeModel.price5!;
+  }
+  else {
+    return recipeModel.price6!;
+  }
 }
 
 num calculateTransitionalGram(
@@ -81,7 +106,8 @@ num calculateTransitionalGram(
   final int dailyInTake = calculateDailyIntake(
       recipeModel: recipeModel,
       puppyActivityLevel: puppy.activityLevel!,
-      currentWeight: puppy.currentWeight!, puppyActualWeight: puppy.actualWeight!);
+      currentWeight: puppy.currentWeight!,
+      puppyActualWeight: puppy.actualWeight!);
   final num gramWithPercent = ((percentage / 100) * dailyInTake) * days;
 
   return gramWithPercent;
@@ -100,8 +126,8 @@ num calculatePlanTotal({required List<RecipeModel> listOfItems}) {
   return finalPriceSum;
 }
 
-num calculatePlanDiscount({required planTotal, required num discountedPer}){
-  final num planDiscountedPer = planTotal * discountedPer / 100 ;
+num calculatePlanDiscount({required planTotal, required num discountedPer}) {
+  final num planDiscountedPer = planTotal * discountedPer / 100;
   final num planDiscountedPrice = planTotal - planDiscountedPer;
   return planDiscountedPrice.round();
 }
@@ -109,8 +135,8 @@ num calculatePlanDiscount({required planTotal, required num discountedPer}){
 num calculateCartTotal({required List<CartModel> cartItems}) {
   final num finalPriceSum = cartItems.fold(0, (i, element) {
     num planPrice = 0;
-   /* if(element.planType == Plans.monthly.text){*/
-      planPrice = i + element.planDiscountedPrice;
+    /* if(element.planType == Plans.monthly.text){*/
+    planPrice = i + element.planDiscountedPrice;
     /*}
     else{
       i + element.planTotal;

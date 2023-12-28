@@ -21,6 +21,12 @@ class RecipeModel {
   String? instructions;
   List<String>? nutrition;
   int? pricePerKG;
+  int? price1;
+  int? price2;
+  int? price3;
+  int? price4;
+  int? price5;
+  int? price6;
   int? isComboRecipe;
   num? finalPrice;
   List<String>? media;
@@ -33,7 +39,7 @@ class RecipeModel {
   String? category;
   int? caloriesContentNo;
 
- // Ingredient? ingredient;
+  // Ingredient? ingredient;
   String? ingredientsComposition;
 
   RecipeModel(
@@ -52,6 +58,12 @@ class RecipeModel {
       this.instructions,
       this.nutrition,
       this.pricePerKG,
+      this.price1,
+      this.price2,
+      this.price3,
+      this.price4,
+      this.price5,
+      this.price6,
       this.media,
       this.recipeNo,
       this.lifeStage,
@@ -105,6 +117,12 @@ class RecipeModel {
       sizes = <ItemSizes>[];
       pricePerKG = json['pricePerKG'];
     }
+    price1 = json['price1'];
+    price2 = json['price2'];
+    price3 = json['price3'];
+    price4 = json['price4'];
+    price5 = json['price5'];
+    price6 = json['price6'];
     media = json['media'].cast<String>();
     category = json['category'];
     recipeNo = json['recipeNo'];
@@ -129,7 +147,7 @@ class RecipeModel {
     data['totalDays'] = this.totalDays ?? 1;
     data['quantity'] = this.quantity ?? 1;
     data['finalPrice'] = this.finalPrice ?? this.pricePerKG;
-      if (this.ingredient != null) {
+    if (this.ingredient != null) {
       data['ingredient'] = this.ingredient!.map((v) => v.toJson()).toList();
     }
     if (this.nutrition != null) {
