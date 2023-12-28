@@ -479,9 +479,7 @@ class AuthViewModel with ChangeNotifier {
     //setVersion(packageInfo.version);
     // setBuild(packageInfo.buildNumber);
 
-    //TODO: ENABLE FCM
-    _fcmToken = await _firebaseMessaging.getToken();
-    print(_fcmToken);
+
     if (Platform.isAndroid) {
       _operatingSystem = 'Android';
     } else {
@@ -494,10 +492,13 @@ class AuthViewModel with ChangeNotifier {
       return const IntroSlidesScreen();
     } else {
       Widget routeTo = const LoginScreen();
-      await callSplash(showLoader: false).then((value) {
+      await callSplash(showLoader: false).then((value) async {
         if (value) {
           routeTo = const BottomNavigationScreen();
         } else {
+          //TODO: ENABLE FCM
+          _fcmToken = await _firebaseMessaging.getToken();
+          print("fcm token: $_fcmToken");
           routeTo = const LoginScreen();
         }
       });

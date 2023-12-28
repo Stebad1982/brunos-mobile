@@ -61,6 +61,24 @@
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
+	<key>CFBundleURLTypes</key>
+    	<array>
+    		<dict>
+    			<key>CFBundleTypeRole</key>
+    			<string>Editor</string>
+    			<key>CFBundleURLSchemes</key>
+    			<array>
+    				<string>com.googleusercontent.apps.469529767335-7ckkdk4mcqpiouoka6k5jjr30r1j4mlg</string>
+    				<string>fb827560358724718</string>
+    			</array>
+    		</dict>
+    	</array>
+    <key>FacebookAppID</key>
+    <string>827560358724718</string>
+    <key>FacebookClientToken</key>
+	<string>188b22df5264c48752c09a080ed9ae00</string>
+    <key>FacebookDisplayName</key>
+    <string>Bruno's Kitchen</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
