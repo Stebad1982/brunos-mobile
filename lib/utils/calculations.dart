@@ -14,12 +14,23 @@ int calculateDailyIntake(
     required String puppyActivityLevel,
     required num currentWeight,
     required int puppyActualWeight}) {
+  int activityLevel = 0 ;
   num dailyIntake;
-  final int activityLevel = puppyActivityLevel == Puppy.active.text
-      ? 110
-      : puppyActivityLevel == Puppy.lessActive.text
-          ? 95
-          : 125;
+  if(recipeModel.lifeStage == FeaturedRecipeType.puppy.text){
+  activityLevel = puppyActivityLevel == Puppy.active.text
+        ? 175
+        : puppyActivityLevel == Puppy.lessActive.text
+        ? 140
+        : 210;
+  }
+  else{
+   activityLevel = puppyActivityLevel == Puppy.active.text
+        ? 110
+        : puppyActivityLevel == Puppy.lessActive.text
+        ? 95
+        : 125;
+  }
+
 
   final num finalGram = (activityLevel *
           pow(currentWeight, 0.75) /
