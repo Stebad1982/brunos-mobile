@@ -203,7 +203,7 @@ class ChooseYourPlanScreen extends StatelessWidget {
                                   SizedBox(height: 10.h,),
                                   Align(
                                     alignment: Alignment.centerRight,
-                                      child: orange14w500(data: 'Save upto 20%'))
+                                      child: orange14w500(data: 'Save upto 50%'))
                                 ],
                               ),
                             )
