@@ -11,14 +11,15 @@ import 'package:brunos_kitchen/view_models/plans_view_model.dart';
 import 'package:brunos_kitchen/view_models/puppy_view_model.dart';
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-
 
 void configLoading() {
   EasyLoading.instance
@@ -38,27 +39,37 @@ void configLoading() {
     ..dismissOnTap = false;
   // ..customAnimation = CustomAnimation();
 }
+
+/*//TODO: LOCAL NOTIFICATION
+const AndroidNotificationChannel channel = AndroidNotificationChannel(
+  'high_importance_channel', // id
+  'High Importance Notifications', // title
+  *//*'This channel is used for important notifications.',*//* // description
+  importance: Importance.max,
+);*/
+
+
+
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
-final RouteObserver<ModalRoute> routeObserver =
-RouteObserver<ModalRoute>();
-final double screenHeight = MediaQuery
-    .of(navigatorKey.currentContext!)
-    .size
-    .height * 0.9;
-final double screenHeightWithAppBar = MediaQuery
-    .of(navigatorKey.currentContext!)
-    .size
-    .height * 0.8;
-Future<void> main() async{
+final RouteObserver<ModalRoute> routeObserver = RouteObserver<ModalRoute>();
+final double screenHeight =
+    MediaQuery.of(navigatorKey.currentContext!).size.height * 0.9;
+final double screenHeightWithAppBar =
+    MediaQuery.of(navigatorKey.currentContext!).size.height * 0.8;
+
+Future<void> main() async {
+  FirebaseMessaging.onBackgroundMessage(backgroundHandler);
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
     //systemNavigationBarColor: Colors.amber, // navigation bar color
     statusBarColor: Colors.transparent, // status bar color
     statusBarIconBrightness: Brightness.dark, // status bar icon color
-    systemNavigationBarIconBrightness: Brightness.dark, // color of navigation controls
+    systemNavigationBarIconBrightness:
+        Brightness.dark, // color of navigation controls
   ));
-  Stripe.publishableKey = "pk_test_51O6BroGm97cexwqwxfjjreBlfINzslaj3IIVEvHsyuVEi96r3PHjQFFJxFdN7Bw2Tcbj07SG9pX3BHV9w7mELpAg00C53LHoNJ";
+  Stripe.publishableKey =
+      "pk_test_51O6BroGm97cexwqwxfjjreBlfINzslaj3IIVEvHsyuVEi96r3PHjQFFJxFdN7Bw2Tcbj07SG9pX3BHV9w7mELpAg00C53LHoNJ";
 
   configLoading();
   runApp(MultiProvider(
@@ -91,9 +102,11 @@ Future<void> main() async{
         create: (_) => CardViewModel(),
       ),
     ],
-        child: const MyApp(),
+    child: const MyApp(),
   ));
 }
+
+Future backgroundHandler(RemoteMessage msg) async {}
 
 
 class MyApp extends StatelessWidget {
@@ -106,7 +119,7 @@ class MyApp extends StatelessWidget {
       DeviceOrientation.portraitDown,
     ]);
     return ScreenUtilInit(
-      designSize: const Size(375,812),
+        designSize: const Size(375, 812),
         //useInheritedMediaQuery: true,
         minTextAdapt: true,
         splitScreenMode: true,
@@ -189,29 +202,30 @@ class MyApp extends StatelessWidget {
               GlobalMaterialLocalizations.delegate,
               GlobalWidgetsLocalizations.delegate,
             ],
-          /*  localizationsDelegates: context.localizationDelegates,
+            /*  localizationsDelegates: context.localizationDelegates,
             supportedLocales: context.supportedLocales,
             locale: context.locale,*/
             theme: ThemeData(
               scaffoldBackgroundColor: CustomColors.whiteColor,
               primaryColor: CustomColors.whiteColor,
               colorScheme: ThemeData().colorScheme.copyWith(
-                secondary: CustomColors.whiteColor,
-                primary: CustomColors.orangeColor,
-              ),
+                    secondary: CustomColors.whiteColor,
+                    primary: CustomColors.orangeColor,
+                  ),
               appBarTheme: AppBarTheme(
                   centerTitle: true,
                   titleTextStyle: TextStyle(
-                fontFamily: 'CircularStd',
-                fontSize: 16.sp,
-                fontWeight: FontWeight.w500,
-                color: CustomColors.blackColor,
-              )),
+                    fontFamily: 'CircularStd',
+                    fontSize: 16.sp,
+                    fontWeight: FontWeight.w500,
+                    color: CustomColors.blackColor,
+                  )),
               textTheme: TextTheme(
                 subtitle1: TextStyle(
                   fontFamily: 'CircularStd',
                   fontSize: 14.sp,
-                  color: CustomColors.blackColor, // <-- TextFormField input color
+                  color:
+                      CustomColors.blackColor, // <-- TextFormField input color
                 ),
               ),
               textSelectionTheme: const TextSelectionThemeData(
@@ -239,7 +253,7 @@ class MyApp extends StatelessWidget {
               ),
             ),
             debugShowCheckedModeBanner: false,
-            title: 'Bruno\'s Kitchen' ,
+            title: 'Bruno\'s Kitchen',
             navigatorObservers: [routeObserver],
             initialRoute: '/',
             navigatorKey: navigatorKey,
@@ -249,5 +263,3 @@ class MyApp extends StatelessWidget {
         });
   }
 }
-
-

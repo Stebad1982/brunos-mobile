@@ -485,6 +485,9 @@ class AuthViewModel with ChangeNotifier {
     } else {
       _operatingSystem = 'iOS';
     }
+    //TODO: ENABLE FCM
+    _fcmToken = await _firebaseMessaging.getToken();
+    print("fcm token: $_fcmToken");
     final authToken =
         await _sharedPref.read(SharedPreferencesKeys.authToken.text);
     await Future.delayed(const Duration(seconds: 4), () {});
@@ -496,9 +499,6 @@ class AuthViewModel with ChangeNotifier {
         if (value) {
           routeTo = const BottomNavigationScreen();
         } else {
-          //TODO: ENABLE FCM
-          _fcmToken = await _firebaseMessaging.getToken();
-          print("fcm token: $_fcmToken");
           routeTo = const LoginScreen();
         }
       });

@@ -348,7 +348,7 @@ Future recipeDetailBottomSheetWidget({required RecipeModel recipeDetail}) {
                                                         horizontal: 10,
                                                         vertical: 5.0),
                                                 child: Center(
-                                                  child: black10w400(data: '4.5'),
+                                                  child: black10w400(data: recipeDetail.lifeStage == FeaturedRecipeType.puppy.text?'2':'4.5'),
                                                 ),
                                               ),
                                             ),
@@ -361,21 +361,7 @@ Future recipeDetailBottomSheetWidget({required RecipeModel recipeDetail}) {
                                                         horizontal: 10,
                                                         vertical: 5.0),
                                                 child: Center(
-                                                  child: black10w400(data: '9.1'),
-                                                ),
-                                              ),
-                                            ),
-                                            Container(
-                                              color: CustomColors
-                                                  .greyMediumLightColor,
-                                              child: Padding(
-                                                padding:
-                                                    const EdgeInsets.symmetric(
-                                                        horizontal: 10,
-                                                        vertical: 5.0),
-                                                child: Center(
-                                                  child:
-                                                      black10w400(data: '15.9'),
+                                                  child: black10w400(data: recipeDetail.lifeStage == FeaturedRecipeType.puppy.text?'5':'9.1'),
                                                 ),
                                               ),
                                             ),
@@ -389,7 +375,7 @@ Future recipeDetailBottomSheetWidget({required RecipeModel recipeDetail}) {
                                                         vertical: 5.0),
                                                 child: Center(
                                                   child:
-                                                      black10w400(data: '22.7'),
+                                                      black10w400(data: recipeDetail.lifeStage == FeaturedRecipeType.puppy.text?'10':'15.9'),
                                                 ),
                                               ),
                                             ),
@@ -403,7 +389,7 @@ Future recipeDetailBottomSheetWidget({required RecipeModel recipeDetail}) {
                                                         vertical: 5.0),
                                                 child: Center(
                                                   child:
-                                                      black10w400(data: '27.3'),
+                                                      black10w400(data: recipeDetail.lifeStage == FeaturedRecipeType.puppy.text?'16':'22.7'),
                                                 ),
                                               ),
                                             ),
@@ -417,7 +403,21 @@ Future recipeDetailBottomSheetWidget({required RecipeModel recipeDetail}) {
                                                         vertical: 5.0),
                                                 child: Center(
                                                   child:
-                                                      black10w400(data: '34.1'),
+                                                      black10w400(data: recipeDetail.lifeStage == FeaturedRecipeType.puppy.text?'24':'27.3'),
+                                                ),
+                                              ),
+                                            ),
+                                            Container(
+                                              color: CustomColors
+                                                  .greyMediumLightColor,
+                                              child: Padding(
+                                                padding:
+                                                    const EdgeInsets.symmetric(
+                                                        horizontal: 10,
+                                                        vertical: 5.0),
+                                                child: Center(
+                                                  child:
+                                                      black10w400(data: recipeDetail.lifeStage == FeaturedRecipeType.puppy.text?'32':'34.1'),
                                                 ),
                                               ),
                                             ),
@@ -432,7 +432,7 @@ Future recipeDetailBottomSheetWidget({required RecipeModel recipeDetail}) {
                                                         horizontal: 10,
                                                         vertical: 5.0),
                                                 child: black10w400(
-                                                    data: 'Adult, Less Active'),
+                                                    data: recipeDetail.lifeStage == FeaturedRecipeType.puppy.text? 'Puppies up to 50% of Adult Weight':'Adult, Less Active'),
                                               ),
                                             ),
                                             Padding(
@@ -500,7 +500,7 @@ Future recipeDetailBottomSheetWidget({required RecipeModel recipeDetail}) {
                                                         horizontal: 10,
                                                         vertical: 5.0),
                                                 child: black10w400(
-                                                    data: 'Adult, Active'),
+                                                    data: recipeDetail.lifeStage == FeaturedRecipeType.puppy.text?'Puppies from 50 - 80% of Adult Weight':'Adult, Active'),
                                               ),
                                             ),
                                             Padding(
@@ -568,7 +568,7 @@ Future recipeDetailBottomSheetWidget({required RecipeModel recipeDetail}) {
                                                         horizontal: 10,
                                                         vertical: 5.0),
                                                 child: black10w400(
-                                                    data: 'Adult, More Active'),
+                                                    data: recipeDetail.lifeStage == FeaturedRecipeType.puppy.text?'Puppies above 80% of Adult Weight':'Adult, More Active'),
                                               ),
                                             ),
                                             Padding(
