@@ -8,13 +8,13 @@ class FoodCategory {
 }
 
 List<FoodCategory> foodCategoryList = [
-  FoodCategory('Freshly cooked', freshlyCooked),
-  FoodCategory('Well balanced nutrient blend', wellBalancedNutrientBlend),
-  FoodCategory('Doorstep delivery', doorstepDelivery),
-  FoodCategory('Long shelf life', longShelfLife),
-  FoodCategory('Human grade ingredients', humanGradeIngredients),
-  FoodCategory('AAFCO compliant', aafcoCompliant),
-  FoodCategory('Customized meals', customizedMeals),
+  FoodCategory('Freshly Cooked', freshlyCooked),
+  FoodCategory('Exclusive Nutrient Blends', wellBalancedNutrientBlend),
+  FoodCategory('Doorstep Delivery', doorstepDelivery),
+  FoodCategory('Long Shelf Life', longShelfLife),
+  FoodCategory('Human Grade Ingredients', humanGradeIngredients),
+  FoodCategory('AAFCO Compliant', aafcoCompliant),
+  FoodCategory('Customized Meals', customizedMeals),
   FoodCategory('Vet Developed', vetDeveloped)
 ];
 

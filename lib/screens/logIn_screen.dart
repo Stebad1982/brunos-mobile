@@ -32,7 +32,7 @@ class LoginScreen extends StatelessWidget {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      black24w500Centre(data: 'Welcome Back Dog Lovers'),
+                      black24w500Centre(data: 'Welcome back Dog Lovers ❤️'),
                       SizedBox(
                         height: 10.h,
                       ),

@@ -51,7 +51,7 @@ class _IntroSlidesScreenState extends State<IntroSlidesScreen> {
               height: 26.h,
             ),
             black32w500Center(data: 'Proud Parent of a'),
-            brown32w500(data: 'Doggo?'),
+            brown32w500(data: 'Puppy?'),
             SizedBox(
               height: 16.h,
             ),
@@ -59,7 +59,7 @@ class _IntroSlidesScreenState extends State<IntroSlidesScreen> {
               width: 308.w,
               child: grey14w400HeightCentre(
                   data:
-                      'Experience Bruno\'s Kitchen magic, where our Signature Nutrient Blend in every meal boosts your Doggo\'s wellness.'),
+                      'Experience the Bruno\'s Kitchen difference with our trademarked Signature Nutrient Blend, cooked into every meal to fuel your Doggo\'s health and happiness.'),
             ),
             SizedBox(
               height: 32.h,
@@ -102,7 +102,7 @@ class _IntroSlidesScreenState extends State<IntroSlidesScreen> {
             SizedBox(
               height: 26.h,
             ),
-            black32w500Center(data: 'Craft Your Dogg’s'),
+            black32w500Center(data: 'Craft Your Doggo’s'),
             brown32w500(data: 'Perfect Plan'),
             SizedBox(
               height: 16.h,
@@ -111,7 +111,7 @@ class _IntroSlidesScreenState extends State<IntroSlidesScreen> {
               width: 266.w,
               child: grey14w400HeightCentre(
                   data:
-                      'Craft the perfect culinary journey for your doggo, customize a meal plan as unique as your furry friend 🐶❤️'),
+                      'Craft the perfect culinary journey where you can customize a meal plan as unique as your furry friend 🐶❤️'),
             ),
             SizedBox(
               height: 32.h,
@@ -164,7 +164,7 @@ class _IntroSlidesScreenState extends State<IntroSlidesScreen> {
               width: 308.w,
               child: grey14w400HeightCentre(
                   data:
-                  'Choose meal recipes, prepared and sent on your schedule, as you need.'),
+                  'Select meal recipes. cooked and delivered your way, whenever and wherever you need it.'),
             ),
             SizedBox(
               height: 32.h,

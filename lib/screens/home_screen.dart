@@ -133,7 +133,7 @@ class HomeScreen extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(horizontal: 20),
                       child: lightBlack14w400Centre(
                           data:
-                              'Sharing your love for pets and their wellbeing, we at Bruno\'s Kitchen have crafted a service that brings balanced, freshly-prepared pet food right to your doorstep. Our simple yet nutritious recipes are scientifically formulated and made with utmost love, because we believe your furry friends deserve the very best.'),
+                              'Sharing your love for pets and their wellbeing, we at Bruno\'s Kitchen have crafted a service that brings balanced, freshly-prepared food to your doorstep. Our simple yet nutritious recipes are scientifically formulated and made with utmost love, because we believe your furry friends deserve the very best.'),
                     ),
                     SizedBox(
                       height: 20.h,
@@ -161,7 +161,7 @@ class HomeScreen extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 20.0),
                       child: black24w500Centre(
-                          data: 'Dive Into A World Of Paw-Licking Goodness'),
+                          data: 'Dive into a World of Paw-licking Goodness:'),
                     ),
                   ],
                 ),
@@ -172,7 +172,7 @@ class HomeScreen extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20.0),
                 child: lightBlack14w400Centre(
-                    data: 'Check out our delicious doggie dishes'),
+                    data: 'Check Out Our Delicious Doggie Dishes '),
               ),
               SizedBox(height: 20.h),
               Padding(
