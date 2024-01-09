@@ -161,7 +161,7 @@ class HomeScreen extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 20.0),
                       child: black24w500Centre(
-                          data: 'Dive into a World of Paw-licking Goodness:'),
+                          data: 'Dive into a World of Paw-licking Goodness'),
                     ),
                   ],
                 ),
@@ -250,8 +250,8 @@ class HomeScreen extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20.0),
                 child: customButton(
-                    text: 'Ready to Order? ',
-                    boldText: 'Tap Here',
+                    text: 'Order Your Doggo\'s Meals Now',
+                   /* boldText: 'Tap Here',*/
                     onPressed: () {
                       if (context
                               .read<AuthViewModel>()
@@ -313,7 +313,7 @@ class HomeScreen extends StatelessWidget {
                           lightBlack14w400Centre(
                               left: true,
                               data:
-                                  'Share details about your beloved pet. We deliver human-grade food in user-friendly packaging - minimal processing, stringent safety norms, and easy-to-serve: just open and serve!')
+                                  'Share details about your beloved pet. We deliver human-grade food in user-friendly packaging - minimal processing, stringent safety norms, and easy-to-eat: just open and serve!')
                         ],
                       ),
                     ),
@@ -359,7 +359,7 @@ class HomeScreen extends StatelessWidget {
                           lightBlack14w400Centre(
                               left: true,
                               data:
-                                  'Vet-designed plans tailored to your dog\'s unique needs. Pre-prepared and portioned meals calculated according to the profile you create, satisfying their calorie requirements with precision')
+                                  'Vet-designed plans tailored to your dog\'s unique needs. Pre-prepared and portioned meals calculated according to the profile you create, satisfying their caloric requirements with precision.')
                         ],
                       ),
                     ),

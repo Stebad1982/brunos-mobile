@@ -38,14 +38,14 @@ class PuppyConfirmationScreen extends StatelessWidget {
                     SizedBox(
                       height: 28.h,
                     ),
-                    black24w500Centre(data: 'Paw-some!! You’ve now added another furry friend to your account!'),
+                    black24w500Centre(data: 'Paw-some!!\nYou’ve now created an account for your furry friend!'),
                   ],
                 ),
               ),
               const Spacer(),
               Column(
                 children: [
-                  customButton(text: 'I want to add more pet', onPressed: () {
+                  customButton(text: 'Add another pet to your account', onPressed: () {
                     context.read<PuppyViewModel>().clearPuppyData();
                     Navigator.pushReplacementNamed(context, puppyCreationRoute);
                   }, colored: false, icon: Icons.add),

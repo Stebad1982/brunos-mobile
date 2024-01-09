@@ -439,7 +439,7 @@ class _PuppyCreationAdditionalScreenState extends State<PuppyCreationAdditionalS
                       ),
                       black18w500(
                           data:
-                              'How many times you feed ${puppyViewModel.getPuppyNameController.text.isNotEmpty ? puppyViewModel.getPuppyNameController.text : 'Pet'} a day?'),
+                              'How many times a day do you feed ${puppyViewModel.getPuppyNameController.text.isNotEmpty ? puppyViewModel.getPuppyNameController.text : 'Pet'}?'),
                       SizedBox(
                         height: 24.h,
                       ),
