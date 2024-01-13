@@ -38,13 +38,10 @@ class _DeliveryDatesScreenState extends State<DeliveryDatesScreen> {
   @override
   Widget build(BuildContext context) {
     return Consumer<CartViewModel>(builder: (context, cartViewModel, child) {
-      return Consumer<PlansViewModel>(builder: (context, planViewModel, child)
-      {
+      return Consumer<PlansViewModel>(builder: (context, planViewModel, child) {
         return Scaffold(
           appBar: const AppBarWithBackWidget(
-              heading: 'Select Date',
-              showPuppy: false,
-              showCart: false),
+              heading: 'Select Date', showPuppy: false, showCart: false),
           body: Stack(
             children: [
               SingleChildScrollView(
@@ -54,7 +51,7 @@ class _DeliveryDatesScreenState extends State<DeliveryDatesScreen> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                     /* SizedBox(
+                      /* SizedBox(
                         height: 10.h,
                       ),
                       Center(
@@ -70,13 +67,13 @@ class _DeliveryDatesScreenState extends State<DeliveryDatesScreen> {
                           data: /* plansViewModel.getPlanType == Plans.monthly.text
                             ? 'Schedule Your Meal Deliveries'
                             :*/
-                          'Select Your Delivery Date'),
+                              'Select Your Delivery Date'),
                       SizedBox(
                         height: 10.h,
                       ),
                       lightBlack14w400Centre(
                           data:
-                          'Order by 4pm to receive your doggies dishes\nbetween 9am- 12noon the following day'),
+                              'Order by 4pm to receive your doggies dishes\nbetween 9am- 12noon the following day'),
                       SizedBox(
                         height: 30.h,
                       ),
@@ -139,13 +136,16 @@ class _DeliveryDatesScreenState extends State<DeliveryDatesScreen> {
                         ),
                         availableGestures: AvailableGestures.all,
                         selectedDayPredicate: (day) =>
-                            isSameDay(cartViewModel.getSelectedDay, day),
+                            day.weekday == 6 || day.weekday == 7
+                                ? false
+                                : isSameDay(cartViewModel.getSelectedDay, day),
                         locale: 'en_US',
                         firstDay: cartViewModel.getFocusedDay,
                         lastDay: DateTime.utc(2030, 3, 14),
                         focusedDay: cartViewModel.getFocusedDay,
                         onDaySelected: cartViewModel.onDaySelected,
                         calendarStyle: const CalendarStyle(
+                          weekendTextStyle: TextStyle(color: CustomColors.orangeColor),
                             selectedDecoration: BoxDecoration(
                                 color: CustomColors.orangeColor,
                                 shape: BoxShape.circle),
@@ -271,7 +271,7 @@ class _DeliveryDatesScreenState extends State<DeliveryDatesScreen> {
                       ),
                       brown14w400Centre(
                           data:
-                          'Great! Now tell us where we will be delivering\nour tail-wagging meals',
+                              'Great! Now tell us where we will be delivering\nour tail-wagging meals',
                           centre: true),
                       SizedBox(
                         height: 100.h,
@@ -309,7 +309,6 @@ class _DeliveryDatesScreenState extends State<DeliveryDatesScreen> {
                           /*final String deliveryDate =
                           DateTimeFormatter.showDateFormat3(
                               cartViewModel.getSelectedDay!);*/
-
                         },
                         colored: true),
                   ),

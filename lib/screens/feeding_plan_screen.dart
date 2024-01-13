@@ -15,6 +15,7 @@ import '../utils/enums.dart';
 import '../view_models/cart_view_model.dart';
 import '../view_models/plans_view_model.dart';
 import '../widgets/app_bar_with_back_widget.dart';
+import '../widgets/circular_network_image_widget.dart';
 
 class FeedingPlanScreen extends StatefulWidget {
   const FeedingPlanScreen({super.key});
@@ -117,9 +118,20 @@ class _FeedingPlanScreenState extends State<FeedingPlanScreen> {
                     plansViewModel.getTransitionalGrams10thDay);
                 return ListTile(
                   minVerticalPadding: 20,
-                  title: orange18w500(
-                      data: plansViewModel
-                          .getFeedingPlan!.recipes[index].name!),
+                  title: Padding(
+                    padding: const EdgeInsets.only(bottom: 10.0),
+                    child: Row(
+                      children: [
+                        circularNetworkImageWidget(
+                            image: plansViewModel
+                                .getFeedingPlan!.recipes[index].media![0], size: 40.h),
+                        SizedBox(width: 10.w,),
+                        orange18w500(
+                            data: plansViewModel
+                                .getFeedingPlan!.recipes[index].name!),
+                      ],
+                    ),
+                  ),
                   tileColor: CustomColors.lightGreyColor,
                   subtitle: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -267,7 +279,7 @@ class _FeedingPlanScreenState extends State<FeedingPlanScreen> {
                         orange14w500(
                             data:
                             'Total ${plansViewModel
-                                .getPlanType} Plan Price = ${plansViewModel
+                                .getPlanType} Plan = ${plansViewModel
                                 .getPlanType == Plans.monthly.text
                                 ? plansViewModel.getFeedingPlan!
                                 .planDiscountedPrice
@@ -280,7 +292,7 @@ class _FeedingPlanScreenState extends State<FeedingPlanScreen> {
                             width: 250.w,
                             child: black12w500Centre(
                                 data:
-                                'The above plan is calculated based on ${plansViewModel
+                                'The above plan is calculated based on \n${plansViewModel
                                     .getFeedingPlan!.pet!
                                     .name!}\'s profile data',
                                 centre: true)),
@@ -292,7 +304,7 @@ class _FeedingPlanScreenState extends State<FeedingPlanScreen> {
                           child: Padding(
                             padding: const EdgeInsets.only(top: 20.0),
                             child: customButton(
-                                text: 'Add to Shopping Bag',
+                                text: 'Add to Shopping Cart',
                                 onPressed: () {
                                   if (!context
                                       .read<CartViewModel>()

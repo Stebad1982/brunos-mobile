@@ -36,7 +36,7 @@ class _CartScreenState extends State<CartScreen> with RouteAware {
     return Consumer<CartViewModel>(builder: (context, cartViewModel, child) {
       return Scaffold(
         appBar: const AppBarWithBackWidget(
-            heading: 'Shopping Bag', showPuppy: true, showCart: false),
+            heading: 'Shopping Bag', showPuppy: false, showCart: false),
         body: cartViewModel.getCartList.isNotEmpty
             ? Stack(
                 children: [

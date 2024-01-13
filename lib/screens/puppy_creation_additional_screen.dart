@@ -265,7 +265,7 @@ class _PuppyCreationAdditionalScreenState extends State<PuppyCreationAdditionalS
                       ),
                       black18w500(
                           data:
-                              'How much does ${puppyViewModel.getPuppyNameController.text.isNotEmpty ? puppyViewModel.getPuppyNameController.text : 'Pet'} weight?'),
+                              'How Much does ${puppyViewModel.getPuppyNameController.text.isNotEmpty ? puppyViewModel.getPuppyNameController.text : 'Pet'} Weigh?'),
                       SizedBox(
                         height: 9.h,
                       ),

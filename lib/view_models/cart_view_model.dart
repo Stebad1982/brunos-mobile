@@ -41,7 +41,7 @@ class CartViewModel with ChangeNotifier {
   int get getRequiredPawPoints => _requiredPawPoints;
 
   void setRequiredPawPoints(num pointsAggregate) {
-    _requiredPawPoints = (getCartTotalPrice/pointsAggregate).floor();
+    _requiredPawPoints = (getCartTotalPrice / pointsAggregate).floor();
     notifyListeners();
   }
 
@@ -62,19 +62,23 @@ class CartViewModel with ChangeNotifier {
 
   void setPromoCodeDiscount(int value) {
     _pawSelectedPoints = 0;
-    _requiredPawPoints= 0 ;
-    _promoCodeDiscount = value/*_cartTotalPrice * (value / 100)*/;
+    _requiredPawPoints = 0;
+    _promoCodeDiscount = value /*_cartTotalPrice * (value / 100)*/;
     setCheckOutTotal();
   }
 
   num get getCheckOutTotal => _checkOutTotal;
 
   void setCheckOutTotal() {
-    final num finalPoints = _pawSelectedPoints * navigatorKey.currentContext!.read<AuthViewModel>().getAuthResponse.data!.discounts![2].aggregate!;
-    _checkOutTotal = _cartTotalPrice -
-        _promoCodeDiscount +
-        _deliveryCharges -
-        finalPoints;
+    final num finalPoints = _pawSelectedPoints *
+        navigatorKey.currentContext!
+            .read<AuthViewModel>()
+            .getAuthResponse
+            .data!
+            .discounts![2]
+            .aggregate!;
+    _checkOutTotal =
+        _cartTotalPrice - _promoCodeDiscount + _deliveryCharges - finalPoints;
     notifyListeners();
   }
 
@@ -110,7 +114,9 @@ class CartViewModel with ChangeNotifier {
         discountPercentage: 10,
         deliveryDate: DateTimeFormatter.showDateFormat3(_selectedDay),
         promoCodeId: _promoCodeController.text,
-        cartItems: _cartList, cartTotal: _cartTotalPrice, shippingFees: _deliveryCharges);
+        cartItems: _cartList,
+        cartTotal: _cartTotalPrice,
+        shippingFees: _deliveryCharges);
     navigatorKey.currentContext!
         .read<OrderViewModel>()
         .setOrderRequest(orderData);
@@ -145,10 +151,18 @@ class CartViewModel with ChangeNotifier {
   }
 
   void onDaySelected(DateTime day, DateTime focusDay) {
-    if (!isSameDay(_selectedDay, day)) {
-      _selectedDay = day;
-      focusDay = focusDay;
-      notifyListeners();
+    if (day.weekday != 7) {
+      if (day.weekday != 6) {
+        if (!isSameDay(_selectedDay, day)) {
+          _selectedDay = day;
+          focusDay = focusDay;
+          notifyListeners();
+        }
+      } else {
+        EasyLoading.showError('Don\'t select weakeneds');
+      }
+    } else {
+      EasyLoading.showError('Don\'t select weakeneds');
     }
   }
 
@@ -158,7 +172,7 @@ class CartViewModel with ChangeNotifier {
   }
 
   bool checkCartForPlanValidation({required String planType}) {
-   // setSelectedIndex(null);
+    // setSelectedIndex(null);
     final int index = _cartList.indexWhere((element) {
       if (element.pet != null) {
         return element.pet!.sId ==
@@ -177,7 +191,7 @@ class CartViewModel with ChangeNotifier {
   }
 
   bool checkProductValidation({required RecipeModel recipe}) {
-   // setSelectedIndex(null);
+    // setSelectedIndex(null);
     final int index = _cartList.indexWhere((element) =>
         element.recipes[0].sId == recipe.sId &&
         (element.recipes[0].selectedItemSize != null

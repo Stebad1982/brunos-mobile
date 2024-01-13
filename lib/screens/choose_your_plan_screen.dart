@@ -84,7 +84,7 @@ class ChooseYourPlanScreen extends StatelessWidget {
                           descriptionDialog(
                               context: context,
                               description:
-                              'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown ',
+                              'Select this plan to smoothly transition your doggo to Bruno’s recipes and once the transition  period ends, you’ll get access to more recipe choices to delight your doggo\'s tastebuds.',
                               height: 250.h,
                               title: 'Transitional Plan');
                         },
@@ -116,7 +116,7 @@ class ChooseYourPlanScreen extends StatelessWidget {
                                   ),
                                   lightBlack14w400Centre(
                                       data:
-                                          'First-Timers: Ease your pup into Bruno\'s recipes. Post-transition, enjoy a wider menu!',
+                                          'First timers: Ease into Bruno’s recipes',
                                       left: true)
                                 ],
                               ),
@@ -166,7 +166,7 @@ class ChooseYourPlanScreen extends StatelessWidget {
                           descriptionDialog(
                               context: context,
                               description:
-                              'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown ',
+                                  'Opt for this plan for a budget-friendly, wholesome meal journey for your pup. Enjoy the liberty of picking up to three diverse meal options per month to spoil your best friend with variety!',
                               height: 250.h,
                               title: 'Monthly Plan');
                         },
@@ -198,7 +198,7 @@ class ChooseYourPlanScreen extends StatelessWidget {
                                   ),
                                   lightBlack14w400Centre(
                                       data:
-                                          'For an affordable, varied meal adventure. Three monthly meal choices for your pup\'s delight!',
+                                          'An affordable, varied meal adventure!',
                                       left: true),
                                   SizedBox(height: 10.h,),
                                   Align(
@@ -253,8 +253,7 @@ class ChooseYourPlanScreen extends StatelessWidget {
                           descriptionDialog(
                               context: context,
                               description:
-                              'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown ',
-                              height: 250.h,
+'Not sure if you or your doggie are ready to commit? That’s okay! Select from our array of scrumptious meals and let your doggie be the judge. Get ready for them to ‘woof’ it down begging for more!',                              height: 250.h,
                               title: 'One-time Plan');
                         },
                         child: Padding(
@@ -284,9 +283,8 @@ class ChooseYourPlanScreen extends StatelessWidget {
                                     height: 5.h,
                                   ),
                                   lightBlack14w400Centre(
-                                      data:
-                                          'Hesitant? Sample our meals and let your doggie be the gourmet judge!',
-                                      left: true)
+                                      data:'Still not sure? Try us out!'
+,                                      left: true)
                                 ],
                               ),
                             )
