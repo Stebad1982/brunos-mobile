@@ -287,7 +287,7 @@ class PuppyCreationScreen extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.all(20),
                     child: customButton(
-                        text: 'Save',
+                        text: 'Next',
                         onPressed: () {
                           puppyViewModel.getBreedslist.clear();
                           if (puppyViewModel.puppyCreationValidation()) {

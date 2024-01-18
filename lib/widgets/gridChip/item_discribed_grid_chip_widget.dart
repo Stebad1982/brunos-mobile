@@ -57,7 +57,8 @@ Widget itemDescribedGridChipWidget({required RecipeModel recipeData}) {
           child: Padding(
             padding: const EdgeInsets.only(left: 8.0, right: 8.0, top: 8.0),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Container(
                     width: double.infinity,
@@ -70,75 +71,37 @@ Widget itemDescribedGridChipWidget({required RecipeModel recipeData}) {
                     child: Stack(
                       children: [
                         Center(
-                          child: Image.network(
-                            recipeData.media![0], height: 108.h,
-                          ),
-                        ),
-                        Visibility(
-                          visible: plansViewModel.getPlanType !=
-                              Plans.product.text,
-                          child: InkWell(
-                            onTap: () {
-                              recipeDetailBottomSheetWidget(
-                                  recipeDetail: recipeData);
-                            },
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Align(
+                            child: Image.network(
+                              recipeData.media![0],
+                              height: 108.h,
+                            )),
+                        InkWell(
+                          onTap: () {
+                            //TODO: CHANGE RECIPE MODEL
+                            recipeDetailBottomSheetWidget(
+                                recipeDetail: recipeData);
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Align(
                                 alignment: Alignment.topRight,
-                                child: SvgPicture.asset(informationButton),),
-                            ),
+                                child: SvgPicture.asset(informationButton)),
                           ),
                         )
-                        /*IconButton(
-                            onPressed: () {
-                              recipeDetailBottomSheetWidget();
-                            },
-                            icon: Icon(
-                              Icons.info,
-                              color: CustomColors.orangeColorTint,
-                            ),
-                          ))*/
                       ],
                     )),
                 Padding(
-                  padding: const EdgeInsets.only(
-                      left: 17.0, right: 17, top: 7, bottom: 17),
+                  padding: const EdgeInsets.symmetric(vertical: 12.0),
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      SizedBox(
-                          height: 40.h,
-                          child: lightBlack14w400Centre(
-                              data: recipeData.name!, left: true)),
-                    /*  Visibility(
-                        visible: recipeData.ingredientsComposition!.isNotEmpty,
-                        child: black10w400(
-                            maxLine: 2,
-                            data: recipeData.ingredientsComposition!),
-                      ),
-                      SizedBox(
-                        height: 16.h,
+                      black14w500(data: recipeData.name!, centre: true),
+                    /*  SizedBox(
+                        height: 5.h,
                       ),*/
-                      SizedBox(
-                        height: 10.h,
-                      ),
-                      brown12w500Centre(
-                          data: 'Starting From AED ${recipeData.pricePerKG} ${plansViewModel.getPlanType ==
-                              Plans.product.text? '':'/ KG'}'),
-/*
-                      Visibility(
-                        visible: plansViewModel.getPlanType !=
-                            Plans.product.text,
-                        child: Padding(
-                          padding: const EdgeInsets.only(top: 2),
-                          child: black10w400(data: 'complete trans period'),
-                        ),
-                      ),
-*/
+                    //  black14w500(data: '(${recipeData.lifeStage!})'),
                     ],
                   ),
-                ),
+                )
               ],
             ),
           )),

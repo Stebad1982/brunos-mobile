@@ -49,7 +49,7 @@ Future recipeDetailBottomSheetWidget({required RecipeModel recipeDetail}) {
                         ),
                         black12w500Centre(
                             data:
-                                'Starting From ${recipeDetail.pricePerKG} AED/KG')
+                            'Starting From ${recipeDetail.pricePerKG} AED/KG')
                       ],
                     ),
                     Spacer(),
@@ -231,7 +231,7 @@ Future recipeDetailBottomSheetWidget({required RecipeModel recipeDetail}) {
                                     ),
                                     ListView.builder(
                                       physics:
-                                          const NeverScrollableScrollPhysics(),
+                                      const NeverScrollableScrollPhysics(),
                                       shrinkWrap: true,
                                       itemCount: recipeDetail.nutrition!.length,
                                       //padding: const EdgeInsets.only(left: 20, right: 20),
@@ -244,7 +244,7 @@ Future recipeDetailBottomSheetWidget({required RecipeModel recipeDetail}) {
                                                 Icon(
                                                   Icons.check_circle,
                                                   color:
-                                                      CustomColors.greenColor,
+                                                  CustomColors.greenColor,
                                                 ),
                                                 SizedBox(width: 5.w),
                                                 black14w400(
@@ -269,7 +269,7 @@ Future recipeDetailBottomSheetWidget({required RecipeModel recipeDetail}) {
                                     ),
                                     black14w400(
                                         data:
-                                            '${recipeDetail.caloriesContentNo} kcal/kg,  ${recipeDetail.caloriesContentNo! / 1000} kcal/gm')
+                                        '${recipeDetail.caloriesContentNo} kcal/kg,  ${recipeDetail.caloriesContentNo! / 1000} kcal/gm')
                                   ],
                                 ),
                               ),
@@ -283,7 +283,7 @@ Future recipeDetailBottomSheetWidget({required RecipeModel recipeDetail}) {
                                     black14w400(
                                         lineSpacing: true,
                                         data:
-                                            '${recipeDetail.ingredientsComposition}')
+                                        '${recipeDetail.ingredientsComposition}')
                                   ],
                                 ),
                               ),
@@ -308,7 +308,7 @@ Future recipeDetailBottomSheetWidget({required RecipeModel recipeDetail}) {
                                     black12w500Centre(
                                         lineSpacing: true,
                                         data:
-                                            'Use guidelines below, adjust feeding quantities as necessary to maintain your pet’s ideal body score'),
+                                        'Use guidelines below, adjust feeding quantities as necessary to maintain your pet’s ideal body score'),
                                     SizedBox(
                                       height: 20.h,
                                     ),
@@ -320,7 +320,7 @@ Future recipeDetailBottomSheetWidget({required RecipeModel recipeDetail}) {
                                       scrollDirection: Axis.horizontal,
                                       child: Table(
                                         defaultColumnWidth:
-                                            const IntrinsicColumnWidth(),
+                                        const IntrinsicColumnWidth(),
                                         border: TableBorder.all(
                                             color: CustomColors.blackColor,
                                             style: BorderStyle.solid),
@@ -331,12 +331,12 @@ Future recipeDetailBottomSheetWidget({required RecipeModel recipeDetail}) {
                                                   .greyMediumLightColor,
                                               child: Padding(
                                                 padding:
-                                                    const EdgeInsets.symmetric(
-                                                        horizontal: 10,
-                                                        vertical: 5.0),
+                                                const EdgeInsets.symmetric(
+                                                    horizontal: 10,
+                                                    vertical: 5.0),
                                                 child: black10w400(
                                                     data:
-                                                        'Dog\'s Ideal Weight (kg)'),
+                                                    'Dog\'s Ideal Weight (kg)'),
                                               ),
                                             ),
                                             Container(
@@ -344,11 +344,11 @@ Future recipeDetailBottomSheetWidget({required RecipeModel recipeDetail}) {
                                                   .greyMediumLightColor,
                                               child: Padding(
                                                 padding:
-                                                    const EdgeInsets.symmetric(
-                                                        horizontal: 10,
-                                                        vertical: 5.0),
+                                                const EdgeInsets.symmetric(
+                                                    horizontal: 10,
+                                                    vertical: 5.0),
                                                 child: Center(
-                                                  child: black10w400(data: recipeDetail.lifeStage == FeaturedRecipeType.puppy.text?'2':'4.5'),
+                                                  child: black10w400(data: '4.5'),
                                                 ),
                                               ),
                                             ),
@@ -357,11 +357,11 @@ Future recipeDetailBottomSheetWidget({required RecipeModel recipeDetail}) {
                                                   .greyMediumLightColor,
                                               child: Padding(
                                                 padding:
-                                                    const EdgeInsets.symmetric(
-                                                        horizontal: 10,
-                                                        vertical: 5.0),
+                                                const EdgeInsets.symmetric(
+                                                    horizontal: 10,
+                                                    vertical: 5.0),
                                                 child: Center(
-                                                  child: black10w400(data: recipeDetail.lifeStage == FeaturedRecipeType.puppy.text?'5':'9.1'),
+                                                  child: black10w400(data: '9.1'),
                                                 ),
                                               ),
                                             ),
@@ -370,12 +370,12 @@ Future recipeDetailBottomSheetWidget({required RecipeModel recipeDetail}) {
                                                   .greyMediumLightColor,
                                               child: Padding(
                                                 padding:
-                                                    const EdgeInsets.symmetric(
-                                                        horizontal: 10,
-                                                        vertical: 5.0),
+                                                const EdgeInsets.symmetric(
+                                                    horizontal: 10,
+                                                    vertical: 5.0),
                                                 child: Center(
                                                   child:
-                                                      black10w400(data: recipeDetail.lifeStage == FeaturedRecipeType.puppy.text?'10':'15.9'),
+                                                  black10w400(data: '15.9'),
                                                 ),
                                               ),
                                             ),
@@ -384,12 +384,12 @@ Future recipeDetailBottomSheetWidget({required RecipeModel recipeDetail}) {
                                                   .greyMediumLightColor,
                                               child: Padding(
                                                 padding:
-                                                    const EdgeInsets.symmetric(
-                                                        horizontal: 10,
-                                                        vertical: 5.0),
+                                                const EdgeInsets.symmetric(
+                                                    horizontal: 10,
+                                                    vertical: 5.0),
                                                 child: Center(
                                                   child:
-                                                      black10w400(data: recipeDetail.lifeStage == FeaturedRecipeType.puppy.text?'16':'22.7'),
+                                                  black10w400(data: '22.7'),
                                                 ),
                                               ),
                                             ),
@@ -398,12 +398,12 @@ Future recipeDetailBottomSheetWidget({required RecipeModel recipeDetail}) {
                                                   .greyMediumLightColor,
                                               child: Padding(
                                                 padding:
-                                                    const EdgeInsets.symmetric(
-                                                        horizontal: 10,
-                                                        vertical: 5.0),
+                                                const EdgeInsets.symmetric(
+                                                    horizontal: 10,
+                                                    vertical: 5.0),
                                                 child: Center(
                                                   child:
-                                                      black10w400(data: recipeDetail.lifeStage == FeaturedRecipeType.puppy.text?'24':'27.3'),
+                                                  black10w400(data: '27.3'),
                                                 ),
                                               ),
                                             ),
@@ -412,12 +412,12 @@ Future recipeDetailBottomSheetWidget({required RecipeModel recipeDetail}) {
                                                   .greyMediumLightColor,
                                               child: Padding(
                                                 padding:
-                                                    const EdgeInsets.symmetric(
-                                                        horizontal: 10,
-                                                        vertical: 5.0),
+                                                const EdgeInsets.symmetric(
+                                                    horizontal: 10,
+                                                    vertical: 5.0),
                                                 child: Center(
                                                   child:
-                                                      black10w400(data: recipeDetail.lifeStage == FeaturedRecipeType.puppy.text?'32':'34.1'),
+                                                  black10w400(data: '34.1'),
                                                 ),
                                               ),
                                             ),
@@ -428,11 +428,11 @@ Future recipeDetailBottomSheetWidget({required RecipeModel recipeDetail}) {
                                                   .greyMediumLightColor,
                                               child: Padding(
                                                 padding:
-                                                    const EdgeInsets.symmetric(
-                                                        horizontal: 10,
-                                                        vertical: 5.0),
+                                                const EdgeInsets.symmetric(
+                                                    horizontal: 10,
+                                                    vertical: 5.0),
                                                 child: black10w400(
-                                                    data: recipeDetail.lifeStage == FeaturedRecipeType.puppy.text? 'Puppies up to 50% of Adult Weight':'Adult, Less Active'),
+                                                    data: 'Adult, Less Active'),
                                               ),
                                             ),
                                             Padding(
@@ -441,7 +441,7 @@ Future recipeDetailBottomSheetWidget({required RecipeModel recipeDetail}) {
                                               child: Center(
                                                 child: black10w400(
                                                     data:
-                                                        '${calculateDailyIntake(recipeModel: recipeDetail, puppyActivityLevel: Puppy.lessActive.text, currentWeight: 4.5, puppyActualWeight: 0)} g'),
+                                                    '${calculateDailyIntake(recipeModel: recipeDetail, puppyActivityLevel: Puppy.lessActive.text, currentWeight: 4.5, puppyActualWeight: 0)} g'),
                                               ),
                                             ),
                                             Padding(
@@ -450,7 +450,7 @@ Future recipeDetailBottomSheetWidget({required RecipeModel recipeDetail}) {
                                               child: Center(
                                                 child: black10w400(
                                                     data:
-                                                        '${calculateDailyIntake(recipeModel: recipeDetail, puppyActivityLevel: Puppy.lessActive.text, currentWeight: 9.1, puppyActualWeight: 0)} g'),
+                                                    '${calculateDailyIntake(recipeModel: recipeDetail, puppyActivityLevel: Puppy.lessActive.text, currentWeight: 9.1, puppyActualWeight: 0)} g'),
                                               ),
                                             ),
                                             Padding(
@@ -459,7 +459,7 @@ Future recipeDetailBottomSheetWidget({required RecipeModel recipeDetail}) {
                                               child: Center(
                                                 child: black10w400(
                                                     data:
-                                                        '${calculateDailyIntake(recipeModel: recipeDetail, puppyActivityLevel: Puppy.lessActive.text, currentWeight: 15.9, puppyActualWeight: 0)} g'),
+                                                    '${calculateDailyIntake(recipeModel: recipeDetail, puppyActivityLevel: Puppy.lessActive.text, currentWeight: 15.9, puppyActualWeight: 0)} g'),
                                               ),
                                             ),
                                             Padding(
@@ -468,7 +468,7 @@ Future recipeDetailBottomSheetWidget({required RecipeModel recipeDetail}) {
                                               child: Center(
                                                 child: black10w400(
                                                     data:
-                                                        '${calculateDailyIntake(recipeModel: recipeDetail, puppyActivityLevel: Puppy.lessActive.text, currentWeight: 22.7, puppyActualWeight: 0)} g'),
+                                                    '${calculateDailyIntake(recipeModel: recipeDetail, puppyActivityLevel: Puppy.lessActive.text, currentWeight: 22.7, puppyActualWeight: 0)} g'),
                                               ),
                                             ),
                                             Padding(
@@ -477,7 +477,7 @@ Future recipeDetailBottomSheetWidget({required RecipeModel recipeDetail}) {
                                               child: Center(
                                                 child: black10w400(
                                                     data:
-                                                        '${calculateDailyIntake(recipeModel: recipeDetail, puppyActivityLevel: Puppy.lessActive.text, currentWeight: 27.3, puppyActualWeight: 0)} g'),
+                                                    '${calculateDailyIntake(recipeModel: recipeDetail, puppyActivityLevel: Puppy.lessActive.text, currentWeight: 27.3, puppyActualWeight: 0)} g'),
                                               ),
                                             ),
                                             Padding(
@@ -486,7 +486,7 @@ Future recipeDetailBottomSheetWidget({required RecipeModel recipeDetail}) {
                                               child: Center(
                                                 child: black10w400(
                                                     data:
-                                                        '${calculateDailyIntake(recipeModel: recipeDetail, puppyActivityLevel: Puppy.lessActive.text, currentWeight: 34.1, puppyActualWeight: 0)} g'),
+                                                    '${calculateDailyIntake(recipeModel: recipeDetail, puppyActivityLevel: Puppy.lessActive.text, currentWeight: 34.1, puppyActualWeight: 0)} g'),
                                               ),
                                             ),
                                           ]),
@@ -496,11 +496,11 @@ Future recipeDetailBottomSheetWidget({required RecipeModel recipeDetail}) {
                                                   .greyMediumLightColor,
                                               child: Padding(
                                                 padding:
-                                                    const EdgeInsets.symmetric(
-                                                        horizontal: 10,
-                                                        vertical: 5.0),
+                                                const EdgeInsets.symmetric(
+                                                    horizontal: 10,
+                                                    vertical: 5.0),
                                                 child: black10w400(
-                                                    data: recipeDetail.lifeStage == FeaturedRecipeType.puppy.text?'Puppies from 50 - 80% of Adult Weight':'Adult, Active'),
+                                                    data: 'Adult, Active'),
                                               ),
                                             ),
                                             Padding(
@@ -509,7 +509,7 @@ Future recipeDetailBottomSheetWidget({required RecipeModel recipeDetail}) {
                                               child: Center(
                                                 child: black10w400(
                                                     data:
-                                                        '${calculateDailyIntake(recipeModel: recipeDetail, puppyActivityLevel: Puppy.active.text, currentWeight: 4.5, puppyActualWeight: 0)} g'),
+                                                    '${calculateDailyIntake(recipeModel: recipeDetail, puppyActivityLevel: Puppy.active.text, currentWeight: 4.5, puppyActualWeight: 0)} g'),
                                               ),
                                             ),
                                             Padding(
@@ -518,7 +518,7 @@ Future recipeDetailBottomSheetWidget({required RecipeModel recipeDetail}) {
                                               child: Center(
                                                 child: black10w400(
                                                     data:
-                                                        '${calculateDailyIntake(recipeModel: recipeDetail, puppyActivityLevel: Puppy.active.text, currentWeight: 9.1, puppyActualWeight: 0)} g'),
+                                                    '${calculateDailyIntake(recipeModel: recipeDetail, puppyActivityLevel: Puppy.active.text, currentWeight: 9.1, puppyActualWeight: 0)} g'),
                                               ),
                                             ),
                                             Padding(
@@ -527,7 +527,7 @@ Future recipeDetailBottomSheetWidget({required RecipeModel recipeDetail}) {
                                               child: Center(
                                                 child: black10w400(
                                                     data:
-                                                        '${calculateDailyIntake(recipeModel: recipeDetail, puppyActivityLevel: Puppy.active.text, currentWeight: 15.9, puppyActualWeight: 0)} g'),
+                                                    '${calculateDailyIntake(recipeModel: recipeDetail, puppyActivityLevel: Puppy.active.text, currentWeight: 15.9, puppyActualWeight: 0)} g'),
                                               ),
                                             ),
                                             Padding(
@@ -536,7 +536,7 @@ Future recipeDetailBottomSheetWidget({required RecipeModel recipeDetail}) {
                                               child: Center(
                                                 child: black10w400(
                                                     data:
-                                                        '${calculateDailyIntake(recipeModel: recipeDetail, puppyActivityLevel: Puppy.active.text, currentWeight: 22.7, puppyActualWeight: 0)} g'),
+                                                    '${calculateDailyIntake(recipeModel: recipeDetail, puppyActivityLevel: Puppy.active.text, currentWeight: 22.7, puppyActualWeight: 0)} g'),
                                               ),
                                             ),
                                             Padding(
@@ -545,7 +545,7 @@ Future recipeDetailBottomSheetWidget({required RecipeModel recipeDetail}) {
                                               child: Center(
                                                 child: black10w400(
                                                     data:
-                                                        '${calculateDailyIntake(recipeModel: recipeDetail, puppyActivityLevel: Puppy.active.text, currentWeight: 27.3, puppyActualWeight: 0)} g'),
+                                                    '${calculateDailyIntake(recipeModel: recipeDetail, puppyActivityLevel: Puppy.active.text, currentWeight: 27.3, puppyActualWeight: 0)} g'),
                                               ),
                                             ),
                                             Padding(
@@ -554,7 +554,7 @@ Future recipeDetailBottomSheetWidget({required RecipeModel recipeDetail}) {
                                               child: Center(
                                                 child: black10w400(
                                                     data:
-                                                        '${calculateDailyIntake(recipeModel: recipeDetail, puppyActivityLevel: Puppy.active.text, currentWeight: 34.1, puppyActualWeight: 0)} g'),
+                                                    '${calculateDailyIntake(recipeModel: recipeDetail, puppyActivityLevel: Puppy.active.text, currentWeight: 34.1, puppyActualWeight: 0)} g'),
                                               ),
                                             ),
                                           ]),
@@ -564,11 +564,11 @@ Future recipeDetailBottomSheetWidget({required RecipeModel recipeDetail}) {
                                                   .greyMediumLightColor,
                                               child: Padding(
                                                 padding:
-                                                    const EdgeInsets.symmetric(
-                                                        horizontal: 10,
-                                                        vertical: 5.0),
+                                                const EdgeInsets.symmetric(
+                                                    horizontal: 10,
+                                                    vertical: 5.0),
                                                 child: black10w400(
-                                                    data: recipeDetail.lifeStage == FeaturedRecipeType.puppy.text?'Puppies above 80% of Adult Weight':'Adult, More Active'),
+                                                    data: 'Adult, More Active'),
                                               ),
                                             ),
                                             Padding(
@@ -577,7 +577,7 @@ Future recipeDetailBottomSheetWidget({required RecipeModel recipeDetail}) {
                                               child: Center(
                                                 child: black10w400(
                                                     data:
-                                                        '${calculateDailyIntake(recipeModel: recipeDetail, puppyActivityLevel: Puppy.veryActive.text, currentWeight: 4.5, puppyActualWeight: 0)} g'),
+                                                    '${calculateDailyIntake(recipeModel: recipeDetail, puppyActivityLevel: Puppy.veryActive.text, currentWeight: 4.5, puppyActualWeight: 0)} g'),
                                               ),
                                             ),
                                             Padding(
@@ -586,7 +586,7 @@ Future recipeDetailBottomSheetWidget({required RecipeModel recipeDetail}) {
                                               child: Center(
                                                 child: black10w400(
                                                     data:
-                                                        '${calculateDailyIntake(recipeModel: recipeDetail, puppyActivityLevel: Puppy.veryActive.text, currentWeight: 9.1, puppyActualWeight: 0)} g'),
+                                                    '${calculateDailyIntake(recipeModel: recipeDetail, puppyActivityLevel: Puppy.veryActive.text, currentWeight: 9.1, puppyActualWeight: 0)} g'),
                                               ),
                                             ),
                                             Padding(
@@ -595,7 +595,7 @@ Future recipeDetailBottomSheetWidget({required RecipeModel recipeDetail}) {
                                               child: Center(
                                                 child: black10w400(
                                                     data:
-                                                        '${calculateDailyIntake(recipeModel: recipeDetail, puppyActivityLevel: Puppy.veryActive.text, currentWeight: 15.9, puppyActualWeight: 0)} g'),
+                                                    '${calculateDailyIntake(recipeModel: recipeDetail, puppyActivityLevel: Puppy.veryActive.text, currentWeight: 15.9, puppyActualWeight: 0)} g'),
                                               ),
                                             ),
                                             Padding(
@@ -604,7 +604,7 @@ Future recipeDetailBottomSheetWidget({required RecipeModel recipeDetail}) {
                                               child: Center(
                                                 child: black10w400(
                                                     data:
-                                                        '${calculateDailyIntake(recipeModel: recipeDetail, puppyActivityLevel: Puppy.veryActive.text, currentWeight: 22.7, puppyActualWeight: 0)} g'),
+                                                    '${calculateDailyIntake(recipeModel: recipeDetail, puppyActivityLevel: Puppy.veryActive.text, currentWeight: 22.7, puppyActualWeight: 0)} g'),
                                               ),
                                             ),
                                             Padding(
@@ -613,7 +613,7 @@ Future recipeDetailBottomSheetWidget({required RecipeModel recipeDetail}) {
                                               child: Center(
                                                 child: black10w400(
                                                     data:
-                                                        '${calculateDailyIntake(recipeModel: recipeDetail, puppyActivityLevel: Puppy.veryActive.text, currentWeight: 27.3, puppyActualWeight: 0)} g'),
+                                                    '${calculateDailyIntake(recipeModel: recipeDetail, puppyActivityLevel: Puppy.veryActive.text, currentWeight: 27.3, puppyActualWeight: 0)} g'),
                                               ),
                                             ),
                                             Padding(
@@ -622,7 +622,7 @@ Future recipeDetailBottomSheetWidget({required RecipeModel recipeDetail}) {
                                               child: Center(
                                                 child: black10w400(
                                                     data:
-                                                        '${calculateDailyIntake(recipeModel: recipeDetail, puppyActivityLevel: Puppy.veryActive.text, currentWeight: 34.1, puppyActualWeight: 0)} g'),
+                                                    '${calculateDailyIntake(recipeModel: recipeDetail, puppyActivityLevel: Puppy.veryActive.text, currentWeight: 34.1, puppyActualWeight: 0)} g'),
                                               ),
                                             ),
                                           ]),
@@ -646,8 +646,8 @@ Future recipeDetailBottomSheetWidget({required RecipeModel recipeDetail}) {
                                           height: 5.h,
                                         ),
                                         black14w500(
-                                                data:
-                                                    '${calculateFeedingPlan(recipeModel: recipeDetail, puppyModel: context.watch<AuthViewModel>().getAuthResponse.data!.pet!)} grams ${context.watch<AuthViewModel>().getAuthResponse.data!.pet!.feedingRoutine!} times per day')
+                                            data:
+                                            '${calculateFeedingPlan(recipeModel: recipeDetail, puppyModel: context.watch<AuthViewModel>().getAuthResponse.data!.pet!)} grams ${context.watch<AuthViewModel>().getAuthResponse.data!.pet!.feedingRoutine!} times per day')
 
                                       ],
                                     ): const SizedBox(),

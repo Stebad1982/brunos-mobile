@@ -10,7 +10,7 @@ import '../../utils/custom_colors.dart';
 import '../../utils/custom_font_style.dart';
 import '../bottomSheet/add_meal_bottom_sheet_widget.dart';
 
-Widget foodGridChipWidget ({required RecipeModel recipeDetail}){
+Widget foodGridChipWidget({required RecipeModel recipeDetail}) {
   return Card(
       elevation: 2,
       color: CustomColors.whiteColor,
@@ -20,13 +20,13 @@ Widget foodGridChipWidget ({required RecipeModel recipeDetail}){
         borderRadius: BorderRadius.all(Radius.circular(20)),
       ),
       child: Padding(
-        padding: const EdgeInsets.only(left: 8.0,right: 8.0,top: 8.0),
+        padding: const EdgeInsets.only(left: 8.0, right: 8.0, top: 8.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Container(
-              width: double.infinity,
+                width: double.infinity,
                 decoration: ShapeDecoration(
                   color: CustomColors.lightGreyColor,
                   shape: RoundedRectangleBorder(
@@ -35,11 +35,16 @@ Widget foodGridChipWidget ({required RecipeModel recipeDetail}){
                 ),
                 child: Stack(
                   children: [
-                    Center(child: Image.network(recipeDetail.media![0],height: 108.h,)),
+                    Center(
+                        child: Image.network(
+                      recipeDetail.media![0],
+                      height: 108.h,
+                    )),
                     InkWell(
                       onTap: () {
                         //TODO: CHANGE RECIPE MODEL
-                        recipeDetailBottomSheetWidget(recipeDetail: recipeDetail);
+                        recipeDetailBottomSheetWidget(
+                            recipeDetail: recipeDetail);
                       },
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
@@ -54,11 +59,11 @@ Widget foodGridChipWidget ({required RecipeModel recipeDetail}){
               padding: const EdgeInsets.symmetric(vertical: 12.0),
               child: Column(
                 children: [
-
-                  black14w500(data: recipeDetail.name!,centre: true),
-                  SizedBox(height: 5.h,),
+                  black14w500(data: recipeDetail.name!, centre: true),
+                  SizedBox(
+                    height: 5.h,
+                  ),
                   black14w500(data: '(${recipeDetail.lifeStage!})'),
-
                 ],
               ),
             )
