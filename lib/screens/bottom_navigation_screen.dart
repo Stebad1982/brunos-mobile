@@ -6,6 +6,7 @@ import '../view_models/auth_view_model.dart';
 import '../view_models/bottom_navigation_view_model.dart';
 import '../view_models/plans_view_model.dart';
 import '../widgets/custom_bottombar_widget.dart';
+import '../widgets/dialogs/home_promo_dialog.dart';
 import '../widgets/dialogs/share_your_location_dialog.dart';
 
 class BottomNavigationScreen extends StatefulWidget {
@@ -31,6 +32,7 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
       ) {
         shareYourLocationDialog(context: context);
       }
+      homePromoDialog(context: context);
     });
   }
 

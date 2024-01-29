@@ -31,12 +31,12 @@ class _CustomBottomBarWidgetState extends State<CustomBottomBarWidget> {
         ),
         boxShadow: [
           BoxShadow(
-            blurRadius: 24,
-            color: Colors.black.withOpacity(0.1),
+            blurRadius: 10,
+            color: Colors.black.withOpacity(0.25),
           ),
         ],
       ),
-      height: 87.h,
+      height: 70.h,
       width: MediaQuery.of(context).size.width,
       child: BackdropFilter(
         filter: ImageFilter.blur(sigmaX: 90, sigmaY: 90),
@@ -95,7 +95,7 @@ class _BBarIconState extends State<BBarIcon> {
   Widget build(BuildContext context) {
     return SizedBox(
       width: MediaQuery.of(context).size.width / 4,
-      height: 65,
+      height: 65.h,
       child: Consumer<BottomNavigationViewModel>(
         builder: (context, bottomNavigationViewModel, _) {
           return InkResponse(
