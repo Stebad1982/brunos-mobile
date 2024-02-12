@@ -1,3 +1,4 @@
+import 'package:brunos_kitchen/utils/custom_colors.dart';
 import 'package:brunos_kitchen/utils/custom_font_style.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +10,7 @@ import '../../models/responses/blogs_news_response.dart';
 import '../../models/responses/faqs_blogs_news_response.dart';
 import '../carousels/recipes_carousel_widget.dart';
 
-Widget newsVerticalListChipWidget({required BlogsNewsData data}) {
+Widget newsBlogsVerticalListChipWidget({required BlogsNewsData data}) {
   return Column(
     mainAxisSize: MainAxisSize.min,
     children: [
@@ -37,6 +38,7 @@ Widget newsVerticalListChipWidget({required BlogsNewsData data}) {
       SizedBox(
         height: 20.h,
       ),
+      Divider(color: CustomColors.lightBlackColor,height: 2.0.h,)
     ],
   );
 }

@@ -48,7 +48,7 @@ void homePromoDialog(
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Image.asset(
-                          splashBackground,
+                          'assets/images/welcom_banner.jpeg',
                         //  width: 150.w,
                           height: 400.h,
                          // fit: BoxFit.fitWidth,

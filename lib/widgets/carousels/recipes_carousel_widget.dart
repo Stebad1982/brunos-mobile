@@ -36,8 +36,9 @@ class _RecipesCarouselWidgetState extends State<RecipesCarouselWidget> {
               child: Image.network(image,))],
           carouselController: _controller,
           options: CarouselOptions(
+            enableInfiniteScroll: widget.recipesImages.length > 1,
              height: 180.h,
-              autoPlay: true,
+              autoPlay: widget.recipesImages.length > 1,
               viewportFraction: 0.90.w,
               enlargeCenterPage: true,
               aspectRatio: 2.0,

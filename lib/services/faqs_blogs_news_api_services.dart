@@ -30,11 +30,19 @@ class FaqsBlogsNewsApiServices {
     return baseResponseModel;
   }
 
-  Future<BlogsNewsResponse> allBlogsAndNewsApi() async {
+  Future<BlogsNewsResponse> allNewsApi() async {
     final response = await _httpService.httpRequest(
-        endPoint: EndPoints.allBlogsAndNews, requestType: 'GET', params: '');
+        endPoint: EndPoints.allNews, requestType: 'GET', params: '');
     final parsed = json.decode(response.body);
     BlogsNewsResponse blogsNewsResponse = BlogsNewsResponse.fromJson(parsed);
     return blogsNewsResponse;
   }
+  Future<BlogsNewsResponse> allBlogsApi() async {
+    final response = await _httpService.httpRequest(
+        endPoint: EndPoints.allBlogs, requestType: 'GET', params: '');
+    final parsed = json.decode(response.body);
+    BlogsNewsResponse blogsNewsResponse = BlogsNewsResponse.fromJson(parsed);
+    return blogsNewsResponse;
+  }
+
 }

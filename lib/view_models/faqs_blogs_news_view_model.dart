@@ -130,11 +130,30 @@ class FaqsBlogsNewsViewModel with ChangeNotifier {
     }
   }
 
-  Future<bool> callBlogsNewsApi() async {
+  Future<bool> callNewsApi() async {
     EasyLoading.show(status: 'Please Wait ...');
     try {
       final BlogsNewsResponse response =
-          await _faqsBlogsNewsApiServices.allBlogsAndNewsApi();
+          await _faqsBlogsNewsApiServices.allNewsApi();
+      if (response.isSuccess!) {
+        setBlogsNewsResponse(response);
+        EasyLoading.dismiss();
+        return true;
+      } else {
+        EasyLoading.showError('${response.message}');
+        return false;
+      }
+    } catch (e) {
+      EasyLoading.showError(e.toString());
+      return false;
+    }
+  }
+
+  Future<bool> callBlogsApi() async {
+    EasyLoading.show(status: 'Please Wait ...');
+    try {
+      final BlogsNewsResponse response =
+      await _faqsBlogsNewsApiServices.allBlogsApi();
       if (response.isSuccess!) {
         setBlogsNewsResponse(response);
         EasyLoading.dismiss();

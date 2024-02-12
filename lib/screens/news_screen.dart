@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 
 import '../view_models/faqs_blogs_news_view_model.dart';
 import '../widgets/app_bar_with_back_widget.dart';
-import '../widgets/listChips/news_vertical_list_chip_widget.dart';
+import '../widgets/listChips/news_blog_vertical_list_chip_widget.dart';
 
 class NewsScreen extends StatefulWidget {
   const NewsScreen({super.key});
@@ -18,7 +18,7 @@ class _NewsScreenState extends State<NewsScreen> {
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      context.read<FaqsBlogsNewsViewModel>().callBlogsNewsApi();
+      context.read<FaqsBlogsNewsViewModel>().callNewsApi();
     });
     super.initState();
   }
@@ -36,7 +36,7 @@ class _NewsScreenState extends State<NewsScreen> {
               itemCount: faqsBlogsNewsViewModel.getBlogsNewsResponse.data!.length,
               padding: const EdgeInsets.symmetric(vertical: 20),
               itemBuilder: (BuildContext context, int index) {
-                return newsVerticalListChipWidget(data: faqsBlogsNewsViewModel.getBlogsNewsResponse.data![index]);
+                return newsBlogsVerticalListChipWidget(data: faqsBlogsNewsViewModel.getBlogsNewsResponse.data![index]);
               },
             )
             : const SizedBox(),
