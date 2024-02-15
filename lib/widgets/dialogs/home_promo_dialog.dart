@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../models/responses/auth_response.dart';
 import '../../route_generator.dart';
 import '../../utils/custom_buttons.dart';
 import '../../utils/custom_colors.dart';
@@ -11,7 +12,7 @@ import '../../utils/custom_font_style.dart';
 import '../../utils/images.dart';
 
 void homePromoDialog(
-    {required BuildContext context}) {
+    {required BuildContext context, required Greetings greetingData}) {
   Timer? timer = Timer(const Duration(milliseconds: 10000), (){
     Navigator.of(context, rootNavigator: true).pop();
   });
@@ -47,8 +48,8 @@ void homePromoDialog(
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Image.asset(
-                          'assets/images/welcom_banner.jpeg',
+                        Image.network(
+                          greetingData.media![0],
                         //  width: 150.w,
                           height: 400.h,
                          // fit: BoxFit.fitWidth,

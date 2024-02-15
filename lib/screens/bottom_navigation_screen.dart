@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../models/responses/auth_response.dart';
 import '../view_models/auth_view_model.dart';
 import '../view_models/bottom_navigation_view_model.dart';
 import '../view_models/plans_view_model.dart';
@@ -21,18 +22,24 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      context
-          .read<PlansViewModel>()
-          .callAllRecipesApi();
+      context.read<PlansViewModel>().callAllRecipesApi();
+      if (context.read<AuthViewModel>().getAuthResponse.data!.location ==
+          null) {
+        shareYourLocationDialog(context: context);
+      }
       if (context
           .read<AuthViewModel>()
           .getAuthResponse
           .data!
-          .location == null
-      ) {
-        shareYourLocationDialog(context: context);
+          .greetings!
+          .isNotEmpty) {
+        for (Greetings greeting
+            in context.read<AuthViewModel>().getAuthResponse.data!.greetings!) {
+          if (greeting.isFeatured!) {
+            homePromoDialog(context: context, greetingData: greeting);
+          }
+        }
       }
-      homePromoDialog(context: context);
     });
   }
 
@@ -62,8 +69,8 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
                       ),
                     );
                   },
-                  child: bottomNavigationViewModel.getHomeView(
-                      bottomNavigationViewModel.getHomeViewIndex),
+                  child: bottomNavigationViewModel
+                      .getHomeView(bottomNavigationViewModel.getHomeViewIndex),
                 );
               },
             ),

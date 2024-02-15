@@ -4,7 +4,7 @@ import 'package:brunos_kitchen/models/card_model.dart';
 import '../address_model.dart';
 import '../puppy_model.dart';
 
-class AuthResponse extends BaseResponseModel{
+class AuthResponse extends BaseResponseModel {
   AuthData? data;
 
   AuthResponse({super.isSuccess, this.data, super.message});
@@ -43,24 +43,26 @@ class AuthData {
   String? refreshToken;
   String? clientToken;
   List<Discounts>? discounts;
+  List<Greetings>? greetings;
 
   AuthData(
       {this.sId,
-        this.createdOnDate,
-        this.fullName,
-        this.email,
-        this.phoneNumber,
-        this.isVerified,
-        this.media,
-        this.petsCount,
-        this.pet,
-        this.card,
-        this.isGuest,
-        this.location,
-        this.availablePoints,
-        this.refreshToken,
-        this.discounts,
-        this.clientToken});
+      this.createdOnDate,
+      this.fullName,
+      this.email,
+      this.phoneNumber,
+      this.isVerified,
+      this.media,
+      this.petsCount,
+      this.pet,
+      this.card,
+      this.isGuest,
+      this.location,
+      this.availablePoints,
+      this.refreshToken,
+      this.discounts,
+      this.clientToken,
+      this.greetings});
 
   AuthData.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
@@ -84,6 +86,12 @@ class AuthData {
       discounts = <Discounts>[];
       json['discounts'].forEach((v) {
         discounts!.add(new Discounts.fromJson(v));
+      });
+    }
+    if (json['greetings'] != null) {
+      greetings = <Greetings>[];
+      json['greetings'].forEach((v) {
+        greetings!.add(new Greetings.fromJson(v));
       });
     }
   }
@@ -110,6 +118,9 @@ class AuthData {
     data['clientToken'] = this.clientToken;
     if (this.discounts != null) {
       data['discounts'] = this.discounts!.map((v) => v.toJson()).toList();
+    }
+    if (this.greetings != null) {
+      data['greetings'] = this.greetings!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -138,6 +149,53 @@ class Discounts {
     data['name'] = this.name;
     return data;
   }
+}
 
+class Greetings {
+  String? sId;
+  int? createdOnDate;
+  String? title;
+  String? description;
+  String? type;
+  List<String>? media;
+  String? userId;
+  bool? isFeatured;
+  bool? isReplied;
 
+  Greetings(
+      {this.sId,
+      this.createdOnDate,
+      this.title,
+      this.description,
+      this.type,
+      this.media,
+      this.userId,
+      this.isFeatured,
+      this.isReplied});
+
+  Greetings.fromJson(Map<String, dynamic> json) {
+    sId = json['_id'];
+    createdOnDate = json['createdOnDate'];
+    title = json['title'];
+    description = json['description'];
+    type = json['type'];
+    media = json['media'].cast<String>();
+    userId = json['userId'];
+    isFeatured = json['isFeatured'];
+    isReplied = json['isReplied'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['_id'] = this.sId;
+    data['createdOnDate'] = this.createdOnDate;
+    data['title'] = this.title;
+    data['description'] = this.description;
+    data['type'] = this.type;
+    data['media'] = this.media;
+    data['userId'] = this.userId;
+    data['isFeatured'] = this.isFeatured;
+    data['isReplied'] = this.isReplied;
+    return data;
+  }
 }
