@@ -12,7 +12,7 @@ enum Screens {
 }
 
 enum Contact{
-  phone("+923132797806");
+  phone("+971582495840");
 
   const Contact(this.text);
 
