@@ -18,7 +18,7 @@ Widget customButton ({required String text,required VoidCallback onPressed, requ
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           icon != null?  Padding(
-            padding: const EdgeInsets.only(left: 5),
+            padding: const EdgeInsets.symmetric(horizontal: 5),
             child: Icon(icon,color: colored ? CustomColors.whiteColor : CustomColors.orangeColor,),
           ) : Container(),
           Text(text,

@@ -16,10 +16,14 @@ class FaqsBlogsNewsViewModel with ChangeNotifier {
   WebViewController _webViewController = WebViewController();
   TextEditingController _feedbackTitle = TextEditingController();
   TextEditingController _feedbackDesc = TextEditingController();
+  TextEditingController _comment = TextEditingController();
+
 
   TextEditingController get getFeedbackTitle => _feedbackTitle;
 
   TextEditingController get getFeedbackDesc => _feedbackDesc;
+  TextEditingController get getComment => _comment;
+
 
   WebViewController get getWebViewController => _webViewController;
 
@@ -100,6 +104,18 @@ class FaqsBlogsNewsViewModel with ChangeNotifier {
     } else {
       return true;
     }
+  }
+
+  bool validateComment() {
+    if (_comment.text.isEmpty || _comment.text.isEmpty) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  clearComment(){
+    _comment.clear();
   }
 
   clearFeedbackForm(){

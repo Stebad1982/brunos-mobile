@@ -11,6 +11,14 @@ enum Screens {
   final String text;
 }
 
+enum Contact{
+  phone("+923132797806");
+
+  const Contact(this.text);
+
+  final String text;
+}
+
 enum Plans {
   transitional("Transitional"),
   monthly("Monthly"),
