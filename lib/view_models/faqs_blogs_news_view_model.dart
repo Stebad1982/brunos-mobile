@@ -146,6 +146,29 @@ class FaqsBlogsNewsViewModel with ChangeNotifier {
     }
   }
 
+  Future<bool> callAddCommentApi() async {
+    EasyLoading.show(status: 'Please Wait ...');
+    try {
+      final BaseResponseModel response =
+      await _faqsBlogsNewsApiServices.addFeedbackApi(
+          feedbackRequest: FeedbackRequest(
+              title: 'Get Help Comment',
+              description: _comment.text,
+              type: 'feedback'));
+      if (response.isSuccess!) {
+        clearFeedbackForm();
+        EasyLoading.showSuccess('Comment Submitted Successfully');
+        return true;
+      } else {
+        EasyLoading.showError('${response.message}');
+        return false;
+      }
+    } catch (e) {
+      EasyLoading.showError(e.toString());
+      return false;
+    }
+  }
+
   Future<bool> callNewsApi() async {
     EasyLoading.show(status: 'Please Wait ...');
     try {

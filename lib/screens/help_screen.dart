@@ -1,3 +1,4 @@
+import 'package:brunos_kitchen/utils/custom_colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -34,6 +35,12 @@ class _HelpScreenState extends State<HelpScreen> {
 
   @override
   Widget build(BuildContext context) {
+    String? encodeQueryParameters(Map<String, String> params) {
+      return params.entries
+          .map((MapEntry<String, String> e) =>
+      '${Uri.encodeComponent(e.key)}=${Uri.encodeComponent(e.value)}')
+          .join('&');
+    }
     return Consumer<FaqsBlogsNewsViewModel>(
         builder: (_, faqsBlogsNewsViewModel, __) {
       return Scaffold(
@@ -78,7 +85,9 @@ class _HelpScreenState extends State<HelpScreen> {
                   text: 'Submit',
                   onPressed: () async {
                     if (faqsBlogsNewsViewModel.validateComment()) {
-                      //await faqsBlogsNewsViewModel.callAddFeedbackApi();
+                      FocusManager.instance.primaryFocus?.unfocus();
+                      await faqsBlogsNewsViewModel.callAddCommentApi();
+                      faqsBlogsNewsViewModel.clearComment();
                     } else {
                       descriptionDialog(
                           context: context,
@@ -89,13 +98,49 @@ class _HelpScreenState extends State<HelpScreen> {
                   },
                 ),
                 SizedBox(
-                  height: 10.h,
+                  height: 60.h,
                 ),
-                Center(child: black12w500Centre(data: 'OR')),
+              InkWell(
+                onTap: () async {
+                  final Uri launchUri = Uri(
+                    scheme: 'tel',
+                    path: Contact.phone.text,
+                  );
+                  await launchUrl(launchUri);
+                },
+                child: Row(
+                  children: [
+                    const Icon(Icons.phone, color: CustomColors.blackColor,),
+                    SizedBox(width: 10.w,),
+                    black18w500(data: Contact.phone.text),
+
+                  ],
+                ),
+              ),
                 SizedBox(
-                  height: 10.h,
+                  height: 20.h,
                 ),
-                customButton(
+                InkWell(
+                  onTap: () async {
+                    final Uri emailLaunchUri = Uri(
+                      scheme: 'mailto',
+                      path: Contact.email.text,
+                      query: encodeQueryParameters(<String, String>{
+                        'subject': 'Get Help',
+                      }),
+                    );
+                    await launchUrl(emailLaunchUri);
+                  },
+                  child: Row(
+                    children: [
+                      const Icon(Icons.email_outlined, color: CustomColors.blackColor,),
+                      SizedBox(width: 10.w,),
+                      black18w500(data: Contact.email.text),
+
+                    ],
+                  ),
+                ),
+                /*customButton(
                   colored: false,
                   text: 'Call Now',
                   icon: Icons.phone,
@@ -106,7 +151,7 @@ class _HelpScreenState extends State<HelpScreen> {
                     );
                     await launchUrl(launchUri);
                   },
-                ),
+                ),*/
               ],
             ),
           ),

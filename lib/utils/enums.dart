@@ -12,6 +12,7 @@ enum Screens {
 }
 
 enum Contact{
+  email("hello@brunos.kitchen"),
   phone("+971582495840");
 
   const Contact(this.text);
