@@ -23,23 +23,27 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       context.read<PlansViewModel>().callAllRecipesApi();
-      if (context.read<AuthViewModel>().getAuthResponse.data!.location ==
-          null) {
-        shareYourLocationDialog(context: context);
-      }
-      if (context
-          .read<AuthViewModel>()
-          .getAuthResponse
-          .data!
-          .greetings!
-          .isNotEmpty) {
-        for (Greetings greeting
-            in context.read<AuthViewModel>().getAuthResponse.data!.greetings!) {
-          if (greeting.isFeatured!) {
-            homePromoDialog(context: context, greetingData: greeting);
+      if(context.read<AuthViewModel>().getShowGreeting){
+        if (context.read<AuthViewModel>().getAuthResponse.data!.location ==
+            null) {
+          shareYourLocationDialog(context: context);
+        }
+        if (context
+            .read<AuthViewModel>()
+            .getAuthResponse
+            .data!
+            .greetings!
+            .isNotEmpty) {
+          for (Greetings greeting
+          in context.read<AuthViewModel>().getAuthResponse.data!.greetings!) {
+            if (greeting.isFeatured!) {
+              homePromoDialog(context: context, greetingData: greeting);
+            }
           }
         }
+        context.read<AuthViewModel>().setShowGreeting();
       }
+
     });
   }
 

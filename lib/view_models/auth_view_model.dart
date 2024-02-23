@@ -31,6 +31,7 @@ class AuthViewModel with ChangeNotifier {
   String _otpRouteFrom = Screens.registerUser.text;
   String _registerRouteFrom = Screens.login.text;
   bool _securePassword = true;
+  bool _showGreeting = true;
   final AuthApiServices _authApiServices = AuthApiServices();
   AuthResponse _authResponse = AuthResponse();
   final SharedPref _sharedPref = SharedPref();
@@ -54,6 +55,13 @@ class AuthViewModel with ChangeNotifier {
   String _confirmPasswordFieldError = '';
 
   bool get getSecurePassword => _securePassword;
+
+  bool get getShowGreeting => _showGreeting;
+
+  void setShowGreeting (){
+    _showGreeting = false;
+    notifyListeners();
+  }
 
   void setSecurePassword (){
     _securePassword = !_securePassword;
