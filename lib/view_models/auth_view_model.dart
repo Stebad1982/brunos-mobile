@@ -7,6 +7,7 @@ import 'package:brunos_kitchen/models/puppy_model.dart';
 import 'package:brunos_kitchen/models/requests/edit_user_profile_request.dart';
 import 'package:brunos_kitchen/models/requests/forgot_password_request.dart';
 import 'package:brunos_kitchen/models/requests/user_register_request.dart';
+import 'package:brunos_kitchen/models/responses/banners_response.dart';
 import 'package:brunos_kitchen/services/auth_api_services.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -34,6 +35,7 @@ class AuthViewModel with ChangeNotifier {
   bool _showGreeting = true;
   final AuthApiServices _authApiServices = AuthApiServices();
   AuthResponse _authResponse = AuthResponse();
+  List<BannerData> _bannersList = [];
   final SharedPref _sharedPref = SharedPref();
   final FirebaseAuth _auth = FirebaseAuth.instance;
   String _countryCode = '+971';
@@ -57,6 +59,16 @@ class AuthViewModel with ChangeNotifier {
   bool get getSecurePassword => _securePassword;
 
   bool get getShowGreeting => _showGreeting;
+
+  List<BannerData> get getBannerList => _bannersList;
+
+  void setBannerResponse(BannersResponse value){
+    if(value.data!= null){
+      _bannersList.addAll(value.data!);
+
+    }
+    notifyListeners();
+  }
 
   void setShowGreeting (){
     _showGreeting = false;
@@ -465,6 +477,15 @@ class AuthViewModel with ChangeNotifier {
       codeAutoRetrievalTimeout: (String verificationId) {},
     );
     return returnValue;
+  }
+
+  Future<void> callBanners() async {
+    try {
+      final BannersResponse bannersResponse = await _authApiServices.bannersApi();
+      setBannerResponse(bannersResponse);
+    } catch (exception) {
+      EasyLoading.showToast(exception.toString());
+    }
   }
 
   Future<bool> verifyOTP() async {

@@ -28,10 +28,13 @@ class CartViewModel with ChangeNotifier {
   int? _selectedIndex;
   bool _viewCartItemDetail = false;
   final TextEditingController _promoCodeController = TextEditingController();
+  final TextEditingController _instructionsController = TextEditingController();
   DateTime _focusedDay = DateTime.now().add(const Duration(days: 4));
   DateTime _selectedDay = DateTime.now().add(const Duration(days: 4));
 
   double get getPawPoints => _pawPoints;
+
+  TextEditingController get getInstructionsController => _instructionsController;
 
   void setPawPoints(double value) {
     _pawPoints = value;
@@ -84,6 +87,7 @@ class CartViewModel with ChangeNotifier {
 
   clearData() {
     _promoCodeController.clear();
+    _instructionsController.clear();
     _promoCodeDiscount = 0;
     _pawSelectedPoints = 0;
     _requiredPawPoints = 0;
@@ -116,7 +120,8 @@ class CartViewModel with ChangeNotifier {
         promoCodeId: _promoCodeController.text,
         cartItems: _cartList,
         cartTotal: _cartTotalPrice,
-        shippingFees: _deliveryCharges);
+        shippingFees: _deliveryCharges,
+        specialInstructions: _instructionsController.text);
     navigatorKey.currentContext!
         .read<OrderViewModel>()
         .setOrderRequest(orderData);

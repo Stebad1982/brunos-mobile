@@ -108,9 +108,13 @@ class HomeScreen extends StatelessWidget {
               SizedBox(
                 height: 20.h,
               ),
-              SizedBox(
-                height: 200.w,
-                child: const HomeCarouselWidget(),
+              Visibility(
+                visible:
+                    context.watch<AuthViewModel>().getBannerList.isNotEmpty,
+                child: SizedBox(
+                  height: 200.w,
+                  child: const HomeCarouselWidget(),
+                ),
               ),
               SizedBox(
                 height: 24.h,
@@ -181,7 +185,7 @@ class HomeScreen extends StatelessWidget {
                   children: [
                     Expanded(
                         child: customButton(
-                          height: 40.h,
+                            height: 40.h,
                             text: FeaturedRecipeType.adult.text,
                             onPressed: () {
                               context
@@ -251,7 +255,7 @@ class HomeScreen extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 20.0),
                 child: customButton(
                     text: 'Order Your Doggo\'s Meals Now',
-                   /* boldText: 'Tap Here',*/
+                    /* boldText: 'Tap Here',*/
                     onPressed: () {
                       if (context
                               .read<AuthViewModel>()
@@ -413,9 +417,11 @@ class HomeScreen extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20.0),
                 child: InkWell(
-                  onTap: (){
-                    context.read<BottomNavigationViewModel>().setHomeViewIndex(1);
-                  },
+                    onTap: () {
+                      context
+                          .read<BottomNavigationViewModel>()
+                          .setHomeViewIndex(1);
+                    },
                     child: Image.asset(dogBanner)),
               ),
               SizedBox(

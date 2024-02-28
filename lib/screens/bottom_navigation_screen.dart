@@ -22,6 +22,7 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      context.read<AuthViewModel>().callBanners();
       context.read<PlansViewModel>().callAllRecipesApi();
       if(context.read<AuthViewModel>().getShowGreeting){
         if (context.read<AuthViewModel>().getAuthResponse.data!.location ==
