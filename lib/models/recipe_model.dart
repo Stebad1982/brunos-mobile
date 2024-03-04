@@ -33,6 +33,7 @@ class RecipeModel {
   List<ItemSizes>? sizes;
   ItemSizes? selectedItemSize;
   String? recipeNo;
+  List<String>? tableImage;
   String? lifeStage;
   int? totalDays;
   int? quantity;
@@ -53,6 +54,7 @@ class RecipeModel {
         this.userId,
 */
       this.ingredient,
+        this.tableImage,
       this.description,
       this.details,
       this.instructions,
@@ -124,6 +126,7 @@ class RecipeModel {
     price5 = json['price5'];
     price6 = json['price6'];
     media = json['media'].cast<String>();
+    tableImage = json['tableImage'] != null ? json['tableImage'].cast<String>(): [];
     category = json['category'];
     recipeNo = json['recipeNo'];
     lifeStage = json['lifeStage'];
@@ -158,6 +161,7 @@ class RecipeModel {
     }
     data['selectedItemSize'] = this.selectedItemSize;
     data['description'] = this.description;
+    data['tableImage'] = this.tableImage;
     data['details'] = this.details;
     data['instructions'] = this.instructions;
     // data['nutrition'] = this.nutrition;

@@ -14,7 +14,7 @@ List<FoodCategory> foodCategoryList = [
   FoodCategory('Long Shelf Life', longShelfLife),
   FoodCategory('Human Grade Ingredients', humanGradeIngredients),
   FoodCategory('AAFCO Compliant', aafcoCompliant),
-  FoodCategory('Customized Meals', customizedMeals),
+  FoodCategory('Well-Balanced Meals', customizedMeals),
   FoodCategory('Vet Developed', vetDeveloped)
 ];
 

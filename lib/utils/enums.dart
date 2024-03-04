@@ -92,7 +92,6 @@ enum FeaturedRecipeType {
 
 
 
-
 enum SharedPreferencesKeys {
   authToken("auth_token");
 

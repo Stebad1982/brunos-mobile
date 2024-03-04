@@ -19,6 +19,7 @@ import '../utils/custom_buttons.dart';
 import '../utils/custom_colors.dart';
 import '../utils/custom_font_style.dart';
 import '../utils/enums.dart';
+import '../utils/send_grid_pref.dart';
 import '../view_models/bottom_navigation_view_model.dart';
 import '../view_models/puppy_view_model.dart';
 import '../widgets/carousels/home_carousel_widget.dart';
@@ -257,7 +258,7 @@ class HomeScreen extends StatelessWidget {
                     text: 'Order Your Doggo\'s Meals Now',
                     /* boldText: 'Tap Here',*/
                     onPressed: () {
-                      if (context
+                   /*   if (context
                               .read<AuthViewModel>()
                               .getAuthResponse
                               .data!
@@ -270,7 +271,10 @@ class HomeScreen extends StatelessWidget {
                         Navigator.pushNamed(context, puppyCreationRoute);
                       } else {
                         Navigator.pushNamed(context, choosePlanRoute);
-                      }
+                      }*/
+                      SendGridPref sendGrid = SendGridPref();
+                      sendGrid.sendEmail(emailSubject: 'Registration', emailDescription: 'Register Successfully');
+
                     },
                     colored: true),
               ),

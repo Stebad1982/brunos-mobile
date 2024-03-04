@@ -292,7 +292,7 @@ class CheckoutScreen extends StatelessWidget {
                           padding: const EdgeInsets.all(20),
                           child: lightBlack14w400Centre(
                               data:
-                                  'Delivery Date: ${DateTimeFormatter.showDateFormat3(cartViewModel.getSelectedDay!)}'),
+                                  'Expected Delivery Date: ${DateTimeFormatter.showDateFormat3(cartViewModel.getSelectedDay!)}'),
                         ),
                       ),
                     ),

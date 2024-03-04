@@ -18,6 +18,7 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:package_info_plus/package_info_plus.dart';
+import 'package:sendgrid_mailer/sendgrid_mailer.dart';
 
 import '../models/requests/sign_in_request.dart';
 import '../models/requests/social_sign_in_request.dart';
@@ -26,6 +27,7 @@ import '../screens/bottom_navigation_screen.dart';
 import '../screens/logIn_screen.dart';
 import '../screens/intro_slides_screen.dart';
 import '../utils/enums.dart';
+import '../utils/send_grid_pref.dart';
 import '../utils/shared_pref .dart';
 
 class AuthViewModel with ChangeNotifier {
@@ -323,6 +325,7 @@ class AuthViewModel with ChangeNotifier {
   Future<bool> callUserRegisterApi() async {
     EasyLoading.show(status: 'Please Wait ...');
     final bool otpVerification = await verifyOTP();
+    SendGridPref sendGrid = SendGridPref();
     if(otpVerification){
       try {
         final UserRegisterRequest userRegisterRequest = UserRegisterRequest(
@@ -338,6 +341,7 @@ class AuthViewModel with ChangeNotifier {
         if (response.isSuccess!) {
           setAuthResponse(response);
           //  setImageSlider();
+          sendGrid.sendEmail(emailSubject: 'Registration', emailDescription: '${_nameController.text} Register Successfully');
           EasyLoading.dismiss();
           return true;
         } else {
@@ -454,6 +458,7 @@ class AuthViewModel with ChangeNotifier {
       return false;
     }
   }
+
 
   Future<bool> verifyNumber() async {
     EasyLoading.show(status: 'Sending OTP');
