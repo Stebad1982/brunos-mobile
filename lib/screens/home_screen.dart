@@ -258,7 +258,7 @@ class HomeScreen extends StatelessWidget {
                     text: 'Order Your Doggo\'s Meals Now',
                     /* boldText: 'Tap Here',*/
                     onPressed: () {
-                   /*   if (context
+                      if (context
                               .read<AuthViewModel>()
                               .getAuthResponse
                               .data!
@@ -271,10 +271,10 @@ class HomeScreen extends StatelessWidget {
                         Navigator.pushNamed(context, puppyCreationRoute);
                       } else {
                         Navigator.pushNamed(context, choosePlanRoute);
-                      }*/
-                      SendGridPref sendGrid = SendGridPref();
+                      }
+                   /*   SendGridPref sendGrid = SendGridPref();
                       sendGrid.sendEmail(emailSubject: 'Registration', emailDescription: 'Register Successfully');
-
+*/
                     },
                     colored: true),
               ),
