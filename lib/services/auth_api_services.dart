@@ -5,6 +5,7 @@ import 'package:brunos_kitchen/models/requests/edit_user_profile_request.dart';
 import 'package:brunos_kitchen/models/requests/forgot_password_request.dart';
 import 'package:brunos_kitchen/models/requests/social_sign_in_request.dart';
 import 'package:brunos_kitchen/models/requests/user_register_request.dart';
+import 'package:brunos_kitchen/models/responses/banners_response.dart';
 
 import '../models/requests/sign_in_request.dart';
 import '../models/responses/auth_response.dart';
@@ -31,6 +32,17 @@ class AuthApiServices {
     }
     return authResponse;
   }
+
+  Future<BannersResponse> bannersApi() async {
+    final response = await _httpService.httpRequest(
+        endPoint: EndPoints.banners,
+        requestType: 'GET',
+        params: '');
+    final parsed = json.decode(response.body);
+    BannersResponse bannersResponse = BannersResponse.fromJson(parsed);
+    return bannersResponse;
+  }
+
   Future<AuthResponse> userRegisterApi({required UserRegisterRequest userRegisterRequest}) async {
     final response = await _httpService.httpRequest(
         endPoint: EndPoints.signUp,

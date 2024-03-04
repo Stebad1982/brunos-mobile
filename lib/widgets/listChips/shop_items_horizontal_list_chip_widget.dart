@@ -63,7 +63,7 @@ Widget shopItemsHorizontalListChipWidget({required RecipeModel productDetail}) {
                   children: [
                     SizedBox(
                       height: 40.h,
-                        child: black14w400(data: productDetail.name!)),
+                        child: black14w400(data: '${productDetail.name!}${productDetail.category == ProductCategories.standardRecipes.text? '(400grams)': ''}')),
                     SizedBox(
                       height: 6.h,
                     ),

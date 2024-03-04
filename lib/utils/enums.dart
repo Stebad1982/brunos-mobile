@@ -92,7 +92,6 @@ enum FeaturedRecipeType {
 
 
 
-
 enum SharedPreferencesKeys {
   authToken("auth_token");
 
@@ -107,6 +106,7 @@ enum EndPoints {
   guest('auth/guest'),
   allNews('news-FAQ/type/newsAndBlog'),
   allBlogs('news-FAQ/type/blogs'),
+  banners('news-FAQ/type/banners'),
   allFaqs('news-FAQ/type/FAQ'),
   addFeedback('news-FAQ/'),
   forgotPassword('auth/forgot-password'),

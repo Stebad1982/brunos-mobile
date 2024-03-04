@@ -8,11 +8,11 @@ import 'package:provider/provider.dart';
 import '../../utils/custom_colors.dart';
 import '../../view_models/auth_view_model.dart';
 
-final List<Widget> slidersList = [
+/*final List<Widget> slidersList = [
   Image.asset(slider1),
   Image.asset(slider2),
   Image.asset(slider3),
-];
+];*/
 
 
 
@@ -32,7 +32,10 @@ class _HomeCarouselWidgetState extends State<HomeCarouselWidget> {
     return Column(children: [
       Expanded(
         child: CarouselSlider(
-          items: slidersList,
+          items: [
+            for (var banner in context.read<AuthViewModel>().getBannerList)
+              Image.network(banner.media![0])
+            ],
           carouselController: _controller,
           options: CarouselOptions(
            // height: 200,
@@ -50,7 +53,7 @@ class _HomeCarouselWidgetState extends State<HomeCarouselWidget> {
       SizedBox(height: 5.h,),
       Row(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: slidersList.asMap().entries.map((entry) {
+        children: context.read<AuthViewModel>().getBannerList.asMap().entries.map((entry) {
           return GestureDetector(
             onTap: () => _controller.animateToPage(entry.key),
             child: Container(

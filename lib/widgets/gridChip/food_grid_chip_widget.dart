@@ -40,17 +40,20 @@ Widget foodGridChipWidget({required RecipeModel recipeDetail}) {
                       recipeDetail.media![0],
                       height: 108.h,
                     )),
-                    InkWell(
-                      onTap: () {
-                        //TODO: CHANGE RECIPE MODEL
-                        recipeDetailBottomSheetWidget(
-                            recipeDetail: recipeDetail);
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Align(
-                            alignment: Alignment.topRight,
-                            child: SvgPicture.asset(informationButton)),
+                    Visibility(
+                      visible: recipeDetail.ingredient!.isNotEmpty,
+                      child: InkWell(
+                        onTap: () {
+                          //TODO: CHANGE RECIPE MODEL
+                          recipeDetailBottomSheetWidget(
+                              recipeDetail: recipeDetail);
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Align(
+                              alignment: Alignment.topRight,
+                              child: SvgPicture.asset(informationButton)),
+                        ),
                       ),
                     )
                   ],

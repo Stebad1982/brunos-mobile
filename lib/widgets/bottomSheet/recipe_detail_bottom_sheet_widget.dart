@@ -316,7 +316,10 @@ Future recipeDetailBottomSheetWidget({required RecipeModel recipeDetail}) {
                                     SizedBox(
                                       height: 10.h,
                                     ),
-                                    SingleChildScrollView(
+                                    Visibility(
+                                        visible: recipeDetail.tableImage!.isNotEmpty,
+                                        child: Image.network(recipeDetail.tableImage![0])),
+                                    /*SingleChildScrollView(
                                       scrollDirection: Axis.horizontal,
                                       child: Table(
                                         defaultColumnWidth:
@@ -628,7 +631,7 @@ Future recipeDetailBottomSheetWidget({required RecipeModel recipeDetail}) {
                                           ]),
                                         ],
                                       ),
-                                    ),
+                                    ),*/
                                     context
                                         .watch<AuthViewModel>()
                                         .getAuthResponse

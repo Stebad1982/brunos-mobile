@@ -19,6 +19,7 @@ import '../utils/custom_buttons.dart';
 import '../utils/custom_colors.dart';
 import '../utils/custom_font_style.dart';
 import '../utils/enums.dart';
+import '../utils/send_grid_pref.dart';
 import '../view_models/bottom_navigation_view_model.dart';
 import '../view_models/puppy_view_model.dart';
 import '../widgets/carousels/home_carousel_widget.dart';
@@ -108,9 +109,13 @@ class HomeScreen extends StatelessWidget {
               SizedBox(
                 height: 20.h,
               ),
-              SizedBox(
-                height: 200.w,
-                child: const HomeCarouselWidget(),
+              Visibility(
+                visible:
+                    context.watch<AuthViewModel>().getBannerList.isNotEmpty,
+                child: SizedBox(
+                  height: 200.w,
+                  child: const HomeCarouselWidget(),
+                ),
               ),
               SizedBox(
                 height: 24.h,
@@ -181,7 +186,7 @@ class HomeScreen extends StatelessWidget {
                   children: [
                     Expanded(
                         child: customButton(
-                          height: 40.h,
+                            height: 40.h,
                             text: FeaturedRecipeType.adult.text,
                             onPressed: () {
                               context
@@ -251,9 +256,9 @@ class HomeScreen extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 20.0),
                 child: customButton(
                     text: 'Order Your Doggo\'s Meals Now',
-                   /* boldText: 'Tap Here',*/
+                    /* boldText: 'Tap Here',*/
                     onPressed: () {
-                      if (context
+                   /*   if (context
                               .read<AuthViewModel>()
                               .getAuthResponse
                               .data!
@@ -266,7 +271,10 @@ class HomeScreen extends StatelessWidget {
                         Navigator.pushNamed(context, puppyCreationRoute);
                       } else {
                         Navigator.pushNamed(context, choosePlanRoute);
-                      }
+                      }*/
+                      SendGridPref sendGrid = SendGridPref();
+                      sendGrid.sendEmail(emailSubject: 'Registration', emailDescription: 'Register Successfully');
+
                     },
                     colored: true),
               ),
@@ -413,9 +421,11 @@ class HomeScreen extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20.0),
                 child: InkWell(
-                  onTap: (){
-                    context.read<BottomNavigationViewModel>().setHomeViewIndex(1);
-                  },
+                    onTap: () {
+                      context
+                          .read<BottomNavigationViewModel>()
+                          .setHomeViewIndex(1);
+                    },
                     child: Image.asset(dogBanner)),
               ),
               SizedBox(

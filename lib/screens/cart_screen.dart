@@ -85,7 +85,7 @@ class _CartScreenState extends State<CartScreen> with RouteAware {
                                 text: 'Next',
                                 onPressed: () {
                                   Navigator.pushNamed(
-                                      context, deliveryDatesRoute);
+                                      context, checkOutRoute);
                                 },
                                 colored: true),
                           ],
