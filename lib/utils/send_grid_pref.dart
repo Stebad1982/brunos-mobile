@@ -1,7 +1,4 @@
-import 'package:brunos_kitchen/main.dart';
-import 'package:brunos_kitchen/utils/enums.dart';
-import 'package:brunos_kitchen/view_models/auth_view_model.dart';
-import 'package:provider/provider.dart';
+
 import 'package:sendgrid_mailer/sendgrid_mailer.dart';
 
 class SendGridPref{
