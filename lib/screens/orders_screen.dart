@@ -60,9 +60,11 @@ class _OrdersScreenState extends State<OrdersScreen>
             ),
             TabBar(
               padding: const EdgeInsets.symmetric(horizontal: 20),
-              indicatorPadding: EdgeInsets.zero,
+             // indicatorPadding: EdgeInsets.zero,
               labelPadding: EdgeInsets.zero,
-              isScrollable: true,
+              dividerHeight: 0,
+              indicatorColor: Colors.transparent,
+             // isScrollable: true,
               onTap: (index) {
                 //your currently selected index
               },

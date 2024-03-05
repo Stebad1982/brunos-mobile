@@ -260,7 +260,7 @@ class CheckoutScreen extends StatelessWidget {
                       controller: cartViewModel.getInstructionsController,
                       onChanged: (text) {},
                       keyboardType: TextInputType.multiline,
-                      maxLines: 10,
+                      maxLines: 5,
                       decoration: const InputDecoration(
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(12)),
