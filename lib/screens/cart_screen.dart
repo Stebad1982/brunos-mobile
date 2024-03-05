@@ -84,6 +84,8 @@ class _CartScreenState extends State<CartScreen> with RouteAware {
                             customButton(
                                 text: 'Next',
                                 onPressed: () {
+                                  cartViewModel.clearData();
+                                  cartViewModel.setCheckOutTotal();
                                   Navigator.pushNamed(
                                       context, checkOutRoute);
                                 },

@@ -37,7 +37,7 @@ class AuthViewModel with ChangeNotifier {
   bool _showGreeting = true;
   final AuthApiServices _authApiServices = AuthApiServices();
   AuthResponse _authResponse = AuthResponse();
-  List<BannerData> _bannersList = [];
+  final List<BannerData> _bannersList = [];
   final SharedPref _sharedPref = SharedPref();
   final FirebaseAuth _auth = FirebaseAuth.instance;
   String _countryCode = '+971';
@@ -64,20 +64,20 @@ class AuthViewModel with ChangeNotifier {
 
   List<BannerData> get getBannerList => _bannersList;
 
-  void setBannerResponse(BannersResponse value){
-    if(value.data!= null){
+  void setBannerResponse(BannersResponse value) {
+    _bannersList.clear();
+    if (value.data != null) {
       _bannersList.addAll(value.data!);
-
     }
     notifyListeners();
   }
 
-  void setShowGreeting (){
+  void setShowGreeting() {
     _showGreeting = false;
     notifyListeners();
   }
 
-  void setSecurePassword (){
+  void setSecurePassword() {
     _securePassword = !_securePassword;
     notifyListeners();
   }
@@ -89,17 +89,17 @@ class AuthViewModel with ChangeNotifier {
     notifyListeners();
   }
 
-  void setAddress(AddressModel value){
+  void setAddress(AddressModel value) {
     _authResponse.data!.location = value;
     notifyListeners();
   }
 
-  void setCard(CardModel value){
+  void setCard(CardModel value) {
     _authResponse.data!.card = value;
     notifyListeners();
   }
 
-  void setPuppy(PuppyModel value){
+  void setPuppy(PuppyModel value) {
     _authResponse.data!.pet = value;
     notifyListeners();
   }
@@ -148,6 +148,7 @@ class AuthViewModel with ChangeNotifier {
     _confirmPasswordFieldError = value;
     notifyListeners();
   }
+
   String get getRegisterRouteFrom => _registerRouteFrom;
 
   void setRegisterRouteFrom(String value) {
@@ -189,13 +190,12 @@ class AuthViewModel with ChangeNotifier {
     if (_emailController.text.isEmpty) {
       setEmailFieldError('Please Enter Email');
       return false;
-    }
-    else if(!RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-        .hasMatch(_emailController.text)){
+    } else if (!RegExp(
+            r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+        .hasMatch(_emailController.text)) {
       setEmailFieldError('Please Enter Valid Email');
       return false;
-    }
-    else {
+    } else {
       setEmailFieldError('');
       return true;
     }
@@ -215,12 +215,10 @@ class AuthViewModel with ChangeNotifier {
     if (_passwordController.text.isEmpty) {
       setPasswordFieldError('Please Enter Password');
       return false;
-    }
-    else if(_passwordController.text.length != 8){
+    } else if (_passwordController.text.length != 8) {
       setPasswordFieldError('Password length must be of 8 characters');
       return false;
-    }
-    else {
+    } else {
       setPasswordFieldError('');
       return true;
     }
@@ -267,7 +265,7 @@ class AuthViewModel with ChangeNotifier {
     }
   }
 
-  void callLogOut(){
+  void callLogOut() {
     _sharedPref.remove(SharedPreferencesKeys.authToken.text);
   }
 
@@ -326,7 +324,7 @@ class AuthViewModel with ChangeNotifier {
     EasyLoading.show(status: 'Please Wait ...');
     final bool otpVerification = await verifyOTP();
     SendGridPref sendGrid = SendGridPref();
-    if(otpVerification){
+    if (otpVerification) {
       try {
         final UserRegisterRequest userRegisterRequest = UserRegisterRequest(
             password: _passwordController.text,
@@ -341,7 +339,10 @@ class AuthViewModel with ChangeNotifier {
         if (response.isSuccess!) {
           setAuthResponse(response);
           //  setImageSlider();
-          sendGrid.sendEmail(emailSubject: 'Registration', emailDescription: '${_nameController.text} Register Successfully');
+          sendGrid.sendEmail(
+              emailSubject: 'Registration',
+              emailDescription:
+                  '${_nameController.text} Register Successfully');
           EasyLoading.dismiss();
           return true;
         } else {
@@ -352,11 +353,9 @@ class AuthViewModel with ChangeNotifier {
         EasyLoading.showError(e.toString());
         return false;
       }
-    }
-    else{
+    } else {
       return false;
     }
-
   }
 
   Future<bool> callGuestUserRegisterApi() async {
@@ -386,7 +385,6 @@ class AuthViewModel with ChangeNotifier {
       return false;
     }
   }
-
 
   Future<bool> callForgotPasswordApi() async {
     EasyLoading.show(status: 'Please Wait ...');
@@ -459,7 +457,6 @@ class AuthViewModel with ChangeNotifier {
     }
   }
 
-
   Future<bool> verifyNumber() async {
     EasyLoading.show(status: 'Sending OTP');
     bool returnValue = true;
@@ -486,7 +483,8 @@ class AuthViewModel with ChangeNotifier {
 
   Future<void> callBanners() async {
     try {
-      final BannersResponse bannersResponse = await _authApiServices.bannersApi();
+      final BannersResponse bannersResponse =
+          await _authApiServices.bannersApi();
       setBannerResponse(bannersResponse);
     } catch (exception) {
       EasyLoading.showToast(exception.toString());
@@ -512,7 +510,6 @@ class AuthViewModel with ChangeNotifier {
     //PackageInfo packageInfo = await PackageInfo.fromPlatform();
     //setVersion(packageInfo.version);
     // setBuild(packageInfo.buildNumber);
-
 
     if (Platform.isAndroid) {
       _operatingSystem = 'Android';
@@ -590,7 +587,7 @@ class AuthViewModel with ChangeNotifier {
     // Create a credential from the access token
     if (loginResult.accessToken != null) {
       final OAuthCredential facebookAuthCredential =
-      FacebookAuthProvider.credential(loginResult.accessToken!.token);
+          FacebookAuthProvider.credential(loginResult.accessToken!.token);
 
       // Once signed in, return the UserCredential
       final userDetails = await FirebaseAuth.instance
@@ -618,7 +615,6 @@ class AuthViewModel with ChangeNotifier {
     }
   }
 
-
   void clearFieldsData() {
     _nameController.clear();
     _emailController.clear();
@@ -633,8 +629,8 @@ class AuthViewModel with ChangeNotifier {
     setConfirmPasswordFieldError('');
   }
 
-  Future <bool> callSplash({required bool showLoader}) async{
-    if(showLoader){
+  Future<bool> callSplash({required bool showLoader}) async {
+    if (showLoader) {
       EasyLoading.show(status: 'Please Wait...');
     }
     try {

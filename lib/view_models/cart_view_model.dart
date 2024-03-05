@@ -34,7 +34,8 @@ class CartViewModel with ChangeNotifier {
 
   double get getPawPoints => _pawPoints;
 
-  TextEditingController get getInstructionsController => _instructionsController;
+  TextEditingController get getInstructionsController =>
+      _instructionsController;
 
   void setPawPoints(double value) {
     _pawPoints = value;

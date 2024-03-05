@@ -18,6 +18,12 @@ class DateTimeFormatter {
     return formatted;
   }
 
+  static showDateFormat4(DateTime date) {
+    final DateFormat formatter = DateFormat('dd MMM');
+    final String formatted = formatter.format(date);
+    return formatted;
+  }
+
   static dateToTimeStamp(DateTime date) {
     final int dateFormat = date.millisecondsSinceEpoch;
     return dateFormat;
