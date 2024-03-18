@@ -294,9 +294,30 @@ class ProfileScreen extends StatelessWidget {
                     Icons.newspaper,
                     color: CustomColors.blackColor,
                   ),
+                  shape: const Border(
+                    bottom: BorderSide(color: CustomColors.greyMediumColor),
+                  ),
                   title: Align(
                       alignment: Alignment.centerLeft,
                       child: lightBlack14w400Centre(data: 'News Updates')),
+                  contentPadding: const EdgeInsets.all(0),
+                  minLeadingWidth: 12,
+                  trailing: const Icon(
+                    Icons.arrow_forward_ios_rounded,
+                    size: 15,
+                    color: CustomColors.greyColor,
+                  )),
+              ListTile(
+                  onTap: () {
+                    Navigator.pushNamed(context, newsRoute);
+                  },
+                  leading: const Icon(
+                    Icons.delete_outline,
+                    color: CustomColors.blackColor,
+                  ),
+                  title: Align(
+                      alignment: Alignment.centerLeft,
+                      child: lightBlack14w400Centre(data: 'Delete Account')),
                   contentPadding: const EdgeInsets.all(0),
                   minLeadingWidth: 12,
                   trailing: const Icon(
