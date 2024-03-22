@@ -309,7 +309,7 @@ class ProfileScreen extends StatelessWidget {
                   )),
               ListTile(
                   onTap: () {
-                    Navigator.pushNamed(context, newsRoute);
+                    Navigator.pushNamed(context, deleteAccountRoute);
                   },
                   leading: const Icon(
                     Icons.delete_outline,
