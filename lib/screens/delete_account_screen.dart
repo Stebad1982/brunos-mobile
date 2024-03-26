@@ -1,9 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 
+import '../route_generator.dart';
 import '../utils/custom_buttons.dart';
 import '../utils/custom_font_style.dart';
+import '../view_models/auth_view_model.dart';
+import '../view_models/bottom_navigation_view_model.dart';
 import '../widgets/app_bar_with_back_widget.dart';
 
 class DeleteAccountScreen extends StatelessWidget {
@@ -24,7 +28,15 @@ class DeleteAccountScreen extends StatelessWidget {
             SizedBox(
               height: 20.h,
             ),
-            customButton(text: 'Delete Now', onPressed: () {}, colored: true),
+            customButton(text: 'Delete Now', onPressed: () {
+              context.read<AuthViewModel>().clearFieldsData();
+              context
+                  .read<BottomNavigationViewModel>()
+                  .setHomeViewIndex(0);
+              context.read<AuthViewModel>().callLogOut();
+              Navigator.pushNamedAndRemoveUntil(
+                  context, loginRoute, (route) => false);
+            }, colored: true),
             SizedBox(
               height: 20.h,
             ),

@@ -43,14 +43,14 @@ class ShopScreen extends StatelessWidget {
                 height: 20.h,
               ),
               Wrap(
-                alignment: WrapAlignment.center,
+                alignment: WrapAlignment.start,
                 spacing: 10.w,
                 runSpacing: 10.w,
                 children: List.generate(
                     plansViewModel.getRecipesListResponse.data!.categories!
                         .length, (index) {
                   return SizedBox(
-                    width: 100.w,
+                    width: 150.w,
                     child: customSquareButton(
                         text: plansViewModel.getRecipesListResponse.data!
                             .categories![index].name!,

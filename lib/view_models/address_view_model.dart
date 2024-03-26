@@ -28,6 +28,8 @@ class AddressViewModel with ChangeNotifier {
   final TextEditingController _floorController = TextEditingController();
   final TextEditingController _flatHouseNumberController = TextEditingController();
   final TextEditingController _deliveryInstructionController = TextEditingController();
+  final TextEditingController _contactNameController = TextEditingController();
+  final TextEditingController _contactNumberController =TextEditingController();
   GoogleMapsPlaces? _googleMapsPlaces;
   LatLng _initialCameraPosition = const LatLng(20.5937, 78.9629);
   Timer? _debounce;
@@ -48,6 +50,8 @@ class AddressViewModel with ChangeNotifier {
   bool _isAddressAdd = true;
   bool _routeFromSettings = true;
 
+  TextEditingController get getContactNameController => _contactNameController;
+  TextEditingController get getContactNumberController => _contactNumberController;
   TextEditingController get getStreetController => _streetController;
   TextEditingController get getAreaController => _areaController;
   TextEditingController get getFloorController => _floorController;

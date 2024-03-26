@@ -1,4 +1,5 @@
 import 'package:brunos_kitchen/utils/images.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_controller.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
@@ -34,7 +35,7 @@ class _HomeCarouselWidgetState extends State<HomeCarouselWidget> {
         child: CarouselSlider(
           items: [
             for (var banner in context.read<AuthViewModel>().getBannerList)
-              Image.network(banner.media![0])
+              CachedNetworkImage(imageUrl: banner.media![0],)
             ],
           carouselController: _controller,
           options: CarouselOptions(

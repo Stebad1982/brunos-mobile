@@ -156,6 +156,28 @@ class _AddAddressDetailScreenState extends State<AddAddressDetailScreen> {
                       SizedBox(
                         height: 20.h,
                       ),
+                      TextField(
+                        controller: addressViewModel.getContactNameController,
+                        keyboardType: TextInputType.name,
+                        decoration: const InputDecoration(
+                          contentPadding: EdgeInsets.all(20.0),
+                          hintText: 'Contact Person Name ',
+                        ),
+                      ),
+                      SizedBox(
+                        height: 20.h,
+                      ),
+                      TextField(
+                        controller: addressViewModel.getContactNumberController,
+                        keyboardType: TextInputType.phone,
+                        decoration: const InputDecoration(
+                          contentPadding: EdgeInsets.all(20.0),
+                          hintText: 'Contact person number ',
+                        ),
+                      ),
+                      SizedBox(
+                        height: 20.h,
+                      ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -173,7 +195,7 @@ class _AddAddressDetailScreenState extends State<AddAddressDetailScreen> {
                         ],
                       ),
                       SizedBox(
-                        height: 40.h,
+                        height: 20.h,
                       ),
                       black18w500(data: 'Add Label'),
                       SizedBox(
