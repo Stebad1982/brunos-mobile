@@ -42,31 +42,49 @@ class ShopScreen extends StatelessWidget {
               SizedBox(
                 height: 20.h,
               ),
-              Wrap(
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: plansViewModel.getRecipesListResponse.data!.categories!
+                      .map(
+                        (data) => Container(
+                      margin: const EdgeInsets.only(right: 20),
+                      width: 140.w,
+                      child: customSquareButton(
+                          text: data.name!,
+                          onPressed: () {
+                            plansViewModel.setProductCategory(data
+                                .name!);
+                          },
+                          colored: plansViewModel.getProductCategory ==
+                              data.name),
+                    ),
+                  )
+                      .toList(),
+                ),
+              ),
+           /*   Wrap(
                 alignment: WrapAlignment.start,
                 spacing: 10.w,
                 runSpacing: 10.w,
                 children: List.generate(
                     plansViewModel.getRecipesListResponse.data!.categories!
                         .length, (index) {
-                  return SizedBox(
-                    width: 150.w,
-                    child: customSquareButton(
-                        text: plansViewModel.getRecipesListResponse.data!
-                            .categories![index].name!,
-                        onPressed: () {
-                          plansViewModel.setProductCategory(plansViewModel
-                              .getRecipesListResponse
-                              .data!
-                              .categories![index]
-                              .name!);
-                        },
-                        colored: plansViewModel.getProductCategory ==
-                            plansViewModel.getRecipesListResponse.data!
-                                .categories![index].name),
-                  );
+                  return customSquareButton(
+                      text: plansViewModel.getRecipesListResponse.data!
+                          .categories![index].name!,
+                      onPressed: () {
+                        plansViewModel.setProductCategory(plansViewModel
+                            .getRecipesListResponse
+                            .data!
+                            .categories![index]
+                            .name!);
+                      },
+                      colored: plansViewModel.getProductCategory ==
+                          plansViewModel.getRecipesListResponse.data!
+                              .categories![index].name);
                 }),
-              ),
+              ),*/
               SizedBox(
                 height: 20.h,
               ),
