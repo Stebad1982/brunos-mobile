@@ -62,7 +62,7 @@ class _OrdersScreenState extends State<OrdersScreen>
               padding: const EdgeInsets.symmetric(horizontal: 20),
              // indicatorPadding: EdgeInsets.zero,
               labelPadding: EdgeInsets.zero,
-              dividerHeight: 0,
+             // dividerHeight: 0,
               indicatorColor: Colors.transparent,
              // isScrollable: true,
               onTap: (index) {

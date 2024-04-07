@@ -120,7 +120,7 @@ Future recipeDetailBottomSheetWidget({required RecipeModel recipeDetail}) {
                                     SizedBox(
                                       height: 20.h,
                                     ),
-                                    black12w500Centre(
+                                    black14w400(
                                         lineSpacing: true,
                                         data: recipeDetail.details!),
                                     /* SizedBox(height: 27.h),
@@ -298,14 +298,14 @@ Future recipeDetailBottomSheetWidget({required RecipeModel recipeDetail}) {
                                     SizedBox(
                                       height: 20.h,
                                     ),
-                                    black12w500Centre(
+                                    black14w400(
                                       data: recipeDetail.instructions!,
                                       lineSpacing: true,
                                     ),
                                     SizedBox(
-                                      height: 20.h,
+                                      height: 10.h,
                                     ),
-                                    black12w500Centre(
+                                    black14w400(
                                         lineSpacing: true,
                                         data:
                                         'Use guidelines below, adjust feeding quantities as necessary to maintain your pet’s ideal body score'),

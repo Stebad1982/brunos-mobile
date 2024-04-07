@@ -240,9 +240,9 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                               }
                             });
                           }*/
-                          } else {
+                          } /*else {
                             EasyLoading.showToast('Please Fill All Fields');
-                          }
+                          }*/
                         },
                         colored: true),
                   ),

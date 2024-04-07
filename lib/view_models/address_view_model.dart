@@ -156,6 +156,7 @@ class AddressViewModel with ChangeNotifier {
 
   clearAddressData() {
     // _fullAddressController.clear();
+    _predictionList.clear();
     _addressController.clear();
     _streetController.clear();
     _floorController.clear();
@@ -177,8 +178,14 @@ class AddressViewModel with ChangeNotifier {
 
   bool validateAddressDetail() {
     if (_addressController.text.isEmpty) {
+      EasyLoading.showToast('Please Select Address');
       return false;
-    } else {
+    }
+    else if (!_addressController.text.contains('United Arab Emirates')){
+      EasyLoading.showToast('Address must be of UAE');
+      return false;
+    }
+    else {
       return true;
     }
   }
@@ -258,7 +265,7 @@ class AddressViewModel with ChangeNotifier {
         getInitialCameraPosition.latitude, getInitialCameraPosition.longitude);
     var first = placemarks.first;
     getAddressController.text =
-        '${first.locality}, ${first.name},${first.subLocality}, ${first.thoroughfare}, ${first.subThoroughfare}';
+        ' ${first.name},${first.subLocality}, ${first.thoroughfare}, ${first.subThoroughfare}, ${first.locality}, ${first.country}';
   }
 
   Future<void> getPredictionLatLng(Prediction p) async {

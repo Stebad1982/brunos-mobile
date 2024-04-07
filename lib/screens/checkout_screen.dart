@@ -411,7 +411,7 @@ class CheckoutScreen extends StatelessWidget {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                lightBlack14w400Centre(data: 'Shipping Fee'),
+                                lightBlack14w400Centre(data: 'Delivery Fee'),
                                 SizedBox(
                                   width: 2.w,
                                 ),
