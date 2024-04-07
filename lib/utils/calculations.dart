@@ -158,3 +158,9 @@ num calculateCartTotal({required List<CartModel> cartItems}) {
   });
   return finalPriceSum;
 }
+
+int roundPrice(int num)
+{
+  int rem = num % 10;
+  return rem >= 5 ? (num - rem + 10) : (num - rem);
+}

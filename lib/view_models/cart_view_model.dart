@@ -81,8 +81,10 @@ class CartViewModel with ChangeNotifier {
             .data!
             .discounts![2]
             .aggregate!;
-    _checkOutTotal =
-        _cartTotalPrice - _promoCodeDiscount + _deliveryCharges - finalPoints;
+    final totalprice = _cartTotalPrice - _promoCodeDiscount + _deliveryCharges - finalPoints;
+
+    _checkOutTotal = roundPrice(totalprice.round());
+
     notifyListeners();
   }
 
