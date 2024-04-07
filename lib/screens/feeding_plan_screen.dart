@@ -42,7 +42,7 @@ class _FeedingPlanScreenState extends State<FeedingPlanScreen> {
               .read<AuthViewModel>()
               .getAuthResponse
               .data!
-              .discounts![0]
+              .discounts![3]
               .aggregate!: 0);
     });
   }
@@ -269,7 +269,7 @@ class _FeedingPlanScreenState extends State<FeedingPlanScreen> {
                                       .watch<AuthViewModel>()
                                       .getAuthResponse
                                       .data!
-                                      .discounts![0].aggregate} %'),
+                                      .discounts![3].aggregate} %'),
                               SizedBox(
                                 height: 5.h,
                               ),

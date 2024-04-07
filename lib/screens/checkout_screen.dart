@@ -440,7 +440,7 @@ class CheckoutScreen extends StatelessWidget {
                                   .read<AuthViewModel>()
                                   .getAuthResponse
                                   .data!
-                                  .discounts![2]
+                                  .discounts![5]
                                   .aggregate!);
                               redeemPawPointsBottomSheetWidget();
                             }

@@ -79,7 +79,7 @@ class CartViewModel with ChangeNotifier {
             .read<AuthViewModel>()
             .getAuthResponse
             .data!
-            .discounts![2]
+            .discounts![5]
             .aggregate!;
     final totalprice = _cartTotalPrice - _promoCodeDiscount + _deliveryCharges - finalPoints;
 
