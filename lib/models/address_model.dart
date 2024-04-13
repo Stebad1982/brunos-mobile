@@ -12,6 +12,8 @@ class AddressModel {
   String? floor;
   String? deliveryInstruction;
   String? flatHouseNumber;
+  String? contactName;
+  String? contactNumber;
 
   AddressModel(
       {this.sId,
@@ -26,7 +28,9 @@ class AddressModel {
         this.area,
         this.floor,
         this.deliveryInstruction,
-        this.flatHouseNumber});
+        this.flatHouseNumber,
+       this.contactName,
+      this.contactNumber});
 
   AddressModel.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
@@ -42,6 +46,8 @@ class AddressModel {
     floor = json['floor'];
     deliveryInstruction = json['deliveryInstruction'];
     flatHouseNumber = json['flatHouseNumber'];
+    contactName = json['contactName'];
+    contactNumber = json['contactNumber'];
   }
 
 }

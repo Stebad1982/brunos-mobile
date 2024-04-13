@@ -10,6 +10,7 @@ import 'package:provider/provider.dart';
 
 import '../utils/custom_colors.dart';
 import '../widgets/app_bar_with_back_widget.dart';
+import '../widgets/listChips/orders_vertical_list_chip_widget.dart';
 
 class OrdersScreen extends StatefulWidget {
   const OrdersScreen({Key? key}) : super(key: key);
@@ -49,11 +50,20 @@ class _OrdersScreenState extends State<OrdersScreen>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: const AppBarWithBackWidget(
-          heading: 'My Orders', showPuppy: false,showCart: false
-        ),
-        body: Column(
+    return Consumer<OrderViewModel>(builder: (_, orderViewModel, __) {
+      return Scaffold(
+          appBar: const AppBarWithBackWidget(
+              heading: 'My Orders', showPuppy: false, showCart: false),
+          body: ListView.builder(
+            itemCount: orderViewModel.getOrderResponse.data!.length,
+            padding: const EdgeInsets.only(left: 20, right: 20, top: 30),
+            itemBuilder: (BuildContext context, int index) {
+              return ordersVerticalListChipWidget(
+                  showButtons: false,
+                  orderListData: orderViewModel.getOrderResponse.data![index]);
+            },
+          )
+          /*Column(
           children: [
             SizedBox(
               height: 30.h,
@@ -94,7 +104,7 @@ class _OrdersScreenState extends State<OrdersScreen>
                         width: 170.w,
                         child: Center(
                             child: lightBlack14w400Centre(data: 'Shipped')))),
-              /*  Tab(
+              */ /*  Tab(
                     child: Container(
                         decoration: BoxDecoration(
                           color: _selectedIndex == 2
@@ -105,7 +115,7 @@ class _OrdersScreenState extends State<OrdersScreen>
                         height: 40.h,
                         width: 170.w,
                         child: Center(
-                            child: lightBlack14w400Centre(data: 'Monthly Subscription')))),*/
+                            child: lightBlack14w400Centre(data: 'Monthly Subscription')))),*/ /*
               ],
             ),
             Expanded(
@@ -114,13 +124,15 @@ class _OrdersScreenState extends State<OrdersScreen>
                 children:  [
                   context.watch<OrderViewModel>().getOrderResponse.data != null? OrderInProcessScreen(): SizedBox(),
                   context.watch<OrderViewModel>().getOrderResponse.data != null?OrderCompletedScreen(): SizedBox(),
-/*
+*/ /*
                   context.watch<OrderViewModel>().getOrderResponse.data != null? OrderMonthlyScreen(): SizedBox()
-*/
+*/ /*
                 ],
               ),
             ),
           ],
-        ));
+        )*/
+          );
+    });
   }
 }

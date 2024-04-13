@@ -27,8 +27,9 @@ class AddressDetailScreen extends StatelessWidget {
     return Consumer<AddressViewModel>(builder: (_, addressViewModel, __) {
       return Scaffold(
         appBar: AppBarWithBackWidget(
-          heading: toBeginningOfSentenceCase(
-              'Address Detail'), showPuppy: false, showCart: true,
+          heading: toBeginningOfSentenceCase('Address Detail'),
+          showPuppy: false,
+          showCart: true,
         ),
         body: SingleChildScrollView(
           child: Padding(
@@ -43,10 +44,11 @@ class AddressDetailScreen extends StatelessWidget {
                       child: Container(
                           decoration: const BoxDecoration(
                               borderRadius:
-                              BorderRadius.all(Radius.circular(20)),
+                                  BorderRadius.all(Radius.circular(20)),
                               color: CustomColors.orangeColor),
                           child: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 10.0,vertical: 2),
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 10.0, vertical: 2),
                             child: white12w400(data: 'Default'),
                           )),
                     ),
@@ -55,15 +57,15 @@ class AddressDetailScreen extends StatelessWidget {
                         alignment: Alignment.centerRight,
                         child: InkWell(
                           onTap: () {
-                            deleteAddressConfirmationDialog(
-                                context: context);
+                            deleteAddressConfirmationDialog(context: context);
                           },
                           child: Container(
                             decoration: ShapeDecoration(
                               //color: CustomColors.orangeColor,
                               shape: RoundedRectangleBorder(
                                 side: const BorderSide(
-                                    width: 0.75, color: CustomColors.orangeColor),
+                                    width: 0.75,
+                                    color: CustomColors.orangeColor),
                                 borderRadius: BorderRadius.circular(12),
                               ),
                             ),
@@ -113,11 +115,12 @@ class AddressDetailScreen extends StatelessWidget {
                           //draggable: false,
                           markerId: const MarkerId("1"),
                           position: LatLng(
-                              double.parse(addressViewModel.getEditAddress
-                                  .coordinates![0]),
-                              double.parse(addressViewModel.getEditAddress
-                                  .coordinates![1])),
-                          icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueOrange),
+                              double.parse(addressViewModel
+                                  .getEditAddress.coordinates![0]),
+                              double.parse(addressViewModel
+                                  .getEditAddress.coordinates![1])),
+                          icon: BitmapDescriptor.defaultMarkerWithHue(
+                              BitmapDescriptor.hueOrange),
                           infoWindow: const InfoWindow(
                             title: '',
                           ),
@@ -144,16 +147,20 @@ class AddressDetailScreen extends StatelessWidget {
                               activeColor: CustomColors.orangeColor,
                               value: addressViewModel.getEditAddress.isDefault!,
                               onChanged: (isDefault) {
-                                addressViewModel.callDefaultAddressApi().then((
-                                    value) async => {
-                                if(value){
-                                  addressViewModel.setIsDefaultAddressTrueFalse(
-                                      isDefault),
-                                  context
-                                      .read<AuthViewModel>()
-                                      .callSplash(showLoader: true),
-                                  Navigator.pop(context)
-                              }});
+                                addressViewModel
+                                    .callDefaultAddressApi()
+                                    .then((value) async => {
+                                          if (value)
+                                            {
+                                              addressViewModel
+                                                  .setIsDefaultAddressTrueFalse(
+                                                      isDefault),
+                                              context
+                                                  .read<AuthViewModel>()
+                                                  .callSplash(showLoader: true),
+                                              Navigator.pop(context)
+                                            }
+                                        });
                               },
                             ),
                           ),
@@ -169,16 +176,19 @@ class AddressDetailScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     black14w500(data: 'Address:'),
-                    SizedBox(width: 40.w,),
-                    Flexible(child: black14w500(data: toBeginningOfSentenceCase(
-                        addressViewModel.getEditAddress.address)!))
+                    SizedBox(
+                      width: 40.w,
+                    ),
+                    Flexible(
+                        child: black14w500(
+                            data: toBeginningOfSentenceCase(
+                                addressViewModel.getEditAddress.address)!))
                   ],
                 ),
                 SizedBox(
                   height: 10.h,
                 ),
                 Divider(),
-
                 SizedBox(
                   height: 10.h,
                 ),
@@ -186,13 +196,16 @@ class AddressDetailScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     black14w500(data: 'Street:'),
-                    SizedBox(width: 40.w,),
+                    SizedBox(
+                      width: 40.w,
+                    ),
                     Flexible(
                       child: black14w500(
-                          data: addressViewModel.getEditAddress
-                              .street!.isNotEmpty? toBeginningOfSentenceCase(
-                              addressViewModel.getEditAddress
-                                  .street)!: 'N/A'),
+                          data:
+                              addressViewModel.getEditAddress.street!.isNotEmpty
+                                  ? toBeginningOfSentenceCase(
+                                      addressViewModel.getEditAddress.street)!
+                                  : 'N/A'),
                     )
                   ],
                 ),
@@ -200,7 +213,6 @@ class AddressDetailScreen extends StatelessWidget {
                   height: 10.h,
                 ),
                 Divider(),
-
                 SizedBox(
                   height: 10.h,
                 ),
@@ -208,13 +220,15 @@ class AddressDetailScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     black14w500(data: 'Area:'),
-                    SizedBox(width: 40.w,),
+                    SizedBox(
+                      width: 40.w,
+                    ),
                     Flexible(
                       child: black14w500(
-                          data: addressViewModel.getEditAddress
-                              .area!.isNotEmpty? toBeginningOfSentenceCase(
-                              addressViewModel.getEditAddress
-                                  .area)!: 'N/A'),
+                          data: addressViewModel.getEditAddress.area!.isNotEmpty
+                              ? toBeginningOfSentenceCase(
+                                  addressViewModel.getEditAddress.area)!
+                              : 'N/A'),
                     )
                   ],
                 ),
@@ -222,7 +236,6 @@ class AddressDetailScreen extends StatelessWidget {
                   height: 10.h,
                 ),
                 Divider(),
-
                 SizedBox(
                   height: 10.h,
                 ),
@@ -230,13 +243,16 @@ class AddressDetailScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     black14w500(data: 'Floor:'),
-                    SizedBox(width: 40.w,),
+                    SizedBox(
+                      width: 40.w,
+                    ),
                     Flexible(
                       child: black14w500(
-                          data: addressViewModel.getEditAddress
-                              .floor!.isNotEmpty? toBeginningOfSentenceCase(
-                              addressViewModel.getEditAddress
-                                  .floor)!: 'N/A'),
+                          data:
+                              addressViewModel.getEditAddress.floor!.isNotEmpty
+                                  ? toBeginningOfSentenceCase(
+                                      addressViewModel.getEditAddress.floor)!
+                                  : 'N/A'),
                     )
                   ],
                 ),
@@ -251,13 +267,16 @@ class AddressDetailScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     black14w500(data: 'Flat/House Number:'),
-                    SizedBox(width: 40.w,),
+                    SizedBox(
+                      width: 40.w,
+                    ),
                     Flexible(
                       child: black14w500(
-                          data: addressViewModel.getEditAddress
-                              .flatHouseNumber!.isNotEmpty? toBeginningOfSentenceCase(
-                              addressViewModel.getEditAddress
-                                  .flatHouseNumber)!: 'N/A'),
+                          data: addressViewModel
+                                  .getEditAddress.flatHouseNumber!.isNotEmpty
+                              ? toBeginningOfSentenceCase(addressViewModel
+                                  .getEditAddress.flatHouseNumber)!
+                              : 'N/A'),
                     )
                   ],
                 ),
@@ -272,8 +291,47 @@ class AddressDetailScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     black14w500(data: 'Label'),
+                    black14w500(data: addressViewModel.getEditAddress.label!)
+                  ],
+                ),
+                SizedBox(
+                  height: 10.h,
+                ),
+                Divider(),
+                SizedBox(
+                  height: 10.h,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    black14w500(data: 'Contact Name'),
                     black14w500(
-                        data: addressViewModel.getEditAddress.label!)
+                        data: addressViewModel
+                                .getEditAddress.contactName!.isNotEmpty ||
+                        addressViewModel
+                            .getEditAddress.contactNumber == null
+                            ? addressViewModel.getEditAddress.contactName!
+                            : 'N/A')
+                  ],
+                ),
+                SizedBox(
+                  height: 10.h,
+                ),
+                Divider(),
+                SizedBox(
+                  height: 10.h,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    black14w500(data: 'Contact Number'),
+                    black14w500(
+                        data: addressViewModel
+                            .getEditAddress.contactNumber!.isNotEmpty ||
+                        addressViewModel
+                            .getEditAddress.contactNumber == null
+                            ? addressViewModel.getEditAddress.contactNumber!
+                            : 'N/A')
                   ],
                 ),
                 SizedBox(
@@ -287,9 +345,16 @@ class AddressDetailScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     black14w500(data: 'Delivery Instructions:'),
-                    SizedBox(width: 40.w,),
-                    Flexible(child: black14w500(data: addressViewModel.getEditAddress.deliveryInstruction!.isNotEmpty?toBeginningOfSentenceCase(
-                        addressViewModel.getEditAddress.deliveryInstruction)!: 'N/A'))
+                    SizedBox(
+                      width: 40.w,
+                    ),
+                    Flexible(
+                        child: black14w500(
+                            data: addressViewModel.getEditAddress
+                                    .deliveryInstruction!.isNotEmpty
+                                ? toBeginningOfSentenceCase(addressViewModel
+                                    .getEditAddress.deliveryInstruction)!
+                                : 'N/A'))
                   ],
                 ),
               ],

@@ -3,6 +3,7 @@ import 'package:brunos_kitchen/utils/custom_colors.dart';
 import 'package:brunos_kitchen/utils/images.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -157,6 +158,9 @@ class _AddAddressDetailScreenState extends State<AddAddressDetailScreen> {
                         height: 20.h,
                       ),
                       TextField(
+                        inputFormatters: <TextInputFormatter>[
+                          FilteringTextInputFormatter.allow(RegExp("[0-9a-zA-Z]")),
+                        ],
                         controller: addressViewModel.getContactNameController,
                         keyboardType: TextInputType.name,
                         decoration: const InputDecoration(
@@ -168,6 +172,9 @@ class _AddAddressDetailScreenState extends State<AddAddressDetailScreen> {
                         height: 20.h,
                       ),
                       TextField(
+                        inputFormatters: <TextInputFormatter>[
+                          FilteringTextInputFormatter.allow(RegExp("[0-9]")),
+                        ],
                         controller: addressViewModel.getContactNumberController,
                         keyboardType: TextInputType.phone,
                         decoration: const InputDecoration(

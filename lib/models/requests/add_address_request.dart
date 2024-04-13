@@ -7,19 +7,22 @@ class AddAddressRequest {
   String area;
   String floor;
   String deliveryInstruction;
+  String contactName;
+  String contactNumber;
   String flatHouseNumber;
 
   AddAddressRequest(
       {required this.coordinates,
-        required this.address,
-        required this.label,
-        required this.isDefault,
-        required this.street,
-        required this.area,
-        required this.floor,
-        required this.deliveryInstruction,
-        required this.flatHouseNumber});
-
+      required this.address,
+      required this.label,
+      required this.isDefault,
+      required this.street,
+      required this.area,
+      required this.floor,
+      required this.deliveryInstruction,
+      required this.flatHouseNumber,
+      required this.contactName,
+      required this.contactNumber});
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
@@ -32,6 +35,8 @@ class AddAddressRequest {
     data['floor'] = this.floor;
     data['deliveryInstruction'] = this.deliveryInstruction;
     data['flatHouseNumber'] = this.flatHouseNumber;
+    data['contactNumber'] = this.contactNumber;
+    data['contactName'] = this.contactName;
     return data;
   }
 }

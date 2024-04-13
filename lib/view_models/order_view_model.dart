@@ -14,9 +14,9 @@ class OrderViewModel with ChangeNotifier {
   final OrderApiServices _orderApiServices = OrderApiServices();
   OrderRequest? _orderRequest;
   OrderCreateResponse _orderCreateResponse = OrderCreateResponse();
-  final List<OrderData> _completedOrders = [];
-  final List<OrderData> _inProcessOrders = [];
-  final List<OrderItems> _monthlyOrders = [];
+  //final List<OrderData> _completedOrders = [];
+  //final List<OrderData> _inProcessOrders = [];
+  //final List<OrderItems> _monthlyOrders = [];
   OrderResponse _orderResponse = OrderResponse();
   OrderData _selectedOrder = OrderData();
 
@@ -33,11 +33,11 @@ class OrderViewModel with ChangeNotifier {
 
   OrderData get getSelectedOrder => _selectedOrder;
 
-  List<OrderItems> get getMonthlyOrders => _monthlyOrders;
+ // List<OrderItems> get getMonthlyOrders => _monthlyOrders;
 
-  List<OrderData> get getCompletedOrders => _completedOrders;
+  //List<OrderData> get getCompletedOrders => _completedOrders;
 
-  List<OrderData> get getInProcessOrders => _inProcessOrders;
+ // List<OrderData> get getInProcessOrders => _inProcessOrders;
 
   void setSelectedOrder(OrderData value) {
     _selectedOrder = value;
@@ -61,7 +61,7 @@ class OrderViewModel with ChangeNotifier {
 
   void setOrderResponse(OrderResponse value) {
     _orderResponse = value;
-    _completedOrders.clear();
+    /*_completedOrders.clear();
     _inProcessOrders.clear();
     _monthlyOrders.clear();
     _completedOrders
@@ -81,7 +81,7 @@ class OrderViewModel with ChangeNotifier {
     print(_completedOrders);
     print(_inProcessOrders);
     print(_monthlyOrders);
-
+*/
     notifyListeners();
   }
 

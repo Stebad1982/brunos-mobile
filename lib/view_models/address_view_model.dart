@@ -158,6 +158,8 @@ class AddressViewModel with ChangeNotifier {
     // _fullAddressController.clear();
     _predictionList.clear();
     _addressController.clear();
+    _contactNumberController.clear();
+    _contactNameController.clear();
     _streetController.clear();
     _floorController.clear();
     _areaController.clear();
@@ -335,7 +337,7 @@ class AddressViewModel with ChangeNotifier {
         street: _streetController.text,
         area: _areaController.text,
         floor: _floorController.text,
-        deliveryInstruction: _deliveryInstructionController.text);
+        deliveryInstruction: _deliveryInstructionController.text, contactName: _contactNameController.text, contactNumber: _contactNumberController.text);
     try {
       final BaseResponseModel response = await _addressApiServices
           .createAddress(addAddressRequest: addAddressRequest);
