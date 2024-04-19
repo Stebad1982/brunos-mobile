@@ -24,7 +24,12 @@ class CartViewModel with ChangeNotifier {
   int _pawSelectedPoints = 0;
   int _requiredPawPoints = 0;
   num _checkOutTotal = 0;
-  final int _deliveryCharges = 10;
+  int _deliveryFee = 0;
+  /*int _deliveryCharges = navigatorKey.currentContext!
+       .read<AuthViewModel>()
+       .getAuthResponse
+       .data!
+       .location!.area == ''? 10 :20;*/
   int? _selectedIndex;
   bool _viewCartItemDetail = false;
   final TextEditingController _promoCodeController = TextEditingController();
@@ -33,6 +38,13 @@ class CartViewModel with ChangeNotifier {
   DateTime _selectedDay = DateTime.now().add(const Duration(days: 4));
 
   double get getPawPoints => _pawPoints;
+
+  int get getDeliveryFee => _deliveryFee;
+
+   void setDeliveryFee (int value){
+  _deliveryFee = value;
+  notifyListeners();
+  }
 
   TextEditingController get getInstructionsController =>
       _instructionsController;
@@ -62,7 +74,15 @@ class CartViewModel with ChangeNotifier {
 
   TextEditingController get getPromoCodeController => _promoCodeController;
 
-  int get getDeliveryCharges => _deliveryCharges;
+ // int get getDeliveryCharges => _deliveryCharges;
+/*
+  void setDeliveryCharges (int value){
+    navigatorKey.currentContext!
+        .read<AuthViewModel>()
+        .getAuthResponse
+        .data!
+        .location!
+  }*/
 
   void setPromoCodeDiscount(int value) {
     _pawSelectedPoints = 0;
@@ -81,9 +101,9 @@ class CartViewModel with ChangeNotifier {
             .data!
             .discounts![5]
             .aggregate!;
-    final totalprice = _cartTotalPrice - _promoCodeDiscount + _deliveryCharges - finalPoints;
+    final totalPrice = _cartTotalPrice - _promoCodeDiscount + _deliveryFee - finalPoints;
 
-    _checkOutTotal = roundPrice(totalprice.round());
+    _checkOutTotal = roundPrice(totalPrice.round());
 
     notifyListeners();
   }
@@ -123,7 +143,7 @@ class CartViewModel with ChangeNotifier {
         promoCodeId: _promoCodeController.text,
         cartItems: _cartList,
         cartTotal: _cartTotalPrice,
-        shippingFees: _deliveryCharges,
+        shippingFees: _deliveryFee,
         specialInstructions: _instructionsController.text);
     navigatorKey.currentContext!
         .read<OrderViewModel>()
