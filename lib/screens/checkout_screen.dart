@@ -417,7 +417,7 @@ class CheckoutScreen extends StatelessWidget {
                                 ),
                                 lightBlack14w400Centre(
                                     data:
-                                        '${cartViewModel.getDeliveryCharges} AED (One time  Fee)'),
+                                        '${cartViewModel.getDeliveryFee} AED (One time  Fee)'),
                               ],
                             ),
                           ],

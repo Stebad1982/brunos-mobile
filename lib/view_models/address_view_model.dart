@@ -16,6 +16,7 @@ import '../models/address_model.dart';
 import '../models/responses/all_address_reponse.dart';
 import '../services/address_api_services.dart';
 import '../services/api_base_helper.dart';
+import '../utils/conversions.dart';
 import '../utils/enums.dart';
 import '../utils/images.dart';
 
@@ -33,6 +34,7 @@ class AddressViewModel with ChangeNotifier {
   GoogleMapsPlaces? _googleMapsPlaces;
   LatLng _initialCameraPosition = const LatLng(20.5937, 78.9629);
   Timer? _debounce;
+  String _mapCountry = '';
   List<Prediction> _predictionList = [];
   double? _selectedAddressLat;
   double? _selectedAddressLng;
@@ -59,6 +61,8 @@ class AddressViewModel with ChangeNotifier {
   TextEditingController get getDeliveryInstructionController => _deliveryInstructionController;
 
   Timer? get getDebounce => _debounce;
+
+  String get getMapCountry => _mapCountry;
 
   String get getOtherLabel => _otherLabel;
 
@@ -183,7 +187,7 @@ class AddressViewModel with ChangeNotifier {
       EasyLoading.showToast('Please Select Address');
       return false;
     }
-    else if (!_addressController.text.contains('United Arab Emirates')){
+    else if (_mapCountry != 'United Arab Emirates'){
       EasyLoading.showToast('Address must be of UAE');
       return false;
     }
@@ -258,17 +262,22 @@ class AddressViewModel with ChangeNotifier {
       ),
     );
     setInitialCameraPosition(LatLng(location.latitude, location.longitude));
-    convertCoordinatesToPlaces();
+    /*Placemark locationData = await convertCoordinatesToPlaces(latitude: _initialCameraPosition.latitude,  longitude: _initialCameraPosition.longitude);
+    _addressController.text =
+    ' ${locationData.name},${locationData.subLocality},${locationData.locality},${locationData.country}';*/
+    await getMapMovement();
+   // notifyListeners();
+  }
+
+  Future <void> getMapMovement ()async  {
+    Placemark locationData = await convertCoordinatesToPlaces(latitude: _initialCameraPosition.latitude,  longitude: _initialCameraPosition.longitude);
+    _addressController.text =
+    '${locationData.name},${locationData.subLocality},${locationData.locality},${locationData.country}';
+    _mapCountry = locationData.country!;
     notifyListeners();
   }
 
-  Future<void> convertCoordinatesToPlaces() async {
-    List<Placemark> placemarks = await placemarkFromCoordinates(
-        getInitialCameraPosition.latitude, getInitialCameraPosition.longitude);
-    var first = placemarks.first;
-    getAddressController.text =
-        ' ${first.name},${first.subLocality}, ${first.thoroughfare}, ${first.subThoroughfare}, ${first.locality}, ${first.country}';
-  }
+
 
   Future<void> getPredictionLatLng(Prediction p) async {
     PlacesDetailsResponse detail =

@@ -102,7 +102,7 @@ class AddressDetailScreen extends StatelessWidget {
                             position.target.longitude));
                       },
                       onCameraIdle: () {
-                        addressViewModel.convertCoordinatesToPlaces();
+                        addressViewModel.getMapMovement();
                       },
                       initialCameraPosition: CameraPosition(
                           target: addressViewModel.getInitialCameraPosition),

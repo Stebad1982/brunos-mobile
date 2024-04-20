@@ -68,7 +68,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                           position.target.longitude));
                     },
                     onCameraIdle: () {
-                      addressViewModel.convertCoordinatesToPlaces();
+                      addressViewModel.getMapMovement();
                     },
                     initialCameraPosition: CameraPosition(
                         target: addressViewModel.getInitialCameraPosition),
