@@ -105,7 +105,7 @@ class AuthViewModel with ChangeNotifier {
    final Placemark locationCity = await convertCoordinatesToPlaces(
         latitude: double.parse(_authResponse.data!.location!.coordinates![0]),
         longitude: double.parse(_authResponse.data!.location!.coordinates![1]));
-    navigatorKey.currentContext!.read<CartViewModel>().setDeliveryFee(locationCity.locality! == 'Abu Dhabi' ? _authResponse.data!.discounts![1].aggregate!.toInt() : _authResponse.data!.discounts![0].aggregate!.toInt());
+    navigatorKey.currentContext!.read<CartViewModel>().setDeliveryFee(locationCity.locality == 'Abu Dhabi' ? _authResponse.data!.discounts![1].aggregate!.toInt() : _authResponse.data!.discounts![0].aggregate!.toInt());
     notifyListeners();
   }
 

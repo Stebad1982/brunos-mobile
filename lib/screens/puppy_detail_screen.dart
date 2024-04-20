@@ -473,7 +473,7 @@ class PuppyDetailScreen extends StatelessWidget {
                                           0
                                       ? DateTimeFormatter.timeStampToDate(
                                           puppyViewModel
-                                              .getPuppyDetail!.bornOnDate!)
+                                              .getPuppyDetail!.bornOnDate!,1)
                                       : 'N/A'),
                           child: Expanded(
                             child: Padding(

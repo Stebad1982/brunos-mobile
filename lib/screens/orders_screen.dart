@@ -54,15 +54,18 @@ class _OrdersScreenState extends State<OrdersScreen>
       return Scaffold(
           appBar: const AppBarWithBackWidget(
               heading: 'My Orders', showPuppy: false, showCart: false),
-          body: ListView.builder(
-            itemCount: orderViewModel.getOrderResponse.data!.length,
-            padding: const EdgeInsets.only(left: 20, right: 20, top: 30),
-            itemBuilder: (BuildContext context, int index) {
-              return ordersVerticalListChipWidget(
-                  showButtons: false,
-                  orderListData: orderViewModel.getOrderResponse.data![index]);
-            },
-          )
+          body: orderViewModel.getOrderResponse!.data == null
+              ? const SizedBox()
+              : ListView.builder(
+                  itemCount: orderViewModel.getOrderResponse!.data!.length,
+                  padding: const EdgeInsets.only(left: 20, right: 20, top: 30),
+                  itemBuilder: (BuildContext context, int index) {
+                    return ordersVerticalListChipWidget(
+                        showButtons: false,
+                        orderListData:
+                            orderViewModel.getOrderResponse!.data![index]);
+                  },
+                )
           /*Column(
           children: [
             SizedBox(

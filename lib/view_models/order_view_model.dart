@@ -17,7 +17,7 @@ class OrderViewModel with ChangeNotifier {
   //final List<OrderData> _completedOrders = [];
   //final List<OrderData> _inProcessOrders = [];
   //final List<OrderItems> _monthlyOrders = [];
-  OrderResponse _orderResponse = OrderResponse();
+  OrderResponse? _orderResponse = OrderResponse();
   OrderData _selectedOrder = OrderData();
 
   OrderCreateResponse get getOrderCreateResponse => _orderCreateResponse;
@@ -44,7 +44,7 @@ class OrderViewModel with ChangeNotifier {
     notifyListeners();
   }
 
-  OrderResponse get getOrderResponse => _orderResponse;
+  OrderResponse? get getOrderResponse => _orderResponse;
 
   CartModel setToCartModel({required int index}) {
     final CartModel cartItem = CartModel(

@@ -11,6 +11,7 @@ import '../../models/order_model.dart';
 import '../../route_generator.dart';
 import '../../utils/custom_buttons.dart';
 import '../../utils/custom_colors.dart';
+import '../../utils/date_time_formatter.dart';
 import '../../utils/images.dart';
 import '../dialogs/address_label_dialog.dart';
 import '../dialogs/cancel_order_dialog.dart';
@@ -51,7 +52,7 @@ Widget ordersVerticalListChipWidget(
                   ],
                 ),
                 grey14w400(
-                    data: 'Delivery Date: ${orderListData.deliveryDate}'),
+                    data: 'Order Date: ${DateTimeFormatter.timeStampToDate(orderListData.createdOnDate!,2)}'),
                 SizedBox(
                   height: 14.h,
                 ),

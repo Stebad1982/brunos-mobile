@@ -39,7 +39,7 @@ class CheckoutScreen extends StatelessWidget {
             SingleChildScrollView(
               child: Padding(
                 padding: const EdgeInsets.only(
-                    left: 20.0, right: 20, top: 20, bottom: 220),
+                    left: 20.0, right: 20, top: 20, bottom: 280),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
@@ -374,7 +374,7 @@ class CheckoutScreen extends StatelessWidget {
                     SizedBox(
                       height: 24.h,
                     ),
-                    Container(
+                   /* Container(
                       width: double.infinity,
                       decoration: ShapeDecoration(
                         color: CustomColors.whiteColor,
@@ -426,7 +426,7 @@ class CheckoutScreen extends StatelessWidget {
                     ),
                     SizedBox(
                       height: 24.h,
-                    ),
+                    ),*/
                     InkWell(
                       onTap: context
                                   .watch<AuthViewModel>()
@@ -531,18 +531,18 @@ class CheckoutScreen extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            black18w500(data: 'Enter your Promo code here'),
+                            black18w500(data: 'Having a Promo Code?'),
                             SizedBox(
                               height: 17.h,
                             ),
                             lightBlack14w400Centre(
                                 left: true,
                                 data:
-                                    'You can only use your PawPoints or a Promo Code per transaction. Promo codes are one-time use only.'),
+                                    'You can apply the given Promo Code here and claim your special discount. Promo Codes are one-time use only.'),
                             SizedBox(
                               height: 17.h,
                             ),
-                            Row(
+                           /* Row(
                               children: [
                                 lightBlack14w400Centre(
                                     data: 'Generate coupon code'),
@@ -561,7 +561,7 @@ class CheckoutScreen extends StatelessWidget {
                             ),
                             SizedBox(
                               height: 10.h,
-                            ),
+                            ),*/
                             TextField(
                               controller: cartViewModel.getPromoCodeController,
                               onChanged: (value) {
@@ -610,7 +610,7 @@ class CheckoutScreen extends StatelessWidget {
                                 FocusScope.of(context).unfocus();
                                 cartViewModel.callPromoCodeApi().then((value) {
                                   if (value) {
-                                    if (cartViewModel.getPromoCodeDiscount >
+                                   /* if (cartViewModel.getPromoCodeDiscount >
                                         cartViewModel.getCartTotalPrice) {
                                       promoCodeValidationDialog(
                                           context: context,
@@ -618,9 +618,9 @@ class CheckoutScreen extends StatelessWidget {
                                               'To use this promo code the cart total must be more than ${cartViewModel.getPromoCodeDiscount}',
                                           height: 200,
                                           title: 'Alert');
-                                    } else {
+                                    } else {*/
                                       cartViewModel.setCheckOutTotal();
-                                    }
+                                 /*   }*/
                                   }
                                 });
                                 //cartViewModel.setPromoCodeDiscount(value);
@@ -684,30 +684,6 @@ class CheckoutScreen extends StatelessWidget {
                                 data: 'AED ${cartViewModel.getCheckOutTotal}')
                           ],
                         ),
-                        Visibility(
-                          visible: cartViewModel.getPawSelectedPoints != 0 ||
-                              cartViewModel.getPromoCodeDiscount != 0,
-                          child: Padding(
-                            padding: const EdgeInsets.only(top: 16),
-                            child: Row(
-                              children: [
-                                lightBlack14w400Centre(
-                                    data:
-                                        cartViewModel.getPawSelectedPoints == 0
-                                            ? 'Promo Rewarded Amount'
-                                            : 'Loyalty Points'),
-                                const Spacer(),
-                                black16w500(
-                                    data:
-                                        cartViewModel.getPawSelectedPoints == 0
-                                            ? cartViewModel.getPromoCodeDiscount
-                                                .toString()
-                                            : cartViewModel.getPawSelectedPoints
-                                                .toString())
-                              ],
-                            ),
-                          ),
-                        ),
                         /* Row(
                           children: [
                             lightBlack14w400Centre(
@@ -717,7 +693,62 @@ class CheckoutScreen extends StatelessWidget {
                           ],
                         ),*/
                         SizedBox(
-                          height: 40.h,
+                          height: 20.h,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            lightBlack14w400Centre(data: 'Subtotal'),
+                            SizedBox(
+                              width: 2.w,
+                            ),
+                            lightBlack14w400Centre(
+                                data:
+                                'AED ${cartViewModel.getCartTotalPrice}'),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 20.h,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            lightBlack14w400Centre(data: 'Delivery Fee'),
+                            SizedBox(
+                              width: 2.w,
+                            ),
+                            lightBlack14w400Centre(
+                                data:
+                                '${cartViewModel.getDeliveryFee} AED (One time  Fee)'),
+                          ],
+                        ),
+                        Visibility(
+                          visible: cartViewModel.getPawSelectedPoints != 0 ||
+                              cartViewModel.getPromoCodeDiscount != 0,
+                          child: Padding(
+                            padding: const EdgeInsets.only(top: 16),
+                            child: Row(
+                              children: [
+                                lightBlack14w400Centre(
+                                    data:
+                                    cartViewModel.getPawSelectedPoints == 0
+                                        ? 'Promo Rewarded Amount'
+                                        : 'Loyalty Points'),
+                                const Spacer(),
+                                black16w500(
+                                    data:
+                                    cartViewModel.getPawSelectedPoints == 0
+                                        ? cartViewModel.getPromoCodeDiscount
+                                        .toString()
+                                        : cartViewModel.getPawSelectedPoints
+                                        .toString())
+                              ],
+                            ),
+                          ),
+                        ),
+
+                        SizedBox(
+                          height: 30.h,
                         ),
                         customButton(
                             text: 'Place Order',

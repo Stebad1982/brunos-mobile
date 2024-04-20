@@ -8,6 +8,7 @@ class OrderData {
   String? paymentMethod;
   int? discountPercentage;
   String? deliveryDate;
+  int? createdOnDate;
   String? promoCodeId;
   bool? isCompleted;
   num? shippingFees;
@@ -23,6 +24,7 @@ class OrderData {
         this.deliveryDate,
         this.promoCodeId,
         this.cartTotal,
+        this.createdOnDate,
         this.shippingFees,
         this.isCompleted,
         this.orderItems});
@@ -35,6 +37,7 @@ class OrderData {
     discountPercentage = json['discountPercentage'];
     deliveryDate = json['deliveryDate'];
     cartTotal = json['cartTotal'];
+    createdOnDate = json['createdOnDate'];
     shippingFees = json['shippingFees'];
     isCompleted = json['isCompleted'];
     promoCodeId = json['promoCodeId'];

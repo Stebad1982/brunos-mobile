@@ -13,6 +13,7 @@ import '../models/recipe_model.dart';
 import '../models/requests/order_request.dart';
 import '../models/responses/promo_code_response.dart';
 import '../utils/date_time_formatter.dart';
+import '../widgets/dialogs/promo_code_validation_dialog.dart';
 import 'auth_view_model.dart';
 
 class CartViewModel with ChangeNotifier {
@@ -25,6 +26,7 @@ class CartViewModel with ChangeNotifier {
   int _requiredPawPoints = 0;
   num _checkOutTotal = 0;
   int _deliveryFee = 0;
+
   /*int _deliveryCharges = navigatorKey.currentContext!
        .read<AuthViewModel>()
        .getAuthResponse
@@ -41,9 +43,9 @@ class CartViewModel with ChangeNotifier {
 
   int get getDeliveryFee => _deliveryFee;
 
-   void setDeliveryFee (int value){
-  _deliveryFee = value;
-  notifyListeners();
+  void setDeliveryFee(int value) {
+    _deliveryFee = value;
+    notifyListeners();
   }
 
   TextEditingController get getInstructionsController =>
@@ -74,7 +76,7 @@ class CartViewModel with ChangeNotifier {
 
   TextEditingController get getPromoCodeController => _promoCodeController;
 
- // int get getDeliveryCharges => _deliveryCharges;
+  // int get getDeliveryCharges => _deliveryCharges;
 /*
   void setDeliveryCharges (int value){
     navigatorKey.currentContext!
@@ -101,7 +103,8 @@ class CartViewModel with ChangeNotifier {
             .data!
             .discounts![5]
             .aggregate!;
-    final totalPrice = _cartTotalPrice - _promoCodeDiscount + _deliveryFee - finalPoints;
+    final totalPrice =
+        _cartTotalPrice - _promoCodeDiscount + _deliveryFee - finalPoints;
 
     _checkOutTotal = roundPrice(totalPrice.round());
 
@@ -254,8 +257,18 @@ class CartViewModel with ChangeNotifier {
           .checkPromoCodeApi(code: _promoCodeController.text);
       if (response.isSuccess!) {
         EasyLoading.dismiss();
-        setPromoCodeDiscount(response.data!.discount!);
-        return true;
+        if (response.data!.discount! > _cartTotalPrice) {
+          promoCodeValidationDialog(
+              context: navigatorKey.currentContext!,
+              description:
+              'To use this promo code the cart total must be more than ${response.data!.discount!}',
+              height: 200,
+              title: 'Alert');
+          return false;
+        } else {
+          setPromoCodeDiscount(response.data!.discount!);
+          return true;
+        }
       } else {
         EasyLoading.showError('${response.message}');
         return false;

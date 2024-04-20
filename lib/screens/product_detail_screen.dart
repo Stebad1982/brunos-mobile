@@ -272,15 +272,33 @@ class ProductDetailScreen extends StatelessWidget {
                     SizedBox(
                       height: 24.h,
                     ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child: black14w500(data: 'Details'),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 20),
+                          child: black14w500(data: 'Details'),
+                        ),
+                        Column(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 20),
+                              child: black14w500(data: plansViewModel.getSelectedRecipe.brand!),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 20),
+                              child: black14w500(data: plansViewModel.getSelectedRecipe.weight!),
+                            ),
+                          ],
+                        ),
+                      ],
                     ),
+
                     SizedBox(
                       height: 8.h,
                     ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                    const Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 20),
                      // child: black14w500(data: plansViewModel.getSelectedRecipe.),
                     ),
                     SizedBox(
@@ -292,6 +310,7 @@ class ProductDetailScreen extends StatelessWidget {
                           lineHeight: true,
                           data: plansViewModel.getSelectedRecipe.description!),
                     ),
+
                     SizedBox(
                       height: 120.h,
                     ),

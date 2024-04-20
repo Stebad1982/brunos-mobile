@@ -296,7 +296,7 @@ class PuppyViewModel with ChangeNotifier {
    // _puppyIsSpayNeuter = data.isSpayNeuter!;
     _puppyBreedController.text = _puppyDetail!.breed!;
     _puppyDob = _puppyDetail!.bornOnDate! != 0
-        ? DateTimeFormatter.timeStampToDate(_puppyDetail!.bornOnDate!)
+        ? DateTimeFormatter.timeStampToDate(_puppyDetail!.bornOnDate!,1)
         : 'MM   /   DD   /   YYYY';
     _puppyCurrentWeight.text = _puppyDetail!.currentWeight!.toString();
     _puppyActualWeight = _puppyDetail!.actualWeight!;

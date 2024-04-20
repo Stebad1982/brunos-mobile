@@ -18,6 +18,8 @@ class RecipeModel {
   List<Ingredient>? ingredient;
   String? description;
   String? details;
+  String? brand;
+  String? weight;
   String? instructions;
   List<String>? nutrition;
   int? pricePerKG;
@@ -74,6 +76,8 @@ class RecipeModel {
       this.finalPrice,
       this.isComboRecipe,
       this.sizes,
+        this.brand,
+        this.weight,
       this.selectedItemSize,
       // this.ingredients,
       this.totalDays,
@@ -86,6 +90,8 @@ class RecipeModel {
     createdOnDate = json['createdOnDate'];
 */
     name = json['name'];
+    brand = json['brand'] ?? '';
+    weight = json['weight'] ?? '';
     isFeatured = json['isFeatured'];
 /*
     userId = json['userId'];
@@ -141,6 +147,8 @@ class RecipeModel {
 /*
     data['createdOnDate'] = this.createdOnDate;
 */
+    data['brand'] = this.brand;
+    data['weight'] = this.weight;
     data['name'] = this.name;
     data['isFeatured'] = this.isFeatured;
     data['isComboRecipe'] = this.isComboRecipe;

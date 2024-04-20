@@ -63,7 +63,10 @@ Future redeemPawPointsBottomSheetWidget() {
               ),
               lightBlack14w400Centre(
                   data:
-                  'you can use your loyalty points  to get discount, by converting your loyalty points to % discount coupon',
+                  'You can use your existing PawPoints to get a special discount. The maximum points that can be redeemed is  ${context
+                      .read<AuthViewModel>()
+                      .getAuthResponse
+                      .data!.discounts![3].aggregate}% of the order value.',
                   left: true),
               SizedBox(
                 height: 30.h,
