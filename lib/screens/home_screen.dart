@@ -11,6 +11,7 @@ import 'package:flutter_dash/flutter_dash.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../models/responses/faqs_blogs_news_response.dart';
 import '../utils/food_category_list_data.dart';
@@ -33,6 +34,9 @@ import '../widgets/gridChip/food_category_grid_chip_widget.dart';
 import '../widgets/gridChip/item_discribed_grid_chip_widget.dart';
 import '../widgets/gridChip/food_grid_chip_widget.dart';
 import '../widgets/listChips/shop_items_horizontal_list_chip_widget.dart';
+
+final Uri webUrl = Uri.parse('https://brunos.kitchen/');
+
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -272,7 +276,7 @@ class HomeScreen extends StatelessWidget {
                       } else {
                         Navigator.pushNamed(context, choosePlanRoute);
                       }
-                   /*   SendGridPref sendGrid = SendGridPref();
+                      /*   SendGridPref sendGrid = SendGridPref();
                       sendGrid.sendEmail(emailSubject: 'Registration', emailDescription: 'Register Successfully');
 */
                     },
@@ -502,11 +506,50 @@ class HomeScreen extends StatelessWidget {
                           )
                       ],
                     )
-                  : SizedBox(),
+                  : const SizedBox(),
+              Image.asset(
+                splashAnimation,
+                width: 200.w,
+              ),
+              SizedBox(
+                height: 10.h,
+              ),
+              InkWell(
+                onTap: (){
+                  _launchUrl();
+                },
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: CustomColors.lightBlackColor,
+                    border: Border.all(),
+                    borderRadius: const BorderRadius.all(Radius.circular(50)),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        white18w500(data: 'Visit'),
+                        SizedBox(
+                          width: 5.w,
+                        ),
+                        orange18w500(data: 'brunos.kitchen'),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 20.h,
+              ),
             ],
           ),
         ),
       ),
     );
   }
-}
+  Future<void> _launchUrl() async {
+    if (!await launchUrl(webUrl)) {
+      throw Exception('Could not launch $webUrl');
+    }
+}}

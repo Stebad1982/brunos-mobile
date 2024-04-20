@@ -281,6 +281,13 @@ class ProductDetailScreen extends StatelessWidget {
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 20),
+                     // child: black14w500(data: plansViewModel.getSelectedRecipe.),
+                    ),
+                    SizedBox(
+                      height: 8.h,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
                       child: grey14w400(
                           lineHeight: true,
                           data: plansViewModel.getSelectedRecipe.description!),
