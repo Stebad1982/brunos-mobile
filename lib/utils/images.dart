@@ -14,6 +14,7 @@ const password = "assets/images/password.svg";
 const splashBackground = "assets/images/splash-bg.png";
 const tick = "assets/images/tick.svg";
 const editImageIcon = "assets/images/edit-image-icon.svg";
+const logoImage = "assets/images/logo.svg";
 const sampleFood1 = "assets/images/Active.png";
 const dogFace = "assets/images/dog-face.svg";
 const buyBulits1 = "assets/images/buy-bulits1.png";

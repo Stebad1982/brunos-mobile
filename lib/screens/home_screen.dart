@@ -507,8 +507,8 @@ class HomeScreen extends StatelessWidget {
                       ],
                     )
                   : const SizedBox(),
-              Image.asset(
-                splashAnimation,
+              SvgPicture.asset(
+                logoImage,
                 width: 200.w,
               ),
               SizedBox(
