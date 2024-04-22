@@ -67,9 +67,55 @@ class ProductDetailScreen extends StatelessWidget {
                     SizedBox(
                       height: 24.h,
                     ),
+                    Visibility(
+                      visible: plansViewModel.getSelectedRecipe.details!.isNotEmpty || plansViewModel.getSelectedRecipe.weight!.isNotEmpty,
+
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 20),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Visibility(
+                              visible: plansViewModel.getSelectedRecipe.details!.isNotEmpty,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  black14w500(data: 'Brand'),
+                                  SizedBox(
+                                    height: 10.h,
+                                  ),
+                                  black24w500Centre(
+                                      data:
+                                          plansViewModel.getSelectedRecipe.details!)
+                                ],
+                              ),
+                            ),
+                            Visibility(
+                              visible: plansViewModel.getSelectedRecipe.weight!.isNotEmpty,
+
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  black14w500(
+                                      data:  'Weight'),
+                                  SizedBox(
+                                    height: 10.h,
+                                  ),
+                                  black24w500Centre(
+                                      data:
+                                          '${plansViewModel.getSelectedRecipe.weight} Kg')
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 20.h,),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 20),
                       child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -77,32 +123,23 @@ class ProductDetailScreen extends StatelessWidget {
                               black14w500(
                                   data: plansViewModel
                                               .getSelectedRecipe.category ==
-                                      ProductCategories.standardRecipes.text
+                                          ProductCategories.standardRecipes.text
                                       ? 'Pouch Price'
                                       : 'Unit Price'),
                               SizedBox(
                                 height: 15.h,
                               ),
-                              Row(
-                                children: [
-                                  black24w500Centre(
-                                      data:
-                                          'AED ${plansViewModel.getSelectedRecipe.pricePerKG}'),
-                                  /*   SizedBox(
-                                  width: 5.w,
-                                ),
-                                grey14w400(data: '\$158.33')*/
-                                ],
-                              )
+                              black24w500Centre(
+                                  data:
+                                      'AED ${plansViewModel.getSelectedRecipe.pricePerKG}')
                             ],
                           ),
-                          Spacer(),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               black14w500(data: 'Quantity'),
                               SizedBox(
-                                height: 15.h,
+                                height: 10.h,
                               ),
                               Row(
                                 children: [
@@ -272,34 +309,16 @@ class ProductDetailScreen extends StatelessWidget {
                     SizedBox(
                       height: 24.h,
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 20),
-                          child: black14w500(data: 'Details'),
-                        ),
-                        Column(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 20),
-                              child: black14w500(data: plansViewModel.getSelectedRecipe.brand!),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 20),
-                              child: black14w500(data: plansViewModel.getSelectedRecipe.weight!),
-                            ),
-                          ],
-                        ),
-                      ],
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: black14w500(data: 'Details'),
                     ),
-
                     SizedBox(
                       height: 8.h,
                     ),
                     const Padding(
                       padding: EdgeInsets.symmetric(horizontal: 20),
-                     // child: black14w500(data: plansViewModel.getSelectedRecipe.),
+                      // child: black14w500(data: plansViewModel.getSelectedRecipe.),
                     ),
                     SizedBox(
                       height: 8.h,
@@ -310,7 +329,6 @@ class ProductDetailScreen extends StatelessWidget {
                           lineHeight: true,
                           data: plansViewModel.getSelectedRecipe.description!),
                     ),
-
                     SizedBox(
                       height: 120.h,
                     ),
@@ -335,8 +353,8 @@ class ProductDetailScreen extends StatelessWidget {
                             final List<RecipeModel> recipeList = [];
                             plansViewModel.setProductModel();
                             recipeList.add(plansViewModel.getSelectedRecipe);
-                            final planTotalPrice = calculatePlanTotal(
-                                listOfItems: recipeList);
+                            final planTotalPrice =
+                                calculatePlanTotal(listOfItems: recipeList);
                             context.read<CartViewModel>().addToCartList(
                                   CartModel(
                                       recipes: recipeList,
@@ -347,7 +365,9 @@ class ProductDetailScreen extends StatelessWidget {
                                       planType: plansViewModel.getPlanType,
                                       planTotal: planTotalPrice,
                                       pouchesDetail: [],
-                                      totalWeight: [], planDiscountedPrice: planTotalPrice, planDiscountPer: 0),
+                                      totalWeight: [],
+                                      planDiscountedPrice: planTotalPrice,
+                                      planDiscountPer: 0),
                                 );
 
                             Navigator.pushNamedAndRemoveUntil(context,
@@ -369,8 +389,8 @@ class ProductDetailScreen extends StatelessWidget {
                           final List<RecipeModel> recipeList = [];
                           plansViewModel.setProductModel();
                           recipeList.add(plansViewModel.getSelectedRecipe);
-                          final planTotalPrice = calculatePlanTotal(
-                              listOfItems: recipeList);
+                          final planTotalPrice =
+                              calculatePlanTotal(listOfItems: recipeList);
                           context.read<CartViewModel>().addToCartList(
                                 CartModel(
                                     recipes: recipeList,
@@ -381,7 +401,9 @@ class ProductDetailScreen extends StatelessWidget {
                                     planType: plansViewModel.getPlanType,
                                     planTotal: planTotalPrice,
                                     pouchesDetail: [],
-                                    totalWeight: [], planDiscountedPrice: planTotalPrice, planDiscountPer: 0),
+                                    totalWeight: [],
+                                    planDiscountedPrice: planTotalPrice,
+                                    planDiscountPer: 0),
                               );
                           Navigator.pushNamedAndRemoveUntil(context, cartRoute,
                               (Route route) => route.isFirst);

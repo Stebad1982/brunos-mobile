@@ -24,7 +24,7 @@ import '../utils/shared_pref .dart';
 
 class PlansViewModel with ChangeNotifier {
   final PlanApiServices _planApiServices = PlanApiServices();
-  String _productCategory = ProductCategories.standardRecipes.text;
+  String _productCategory = '';
   String _selectedFeaturedRecipe = FeaturedRecipeType.adult.text;
   int _quantity = 1;
   int _availableDays = 0;
@@ -407,6 +407,8 @@ class PlansViewModel with ChangeNotifier {
 
   void setRecipesListResponse(RecipesListResponse value) {
     _recipesListResponse = value;
+    _productCategory = _recipesListResponse.data!.categories![0].name!;
+
     _recipesList = _recipesListResponse.data!.recipe!
         .where((element) => element.category!.isEmpty)
         .toList();
