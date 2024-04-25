@@ -21,6 +21,7 @@ class CartViewModel with ChangeNotifier {
   final PromoApiServices _promoApiServices = PromoApiServices();
   num _cartTotalPrice = 0;
   num _promoCodeDiscount = 0;
+  num _subTotal = 0;
   double _pawPoints = 0;
   int _pawSelectedPoints = 0;
   int _requiredPawPoints = 0;
@@ -67,8 +68,8 @@ class CartViewModel with ChangeNotifier {
 
   void setPawSelectedPoints() {
     _pawSelectedPoints = _pawPoints.round();
-    _promoCodeDiscount = 0;
-    _promoCodeController.clear();
+   // _promoCodeDiscount = 0;
+   // _promoCodeController.clear();
     setCheckOutTotal();
   }
 
@@ -87,13 +88,15 @@ class CartViewModel with ChangeNotifier {
   }*/
 
   void setPromoCodeDiscount(int value) {
-    _pawSelectedPoints = 0;
-    _requiredPawPoints = 0;
+   // _pawSelectedPoints = 0;
+   // _requiredPawPoints = 0;
     _promoCodeDiscount = value /*_cartTotalPrice * (value / 100)*/;
     setCheckOutTotal();
   }
 
   num get getCheckOutTotal => _checkOutTotal;
+
+  num get getSubTotal => _subTotal;
 
   void setCheckOutTotal() {
     final num finalPoints = _pawSelectedPoints *
@@ -103,8 +106,9 @@ class CartViewModel with ChangeNotifier {
             .data!
             .discounts![5]
             .aggregate!;
+    _subTotal = _cartTotalPrice - _promoCodeDiscount - finalPoints;
     final totalPrice =
-        _cartTotalPrice - _promoCodeDiscount + _deliveryFee - finalPoints;
+        _subTotal + _deliveryFee ;
 
     _checkOutTotal = roundPrice(totalPrice.round());
 
@@ -257,13 +261,14 @@ class CartViewModel with ChangeNotifier {
           .checkPromoCodeApi(code: _promoCodeController.text);
       if (response.isSuccess!) {
         EasyLoading.dismiss();
-        if (response.data!.discount! > _cartTotalPrice) {
+        if (response.data!.discount! > _subTotal) {
           promoCodeValidationDialog(
               context: navigatorKey.currentContext!,
               description:
               'To use this promo code the cart total must be more than ${response.data!.discount!}',
               height: 200,
               title: 'Alert');
+          _promoCodeController.clear();
           return false;
         } else {
           setPromoCodeDiscount(response.data!.discount!);

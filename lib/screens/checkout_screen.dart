@@ -374,7 +374,7 @@ class CheckoutScreen extends StatelessWidget {
                     SizedBox(
                       height: 24.h,
                     ),
-                   /* Container(
+                    /* Container(
                       width: double.infinity,
                       decoration: ShapeDecoration(
                         color: CustomColors.whiteColor,
@@ -542,7 +542,7 @@ class CheckoutScreen extends StatelessWidget {
                             SizedBox(
                               height: 17.h,
                             ),
-                           /* Row(
+                            /* Row(
                               children: [
                                 lightBlack14w400Centre(
                                     data: 'Generate coupon code'),
@@ -610,7 +610,7 @@ class CheckoutScreen extends StatelessWidget {
                                 FocusScope.of(context).unfocus();
                                 cartViewModel.callPromoCodeApi().then((value) {
                                   if (value) {
-                                   /* if (cartViewModel.getPromoCodeDiscount >
+                                    /* if (cartViewModel.getPromoCodeDiscount >
                                         cartViewModel.getCartTotalPrice) {
                                       promoCodeValidationDialog(
                                           context: context,
@@ -619,8 +619,8 @@ class CheckoutScreen extends StatelessWidget {
                                           height: 200,
                                           title: 'Alert');
                                     } else {*/
-                                      cartViewModel.setCheckOutTotal();
-                                 /*   }*/
+                                    cartViewModel.setCheckOutTotal();
+                                    /*   }*/
                                   }
                                 });
                                 //cartViewModel.setPromoCodeDiscount(value);
@@ -676,14 +676,6 @@ class CheckoutScreen extends StatelessWidget {
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Row(
-                          children: [
-                            lightBlack14w400Centre(data: 'Total'),
-                            const Spacer(),
-                            black16w500(
-                                data: 'AED ${cartViewModel.getCheckOutTotal}')
-                          ],
-                        ),
                         /* Row(
                           children: [
                             lightBlack14w400Centre(
@@ -692,6 +684,49 @@ class CheckoutScreen extends StatelessWidget {
                             black16w500(data: '5')
                           ],
                         ),*/
+
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            lightBlack14w400Centre(data: 'Order Total'),
+                            SizedBox(
+                              width: 2.w,
+                            ),
+                            lightBlack14w400Centre(
+                                data: 'AED ${cartViewModel.getCartTotalPrice}'),
+                          ],
+                        ),
+                        Visibility(
+                          visible: cartViewModel.getPawSelectedPoints != 0,
+                          child: Padding(
+                            padding: const EdgeInsets.only(top: 16),
+                            child: Row(
+                              children: [
+                                lightBlack14w400Centre(data: 'Loyalty Points'),
+                                const Spacer(),
+                                orange14w500(
+                                    data:
+                                        'AED -${cartViewModel.getPawSelectedPoints}')
+                              ],
+                            ),
+                          ),
+                        ),
+                        Visibility(
+                          visible: cartViewModel.getPromoCodeDiscount != 0,
+                          child: Padding(
+                            padding: const EdgeInsets.only(top: 16),
+                            child: Row(
+                              children: [
+                                lightBlack14w400Centre(
+                                    data: 'Promo Rewarded Amount'),
+                                const Spacer(),
+                                orange14w500(
+                                    data:
+                                        'AED -${cartViewModel.getPromoCodeDiscount}')
+                              ],
+                            ),
+                          ),
+                        ),
                         SizedBox(
                           height: 20.h,
                         ),
@@ -704,7 +739,7 @@ class CheckoutScreen extends StatelessWidget {
                             ),
                             lightBlack14w400Centre(
                                 data:
-                                'AED ${cartViewModel.getCartTotalPrice}'),
+                                'AED ${cartViewModel.getSubTotal}'),
                           ],
                         ),
                         SizedBox(
@@ -719,34 +754,21 @@ class CheckoutScreen extends StatelessWidget {
                             ),
                             lightBlack14w400Centre(
                                 data:
-                                '${cartViewModel.getDeliveryFee} AED (One time  Fee)'),
+                                    '${cartViewModel.getDeliveryFee} AED (One time  Fee)'),
                           ],
                         ),
-                        Visibility(
-                          visible: cartViewModel.getPawSelectedPoints != 0 ||
-                              cartViewModel.getPromoCodeDiscount != 0,
-                          child: Padding(
-                            padding: const EdgeInsets.only(top: 16),
-                            child: Row(
-                              children: [
-                                lightBlack14w400Centre(
-                                    data:
-                                    cartViewModel.getPawSelectedPoints == 0
-                                        ? 'Promo Rewarded Amount'
-                                        : 'Loyalty Points'),
-                                const Spacer(),
-                                black16w500(
-                                    data:
-                                    cartViewModel.getPawSelectedPoints == 0
-                                        ? cartViewModel.getPromoCodeDiscount
-                                        .toString()
-                                        : cartViewModel.getPawSelectedPoints
-                                        .toString())
-                              ],
-                            ),
-                          ),
+                        SizedBox(
+                          height: 20.h,
                         ),
 
+                        Row(
+                          children: [
+                            lightBlack14w400Centre(data: 'Total'),
+                            const Spacer(),
+                            black16w500(
+                                data: 'AED ${cartViewModel.getCheckOutTotal}')
+                          ],
+                        ),
                         SizedBox(
                           height: 30.h,
                         ),
