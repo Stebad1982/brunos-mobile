@@ -23,8 +23,10 @@ class CartViewModel with ChangeNotifier {
   num _promoCodeDiscount = 0;
   num _subTotal = 0;
   double _pawPoints = 0;
-  int _pawSelectedPoints = 0;
-  int _requiredPawPoints = 0;
+  double _AedPerPoint = 0;
+
+ // int _pawSelectedPoints = 0;
+  //int _requiredPawPoints = 0;
   num _checkOutTotal = 0;
   int _deliveryFee = 0;
 
@@ -40,7 +42,10 @@ class CartViewModel with ChangeNotifier {
   DateTime _focusedDay = DateTime.now().add(const Duration(days: 4));
   DateTime _selectedDay = DateTime.now().add(const Duration(days: 4));
 
-  double get getPawPoints => _pawPoints;
+
+
+  TextEditingController get getInstructionsController =>
+      _instructionsController;
 
   int get getDeliveryFee => _deliveryFee;
 
@@ -49,29 +54,28 @@ class CartViewModel with ChangeNotifier {
     notifyListeners();
   }
 
-  TextEditingController get getInstructionsController =>
-      _instructionsController;
+   double get getPawPoints => _pawPoints;
 
   void setPawPoints(double value) {
     _pawPoints = value;
     notifyListeners();
   }
 
-  int get getRequiredPawPoints => _requiredPawPoints;
+  /* int get getRequiredPawPoints => _requiredPawPoints;
 
   void setRequiredPawPoints(num pointsAggregate) {
     _requiredPawPoints = (getCartTotalPrice / pointsAggregate).floor();
     notifyListeners();
-  }
+  }*/
 
-  int get getPawSelectedPoints => _pawSelectedPoints;
+/*  int get getPawSelectedPoints => _pawSelectedPoints;
 
   void setPawSelectedPoints() {
     _pawSelectedPoints = _pawPoints.round();
    // _promoCodeDiscount = 0;
    // _promoCodeController.clear();
     setCheckOutTotal();
-  }
+  }*/
 
   num get getPromoCodeDiscount => _promoCodeDiscount;
 
