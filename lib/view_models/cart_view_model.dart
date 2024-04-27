@@ -23,10 +23,10 @@ class CartViewModel with ChangeNotifier {
   num _promoCodeDiscount = 0;
   num _subTotal = 0;
   double _pawPoints = 0;
-  double _AedPerPoint = 0;
-
- // int _pawSelectedPoints = 0;
-  //int _requiredPawPoints = 0;
+  double _aedPerPoint = 0;
+double _pawPointDiscount = 0;
+  int _pawSelectedPoints = 0;
+  int _availablePawPoints = 0;
   num _checkOutTotal = 0;
   int _deliveryFee = 0;
 
@@ -42,7 +42,13 @@ class CartViewModel with ChangeNotifier {
   DateTime _focusedDay = DateTime.now().add(const Duration(days: 4));
   DateTime _selectedDay = DateTime.now().add(const Duration(days: 4));
 
+  double get getPawPointDiscount => _pawPointDiscount;
 
+  void setPawPointDiscount (){
+    _pawPointDiscount = _pawSelectedPoints * _aedPerPoint;
+  }
+
+  double get getAedPerPoint => _aedPerPoint;
 
   TextEditingController get getInstructionsController =>
       _instructionsController;
@@ -54,28 +60,31 @@ class CartViewModel with ChangeNotifier {
     notifyListeners();
   }
 
-   double get getPawPoints => _pawPoints;
+  double get getPawPoints => _pawPoints;
 
   void setPawPoints(double value) {
     _pawPoints = value;
     notifyListeners();
   }
 
-  /* int get getRequiredPawPoints => _requiredPawPoints;
+  int get getAvailablePawPoints => _availablePawPoints;
 
-  void setRequiredPawPoints(num pointsAggregate) {
-    _requiredPawPoints = (getCartTotalPrice / pointsAggregate).floor();
+  void setAvailablePawPoints({required num perAed, required num pointsLimit}) {
+    _aedPerPoint = perAed / 100;
+    final discountRedeem = (_subTotal * pointsLimit / 100);
+    _availablePawPoints = (discountRedeem / _aedPerPoint).floor();
     notifyListeners();
-  }*/
+  }
 
-/*  int get getPawSelectedPoints => _pawSelectedPoints;
+  int get getPawSelectedPoints => _pawSelectedPoints;
 
   void setPawSelectedPoints() {
     _pawSelectedPoints = _pawPoints.round();
-   // _promoCodeDiscount = 0;
-   // _promoCodeController.clear();
+    // _promoCodeDiscount = 0;
+    // _promoCodeController.clear();
+    setPawPointDiscount();
     setCheckOutTotal();
-  }*/
+  }
 
   num get getPromoCodeDiscount => _promoCodeDiscount;
 
@@ -92,8 +101,8 @@ class CartViewModel with ChangeNotifier {
   }*/
 
   void setPromoCodeDiscount(int value) {
-   // _pawSelectedPoints = 0;
-   // _requiredPawPoints = 0;
+    // _pawSelectedPoints = 0;
+    // _requiredPawPoints = 0;
     _promoCodeDiscount = value /*_cartTotalPrice * (value / 100)*/;
     setCheckOutTotal();
   }
@@ -103,16 +112,8 @@ class CartViewModel with ChangeNotifier {
   num get getSubTotal => _subTotal;
 
   void setCheckOutTotal() {
-    final num finalPoints = _pawSelectedPoints *
-        navigatorKey.currentContext!
-            .read<AuthViewModel>()
-            .getAuthResponse
-            .data!
-            .discounts![5]
-            .aggregate!;
-    _subTotal = _cartTotalPrice - _promoCodeDiscount - finalPoints;
-    final totalPrice =
-        _subTotal + _deliveryFee ;
+    _subTotal = _cartTotalPrice - _promoCodeDiscount - _pawPointDiscount;
+    final totalPrice = _subTotal + _deliveryFee;
 
     _checkOutTotal = roundPrice(totalPrice.round());
 
@@ -124,7 +125,7 @@ class CartViewModel with ChangeNotifier {
     _instructionsController.clear();
     _promoCodeDiscount = 0;
     _pawSelectedPoints = 0;
-    _requiredPawPoints = 0;
+    _availablePawPoints = 0;
   }
 
   bool get getViewCartItemDetail => _viewCartItemDetail;
@@ -269,7 +270,7 @@ class CartViewModel with ChangeNotifier {
           promoCodeValidationDialog(
               context: navigatorKey.currentContext!,
               description:
-              'To use this promo code the cart total must be more than ${response.data!.discount!}',
+                  'To use this promo code the cart total must be more than ${response.data!.discount!}',
               height: 200,
               title: 'Alert');
           _promoCodeController.clear();

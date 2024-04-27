@@ -253,7 +253,11 @@ class _FeedingPlanScreenState extends State<FeedingPlanScreen> {
                       children: [
                         Visibility(
                           visible:
-                          plansViewModel.getPlanType == Plans.monthly.text,
+                          plansViewModel.getPlanType == Plans.monthly.text && context
+                              .watch<AuthViewModel>()
+                              .getAuthResponse
+                              .data!
+                              .discounts![3].aggregate != 0,
                           child: Column(
                             children: [
                               orange14w500(

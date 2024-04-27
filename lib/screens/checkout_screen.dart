@@ -436,11 +436,17 @@ class CheckoutScreen extends StatelessWidget {
                               0
                           ? () {
                               cartViewModel.setPawPoints(5);
-                              cartViewModel.setRequiredPawPoints(context
+                              cartViewModel.setAvailablePawPoints(
+                                  perAed: context
+                                      .read<AuthViewModel>()
+                                      .getAuthResponse
+                                      .data!
+                                      .discounts![5]
+                                      .aggregate!, pointsLimit: context
                                   .read<AuthViewModel>()
                                   .getAuthResponse
                                   .data!
-                                  .discounts![5]
+                                  .discounts![2]
                                   .aggregate!);
                               redeemPawPointsBottomSheetWidget();
                             }
@@ -706,7 +712,7 @@ class CheckoutScreen extends StatelessWidget {
                                 const Spacer(),
                                 orange14w500(
                                     data:
-                                        'AED -${cartViewModel.getPawSelectedPoints}')
+                                        'AED -${cartViewModel.getPawPointDiscount.toStringAsFixed(2)}')
                               ],
                             ),
                           ),
@@ -738,8 +744,7 @@ class CheckoutScreen extends StatelessWidget {
                               width: 2.w,
                             ),
                             lightBlack14w400Centre(
-                                data:
-                                'AED ${cartViewModel.getSubTotal}'),
+                                data: 'AED ${cartViewModel.getSubTotal.toStringAsFixed(2)}'),
                           ],
                         ),
                         SizedBox(
@@ -760,7 +765,6 @@ class CheckoutScreen extends StatelessWidget {
                         SizedBox(
                           height: 20.h,
                         ),
-
                         Row(
                           children: [
                             lightBlack14w400Centre(data: 'Total'),

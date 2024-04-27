@@ -200,10 +200,20 @@ class ChooseYourPlanScreen extends StatelessWidget {
                                       data:
                                           'An affordable, varied meal adventure!',
                                       left: true),
-                                  SizedBox(height: 10.h,),
-                                  Align(
-                                    alignment: Alignment.centerRight,
-                                      child: orange14w500(data: 'Save upto 50%'))
+                                  //SizedBox(height: 10.h,),
+                                  Visibility(
+                                    visible: context
+                                        .watch<AuthViewModel>()
+                                        .getAuthResponse
+                                        .data!
+                                        .discounts![3].aggregate != 0,
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(top: 10),
+                                      child: Align(
+                                        alignment: Alignment.centerRight,
+                                          child: orange14w500(data: 'Save upto 50%')),
+                                    ),
+                                  )
                                 ],
                               ),
                             )
