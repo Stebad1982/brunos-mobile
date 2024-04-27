@@ -99,15 +99,16 @@ Future redeemPawPointsBottomSheetWidget() {
                     label: cartViewModel
                         .getPawPoints
                         .toString(),
-                    max: /*cartViewModel.getAvailablePawPoints >= context
+                    max: context
                         .read<AuthViewModel>()
                         .getAuthResponse
                         .data!
-                        .availablePoints!? context
+                        .availablePoints! >=  cartViewModel.getAvailablePawPoints  ?
+                    cartViewModel.getAvailablePawPoints.toDouble() :context
                         .watch<AuthViewModel>()
                         .getAuthResponse
                         .data!
-                        .availablePoints!.toDouble() :*/ cartViewModel.getAvailablePawPoints.toDouble(),
+                        .availablePoints!.toDouble() ,
                     onChanged: (double value) {
                       cartViewModel.setPawPoints(value);
                     },
@@ -120,15 +121,16 @@ Future redeemPawPointsBottomSheetWidget() {
                 children: [
                   lightBlack14w400Centre(data: '0'),
                   lightBlack14w400Centre(data: '${
-                     /* cartViewModel.getCartTotalPrice >= context
+                      context
                           .read<AuthViewModel>()
                           .getAuthResponse
                           .data!
-                          .availablePoints!? context
+                          .availablePoints! >=  cartViewModel.getAvailablePawPoints  ?
+                      cartViewModel.getAvailablePawPoints.toDouble() :context
                           .watch<AuthViewModel>()
                           .getAuthResponse
                           .data!
-                          .availablePoints!.floor():*/ cartViewModel.getCartTotalPrice.floor()
+                          .availablePoints!.toDouble()
                   } Points'),
                 ],
               ),
