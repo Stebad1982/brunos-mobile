@@ -353,10 +353,10 @@ class PlansViewModel with ChangeNotifier {
         recipeModel: _selectedRecipe);
     final RecipeModel applyDishDetail =
         RecipeModel.fromJson(_selectedRecipe.toJson());
-    applyDishDetail.finalPrice = priceFor1to3Days +
+    applyDishDetail.finalPrice = roundPrice((priceFor1to3Days +
         priceFor4to6Days +
         priceFor7to9Days +
-        priceFor10thDay;
+        priceFor10thDay).toInt());
     _selectedRecipe = applyDishDetail;
   }
 
@@ -375,8 +375,9 @@ class PlansViewModel with ChangeNotifier {
     final RecipeModel applyDishDetail =
         RecipeModel.fromJson(_selectedRecipe.toJson());
     applyDishDetail.totalDays = _daysCount;
+    final int planPrice = calculateFinalPricePerDay(recipeModel: _selectedRecipe) * _daysCount;
     applyDishDetail.finalPrice =
-        calculateFinalPricePerDay(recipeModel: _selectedRecipe) * _daysCount;
+        roundPrice(planPrice);
     _selectedRecipe = applyDishDetail;
   }
 
@@ -384,9 +385,10 @@ class PlansViewModel with ChangeNotifier {
     final RecipeModel applyDishDetail =
         RecipeModel.fromJson(_selectedRecipe.toJson());
     applyDishDetail.totalDays = int.parse(_monthlySelectedDaysController.text);
+    final int planPrice = calculateFinalPricePerDay(recipeModel: _selectedRecipe) *
+        int.parse(_monthlySelectedDaysController.text);
     applyDishDetail.finalPrice =
-        calculateFinalPricePerDay(recipeModel: _selectedRecipe) *
-            int.parse(_monthlySelectedDaysController.text);
+       roundPrice(planPrice) ;
     if (_monthlyEmptyTileNumber == 1) {
       _monthlyEmptyTile1 = applyDishDetail;
     } else if (_monthlyEmptyTileNumber == 2) {

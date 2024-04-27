@@ -115,7 +115,7 @@ double _pawPointDiscount = 0;
     _subTotal = _cartTotalPrice - _promoCodeDiscount - _pawPointDiscount;
     final totalPrice = _subTotal + _deliveryFee;
 
-    _checkOutTotal = roundPrice(totalPrice.round());
+    _checkOutTotal = totalPrice.round()/*roundPrice(totalPrice.round())*/;
 
     notifyListeners();
   }
