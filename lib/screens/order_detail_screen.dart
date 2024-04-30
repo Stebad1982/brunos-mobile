@@ -12,6 +12,7 @@ import '../route_generator.dart';
 import '../utils/custom_buttons.dart';
 import '../utils/custom_colors.dart';
 import '../utils/custom_font_style.dart';
+import '../utils/date_time_formatter.dart';
 import '../view_models/cart_view_model.dart';
 import '../widgets/app_bar_with_back_widget.dart';
 import '../widgets/listChips/cart_vertical_list_chip_widget.dart';
@@ -68,7 +69,22 @@ class OrderDetailScreen extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          grey14w400(data: 'Delivery Date'),
+                          grey14w400(data: 'Order Date'),
+                          SizedBox(
+                            width: 2.w,
+                          ),
+                          lightBlack14w400Centre(
+                              data:
+                              '${DateTimeFormatter.timeStampToDate(orderViewModel.getSelectedOrder.createdOnDate!,2)}'),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 20.h,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          grey14w400(data: orderViewModel.getSelectedOrder.isCompleted!? 'Delivery Date' : 'Est Delivery Date'),
                           SizedBox(
                             width: 2.w,
                           ),
