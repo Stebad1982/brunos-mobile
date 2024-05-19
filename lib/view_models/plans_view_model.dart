@@ -27,7 +27,7 @@ class PlansViewModel with ChangeNotifier {
   String _productCategory = '';
   String _selectedFeaturedRecipe = FeaturedRecipeType.adult.text;
   int _quantity = 1;
-  int _availableDays = 0;
+ // int _availableDays = 0;
   int _daysCount = 1;
 
   //ItemSizes? _selectedItemSize;
@@ -110,7 +110,7 @@ class PlansViewModel with ChangeNotifier {
 
   RecipesListResponse get getRecipesListResponse => _recipesListResponse;
 
-  int get getAvailableDays => _availableDays;
+  //int get getAvailableDays => _availableDays;
 
   int get getQuantity => _quantity;
 
@@ -503,7 +503,7 @@ class PlansViewModel with ChangeNotifier {
 */
     _quantity = 1;
     _daysCount = 1;
-    _availableDays = 0;
+  //  _availableDays = 0;
     _monthlySelectedDaysController.clear();
     _monthlyEmptyTileNumber = 1;
     _monthlyEmptyTile1 = null;

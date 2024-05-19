@@ -359,7 +359,7 @@ class MonthlyPlanScreen extends StatelessWidget {
                             descriptionDialog(
                                 context: context,
                                 description:
-                                    'Total number of days must be less than 30',
+                                    'Total number of days must equal to 30',
                                 height: 150.h,
                                 title: 'Alert');
                           }

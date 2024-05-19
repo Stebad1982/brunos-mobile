@@ -25,12 +25,12 @@ Future scheduleDaysRangeDialog() {
               mainAxisAlignment: MainAxisAlignment.center,
               mainAxisSize: MainAxisSize.min,
               children: [
-                black12w500Centre(
+               /* black12w500Centre(
                     data:
                         'Days Acquired: ${planViewModel.getAvailableDays}/30'),
                 SizedBox(
                   height: 10.h,
-                ),
+                ),*/
                 TextField(
                   controller: planViewModel.getMonthlySelectedDaysController,
                   onChanged: (text) {},

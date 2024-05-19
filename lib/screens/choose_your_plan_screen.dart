@@ -211,7 +211,7 @@ class ChooseYourPlanScreen extends StatelessWidget {
                                       padding: const EdgeInsets.only(top: 10),
                                       child: Align(
                                         alignment: Alignment.centerRight,
-                                          child: orange14w500(data: 'Save upto 50%')),
+                                          child: orange14w500(data: 'Order for a month and save!')),
                                     ),
                                   )
                                 ],
