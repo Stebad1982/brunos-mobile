@@ -74,7 +74,12 @@ Widget cartDishVerticalListChipWidget(
                                 .finalPrice}${planType == Plans.oneTime.text?'':' / Order'}'):*/
                         orange14w500(
                             data: 'AED ${cartRecipeModel
-                                .pricePerKG} / Item')
+                                .pricePerKG} / Item'),
+                        const SizedBox(height: 2,),
+                        planType == Plans.monthly.text
+                            ? orange14w500(
+                            data: 'Sub Total: AED ${cartRecipeModel
+                                .pricePerKG! * cartRecipeModel.totalDays!}') : SizedBox(),
                       ],
                     ),
                   ],

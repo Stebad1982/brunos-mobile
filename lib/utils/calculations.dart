@@ -91,10 +91,10 @@ int getPriceFromWeight(
     return recipeModel.price2!;
   }
   else if(dailyGram >= 401 && dailyGram <= 600){
-    return recipeModel.price2!;
+    return recipeModel.price3!;
   }
   else if(dailyGram >= 601 && dailyGram <= 800){
-    return recipeModel.price2!;
+    return recipeModel.price4!;
   }
   else if(dailyGram >= 801 && dailyGram <= 1000){
     return recipeModel.price5!;

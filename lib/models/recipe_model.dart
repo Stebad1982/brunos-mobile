@@ -18,6 +18,7 @@ class RecipeModel {
   List<Ingredient>? ingredient;
   String? description;
   String? details;
+
   //String? brand;
   String? weight;
   String? instructions;
@@ -56,7 +57,7 @@ class RecipeModel {
         this.userId,
 */
       this.ingredient,
-        this.tableImage,
+      this.tableImage,
       this.description,
       this.details,
       this.instructions,
@@ -76,8 +77,8 @@ class RecipeModel {
       this.finalPrice,
       this.isComboRecipe,
       this.sizes,
-       // this.brand,
-        this.weight,
+      // this.brand,
+      this.weight,
       this.selectedItemSize,
       // this.ingredients,
       this.totalDays,
@@ -90,7 +91,7 @@ class RecipeModel {
     createdOnDate = json['createdOnDate'];
 */
     name = json['name'];
-  //  brand = json['brand'] ?? '';
+    //  brand = json['brand'] ?? '';
     weight = json['weight'] ?? '';
     isFeatured = json['isFeatured'];
 /*
@@ -132,7 +133,8 @@ class RecipeModel {
     price5 = json['price5'];
     price6 = json['price6'];
     media = json['media'].cast<String>();
-    tableImage = json['tableImage'] != null ? json['tableImage'].cast<String>(): [];
+    tableImage =
+        json['tableImage'] != null ? json['tableImage'].cast<String>() : [];
     category = json['category'];
     recipeNo = json['recipeNo'];
     lifeStage = json['lifeStage'];
@@ -147,7 +149,7 @@ class RecipeModel {
 /*
     data['createdOnDate'] = this.createdOnDate;
 */
-   // data['brand'] = this.brand;
+    // data['brand'] = this.brand;
     data['weight'] = this.weight;
     data['name'] = this.name;
     data['isFeatured'] = this.isFeatured;
@@ -173,6 +175,12 @@ class RecipeModel {
     data['details'] = this.details;
     data['instructions'] = this.instructions;
     // data['nutrition'] = this.nutrition;
+    data['price1'] = this.price1;
+    data['price2'] = this.price2;
+    data['price3'] = this.price3;
+    data['price4'] = this.price4;
+    data['price5'] = this.price5;
+    data['price6'] = this.price6;
     data['pricePerKG'] = this.pricePerKG;
     data['media'] = this.media;
     data['recipeNo'] = this.recipeNo;

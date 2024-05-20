@@ -41,7 +41,7 @@ class AppBarWithBackWidget extends StatelessWidget
         Visibility(
           visible: showCart,
           child: Padding(
-            padding:  EdgeInsets.only(right: showPuppy? 5 : 20,top: 10),
+            padding:  EdgeInsets.only(right: showPuppy? 10 : 20,top: 10),
             child: cartIconWidget(),
           ),
         ),

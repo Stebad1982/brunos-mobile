@@ -51,9 +51,8 @@ class ChooseYourPlanScreen extends StatelessWidget {
               ),
               InkWell(
                 onTap: () {
-                  if (context
-                      .read<CartViewModel>()
-                      .checkCartForPlanValidation(planType: Plans.transitional.text)) {
+                  if (context.read<CartViewModel>().checkCartForPlanValidation(
+                      planType: Plans.transitional.text)) {
                     context
                         .read<PlansViewModel>()
                         .setPlanType(Plans.transitional.text);
@@ -84,7 +83,7 @@ class ChooseYourPlanScreen extends StatelessWidget {
                           descriptionDialog(
                               context: context,
                               description:
-                              'Select this plan to smoothly transition your doggo to Bruno’s recipes and once the transition  period ends, you’ll get access to more recipe choices to delight your doggo\'s tastebuds.',
+                                  'Select this plan to smoothly transition your doggo to Bruno’s recipes and once the transition  period ends, you’ll get access to more recipe choices to delight your doggo\'s tastebuds.',
                               height: 250.h,
                               title: 'Transitional Plan');
                         },
@@ -133,9 +132,8 @@ class ChooseYourPlanScreen extends StatelessWidget {
               ),
               InkWell(
                 onTap: () {
-                  if (context
-                      .read<CartViewModel>()
-                      .checkCartForPlanValidation(planType: Plans.monthly.text)) {
+                  if (context.read<CartViewModel>().checkCartForPlanValidation(
+                      planType: Plans.monthly.text)) {
                     context
                         .read<PlansViewModel>()
                         .setPlanType(Plans.monthly.text);
@@ -201,18 +199,13 @@ class ChooseYourPlanScreen extends StatelessWidget {
                                           'An affordable, varied meal adventure!',
                                       left: true),
                                   //SizedBox(height: 10.h,),
-                                  Visibility(
-                                    visible: context
-                                        .watch<AuthViewModel>()
-                                        .getAuthResponse
-                                        .data!
-                                        .discounts![3].aggregate != 0,
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(top: 10),
-                                      child: Align(
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 10),
+                                    child: Align(
                                         alignment: Alignment.centerRight,
-                                          child: orange14w500(data: 'Order for a month and save!')),
-                                    ),
+                                        child: orange14w500(
+                                            data:
+                                                context.watch<AuthViewModel>().getAuthResponse.data!.discounts![3].aggregate != 0 ? 'Save upto ${context.watch<AuthViewModel>().getAuthResponse.data!.discounts![3].aggregate}%' : 'Order for a month and save!')),
                                   )
                                 ],
                               ),
@@ -230,12 +223,11 @@ class ChooseYourPlanScreen extends StatelessWidget {
               InkWell(
                 onTap: () {
                   //TODO: REMOVE ONETIME ORDER
-                  if (context
-                      .read<CartViewModel>()
-                      .checkCartForPlanValidation(planType: Plans.product/*oneTime*/.text)) {
+                  if (context.read<CartViewModel>().checkCartForPlanValidation(
+                      planType: Plans.product /*oneTime*/ .text)) {
                     context
                         .read<PlansViewModel>()
-                        .setPlanType(Plans.product/*oneTime*/.text);
+                        .setPlanType(Plans.product /*oneTime*/ .text);
                     context.read<PlansViewModel>().clearPlanData();
                     Navigator.pushNamed(context, oneTimePlanRoute);
                   } else {
@@ -263,7 +255,8 @@ class ChooseYourPlanScreen extends StatelessWidget {
                           descriptionDialog(
                               context: context,
                               description:
-'Not sure if you or your doggie are ready to commit? That’s okay! Select from our array of scrumptious meals and let your doggie be the judge. Get ready for them to ‘woof’ it down begging for more!',                              height: 250.h,
+                                  'Not sure if you or your doggie are ready to commit? That’s okay! Select from our array of scrumptious meals and let your doggie be the judge. Get ready for them to ‘woof’ it down begging for more!',
+                              height: 250.h,
                               title: 'One-time Plan');
                         },
                         child: Padding(
@@ -293,8 +286,8 @@ class ChooseYourPlanScreen extends StatelessWidget {
                                     height: 5.h,
                                   ),
                                   lightBlack14w400Centre(
-                                      data:'Still not sure? Try us out!'
-,                                      left: true)
+                                      data: 'Still not sure? Try us out!',
+                                      left: true)
                                 ],
                               ),
                             )

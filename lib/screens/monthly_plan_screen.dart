@@ -1,15 +1,11 @@
 import 'package:brunos_kitchen/route_generator.dart';
 import 'package:brunos_kitchen/utils/custom_font_style.dart';
-import 'package:brunos_kitchen/utils/images.dart';
 import 'package:brunos_kitchen/view_models/cart_view_model.dart';
-import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 
-import '../main.dart';
 import '../utils/custom_buttons.dart';
 import '../utils/custom_colors.dart';
 import '../view_models/auth_view_model.dart';
@@ -354,7 +350,7 @@ class MonthlyPlanScreen extends StatelessWidget {
                                   (plansViewModel.getMonthlyEmptyTile3 != null
                                       ? plansViewModel
                                           .getMonthlyEmptyTile3!.totalDays!
-                                      : 0)) >
+                                      : 0)) !=
                               30) {
                             descriptionDialog(
                                 context: context,

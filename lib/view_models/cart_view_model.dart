@@ -24,17 +24,11 @@ class CartViewModel with ChangeNotifier {
   num _subTotal = 0;
   double _pawPoints = 0;
   double _aedPerPoint = 0;
-double _pawPointDiscount = 0;
+  double _pawPointDiscount = 0;
   int _pawSelectedPoints = 0;
   int _availablePawPoints = 0;
   num _checkOutTotal = 0;
   int _deliveryFee = 0;
-
-  /*int _deliveryCharges = navigatorKey.currentContext!
-       .read<AuthViewModel>()
-       .getAuthResponse
-       .data!
-       .location!.area == ''? 10 :20;*/
   int? _selectedIndex;
   bool _viewCartItemDetail = false;
   final TextEditingController _promoCodeController = TextEditingController();
@@ -44,7 +38,7 @@ double _pawPointDiscount = 0;
 
   double get getPawPointDiscount => _pawPointDiscount;
 
-  void setPawPointDiscount (){
+  void setPawPointDiscount() {
     _pawPointDiscount = _pawSelectedPoints * _aedPerPoint;
   }
 
@@ -115,7 +109,7 @@ double _pawPointDiscount = 0;
     _subTotal = _cartTotalPrice - _promoCodeDiscount - _pawPointDiscount;
     final totalPrice = _subTotal + _deliveryFee;
 
-    _checkOutTotal = totalPrice.round()/*roundPrice(totalPrice.round())*/;
+    _checkOutTotal = totalPrice.round() /*roundPrice(totalPrice.round())*/;
 
     notifyListeners();
   }

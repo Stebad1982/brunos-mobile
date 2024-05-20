@@ -69,7 +69,7 @@ class _FeedingPlanScreenState extends State<FeedingPlanScreen> {
               shrinkWrap: true,
               itemCount: plansViewModel.getFeedingPlan!.recipes.length,
               padding: const EdgeInsets.only(
-                  left: 20, right: 20, top: 20, bottom: 200),
+                  left: 20, right: 20, top: 20, bottom: 280),
               itemBuilder: (BuildContext context, int index) {
                 final num totalPlanQuantity = calculateDailyIntake(
                     recipeModel:

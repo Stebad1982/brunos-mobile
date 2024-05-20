@@ -31,11 +31,16 @@ Widget defaultPuppyIconWidget() {
           ? circularNetworkImageWidget(
               image: authViewModel.getAuthResponse.data!.pet!.media!,
               size: 30.h)
-          : SizedBox(
-              height: 30.h,
-              width: 30.h,
-              child: SvgPicture.asset(dogProfileImage),
-            ),
+          : Column(
+            children: [
+              SizedBox(
+                  height: 30.h,
+                  width: 30.h,
+                  child: SvgPicture.asset(dogProfileImage),
+                ),
+              black12w500Centre( data: authViewModel.getAuthResponse.data!.pet!.name!.substring(0,5),)
+            ],
+          ),
     );
   });
 }

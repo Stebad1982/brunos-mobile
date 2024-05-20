@@ -39,7 +39,7 @@ class CheckoutScreen extends StatelessWidget {
             SingleChildScrollView(
               child: Padding(
                 padding: const EdgeInsets.only(
-                    left: 20.0, right: 20, top: 20, bottom: 280),
+                    left: 20.0, right: 20, top: 20, bottom: 300),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [

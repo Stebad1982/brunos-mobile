@@ -157,7 +157,7 @@ Widget orderItemsVerticalListChipWidget(
                         planType: orderItems.planType!,
                         petName: orderItems.pet != null
                             ? orderItems.pet!.name!
-                            : null);
+                            : '');
                   },
                   separatorBuilder: (BuildContext context, int index) {
                     return SizedBox(

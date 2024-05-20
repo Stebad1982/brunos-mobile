@@ -460,53 +460,68 @@ class HomeScreen extends StatelessWidget {
               SizedBox(
                 height: 30.h,
               ),
-              black24w500Centre(data: 'Frequently Asked Questions'),
-              SizedBox(
-                height: 20.h,
-              ),
               context.watch<PlansViewModel>().getRecipesListResponse.data !=
-                      null
-                  ? Accordion(
-                      disableScrolling: true,
-                      paddingListHorizontal: 20,
-                      maxOpenSections: 2,
-                      headerBackgroundColorOpened: Colors.black54,
-                      scaleWhenAnimating: true,
-                      openAndCloseAnimation: true,
-                      headerPadding: const EdgeInsets.symmetric(
-                          vertical: 7, horizontal: 15),
-                      // sectionOpeningHapticFeedback: SectionHapticFeedback.heavy,
-                      // sectionClosingHapticFeedback: SectionHapticFeedback.light,
-                      children: [
-                        for (FaqsBlogsNewsData item in context
-                            .watch<PlansViewModel>()
-                            .getRecipesListResponse
-                            .data!
-                            .faqs!)
-                          AccordionSection(
-                            // isOpen: false,
-                            // flipRightIconIfOpen: true,
-                            rightIcon: Icon(Icons.keyboard_arrow_down),
-                            // leftIcon: const Icon(Icons.insights_rounded, color: Colors.white),
-                            headerBackgroundColor: CustomColors.whiteColor,
-                            headerBackgroundColorOpened:
-                                CustomColors.whiteColor,
-                            header: Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 5),
-                              child: Align(
-                                  alignment: Alignment.centerLeft,
-                                  child: lightBlack14w400Centre(
-                                      data: item.title!)),
-                            ),
-                            content: black12w500Centre(data: item.description!),
-                            contentHorizontalPadding: 20,
-                            contentBorderWidth: 1,
-                            // onOpenSection: () => print('onOpenSection ...'),
-                            // onCloseSection: () => print('onCloseSection ...'),
-                          )
-                      ],
-                    )
-                  : const SizedBox(),
+                  null
+                  ?Column(
+                children: [
+                  black24w500Centre(data: 'Frequently Asked Questions'),
+                  SizedBox(
+                    height: 20.h,
+                  ),
+                  InkWell(
+                    onTap: (){
+                      Navigator.pushNamed(context, faqRoute);
+
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                      child: Align(
+                          alignment: Alignment.centerRight,
+                          child: black12w500Centre(data: 'View all')),
+                    ),
+                  ), Accordion(
+                    disableScrolling: true,
+                    paddingListHorizontal: 20,
+                    maxOpenSections: 2,
+                    headerBackgroundColorOpened: Colors.black54,
+                    scaleWhenAnimating: true,
+                    openAndCloseAnimation: true,
+                    headerPadding: const EdgeInsets.symmetric(
+                        vertical: 7, horizontal: 15),
+                    // sectionOpeningHapticFeedback: SectionHapticFeedback.heavy,
+                    // sectionClosingHapticFeedback: SectionHapticFeedback.light,
+                    children: [
+                      for (FaqsBlogsNewsData item in context
+                          .watch<PlansViewModel>()
+                          .getRecipesListResponse
+                          .data!
+                          .faqs!)
+                        AccordionSection(
+                          // isOpen: false,
+                          // flipRightIconIfOpen: true,
+                          rightIcon: Icon(Icons.keyboard_arrow_down),
+                          // leftIcon: const Icon(Icons.insights_rounded, color: Colors.white),
+                          headerBackgroundColor: CustomColors.whiteColor,
+                          headerBackgroundColorOpened:
+                          CustomColors.whiteColor,
+                          header: Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 5),
+                            child: Align(
+                                alignment: Alignment.centerLeft,
+                                child: lightBlack14w400Centre(
+                                    data: item.title!)),
+                          ),
+                          content: black12w500Centre(data: item.description!),
+                          contentHorizontalPadding: 20,
+                          contentBorderWidth: 1,
+                          // onOpenSection: () => print('onOpenSection ...'),
+                          // onCloseSection: () => print('onCloseSection ...'),
+                        )
+                    ],
+                  )
+                ],
+              )  : const SizedBox(),
+
               SvgPicture.asset(
                 logoImage,
                 width: 200.w,

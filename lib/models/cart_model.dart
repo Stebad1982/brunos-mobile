@@ -20,7 +20,7 @@ class CartModel {
       required this.pet,
       required this.pouchesDetail,
       required this.planType,
-        required this.planDiscountPer,
+      required this.planDiscountPer,
       required this.planDiscountedPrice,
       required this.totalWeight});
 
