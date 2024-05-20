@@ -150,7 +150,7 @@ class CartViewModel with ChangeNotifier {
         cartItems: _cartList,
         cartTotal: _cartTotalPrice,
         shippingFees: _deliveryFee,
-        specialInstructions: _instructionsController.text);
+        specialInstructions: _instructionsController.text, pointsUsed: _pawSelectedPoints);
     navigatorKey.currentContext!
         .read<OrderViewModel>()
         .setOrderRequest(orderData);
