@@ -26,19 +26,21 @@ Widget defaultPuppyIconWidget() {
         }
         navigatorKey.currentContext!.read<PuppyViewModel>().setRouteToPuppyFrom(Screens.profile.text);
       },
-      child: authViewModel.getAuthResponse.data!.pet != null &&
-              authViewModel.getAuthResponse.data!.pet!.media!.isNotEmpty
-          ? circularNetworkImageWidget(
-              image: authViewModel.getAuthResponse.data!.pet!.media!,
-              size: 30.h)
-          : Column(
-            children: [
-              SizedBox(
+      child: Column(
+        children: [
+          authViewModel.getAuthResponse.data!.pet != null &&
+                  authViewModel.getAuthResponse.data!.pet!.media!.isNotEmpty
+              ? circularNetworkImageWidget(
+                  image: authViewModel.getAuthResponse.data!.pet!.media!,
+                  size: 30.h)
+              : SizedBox(
                   height: 30.h,
                   width: 30.h,
                   child: SvgPicture.asset(dogProfileImage),
                 ),
-              black12w500Centre( data: authViewModel.getAuthResponse.data!.pet!.name!.substring(0,5),)
+          authViewModel.getAuthResponse.data!.pet != null?
+          black10w400( data: authViewModel.getAuthResponse.data!.pet!.name!.substring(0,authViewModel.getAuthResponse.data!.pet!.name!.length > 5 ? 5 : authViewModel.getAuthResponse.data!.pet!.name!.length),)
+          :const SizedBox()
             ],
           ),
     );

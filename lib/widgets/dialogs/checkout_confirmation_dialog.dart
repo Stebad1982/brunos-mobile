@@ -77,6 +77,7 @@ void checkOutConfirmationDialog(
                                   .then((value) {
                                 if (value) {
                                   context.read<CartViewModel>().clearCart();
+                                  context.read<AuthViewModel>().checkSplash();
                                   Navigator.pushNamed(
                                       context, orderConfirmationRoute);
                                 }

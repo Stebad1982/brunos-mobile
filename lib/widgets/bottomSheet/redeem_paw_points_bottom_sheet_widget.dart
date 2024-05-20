@@ -71,48 +71,58 @@ Future redeemPawPointsBottomSheetWidget() {
               SizedBox(
                 height: 30.h,
               ),
-              SliderTheme(
-                  data: SliderTheme.of(context).copyWith(
-                    activeTrackColor: CustomColors.orangeColor,
-                    inactiveTrackColor: CustomColors.greyColor,
-                    trackShape: SliderCustomTrackShape(),
-                    trackHeight: 15.0,
-                    thumbShape: const RoundSliderThumbShape(
-                        enabledThumbRadius: 12.0),
-                    thumbColor: CustomColors.whiteColor,
-                    overlayShape: SliderComponentShape.noOverlay,
-                    tickMarkShape: const RoundSliderTickMarkShape(),
-                    //  activeTickMarkColor: CustomColors.orangeColor,
-                    //  inactiveTickMarkColor: Colors.grey.shade200,
-                    valueIndicatorShape:
-                    const PaddleSliderValueIndicatorShape(),
-                    valueIndicatorColor: CustomColors.orangeColor,
-                    valueIndicatorTextStyle: const TextStyle(
-                      color: CustomColors.blackColor,
-                    ),
+              Row(
+                children: [
+                  const Text('-'),
+                  const SizedBox(width: 10,),
+                  Expanded(
+                    child: SliderTheme(
+                        data: SliderTheme.of(context).copyWith(
+                          activeTrackColor: CustomColors.orangeColor,
+                          inactiveTrackColor: CustomColors.greyColor,
+                          trackShape: SliderCustomTrackShape(),
+                          trackHeight: 15.0,
+                          thumbShape: const RoundSliderThumbShape(
+                              enabledThumbRadius: 12.0),
+                          thumbColor: CustomColors.whiteColor,
+                          overlayShape: SliderComponentShape.noOverlay,
+                          tickMarkShape: const RoundSliderTickMarkShape(),
+                          //  activeTickMarkColor: CustomColors.orangeColor,
+                          //  inactiveTickMarkColor: Colors.grey.shade200,
+                          valueIndicatorShape:
+                          const PaddleSliderValueIndicatorShape(),
+                          valueIndicatorColor: CustomColors.orangeColor,
+                          valueIndicatorTextStyle: const TextStyle(
+                            color: CustomColors.blackColor,
+                          ),
+                        ),
+                        child: Slider(
+                          value: cartViewModel
+                              .getPawPoints,
+                          min: 0,
+                          //divisions: 1,
+                          label: cartViewModel
+                              .getPawPoints
+                              .toString(),
+                          max: context
+                              .read<AuthViewModel>()
+                              .getAuthResponse
+                              .data!
+                              .availablePoints! >=  cartViewModel.getAvailablePawPoints  ?
+                          cartViewModel.getAvailablePawPoints.toDouble() :context
+                              .watch<AuthViewModel>()
+                              .getAuthResponse
+                              .data!
+                              .availablePoints!.toDouble() ,
+                          onChanged: (double value) {
+                            cartViewModel.setPawPoints(value);
+                          },
+                        )),
                   ),
-                  child: Slider(
-                    value: cartViewModel
-                        .getPawPoints,
-                    min: 0,
-                    //divisions: 1,
-                    label: cartViewModel
-                        .getPawPoints
-                        .toString(),
-                    max: context
-                        .read<AuthViewModel>()
-                        .getAuthResponse
-                        .data!
-                        .availablePoints! >=  cartViewModel.getAvailablePawPoints  ?
-                    cartViewModel.getAvailablePawPoints.toDouble() :context
-                        .watch<AuthViewModel>()
-                        .getAuthResponse
-                        .data!
-                        .availablePoints!.toDouble() ,
-                    onChanged: (double value) {
-                      cartViewModel.setPawPoints(value);
-                    },
-                  )),
+                  const SizedBox(width: 10,),
+                  const Text('+'),
+                ],
+              ),
               SizedBox(
                 height: 5.h,
               ),
@@ -146,6 +156,18 @@ Future redeemPawPointsBottomSheetWidget() {
                           .toString()),
                     ],
                   ),
+              SizedBox(
+                height: 20.h,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  lightBlack14w400Centre(data: 'Total Equivalent Discount'),
+                  lightBlack14w400Centre(data: cartViewModel
+                      .getPawPointsAed
+                      .toStringAsFixed(2)),
+                ],
+              ),
                   /*SizedBox(
                     height: 10.h,
                   ),

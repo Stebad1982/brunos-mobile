@@ -428,7 +428,7 @@ class PlansViewModel with ChangeNotifier {
         .where((element) => element.isComboRecipe == 1)
         .toList();
     _recommendedRecipesList = _recipesListResponse.data!.recipe!
-        .where((element) => element.isComboRecipe == 0)
+        .where((element) => element.isComboRecipe == 0 && element.category != ProductCategories.standardRecipes.text)
         .toList();
     _oneTimeRecipesList = _recipesListResponse.data!.recipe!
         .where((element) =>

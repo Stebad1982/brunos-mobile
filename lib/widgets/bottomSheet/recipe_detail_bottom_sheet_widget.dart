@@ -47,9 +47,9 @@ Future recipeDetailBottomSheetWidget({required RecipeModel recipeDetail}) {
                         SizedBox(
                           height: 5.h,
                         ),
-                        black12w500Centre(
+                      /*  black12w500Centre(
                             data:
-                            'Starting From ${recipeDetail.pricePerKG} AED/KG')
+                            'Starting From ${recipeDetail.pricePerKG} AED/KG')*/
                       ],
                     ),
                     Spacer(),

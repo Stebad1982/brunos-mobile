@@ -48,7 +48,7 @@ class AppBarWithBackWidget extends StatelessWidget
         Visibility(
           visible: showPuppy,
           child: Padding(
-            padding: const EdgeInsets.only(right: 20,top: 10),
+            padding: const EdgeInsets.only(right: 10,top: 10),
             child: defaultPuppyIconWidget(),
           ),
         ),

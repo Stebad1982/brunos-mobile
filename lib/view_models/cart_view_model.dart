@@ -23,6 +23,7 @@ class CartViewModel with ChangeNotifier {
   num _promoCodeDiscount = 0;
   num _subTotal = 0;
   double _pawPoints = 0;
+  double _pawPointsAed = 0;
   double _aedPerPoint = 0;
   double _pawPointDiscount = 0;
   int _pawSelectedPoints = 0;
@@ -56,8 +57,11 @@ class CartViewModel with ChangeNotifier {
 
   double get getPawPoints => _pawPoints;
 
+  double get getPawPointsAed => _pawPointsAed;
+
   void setPawPoints(double value) {
     _pawPoints = value;
+    _pawPointsAed = _pawPoints.round() * _aedPerPoint;
     notifyListeners();
   }
 
