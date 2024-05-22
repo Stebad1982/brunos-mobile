@@ -766,6 +766,21 @@ class CheckoutScreen extends StatelessWidget {
                           height: 20.h,
                         ),
                         Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            lightBlack14w400Centre(data: 'VAT (5%)'),
+                            SizedBox(
+                              width: 2.w,
+                            ),
+                            lightBlack14w400Centre(
+                                data:
+                                'AED ${cartViewModel.getVatValue.toStringAsFixed(2)}'),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 20.h,
+                        ),
+                        Row(
                           children: [
                             lightBlack14w400Centre(data: 'Total'),
                             const Spacer(),
