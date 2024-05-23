@@ -83,8 +83,8 @@ class ChooseYourPlanScreen extends StatelessWidget {
                           descriptionDialog(
                               context: context,
                               description:
-                                  'Select this plan to smoothly transition your doggo to Bruno’s recipes and once the transition  period ends, you’ll get access to more recipe choices to delight your doggo\'s tastebuds.',
-                              height: 250.h,
+                                  'A 10 days feeding plan to ensure your pup’s tummy transitions to our food smoothly and without any dietary difficulties. We prepare and portion the food for you. Just ensure your Pet’s profile information is completed.\nRefer to FAQs page for the transition feeding guidelines.',
+                              height: 220.h,
                               title: 'Transitional Plan');
                         },
                         child: Padding(
@@ -164,8 +164,8 @@ class ChooseYourPlanScreen extends StatelessWidget {
                           descriptionDialog(
                               context: context,
                               description:
-                                  'Opt for this plan for a budget-friendly, wholesome meal journey for your pup. Enjoy the liberty of picking up to three diverse meal options per month to spoil your best friend with variety!',
-                              height: 250.h,
+                                  'The BIG SAVER option, you can choose up to 3 different recipes for 30 days of food supply. Ensuring you have enough food for your pup to enjoy for the entire month at a special discounted price. We prepare and portion the food for you for a hassle-free feeding experience.',
+                              height: 230.h,
                               title: 'Monthly Plan');
                         },
                         child: Padding(
@@ -255,8 +255,8 @@ class ChooseYourPlanScreen extends StatelessWidget {
                           descriptionDialog(
                               context: context,
                               description:
-                                  'Not sure if you or your doggie are ready to commit? That’s okay! Select from our array of scrumptious meals and let your doggie be the judge. Get ready for them to ‘woof’ it down begging for more!',
-                              height: 250.h,
+                                  'Select your preference of our standard-size pouches for your pup. Perfect for short-term feeding requirements.',
+                              height: 160.h,
                               title: 'One-time Plan');
                         },
                         child: Padding(

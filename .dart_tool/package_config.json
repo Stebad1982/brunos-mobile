@@ -333,7 +333,7 @@
     },
     {
       "name": "flutter_localization",
-      "rootUri": "file:///C:/Users/Waleed%20Ahmed/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_localization-0.1.13",
+      "rootUri": "file:///C:/Users/Waleed%20Ahmed/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_localization-0.1.14",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -849,9 +849,9 @@
     },
     {
       "name": "plugin_platform_interface",
-      "rootUri": "file:///C:/Users/Waleed%20Ahmed/AppData/Local/Pub/Cache/hosted/pub.dev/plugin_platform_interface-2.1.5",
+      "rootUri": "file:///C:/Users/Waleed%20Ahmed/AppData/Local/Pub/Cache/hosted/pub.dev/plugin_platform_interface-2.1.8",
       "packageUri": "lib/",
-      "languageVersion": "2.18"
+      "languageVersion": "3.0"
     },
     {
       "name": "provider",
@@ -891,9 +891,9 @@
     },
     {
       "name": "shared_preferences",
-      "rootUri": "file:///C:/Users/Waleed%20Ahmed/AppData/Local/Pub/Cache/hosted/pub.dev/shared_preferences-2.2.1",
+      "rootUri": "file:///C:/Users/Waleed%20Ahmed/AppData/Local/Pub/Cache/hosted/pub.dev/shared_preferences-2.2.3",
       "packageUri": "lib/",
-      "languageVersion": "2.19"
+      "languageVersion": "3.1"
     },
     {
       "name": "shared_preferences_android",
@@ -903,9 +903,9 @@
     },
     {
       "name": "shared_preferences_foundation",
-      "rootUri": "file:///C:/Users/Waleed%20Ahmed/AppData/Local/Pub/Cache/hosted/pub.dev/shared_preferences_foundation-2.3.2",
+      "rootUri": "file:///C:/Users/Waleed%20Ahmed/AppData/Local/Pub/Cache/hosted/pub.dev/shared_preferences_foundation-2.3.5",
       "packageUri": "lib/",
-      "languageVersion": "2.18"
+      "languageVersion": "3.0"
     },
     {
       "name": "shared_preferences_linux",
@@ -1172,7 +1172,7 @@
       "languageVersion": "2.19"
     }
   ],
-  "generated": "2024-05-22T06:45:39.017251Z",
+  "generated": "2024-05-23T07:07:54.291408Z",
   "generator": "pub",
   "generatorVersion": "3.2.3"
 }
