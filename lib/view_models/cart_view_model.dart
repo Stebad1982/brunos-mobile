@@ -22,7 +22,7 @@ class CartViewModel with ChangeNotifier {
   num _cartTotalPrice = 0;
   num _promoCodeDiscount = 0;
   num _subTotal = 0;
-  num _vatValue = 0;
+  //num _vatValue = 0;
   double _pawPoints = 0;
   double _pawPointsAed = 0;
   double _aedPerPoint = 0;
@@ -38,7 +38,7 @@ class CartViewModel with ChangeNotifier {
   DateTime _focusedDay = DateTime.now().add(const Duration(days: 4));
   DateTime _selectedDay = DateTime.now().add(const Duration(days: 4));
 
-  num get getVatValue => _vatValue;
+ // num get getVatValue => _vatValue;
 
   double get getPawPointDiscount => _pawPointDiscount;
 
@@ -127,9 +127,9 @@ class CartViewModel with ChangeNotifier {
      num totalPrice;
      totalPrice = _subTotal + _deliveryFee;
 
-    _vatValue = totalPrice * 5 / 100;
+   // _vatValue = totalPrice * 5 / 100;
 
-    totalPrice = totalPrice + _vatValue;
+   // totalPrice = totalPrice + _vatValue;
 
     _checkOutTotal = totalPrice.round() /*roundPrice(totalPrice.round())*/;
 

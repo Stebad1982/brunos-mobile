@@ -36,7 +36,12 @@ import '../widgets/gridChip/food_grid_chip_widget.dart';
 import '../widgets/listChips/shop_items_horizontal_list_chip_widget.dart';
 
 final Uri webUrl = Uri.parse('https://brunos.kitchen/');
-
+final Uri termAndConditionUrl =
+    Uri.parse('https://admin.brunos.kitchen/terms&conditions');
+final Uri privacyPolicyUrl =
+    Uri.parse('https://admin.brunos.kitchen/privacy-policy');
+final Uri agreementUrl =
+    Uri.parse('https://admin.brunos.kitchen/user-agreement');
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -461,67 +466,70 @@ class HomeScreen extends StatelessWidget {
                 height: 30.h,
               ),
               context.watch<PlansViewModel>().getRecipesListResponse.data !=
-                  null
-                  ?Column(
-                children: [
-                  black24w500Centre(data: 'Frequently Asked Questions'),
-                  SizedBox(
-                    height: 20.h,
-                  ),
-                  InkWell(
-                    onTap: (){
-                      Navigator.pushNamed(context, faqRoute);
-
-                    },
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                      child: Align(
-                          alignment: Alignment.centerRight,
-                          child: black12w500Centre(data: 'View all')),
-                    ),
-                  ), Accordion(
-                    disableScrolling: true,
-                    paddingListHorizontal: 20,
-                    maxOpenSections: 2,
-                    headerBackgroundColorOpened: Colors.black54,
-                    scaleWhenAnimating: true,
-                    openAndCloseAnimation: true,
-                    headerPadding: const EdgeInsets.symmetric(
-                        vertical: 7, horizontal: 15),
-                    // sectionOpeningHapticFeedback: SectionHapticFeedback.heavy,
-                    // sectionClosingHapticFeedback: SectionHapticFeedback.light,
-                    children: [
-                      for (FaqsBlogsNewsData item in context
-                          .watch<PlansViewModel>()
-                          .getRecipesListResponse
-                          .data!
-                          .faqs!)
-                        AccordionSection(
-                          // isOpen: false,
-                          // flipRightIconIfOpen: true,
-                          rightIcon: Icon(Icons.keyboard_arrow_down),
-                          // leftIcon: const Icon(Icons.insights_rounded, color: Colors.white),
-                          headerBackgroundColor: CustomColors.whiteColor,
-                          headerBackgroundColorOpened:
-                          CustomColors.whiteColor,
-                          header: Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 5),
+                      null
+                  ? Column(
+                      children: [
+                        black24w500Centre(data: 'Frequently Asked Questions'),
+                        SizedBox(
+                          height: 20.h,
+                        ),
+                        InkWell(
+                          onTap: () {
+                            Navigator.pushNamed(context, faqRoute);
+                          },
+                          child: Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 20.0),
                             child: Align(
-                                alignment: Alignment.centerLeft,
-                                child: lightBlack14w400Centre(
-                                    data: item.title!)),
+                                alignment: Alignment.centerRight,
+                                child: black12w500Centre(data: 'View all')),
                           ),
-                          content: black12w500Centre(data: item.description!),
-                          contentHorizontalPadding: 20,
-                          contentBorderWidth: 1,
-                          // onOpenSection: () => print('onOpenSection ...'),
-                          // onCloseSection: () => print('onCloseSection ...'),
+                        ),
+                        Accordion(
+                          disableScrolling: true,
+                          paddingListHorizontal: 20,
+                          maxOpenSections: 2,
+                          headerBackgroundColorOpened: Colors.black54,
+                          scaleWhenAnimating: true,
+                          openAndCloseAnimation: true,
+                          headerPadding: const EdgeInsets.symmetric(
+                              vertical: 7, horizontal: 15),
+                          // sectionOpeningHapticFeedback: SectionHapticFeedback.heavy,
+                          // sectionClosingHapticFeedback: SectionHapticFeedback.light,
+                          children: [
+                            for (FaqsBlogsNewsData item in context
+                                .watch<PlansViewModel>()
+                                .getRecipesListResponse
+                                .data!
+                                .faqs!)
+                              AccordionSection(
+                                // isOpen: false,
+                                // flipRightIconIfOpen: true,
+                                rightIcon: Icon(Icons.keyboard_arrow_down),
+                                // leftIcon: const Icon(Icons.insights_rounded, color: Colors.white),
+                                headerBackgroundColor: CustomColors.whiteColor,
+                                headerBackgroundColorOpened:
+                                    CustomColors.whiteColor,
+                                header: Padding(
+                                  padding:
+                                      const EdgeInsets.symmetric(vertical: 5),
+                                  child: Align(
+                                      alignment: Alignment.centerLeft,
+                                      child: lightBlack14w400Centre(
+                                          data: item.title!)),
+                                ),
+                                content:
+                                    black12w500Centre(data: item.description!),
+                                contentHorizontalPadding: 20,
+                                contentBorderWidth: 1,
+                                // onOpenSection: () => print('onOpenSection ...'),
+                                // onCloseSection: () => print('onCloseSection ...'),
+                              )
+                          ],
                         )
-                    ],
-                  )
-                ],
-              )  : const SizedBox(),
-
+                      ],
+                    )
+                  : const SizedBox(),
               SvgPicture.asset(
                 logoImage,
                 width: 200.w,
@@ -530,8 +538,8 @@ class HomeScreen extends StatelessWidget {
                 height: 10.h,
               ),
               InkWell(
-                onTap: (){
-                  _launchUrl();
+                onTap: () {
+                  _launchUrl(url: webUrl);
                 },
                 child: Container(
                   decoration: BoxDecoration(
@@ -540,7 +548,8 @@ class HomeScreen extends StatelessWidget {
                     borderRadius: const BorderRadius.all(Radius.circular(50)),
                   ),
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 15.0, vertical: 10),
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
@@ -557,14 +566,36 @@ class HomeScreen extends StatelessWidget {
               SizedBox(
                 height: 20.h,
               ),
+              TextButton(
+                  onPressed: () {
+                    _launchUrl(url: agreementUrl);
+                  },
+                  child: black12w500Centre(data: 'User Service Agreement')),
+
+              TextButton(
+                  onPressed: () {
+                    _launchUrl(url: termAndConditionUrl);
+                  },
+                  child: black12w500Centre(data: 'Terms & Conditions')),
+
+              TextButton(
+                  onPressed: () {
+                    _launchUrl(url: privacyPolicyUrl);
+                  },
+                  child: black12w500Centre(data: 'Privacy Policy')),
+              SizedBox(
+                height: 20.h,
+              ),
             ],
           ),
         ),
       ),
     );
   }
-  Future<void> _launchUrl() async {
-    if (!await launchUrl(webUrl)) {
+
+  Future<void> _launchUrl({required Uri url}) async {
+    if (!await launchUrl(url)) {
       throw Exception('Could not launch $webUrl');
     }
-}}
+  }
+}

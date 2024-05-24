@@ -765,7 +765,7 @@ class CheckoutScreen extends StatelessWidget {
                         SizedBox(
                           height: 20.h,
                         ),
-                        Row(
+                       /* Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             lightBlack14w400Centre(data: 'VAT (5%)'),
@@ -779,7 +779,7 @@ class CheckoutScreen extends StatelessWidget {
                         ),
                         SizedBox(
                           height: 20.h,
-                        ),
+                        ),*/
                         Row(
                           children: [
                             lightBlack14w400Centre(data: 'Total'),
