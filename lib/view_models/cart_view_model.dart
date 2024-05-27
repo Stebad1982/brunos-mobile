@@ -84,7 +84,7 @@ class CartViewModel with ChangeNotifier {
   }
 
   void removePawPoints() {
-    if (_pawPoints > 0) {
+    if (_pawPoints.round() > 0) {
       _pawPoints = --_pawPoints;
       setPawPoints(_pawPoints);
     }

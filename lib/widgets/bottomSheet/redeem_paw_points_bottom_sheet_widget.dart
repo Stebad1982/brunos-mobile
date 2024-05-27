@@ -158,14 +158,14 @@ Future redeemPawPointsBottomSheetWidget() {
                             ],
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 10,
                         ),
                         Transform.scale(
                           scale: 1.3, // set your value here
                           child: IconButton(
-                            padding: EdgeInsets.all(0),
-                            constraints: BoxConstraints(),
+                            padding: const EdgeInsets.all(0),
+                            constraints: const BoxConstraints(),
                             style: const ButtonStyle(
                               tapTargetSize: MaterialTapTargetSize
                                   .shrinkWrap, // the '2023' part
