@@ -77,16 +77,21 @@ Future redeemPawPointsBottomSheetWidget() {
                             padding: EdgeInsets.zero,
                             constraints: BoxConstraints(),
                             style: const ButtonStyle(
-                              tapTargetSize: MaterialTapTargetSize.shrinkWrap, // the '2023' part
+                              tapTargetSize: MaterialTapTargetSize
+                                  .shrinkWrap, // the '2023' part
                             ),
-                            icon: const Icon(Icons.remove_circle,color: CustomColors.orangeColor,),
+                            icon: const Icon(
+                              Icons.remove_circle,
+                              color: CustomColors.orangeColor,
+                            ),
                             onPressed: () {
                               cartViewModel.removePawPoints();
                             },
                           ),
                         ),
-
-SizedBox(width: 10,),
+                        const SizedBox(
+                          width: 10,
+                        ),
                         Expanded(
                           child: Column(
                             children: [
@@ -99,13 +104,16 @@ SizedBox(width: 10,),
                                     thumbShape: const RoundSliderThumbShape(
                                         enabledThumbRadius: 12.0),
                                     thumbColor: CustomColors.whiteColor,
-                                    overlayShape: SliderComponentShape.noOverlay,
-                                    tickMarkShape: const RoundSliderTickMarkShape(),
+                                    overlayShape:
+                                        SliderComponentShape.noOverlay,
+                                    tickMarkShape:
+                                        const RoundSliderTickMarkShape(),
                                     //  activeTickMarkColor: CustomColors.orangeColor,
                                     //  inactiveTickMarkColor: Colors.grey.shade200,
                                     valueIndicatorShape:
                                         const PaddleSliderValueIndicatorShape(),
-                                    valueIndicatorColor: CustomColors.orangeColor,
+                                    valueIndicatorColor:
+                                        CustomColors.orangeColor,
                                     valueIndicatorTextStyle: const TextStyle(
                                       color: CustomColors.blackColor,
                                     ),
@@ -114,7 +122,8 @@ SizedBox(width: 10,),
                                     value: cartViewModel.getPawPoints,
                                     min: 0,
                                     //divisions: 1,
-                                    label: cartViewModel.getPawPoints.toString(),
+                                    label:
+                                        cartViewModel.getPawPoints.toString(),
                                     max: context
                                                 .read<AuthViewModel>()
                                                 .getAuthResponse
@@ -137,29 +146,34 @@ SizedBox(width: 10,),
                                 height: 5.h,
                               ),
                               Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   lightBlack14w400Centre(data: '0'),
                                   lightBlack14w400Centre(
                                       data:
-                                      '${context.read<AuthViewModel>().getAuthResponse.data!.availablePoints! >= cartViewModel.getAvailablePawPoints ? cartViewModel.getAvailablePawPoints.toDouble() : context.watch<AuthViewModel>().getAuthResponse.data!.availablePoints!.toDouble()} Points'),
+                                          '${context.read<AuthViewModel>().getAuthResponse.data!.availablePoints! >= cartViewModel.getAvailablePawPoints ? cartViewModel.getAvailablePawPoints.toDouble() : context.watch<AuthViewModel>().getAuthResponse.data!.availablePoints!.toDouble()} Points'),
                                 ],
                               ),
                             ],
                           ),
                         ),
-                        SizedBox(width: 10,),
-
-
+                        SizedBox(
+                          width: 10,
+                        ),
                         Transform.scale(
                           scale: 1.3, // set your value here
                           child: IconButton(
                             padding: EdgeInsets.all(0),
                             constraints: BoxConstraints(),
                             style: const ButtonStyle(
-                              tapTargetSize: MaterialTapTargetSize.shrinkWrap, // the '2023' part
+                              tapTargetSize: MaterialTapTargetSize
+                                  .shrinkWrap, // the '2023' part
                             ),
-                            icon: const Icon(Icons.add_circle,color: CustomColors.orangeColor,),
+                            icon: const Icon(
+                              Icons.add_circle,
+                              color: CustomColors.orangeColor,
+                            ),
                             onPressed: () {
                               cartViewModel.addPawPoints();
                             },
@@ -167,7 +181,6 @@ SizedBox(width: 10,),
                         ),
                       ],
                     ),
-
                     SizedBox(
                       height: 20.h,
                     ),
@@ -189,8 +202,8 @@ SizedBox(width: 10,),
                         lightBlack14w400Centre(
                             data: 'Total Equivalent Discount'),
                         lightBlack14w400Centre(
-                            data: '${cartViewModel.getPawPointsAed
-                                .toStringAsFixed(2)} AED'),
+                            data:
+                                '${cartViewModel.getPawPointsAed.toStringAsFixed(2)} AED'),
                       ],
                     ),
                     /*SizedBox(
