@@ -566,23 +566,29 @@ class HomeScreen extends StatelessWidget {
               SizedBox(
                 height: 20.h,
               ),
-              TextButton(
-                  onPressed: () {
-                    _launchUrl(url: agreementUrl);
-                  },
-                  child: black12w500Centre(data: 'User Service Agreement')),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  TextButton(
+                      onPressed: () {
+                        _launchUrl(url: agreementUrl);
+                      },
+                      child: black10w400(data: 'User Service Agreement')),
 
-              TextButton(
-                  onPressed: () {
-                    _launchUrl(url: termAndConditionUrl);
-                  },
-                  child: black12w500Centre(data: 'Terms & Conditions')),
+                  TextButton(
+                      onPressed: () {
+                        _launchUrl(url: termAndConditionUrl);
+                      },
+                      child: black10w400(data: 'Terms & Conditions')),
+                  TextButton(
+                      onPressed: () {
+                        _launchUrl(url: privacyPolicyUrl);
+                      },
+                      child: black10w400(data: 'Privacy Policy')),
+                ],
+              ),
 
-              TextButton(
-                  onPressed: () {
-                    _launchUrl(url: privacyPolicyUrl);
-                  },
-                  child: black12w500Centre(data: 'Privacy Policy')),
+
               SizedBox(
                 height: 20.h,
               ),
