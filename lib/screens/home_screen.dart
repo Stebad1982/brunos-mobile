@@ -566,26 +566,34 @@ class HomeScreen extends StatelessWidget {
               SizedBox(
                 height: 20.h,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  TextButton(
-                      onPressed: () {
-                        _launchUrl(url: agreementUrl);
-                      },
-                      child: black10w400(data: 'User Service Agreement')),
+              Padding(
+                padding:
+                const EdgeInsets.symmetric(horizontal: 20, vertical: 20),                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    TextButton(
+                      style: TextButton.styleFrom(tapTargetSize: MaterialTapTargetSize.shrinkWrap,padding: EdgeInsets.zero),
+                        onPressed: () {
+                          _launchUrl(url: agreementUrl);
+                        },
+                        child: black10w400(data: 'User Service Agreement')),
 
-                  TextButton(
-                      onPressed: () {
-                        _launchUrl(url: termAndConditionUrl);
-                      },
-                      child: black10w400(data: 'Terms & Conditions')),
-                  TextButton(
-                      onPressed: () {
-                        _launchUrl(url: privacyPolicyUrl);
-                      },
-                      child: black10w400(data: 'Privacy Policy')),
-                ],
+                    TextButton(
+                        style: TextButton.styleFrom(tapTargetSize: MaterialTapTargetSize.shrinkWrap,padding: EdgeInsets.zero),
+
+                        onPressed: () {
+                          _launchUrl(url: termAndConditionUrl);
+                        },
+                        child: black10w400(data: 'Terms & Conditions')),
+                    TextButton(
+                        style: TextButton.styleFrom(tapTargetSize: MaterialTapTargetSize.shrinkWrap,padding: EdgeInsets.zero),
+
+                        onPressed: () {
+                          _launchUrl(url: privacyPolicyUrl);
+                        },
+                        child: black10w400(data: 'Privacy Policy')),
+                  ],
+                ),
               ),
 
 
