@@ -63,7 +63,6 @@ class AuthViewModel with ChangeNotifier {
   String _passwordFieldError = '';
   String _confirmPasswordFieldError = '';
 
-
   bool get getSecurePassword => _securePassword;
 
   bool get getShowGreeting => _showGreeting;
@@ -98,14 +97,17 @@ class AuthViewModel with ChangeNotifier {
   Future<void> setAddress(AddressModel value) async {
     _authResponse.data!.location = value;
     setDeliveryCity();
-   // notifyListeners();
+    // notifyListeners();
   }
 
   setDeliveryCity() async {
-   final Placemark locationCity = await convertCoordinatesToPlaces(
+    final Placemark locationCity = await convertCoordinatesToPlaces(
         latitude: double.parse(_authResponse.data!.location!.coordinates![0]),
         longitude: double.parse(_authResponse.data!.location!.coordinates![1]));
-    navigatorKey.currentContext!.read<CartViewModel>().setDeliveryFee(locationCity.locality == 'Abu Dhabi' ? _authResponse.data!.discounts![1].aggregate!.toInt() : _authResponse.data!.discounts![0].aggregate!.toInt());
+    navigatorKey.currentContext!.read<CartViewModel>().setDeliveryFee(
+        locationCity.locality == 'Abu Dhabi'
+            ? _authResponse.data!.discounts![1].aggregate!.toInt()
+            : _authResponse.data!.discounts![0].aggregate!.toInt());
     notifyListeners();
   }
 
@@ -127,7 +129,7 @@ class AuthViewModel with ChangeNotifier {
     _phoneController.text = _authResponse.data!.phoneNumber!;
     _nameController.text = _authResponse.data!.fullName!;
     setDeliveryCity();
-   // notifyListeners();
+    // notifyListeners();
   }
 
   String get getNameFieldError => _nameFieldError;
@@ -281,8 +283,55 @@ class AuthViewModel with ChangeNotifier {
     }
   }
 
-  void callLogOut() {
-    _sharedPref.remove(SharedPreferencesKeys.authToken.text);
+  Future<Widget> checkSplash() async {
+    //PackageInfo packageInfo = await PackageInfo.fromPlatform();
+    //setVersion(packageInfo.version);
+    // setBuild(packageInfo.buildNumber);
+
+    if (Platform.isAndroid) {
+      _operatingSystem = 'Android';
+    } else {
+      _operatingSystem = 'iOS';
+    }
+    //TODO: ENABLE FCM
+    _fcmToken = await _firebaseMessaging.getToken();
+    print("fcm token: $_fcmToken");
+    final authToken =
+        await _sharedPref.read(SharedPreferencesKeys.authToken.text);
+    await Future.delayed(const Duration(seconds: 4), () {});
+    if (authToken == null) {
+      return const IntroSlidesScreen();
+    } else {
+      Widget routeTo = const LoginScreen();
+      await callSplash(showLoader: false).then((value) async {
+        if (value) {
+          routeTo = const BottomNavigationScreen();
+        } else {
+          routeTo = const LoginScreen();
+        }
+      });
+      return routeTo;
+    }
+  }
+
+  Future<bool> callSplash({required bool showLoader}) async {
+    if (showLoader) {
+      EasyLoading.show(status: 'Please Wait...');
+    }
+    try {
+      final AuthResponse response = await _authApiServices.splashApi();
+      if (response.isSuccess!) {
+        setAuthResponse(response);
+        EasyLoading.dismiss();
+        return true;
+      } else {
+        EasyLoading.showError(response.message!);
+        return false;
+      }
+    } catch (e) {
+      EasyLoading.showError(e.toString());
+      return false;
+    }
   }
 
   Future<bool> callSignInApi() async {
@@ -311,16 +360,140 @@ class AuthViewModel with ChangeNotifier {
     }
   }
 
-  Future<bool> editUserProfileApi() async {
+  Future<bool> signInWithGoogle() async {
+    EasyLoading.show(status: 'Please Wait...');
+    // Trigger the authentication flow
+    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+
+    if (googleUser != null) {
+      // Obtain the auth details from the request
+
+      final GoogleSignInAuthentication googleAuth =
+          await googleUser.authentication;
+      final credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth.accessToken,
+        idToken: googleAuth.idToken,
+      );
+      final userDetails =
+          await FirebaseAuth.instance.signInWithCredential(credential);
+
+      if (userDetails.user != null) {
+        // await getUserToken();
+        //  final bool loginStatus =
+        final SocialSignInRequest socialSignInRequest = SocialSignInRequest(
+            clientId: userDetails.user!.uid,
+            email: userDetails.user!.email!,
+            fullName: userDetails.user!.displayName!,
+            phoneNumber: userDetails.user!.phoneNumber ?? '',
+            deviceType: _operatingSystem,
+            deviceToken: _fcmToken ?? 'token',
+            media: userDetails.user!.photoURL!,
+            platform: 'Google');
+
+        return await callSocialMediaLoginApi(userDetails: socialSignInRequest);
+      } else {
+        EasyLoading.showError('Something Went Wrong');
+        return false;
+      }
+    } else {
+      EasyLoading.showError('Something Went Wrong');
+      return false;
+    }
+  }
+
+  Future<bool> signInWithFacebook() async {
+    EasyLoading.show(status: 'Please Wait...');
+
+    // Trigger the sign-in flow
+    final LoginResult loginResult = await FacebookAuth.instance.login();
+
+    // Create a credential from the access token
+    if (loginResult.accessToken != null) {
+      final OAuthCredential facebookAuthCredential =
+          FacebookAuthProvider.credential(loginResult.accessToken!.token);
+
+      // Once signed in, return the UserCredential
+      final userDetails = await FirebaseAuth.instance
+          .signInWithCredential(facebookAuthCredential);
+      if (userDetails.user != null) {
+        //await getUserToken();
+
+        final SocialSignInRequest socialSignInRequest = SocialSignInRequest(
+            clientId: userDetails.user!.uid,
+            email: userDetails.user!.email!,
+            fullName: userDetails.user!.displayName!,
+            phoneNumber: userDetails.user!.phoneNumber ?? '',
+            deviceType: _operatingSystem,
+            deviceToken: _fcmToken ?? 'token',
+            media: userDetails.user!.photoURL!,
+            platform: 'Facebook');
+        return await callSocialMediaLoginApi(userDetails: socialSignInRequest);
+      } else {
+        EasyLoading.showError('Something Went Wrong');
+        return false;
+      }
+    } else {
+      EasyLoading.showError('Something Went Wrong');
+      return false;
+    }
+  }
+
+  Future<bool> callSocialMediaLoginApi(
+      {required SocialSignInRequest userDetails}) async {
     EasyLoading.show(status: 'Please Wait ...');
     try {
-      final EditUserProfileRequest editUserProfileRequest =
-          EditUserProfileRequest(
-              fullName: _nameController.text,
-              phoneNumber: _phoneController.text);
+      final AuthResponse response = await _authApiServices.socialMediaLoginApi(
+          socialSignInRequest: userDetails);
+      if (response.isSuccess!) {
+        setAuthResponse(response);
+        EasyLoading.dismiss();
+        return true;
+      } else {
+        EasyLoading.showError('${response.message}');
+        return false;
+      }
+    } catch (e) {
+      EasyLoading.showError(e.toString());
+      return false;
+    }
+  }
 
-      final AuthResponse response = await _authApiServices.editUserProfileApi(
-          editUserProfileRequest: editUserProfileRequest);
+  Future<bool> callForgotPasswordApi() async {
+    EasyLoading.show(status: 'Please Wait ...');
+    try {
+      final ForgotPasswordRequest forgotPasswordRequest = ForgotPasswordRequest(
+          password: _passwordController.text,
+          phoneNumber: _phoneController.text,
+          otp: '2521');
+
+      final BaseResponseModel response = await _authApiServices
+          .forgotPasswordApi(forgotPasswordRequest: forgotPasswordRequest);
+      if (response.isSuccess!) {
+        EasyLoading.dismiss();
+        return true;
+      } else {
+        EasyLoading.showError('${response.message}');
+        return false;
+      }
+    } catch (e) {
+      EasyLoading.showError(e.toString());
+      return false;
+    }
+  }
+
+  Future<bool> callGuestUserRegisterApi() async {
+    EasyLoading.show(status: 'Please Wait ...');
+    try {
+      final UserRegisterRequest userRegisterRequest = UserRegisterRequest(
+          password: '',
+          email: '',
+          deviceToken: _fcmToken ?? 'token',
+          deviceType: _operatingSystem,
+          fullName: 'Guest',
+          phoneNumber: '');
+
+      final AuthResponse response = await _authApiServices.guestUserRegisterApi(
+          userRegisterRequest: userRegisterRequest);
       if (response.isSuccess!) {
         setAuthResponse(response);
         //  setImageSlider();
@@ -374,80 +547,8 @@ class AuthViewModel with ChangeNotifier {
     }
   }
 
-  Future<bool> callGuestUserRegisterApi() async {
-    EasyLoading.show(status: 'Please Wait ...');
-    try {
-      final UserRegisterRequest userRegisterRequest = UserRegisterRequest(
-          password: '',
-          email: '',
-          deviceToken: _fcmToken ?? 'token',
-          deviceType: _operatingSystem,
-          fullName: 'Guest',
-          phoneNumber: '');
-
-      final AuthResponse response = await _authApiServices.guestUserRegisterApi(
-          userRegisterRequest: userRegisterRequest);
-      if (response.isSuccess!) {
-        setAuthResponse(response);
-        //  setImageSlider();
-        EasyLoading.dismiss();
-        return true;
-      } else {
-        EasyLoading.showError('${response.message}');
-        return false;
-      }
-    } catch (e) {
-      EasyLoading.showError(e.toString());
-      return false;
-    }
-  }
-
-  Future<bool> callForgotPasswordApi() async {
-    EasyLoading.show(status: 'Please Wait ...');
-    try {
-      final ForgotPasswordRequest forgotPasswordRequest = ForgotPasswordRequest(
-          password: _passwordController.text,
-          phoneNumber: _phoneController.text,
-          otp: '2521');
-
-      final BaseResponseModel response = await _authApiServices
-          .forgotPasswordApi(forgotPasswordRequest: forgotPasswordRequest);
-      if (response.isSuccess!) {
-        EasyLoading.dismiss();
-        return true;
-      } else {
-        EasyLoading.showError('${response.message}');
-        return false;
-      }
-    } catch (e) {
-      EasyLoading.showError(e.toString());
-      return false;
-    }
-  }
-
-  Future<bool> callSocialMediaLoginApi(
-      {required SocialSignInRequest userDetails}) async {
-    EasyLoading.show(status: 'Please Wait ...');
-    try {
-      final AuthResponse response = await _authApiServices.socialMediaLoginApi(
-          socialSignInRequest: userDetails);
-      if (response.isSuccess!) {
-        setAuthResponse(response);
-        EasyLoading.dismiss();
-        return true;
-      } else {
-        EasyLoading.showError('${response.message}');
-        return false;
-      }
-    } catch (e) {
-      EasyLoading.showError(e.toString());
-      return false;
-    }
-  }
-
   Future<bool> checkPhoneNumber({required bool checkType}) async {
     EasyLoading.show(status: 'Please Wait');
-
     try {
       final BaseResponseModel response =
           await _authApiServices.checkPhoneNumberApi(
@@ -475,7 +576,7 @@ class AuthViewModel with ChangeNotifier {
 
   Future<bool> verifyNumber() async {
     EasyLoading.show(status: 'Sending OTP');
-    bool returnValue = true;
+    bool returnValue = false;
     await _auth.verifyPhoneNumber(
       phoneNumber: _countryCode + _phoneController.text,
       verificationCompleted: (PhoneAuthCredential credential) {
@@ -485,26 +586,21 @@ class AuthViewModel with ChangeNotifier {
       },
       timeout: const Duration(seconds: 60),
       verificationFailed: (FirebaseAuthException e) {
-        EasyLoading.showToast(e.toString());
+        if (e.code == 'invalid-phone-number') {
+          EasyLoading.showToast('The provided phone number is not valid.');
+        } else {
+          EasyLoading.showToast(e.toString());
+        }
         returnValue = false;
       },
       codeSent: (String verificationId, int? resendToken) {
         _verificationId = verificationId;
+        returnValue = true;
         EasyLoading.dismiss();
       },
       codeAutoRetrievalTimeout: (String verificationId) {},
     );
     return returnValue;
-  }
-
-  Future<void> callBanners() async {
-    try {
-      final BannersResponse bannersResponse =
-          await _authApiServices.bannersApi();
-      setBannerResponse(bannersResponse);
-    } catch (exception) {
-      EasyLoading.showToast(exception.toString());
-    }
   }
 
   Future<bool> verifyOTP() async {
@@ -522,113 +618,43 @@ class AuthViewModel with ChangeNotifier {
     }
   }
 
-  Future<Widget> checkSplash() async {
-    //PackageInfo packageInfo = await PackageInfo.fromPlatform();
-    //setVersion(packageInfo.version);
-    // setBuild(packageInfo.buildNumber);
+  Future<bool> editUserProfileApi() async {
+    EasyLoading.show(status: 'Please Wait ...');
+    try {
+      final EditUserProfileRequest editUserProfileRequest =
+          EditUserProfileRequest(
+              fullName: _nameController.text,
+              phoneNumber: _phoneController.text);
 
-    if (Platform.isAndroid) {
-      _operatingSystem = 'Android';
-    } else {
-      _operatingSystem = 'iOS';
-    }
-    //TODO: ENABLE FCM
-    _fcmToken = await _firebaseMessaging.getToken();
-    print("fcm token: $_fcmToken");
-    final authToken =
-        await _sharedPref.read(SharedPreferencesKeys.authToken.text);
-    await Future.delayed(const Duration(seconds: 4), () {});
-    if (authToken == null) {
-      return const IntroSlidesScreen();
-    } else {
-      Widget routeTo = const LoginScreen();
-      await callSplash(showLoader: false).then((value) async {
-        if (value) {
-          routeTo = const BottomNavigationScreen();
-        } else {
-          routeTo = const LoginScreen();
-        }
-      });
-      return routeTo;
-    }
-  }
-
-  Future<bool> signInWithGoogle() async {
-    EasyLoading.show(status: 'Please Wait...');
-    // Trigger the authentication flow
-    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
-
-    if (googleUser != null) {
-      // Obtain the auth details from the request
-
-      final GoogleSignInAuthentication googleAuth =
-          await googleUser.authentication;
-      final credential = GoogleAuthProvider.credential(
-        accessToken: googleAuth.accessToken,
-        idToken: googleAuth.idToken,
-      );
-      final userDetails =
-          await FirebaseAuth.instance.signInWithCredential(credential);
-
-      if (userDetails.user != null) {
-        // await getUserToken();
-        //  final bool loginStatus =
-        final SocialSignInRequest socialSignInRequest = SocialSignInRequest(
-            clientId: userDetails.user!.uid,
-            email: userDetails.user!.email!,
-            fullName: userDetails.user!.displayName!,
-            phoneNumber: userDetails.user!.phoneNumber ?? '+923340394150',
-            deviceType: _operatingSystem,
-            deviceToken: _fcmToken ?? 'token',
-            media: userDetails.user!.photoURL!,
-            platform: 'Google');
-
-        return await callSocialMediaLoginApi(userDetails: socialSignInRequest);
+      final AuthResponse response = await _authApiServices.editUserProfileApi(
+          editUserProfileRequest: editUserProfileRequest);
+      if (response.isSuccess!) {
+        setAuthResponse(response);
+        //  setImageSlider();
+        EasyLoading.dismiss();
+        return true;
       } else {
-        EasyLoading.showError('Something Went Wrong');
+        EasyLoading.showError('${response.message}');
         return false;
       }
-    } else {
-      EasyLoading.showError('Something Went Wrong');
+    } catch (e) {
+      EasyLoading.showError(e.toString());
       return false;
     }
   }
 
-  Future<bool> signInWithFacebook() async {
-    EasyLoading.show(status: 'Please Wait...');
-
-    // Trigger the sign-in flow
-    final LoginResult loginResult = await FacebookAuth.instance.login();
-
-    // Create a credential from the access token
-    if (loginResult.accessToken != null) {
-      final OAuthCredential facebookAuthCredential =
-          FacebookAuthProvider.credential(loginResult.accessToken!.token);
-
-      // Once signed in, return the UserCredential
-      final userDetails = await FirebaseAuth.instance
-          .signInWithCredential(facebookAuthCredential);
-      if (userDetails.user != null) {
-        //await getUserToken();
-
-        final SocialSignInRequest socialSignInRequest = SocialSignInRequest(
-            clientId: userDetails.user!.uid,
-            email: userDetails.user!.email!,
-            fullName: userDetails.user!.displayName!,
-            phoneNumber: userDetails.user!.phoneNumber ?? '+923340394150',
-            deviceType: _operatingSystem,
-            deviceToken: _fcmToken ?? 'token',
-            media: userDetails.user!.photoURL!,
-            platform: 'Facebook');
-        return await callSocialMediaLoginApi(userDetails: socialSignInRequest);
-      } else {
-        EasyLoading.showError('Something Went Wrong');
-        return false;
-      }
-    } else {
-      EasyLoading.showError('Something Went Wrong');
-      return false;
+  Future<void> callBanners() async {
+    try {
+      final BannersResponse bannersResponse =
+          await _authApiServices.bannersApi();
+      setBannerResponse(bannersResponse);
+    } catch (exception) {
+      EasyLoading.showToast(exception.toString());
     }
+  }
+
+  void callLogOut() {
+    _sharedPref.remove(SharedPreferencesKeys.authToken.text);
   }
 
   void clearFieldsData() {
@@ -643,25 +669,5 @@ class AuthViewModel with ChangeNotifier {
     setPhoneFieldError('');
     setPasswordFieldError('');
     setConfirmPasswordFieldError('');
-  }
-
-  Future<bool> callSplash({required bool showLoader}) async {
-    if (showLoader) {
-      EasyLoading.show(status: 'Please Wait...');
-    }
-    try {
-      final AuthResponse response = await _authApiServices.splashApi();
-      if (response.isSuccess!) {
-        setAuthResponse(response);
-        EasyLoading.dismiss();
-        return true;
-      } else {
-        EasyLoading.showError(response.message!);
-        return false;
-      }
-    } catch (e) {
-      EasyLoading.showError(e.toString());
-      return false;
-    }
   }
 }

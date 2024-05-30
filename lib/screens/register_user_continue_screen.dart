@@ -47,21 +47,24 @@ class RegisterUserContinueScreen extends StatelessWidget {
                         child: lightBlack14w400Centre(
                             data:
                                 'You’re now one step closer to giving your doggo the love and treats they deserve.')),
-
                   ],
                 ),
               ),
               const Spacer(),
-              customButton(text: 'Continue', onPressed: () {
-                if (context.read<AuthViewModel>().phoneValidation()) {
-                  context.read<AuthViewModel>()
-                      .verifyNumber()
-                      .then((value) => {
-                    if (value)
-                      {Navigator.pushNamed(context, otpRoute)}
-                  });
-                }
-              }, colored: true),
+              customButton(
+                  text: 'Continue',
+                  onPressed: ()  {
+                    if (context.read<AuthViewModel>().phoneValidation()) {
+                       context
+                          .read<AuthViewModel>()
+                          .verifyNumber()
+                          .then((value) => {
+                                if (value)
+                                  {Navigator.pushNamed(context, otpRoute)}
+                              });
+                    }
+                  },
+                  colored: true),
             ],
           ),
         ),
