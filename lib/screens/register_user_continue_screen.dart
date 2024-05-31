@@ -55,13 +55,12 @@ class RegisterUserContinueScreen extends StatelessWidget {
                   text: 'Continue',
                   onPressed: ()  {
                     if (context.read<AuthViewModel>().phoneValidation()) {
-                       context
-                          .read<AuthViewModel>()
-                          .verifyNumber()
-                          .then((value) => {
+                      Navigator.pushNamed(context, otpRoute);
+
+                         /* .then((value) => {
                                 if (value)
                                   {Navigator.pushNamed(context, otpRoute)}
-                              });
+                              })*/;
                     }
                   },
                   colored: true),

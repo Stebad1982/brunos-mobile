@@ -57,16 +57,23 @@ class ForgetPasswordScreen extends StatelessWidget {
                         currentFocus.unfocus();
                       }
                       if (authViewModel.phoneValidation()) {
-                        final bool phoneExist =
-                            await authViewModel.checkPhoneNumber(checkType: true);
-                        if (phoneExist) {
+                        await authViewModel
+                            .checkPhoneNumber(checkType: true)
+                            .then((value) {
+                          if (value) {
+                            Navigator.pushNamed(context, otpRoute);
+                          }
+                        });
+
+                        /* if (phoneExist) {
                           authViewModel
                               .verifyNumber()
-                              .then((value) => {
+
+                          */ /* .then((value) => {
                                     if (value)
                                       {Navigator.pushNamed(context, otpRoute)}
-                                  });
-                        }
+                                  })*/ /*;
+                        }*/
                       }
                     },
                     colored: true),

@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:brunos_kitchen/main.dart';
@@ -27,6 +28,7 @@ import 'package:sendgrid_mailer/sendgrid_mailer.dart';
 import '../models/requests/sign_in_request.dart';
 import '../models/requests/social_sign_in_request.dart';
 import '../models/responses/auth_response.dart';
+import '../route_generator.dart';
 import '../screens/bottom_navigation_screen.dart';
 import '../screens/logIn_screen.dart';
 import '../screens/intro_slides_screen.dart';
@@ -40,6 +42,8 @@ class AuthViewModel with ChangeNotifier {
   String _registerRouteFrom = Screens.login.text;
   bool _securePassword = true;
   bool _showGreeting = true;
+  Timer? _countdownTimer;
+  Duration _myDuration = const Duration(minutes: 2);
   final AuthApiServices _authApiServices = AuthApiServices();
   AuthResponse _authResponse = AuthResponse();
   final List<BannerData> _bannersList = [];
@@ -62,6 +66,47 @@ class AuthViewModel with ChangeNotifier {
   String _phoneFieldError = '';
   String _passwordFieldError = '';
   String _confirmPasswordFieldError = '';
+
+  // timer settings
+
+  Timer? get getCountdownTimer => _countdownTimer;
+
+  Duration get getMyDuration => _myDuration;
+
+  void startTimer() {
+    _countdownTimer =
+        Timer.periodic(const Duration(seconds: 1), (_) => setCountDown());
+  }
+
+  void setCountDown() {
+    const reduceSecondsBy = 1;
+
+    final seconds = _myDuration.inSeconds - reduceSecondsBy;
+    if (seconds < 0) {
+      _countdownTimer!.cancel();
+    } else {
+      _myDuration = Duration(seconds: seconds);
+    }
+    notifyListeners();
+  }
+
+  void stopTimer() {
+    _countdownTimer!.cancel();
+    notifyListeners();
+  }
+
+  void resetTimer() {
+    stopTimer();
+    _myDuration = const Duration(minutes: 2);
+    notifyListeners();
+  }
+
+  void restartTimer() {
+    stopTimer();
+    _myDuration = const Duration(minutes: 2);
+    startTimer();
+    notifyListeners();
+  }
 
   bool get getSecurePassword => _securePassword;
 
@@ -574,33 +619,39 @@ class AuthViewModel with ChangeNotifier {
     }
   }
 
-  Future<bool> verifyNumber() async {
+  Future<void> verifyNumber() async {
     EasyLoading.show(status: 'Sending OTP');
-    bool returnValue = false;
+    //bool returnValue = false;
     await _auth.verifyPhoneNumber(
       phoneNumber: _countryCode + _phoneController.text,
-      verificationCompleted: (PhoneAuthCredential credential) {
-        _auth.signInWithCredential(credential);
+      verificationCompleted: (PhoneAuthCredential credential) async {
+        await _auth.signInWithCredential(credential);
+        //   returnValue = true;
         EasyLoading.dismiss();
-        returnValue = true;
       },
-      timeout: const Duration(seconds: 60),
+      timeout: const Duration(minutes: 2),
+      codeSent: (String verificationId, int? resendToken) {
+        _verificationId = verificationId;
+        restartTimer();
+        //  returnValue = true;
+        EasyLoading.dismiss();
+      },
+      codeAutoRetrievalTimeout: (String verificationId) {
+        _verificationId = verificationId;
+        //   returnValue = true;
+        EasyLoading.dismiss();
+      },
       verificationFailed: (FirebaseAuthException e) {
         if (e.code == 'invalid-phone-number') {
           EasyLoading.showToast('The provided phone number is not valid.');
         } else {
           EasyLoading.showToast(e.toString());
         }
-        returnValue = false;
+        stopTimer();
+        //  returnValue = false;
       },
-      codeSent: (String verificationId, int? resendToken) {
-        _verificationId = verificationId;
-        returnValue = true;
-        EasyLoading.dismiss();
-      },
-      codeAutoRetrievalTimeout: (String verificationId) {},
     );
-    return returnValue;
+    // return returnValue;
   }
 
   Future<bool> verifyOTP() async {

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:brunos_kitchen/utils/images.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -15,12 +17,44 @@ import '../utils/enums.dart';
 import '../view_models/auth_view_model.dart';
 import '../widgets/back_button_widget.dart';
 
-class OtpScreen extends StatelessWidget {
+class OtpScreen extends StatefulWidget {
   const OtpScreen({Key? key}) : super(key: key);
 
   @override
+  State<OtpScreen> createState() => _OtpScreenState();
+}
+
+class _OtpScreenState extends State<OtpScreen> {
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    context.read<AuthViewModel>().getOtpController.clear();
+    context
+        .read<AuthViewModel>()
+        .verifyNumber();
+  }
+
+
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    context
+        .read<AuthViewModel>().getCountdownTimer!.cancel();
+    super.dispose();
+  }
+
+
+
+  @override
   Widget build(BuildContext context) {
+    String strDigits(int n) => n.toString().padLeft(2, '0');
+
     return Consumer<AuthViewModel>(builder: (_, authViewModel, __) {
+      final minutes = strDigits(authViewModel.getMyDuration.inMinutes.remainder(02));
+      final seconds = strDigits(authViewModel.getMyDuration.inSeconds.remainder(60));
       return WillPopScope(
         onWillPop: () async {
           authViewModel.getOtpController.clear();
@@ -128,54 +162,70 @@ class OtpScreen extends StatelessWidget {
                               SizedBox(
                                 height: 10.h,
                               ),
-                              const Text.rich(
-                                TextSpan(
-                                  children: [
+                              Visibility(
+                                  visible: minutes != '00' || seconds != '00',
+                                  child: lightBlack14w400Centre(data:'OTP will Expired in $minutes:$seconds')),
+                              Visibility(
+                                visible: minutes == '00' && seconds == '00',
+                                child: InkWell(
+                                  onTap: (){
+                                    context
+                                        .read<AuthViewModel>()
+                                        .verifyNumber();
+                                  },
+                                  child: const Text.rich(
                                     TextSpan(
-                                      text: 'Didn’t Receive Code? ',
-                                      style: TextStyle(
-                                        color: CustomColors.greyColor,
-                                        fontSize: 14,
-                                        fontFamily: 'Circular Std',
-                                        fontWeight: FontWeight.w400,
-                                      ),
+                                      children: [
+                                        TextSpan(
+                                          text: 'Didn’t Receive Code? ',
+                                          style: TextStyle(
+                                            color: CustomColors.greyColor,
+                                            fontSize: 14,
+                                            fontFamily: 'Circular Std',
+                                            fontWeight: FontWeight.w400,
+                                          ),
+                                        ),
+                                        TextSpan(
+                                          text: 'Resend again',
+                                          style: TextStyle(
+                                            color: CustomColors.orangeColor ,
+                                            fontSize: 14,
+                                            fontFamily: 'Circular Std',
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                        ),
+                                      ],
                                     ),
-                                    TextSpan(
-                                      text: 'Resend again',
-                                      style: TextStyle(
-                                        color: CustomColors.greyColor,
-                                        fontSize: 14,
-                                        fontFamily: 'Circular Std',
-                                        fontWeight: FontWeight.w500,
-                                      ),
-                                    ),
-                                  ],
+                                    textAlign: TextAlign.center,
+                                  ),
                                 ),
-                                textAlign: TextAlign.center,
                               ),
                             ],
                           ),
                         ),
                       ],
                     ),
-                    SizedBox(
-                      height: screenHeight,
-                      child: Align(
-                        alignment: Alignment.bottomCenter,
-                        child: customButton(
-                            text: 'Continue',
-                            onPressed: () {
-                              authViewModel
-                                  .callUserRegisterApi()
-                                  .then((value) => {
-                                        if (value)
-                                          {
-                                            Navigator.pushNamed(
-                                                context, userVerifiedRoute)
-                                          }
-                                      });
-                            },
-                            colored: true),
+                    Visibility(
+                      visible: authViewModel.getOtpController.value.text.length == 6,
+                      child: SizedBox(
+                        height: screenHeight,
+                        child: Align(
+                          alignment: Alignment.bottomCenter,
+                          child: customButton(
+                              text: 'Continue',
+                              onPressed: () {
+                                authViewModel
+                                    .callUserRegisterApi()
+                                    .then((value) => {
+                                          if (value)
+                                            {
+                                              Navigator.pushNamed(
+                                                  context, userVerifiedRoute)
+                                            }
+                                        });
+                              },
+                              colored: true),
+                        ),
                       ),
                     ),
                   ],
