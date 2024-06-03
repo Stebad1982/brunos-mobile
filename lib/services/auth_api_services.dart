@@ -95,6 +95,17 @@ class AuthApiServices {
     return baseResponseModel;
   }
 
+  Future<BaseResponseModel> checkEmailApi({required String emailAddress}) async {
+    final response = await _httpService.httpRequest(
+        endPoint: EndPoints.checkEmail,
+        requestType: 'GET',
+        requestBody: '',
+        params: 'email=$emailAddress');
+    final parsed = json.decode(response.body);
+    BaseResponseModel baseResponseModel = BaseResponseModel.fromJson(parsed);
+    return baseResponseModel;
+  }
+
   Future<AuthResponse> socialMediaLoginApi({required SocialSignInRequest socialSignInRequest}) async {
     final response = await _httpService.httpRequest(
         endPoint: EndPoints.socialLogin,

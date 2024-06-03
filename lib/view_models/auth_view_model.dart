@@ -509,7 +509,7 @@ class AuthViewModel with ChangeNotifier {
       final ForgotPasswordRequest forgotPasswordRequest = ForgotPasswordRequest(
           password: _passwordController.text,
           phoneNumber: _phoneController.text,
-          otp: '2521');
+          otp: _otpController.text);
 
       final BaseResponseModel response = await _authApiServices
           .forgotPasswordApi(forgotPasswordRequest: forgotPasswordRequest);
@@ -556,7 +556,7 @@ class AuthViewModel with ChangeNotifier {
 
   Future<bool> callUserRegisterApi() async {
     EasyLoading.show(status: 'Please Wait ...');
-    final bool otpVerification = await verifyOTP();
+    final bool otpVerification = await verifyOTPFirebase();
     SendGridPref sendGrid = SendGridPref();
     if (otpVerification) {
       try {
@@ -600,6 +600,7 @@ class AuthViewModel with ChangeNotifier {
               phoneNumber: _countryCode + _phoneController.text);
       if (response.isSuccess!) {
         if (!checkType) {
+          checkEmail();
           EasyLoading.showError('${response.message}');
         } else {
           EasyLoading.dismiss();
@@ -609,7 +610,8 @@ class AuthViewModel with ChangeNotifier {
         if (checkType) {
           EasyLoading.showError('${response.message}');
         } else {
-          EasyLoading.dismiss();
+          final bool emailVerification = await checkEmail();
+          return emailVerification;
         }
         return false;
       }
@@ -619,7 +621,27 @@ class AuthViewModel with ChangeNotifier {
     }
   }
 
-  Future<void> verifyNumber() async {
+  Future<bool> checkEmail() async {
+    //EasyLoading.show(status: 'Please Wait Verify Email');
+    try {
+      final BaseResponseModel response =
+      await _authApiServices.checkEmailApi(
+          emailAddress: _emailController.text);
+      if (response.isSuccess!) {
+        EasyLoading.showError(response.message!);
+        return true;
+      } else {
+        EasyLoading.dismiss();
+        return false;
+      }
+    } catch (e) {
+      EasyLoading.showError(e.toString());
+      return false;
+    }
+  }
+
+
+  Future<void> verifyNumberFirebase() async {
     EasyLoading.show(status: 'Sending OTP');
     //bool returnValue = false;
     await _auth.verifyPhoneNumber(
@@ -647,14 +669,14 @@ class AuthViewModel with ChangeNotifier {
         } else {
           EasyLoading.showToast(e.toString());
         }
-        stopTimer();
+        resetTimer();
         //  returnValue = false;
       },
     );
     // return returnValue;
   }
 
-  Future<bool> verifyOTP() async {
+  Future<bool> verifyOTPFirebase() async {
     try {
       EasyLoading.show(status: 'Verify OTP');
 

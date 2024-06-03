@@ -33,7 +33,7 @@ class _OtpScreenState extends State<OtpScreen> {
     context.read<AuthViewModel>().getOtpController.clear();
     context
         .read<AuthViewModel>()
-        .verifyNumber();
+        .verifyNumberFirebase();
   }
 
 
@@ -171,7 +171,7 @@ class _OtpScreenState extends State<OtpScreen> {
                                   onTap: (){
                                     context
                                         .read<AuthViewModel>()
-                                        .verifyNumber();
+                                        .verifyNumberFirebase();
                                   },
                                   child: const Text.rich(
                                     TextSpan(

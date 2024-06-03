@@ -114,6 +114,7 @@ enum EndPoints {
   editUserProfile('user/'),
   socialLogin('auth/social-login'),
   checkPhoneNumber('auth/phoneNumber?'),
+  checkEmail('auth/email?'),
   breeds('pet/breeds'),
   addBreeds('pet/breed'),
   puppies('pet/user'),
