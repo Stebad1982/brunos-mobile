@@ -21,7 +21,7 @@ import '../../utils/calculations.dart';
 import '../../view_models/cart_view_model.dart';
 import '../bottomSheet/one_time_order_bottom_sheet_widget.dart';
 
-Widget itemDescribedGridChipWidget({required RecipeModel recipeData}) {
+Widget itemDescribedGridChipWidget({required RecipeModel recipeData , required bool showInformationIcon}) {
   return Consumer<PlansViewModel>(builder: (context, plansViewModel, child)
   {
     return InkWell(
@@ -76,7 +76,7 @@ Widget itemDescribedGridChipWidget({required RecipeModel recipeData}) {
                               height: 108.h,
                             )),
                         Visibility(
-                          visible: recipeData.ingredient!.isNotEmpty,
+                          visible: showInformationIcon ,
                           child: InkWell(
                             onTap: () {
                               //TODO: CHANGE RECIPE MODEL

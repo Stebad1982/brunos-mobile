@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:brunos_kitchen/utils/images.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
@@ -30,10 +31,13 @@ class _OtpScreenState extends State<OtpScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    context.read<AuthViewModel>().getOtpController.clear();
-    context
-        .read<AuthViewModel>()
-        .verifyNumberFirebase();
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      context.read<AuthViewModel>().getOtpController.clear();
+      context
+          .read<AuthViewModel>()
+          .verifyNumberFirebase();
+    });
+
   }
 
 
@@ -41,9 +45,13 @@ class _OtpScreenState extends State<OtpScreen> {
   @override
   void dispose() {
     // TODO: implement dispose
-    context
-        .read<AuthViewModel>().getCountdownTimer!.cancel();
+
     super.dispose();
+/*    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      context
+          .read<AuthViewModel>().stopTimer();
+    });*/
+
   }
 
 
@@ -57,6 +65,9 @@ class _OtpScreenState extends State<OtpScreen> {
       final seconds = strDigits(authViewModel.getMyDuration.inSeconds.remainder(60));
       return WillPopScope(
         onWillPop: () async {
+          EasyLoading.dismiss();
+          context
+              .read<AuthViewModel>().resetTimer();
           authViewModel.getOtpController.clear();
           Navigator.pop(context);
           return false;
@@ -166,7 +177,7 @@ class _OtpScreenState extends State<OtpScreen> {
                                   visible: minutes != '00' || seconds != '00',
                                   child: lightBlack14w400Centre(data:'OTP will Expired in $minutes:$seconds')),
                               Visibility(
-                                visible: minutes == '00' && seconds == '00',
+                                visible: (minutes == '00' && seconds == '00') || (authViewModel.getMyDuration.inSeconds != 120),
                                 child: InkWell(
                                   onTap: (){
                                     context

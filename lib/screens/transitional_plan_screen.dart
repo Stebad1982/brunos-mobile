@@ -68,7 +68,7 @@ class TransitionalPlanScreen extends StatelessWidget {
                   children: List.generate(context.read<PlansViewModel>().getRecommendedRecipesList.length, (index) {
                     return SizedBox(
                       width: 157.w,
-                      child: itemDescribedGridChipWidget(recipeData: context.read<PlansViewModel>().getRecommendedRecipesList[index]),
+                      child: itemDescribedGridChipWidget(recipeData: context.read<PlansViewModel>().getRecommendedRecipesList[index], showInformationIcon: true),
                     );
                   }),
                 ),

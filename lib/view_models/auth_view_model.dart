@@ -654,9 +654,9 @@ class AuthViewModel with ChangeNotifier {
       timeout: const Duration(minutes: 2),
       codeSent: (String verificationId, int? resendToken) {
         _verificationId = verificationId;
-        restartTimer();
-        //  returnValue = true;
         EasyLoading.dismiss();
+        startTimer();
+        //  returnValue = true;
       },
       codeAutoRetrievalTimeout: (String verificationId) {
         _verificationId = verificationId;
