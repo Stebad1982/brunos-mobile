@@ -31,9 +31,10 @@ class _OtpScreenState extends State<OtpScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
       context.read<AuthViewModel>().getOtpController.clear();
-      context
+      context.read<AuthViewModel>().resetTimer();
+      await context
           .read<AuthViewModel>()
           .verifyNumberFirebase();
     });
@@ -47,6 +48,7 @@ class _OtpScreenState extends State<OtpScreen> {
     // TODO: implement dispose
 
     super.dispose();
+
 /*    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       context
           .read<AuthViewModel>().stopTimer();
@@ -58,189 +60,177 @@ class _OtpScreenState extends State<OtpScreen> {
 
   @override
   Widget build(BuildContext context) {
-    String strDigits(int n) => n.toString().padLeft(2, '0');
 
     return Consumer<AuthViewModel>(builder: (_, authViewModel, __) {
-      final minutes = strDigits(authViewModel.getMyDuration.inMinutes.remainder(02));
-      final seconds = strDigits(authViewModel.getMyDuration.inSeconds.remainder(60));
-      return WillPopScope(
-        onWillPop: () async {
-          EasyLoading.dismiss();
-          context
-              .read<AuthViewModel>().resetTimer();
-          authViewModel.getOtpController.clear();
-          Navigator.pop(context);
-          return false;
-        },
-        child: Scaffold(
-          body: SafeArea(
-            child: SingleChildScrollView(
-              child: Padding(
-                padding: const EdgeInsets.only(
-                    top: 30, bottom: 20, left: 20, right: 20),
-                child: Stack(
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const BackButtonWidget(),
-                        SizedBox(
-                          height: 59.h,
-                        ),
-                        Center(
-                          child: Column(
-                            children: [
-                              SvgPicture.asset(
-                                password,
-                                width: 199.w,
-                              ),
-                              SizedBox(
-                                height: 22.h,
-                              ),
-                              black24w500Centre(data: 'OTP Verification'),
-                              SizedBox(
-                                height: 20.h,
-                              ),
-                              SizedBox(
-                                  width: 306.57.w,
-                                  child: lightBlack14w400Centre(
-                                      data:
-                                          'We have send an OTP to ${authViewModel.getCountryCode + authViewModel.getPhoneController.text}')),
-                              SizedBox(
-                                height: 26.h,
-                              ),
-                              Form(
-                                // key: formKey,
-                                child: SizedBox(
-                                  //width: 250.w,
-                                  child: PinCodeTextField(
-                                    // errorAnimationController: errorController,
-                                    keyboardType: TextInputType.number,
-                                    autoDisposeControllers: false,
-                                    // backgroundColor: CustomColors.lightGreyColor,
-                                    controller: authViewModel.getOtpController,
-                                    appContext: context,
-                                    length: 6,
-                                    pinTheme: PinTheme(
-                                        shape: PinCodeFieldShape.box,
-                                        borderRadius:
-                                            BorderRadius.circular(12.r),
-                                        fieldHeight: 60.w,
-                                        fieldWidth: 46.w,
-                                        inactiveColor:
-                                            CustomColors.greyMediumLightColor,
-                                        selectedColor:
-                                            CustomColors.greyMediumLightColor,
-                                        activeColor:
-                                            CustomColors.greyMediumLightColor,
-                                        activeFillColor:
-                                            CustomColors.greyMediumLightColor,
-                                        selectedFillColor:
-                                            CustomColors.greyMediumLightColor,
-                                        inactiveFillColor:
-                                            CustomColors.greyMediumLightColor,
-                                        fieldOuterPadding:
-                                            const EdgeInsets.symmetric(
-                                                horizontal: 2)),
-                                    enableActiveFill: true,
-                                    pastedTextStyle: const TextStyle(
-                                      //    color: CustomColors.color1,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                    boxShadows: const [
-                                      BoxShadow(
-                                        offset: Offset(0, 1),
-                                        color: Colors.black45,
-                                        blurRadius: 5,
-                                      )
-                                    ],
-                                    onCompleted: (value) {
-                                      debugPrint(value);
-                                      /*  setState(() {
-                                      currentText = value;
-                                    });*/
-                                    },
-                                    beforeTextPaste: (text) {
-                                      debugPrint("Allowing to paste $text");
-                                      //if you return true then it will show the paste confirmation dialog. Otherwise if false, then nothing will happen.
-                                      //but you can show anything you want here, like your pop up saying wrong paste format or etc
-                                      return true;
-                                    },
-                                    onChanged: (String value) {},
+
+      return Scaffold(
+        body: SafeArea(
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.only(
+                  top: 30, bottom: 20, left: 20, right: 20),
+              child: Stack(
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const BackButtonWidget(),
+                      SizedBox(
+                        height: 59.h,
+                      ),
+                      Center(
+                        child: Column(
+                          children: [
+                            SvgPicture.asset(
+                              password,
+                              width: 199.w,
+                            ),
+                            SizedBox(
+                              height: 22.h,
+                            ),
+                            black24w500Centre(data: 'OTP Verification'),
+                            SizedBox(
+                              height: 20.h,
+                            ),
+                            SizedBox(
+                                width: 306.57.w,
+                                child: lightBlack14w400Centre(
+                                    data:
+                                        'We have send an OTP to ${authViewModel.getCountryCode + authViewModel.getPhoneController.text}')),
+                            SizedBox(
+                              height: 26.h,
+                            ),
+                            Form(
+                              // key: formKey,
+                              child: SizedBox(
+                                //width: 250.w,
+                                child: PinCodeTextField(
+                                  // errorAnimationController: errorController,
+                                  keyboardType: TextInputType.number,
+                                  autoDisposeControllers: false,
+                                  // backgroundColor: CustomColors.lightGreyColor,
+                                  controller: authViewModel.getOtpController,
+                                  appContext: context,
+                                  length: 6,
+                                  pinTheme: PinTheme(
+                                      shape: PinCodeFieldShape.box,
+                                      borderRadius:
+                                          BorderRadius.circular(12.r),
+                                      fieldHeight: 60.w,
+                                      fieldWidth: 46.w,
+                                      inactiveColor:
+                                          CustomColors.greyMediumLightColor,
+                                      selectedColor:
+                                          CustomColors.greyMediumLightColor,
+                                      activeColor:
+                                          CustomColors.greyMediumLightColor,
+                                      activeFillColor:
+                                          CustomColors.greyMediumLightColor,
+                                      selectedFillColor:
+                                          CustomColors.greyMediumLightColor,
+                                      inactiveFillColor:
+                                          CustomColors.greyMediumLightColor,
+                                      fieldOuterPadding:
+                                          const EdgeInsets.symmetric(
+                                              horizontal: 2)),
+                                  enableActiveFill: true,
+                                  pastedTextStyle: const TextStyle(
+                                    //    color: CustomColors.color1,
+                                    fontWeight: FontWeight.bold,
                                   ),
-                                ),
-                              ),
-                              SizedBox(
-                                height: 10.h,
-                              ),
-                              Visibility(
-                                  visible: minutes != '00' || seconds != '00',
-                                  child: lightBlack14w400Centre(data:'OTP will Expired in $minutes:$seconds')),
-                              Visibility(
-                                visible: (minutes == '00' && seconds == '00') || (authViewModel.getMyDuration.inSeconds != 120),
-                                child: InkWell(
-                                  onTap: (){
-                                    context
-                                        .read<AuthViewModel>()
-                                        .verifyNumberFirebase();
+                                  boxShadows: const [
+                                    BoxShadow(
+                                      offset: Offset(0, 1),
+                                      color: Colors.black45,
+                                      blurRadius: 5,
+                                    )
+                                  ],
+                                  onCompleted: (value) {
+                                    debugPrint(value);
+                                    /*  setState(() {
+                                    currentText = value;
+                                  });*/
                                   },
-                                  child: const Text.rich(
-                                    TextSpan(
-                                      children: [
-                                        TextSpan(
-                                          text: 'Didn’t Receive Code? ',
-                                          style: TextStyle(
-                                            color: CustomColors.greyColor,
-                                            fontSize: 14,
-                                            fontFamily: 'Circular Std',
-                                            fontWeight: FontWeight.w400,
-                                          ),
-                                        ),
-                                        TextSpan(
-                                          text: 'Resend again',
-                                          style: TextStyle(
-                                            color: CustomColors.orangeColor ,
-                                            fontSize: 14,
-                                            fontFamily: 'Circular Std',
-                                            fontWeight: FontWeight.w500,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    textAlign: TextAlign.center,
-                                  ),
+                                  beforeTextPaste: (text) {
+                                    debugPrint("Allowing to paste $text");
+                                    //if you return true then it will show the paste confirmation dialog. Otherwise if false, then nothing will happen.
+                                    //but you can show anything you want here, like your pop up saying wrong paste format or etc
+                                    return true;
+                                  },
+                                  onChanged: (String value) {},
                                 ),
                               ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                    Visibility(
-                      visible: authViewModel.getOtpController.value.text.length == 6,
-                      child: SizedBox(
-                        height: screenHeight,
-                        child: Align(
-                          alignment: Alignment.bottomCenter,
-                          child: customButton(
-                              text: 'Continue',
-                              onPressed: () {
-                                authViewModel
-                                    .callUserRegisterApi()
-                                    .then((value) => {
-                                          if (value)
-                                            {
-                                              Navigator.pushNamed(
-                                                  context, userVerifiedRoute)
-                                            }
-                                        });
-                              },
-                              colored: true),
+                            ),
+                            SizedBox(
+                              height: 10.h,
+                            ),
+                            Visibility(
+                                visible: authViewModel.getOtpMinutes != '00' || authViewModel.getOtpSeconds != '00',
+                                child: lightBlack14w400Centre(data:'OTP will Expired in ${authViewModel.getOtpMinutes}:${authViewModel.getOtpSeconds}')),
+                            Visibility(
+                              visible: (authViewModel.getOtpMinutes == '00' && authViewModel.getOtpSeconds == '00'),
+                              child: InkWell(
+                                onTap: (){
+                                  context
+                                      .read<AuthViewModel>()
+                                      .verifyNumberFirebase();
+                                },
+                                child: const Text.rich(
+                                  TextSpan(
+                                    children: [
+                                      TextSpan(
+                                        text: 'Didn’t Receive Code? ',
+                                        style: TextStyle(
+                                          color: CustomColors.greyColor,
+                                          fontSize: 14,
+                                          fontFamily: 'Circular Std',
+                                          fontWeight: FontWeight.w400,
+                                        ),
+                                      ),
+                                      TextSpan(
+                                        text: 'Resend again',
+                                        style: TextStyle(
+                                          color: CustomColors.orangeColor ,
+                                          fontSize: 14,
+                                          fontFamily: 'Circular Std',
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
+                    ],
+                  ),
+                  Visibility(
+                    visible: authViewModel.getOtpController.value.text.length == 6,
+                    child: SizedBox(
+                      height: screenHeight,
+                      child: Align(
+                        alignment: Alignment.bottomCenter,
+                        child: customButton(
+                            text: 'Continue',
+                            onPressed: () {
+                              authViewModel
+                                  .callUserRegisterApi()
+                                  .then((value) => {
+                                        if (value)
+                                          {
+                                            Navigator.pushNamed(
+                                                context, userVerifiedRoute)
+                                          }
+                                      });
+                            },
+                            colored: true),
+                      ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
           ),

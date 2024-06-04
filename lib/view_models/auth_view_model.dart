@@ -58,6 +58,7 @@ class AuthViewModel with ChangeNotifier {
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _phoneController = TextEditingController();
+  final TextEditingController _editPhoneController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _confirmPasswordController =
       TextEditingController();
@@ -67,11 +68,26 @@ class AuthViewModel with ChangeNotifier {
   String _passwordFieldError = '';
   String _confirmPasswordFieldError = '';
 
+  String _otpMinutes = '02';
+  String _otpSeconds = '00';
+
+
+  String get getOtpMinutes => _otpMinutes;
+
+  void setOtpMinutesSeconds (){
+    String strDigits(int n) => n.toString().padLeft(2, '0');
+    _otpMinutes = strDigits(_myDuration.inMinutes.remainder(02));
+    _otpSeconds = strDigits(_myDuration.inSeconds.remainder(60));
+    notifyListeners();
+  }
+  String get getOtpSeconds => _otpSeconds;
+
+
   // timer settings
 
   Timer? get getCountdownTimer => _countdownTimer;
 
-  Duration get getMyDuration => _myDuration;
+ // Duration get getMyDuration => _myDuration;
 
   void startTimer() {
     _countdownTimer =
@@ -86,24 +102,31 @@ class AuthViewModel with ChangeNotifier {
       _countdownTimer!.cancel();
     } else {
       _myDuration = Duration(seconds: seconds);
+      setOtpMinutesSeconds();
     }
     notifyListeners();
   }
 
   void stopTimer() {
-    _countdownTimer!.cancel();
-    notifyListeners();
+    if(_countdownTimer != null && _countdownTimer!.isActive){
+      _otpMinutes = '02';
+      _otpSeconds = '00';
+      _countdownTimer!.cancel();
+      notifyListeners();
+    }
   }
 
   void resetTimer() {
     stopTimer();
     _myDuration = const Duration(minutes: 2);
+    setOtpMinutesSeconds();
     notifyListeners();
   }
 
   void restartTimer() {
     stopTimer();
     _myDuration = const Duration(minutes: 2);
+    setOtpMinutesSeconds();
     startTimer();
     notifyListeners();
   }
@@ -171,7 +194,7 @@ class AuthViewModel with ChangeNotifier {
   void setAuthResponse(AuthResponse value) {
     _authResponse = value;
     _emailController.text = _authResponse.data!.email!;
-    _phoneController.text = _authResponse.data!.phoneNumber!;
+    _editPhoneController.text = _authResponse.data!.phoneNumber!;
     _nameController.text = _authResponse.data!.fullName!;
     setDeliveryCity();
     // notifyListeners();
@@ -233,6 +256,9 @@ class AuthViewModel with ChangeNotifier {
   TextEditingController get getEmailController => _emailController;
 
   TextEditingController get getPhoneController => _phoneController;
+
+  TextEditingController get getEditPhoneController => _editPhoneController;
+
 
   TextEditingController get getPasswordController => _passwordController;
 
@@ -643,6 +669,7 @@ class AuthViewModel with ChangeNotifier {
 
   Future<void> verifyNumberFirebase() async {
     EasyLoading.show(status: 'Sending OTP');
+    resetTimer();
     //bool returnValue = false;
     await _auth.verifyPhoneNumber(
       phoneNumber: _countryCode + _phoneController.text,
@@ -654,8 +681,8 @@ class AuthViewModel with ChangeNotifier {
       timeout: const Duration(minutes: 2),
       codeSent: (String verificationId, int? resendToken) {
         _verificationId = verificationId;
+        restartTimer();
         EasyLoading.dismiss();
-        startTimer();
         //  returnValue = true;
       },
       codeAutoRetrievalTimeout: (String verificationId) {
@@ -697,7 +724,7 @@ class AuthViewModel with ChangeNotifier {
       final EditUserProfileRequest editUserProfileRequest =
           EditUserProfileRequest(
               fullName: _nameController.text,
-              phoneNumber: _phoneController.text);
+              phoneNumber: _editPhoneController.text);
 
       final AuthResponse response = await _authApiServices.editUserProfileApi(
           editUserProfileRequest: editUserProfileRequest);

@@ -55,7 +55,7 @@ class ProfileScreen extends StatelessWidget {
                         lightBlack14w400Centre(
                             left: true,
                             data:
-                                'Hi, ${context.read<AuthViewModel>().getAuthResponse.data!.fullName}'),
+                                'Hi, ${context.watch<AuthViewModel>().getAuthResponse.data!.fullName}'),
                         SizedBox(
                           height: 10.h,
                         ),

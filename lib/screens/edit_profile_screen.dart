@@ -38,7 +38,33 @@ class EditProfileScreen extends StatelessWidget {
                   SizedBox(
                     height: 16.h,
                   ),
-                  const PhoneFieldWidget(),
+                  TextField(
+                    controller: context.watch<AuthViewModel>().getEditPhoneController,
+                    onChanged: (text) {},
+                    readOnly: true,
+                    keyboardType: TextInputType.phone,
+                    decoration: InputDecoration(
+                        hintText: 'Phone Number',
+                        prefixIcon: Padding(
+                          padding:
+                          const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+                          child: IntrinsicHeight(
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                SvgPicture.asset(phoneIcon),
+                                const Padding(
+                                  padding: EdgeInsets.symmetric(vertical: 16.0),
+                                  child: VerticalDivider(
+                                    color: CustomColors.greyShadeColor,
+                                    thickness: 1,
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                        )),
+                  ),
                   SizedBox(
                     height: 16.h,
                   ),
