@@ -755,6 +755,7 @@ class AuthViewModel with ChangeNotifier {
 
   void callLogOut() {
     _sharedPref.remove(SharedPreferencesKeys.authToken.text);
+    navigatorKey.currentContext!.read<CartViewModel>().clearCart();
   }
 
   void clearFieldsData() {

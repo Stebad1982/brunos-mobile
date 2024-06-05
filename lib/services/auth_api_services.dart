@@ -113,6 +113,8 @@ class AuthApiServices {
         requestBody: socialSignInRequest,
         params: '');
     final parsed = json.decode(response.body);
+    print('auth response: ${response.body}');
+
     AuthResponse authResponse = AuthResponse.fromJson(parsed);
     if (authResponse.isSuccess!) {
       _sharedPref.save(

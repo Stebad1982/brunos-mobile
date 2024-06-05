@@ -288,6 +288,12 @@ class CartViewModel with ChangeNotifier {
     notifyListeners();
   }
 
+  void clearCartList(CartModel value) {
+    _cartList.clear();
+    _cartTotalPrice = 0;
+    notifyListeners();
+  }
+
   void removeFromCartList(CartModel value) {
     _cartList.remove(value);
     _cartTotalPrice = calculateCartTotal(cartItems: _cartList);
