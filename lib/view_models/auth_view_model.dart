@@ -530,8 +530,9 @@ class AuthViewModel with ChangeNotifier {
   }
 
   Future<bool> callForgotPasswordApi() async {
+    final bool otpVerification = await verifyOTPFirebase();
     EasyLoading.show(status: 'Please Wait ...');
-    try {
+    if (otpVerification) {try {
       final ForgotPasswordRequest forgotPasswordRequest = ForgotPasswordRequest(
           password: _passwordController.text,
           phoneNumber: _phoneController.text,
@@ -548,6 +549,10 @@ class AuthViewModel with ChangeNotifier {
       }
     } catch (e) {
       EasyLoading.showError(e.toString());
+      return false;
+    }
+  }
+    else{
       return false;
     }
   }
@@ -581,8 +586,8 @@ class AuthViewModel with ChangeNotifier {
   }
 
   Future<bool> callUserRegisterApi() async {
-    EasyLoading.show(status: 'Please Wait ...');
     final bool otpVerification = await verifyOTPFirebase();
+    EasyLoading.show(status: 'Please Wait ...');
     SendGridPref sendGrid = SendGridPref();
     if (otpVerification) {
       try {
