@@ -31,19 +31,16 @@ class _FeedingPlanScreenState extends State<FeedingPlanScreen> {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       context.read<PlansViewModel>().setFeedingPlan(
-          petData: context
-              .read<AuthViewModel>()
-              .getAuthResponse
-              .data!
-              .pet!,
-          planDiscountPer: context
-              .read<PlansViewModel>()
-              .getPlanType == Plans.monthly.text? context
-              .read<AuthViewModel>()
-              .getAuthResponse
-              .data!
-              .discounts![3]
-              .aggregate!: 0);
+          petData: context.read<AuthViewModel>().getAuthResponse.data!.pet!,
+          planDiscountPer:
+              context.read<PlansViewModel>().getPlanType == Plans.monthly.text
+                  ? context
+                      .read<AuthViewModel>()
+                      .getAuthResponse
+                      .data!
+                      .discounts![3]
+                      .aggregate!
+                  : 0);
     });
   }
 
@@ -55,40 +52,38 @@ class _FeedingPlanScreenState extends State<FeedingPlanScreen> {
             heading: plansViewModel.getPlanType == Plans.transitional.text
                 ? 'Transitional Feeding Plan'
                 : plansViewModel.getPlanType == Plans.monthly.text
-                ? 'Monthly Feeding Plan'
-                : 'One time Feeding Order',
+                    ? 'Monthly Feeding Plan'
+                    : 'One time Feeding Order',
             showPuppy: false,
-            showCart: !context
-                .read<CartViewModel>()
-                .getViewCartItemDetail),
+            showCart: !context.read<CartViewModel>().getViewCartItemDetail),
         body: Stack(
           children: [
             plansViewModel.getFeedingPlan != null
                 ? ListView.separated(
-              // physics: const NeverScrollableScrollPhysics(),
-              shrinkWrap: true,
-              itemCount: plansViewModel.getFeedingPlan!.recipes.length,
-              padding: const EdgeInsets.only(
-                  left: 20, right: 20, top: 20, bottom: 280),
-              itemBuilder: (BuildContext context, int index) {
-                final num totalPlanQuantity = calculateDailyIntake(
-                    recipeModel:
-                    plansViewModel.getFeedingPlan!.recipes[index],
-                    puppyActivityLevel: plansViewModel
-                        .getFeedingPlan!.pet!.activityLevel!,
-                    currentWeight: plansViewModel
-                        .getFeedingPlan!.pet!.currentWeight!,
-                    puppyActualWeight: plansViewModel
-                        .getFeedingPlan!.pet!.actualWeight!) *
-                    (plansViewModel
-                        .getFeedingPlan!.recipes[index].totalDays!);
-                final num perPouchQuantity = calculateFeedingPlan(
-                    recipeModel:
-                    plansViewModel.getFeedingPlan!.recipes[index],
-                    puppyModel: plansViewModel.getFeedingPlan!.pet!);
-                final num transitionalPlanTotalQuantity =
-                plansViewModel.getTotalTransitionalGrams();
-                final num transitional1to3PerPouchQty =
+                    // physics: const NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    itemCount: plansViewModel.getFeedingPlan!.recipes.length,
+                    padding: const EdgeInsets.only(
+                        left: 20, right: 20, top: 20, bottom: 280),
+                    itemBuilder: (BuildContext context, int index) {
+                      final num totalPlanQuantity = calculateDailyIntake(
+                              recipeModel:
+                                  plansViewModel.getFeedingPlan!.recipes[index],
+                              puppyActivityLevel: plansViewModel
+                                  .getFeedingPlan!.pet!.activityLevel!,
+                              currentWeight: plansViewModel
+                                  .getFeedingPlan!.pet!.currentWeight!,
+                              puppyActualWeight: plansViewModel
+                                  .getFeedingPlan!.pet!.actualWeight!) *
+                          (plansViewModel
+                              .getFeedingPlan!.recipes[index].totalDays!);
+                      final num perPouchQuantity = calculateFeedingPlan(
+                          recipeModel:
+                              plansViewModel.getFeedingPlan!.recipes[index],
+                          puppyModel: plansViewModel.getFeedingPlan!.pet!);
+                      final num transitionalPlanTotalQuantity =
+                          plansViewModel.getTotalTransitionalGrams();
+                      /* final num transitional1to3PerPouchQty =
                 calculateFeedingPlan(
                     recipeModel:
                     plansViewModel.getFeedingPlan!.recipes[index],
@@ -115,116 +110,94 @@ class _FeedingPlanScreenState extends State<FeedingPlanScreen> {
                     plansViewModel.getFeedingPlan!.recipes[index],
                     puppyModel: plansViewModel.getFeedingPlan!.pet!,
                     gramsForTransitional:
-                    plansViewModel.getTransitionalGrams10thDay);
-                return ListTile(
-                  minVerticalPadding: 20,
-                  title: Padding(
-                    padding: const EdgeInsets.only(bottom: 10.0),
-                    child: Row(
-                      children: [
-                        circularNetworkImageWidget(
-                            image: plansViewModel
-                                .getFeedingPlan!.recipes[index].media![0], size: 40.h),
-                        SizedBox(width: 10.w,),
-                        orange18w500(
-                            data: plansViewModel
-                                .getFeedingPlan!.recipes[index].name!),
-                      ],
-                    ),
-                  ),
-                  tileColor: CustomColors.lightGreyColor,
-                  subtitle: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SizedBox(
-                          width: 230.w,
-                          child: black12w500Centre(
-                              data:
-                              'Recommended total feeding amount for ${plansViewModel
-                                  .getFeedingPlan!.pet!.name!} is:')),
-                      Align(
-                        alignment: Alignment.centerRight,
-                        child: orange14w500(
-                            data:
-                            '${plansViewModel.getPlanType ==
-                                Plans.transitional.text
-                                ? transitionalPlanTotalQuantity
-                                : totalPlanQuantity} Grams/Plan'),
-                      ),
-                      black14w500(data: 'You will receive:'),
-                      SizedBox(
-                        height: 5.h,
-                      ),
-                      plansViewModel.getPlanType ==
-                          Plans.transitional.text
-                          ? Column(
-                        crossAxisAlignment:
-                        CrossAxisAlignment.start,
-                        children: [
-                          orange14w400(
-                              data:
-                              '${(plansViewModel.getTransitionalGrams1to3Days /
-                                  transitional1to3PerPouchQty * 3)
-                                  .round()} servings x ${(transitional1to3PerPouchQty /
-                                  3).toStringAsFixed(
-                                  2)} grams (for days 1 to 3)'),
-                          SizedBox(
-                            height: 5.h,
+                    plansViewModel.getTransitionalGrams10thDay);*/
+                      return ListTile(
+                        minVerticalPadding: 20,
+                        title: Padding(
+                          padding: const EdgeInsets.only(bottom: 10.0),
+                          child: Row(
+                            children: [
+                              circularNetworkImageWidget(
+                                  image: plansViewModel
+                                      .getFeedingPlan!.recipes[index].media![0],
+                                  size: 40.h),
+                              SizedBox(
+                                width: 10.w,
+                              ),
+                              orange18w500(
+                                  data: plansViewModel
+                                      .getFeedingPlan!.recipes[index].name!),
+                            ],
                           ),
-                          orange14w400(
-                              data:
-                              '${(plansViewModel.getTransitionalGrams4to6Days /
-                                  transitional4to6PerPouchQty * 3)
-                                  .round()} servings x ${(transitional4to6PerPouchQty /
-                                  3).toStringAsFixed(
-                                  2)} grams (for days 4 to 6)'),
-                          SizedBox(
-                            height: 5.h,
-                          ),
-                          orange14w400(
-                              data:
-                              '${(plansViewModel.getTransitionalGrams7to9Days /
-                                  transitional7to9PerPouchQty * 3)
-                                  .round()} servings x ${(transitional7to9PerPouchQty /
-                                  3).toStringAsFixed(
-                                  2)} grams (for days 7 to 9)'),
-                          SizedBox(
-                            height: 5.h,
-                          ),
-                          orange14w400(
-                              data:
-                              '${(plansViewModel.getTransitionalGrams10thDay /
-                                  transitional10thPerPouchQty)
-                                  .round()} servings x ${transitional10thPerPouchQty
-                                  .toStringAsFixed(
-                                  2)} grams (for day 10 onwards)'),
-                        ],
-                      )
-                          : orange14w400(
-                          data:
-                          '${(totalPlanQuantity / perPouchQuantity)
-                              .round()} servings x ${perPouchQuantity
-                              .toStringAsFixed(2)} grams for ${plansViewModel
-                              .getFeedingPlan!.recipes[index].totalDays} days'),
-                      SizedBox(
-                        height: 10.h,
-                      ),
-                      Center(
-                          child: black16w500(
-                              data:
-                              'Total Meal Price: ${plansViewModel
-                                  .getFeedingPlan!.recipes[index]
-                                  .finalPrice} AED')),
-                    ],
-                  ),
-                );
-              },
-              separatorBuilder: (BuildContext context, int index) {
-                return SizedBox(
-                  height: 20.h,
-                );
-              },
-            )
+                        ),
+                        tileColor: CustomColors.lightGreyColor,
+                        subtitle: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            SizedBox(
+                                width: 230.w,
+                                child: black12w500Centre(
+                                    data:
+                                        'Recommended total feeding amount for ${plansViewModel.getFeedingPlan!.pet!.name!} is:')),
+                            Align(
+                              alignment: Alignment.centerRight,
+                              child: orange14w500(
+                                  data:
+                                      '${plansViewModel.getPlanType == Plans.transitional.text ? transitionalPlanTotalQuantity : totalPlanQuantity} Grams/Plan'),
+                            ),
+                            black14w500(data: 'You will receive:'),
+                            SizedBox(
+                              height: 5.h,
+                            ),
+                            plansViewModel.getPlanType ==
+                                    Plans.transitional.text
+                                ? Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      orange14w400(
+                                          data:
+                                              plansViewModel.getTransitional1to3PouchesText),
+                                      SizedBox(
+                                        height: 5.h,
+                                      ),
+                                      orange14w400(
+                                          data:
+                                              plansViewModel.getTransitional4to6PouchesText,),
+                                      SizedBox(
+                                        height: 5.h,
+                                      ),
+                                      orange14w400(
+                                          data:
+                                            plansViewModel.getTransitional7to9PouchesText,),
+                                      SizedBox(
+                                        height: 5.h,
+                                      ),
+                                      orange14w400(
+                                          data:
+                                           plansViewModel.getTransitional10thPouchesText),
+                                    ],
+                                  )
+                                : orange14w400(
+                                    data:
+                                        '${(totalPlanQuantity / perPouchQuantity).round()} servings x ${perPouchQuantity.toStringAsFixed(2)} grams for ${plansViewModel.getFeedingPlan!.recipes[index].totalDays} days'),
+                            SizedBox(
+                              height: 10.h,
+                            ),
+                            Center(
+                                child: black16w500(
+                                    data:
+                                        'Total Meal Price: ${plansViewModel.getFeedingPlan!.recipes[index].finalPrice} AED')),
+                          ],
+                        ),
+                      );
+                    },
+                    separatorBuilder: (BuildContext context, int index) {
+                      return SizedBox(
+                        height: 20.h,
+                      );
+                    },
+                  )
                 : const SizedBox(),
             Align(
               alignment: Alignment.bottomCenter,
@@ -252,28 +225,26 @@ class _FeedingPlanScreenState extends State<FeedingPlanScreen> {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Visibility(
-                          visible:
-                          plansViewModel.getPlanType == Plans.monthly.text && context
-                              .watch<AuthViewModel>()
-                              .getAuthResponse
-                              .data!
-                              .discounts![3].aggregate != 0,
+                          visible: plansViewModel.getPlanType ==
+                                  Plans.monthly.text &&
+                              context
+                                      .watch<AuthViewModel>()
+                                      .getAuthResponse
+                                      .data!
+                                      .discounts![3]
+                                      .aggregate !=
+                                  0,
                           child: Column(
                             children: [
                               orange14w500(
                                   data:
-                                  'Total Price = ${plansViewModel
-                                      .getFeedingPlan!.planTotal} AED'),
+                                      'Total Price = ${plansViewModel.getFeedingPlan!.planTotal} AED'),
                               SizedBox(
                                 height: 5.h,
                               ),
                               orange14w500(
                                   data:
-                                  'Discount = ${context
-                                      .watch<AuthViewModel>()
-                                      .getAuthResponse
-                                      .data!
-                                      .discounts![3].aggregate} %'),
+                                      'Discount = ${context.watch<AuthViewModel>().getAuthResponse.data!.discounts![3].aggregate} %'),
                               SizedBox(
                                 height: 5.h,
                               ),
@@ -282,13 +253,7 @@ class _FeedingPlanScreenState extends State<FeedingPlanScreen> {
                         ),
                         orange14w500(
                             data:
-                            'Total ${plansViewModel
-                                .getPlanType} Plan = ${plansViewModel
-                                .getPlanType == Plans.monthly.text
-                                ? plansViewModel.getFeedingPlan!
-                                .planDiscountedPrice
-                                : plansViewModel.getFeedingPlan!
-                                .planTotal} AED'),
+                                'Total ${plansViewModel.getPlanType} Plan = ${plansViewModel.getPlanType == Plans.monthly.text ? plansViewModel.getFeedingPlan!.planDiscountedPrice : plansViewModel.getFeedingPlan!.planTotal} AED'),
                         SizedBox(
                           height: 10.h,
                         ),
@@ -296,14 +261,12 @@ class _FeedingPlanScreenState extends State<FeedingPlanScreen> {
                             width: 250.w,
                             child: black12w500Centre(
                                 data:
-                                'The above plan is calculated based on \n${plansViewModel
-                                    .getFeedingPlan!.pet!
-                                    .name!}\'s profile data',
+                                    'The above plan is calculated based on \n${plansViewModel.getFeedingPlan!.pet!.name!}\'s profile data',
                                 centre: true)),
                         Visibility(
                           visible: context
-                              .read<CartViewModel>()
-                              .getViewCartItemDetail ==
+                                  .read<CartViewModel>()
+                                  .getViewCartItemDetail ==
                               false,
                           child: Padding(
                             padding: const EdgeInsets.only(top: 20.0),
@@ -314,50 +277,49 @@ class _FeedingPlanScreenState extends State<FeedingPlanScreen> {
                                       .read<CartViewModel>()
                                       .getViewCartItemDetail) {
                                     context.read<CartViewModel>().addToCartList(
-                                      CartModel(
-                                          recipes: plansViewModel
-                                              .getFeedingPlan!.recipes,
-                                          pet: plansViewModel
-                                              .getFeedingPlan!.pet,
+                                          CartModel(
+                                              recipes: plansViewModel
+                                                  .getFeedingPlan!.recipes,
+                                              pet: plansViewModel
+                                                  .getFeedingPlan!.pet,
 /*
                                       deliveryDate: deliveryDate,
 */
-                                          planType: plansViewModel
-                                              .getFeedingPlan!.planType,
-                                          planTotal: plansViewModel
-                                              .getFeedingPlan!.planTotal,
-                                          pouchesDetail: plansViewModel
-                                              .getFeedingPlan!
-                                              .pouchesDetail,
-                                          totalWeight: plansViewModel
-                                              .getFeedingPlan!.totalWeight,
-                                          planDiscountedPrice:
-                                          plansViewModel.getFeedingPlan!
-                                              .planDiscountedPrice,
-                                          planDiscountPer: plansViewModel
-                                              .getFeedingPlan!
-                                              .planDiscountPer),
-                                    );
+                                              planType: plansViewModel
+                                                  .getFeedingPlan!.planType,
+                                              planTotal: plansViewModel
+                                                  .getFeedingPlan!.planTotal,
+                                              pouchesDetail: plansViewModel
+                                                  .getFeedingPlan!
+                                                  .pouchesDetail,
+                                              totalWeight: plansViewModel
+                                                  .getFeedingPlan!.totalWeight,
+                                              planDiscountedPrice:
+                                                  plansViewModel.getFeedingPlan!
+                                                      .planDiscountedPrice,
+                                              planDiscountPer: plansViewModel
+                                                  .getFeedingPlan!
+                                                  .planDiscountPer),
+                                        );
                                     if (context
-                                        .read<CartViewModel>()
-                                        .getSelectedIndex ==
+                                            .read<CartViewModel>()
+                                            .getSelectedIndex ==
                                         null) {
                                       Navigator.pushNamedAndRemoveUntil(
                                           context,
                                           bottomNavigationRoute,
-                                              (route) => false);
+                                          (route) => false);
                                     } else {
                                       Navigator.pushNamedAndRemoveUntil(
                                           context,
                                           cartRoute,
-                                              (Route route) => route.isFirst);
+                                          (Route route) => route.isFirst);
                                     }
 
                                     EasyLoading.showToast(
-                                        '${plansViewModel
-                                            .getPlanType} Plan Successfully Added To\nShopping Bag',
+                                        '${plansViewModel.getPlanType} Plan Successfully Added To\nShopping Bag',
                                         toastPosition:
-                                        EasyLoadingToastPosition.center);
+                                            EasyLoadingToastPosition.center);
                                   } else {
                                     Navigator.pop(context);
                                   }

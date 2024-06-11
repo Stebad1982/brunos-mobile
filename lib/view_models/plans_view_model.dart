@@ -27,7 +27,8 @@ class PlansViewModel with ChangeNotifier {
   String _productCategory = '';
   String _selectedFeaturedRecipe = FeaturedRecipeType.adult.text;
   int _quantity = 1;
- // int _availableDays = 0;
+
+  // int _availableDays = 0;
   int _daysCount = 1;
 
   //ItemSizes? _selectedItemSize;
@@ -36,6 +37,13 @@ class PlansViewModel with ChangeNotifier {
   num _transitionalGrams4to6Days = 0;
   num _transitionalGrams7to9Days = 0;
   num _transitionalGrams10thDay = 0;
+
+  String _transitional1to3PouchesText = '';
+  String _transitional4to6PouchesText = '';
+  String _transitional7to9PouchesText = '';
+  String _transitional10thPouchesText = '';
+
+
 
   //final List<String> _pouchesDetail = [];
 
@@ -60,6 +68,14 @@ class PlansViewModel with ChangeNotifier {
   RecipeModel? _monthlyEmptyTile3;
 
   //ItemSizes? get getSelectedItemSize => _selectedItemSize;
+
+  String get getTransitional1to3PouchesText => _transitional1to3PouchesText;
+
+  String get getTransitional4to6PouchesText => _transitional4to6PouchesText;
+
+  String get getTransitional7to9PouchesText => _transitional7to9PouchesText;
+
+  String get getTransitional10thPouchesText => _transitional10thPouchesText;
 
   void setSelectedItemSize(ItemSizes value) {
     _selectedRecipe.selectedItemSize = value;
@@ -293,15 +309,19 @@ class PlansViewModel with ChangeNotifier {
           gramsForTransitional: _transitionalGrams7to9Days);
       print(transitional7to9PerPouchQty);
 
-      num transitional10thPerPouchQty = calculateFeedingPlan(
+      final num transitional10thPerPouchQty = calculateFeedingPlan(
           recipeModel: recipes[index],
           puppyModel: pet,
           gramsForTransitional: _transitionalGrams10thDay);
       print(transitional10thPerPouchQty);
 
       if (_planType == Plans.transitional.text) {
+         _transitional1to3PouchesText = '${(_transitionalGrams1to3Days / transitional1to3PerPouchQty * 3).round()} pouches x ${(transitional1to3PerPouchQty / 3).toStringAsFixed(2)} grams (for days 1 to 3)';
+         _transitional4to6PouchesText = '${(_transitionalGrams4to6Days / transitional4to6PerPouchQty * 3).round()} pouches x ${(transitional4to6PerPouchQty / 3).toStringAsFixed(2)} grams (for days 4 to 6)';
+         _transitional7to9PouchesText = '${(_transitionalGrams7to9Days / transitional7to9PerPouchQty * 3).round()} pouches x ${(transitional7to9PerPouchQty / 3).toStringAsFixed(2)} grams (for days 7 to 9)';
+         _transitional10thPouchesText = '${(_transitionalGrams10thDay / transitional10thPerPouchQty).round()} pouches x ${transitional10thPerPouchQty.toStringAsFixed(2)} grams (for day 10 onwards)';
         pouchesDetail.add(
-            '${(_transitionalGrams1to3Days / transitional1to3PerPouchQty * 3).round()} pouches x ${(transitional1to3PerPouchQty / 3).toStringAsFixed(2)} grams (for days 1 to 3) | ${(_transitionalGrams4to6Days / transitional4to6PerPouchQty * 3).round()} pouches x ${(transitional4to6PerPouchQty / 3).toStringAsFixed(2)} grams (for days 4 to 6) | ${(_transitionalGrams7to9Days / transitional7to9PerPouchQty * 3).round()} pouches x ${(transitional7to9PerPouchQty / 3).toStringAsFixed(2)} grams (for days 7 to 9) | ${(_transitionalGrams10thDay / transitional10thPerPouchQty).round()} pouches x ${transitional10thPerPouchQty.toStringAsFixed(2)} grams (for day 10 onwards)');
+            '$_transitional1to3PouchesText | $_transitional4to6PouchesText | $_transitional7to9PouchesText | $_transitional10thPouchesText');
       } else {
         pouchesDetail.add(
             '${(totalPlanQuantity / perPouchQuantity).round()} pouches x ${perPouchQuantity.toStringAsFixed(2)} grams for ${recipes[index].totalDays} days');
@@ -353,10 +373,12 @@ class PlansViewModel with ChangeNotifier {
         recipeModel: _selectedRecipe);
     final RecipeModel applyDishDetail =
         RecipeModel.fromJson(_selectedRecipe.toJson());
-    applyDishDetail.finalPrice = roundPrice((priceFor1to3Days +
-        priceFor4to6Days +
-        priceFor7to9Days +
-        priceFor10thDay).toInt());
+    applyDishDetail.finalPrice = roundTo10(
+        value: (priceFor1to3Days +
+                priceFor4to6Days +
+                priceFor7to9Days +
+                priceFor10thDay)
+            .toInt());
     _selectedRecipe = applyDishDetail;
   }
 
@@ -375,9 +397,9 @@ class PlansViewModel with ChangeNotifier {
     final RecipeModel applyDishDetail =
         RecipeModel.fromJson(_selectedRecipe.toJson());
     applyDishDetail.totalDays = _daysCount;
-    final int planPrice = calculateFinalPricePerDay(recipeModel: _selectedRecipe) * _daysCount;
-    applyDishDetail.finalPrice =
-        roundPrice(planPrice);
+    final int planPrice =
+        calculateFinalPricePerDay(recipeModel: _selectedRecipe) * _daysCount;
+    applyDishDetail.finalPrice = roundTo10(value: planPrice);
     _selectedRecipe = applyDishDetail;
   }
 
@@ -385,10 +407,10 @@ class PlansViewModel with ChangeNotifier {
     final RecipeModel applyDishDetail =
         RecipeModel.fromJson(_selectedRecipe.toJson());
     applyDishDetail.totalDays = int.parse(_monthlySelectedDaysController.text);
-    final int planPrice = calculateFinalPricePerDay(recipeModel: _selectedRecipe) *
-        int.parse(_monthlySelectedDaysController.text);
-    applyDishDetail.finalPrice =
-       roundPrice(planPrice) ;
+    final int planPrice =
+        calculateFinalPricePerDay(recipeModel: _selectedRecipe) *
+            int.parse(_monthlySelectedDaysController.text);
+    applyDishDetail.finalPrice = roundTo10(value: planPrice);
     if (_monthlyEmptyTileNumber == 1) {
       _monthlyEmptyTile1 = applyDishDetail;
     } else if (_monthlyEmptyTileNumber == 2) {
@@ -428,7 +450,9 @@ class PlansViewModel with ChangeNotifier {
         .where((element) => element.isComboRecipe == 1)
         .toList();
     _recommendedRecipesList = _recipesListResponse.data!.recipe!
-        .where((element) => element.isComboRecipe == 0 && element.category != ProductCategories.standardRecipes.text)
+        .where((element) =>
+            element.isComboRecipe == 0 &&
+            element.category != ProductCategories.standardRecipes.text)
         .toList();
     _oneTimeRecipesList = _recipesListResponse.data!.recipe!
         .where((element) =>
@@ -503,7 +527,7 @@ class PlansViewModel with ChangeNotifier {
 */
     _quantity = 1;
     _daysCount = 1;
-  //  _availableDays = 0;
+    //  _availableDays = 0;
     _monthlySelectedDaysController.clear();
     _monthlyEmptyTileNumber = 1;
     _monthlyEmptyTile1 = null;
