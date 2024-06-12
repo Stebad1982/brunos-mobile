@@ -10,28 +10,34 @@ class PuppyModel {
   String? media;
   bool? isSpayNeuter;
   String? breed;
-  int? bornOnDate;
+
+  // int? bornOnDate;
+  int? month;
+  int? year;
   int? currentWeight;
   int? actualWeight;
+  bool? isPuppy;
   bool? isDefault;
   int? feedingRoutine;
   String? activityLevel;
 
-  PuppyModel({
-    this.sId,
-    this.createdOnDate,
-    this.name,
-    this.media,
-    this.isSpayNeuter,
-    this.breed,
-    this.gender,
-    this.bornOnDate,
-    this.feedingRoutine,
-    this.currentWeight,
-    this.actualWeight,
-    this.activityLevel,
-    this.isDefault
-  });
+  PuppyModel(
+      {this.sId,
+      this.createdOnDate,
+      this.name,
+      this.media,
+      this.isSpayNeuter,
+      this.breed,
+      this.gender,
+      //this.bornOnDate,
+      this.feedingRoutine,
+      this.currentWeight,
+      this.actualWeight,
+      this.activityLevel,
+      this.isDefault,
+      this.month,
+      this.year,
+      this.isPuppy});
 
   PuppyModel.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
@@ -41,11 +47,14 @@ class PuppyModel {
     isSpayNeuter = json['isSpayNeuter'];
     breed = json['breed'];
     gender = json['gender'];
-    bornOnDate = json['bornOnDate'];
+    month = json['month'];
+    year = json['year'];
+    isPuppy = json['isPuppy'];
+    //bornOnDate = json['bornOnDate'];
     currentWeight = json['currentWeight'];
     actualWeight = json['actualWeight'];
     isDefault = json['isDefault'];
-    feedingRoutine =json['feedingRoutine']?? 1;
+    feedingRoutine = json['feedingRoutine'] ?? 1;
     activityLevel = json['activityLevel'];
   }
 
@@ -57,7 +66,10 @@ class PuppyModel {
     data['media'] = this.media;
     data['isSpayNeuter'] = this.isSpayNeuter;
     data['breed'] = this.breed;
-    data['bornOnDate'] = this.bornOnDate;
+    data['month'] = this.month;
+    data['year'] = this.year;
+    data['isPuppy'] = this.isPuppy;
+    //data['bornOnDate'] = this.bornOnDate;
     data['currentWeight'] = this.currentWeight;
     data['actualWeight'] = this.actualWeight;
     data['isDefault'] = this.isDefault;

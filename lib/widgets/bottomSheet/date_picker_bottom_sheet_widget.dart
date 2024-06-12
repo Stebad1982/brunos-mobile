@@ -10,7 +10,7 @@ import '../../utils/custom_colors.dart';
 import '../../utils/custom_font_style.dart';
 import '../../view_models/auth_view_model.dart';
 
-Future datePickerBottomSheetWidget() {
+/*Future datePickerBottomSheetWidget() {
   return showModalBottomSheet(
       isScrollControlled: false,
       backgroundColor: CustomColors.whiteColor,
@@ -78,9 +78,10 @@ Future datePickerBottomSheetWidget() {
                           maximumDate: DateTime.now(),
                           onDateTimeChanged: (value) {
                             context.read<PuppyViewModel>().setPuppyDob(value);
-                            /*setState(() {
+setState(() {
                                     _chosenDateTime = val;
-                                  });*/
+                                  });
+
                           }),
                     ),
                   ),
@@ -99,4 +100,4 @@ Future datePickerBottomSheetWidget() {
           ),
         );
       });
-}
+}*/

@@ -44,6 +44,7 @@ Widget customSquareButton ({required String text,required VoidCallback onPressed
     width: double.infinity,
     child: ElevatedButton(
       style: ElevatedButton.styleFrom(
+        padding: const EdgeInsets.symmetric(horizontal: 5),
         elevation: 0,
         backgroundColor: colored ? CustomColors.orangeColor : CustomColors.whiteColor,
         shape:  RoundedRectangleBorder(

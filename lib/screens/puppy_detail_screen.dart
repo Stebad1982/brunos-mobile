@@ -423,7 +423,7 @@ class PuppyDetailScreen extends StatelessWidget {
                                           PuppyWeight.underweight.value),
                             ),
                             SizedBox(
-                              width: 10.w,
+                              width: 5.w,
                             ),
                             Expanded(
                               child: customSquareButton(
@@ -437,7 +437,7 @@ class PuppyDetailScreen extends StatelessWidget {
                                           PuppyWeight.idealWeight.value),
                             ),
                             SizedBox(
-                              width: 10.w,
+                              width: 5.w,
                             ),
                             Expanded(
                               child: customSquareButton(
@@ -461,7 +461,7 @@ class PuppyDetailScreen extends StatelessWidget {
                     SizedBox(
                       height: 10.h,
                     ),
-                    Row(
+                   /* Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         black14w500(data: 'Birthday'),
@@ -502,7 +502,7 @@ class PuppyDetailScreen extends StatelessWidget {
                           ),
                         ),
                       ],
-                    ),
+                    ),*/
                     SizedBox(
                       height: 10.h,
                     ),
@@ -609,7 +609,7 @@ class PuppyDetailScreen extends StatelessWidget {
                                       Puppy.lessActive.text),
                             ),
                             SizedBox(
-                              width: 10.w,
+                              width: 5.w,
                             ),
                             Expanded(
                               child: customSquareButton(
@@ -622,7 +622,7 @@ class PuppyDetailScreen extends StatelessWidget {
                                       Puppy.active.text),
                             ),
                             SizedBox(
-                              width: 10.w,
+                              width: 5.w,
                             ),
                             Expanded(
                               child: customSquareButton(

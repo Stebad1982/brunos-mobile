@@ -228,11 +228,21 @@ class _PuppyCreationAdditionalScreenState extends State<PuppyCreationAdditionalS
                       ),*/
                       black18w500(
                           data:
-                              'When is ${puppyViewModel.getPuppyNameController.text.isNotEmpty ? '${puppyViewModel.getPuppyNameController.text}\'s' : 'Pet\'s'} birthday?'),
+                              'Who old is ${puppyViewModel.getPuppyNameController.text.isNotEmpty ? puppyViewModel.getPuppyNameController.text : 'Pet\'s'}?'),
                       SizedBox(
                         height: 19.h,
                       ),
-                      InkWell(
+                      DropdownButton<String>(
+                        items: <String>['A', 'B', 'C', 'D'].map((String value) {
+                          return DropdownMenuItem<String>(
+                            value: 'sdsd',
+                            child: Text(value),
+                          );
+                        }).toList(),
+                        onChanged: (_) {},
+                      ),
+
+                      /*InkWell(
                         onTap: () {
                           datePickerBottomSheetWidget();
                         },
@@ -251,7 +261,7 @@ class _PuppyCreationAdditionalScreenState extends State<PuppyCreationAdditionalS
                                     data: puppyViewModel.getPuppyDob)),
                           ),
                         ),
-                      ),
+                      ),*/
                       SizedBox(
                         height: 5.h,
                       ),
