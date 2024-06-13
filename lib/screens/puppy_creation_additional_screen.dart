@@ -46,6 +46,7 @@ class _PuppyCreationAdditionalScreenState extends State<PuppyCreationAdditionalS
 
   @override
   Widget build(BuildContext context) {
+
     return Consumer<PuppyViewModel>(builder: (_, puppyViewModel, __) {
       return Scaffold(
         appBar: const AppBarWithBackWidget(
@@ -232,14 +233,29 @@ class _PuppyCreationAdditionalScreenState extends State<PuppyCreationAdditionalS
                       SizedBox(
                         height: 19.h,
                       ),
-                      DropdownButton<String>(
-                        items: <String>['A', 'B', 'C', 'D'].map((String value) {
-                          return DropdownMenuItem<String>(
-                            value: 'sdsd',
-                            child: Text(value),
+                      DropdownButton<int>(
+                        hint: Text(
+                          'Year',
+                          style: TextStyle(
+                            fontSize: 14,
+                            color: Theme.of(context).hintColor,
+                          ),
+                        ),
+                        value: puppyViewModel.getPuppyYear,
+                        onChanged: (newValue) {
+                          setState(
+                                () {
+                                  puppyViewModel.setPuppyYear(newValue!);
+                            },
+                          );
+                        },
+                        items: puppyViewModel.getListOfYear.map((int location) {
+                          return DropdownMenuItem<int>(
+                            value: location,
+                            child: Text(location.toString()),
                           );
                         }).toList(),
-                        onChanged: (_) {},
+
                       ),
 
                       /*InkWell(
