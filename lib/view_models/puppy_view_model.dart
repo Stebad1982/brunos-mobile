@@ -45,8 +45,8 @@ class PuppyViewModel with ChangeNotifier {
   final TextEditingController _puppyBreedController = TextEditingController();
   BreedsResponse _breedsResponse = BreedsResponse();
   List<BreedsData> _breedsList = [];
-  List<int> _listOfMonths = List.generate(12, (i) => i);
-  List<int> _listOfYear = List.generate(30, (i) => i);
+  final List<int> _listOfMonths = List.generate(13, (i) => i);
+  final List<int> _listOfYear = List.generate(31, (i) => i);
   int _puppyMonths = 0;
   int _puppyYear = 0;
   bool _dogIsPuppy = false;

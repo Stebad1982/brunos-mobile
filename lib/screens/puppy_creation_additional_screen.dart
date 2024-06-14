@@ -1,6 +1,7 @@
 import 'package:brunos_kitchen/route_generator.dart';
 import 'package:brunos_kitchen/utils/enums.dart';
 import 'package:brunos_kitchen/view_models/puppy_view_model.dart';
+import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -25,10 +26,12 @@ class PuppyCreationAdditionalScreen extends StatefulWidget {
   const PuppyCreationAdditionalScreen({Key? key}) : super(key: key);
 
   @override
-  State<PuppyCreationAdditionalScreen> createState() => _PuppyCreationAdditionalScreenState();
+  State<PuppyCreationAdditionalScreen> createState() =>
+      _PuppyCreationAdditionalScreenState();
 }
 
-class _PuppyCreationAdditionalScreenState extends State<PuppyCreationAdditionalScreen> {
+class _PuppyCreationAdditionalScreenState
+    extends State<PuppyCreationAdditionalScreen> {
   final FocusNode _nodeText1 = FocusNode();
 
   KeyboardActionsConfig _buildConfig(BuildContext context) {
@@ -46,14 +49,13 @@ class _PuppyCreationAdditionalScreenState extends State<PuppyCreationAdditionalS
 
   @override
   Widget build(BuildContext context) {
-
     return Consumer<PuppyViewModel>(builder: (_, puppyViewModel, __) {
       return Scaffold(
         appBar: const AppBarWithBackWidget(
             heading: /*context.read<PuppyViewModel>().getRouteToPuppyFrom ==
                     Screens.home.text
-                ? */'Add Pet'
-                /*: 'My Pets'*/,
+                ? */
+                'Add Pet' /*: 'My Pets'*/,
             showPuppy: false,
             showCart: true),
         body: Stack(
@@ -68,9 +70,10 @@ class _PuppyCreationAdditionalScreenState extends State<PuppyCreationAdditionalS
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Visibility(
-                        visible:
-                            context.read<PuppyViewModel>().getRouteToPuppyFrom ==
-                                Screens.home.text,
+                        visible: context
+                                .read<PuppyViewModel>()
+                                .getRouteToPuppyFrom ==
+                            Screens.home.text,
                         child: Padding(
                           padding: const EdgeInsets.only(bottom: 40.0),
                           child: Center(
@@ -91,8 +94,8 @@ class _PuppyCreationAdditionalScreenState extends State<PuppyCreationAdditionalS
                         height: 15.h,
                       ),
                       Center(
-                          child:
-                              black24w500Centre(data: 'Additional Information')),
+                          child: black24w500Centre(
+                              data: 'Additional Information')),
                       SizedBox(
                         height: 10.h,
                       ),
@@ -221,41 +224,151 @@ class _PuppyCreationAdditionalScreenState extends State<PuppyCreationAdditionalS
                       SizedBox(
                         height: 34.h,
                       ),
-                      /*  orange14w400(
-                          data:
-                              'If ${puppyViewModel.getPuppyNameController.text.isNotEmpty ? puppyViewModel.getPuppyNameController.text : 'Pet'} is a mixed breed'),
-                      SizedBox(
-                        height: 40.h,
-                      ),*/
                       black18w500(
                           data:
                               'Who old is ${puppyViewModel.getPuppyNameController.text.isNotEmpty ? puppyViewModel.getPuppyNameController.text : 'Pet\'s'}?'),
                       SizedBox(
-                        height: 19.h,
+                        height: 20.h,
                       ),
-                      DropdownButton<int>(
-                        hint: Text(
-                          'Year',
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: Theme.of(context).hintColor,
-                          ),
-                        ),
-                        value: puppyViewModel.getPuppyYear,
-                        onChanged: (newValue) {
-                          setState(
-                                () {
-                                  puppyViewModel.setPuppyYear(newValue!);
-                            },
-                          );
-                        },
-                        items: puppyViewModel.getListOfYear.map((int location) {
-                          return DropdownMenuItem<int>(
-                            value: location,
-                            child: Text(location.toString()),
-                          );
-                        }).toList(),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: DropdownButtonHideUnderline(
+                              child: DropdownButton2<int>(
+                                style: TextStyle(
+                                  fontFamily: 'CircularStd',
+                                  fontSize: 14.sp,
+                                  color: CustomColors
+                                      .blackColor, // <-- TextFormField input color
+                                ),
+                                buttonStyleData: ButtonStyleData(
+                                  height: 40.h,
+                                  width: 80.w,
+                                  padding: const EdgeInsets.only(
+                                      left: 14, right: 14),
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(14),
+                                    border: Border.all(
+                                      color: Colors.black26,
+                                    ),
 
+                                    //  color: Colors.redAccent,
+                                  ),
+                                  // elevation: 2,
+                                ),
+                                dropdownStyleData: DropdownStyleData(
+                                  maxHeight: 200,
+                                  width: 100,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(14),
+                                    //  color: Colors.redAccent,
+                                  ),
+                                  offset: const Offset(0, -10),
+                                  scrollbarTheme: ScrollbarThemeData(
+                                    radius: const Radius.circular(40),
+                                    thickness:
+                                        MaterialStateProperty.all<double>(6),
+                                    thumbVisibility:
+                                        MaterialStateProperty.all<bool>(true),
+                                  ),
+                                ),
+                                // borderRadius: BorderRadius.circular(15.0),
+                                /* hint: Text(
+                                'Year',
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  color: Theme.of(context).hintColor,
+                                ),
+                              ),*/
+                                value: puppyViewModel.getPuppyYear,
+                                onChanged: (newValue) {
+                                  setState(
+                                    () {
+                                      puppyViewModel.setPuppyYear(newValue!);
+                                    },
+                                  );
+                                },
+                                items: puppyViewModel.getListOfYear
+                                    .map((int years) {
+                                  return DropdownMenuItem<int>(
+                                    value: years,
+                                    child: Text(years.toString()),
+                                  );
+                                }).toList(),
+                              ),
+                            ),
+                          ),
+                          Expanded(
+                              child: lightBlack14w400Centre(data: 'Years')),
+                          Expanded(
+                            child: DropdownButtonHideUnderline(
+                              child: DropdownButton2<int>(
+                                style: TextStyle(
+                                  fontFamily: 'CircularStd',
+                                  fontSize: 14.sp,
+                                  color: CustomColors
+                                      .blackColor, // <-- TextFormField input color
+                                ),
+                                buttonStyleData: ButtonStyleData(
+                                  height: 40.h,
+                                  width: 80.w,
+                                  padding: const EdgeInsets.only(
+                                      left: 14, right: 14),
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(14),
+                                    border: Border.all(
+                                      color: Colors.black26,
+                                    ),
+
+                                    //  color: Colors.redAccent,
+                                  ),
+                                  // elevation: 2,
+                                ),
+                                dropdownStyleData: DropdownStyleData(
+                                  maxHeight: 200,
+                                  width: 100,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(14),
+                                    //  color: Colors.redAccent,
+                                  ),
+                                  offset: const Offset(0, -10),
+                                  scrollbarTheme: ScrollbarThemeData(
+                                    radius: const Radius.circular(40),
+                                    thickness:
+                                        MaterialStateProperty.all<double>(6),
+                                    thumbVisibility:
+                                        MaterialStateProperty.all<bool>(true),
+                                  ),
+                                ),
+                                // borderRadius: BorderRadius.circular(15.0),
+                                /* hint: Text(
+                                'Year',
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  color: Theme.of(context).hintColor,
+                                ),
+                              ),*/
+                                value: puppyViewModel.getPuppyMonths,
+                                onChanged: (newValue) {
+                                  setState(
+                                    () {
+                                      puppyViewModel.setPuppyMonths(newValue!);
+                                    },
+                                  );
+                                },
+                                items: puppyViewModel.getListOfMonths
+                                    .map((int months) {
+                                  return DropdownMenuItem<int>(
+                                    value: months,
+                                    child: Text(months.toString()),
+                                  );
+                                }).toList(),
+                              ),
+                            ),
+                          ),
+                          Expanded(
+                              child: lightBlack14w400Centre(data: 'Months'))
+                        ],
                       ),
 
                       /*InkWell(
@@ -278,16 +391,47 @@ class _PuppyCreationAdditionalScreenState extends State<PuppyCreationAdditionalS
                           ),
                         ),
                       ),*/
-                      SizedBox(
-                        height: 5.h,
-                      ),
+
                       /* Visibility(
                           visible:
                               puppyViewModel.getPuppyDobFieldError.isNotEmpty,
                           child: orange14w400(
                               data: puppyViewModel.getPuppyDobFieldError)),*/
                       SizedBox(
-                        height: 40.h,
+                        height: 24.h,
+                      ),
+                      Row(
+                        children: [
+                          Checkbox(
+                              materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                              activeColor: CustomColors.orangeColor,
+                              value: puppyViewModel.getDogIsPuppy,
+                              onChanged: (value) {
+                                puppyViewModel.setDogIsPuppy(value!);
+                              }),
+                          black18w500(
+                              data:
+                                  '${puppyViewModel.getPuppyNameController.text.isNotEmpty ? puppyViewModel.getPuppyNameController.text : 'Pet'} is still a puppy?'),
+                          SizedBox(
+                            width: 5.w,
+                          ),
+                          InkWell(
+                            onTap: () {
+                              descriptionDialog(
+                                context: context,
+                                height: 300.h,
+                                title: 'Puppies', description: 'Generally, small breeds are considered puppies until they are 10 months old, medium breeds until 12 months old and large breeds until 16 months old.',
+                              );
+                            },
+                            child: const Icon(
+                              Icons.help,
+                              size: 16,
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 24.h,
                       ),
                       black18w500(
                           data:
@@ -324,7 +468,7 @@ class _PuppyCreationAdditionalScreenState extends State<PuppyCreationAdditionalS
                           child: orange14w400(
                               data: puppyViewModel.getCurrentWeightFieldError)),
                       SizedBox(
-                        height: 20.h,
+                        height: 24.h,
                       ),
                       Row(
                         children: [
@@ -338,7 +482,7 @@ class _PuppyCreationAdditionalScreenState extends State<PuppyCreationAdditionalS
                             onTap: () {
                               imageDialog(
                                 context: context,
-                                height: 560.h,
+                                height: 600.h,
                                 title: 'Check Weight',
                               );
                             },
@@ -412,7 +556,7 @@ class _PuppyCreationAdditionalScreenState extends State<PuppyCreationAdditionalS
                           child: orange14w400(
                               data: puppyViewModel.getActualWeightFieldError)),*/
                       SizedBox(
-                        height: 25.h,
+                        height: 24.h,
                       ),
                       black18w500(
                           data:
@@ -560,7 +704,7 @@ class _PuppyCreationAdditionalScreenState extends State<PuppyCreationAdditionalS
                         onPressed: () {
                           if (puppyViewModel
                               .puppyAdditionalCreationValidation()) {
-                           /* puppyViewModel.getIsPuppyEdit
+                            /* puppyViewModel.getIsPuppyEdit
                                 ? puppyViewModel
                                     .callEditPuppyApi()
                                     .then((value) async => {
@@ -574,26 +718,26 @@ class _PuppyCreationAdditionalScreenState extends State<PuppyCreationAdditionalS
                                                 ..pop(),
                                             }
                                         })
-                                :*/ puppyViewModel
-                                    .callRegisterPuppyApi()
-                                    .then((value) async => {
-                                          if (value)
-                                            {
-                                              await context
-                                                  .read<AuthViewModel>()
-                                                  .callSplash(showLoader: true),
-                                              Navigator.of(context)
-                                                ..pop()
-                                                ..pop(),
-                                              puppyViewModel
-                                                          .getRouteToPuppyFrom ==
-                                                      Screens.home.text
-                                                  ? Navigator.pushNamed(
-                                                      context, choosePlanRoute)
-                                                  : Navigator.pushNamed(context,
-                                                      puppyConfirmationRoute),
-                                            }
-                                        });
+                                :*/
+                            puppyViewModel
+                                .callRegisterPuppyApi()
+                                .then((value) async => {
+                                      if (value)
+                                        {
+                                          await context
+                                              .read<AuthViewModel>()
+                                              .callSplash(showLoader: true),
+                                          Navigator.of(context)
+                                            ..pop()
+                                            ..pop(),
+                                          puppyViewModel.getRouteToPuppyFrom ==
+                                                  Screens.home.text
+                                              ? Navigator.pushNamed(
+                                                  context, choosePlanRoute)
+                                              : Navigator.pushNamed(context,
+                                                  puppyConfirmationRoute),
+                                        }
+                                    });
                           }
                         },
                         colored: true),
