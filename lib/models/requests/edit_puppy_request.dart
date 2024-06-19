@@ -5,10 +5,13 @@ class EditPuppyRequest {
   int feedingRoutine;
   // bool isSpayNeuter;
   String breed;
-  int bornOnDate;
+ // int bornOnDate;
   int currentWeight;
   int actualWeight;
   String activityLevel;
+  bool isPuppy;
+  int month;
+  int year;
 
   EditPuppyRequest(
       {required this.name,
@@ -17,10 +20,13 @@ class EditPuppyRequest {
         required this.feedingRoutine,
       //  required this.isSpayNeuter,
       required this.breed,
-      required this.bornOnDate,
+      //required this.bornOnDate,
       required this.currentWeight,
       required this.actualWeight,
-      required this.activityLevel});
+      required this.activityLevel,
+        required this.isPuppy,
+        required this.month,
+        required this.year});
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
@@ -28,10 +34,9 @@ class EditPuppyRequest {
     data['media'] = this.media;
     data['gender'] = this.gender;
     data['feedingRoutine'] = this.feedingRoutine;
-//TODO: REMOVE SPAYNEUTER
     data['isSpayNeuter'] = false;
     data['breed'] = this.breed;
-    data['bornOnDate'] = this.bornOnDate;
+   // data['bornOnDate'] = this.bornOnDate;
     data['currentWeight'] = this.currentWeight;
     data['actualWeight'] = this.actualWeight;
     data['activityLevel'] = this.activityLevel;

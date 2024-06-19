@@ -69,6 +69,9 @@ class PuppyModel {
     data['month'] = this.month;
     data['year'] = this.year;
     data['isPuppy'] = this.isPuppy;
+    data['month'] = this.month;
+    data['year'] = this.year;
+    data['isPuppy'] = this.isPuppy;
     //data['bornOnDate'] = this.bornOnDate;
     data['currentWeight'] = this.currentWeight;
     data['actualWeight'] = this.actualWeight;

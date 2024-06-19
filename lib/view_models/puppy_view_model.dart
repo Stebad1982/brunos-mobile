@@ -52,7 +52,7 @@ class PuppyViewModel with ChangeNotifier {
   bool _dogIsPuppy = false;
 
   //String _puppyDob = 'MM   /   DD   /   YYYY';
-  DateTime? _formatBirthDate;
+  //DateTime? _formatBirthDate;
   final TextEditingController _puppyCurrentWeight = TextEditingController();
   int _puppyActualWeight = PuppyWeight.idealWeight.value;
   String _puppyActivityLevel = Puppy.active.text;
@@ -333,7 +333,7 @@ class PuppyViewModel with ChangeNotifier {
     _puppyMonths = _puppyDetail!.month!;
     _puppyYear = _puppyDetail!.year!;
     _dogIsPuppy = _puppyDetail!.isPuppy!;
-  /*  _puppyDob = _puppyDetail!.bornOnDate! != 0
+    /*  _puppyDob = _puppyDetail!.bornOnDate! != 0
         ? DateTimeFormatter.timeStampToDate(_puppyDetail!.bornOnDate!, 1)
         : 'MM   /   DD   /   YYYY';*/
     _puppyCurrentWeight.text = _puppyDetail!.currentWeight!.toString();
@@ -350,9 +350,9 @@ class PuppyViewModel with ChangeNotifier {
     //  _puppyIsSpayNeuter = true;
     _puppyBreedController.clear();
     _breedsList.clear();
-     _puppyMonths = 0;
-     _puppyYear = 0;
-     _dogIsPuppy = false;
+    _puppyMonths = 0;
+    _puppyYear = 0;
+    _dogIsPuppy = false;
     //_puppyDob = 'MM   /   DD   /   YYYY';
     _puppyCurrentWeight.clear();
     _feedingRoutine = 1;
@@ -385,11 +385,11 @@ class PuppyViewModel with ChangeNotifier {
   Future<bool> callRegisterPuppyApi() async {
     EasyLoading.show(status: 'Please Wait ...');
 
-    int puppyBirthDate = 0;
+    /*  int puppyBirthDate = 0;
 
     if (_formatBirthDate != null) {
       puppyBirthDate = DateTimeFormatter.dateToTimeStamp(_formatBirthDate!);
-    }
+    }*/
 
     if (_imageFile != null) {
       try {
@@ -407,7 +407,10 @@ class PuppyViewModel with ChangeNotifier {
           gender: _puppyGender,
           // isSpayNeuter: _puppyIsSpayNeuter,
           breed: _puppyBreedController.text,
-          bornOnDate: puppyBirthDate,
+          month: _puppyMonths,
+          year: _puppyYear,
+          isPuppy: _dogIsPuppy,
+          // bornOnDate: puppyBirthDate,
           currentWeight: int.parse(_puppyCurrentWeight.text),
           actualWeight: _puppyActualWeight,
           activityLevel: _puppyActivityLevel,
@@ -469,11 +472,11 @@ class PuppyViewModel with ChangeNotifier {
   Future<bool> callEditPuppyApi() async {
     EasyLoading.show(status: 'Please Wait ...');
 
-    int puppyBirthDate = 0;
+    /*int puppyBirthDate = 0;
 
     if (_formatBirthDate != null) {
       puppyBirthDate = DateTimeFormatter.dateToTimeStamp(_formatBirthDate!);
-    }
+    }*/
 
     if (_imageFile != null) {
       try {
@@ -490,7 +493,10 @@ class PuppyViewModel with ChangeNotifier {
         gender: _puppyGender,
         //  isSpayNeuter: _puppyIsSpayNeuter,
         breed: _puppyBreedController.text,
-        bornOnDate: puppyBirthDate,
+        month: _puppyMonths,
+        year: _puppyYear,
+        isPuppy: _dogIsPuppy,
+        // bornOnDate: puppyBirthDate,
         currentWeight: int.parse(_puppyCurrentWeight.text),
         actualWeight: _puppyActualWeight,
         activityLevel: _puppyActivityLevel,

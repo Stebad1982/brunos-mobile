@@ -282,11 +282,7 @@ class _PuppyCreationAdditionalScreenState
                               ),*/
                                 value: puppyViewModel.getPuppyYear,
                                 onChanged: (newValue) {
-                                  setState(
-                                    () {
-                                      puppyViewModel.setPuppyYear(newValue!);
-                                    },
-                                  );
+                                  puppyViewModel.setPuppyYear(newValue!);
                                 },
                                 items: puppyViewModel.getListOfYear
                                     .map((int years) {
@@ -350,11 +346,7 @@ class _PuppyCreationAdditionalScreenState
                               ),*/
                                 value: puppyViewModel.getPuppyMonths,
                                 onChanged: (newValue) {
-                                  setState(
-                                    () {
-                                      puppyViewModel.setPuppyMonths(newValue!);
-                                    },
-                                  );
+                                  puppyViewModel.setPuppyMonths(newValue!);
                                 },
                                 items: puppyViewModel.getListOfMonths
                                     .map((int months) {
@@ -403,7 +395,8 @@ class _PuppyCreationAdditionalScreenState
                       Row(
                         children: [
                           Checkbox(
-                              materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                              materialTapTargetSize:
+                                  MaterialTapTargetSize.shrinkWrap,
                               activeColor: CustomColors.orangeColor,
                               value: puppyViewModel.getDogIsPuppy,
                               onChanged: (value) {
@@ -420,7 +413,9 @@ class _PuppyCreationAdditionalScreenState
                               descriptionDialog(
                                 context: context,
                                 height: 300.h,
-                                title: 'Puppies', description: 'Generally, small breeds are considered puppies until they are 10 months old, medium breeds until 12 months old and large breeds until 16 months old.',
+                                title: 'Puppies',
+                                description:
+                                    'Generally, small breeds are considered puppies until they are 10 months old, medium breeds until 12 months old and large breeds until 16 months old.',
                               );
                             },
                             child: const Icon(
