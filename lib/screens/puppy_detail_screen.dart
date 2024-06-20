@@ -615,6 +615,15 @@ class PuppyDetailScreen extends StatelessWidget {
                         black14w500(
                             data:
                                 '${puppyViewModel.getPuppyDetail!.name} is still a puppy?'),
+                        puppyViewModel.getIsPuppyEdit?
+                        Checkbox(
+                            materialTapTargetSize:
+                            MaterialTapTargetSize.shrinkWrap,
+                            activeColor: CustomColors.orangeColor,
+                            value: puppyViewModel.getDogIsPuppy,
+                            onChanged: (value) {
+                              puppyViewModel.setDogIsPuppy(value!);
+                            }):
                         black14w500(
                             data: puppyViewModel.getPuppyDetail!.isPuppy == true
                                 ? 'Yes'

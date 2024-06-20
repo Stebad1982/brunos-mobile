@@ -503,7 +503,7 @@ class PuppyViewModel with ChangeNotifier {
         feedingRoutine: _feedingRoutine);
     try {
       final BaseResponseModel response = await _puppyApiServices.editPuppyApi(
-          editPuppyRequest: editPuppyRequest, puppyId: _puppyDetail!.sId!);
+          puppyRequestBody: editPuppyRequest, puppyId: _puppyDetail!.sId!);
       if (response.isSuccess!) {
         EasyLoading.dismiss();
         await callPuppiesApi();

@@ -67,11 +67,11 @@ class PuppyApiServices {
     return puppiesResponse;
   }
 
-  Future<BaseResponseModel> editPuppyApi({required EditPuppyRequest editPuppyRequest, required String puppyId}) async {
+  Future<BaseResponseModel> editPuppyApi({required EditPuppyRequest puppyRequestBody, required String puppyId}) async {
     final response = await _httpService.httpRequest(
         endPoint: EndPoints.registerPuppy,
         requestType: 'PUT',
-        requestBody: editPuppyRequest,
+        requestBody: puppyRequestBody,
         params: puppyId);
     final parsed = json.decode(response.body);
     BaseResponseModel baseResponseModel = BaseResponseModel.fromJson(parsed);
