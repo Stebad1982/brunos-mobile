@@ -46,9 +46,9 @@ Widget ordersVerticalListChipWidget(
                         data:
                             'Order Number: ${orderListData.sId!.substring(orderListData.sId!.length - 5)}'),
 
-                    Visibility(
-                      visible: orderListData.isCompleted!,
-                        child: orange14w500(data: 'Delivered')),
+                   /* Visibility(
+                      visible:*/ orderListData.isCompleted!?
+                     orange14w500(data: 'Delivered'): orange14w500(data: 'Preparing')/*)*/,
                   ],
                 ),
                 grey14w400(

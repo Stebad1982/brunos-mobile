@@ -12,7 +12,7 @@ import '../../utils/images.dart';
 import '../circular_network_image_widget.dart';
 
 Widget cartDishVerticalListChipWidget(
-    {required RecipeModel cartRecipeModel, required String planType, String? petName,  num? totalWeight}) {
+    {required RecipeModel cartRecipeModel, required String planType, String? petName,  required num totalWeight}) {
   return Column(
     children: [
       InkWell(
