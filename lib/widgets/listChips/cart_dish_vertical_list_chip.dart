@@ -12,7 +12,7 @@ import '../../utils/images.dart';
 import '../circular_network_image_widget.dart';
 
 Widget cartDishVerticalListChipWidget(
-    {required RecipeModel cartRecipeModel, required String planType, String? petName}) {
+    {required RecipeModel cartRecipeModel, required String planType, String? petName,  num? totalWeight}) {
   return Column(
     children: [
       InkWell(
@@ -45,7 +45,7 @@ Widget cartDishVerticalListChipWidget(
                           padding: const EdgeInsets.only(bottom: 2.0),
                           child: black14w500(data: ''
                           'Size: ${cartRecipeModel.selectedItemSize!.name!}'),
-                        ):SizedBox(),
+                        ):const SizedBox(),
                         planType == Plans.monthly.text
                             ? black14w500(
                             data: 'Days: ${cartRecipeModel.totalDays}')
@@ -72,14 +72,15 @@ Widget cartDishVerticalListChipWidget(
                         /*petName != null ? orange14w500(
                             data: 'AED ${cartRecipeModel
                                 .finalPrice}${planType == Plans.oneTime.text?'':' / Order'}'):*/
-                        orange14w500(
+                        planType == Plans.product.text? orange14w500(
                             data: 'AED ${cartRecipeModel
-                                .pricePerKG} / Item'),
+                                .pricePerKG} / Item') : orange14w500(
+                            data: '${totalWeight} Grams/Plan'),
                         const SizedBox(height: 2,),
                         planType == Plans.monthly.text
                             ? orange14w500(
                             data: 'Sub Total: AED ${cartRecipeModel
-                                .pricePerKG! * cartRecipeModel.totalDays!}') : SizedBox(),
+                                .finalPrice! }') : SizedBox(),
                       ],
                     ),
                   ],

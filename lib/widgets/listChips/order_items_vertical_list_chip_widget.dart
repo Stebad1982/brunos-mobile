@@ -154,6 +154,7 @@ Widget orderItemsVerticalListChipWidget(
                   itemBuilder: (BuildContext context, int index) {
                     return cartDishVerticalListChipWidget(
                         cartRecipeModel: orderItems.recipes![index],
+                        totalWeight : orderItems.totalWeight![index],
                         planType: orderItems.planType!,
                         petName: orderItems.pet != null
                             ? orderItems.pet!.name!

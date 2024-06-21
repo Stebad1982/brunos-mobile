@@ -229,7 +229,7 @@ class ProductDetailScreen extends StatelessWidget {
                         child: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 20),
                           child: orange14w500(
-                              data: 'Single Pouch Consists of 400 grams'),
+                              data: 'Single Pouch Consists of ${plansViewModel.getSelectedRecipe.standaloneSize} grams'),
                         )),
                     plansViewModel.getSelectedRecipe.selectedItemSize != null
                         ? Padding(

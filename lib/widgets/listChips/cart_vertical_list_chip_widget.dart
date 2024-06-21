@@ -187,7 +187,7 @@ Widget cartVerticalListChipWidget(
                         planType: cartDetail.planType,
                         petName: cartDetail.pet != null
                             ? cartDetail.pet!.name!
-                            : null);
+                            : null, totalWeight: cartDetail.totalWeight[index]);
                   },
                   separatorBuilder: (BuildContext context, int index) {
                     return SizedBox(

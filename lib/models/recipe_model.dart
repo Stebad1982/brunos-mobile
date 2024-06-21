@@ -11,6 +11,7 @@ class RecipeModel {
 */
   String? name;
   bool? isFeatured;
+  String? standaloneSize;
 
 /*
   String? userId;
@@ -83,7 +84,8 @@ class RecipeModel {
       // this.ingredients,
       this.totalDays,
       this.category,
-      this.ingredientsComposition});
+      this.ingredientsComposition,
+      this.standaloneSize});
 
   RecipeModel.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
@@ -141,6 +143,7 @@ class RecipeModel {
     caloriesContentNo = json['caloriesContentNo'];
     //  ingredients = json['ingredients'];
     ingredientsComposition = json['ingredientsComposition'];
+    standaloneSize = json['standaloneSize'];
   }
 
   Map<String, dynamic> toJson() {
@@ -154,6 +157,7 @@ class RecipeModel {
     data['name'] = this.name;
     data['isFeatured'] = this.isFeatured;
     data['isComboRecipe'] = this.isComboRecipe;
+    data['standaloneSize'] = this.standaloneSize;
 /*
     data['userId'] = this.userId;
 */
