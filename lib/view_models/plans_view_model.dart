@@ -316,15 +316,15 @@ class PlansViewModel with ChangeNotifier {
       print(transitional10thPerPouchQty);
 
       if (_planType == Plans.transitional.text) {
-         _transitional1to3PouchesText = '${(_transitionalGrams1to3Days / transitional1to3PerPouchQty * 3).round()} pouches x ${roundTo10(value: transitional1to3PerPouchQty ~/ 3)} grams (for days 1 to 3)';
-         _transitional4to6PouchesText = '${(_transitionalGrams4to6Days / transitional4to6PerPouchQty * 3).round()} pouches x ${roundTo10(value: transitional4to6PerPouchQty ~/ 3)} grams (for days 4 to 6)';
-         _transitional7to9PouchesText = '${(_transitionalGrams7to9Days / transitional7to9PerPouchQty * 3).round()} pouches x ${roundTo10( value: transitional7to9PerPouchQty ~/ 3)} grams (for days 7 to 9)';
-         _transitional10thPouchesText = '${(_transitionalGrams10thDay / transitional10thPerPouchQty).round()} pouches x ${roundTo10( value: transitional10thPerPouchQty.toInt())} grams (for day 10 onwards)';
+         _transitional1to3PouchesText = '${(_transitionalGrams1to3Days / transitional1to3PerPouchQty * 3).round()} servings x ${roundTo10(value: transitional1to3PerPouchQty ~/ 3)} grams (for days 1 to 3)';
+         _transitional4to6PouchesText = '${(_transitionalGrams4to6Days / transitional4to6PerPouchQty * 3).round()} servings x ${roundTo10(value: transitional4to6PerPouchQty ~/ 3)} grams (for days 4 to 6)';
+         _transitional7to9PouchesText = '${(_transitionalGrams7to9Days / transitional7to9PerPouchQty * 3).round()} servings x ${roundTo10( value: transitional7to9PerPouchQty ~/ 3)} grams (for days 7 to 9)';
+         _transitional10thPouchesText = '${(_transitionalGrams10thDay / transitional10thPerPouchQty).round()} servings x ${roundTo10( value: transitional10thPerPouchQty.toInt())} grams (for day 10 onwards)';
         pouchesDetail.add(
             '$_transitional1to3PouchesText | $_transitional4to6PouchesText | $_transitional7to9PouchesText | $_transitional10thPouchesText');
       } else {
         pouchesDetail.add(
-            '${(totalPlanQuantity / perPouchQuantity).round()} pouches x ${perPouchQuantity.toStringAsFixed(2)} grams for ${recipes[index].totalDays} days');
+            '${(totalPlanQuantity / perPouchQuantity).round()} servings x ${perPouchQuantity.toStringAsFixed(2)} grams for ${recipes[index].totalDays} days');
       }
     }
     return pouchesDetail;

@@ -226,7 +226,7 @@ class _PuppyCreationAdditionalScreenState
                       ),
                       black18w500(
                           data:
-                              'Who old is ${puppyViewModel.getPuppyNameController.text.isNotEmpty ? puppyViewModel.getPuppyNameController.text : 'Pet\'s'}?'),
+                              'How old is ${puppyViewModel.getPuppyNameController.text.isNotEmpty ? puppyViewModel.getPuppyNameController.text : 'Pet\'s'}?'),
                       SizedBox(
                         height: 20.h,
                       ),

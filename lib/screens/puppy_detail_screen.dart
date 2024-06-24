@@ -468,7 +468,7 @@ class PuppyDetailScreen extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        black14w500(data: 'Years / Months'),
+                        black14w500(data: 'How old is ${puppyViewModel.getPuppyDetail!.name}?'),
                         puppyViewModel.getIsPuppyEdit
                             ? Row(
                               children: [
@@ -482,9 +482,9 @@ class PuppyDetailScreen extends StatelessWidget {
                                     ),
                                     buttonStyleData: ButtonStyleData(
                                       height: 40.h,
-                                      width: 80.w,
+                                      width: 60.w,
                                       padding: const EdgeInsets.only(
-                                          left: 14, right: 14),
+                                          left: 10, right: 10),
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(14),
                                         border: Border.all(
@@ -497,7 +497,7 @@ class PuppyDetailScreen extends StatelessWidget {
                                     ),
                                     dropdownStyleData: DropdownStyleData(
                                       maxHeight: 200,
-                                      width: 100,
+                                      width: 60.w,
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(14),
                                         //  color: Colors.redAccent,
@@ -534,7 +534,7 @@ class PuppyDetailScreen extends StatelessWidget {
                                     }).toList(),
                                   ),
                                 ),
-                                black14w500(data: ' / '),
+                                black14w500(data: ' Years '),
                                 DropdownButtonHideUnderline(
                                   child: DropdownButton2<int>(
                                     style: TextStyle(
@@ -545,9 +545,9 @@ class PuppyDetailScreen extends StatelessWidget {
                                     ),
                                     buttonStyleData: ButtonStyleData(
                                       height: 40.h,
-                                      width: 80.w,
+                                      width: 60.w,
                                       padding: const EdgeInsets.only(
-                                          left: 14, right: 14),
+                                          left: 10, right: 10),
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(14),
                                         border: Border.all(
@@ -560,7 +560,7 @@ class PuppyDetailScreen extends StatelessWidget {
                                     ),
                                     dropdownStyleData: DropdownStyleData(
                                       maxHeight: 200,
-                                      width: 100,
+                                      width: 60.w,
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(14),
                                         //  color: Colors.redAccent,
@@ -595,11 +595,28 @@ class PuppyDetailScreen extends StatelessWidget {
                                     }).toList(),
                                   ),
                                 ),
+                                black14w500(data: ' Months'),
                               ],
                             )
-                            : black14w500(
-                                data:
-                                    '${puppyViewModel.getPuppyDetail!.year} / ${puppyViewModel.getPuppyDetail!.month}'),
+                            : Row(
+                              children: [
+                                Visibility(
+                                  visible: puppyViewModel.getPuppyDetail!.year != 0,
+                                  child: black14w500(
+                                      data:
+                                          '${puppyViewModel.getPuppyDetail!.year} Years'),
+                                ),
+                                Visibility(
+                                  visible: puppyViewModel.getPuppyDetail!.month != 0,
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(left: 10),
+                                    child: black14w500(
+                                        data:
+                                        '${puppyViewModel.getPuppyDetail!.month} Months'),
+                                  ),
+                                ),
+                              ],
+                            ),
                       ],
                     ),
                     SizedBox(
