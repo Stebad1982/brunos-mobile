@@ -240,9 +240,10 @@ Widget black10w400({required String data, int? maxLine}) {
   );
 }
 
-Widget black16w500({required String data}) {
+Widget black16w500({required String data,  TextAlign? align}) {
   return Text(
     data,
+    textAlign: align  ,
     style: TextStyle(
         fontFamily: 'CircularStd',
         fontSize: 16.sp,

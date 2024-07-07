@@ -7,8 +7,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
 import '../main.dart';
+import '../models/address_model.dart';
 import '../utils/custom_buttons.dart';
 import '../utils/custom_colors.dart';
+import '../view_models/address_view_model.dart';
+import '../view_models/auth_view_model.dart';
 import '../widgets/app_bar_with_back_widget.dart';
 import '../widgets/listChips/cart_vertical_list_chip_widget.dart';
 
@@ -84,8 +87,8 @@ class _CartScreenState extends State<CartScreen> with RouteAware {
                             customButton(
                                 text: 'Next',
                                 onPressed: () {
-                                  cartViewModel.clearData();
-                                  cartViewModel.setCheckOutTotal();
+
+
                                   Navigator.pushNamed(
                                       context, checkOutRoute);
                                 },

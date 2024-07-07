@@ -236,7 +236,7 @@ class ProfileScreen extends StatelessWidget {
                   ),
                   title: Align(
                       alignment: Alignment.centerLeft,
-                      child: lightBlack14w400Centre(data: 'Get Help')),
+                      child: lightBlack14w400Centre(data: 'Contact us')),
                   contentPadding: const EdgeInsets.all(0),
                   minLeadingWidth: 12,
                   trailing: const Icon(

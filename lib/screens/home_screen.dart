@@ -35,13 +35,13 @@ import '../widgets/gridChip/item_discribed_grid_chip_widget.dart';
 import '../widgets/gridChip/food_grid_chip_widget.dart';
 import '../widgets/listChips/shop_items_horizontal_list_chip_widget.dart';
 
-final Uri webUrl = Uri.parse('https://brunos.kitchen/');
+final Uri webUrl = Uri.parse(Contact.webUrl.text);
 final Uri termAndConditionUrl =
-    Uri.parse('https://admin.brunos.kitchen/terms&conditions');
+    Uri.parse(Contact.termAndConditionUrl.text);
 final Uri privacyPolicyUrl =
-    Uri.parse('https://admin.brunos.kitchen/privacy-policy');
+    Uri.parse(Contact.privacyPolicyUrl.text);
 final Uri agreementUrl =
-    Uri.parse('https://admin.brunos.kitchen/user-agreement');
+    Uri.parse(Contact.agreementUrl.text);
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);

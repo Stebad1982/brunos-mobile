@@ -25,8 +25,26 @@ import '../widgets/dialogs/discription_dialog.dart';
 import '../widgets/bottomSheet/redeem_paw_points_bottom_sheet_widget.dart';
 import '../widgets/dialogs/promo_code_validation_dialog.dart';
 
-class CheckoutScreen extends StatelessWidget {
+class CheckoutScreen extends StatefulWidget {
   const CheckoutScreen({Key? key}) : super(key: key);
+
+  @override
+  State<CheckoutScreen> createState() => _CheckoutScreenState();
+}
+
+class _CheckoutScreenState extends State<CheckoutScreen> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      context.read<CartViewModel>().clearData();
+      context.read<CartViewModel>().setCheckOutTotal();
+      context.read<AddressViewModel>().setIsAddressAdd(false);
+      context.read<AddressViewModel>().setEditAddress(
+          value: context.read<AuthViewModel>().getAuthResponse.data!.location!);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -112,10 +130,6 @@ class CheckoutScreen extends StatelessWidget {
                                         // myLocationEnabled: true,
                                         // myLocationButtonEnabled: true,
                                         mapType: MapType.terrain,
-                                        onCameraMove: (position) {
-                                          LatLng(position.target.latitude,
-                                              position.target.longitude);
-                                        },
                                         initialCameraPosition: CameraPosition(
                                             target: LatLng(
                                                 double.parse(context
@@ -442,12 +456,13 @@ class CheckoutScreen extends StatelessWidget {
                                       .getAuthResponse
                                       .data!
                                       .discounts![5]
-                                      .aggregate!, pointsLimit: context
-                                  .read<AuthViewModel>()
-                                  .getAuthResponse
-                                  .data!
-                                  .discounts![2]
-                                  .aggregate!);
+                                      .aggregate!,
+                                  pointsLimit: context
+                                      .read<AuthViewModel>()
+                                      .getAuthResponse
+                                      .data!
+                                      .discounts![2]
+                                      .aggregate!);
                               redeemPawPointsBottomSheetWidget();
                             }
                           : () {},
@@ -744,7 +759,8 @@ class CheckoutScreen extends StatelessWidget {
                               width: 2.w,
                             ),
                             lightBlack14w400Centre(
-                                data: 'AED ${cartViewModel.getSubTotal.toStringAsFixed(2)}'),
+                                data:
+                                    'AED ${cartViewModel.getSubTotal.toStringAsFixed(2)}'),
                           ],
                         ),
                         SizedBox(
@@ -765,7 +781,7 @@ class CheckoutScreen extends StatelessWidget {
                         SizedBox(
                           height: 20.h,
                         ),
-                       /* Row(
+                        /* Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             lightBlack14w400Centre(data: 'VAT (5%)'),

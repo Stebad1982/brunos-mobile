@@ -280,20 +280,23 @@ class ProductDetailScreen extends StatelessWidget {
                                     children: [
                                       for (var sizes in plansViewModel
                                           .getSelectedRecipe.sizes!)
-                                        SizedBox(
-                                          width: 100.w,
-                                          child: customSquareButton(
-                                              text: '${sizes.name}',
-                                              onPressed: () {
-                                                plansViewModel
-                                                    .setSelectedItemSize(sizes);
-                                              },
-                                              colored: plansViewModel
-                                                          .getSelectedRecipe
-                                                          .selectedItemSize ==
-                                                      sizes
-                                                  ? true
-                                                  : false),
+                                        Visibility(
+                                          visible: sizes.price != 0,
+                                          child: SizedBox(
+                                            width: 100.w,
+                                            child: customSquareButton(
+                                                text: '${sizes.name}',
+                                                onPressed: () {
+                                                  plansViewModel
+                                                      .setSelectedItemSize(sizes);
+                                                },
+                                                colored: plansViewModel
+                                                            .getSelectedRecipe
+                                                            .selectedItemSize ==
+                                                        sizes
+                                                    ? true
+                                                    : false),
+                                          ),
                                         )
                                     ],
                                   ),

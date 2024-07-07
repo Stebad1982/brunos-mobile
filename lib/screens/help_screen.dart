@@ -2,12 +2,15 @@ import 'package:brunos_kitchen/utils/custom_colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../utils/custom_buttons.dart';
 import '../utils/custom_font_style.dart';
 import '../utils/enums.dart';
+import '../view_models/address_view_model.dart';
+import '../view_models/auth_view_model.dart';
 import '../view_models/faqs_blogs_news_view_model.dart';
 import '../widgets/app_bar_with_back_widget.dart';
 import '../widgets/dialogs/discription_dialog.dart';
@@ -97,7 +100,59 @@ class _HelpScreenState extends State<HelpScreen> {
                   },
                 ),
                 SizedBox(
-                  height: 60.h,
+                  height: 20.h,
+                ),
+                SizedBox(
+                  height: 130.h,
+                  child: ClipRRect(
+                    borderRadius: const BorderRadius.all(
+                        Radius.circular(20)),
+                  /*  child: GoogleMap(
+                      zoomControlsEnabled: false,
+                      //liteModeEnabled: true,
+                      myLocationEnabled: true,
+                      myLocationButtonEnabled: true,
+                      mapType: MapType.terrain,
+                      onCameraMove: (position) {
+                        addressViewModel.setInitialCameraPosition(LatLng(
+                            position.target.latitude,
+                            position.target.longitude));
+                      },
+                      onCameraIdle: () {
+                        addressViewModel.getMapMovement();
+                      },
+                      initialCameraPosition: CameraPosition(
+                          target: addressViewModel.getInitialCameraPosition),
+                      markers: <Marker>{
+                        Marker(
+                          *//* onDragEnd: ((newPosition) {
+                            addressViewModel.updateMapCameraPosition(LatLng(
+                                newPosition.latitude, newPosition.longitude));
+                          }),*//*
+                          //draggable: false,
+                          markerId: const MarkerId("1"),
+                          position: LatLng(
+                              double.parse(addressViewModel
+                                  .getEditAddress.coordinates![0]),
+                              double.parse(addressViewModel
+                                  .getEditAddress.coordinates![1])),
+                          icon: BitmapDescriptor.defaultMarkerWithHue(
+                              BitmapDescriptor.hueOrange),
+                          infoWindow: const InfoWindow(
+                            title: '',
+                          ),
+                        )
+                      },
+                      onMapCreated: addressViewModel.getUserLocation,
+                    ),*/
+                  ),
+                ),
+                SizedBox(
+                  height: 20.h,
+                ),
+                black16w500(data: 'Shop no.17, Paragon Bay Mall, Marina Square\nAl Reem Island, Abu Dhabi, UAE', align: TextAlign.center),
+                SizedBox(
+                  height: 20.h,
                 ),
                 InkWell(
                   onTap: () async {
@@ -110,13 +165,13 @@ class _HelpScreenState extends State<HelpScreen> {
                   child: Row(
                     children: [
                       const Icon(
-                        Icons.phone,
+                        Icons.volume_up_outlined,
                         color: CustomColors.blackColor,
                       ),
                       SizedBox(
                         width: 10.w,
                       ),
-                      black18w500(data: Contact.phone.text),
+                      black16w500(data: Contact.phone.text),
                     ],
                   ),
                 ),
@@ -143,7 +198,31 @@ class _HelpScreenState extends State<HelpScreen> {
                       SizedBox(
                         width: 10.w,
                       ),
-                      black18w500(data: Contact.email.text),
+                      black16w500(data: Contact.email.text),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 20.h,
+                ),
+                InkWell(
+                  onTap: () async {
+                    final Uri webUrl = Uri.parse(Contact.webUrl.text);
+
+                    if (!await launchUrl(webUrl)) {
+                      throw Exception('Could not launch $webUrl');
+                    }
+                  },
+                  child: Row(
+                    children: [
+                      const Icon(
+                        Icons.language,
+                        color: CustomColors.blackColor,
+                      ),
+                      SizedBox(
+                        width: 10.w,
+                      ),
+                      black16w500(data: 'www.brunos.kitchen'),
                     ],
                   ),
                 ),

@@ -29,6 +29,9 @@ Widget addressVerticalListChipWidget({required AddressModel addressDetail}) {
                 .read<AuthViewModel>()
                 .setAddress(addressDetail);
             Navigator.pop(navigatorKey.currentContext!);
+            Navigator.pop(navigatorKey.currentContext!);
+            Navigator.pushNamed(
+                navigatorKey.currentContext!, checkOutRoute);
           }
           else{
             navigatorKey.currentContext!
@@ -36,7 +39,7 @@ Widget addressVerticalListChipWidget({required AddressModel addressDetail}) {
                 .setIsAddressAdd(false);
             navigatorKey.currentContext!
                 .read<AddressViewModel>()
-                .setEditAddress(addressDetail);
+                .setEditAddress( value: addressDetail);
             Navigator.pushNamed(
                 navigatorKey.currentContext!, addressDetailRoute);
           }
@@ -134,7 +137,7 @@ Widget addressVerticalListChipWidget({required AddressModel addressDetail}) {
                             .setIsAddressAdd(false);
                         navigatorKey.currentContext!
                             .read<AddressViewModel>()
-                            .setEditAddress(addressDetail);
+                            .setEditAddress(value: addressDetail);
                         Navigator.pushNamed(
                             navigatorKey.currentContext!, addressDetailRoute);
                         /* navigatorKey.currentContext!.read<AddressViewModel>().setIsAddressAdd(false);

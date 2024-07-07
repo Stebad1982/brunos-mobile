@@ -121,12 +121,12 @@ class AddressViewModel with ChangeNotifier {
     notifyListeners();
   }
 
-  void setEditAddress(AddressModel value) {
+  void setEditAddress({required AddressModel value}) {
     _editAddress = value;
     //  _fullAddressController.text = _editAddress.flatHouseNumber!;
     _addressController.text = _editAddress.address!;
     _selectedLabel = _editAddress.label!;
-    _isDefault = _editAddress.isDefault!;
+    _isDefault = _editAddress.isDefault?? true;
     notifyListeners();
   }
 
