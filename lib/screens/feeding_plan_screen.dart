@@ -180,7 +180,7 @@ class _FeedingPlanScreenState extends State<FeedingPlanScreen> {
                                   )
                                 : orange14w400(
                                     data:
-                                        '${(totalPlanQuantity / perPouchQuantity).round()} servings x ${perPouchQuantity.toStringAsFixed(2)} grams for ${plansViewModel.getFeedingPlan!.recipes[index].totalDays} days'),
+                                        '${(totalPlanQuantity / perPouchQuantity).round()} servings x ${roundTo10(value: perPouchQuantity.toInt())} grams for ${plansViewModel.getFeedingPlan!.recipes[index].totalDays} days'),
                             SizedBox(
                               height: 10.h,
                             ),

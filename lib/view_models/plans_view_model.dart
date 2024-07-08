@@ -44,7 +44,6 @@ class PlansViewModel with ChangeNotifier {
   String _transitional10thPouchesText = '';
 
 
-
   //final List<String> _pouchesDetail = [];
 
   //bool _showDaysRangeValidation = false;
@@ -76,6 +75,7 @@ class PlansViewModel with ChangeNotifier {
   String get getTransitional7to9PouchesText => _transitional7to9PouchesText;
 
   String get getTransitional10thPouchesText => _transitional10thPouchesText;
+
 
   void setSelectedItemSize(ItemSizes value) {
     _selectedRecipe.selectedItemSize = value;
@@ -291,40 +291,45 @@ class PlansViewModel with ChangeNotifier {
           (recipes[index].totalDays!);
       final num perPouchQuantity =
           calculateFeedingPlan(recipeModel: recipes[index], puppyModel: pet);
-      final num transitional1to3PerPouchQty = calculateFeedingPlan(
-          recipeModel: recipes[index],
-          puppyModel: pet,
-          gramsForTransitional: _transitionalGrams1to3Days);
-      print(transitional1to3PerPouchQty);
 
-      final num transitional4to6PerPouchQty = calculateFeedingPlan(
-          recipeModel: recipes[index],
-          puppyModel: pet,
-          gramsForTransitional: _transitionalGrams4to6Days);
-      print(transitional4to6PerPouchQty);
-
-      final num transitional7to9PerPouchQty = calculateFeedingPlan(
-          recipeModel: recipes[index],
-          puppyModel: pet,
-          gramsForTransitional: _transitionalGrams7to9Days);
-      print(transitional7to9PerPouchQty);
-
-      final num transitional10thPerPouchQty = calculateFeedingPlan(
-          recipeModel: recipes[index],
-          puppyModel: pet,
-          gramsForTransitional: _transitionalGrams10thDay);
-      print(transitional10thPerPouchQty);
 
       if (_planType == Plans.transitional.text) {
-         _transitional1to3PouchesText = '${(_transitionalGrams1to3Days / transitional1to3PerPouchQty * 3).round()} servings x ${roundTo10(value: transitional1to3PerPouchQty ~/ 3)} grams (for days 1 to 3)';
-         _transitional4to6PouchesText = '${(_transitionalGrams4to6Days / transitional4to6PerPouchQty * 3).round()} servings x ${roundTo10(value: transitional4to6PerPouchQty ~/ 3)} grams (for days 4 to 6)';
-         _transitional7to9PouchesText = '${(_transitionalGrams7to9Days / transitional7to9PerPouchQty * 3).round()} servings x ${roundTo10( value: transitional7to9PerPouchQty ~/ 3)} grams (for days 7 to 9)';
-         _transitional10thPouchesText = '${(_transitionalGrams10thDay / transitional10thPerPouchQty).round()} servings x ${roundTo10( value: transitional10thPerPouchQty.toInt())} grams (for day 10 onwards)';
+        final num transitional1to3PerPouchQty = calculateFeedingPlan(
+            recipeModel: recipes[index],
+            puppyModel: pet,
+            gramsForTransitional: _transitionalGrams1to3Days);
+        print(transitional1to3PerPouchQty);
+
+        final num transitional4to6PerPouchQty = calculateFeedingPlan(
+            recipeModel: recipes[index],
+            puppyModel: pet,
+            gramsForTransitional: _transitionalGrams4to6Days);
+        print(transitional4to6PerPouchQty);
+
+        final num transitional7to9PerPouchQty = calculateFeedingPlan(
+            recipeModel: recipes[index],
+            puppyModel: pet,
+            gramsForTransitional: _transitionalGrams7to9Days);
+        print(transitional7to9PerPouchQty);
+
+        final num transitional10thPerPouchQty = calculateFeedingPlan(
+            recipeModel: recipes[index],
+            puppyModel: pet,
+            gramsForTransitional: _transitionalGrams10thDay);
+        print(transitional10thPerPouchQty);
+
+        _transitional1to3PouchesText =
+            '${(_transitionalGrams1to3Days / transitional1to3PerPouchQty * 3).round()} servings x ${roundTo10(value: transitional1to3PerPouchQty ~/ 3)} grams (for days 1 to 3)';
+        _transitional4to6PouchesText =
+            '${(_transitionalGrams4to6Days / transitional4to6PerPouchQty * 3).round()} servings x ${roundTo10(value: transitional4to6PerPouchQty ~/ 3)} grams (for days 4 to 6)';
+        _transitional7to9PouchesText =
+            '${(_transitionalGrams7to9Days / transitional7to9PerPouchQty * 3).round()} servings x ${roundTo10(value: transitional7to9PerPouchQty ~/ 3)} grams (for days 7 to 9)';
+        _transitional10thPouchesText =
+            '${(_transitionalGrams10thDay / transitional10thPerPouchQty).round()} servings x ${roundTo10(value: transitional10thPerPouchQty.toInt())} grams (for day 10 onwards)';
         pouchesDetail.add(
             '$_transitional1to3PouchesText | $_transitional4to6PouchesText | $_transitional7to9PouchesText | $_transitional10thPouchesText');
       } else {
-        pouchesDetail.add(
-            '${(totalPlanQuantity / perPouchQuantity).round()} servings x ${perPouchQuantity.toStringAsFixed(2)} grams for ${recipes[index].totalDays} days');
+        pouchesDetail.add('${(totalPlanQuantity / perPouchQuantity).round()} servings x ${roundTo10(value: perPouchQuantity.toInt())} grams for ${recipes[index].totalDays} days');
       }
     }
     return pouchesDetail;

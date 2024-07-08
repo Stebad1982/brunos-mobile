@@ -1,11 +1,16 @@
+import 'dart:ffi';
+import 'dart:io';
+
 import 'package:brunos_kitchen/utils/custom_colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:map_launcher/map_launcher.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../models/address_model.dart';
 import '../utils/custom_buttons.dart';
 import '../utils/custom_font_style.dart';
 import '../utils/enums.dart';
@@ -15,6 +20,8 @@ import '../view_models/faqs_blogs_news_view_model.dart';
 import '../widgets/app_bar_with_back_widget.dart';
 import '../widgets/dialogs/discription_dialog.dart';
 
+const List<String> bronosLocation = ['24.4905605','54.39445'];
+
 class HelpScreen extends StatefulWidget {
   const HelpScreen({super.key});
 
@@ -22,15 +29,26 @@ class HelpScreen extends StatefulWidget {
   State<HelpScreen> createState() => _HelpScreenState();
 }
 
+
 class _HelpScreenState extends State<HelpScreen> {
+
+  static Future<void> openDefaultMap(BuildContext context) async {
+    final availableMaps = await MapLauncher.installedMaps;
+    print(availableMaps); // [AvailableMap { mapName: Google Maps, mapType: google }, ...]
+
+    await availableMaps.first.showMarker(
+      coords: Coords(double.parse(bronosLocation[0]), double.parse(bronosLocation[1])),
+      title: "Bruno's Kitchen",
+    );
+  }
+
   @override
   void initState() {
-    /*  SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
-      context.read<FaqsBlogsNewsViewModel>().clearWebView();
-      context
-          .read<FaqsBlogsNewsViewModel>()
-          .setWebView(url: "https://brunos.kitchen/contacts/");
-    });*/
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      context.read<AddressViewModel>().setIsAddressAdd(false);
+      context.read<AddressViewModel>().setEditAddress(
+          value: AddressModel(coordinates: bronosLocation,));
+    });
     super.initState();
   }
 
@@ -102,50 +120,71 @@ class _HelpScreenState extends State<HelpScreen> {
                 SizedBox(
                   height: 20.h,
                 ),
-                SizedBox(
-                  height: 130.h,
-                  child: ClipRRect(
-                    borderRadius: const BorderRadius.all(
-                        Radius.circular(20)),
-                  /*  child: GoogleMap(
-                      zoomControlsEnabled: false,
-                      //liteModeEnabled: true,
-                      myLocationEnabled: true,
-                      myLocationButtonEnabled: true,
-                      mapType: MapType.terrain,
-                      onCameraMove: (position) {
-                        addressViewModel.setInitialCameraPosition(LatLng(
-                            position.target.latitude,
-                            position.target.longitude));
-                      },
-                      onCameraIdle: () {
-                        addressViewModel.getMapMovement();
-                      },
-                      initialCameraPosition: CameraPosition(
-                          target: addressViewModel.getInitialCameraPosition),
-                      markers: <Marker>{
-                        Marker(
-                          *//* onDragEnd: ((newPosition) {
-                            addressViewModel.updateMapCameraPosition(LatLng(
-                                newPosition.latitude, newPosition.longitude));
-                          }),*//*
-                          //draggable: false,
-                          markerId: const MarkerId("1"),
-                          position: LatLng(
-                              double.parse(addressViewModel
-                                  .getEditAddress.coordinates![0]),
-                              double.parse(addressViewModel
-                                  .getEditAddress.coordinates![1])),
-                          icon: BitmapDescriptor.defaultMarkerWithHue(
-                              BitmapDescriptor.hueOrange),
-                          infoWindow: const InfoWindow(
-                            title: '',
+                Stack(
+                  children: [
+                    SizedBox(
+                      height: 160.h,
+                      child: ClipRRect(
+                        borderRadius: const BorderRadius.all(
+                            Radius.circular(20)),
+                        child: GoogleMap(
+                          zoomControlsEnabled: false,
+                          //liteModeEnabled: true,
+                          //myLocationEnabled: true,
+                          //myLocationButtonEnabled: true,
+                         // mapType: MapType.terrain,
+                          onCameraMove: (position) {
+                            context.watch<AddressViewModel>().setInitialCameraPosition(LatLng(
+                                position.target.latitude,
+                                position.target.longitude));
+                          },
+                          onCameraIdle: () {
+                            context.watch<AddressViewModel>().getMapMovement();
+                          },
+                          initialCameraPosition: CameraPosition(
+                              target: context.watch<AddressViewModel>().getInitialCameraPosition),
+                          markers: <Marker>{
+                            Marker(
+                              /* onDragEnd: ((newPosition) {
+                                addressViewModel.updateMapCameraPosition(LatLng(
+                                    newPosition.latitude, newPosition.longitude));
+                              }),*/
+                              //draggable: false,
+                              markerId: const MarkerId("1"),
+                              position: LatLng(
+                                  double.parse(context.watch<AddressViewModel>()
+                                      .getEditAddress.coordinates![0]),
+                                  double.parse(context.watch<AddressViewModel>()
+                                      .getEditAddress.coordinates![1])),
+                              icon: BitmapDescriptor.defaultMarkerWithHue(
+                                  BitmapDescriptor.hueOrange),
+                              infoWindow: const InfoWindow(
+                                title: '',
+                              ),
+                            )
+                          },
+                          onMapCreated: context.watch<AddressViewModel>().getUserLocation,
+                        ),
+                      ),
+                    ),
+                    Center(
+                      child: SizedBox(
+                        width: 170.w,
+                        height: 150.h,
+                        child: Align(
+                          alignment: Alignment.bottomCenter,
+                          child: customButton(
+                            colored: true,
+                            text: 'Get Location',
+                            onPressed: () async {
+                              openDefaultMap(context);
+                            },
                           ),
-                        )
-                      },
-                      onMapCreated: addressViewModel.getUserLocation,
-                    ),*/
-                  ),
+                        ),
+                      ),
+                    ),
+
+                  ],
                 ),
                 SizedBox(
                   height: 20.h,
@@ -225,6 +264,9 @@ class _HelpScreenState extends State<HelpScreen> {
                       black16w500(data: 'www.brunos.kitchen'),
                     ],
                   ),
+                ),
+                SizedBox(
+                  height: 20.h,
                 ),
                 /*customButton(
                   colored: false,
