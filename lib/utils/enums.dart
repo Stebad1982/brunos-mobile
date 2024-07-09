@@ -15,6 +15,7 @@ enum Contact{
   email("hello@brunos.kitchen"),
   phone("+971 50 237 0920"),
   webUrl('https://brunos.kitchen/'),
+  location('https://g.co/kgs/cBA99Wd'),
   termAndConditionUrl('https://admin.brunos.kitchen/terms&conditions'),
   privacyPolicyUrl('https://admin.brunos.kitchen/privacy-policy'),
   agreementUrl('https://admin.brunos.kitchen/user-agreement');

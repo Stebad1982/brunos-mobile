@@ -14,13 +14,14 @@ import '../models/address_model.dart';
 import '../utils/custom_buttons.dart';
 import '../utils/custom_font_style.dart';
 import '../utils/enums.dart';
+import '../utils/url_launcher.dart';
 import '../view_models/address_view_model.dart';
 import '../view_models/auth_view_model.dart';
 import '../view_models/faqs_blogs_news_view_model.dart';
 import '../widgets/app_bar_with_back_widget.dart';
 import '../widgets/dialogs/discription_dialog.dart';
 
-const List<String> bronosLocation = ['24.4905605','54.39445'];
+const List<String> bronosLocation = ['24.4905605', '54.39445'];
 
 class HelpScreen extends StatefulWidget {
   const HelpScreen({super.key});
@@ -29,10 +30,8 @@ class HelpScreen extends StatefulWidget {
   State<HelpScreen> createState() => _HelpScreenState();
 }
 
-
 class _HelpScreenState extends State<HelpScreen> {
-
-  static Future<void> openDefaultMap(BuildContext context) async {
+/*  static Future<void> openDefaultMap(BuildContext context) async {
     final availableMaps = await MapLauncher.installedMaps;
     print(availableMaps); // [AvailableMap { mapName: Google Maps, mapType: google }, ...]
 
@@ -40,14 +39,16 @@ class _HelpScreenState extends State<HelpScreen> {
       coords: Coords(double.parse(bronosLocation[0]), double.parse(bronosLocation[1])),
       title: "Bruno's Kitchen",
     );
-  }
+  }*/
 
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       context.read<AddressViewModel>().setIsAddressAdd(false);
       context.read<AddressViewModel>().setEditAddress(
-          value: AddressModel(coordinates: bronosLocation,));
+              value: AddressModel(
+            coordinates: bronosLocation,
+          ));
     });
     super.initState();
   }
@@ -125,24 +126,28 @@ class _HelpScreenState extends State<HelpScreen> {
                     SizedBox(
                       height: 160.h,
                       child: ClipRRect(
-                        borderRadius: const BorderRadius.all(
-                            Radius.circular(20)),
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(20)),
                         child: GoogleMap(
                           zoomControlsEnabled: false,
                           //liteModeEnabled: true,
                           //myLocationEnabled: true,
                           //myLocationButtonEnabled: true,
-                         // mapType: MapType.terrain,
+                          // mapType: MapType.terrain,
                           onCameraMove: (position) {
-                            context.watch<AddressViewModel>().setInitialCameraPosition(LatLng(
-                                position.target.latitude,
-                                position.target.longitude));
+                            context
+                                .watch<AddressViewModel>()
+                                .setInitialCameraPosition(LatLng(
+                                    position.target.latitude,
+                                    position.target.longitude));
                           },
                           onCameraIdle: () {
                             context.watch<AddressViewModel>().getMapMovement();
                           },
                           initialCameraPosition: CameraPosition(
-                              target: context.watch<AddressViewModel>().getInitialCameraPosition),
+                              target: context
+                                  .watch<AddressViewModel>()
+                                  .getInitialCameraPosition),
                           markers: <Marker>{
                             Marker(
                               /* onDragEnd: ((newPosition) {
@@ -152,10 +157,14 @@ class _HelpScreenState extends State<HelpScreen> {
                               //draggable: false,
                               markerId: const MarkerId("1"),
                               position: LatLng(
-                                  double.parse(context.watch<AddressViewModel>()
-                                      .getEditAddress.coordinates![0]),
-                                  double.parse(context.watch<AddressViewModel>()
-                                      .getEditAddress.coordinates![1])),
+                                  double.parse(context
+                                      .watch<AddressViewModel>()
+                                      .getEditAddress
+                                      .coordinates![0]),
+                                  double.parse(context
+                                      .watch<AddressViewModel>()
+                                      .getEditAddress
+                                      .coordinates![1])),
                               icon: BitmapDescriptor.defaultMarkerWithHue(
                                   BitmapDescriptor.hueOrange),
                               infoWindow: const InfoWindow(
@@ -163,7 +172,8 @@ class _HelpScreenState extends State<HelpScreen> {
                               ),
                             )
                           },
-                          onMapCreated: context.watch<AddressViewModel>().getUserLocation,
+                          onMapCreated:
+                              context.watch<AddressViewModel>().getUserLocation,
                         ),
                       ),
                     ),
@@ -175,21 +185,23 @@ class _HelpScreenState extends State<HelpScreen> {
                           alignment: Alignment.bottomCenter,
                           child: customButton(
                             colored: true,
-                            text: 'Get Location',
+                            text: 'View Location',
                             onPressed: () async {
-                              openDefaultMap(context);
+                              urlLauncher(url: addressLocation);
                             },
                           ),
                         ),
                       ),
                     ),
-
                   ],
                 ),
                 SizedBox(
                   height: 20.h,
                 ),
-                black16w500(data: 'Shop no.17, Paragon Bay Mall, Marina Square\nAl Reem Island, Abu Dhabi, UAE', align: TextAlign.center),
+                black16w500(
+                    data:
+                        'Shop no.17, Paragon Bay Mall, Marina Square\nAl Reem Island, Abu Dhabi, UAE',
+                    align: TextAlign.center),
                 SizedBox(
                   height: 20.h,
                 ),
@@ -199,12 +211,12 @@ class _HelpScreenState extends State<HelpScreen> {
                       scheme: 'tel',
                       path: Contact.phone.text,
                     );
-                    await launchUrl(launchUri);
+                    await urlLauncher(url: launchUri);
                   },
                   child: Row(
                     children: [
                       const Icon(
-                        Icons.volume_up_outlined,
+                        Icons.phone_outlined,
                         color: CustomColors.blackColor,
                       ),
                       SizedBox(
@@ -226,7 +238,7 @@ class _HelpScreenState extends State<HelpScreen> {
                         'subject': 'Get Help',
                       }),
                     );
-                    await launchUrl(emailLaunchUri);
+                    await urlLauncher(url: emailLaunchUri);
                   },
                   child: Row(
                     children: [
@@ -246,11 +258,11 @@ class _HelpScreenState extends State<HelpScreen> {
                 ),
                 InkWell(
                   onTap: () async {
-                    final Uri webUrl = Uri.parse(Contact.webUrl.text);
-
-                    if (!await launchUrl(webUrl)) {
+                    // final Uri webUrl = Uri.parse(Contact.webUrl.text);
+                    urlLauncher(url: webUrl);
+                    /*  if (!await launchUrl(webUrl)) {
                       throw Exception('Could not launch $webUrl');
-                    }
+                    }*/
                   },
                   child: Row(
                     children: [

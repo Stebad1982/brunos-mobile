@@ -227,9 +227,9 @@ class ProfileScreen extends StatelessWidget {
                   onTap: () {
                     Navigator.pushNamed(context, helpRoute);
                   },
-                  leading: SvgPicture.asset(
-                    helpIcon,
-                    height: 24.h,
+                  leading: Icon(
+                    Icons.volume_up_outlined,
+                    color: CustomColors.blackColor,
                   ),
                   shape: const Border(
                     bottom: BorderSide(color: CustomColors.greyMediumColor),

@@ -11,7 +11,6 @@ import 'package:flutter_dash/flutter_dash.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 import '../models/responses/faqs_blogs_news_response.dart';
 import '../utils/food_category_list_data.dart';
@@ -21,6 +20,7 @@ import '../utils/custom_colors.dart';
 import '../utils/custom_font_style.dart';
 import '../utils/enums.dart';
 import '../utils/send_grid_pref.dart';
+import '../utils/url_launcher.dart';
 import '../view_models/bottom_navigation_view_model.dart';
 import '../view_models/puppy_view_model.dart';
 import '../widgets/carousels/home_carousel_widget.dart';
@@ -35,13 +35,7 @@ import '../widgets/gridChip/item_discribed_grid_chip_widget.dart';
 import '../widgets/gridChip/food_grid_chip_widget.dart';
 import '../widgets/listChips/shop_items_horizontal_list_chip_widget.dart';
 
-final Uri webUrl = Uri.parse(Contact.webUrl.text);
-final Uri termAndConditionUrl =
-    Uri.parse(Contact.termAndConditionUrl.text);
-final Uri privacyPolicyUrl =
-    Uri.parse(Contact.privacyPolicyUrl.text);
-final Uri agreementUrl =
-    Uri.parse(Contact.agreementUrl.text);
+
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -539,7 +533,7 @@ class HomeScreen extends StatelessWidget {
               ),
               InkWell(
                 onTap: () {
-                  _launchUrl(url: webUrl);
+                  urlLauncher(url: webUrl);
                 },
                 child: Container(
                   decoration: BoxDecoration(
@@ -574,7 +568,7 @@ class HomeScreen extends StatelessWidget {
                     TextButton(
                       style: TextButton.styleFrom(tapTargetSize: MaterialTapTargetSize.shrinkWrap,padding: EdgeInsets.zero),
                         onPressed: () {
-                          _launchUrl(url: agreementUrl);
+                          urlLauncher(url: agreementUrl);
                         },
                         child: black10w400(data: 'User Service Agreement')),
 
@@ -582,14 +576,14 @@ class HomeScreen extends StatelessWidget {
                         style: TextButton.styleFrom(tapTargetSize: MaterialTapTargetSize.shrinkWrap,padding: EdgeInsets.zero),
 
                         onPressed: () {
-                          _launchUrl(url: termAndConditionUrl);
+                          urlLauncher(url: termAndConditionUrl);
                         },
                         child: black10w400(data: 'Terms & Conditions')),
                     TextButton(
                         style: TextButton.styleFrom(tapTargetSize: MaterialTapTargetSize.shrinkWrap,padding: EdgeInsets.zero),
 
                         onPressed: () {
-                          _launchUrl(url: privacyPolicyUrl);
+                          urlLauncher(url: privacyPolicyUrl);
                         },
                         child: black10w400(data: 'Privacy Policy')),
                   ],
@@ -607,9 +601,4 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  Future<void> _launchUrl({required Uri url}) async {
-    if (!await launchUrl(url)) {
-      throw Exception('Could not launch $webUrl');
-    }
-  }
 }
