@@ -13,6 +13,7 @@ const mapPin = "assets/images/map-pin.svg";
 const password = "assets/images/password.svg";
 const splashBackground = "assets/images/splash-bg.png";
 const tick = "assets/images/tick.svg";
+const whatsAppIcon = "assets/images/whats_app.svg";
 const editImageIcon = "assets/images/edit-image-icon.svg";
 const logoImage = "assets/images/logo.svg";
 const sampleFood1 = "assets/images/Active.png";

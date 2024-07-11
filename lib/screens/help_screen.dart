@@ -2,9 +2,11 @@ import 'dart:ffi';
 import 'dart:io';
 
 import 'package:brunos_kitchen/utils/custom_colors.dart';
+import 'package:brunos_kitchen/utils/images.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:map_launcher/map_launcher.dart';
 import 'package:provider/provider.dart';
@@ -207,16 +209,16 @@ class _HelpScreenState extends State<HelpScreen> {
                 ),
                 InkWell(
                   onTap: () async {
-                    final Uri launchUri = Uri(
-                      scheme: 'tel',
-                      path: Contact.phone.text,
+                    final Uri launchUri = Uri.parse(
+                        'https://wa.me/${Contact.phone.text}?text=Hi'
                     );
                     await urlLauncher(url: launchUri);
                   },
                   child: Row(
                     children: [
-                      const Icon(
-                        Icons.phone_outlined,
+                      SvgPicture.asset(
+                        whatsAppIcon,
+                        width: 18.h,
                         color: CustomColors.blackColor,
                       ),
                       SizedBox(
