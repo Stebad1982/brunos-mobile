@@ -108,19 +108,7 @@ class OrderConfirmationScreen extends StatelessWidget {
                               SizedBox(
                                 height: 20.h,
                               ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  grey14w400(data: 'Discount'),
-                                  SizedBox(
-                                    width: 2.w,
-                                  ),
-                                  lightBlack14w400Centre(data: 'AED ${orderViewModel.getOrderCreateResponse.data!.discountPercentage}'),
-                                ],
-                              ),
-                              SizedBox(
-                                height: 20.h,
-                              ),
+
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
@@ -133,6 +121,26 @@ class OrderConfirmationScreen extends StatelessWidget {
                               ),
                               SizedBox(
                                 height: 20.h,
+                              ),
+                              Visibility(
+                                visible: orderViewModel.getOrderCreateResponse.data!.discountPercentage != 0,
+                                child: Column(
+                                  children: [
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        grey14w400(data: 'Discount'),
+                                        SizedBox(
+                                          width: 2.w,
+                                        ),
+                                        lightBlack14w400Centre(data: 'AED ${orderViewModel.getOrderCreateResponse.data!.discountPercentage}'),
+                                      ],
+                                    ),
+                                    SizedBox(
+                                      height: 20.h,
+                                    ),
+                                  ],
+                                ),
                               ),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,

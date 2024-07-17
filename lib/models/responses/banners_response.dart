@@ -35,6 +35,7 @@ class BannerData {
   String? sId;
   String? title;
   String? description;
+  bool? isFeatured;
   String? type;
   List<String>? media;
 
@@ -43,6 +44,7 @@ class BannerData {
   BannerData.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
     title = json['title'];
+    isFeatured = json['isFeature'];
     description = json['description'];
     type = json['type'];
     media = json['media'].cast<String>();
@@ -52,6 +54,7 @@ class BannerData {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['_id'] = this.sId;
     data['title'] = this.title;
+    data['isFeature'] = this.isFeatured;
     data['description'] = this.description;
     data['type'] = this.type;
     data['media'] = this.media;
