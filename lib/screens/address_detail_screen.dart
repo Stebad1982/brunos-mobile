@@ -33,7 +33,7 @@ class AddressDetailScreen extends StatelessWidget {
         ),
         body: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.all(20),
+            padding: const EdgeInsets.all(20).w,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
@@ -48,7 +48,7 @@ class AddressDetailScreen extends StatelessWidget {
                               color: CustomColors.orangeColor),
                           child: Padding(
                             padding: const EdgeInsets.symmetric(
-                                horizontal: 10.0, vertical: 2),
+                                horizontal: 10.0, vertical: 2).w,
                             child: white12w400(data: 'Default'),
                           )),
                     ),
@@ -69,8 +69,8 @@ class AddressDetailScreen extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(12),
                               ),
                             ),
-                            child: const Padding(
-                              padding: EdgeInsets.all(10),
+                            child:  Padding(
+                              padding: EdgeInsets.all(10).w,
                               child: Icon(
                                 Icons.delete_outline,
                                 size: 20,

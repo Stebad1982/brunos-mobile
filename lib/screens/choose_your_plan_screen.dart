@@ -25,7 +25,7 @@ class ChooseYourPlanScreen extends StatelessWidget {
           heading: 'Choose your plan', showPuppy: true, showCart: true),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(20),
+          padding: const EdgeInsets.all(20).w,
           child: Column(
             children: [
               SizedBox(
@@ -40,7 +40,7 @@ class ChooseYourPlanScreen extends StatelessWidget {
               ),
               Center(
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                  padding: const EdgeInsets.symmetric(horizontal: 10.0).w,
                   child: black24w500Centre(
                       data:
                           'Create A Paw-Licking\nGood Meal Plan For ${context.watch<AuthViewModel>().getAuthResponse.data!.pet!.name!}'),
@@ -88,14 +88,14 @@ class ChooseYourPlanScreen extends StatelessWidget {
                               title: 'Transitional Plan');
                         },
                         child: Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: const EdgeInsets.all(8.0).w,
                           child: Align(
                               alignment: Alignment.topRight,
                               child: SvgPicture.asset(informationButton)),
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.all(20),
+                        padding: const EdgeInsets.all(20).w,
                         child: Row(
                           children: [
                             SvgPicture.asset(
@@ -169,14 +169,14 @@ class ChooseYourPlanScreen extends StatelessWidget {
                               title: 'Monthly Plan');
                         },
                         child: Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: const EdgeInsets.all(8.0).w,
                           child: Align(
                               alignment: Alignment.topRight,
                               child: SvgPicture.asset(informationButton)),
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.all(20),
+                        padding: const EdgeInsets.all(20).w,
                         child: Row(
                           children: [
                             SvgPicture.asset(
@@ -200,7 +200,7 @@ class ChooseYourPlanScreen extends StatelessWidget {
                                       left: true),
                                   //SizedBox(height: 10.h,),
                                   Padding(
-                                    padding: const EdgeInsets.only(top: 10),
+                                    padding: const EdgeInsets.only(top: 10).w,
                                     child: Align(
                                         alignment: Alignment.centerRight,
                                         child: orange14w500(
@@ -260,14 +260,14 @@ class ChooseYourPlanScreen extends StatelessWidget {
                               title: 'One-time Plan');
                         },
                         child: Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: const EdgeInsets.all(8.0).w,
                           child: Align(
                               alignment: Alignment.topRight,
                               child: SvgPicture.asset(informationButton)),
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.all(20),
+                        padding: const EdgeInsets.all(20).w,
                         child: Row(
                           children: [
                             SvgPicture.asset(

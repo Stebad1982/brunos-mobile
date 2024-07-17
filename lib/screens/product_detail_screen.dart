@@ -2,6 +2,7 @@ import 'package:brunos_kitchen/utils/custom_font_style.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
@@ -31,7 +32,7 @@ class ProductDetailScreen extends StatelessWidget {
             showPuppy: false,
             showCart: context.read<CartViewModel>().getSelectedIndex == null),
         body: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 20.0),
+          padding: const EdgeInsets.symmetric(vertical: 20.0).w,
           child: Stack(
             children: [
               SingleChildScrollView(
@@ -71,7 +72,7 @@ class ProductDetailScreen extends StatelessWidget {
                       visible: plansViewModel.getSelectedRecipe.details!.isNotEmpty || plansViewModel.getSelectedRecipe.weight!.isNotEmpty,
 
                       child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 20),
+                        padding: const EdgeInsets.symmetric(horizontal: 20).w,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -113,7 +114,7 @@ class ProductDetailScreen extends StatelessWidget {
                     ),
                     SizedBox(height: 20.h,),
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      padding: const EdgeInsets.symmetric(horizontal: 20).w,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -164,8 +165,8 @@ class ProductDetailScreen extends StatelessWidget {
                                                 BorderRadius.circular(12),
                                           ),
                                         ),
-                                        child: const Padding(
-                                          padding: EdgeInsets.all(10),
+                                        child: Padding(
+                                          padding: EdgeInsets.all(10).w,
                                           child: Icon(
                                             Icons.remove,
                                             size: 20,
@@ -202,8 +203,8 @@ class ProductDetailScreen extends StatelessWidget {
                                                 BorderRadius.circular(12),
                                           ),
                                         ),
-                                        child: const Padding(
-                                          padding: EdgeInsets.all(10),
+                                        child:  Padding(
+                                          padding: EdgeInsets.all(10).w,
                                           child: Icon(
                                             Icons.add,
                                             size: 20,
@@ -227,13 +228,13 @@ class ProductDetailScreen extends StatelessWidget {
                         visible: plansViewModel.getSelectedRecipe.category ==
                             ProductCategories.standardRecipes.text,
                         child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 20),
+                          padding: const EdgeInsets.symmetric(horizontal: 20).w,
                           child: orange14w500(
                               data: 'Single Pouch Consists of ${plansViewModel.getSelectedRecipe.standaloneSize} grams'),
                         )),
                     plansViewModel.getSelectedRecipe.selectedItemSize != null
                         ? Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 20),
+                            padding: const EdgeInsets.symmetric(horizontal: 20).w,
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
@@ -265,7 +266,7 @@ class ProductDetailScreen extends StatelessWidget {
                                             false,
                                         child: Padding(
                                           padding: const EdgeInsets.only(
-                                              bottom: 20.0),
+                                              bottom: 20.0).w,
                                           child:
                                               black14w500(data: 'Select Sizes'),
                                         )),
@@ -281,7 +282,7 @@ class ProductDetailScreen extends StatelessWidget {
                                       for (var sizes in plansViewModel
                                           .getSelectedRecipe.sizes!)
                                         Visibility(
-                                          visible: sizes.price != 0,
+                                          visible: sizes.stock != 0,
                                           child: SizedBox(
                                             width: 100.w,
                                             child: customSquareButton(
@@ -313,23 +314,23 @@ class ProductDetailScreen extends StatelessWidget {
                       height: 24.h,
                     ),
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      padding: const EdgeInsets.symmetric(horizontal: 20).w,
                       child: black14w500(data: 'Details'),
                     ),
                     SizedBox(
                       height: 8.h,
                     ),
-                    const Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 20),
+                     Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20).w,
                       // child: black14w500(data: plansViewModel.getSelectedRecipe.),
                     ),
                     SizedBox(
-                      height: 8.h,
+                      height: 5.h,
                     ),
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child: grey14w400(
-                          lineHeight: true,
+                      padding: const EdgeInsets.symmetric(horizontal: 20).w,
+                      child: Html(
+                         // lineHeight: true,
                           data: plansViewModel.getSelectedRecipe.description!),
                     ),
                     SizedBox(
@@ -344,7 +345,7 @@ class ProductDetailScreen extends StatelessWidget {
                 child: Align(
                   alignment: Alignment.bottomCenter,
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    padding: const EdgeInsets.symmetric(horizontal: 20).w,
                     child: InkWell(
                       onTap: () {
                         if (context.read<CartViewModel>().getSelectedIndex ==
@@ -422,7 +423,7 @@ class ProductDetailScreen extends StatelessWidget {
                             ),
                           ),
                           child: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 15),
+                            padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 15).w,
                             child: Row(
                               children: [
                                 Column(

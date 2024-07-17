@@ -24,7 +24,7 @@ Widget foodCategoryGridChipWidget ({required FoodCategory listItems}){
           Radius.circular(20)),
     ),
     child: Padding(
-      padding: const EdgeInsets.all(20.0),
+      padding: const EdgeInsets.all(20.0).w,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.center,

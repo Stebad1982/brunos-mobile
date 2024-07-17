@@ -22,17 +22,17 @@ class FeedbackScreen extends StatelessWidget {
           body: Stack(
             children: [
               Padding(
-                padding: const EdgeInsets.all(20),
+                padding: const EdgeInsets.all(20).w,
                 child: Column(
                   children: [
                     TextField(
                       controller: faqsBlogsNewsViewModel.getFeedbackTitle,
                       onChanged: (text) {},
                       keyboardType: TextInputType.name,
-                      decoration: const InputDecoration(
+                      decoration:  InputDecoration(
                         hintText: 'Title',
                         contentPadding: EdgeInsets.symmetric(
-                            horizontal: 15, vertical: 20.0),
+                            horizontal: 15, vertical: 20.0).w,
 
                         /*  prefixIcon: Padding(
                             padding: const EdgeInsets.all(16),
@@ -48,10 +48,10 @@ class FeedbackScreen extends StatelessWidget {
                       onChanged: (text) {},
                       keyboardType: TextInputType.multiline,
                       maxLines: 10,
-                      decoration: const InputDecoration(
+                      decoration:  InputDecoration(
                         hintText: 'Description',
                         contentPadding: EdgeInsets.symmetric(
-                            horizontal: 15, vertical: 15.0),
+                            horizontal: 15, vertical: 15.0).w,
 
                         /* prefixIcon: Padding(
                             padding: const EdgeInsets.all(16),
@@ -83,9 +83,9 @@ class FeedbackScreen extends StatelessWidget {
                       ],
                     ),
                     child: Padding(
-                      padding: const EdgeInsets.all(20),
+                      padding: const EdgeInsets.all(20).w,
                       child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 20),
+                        padding: const EdgeInsets.symmetric(horizontal: 20).w,
                         child: customButton(
                           colored: true,
                           text: 'Submit',

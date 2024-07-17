@@ -28,7 +28,7 @@ void descriptionDialog(
               borderRadius: BorderRadius.circular(40)),
           child: SizedBox.expand(
               child: Padding(
-            padding: const EdgeInsets.all(20),
+            padding: const EdgeInsets.all(20).w,
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [

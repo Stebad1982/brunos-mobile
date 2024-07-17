@@ -46,7 +46,7 @@ class _DeliveryDatesScreenState extends State<DeliveryDatesScreen> {
             children: [
               SingleChildScrollView(
                 child: Padding(
-                  padding: const EdgeInsets.all(20),
+                  padding: const EdgeInsets.all(20).w,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -299,7 +299,7 @@ class _DeliveryDatesScreenState extends State<DeliveryDatesScreen> {
                     ],
                   ),
                   child: Padding(
-                    padding: const EdgeInsets.all(20),
+                    padding: const EdgeInsets.all(20).w,
                     child: customButton(
                         text: 'CheckOut',
                         onPressed: () {

@@ -99,7 +99,7 @@ class CartViewModel with ChangeNotifier {
   int get getAvailablePawPoints => _availablePawPoints;
 
   void setAvailablePawPoints({required num perAed, required num pointsLimit}) {
-    _aedPerPoint = perAed / 100;
+    _aedPerPoint = 1 / perAed;
     final discountRedeem = (_subTotal * pointsLimit / 100);
     _availablePawPoints = (discountRedeem / _aedPerPoint).floor();
     notifyListeners();
@@ -171,27 +171,33 @@ class CartViewModel with ChangeNotifier {
 
   void setOrderRequest() {
     final OrderRequest orderData = OrderRequest(
-        totalAmount: _checkOutTotal,
-        locationId: navigatorKey.currentContext!
-            .read<AuthViewModel>()
-            .getAuthResponse
-            .data!
-            .location!
-            .sId!,
-        paymentMethod: navigatorKey.currentContext!
-            .read<AuthViewModel>()
-            .getAuthResponse
-            .data!
-            .card!
-            .paymentMethodId!,
-        discountPercentage: 10,
-        deliveryDate: DateTimeFormatter.showDateFormat3(_selectedDay),
-        promoCodeId: _promoCodeController.text,
-        cartItems: _cartList,
-        cartTotal: _cartTotalPrice,
-        shippingFees: _deliveryFee,
-        specialInstructions: _instructionsController.text,
-        pointsUsed: _pawSelectedPoints);
+      totalAmount: _checkOutTotal,
+      locationId: navigatorKey.currentContext!
+          .read<AuthViewModel>()
+          .getAuthResponse
+          .data!
+          .location!
+          .sId!,
+      paymentMethod: navigatorKey.currentContext!
+          .read<AuthViewModel>()
+          .getAuthResponse
+          .data!
+          .card!
+          .paymentMethodId!,
+      discountPercentage: _promoCodeDiscount + _pawPointDiscount.round(),
+      deliveryDate: DateTimeFormatter.showDateFormat3(_selectedDay),
+      promoCodeId: _promoCodeController.text,
+      cartItems: _cartList,
+      cartTotal: _cartTotalPrice,
+      shippingFees: _deliveryFee,
+      specialInstructions: _instructionsController.text,
+      pointsUsed: _pawSelectedPoints,
+      discountRatio: navigatorKey.currentContext!
+          .read<AuthViewModel>()
+          .getAuthResponse
+          .data!
+          .discounts![4].aggregate!,
+    );
     navigatorKey.currentContext!
         .read<OrderViewModel>()
         .setOrderRequest(orderData);

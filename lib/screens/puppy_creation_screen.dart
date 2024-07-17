@@ -38,7 +38,7 @@ class PuppyCreationScreen extends StatelessWidget {
             SingleChildScrollView(
               child: Padding(
                 padding: const EdgeInsets.only(
-                    top: 40, bottom: 20, left: 20, right: 20),
+                    top: 40, bottom: 20, left: 20, right: 20).w,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -47,7 +47,7 @@ class PuppyCreationScreen extends StatelessWidget {
                           context.read<PuppyViewModel>().getRouteToPuppyFrom ==
                               Screens.home.text,
                       child: Padding(
-                        padding: const EdgeInsets.only(bottom: 40.0),
+                        padding: const EdgeInsets.only(bottom: 40.0).w,
                         child: Center(
                           child: Image.asset(
                             buyBulits1,
@@ -87,8 +87,8 @@ class PuppyCreationScreen extends StatelessWidget {
                       controller: puppyViewModel.getPuppyNameController,
                       onChanged: (text) {},
                       keyboardType: TextInputType.name,
-                      decoration: const InputDecoration(
-                          contentPadding: EdgeInsets.all(20.0),
+                      decoration:  InputDecoration(
+                          contentPadding: EdgeInsets.all(20.0).w,
                           hintText: 'Entre Your Pet\'s Name'),
                     ),
                     SizedBox(
@@ -115,7 +115,7 @@ class PuppyCreationScreen extends StatelessWidget {
                           ),
                         ),
                         child: Padding(
-                          padding: const EdgeInsets.all(20),
+                          padding: const EdgeInsets.all(20).w,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
@@ -285,7 +285,7 @@ class PuppyCreationScreen extends StatelessWidget {
                     ],
                   ),
                   child: Padding(
-                    padding: const EdgeInsets.all(20),
+                    padding: const EdgeInsets.all(20).w,
                     child: customButton(
                         text: 'Next',
                         onPressed: () {

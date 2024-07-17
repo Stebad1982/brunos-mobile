@@ -58,7 +58,7 @@ class _OrdersScreenState extends State<OrdersScreen>
               ? const SizedBox()
               : ListView.builder(
                   itemCount: orderViewModel.getOrderResponse!.data!.length,
-                  padding: const EdgeInsets.only(left: 20, right: 20, top: 30),
+                  padding: const EdgeInsets.only(left: 20, right: 20, top: 30).w,
                   itemBuilder: (BuildContext context, int index) {
                     return ordersVerticalListChipWidget(
                         showButtons: false,

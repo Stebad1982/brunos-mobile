@@ -65,7 +65,7 @@ class _PuppyCreationAdditionalScreenState
               child: SingleChildScrollView(
                 child: Padding(
                   padding: const EdgeInsets.only(
-                      top: 40, bottom: 20, left: 20, right: 20),
+                      top: 40, bottom: 20, left: 20, right: 20).w,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -75,7 +75,7 @@ class _PuppyCreationAdditionalScreenState
                                 .getRouteToPuppyFrom ==
                             Screens.home.text,
                         child: Padding(
-                          padding: const EdgeInsets.only(bottom: 40.0),
+                          padding: const EdgeInsets.only(bottom: 40.0).w,
                           child: Center(
                             child: Image.asset(
                               buyBulits1,
@@ -120,23 +120,23 @@ class _PuppyCreationAdditionalScreenState
                       ),
                       TextField(
                         controller: puppyViewModel.getPuppyBreedController,
-                        scrollPadding: EdgeInsets.only(bottom: 150),
+                        scrollPadding: EdgeInsets.only(bottom: 150).w,
                         onChanged: (value) {
                           puppyViewModel.searchBreeds(value);
                         },
                         keyboardType: TextInputType.name,
-                        decoration: const InputDecoration(
+                        decoration:  InputDecoration(
                             /*suffixIcon: Icon(
                               Icons.keyboard_arrow_down,
                               size: 25,
                             ),*/
-                            contentPadding: EdgeInsets.all(20.0),
+                            contentPadding: const EdgeInsets.all(20.0).w,
                             hintText: 'Enter Your Pet\'s Breed'),
                       ),
                       Visibility(
                         visible: puppyViewModel.getBreedslist.isNotEmpty,
                         child: Padding(
-                          padding: const EdgeInsets.only(top: 10.0),
+                          padding: const EdgeInsets.only(top: 10.0).w,
                           child: Container(
                             decoration: BoxDecoration(
                               border: Border.all(
@@ -148,7 +148,7 @@ class _PuppyCreationAdditionalScreenState
                             ),
                             height: 200.h,
                             child: ListView.builder(
-                                padding: const EdgeInsets.all(5),
+                                padding: const EdgeInsets.all(5).w,
                                 itemCount: puppyViewModel.getBreedslist.length,
                                 itemBuilder: (context, index) {
                                   return Card(
@@ -245,7 +245,7 @@ class _PuppyCreationAdditionalScreenState
                                   height: 40.h,
                                   width: 80.w,
                                   padding: const EdgeInsets.only(
-                                      left: 14, right: 14),
+                                      left: 14, right: 14).w,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(14),
                                     border: Border.all(
@@ -309,7 +309,7 @@ class _PuppyCreationAdditionalScreenState
                                   height: 40.h,
                                   width: 80.w,
                                   padding: const EdgeInsets.only(
-                                      left: 14, right: 14),
+                                      left: 14, right: 14).w,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(14),
                                     border: Border.all(
@@ -450,8 +450,8 @@ class _PuppyCreationAdditionalScreenState
                         },*/
                         keyboardType: TextInputType.number,
                         focusNode: _nodeText1,
-                        decoration: const InputDecoration(
-                            contentPadding: EdgeInsets.all(20.0),
+                        decoration:  InputDecoration(
+                            contentPadding: const EdgeInsets.all(20.0).w,
                             hintText: 'Weight in KG'),
                       ),
                       SizedBox(
@@ -693,7 +693,7 @@ class _PuppyCreationAdditionalScreenState
                     ],
                   ),
                   child: Padding(
-                    padding: const EdgeInsets.all(20),
+                    padding: const EdgeInsets.all(20).w,
                     child: customButton(
                         text: 'Save',
                         onPressed: () {

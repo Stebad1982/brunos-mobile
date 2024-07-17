@@ -24,7 +24,7 @@ class ShopScreen extends StatelessWidget {
     return Consumer<PlansViewModel>(builder: (context, plansViewModel, child) {
       return Scaffold(
         body: Padding(
-          padding: const EdgeInsets.all(20),
+          padding: const EdgeInsets.all(20).w,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

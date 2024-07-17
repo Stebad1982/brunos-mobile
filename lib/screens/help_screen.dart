@@ -70,7 +70,7 @@ class _HelpScreenState extends State<HelpScreen> {
         appBar: const AppBarWithBackWidget(
             heading: 'Get Help', showPuppy: false, showCart: false),
         body: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 20.0),
+          padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 20.0).w,
           child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -94,10 +94,10 @@ class _HelpScreenState extends State<HelpScreen> {
                   onChanged: (text) {},
                   keyboardType: TextInputType.multiline,
                   maxLines: 10,
-                  decoration: const InputDecoration(
+                  decoration:  InputDecoration(
                     hintText: 'Your Comment',
                     contentPadding:
-                        EdgeInsets.symmetric(horizontal: 15, vertical: 15.0),
+                        const EdgeInsets.symmetric(horizontal: 15, vertical: 15.0).w,
                   ),
                 ),
                 SizedBox(

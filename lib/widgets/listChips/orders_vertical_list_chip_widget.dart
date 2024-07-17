@@ -35,7 +35,7 @@ Widget ordersVerticalListChipWidget(
             ),
           ),
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10),
+            padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10).w,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -63,7 +63,7 @@ Widget ordersVerticalListChipWidget(
                 Visibility(
                   visible: showButtons,
                   child: Padding(
-                    padding: const EdgeInsets.only(top: 10),
+                    padding: const EdgeInsets.only(top: 10).w,
                     child: SizedBox(
                       width: 270.w,
                       child: Row(

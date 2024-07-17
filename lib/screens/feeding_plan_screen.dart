@@ -64,7 +64,7 @@ class _FeedingPlanScreenState extends State<FeedingPlanScreen> {
                     shrinkWrap: true,
                     itemCount: plansViewModel.getFeedingPlan!.recipes.length,
                     padding: const EdgeInsets.only(
-                        left: 20, right: 20, top: 20, bottom: 280),
+                        left: 20, right: 20, top: 20, bottom: 280).w,
                     itemBuilder: (BuildContext context, int index) {
                       final num totalPlanQuantity = calculateDailyIntake(
                               recipeModel:
@@ -112,9 +112,9 @@ class _FeedingPlanScreenState extends State<FeedingPlanScreen> {
                     gramsForTransitional:
                     plansViewModel.getTransitionalGrams10thDay);*/
                       return ListTile(
-                        minVerticalPadding: 20,
+                        minVerticalPadding: 20.w,
                         title: Padding(
-                          padding: const EdgeInsets.only(bottom: 10.0),
+                          padding: const EdgeInsets.only(bottom: 10.0).w,
                           child: Row(
                             children: [
                               circularNetworkImageWidget(
@@ -220,7 +220,7 @@ class _FeedingPlanScreenState extends State<FeedingPlanScreen> {
                 child: SizedBox(
                   width: double.infinity,
                   child: Padding(
-                    padding: const EdgeInsets.all(20),
+                    padding: const EdgeInsets.all(20).w,
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
@@ -269,7 +269,7 @@ class _FeedingPlanScreenState extends State<FeedingPlanScreen> {
                                   .getViewCartItemDetail ==
                               false,
                           child: Padding(
-                            padding: const EdgeInsets.only(top: 20.0),
+                            padding: const EdgeInsets.only(top: 20.0).w,
                             child: customButton(
                                 text: 'Add to Shopping Cart',
                                 onPressed: () {

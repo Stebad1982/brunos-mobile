@@ -25,7 +25,7 @@ Widget cartDishVerticalListChipWidget(
             ),
           ),
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 15),
+            padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 15).w,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -42,7 +42,7 @@ Widget cartDishVerticalListChipWidget(
                         black14w500(data: cartRecipeModel.name!),
                         const SizedBox(height: 2,),
                         cartRecipeModel.sizes!.isNotEmpty?  Padding(
-                          padding: const EdgeInsets.only(bottom: 2.0),
+                          padding: const EdgeInsets.only(bottom: 2.0).w,
                           child: black14w500(data: ''
                           'Size: ${cartRecipeModel.selectedItemSize!.name!}'),
                         ):const SizedBox(),

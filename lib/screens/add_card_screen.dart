@@ -58,7 +58,7 @@ class _AddCardScreenState extends State<AddCardScreen> {
                     height: 20.h,
                   ),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    padding: const EdgeInsets.symmetric(horizontal: 20).w,
                     child: Visibility(
                       visible: !cardViewModel.getIsCardAdd,
                       child: Row(
@@ -72,7 +72,7 @@ class _AddCardScreenState extends State<AddCardScreen> {
                                     color: CustomColors.orangeColor),
                                 child: Padding(
                                   padding: const EdgeInsets.symmetric(
-                                      horizontal: 10.0, vertical: 2),
+                                      horizontal: 10.0, vertical: 2).w,
                                   child: white12w400(data: 'Default'),
                                 )),
                           ),
@@ -96,8 +96,8 @@ class _AddCardScreenState extends State<AddCardScreen> {
                                       borderRadius: BorderRadius.circular(12),
                                     ),
                                   ),
-                                  child: const Padding(
-                                    padding: EdgeInsets.all(10),
+                                  child:  Padding(
+                                    padding: EdgeInsets.all(10).w,
                                     child: Icon(
                                       Icons.delete_outline,
                                       size: 20,
@@ -305,7 +305,7 @@ class _AddCardScreenState extends State<AddCardScreen> {
                           height: 30.h,
                         ),
                         Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 20),
+                          padding: const EdgeInsets.symmetric(horizontal: 20).w,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -387,9 +387,9 @@ class _AddCardScreenState extends State<AddCardScreen> {
                     ],
                   ),
                   child: Padding(
-                    padding: const EdgeInsets.all(20),
+                    padding: const EdgeInsets.all(20).w,
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      padding: const EdgeInsets.symmetric(horizontal: 20).w,
                       child: customButton(
                         colored: true,
                         text: 'Submit',

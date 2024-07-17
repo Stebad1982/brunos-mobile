@@ -41,7 +41,7 @@ class _CardListScreenState extends State<CardListScreen> {
         appBar: const AppBarWithBackWidget(
             heading: 'Payment', showPuppy: false, showCart: false),
         body: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 20.0),
+          padding: const EdgeInsets.symmetric(vertical: 20.0).w,
           child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -53,7 +53,7 @@ class _CardListScreenState extends State<CardListScreen> {
                     Navigator.pushNamed(context, addCardRoute);
                   },
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                    padding: const EdgeInsets.symmetric(horizontal: 20.0).w,
                     child: Container(
                       decoration: ShapeDecoration(
                         color: CustomColors.lightGreyColor,
@@ -63,7 +63,7 @@ class _CardListScreenState extends State<CardListScreen> {
                       ),
                       child: Padding(
                         padding: const EdgeInsets.symmetric(
-                            horizontal: 16.0, vertical: 20),
+                            horizontal: 16.0, vertical: 20).w,
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
@@ -74,8 +74,8 @@ class _CardListScreenState extends State<CardListScreen> {
                                     borderRadius: BorderRadius.circular(293),
                                   ),
                                 ),
-                                child: const Padding(
-                                  padding: EdgeInsets.all(10.0),
+                                child:  Padding(
+                                  padding: EdgeInsets.all(10.0).w,
                                   child: Icon(Icons.credit_card,color: CustomColors.whiteColor,),
                                 )),
                             SizedBox(
@@ -93,8 +93,8 @@ class _CardListScreenState extends State<CardListScreen> {
                                   borderRadius: BorderRadius.circular(12),
                                 ),
                               ),
-                              child: const Padding(
-                                padding: EdgeInsets.all(10),
+                              child:  Padding(
+                                padding: EdgeInsets.all(10).w,
                                 child: Icon(
                                   Icons.add,
                                   size: 20,
@@ -112,7 +112,7 @@ class _CardListScreenState extends State<CardListScreen> {
                   height: 20.h,
                 ),
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                  padding: const EdgeInsets.symmetric(horizontal: 20.0).w,
                   child: black16w500(
                       data:'Available Cards'),
                 ),
@@ -122,7 +122,7 @@ class _CardListScreenState extends State<CardListScreen> {
                         shrinkWrap: true,
                         itemCount: cardViewModel.getCardResponse.data!.length,
                         padding:
-                            const EdgeInsets.only(left: 20, right: 20, top: 30),
+                            const EdgeInsets.only(left: 20, right: 20, top: 30).w,
                         itemBuilder: (BuildContext context, int index) {
                           return cardVerticalListChipWidget(
                               cardDetail:

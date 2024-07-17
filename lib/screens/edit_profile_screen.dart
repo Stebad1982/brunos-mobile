@@ -24,7 +24,7 @@ class EditProfileScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.only(
-              top: 30, bottom: 20, left: 20, right: 20),
+              top: 30, bottom: 20, left: 20, right: 20).w,
           child: Stack(
             children: [
               Column(
@@ -47,14 +47,14 @@ class EditProfileScreen extends StatelessWidget {
                         hintText: 'Phone Number',
                         prefixIcon: Padding(
                           padding:
-                          const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+                          const EdgeInsets.symmetric(horizontal: 16, vertical: 4).w,
                           child: IntrinsicHeight(
                             child: Row(
                               mainAxisSize: MainAxisSize.min,
                               children: [
                                 SvgPicture.asset(phoneIcon),
-                                const Padding(
-                                  padding: EdgeInsets.symmetric(vertical: 16.0),
+                                 Padding(
+                                  padding: EdgeInsets.symmetric(vertical: 16.0).w,
                                   child: VerticalDivider(
                                     color: CustomColors.greyShadeColor,
                                     thickness: 1,

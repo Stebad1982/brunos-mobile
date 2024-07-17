@@ -48,7 +48,7 @@ Widget orderItemsVerticalListChipWidget(
             ),
           ),
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 15),
+            padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 15).w,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -67,8 +67,8 @@ Widget orderItemsVerticalListChipWidget(
                           borderRadius: BorderRadius.circular(12),
                         ),
                       ),
-                      child: const Padding(
-                        padding: EdgeInsets.all(10),
+                      child:  Padding(
+                        padding: const EdgeInsets.all(10).w,
                         child: Icon(
                           Icons.sticky_note_2_outlined,
                           size: 20,
@@ -119,7 +119,7 @@ Widget orderItemsVerticalListChipWidget(
                 Visibility(
                   visible: showButtons,
                   child: Padding(
-                    padding: const EdgeInsets.only(bottom: 20),
+                    padding: const EdgeInsets.only(bottom: 20).w,
                     child: Row(
                       children: [
                         Expanded(

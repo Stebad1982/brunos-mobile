@@ -46,12 +46,12 @@ class HomeScreen extends StatelessWidget {
       backgroundColor: CustomColors.whiteColorShade,
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.only(top: 20, bottom: 80),
+          padding: const EdgeInsets.only(top: 20, bottom: 80).w,
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
+                padding: const EdgeInsets.symmetric(horizontal: 20).w,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -129,7 +129,7 @@ class HomeScreen extends StatelessWidget {
                 child: Column(
                   children: [
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      padding: const EdgeInsets.symmetric(horizontal: 20).w,
                       child: black24w500Centre(
                           data:
                               'Trademarked Nutrient Blends, Exclusively Crafted For Your Pup\'s Special Needs.'),
@@ -138,7 +138,7 @@ class HomeScreen extends StatelessWidget {
                       height: 20.h,
                     ),
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      padding: const EdgeInsets.symmetric(horizontal: 20).w,
                       child: lightBlack14w400Centre(
                           data:
                               'Sharing your love for pets and their wellbeing, we at Bruno\'s Kitchen have crafted a service that brings balanced, freshly-prepared food to your doorstep. Our simple yet nutritious recipes are scientifically formulated and made with utmost love, because we believe your furry friends deserve the very best.'),
@@ -148,7 +148,7 @@ class HomeScreen extends StatelessWidget {
                     ),
                     GridView.builder(
                       padding: EdgeInsets.symmetric(
-                          horizontal: 20.w, vertical: 20.h),
+                          horizontal: 20.w, vertical: 20.h).w,
                       physics: const NeverScrollableScrollPhysics(),
                       shrinkWrap: true,
                       gridDelegate:
@@ -156,7 +156,7 @@ class HomeScreen extends StatelessWidget {
                               crossAxisCount: 2,
                               crossAxisSpacing: 20.0,
                               mainAxisSpacing: 20.0,
-                              childAspectRatio: (1 / 0.75)),
+                              childAspectRatio: (1 / 0.80)),
                       itemCount: foodCategoryList.length,
                       itemBuilder: (BuildContext context, int index) {
                         return foodCategoryGridChipWidget(
@@ -167,7 +167,7 @@ class HomeScreen extends StatelessWidget {
                       height: 50.h,
                     ),
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                      padding: const EdgeInsets.symmetric(horizontal: 20.0).w,
                       child: black24w500Centre(
                           data: 'Dive into a World of Paw-licking Goodness'),
                     ),
@@ -178,13 +178,13 @@ class HomeScreen extends StatelessWidget {
                 height: 10.h,
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                padding: const EdgeInsets.symmetric(horizontal: 20.0).w,
                 child: lightBlack14w400Centre(
                     data: 'Check Out Our Delicious Doggie Dishes '),
               ),
               SizedBox(height: 20.h),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                padding: const EdgeInsets.symmetric(horizontal: 20.0).w,
                 child: Row(
                   children: [
                     Expanded(
@@ -256,7 +256,7 @@ class HomeScreen extends StatelessWidget {
               ),*/
               SizedBox(height: 30.h),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                padding: const EdgeInsets.symmetric(horizontal: 20.0).w,
                 child: customButton(
                     text: 'Order Your Doggo\'s Meals Now',
                     /* boldText: 'Tap Here',*/
@@ -286,7 +286,7 @@ class HomeScreen extends StatelessWidget {
               SizedBox(height: 15.h),
               Padding(
                 padding:
-                    const EdgeInsets.only(left: 20.0, right: 20.0, top: 15),
+                    const EdgeInsets.only(left: 20.0, right: 20.0, top: 15).w,
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -332,7 +332,7 @@ class HomeScreen extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                padding: const EdgeInsets.symmetric(horizontal: 20.0).w,
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -381,7 +381,7 @@ class HomeScreen extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                padding: const EdgeInsets.symmetric(horizontal: 20.0).w,
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -422,7 +422,7 @@ class HomeScreen extends StatelessWidget {
                 height: 40.h,
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                padding: const EdgeInsets.symmetric(horizontal: 20.0).w,
                 child: InkWell(
                     onTap: () {
                       context
@@ -473,7 +473,7 @@ class HomeScreen extends StatelessWidget {
                           },
                           child: Padding(
                             padding:
-                                const EdgeInsets.symmetric(horizontal: 20.0),
+                                const EdgeInsets.symmetric(horizontal: 20.0).w,
                             child: Align(
                                 alignment: Alignment.centerRight,
                                 child: black12w500Centre(data: 'View all')),
@@ -487,7 +487,7 @@ class HomeScreen extends StatelessWidget {
                           scaleWhenAnimating: true,
                           openAndCloseAnimation: true,
                           headerPadding: const EdgeInsets.symmetric(
-                              vertical: 7, horizontal: 15),
+                              vertical: 7, horizontal: 15).w,
                           // sectionOpeningHapticFeedback: SectionHapticFeedback.heavy,
                           // sectionClosingHapticFeedback: SectionHapticFeedback.light,
                           children: [
@@ -506,7 +506,7 @@ class HomeScreen extends StatelessWidget {
                                     CustomColors.whiteColor,
                                 header: Padding(
                                   padding:
-                                      const EdgeInsets.symmetric(vertical: 5),
+                                      const EdgeInsets.symmetric(vertical: 5).w,
                                   child: Align(
                                       alignment: Alignment.centerLeft,
                                       child: lightBlack14w400Centre(
@@ -543,7 +543,7 @@ class HomeScreen extends StatelessWidget {
                   ),
                   child: Padding(
                     padding: const EdgeInsets.symmetric(
-                        horizontal: 15.0, vertical: 10),
+                        horizontal: 15.0, vertical: 10).w,
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
@@ -562,7 +562,7 @@ class HomeScreen extends StatelessWidget {
               ),
               Padding(
                 padding:
-                const EdgeInsets.symmetric(horizontal: 20, vertical: 20),                child: Row(
+                const EdgeInsets.symmetric(horizontal: 20, vertical: 20).w,                child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     TextButton(

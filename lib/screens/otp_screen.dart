@@ -68,7 +68,7 @@ class _OtpScreenState extends State<OtpScreen> {
           child: SingleChildScrollView(
             child: Padding(
               padding: const EdgeInsets.only(
-                  top: 30, bottom: 20, left: 20, right: 20),
+                  top: 30, bottom: 20, left: 20, right: 20).w,
               child: Stack(
                 children: [
                   Column(
@@ -132,7 +132,7 @@ class _OtpScreenState extends State<OtpScreen> {
                                           CustomColors.greyMediumLightColor,
                                       fieldOuterPadding:
                                           const EdgeInsets.symmetric(
-                                              horizontal: 2)),
+                                              horizontal: 2).w),
                                   enableActiveFill: true,
                                   pastedTextStyle: const TextStyle(
                                     //    color: CustomColors.color1,

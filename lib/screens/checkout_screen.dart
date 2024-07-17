@@ -57,7 +57,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
             SingleChildScrollView(
               child: Padding(
                 padding: const EdgeInsets.only(
-                    left: 20.0, right: 20, top: 20, bottom: 300),
+                    left: 20.0, right: 20, top: 20, bottom: 300).w,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
@@ -94,7 +94,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                         ),
                       ),
                       child: Padding(
-                        padding: const EdgeInsets.all(20),
+                        padding: const EdgeInsets.all(20).w,
                         child: Column(
                           children: [
                             Row(
@@ -245,7 +245,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                                       ),
                                     ),
                                     child: Padding(
-                                      padding: EdgeInsets.all(10),
+                                      padding: EdgeInsets.all(10).w,
                                       child: Icon(
                                         context
                                                     .read<AuthViewModel>()
@@ -275,7 +275,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                       onChanged: (text) {},
                       keyboardType: TextInputType.multiline,
                       maxLines: 5,
-                      decoration: const InputDecoration(
+                      decoration:  InputDecoration(
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(12)),
                           borderSide: BorderSide(
@@ -284,7 +284,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                         hintText: 'Special Instructions',
                         hintStyle: TextStyle(color: CustomColors.blackColor),
                         contentPadding: EdgeInsets.symmetric(
-                            horizontal: 15, vertical: 15.0),
+                            horizontal: 15, vertical: 15.0).w,
                       ),
                     ),
                     SizedBox(
@@ -303,7 +303,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                       child: Align(
                         alignment: Alignment.centerLeft,
                         child: Padding(
-                          padding: const EdgeInsets.all(20),
+                          padding: const EdgeInsets.all(20).w,
                           child: lightBlack14w400Centre(
                               data:
                                   'Expected delivery date on or before: ${DateTimeFormatter.showDateFormat4(cartViewModel.getSelectedDay!)}'),
@@ -330,7 +330,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                           ),
                         ),
                         child: Padding(
-                          padding: const EdgeInsets.all(20),
+                          padding: const EdgeInsets.all(20).w,
                           child: Row(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -449,7 +449,6 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                                   .availablePoints !=
                               0
                           ? () {
-                              cartViewModel.setPawPoints(5);
                               cartViewModel.setAvailablePawPoints(
                                   perAed: context
                                       .read<AuthViewModel>()
@@ -463,6 +462,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                                       .data!
                                       .discounts![2]
                                       .aggregate!);
+                              cartViewModel.setPawPoints(5);
                               redeemPawPointsBottomSheetWidget();
                             }
                           : () {},
@@ -477,7 +477,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                           ),
                         ),
                         child: Padding(
-                          padding: const EdgeInsets.all(20),
+                          padding: const EdgeInsets.all(20).w,
                           child: Row(
                             children: [
                               SvgPicture.asset(
@@ -548,7 +548,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                         ),
                       ),
                       child: Padding(
-                        padding: const EdgeInsets.all(20),
+                        padding: const EdgeInsets.all(20).w,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -591,14 +591,14 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                               keyboardType: TextInputType.text,
                               decoration: InputDecoration(
                                   prefixIcon: Padding(
-                                    padding: const EdgeInsets.all(16.0),
+                                    padding: const EdgeInsets.all(16.0).w,
                                     child: SvgPicture.asset(couponIcon),
                                   ),
                                   /*suffixIcon: Icon(
                             Icons.keyboard_arrow_down,
                             size: 25,
                           ),*/
-                                  contentPadding: EdgeInsets.all(20.0),
+                                  contentPadding: EdgeInsets.all(20.0).w,
                                   hintText: 'Code'),
                             ),
                             /* Container(
@@ -658,7 +658,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                                   ),
                                 ),
                                 child: Padding(
-                                  padding: const EdgeInsets.all(20),
+                                  padding: const EdgeInsets.all(20).w,
                                   child: lightBlack14w400Centre(
                                       data: 'Apply coupon code'),
                                 ),
@@ -693,7 +693,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                     ],
                   ),
                   child: Padding(
-                    padding: const EdgeInsets.all(20),
+                    padding: const EdgeInsets.all(20).w,
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
@@ -720,10 +720,10 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                         Visibility(
                           visible: cartViewModel.getPawSelectedPoints != 0,
                           child: Padding(
-                            padding: const EdgeInsets.only(top: 16),
+                            padding: const EdgeInsets.only(top: 16).w,
                             child: Row(
                               children: [
-                                lightBlack14w400Centre(data: 'Loyalty Points'),
+                                lightBlack14w400Centre(data: 'Loyalty Points Discount'),
                                 const Spacer(),
                                 orange14w500(
                                     data:
@@ -735,11 +735,11 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                         Visibility(
                           visible: cartViewModel.getPromoCodeDiscount != 0,
                           child: Padding(
-                            padding: const EdgeInsets.only(top: 16),
+                            padding: const EdgeInsets.only(top: 16).w,
                             child: Row(
                               children: [
                                 lightBlack14w400Centre(
-                                    data: 'Promo Rewarded Amount'),
+                                    data: 'Promo Code Discount'),
                                 const Spacer(),
                                 orange14w500(
                                     data:

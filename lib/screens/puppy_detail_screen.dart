@@ -38,7 +38,7 @@ class PuppyDetailScreen extends StatelessWidget {
           children: [
             SingleChildScrollView(
               child: Padding(
-                padding: const EdgeInsets.all(20),
+                padding: const EdgeInsets.all(20).w,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
@@ -53,7 +53,7 @@ class PuppyDetailScreen extends StatelessWidget {
                                   color: CustomColors.orangeColor),
                               child: Padding(
                                 padding: const EdgeInsets.symmetric(
-                                    horizontal: 10.0, vertical: 2),
+                                    horizontal: 10.0, vertical: 2).w,
                                 child: white12w400(data: 'Primary'),
                               )),
                         ),
@@ -81,8 +81,8 @@ class PuppyDetailScreen extends StatelessWidget {
                                         borderRadius: BorderRadius.circular(12),
                                       ),
                                     ),
-                                    child: const Padding(
-                                      padding: EdgeInsets.all(10),
+                                    child:  Padding(
+                                      padding: const EdgeInsets.all(10).w,
                                       child: Icon(
                                         Icons.delete_outline,
                                         size: 20,
@@ -118,7 +118,7 @@ class PuppyDetailScreen extends StatelessWidget {
                                     ),
                                   ),
                                   child: Padding(
-                                    padding: const EdgeInsets.all(10),
+                                    padding: const EdgeInsets.all(10).w,
                                     child: Icon(
                                       Icons.edit,
                                       size: 20,
@@ -180,8 +180,8 @@ class PuppyDetailScreen extends StatelessWidget {
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(20),
                                       color: CustomColors.orangeColor),
-                                  child: const Padding(
-                                    padding: EdgeInsets.all(10),
+                                  child:  Padding(
+                                    padding: const EdgeInsets.all(10).w,
                                     child: Icon(
                                       Icons.edit,
                                       size: 20,
@@ -208,8 +208,8 @@ class PuppyDetailScreen extends StatelessWidget {
                             controller: puppyViewModel.getPuppyNameController,
                             onChanged: (text) {},
                             keyboardType: TextInputType.name,
-                            decoration: const InputDecoration(
-                                contentPadding: EdgeInsets.all(20.0),
+                            decoration:  InputDecoration(
+                                contentPadding: const EdgeInsets.all(20.0).w,
                                 hintText: 'Entre Your Pet\'s Name'),
                           ),
                           SizedBox(
@@ -234,23 +234,23 @@ class PuppyDetailScreen extends StatelessWidget {
                         children: [
                           TextField(
                             controller: puppyViewModel.getPuppyBreedController,
-                            scrollPadding: EdgeInsets.only(bottom: 150),
+                            scrollPadding: const EdgeInsets.only(bottom: 150).w,
                             onChanged: (value) {
                               puppyViewModel.searchBreeds(value);
                             },
                             keyboardType: TextInputType.name,
-                            decoration: const InputDecoration(
+                            decoration:  InputDecoration(
                                 /*suffixIcon: Icon(
                                   Icons.keyboard_arrow_down,
                                   size: 25,
                                 ),*/
-                                contentPadding: EdgeInsets.all(20.0),
+                                contentPadding: const EdgeInsets.all(20.0).w,
                                 hintText: 'Enter Your Pet\'s Breed'),
                           ),
                           Visibility(
                             visible: puppyViewModel.getBreedslist.isNotEmpty,
                             child: Padding(
-                              padding: const EdgeInsets.only(top: 10.0),
+                              padding: const EdgeInsets.only(top: 10.0).w,
                               child: Container(
                                 decoration: BoxDecoration(
                                   border: Border.all(
@@ -262,7 +262,7 @@ class PuppyDetailScreen extends StatelessWidget {
                                 ),
                                 height: 200.h,
                                 child: ListView.builder(
-                                    padding: const EdgeInsets.all(5),
+                                    padding: const EdgeInsets.all(5).w,
                                     itemCount:
                                         puppyViewModel.getBreedslist.length,
                                     itemBuilder: (context, index) {
@@ -412,7 +412,7 @@ class PuppyDetailScreen extends StatelessWidget {
                     Visibility(
                       visible: puppyViewModel.getIsPuppyEdit,
                       child: Padding(
-                        padding: const EdgeInsets.only(top: 10.0),
+                        padding: const EdgeInsets.only(top: 10.0).w,
                         child: Row(
                           children: [
                             Expanded(
@@ -484,7 +484,7 @@ class PuppyDetailScreen extends StatelessWidget {
                                       height: 40.h,
                                       width: 60.w,
                                       padding: const EdgeInsets.only(
-                                          left: 10, right: 10),
+                                          left: 10, right: 10).w,
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(14),
                                         border: Border.all(
@@ -547,7 +547,7 @@ class PuppyDetailScreen extends StatelessWidget {
                                       height: 40.h,
                                       width: 60.w,
                                       padding: const EdgeInsets.only(
-                                          left: 10, right: 10),
+                                          left: 10, right: 10).w,
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(14),
                                         border: Border.all(
@@ -609,7 +609,7 @@ class PuppyDetailScreen extends StatelessWidget {
                                 Visibility(
                                   visible: puppyViewModel.getPuppyDetail!.month != 0,
                                   child: Padding(
-                                    padding: const EdgeInsets.only(left: 10),
+                                    padding: const EdgeInsets.only(left: 10).w,
                                     child: black14w500(
                                         data:
                                         '${puppyViewModel.getPuppyDetail!.month} Months'),
@@ -720,8 +720,8 @@ class PuppyDetailScreen extends StatelessWidget {
                                 puppyViewModel.setPuppyCurrentWeight(int.parse(text));
                       },*/
                                   keyboardType: TextInputType.number,
-                                  decoration: const InputDecoration(
-                                      contentPadding: EdgeInsets.all(20.0),
+                                  decoration:  InputDecoration(
+                                      contentPadding: EdgeInsets.all(20.0).w,
                                       hintText: 'Weight in KG'),
                                 ),
                               ),
@@ -781,7 +781,7 @@ class PuppyDetailScreen extends StatelessWidget {
                     Visibility(
                       visible: puppyViewModel.getIsPuppyEdit,
                       child: Padding(
-                        padding: const EdgeInsets.only(top: 10.0),
+                        padding: const EdgeInsets.only(top: 10.0).w,
                         child: Row(
                           children: [
                             Expanded(
@@ -850,7 +850,7 @@ class PuppyDetailScreen extends StatelessWidget {
                     Visibility(
                       visible: puppyViewModel.getIsPuppyEdit,
                       child: Padding(
-                        padding: const EdgeInsets.only(top: 10.0),
+                        padding: const EdgeInsets.only(top: 10.0).w,
                         child: Row(
                           children: [
                             Expanded(
@@ -943,7 +943,7 @@ class PuppyDetailScreen extends StatelessWidget {
                     ],
                   ),
                   child: Padding(
-                    padding: const EdgeInsets.all(20),
+                    padding: const EdgeInsets.all(20).w,
                     child: customButton(
                         text: 'Update',
                         onPressed: () {

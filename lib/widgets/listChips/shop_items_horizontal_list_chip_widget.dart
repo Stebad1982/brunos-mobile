@@ -35,7 +35,7 @@ Widget shopItemsHorizontalListChipWidget({required RecipeModel productDetail}) {
           borderRadius: BorderRadius.all(Radius.circular(20)),
         ),
         child: Padding(
-          padding: const EdgeInsets.only(left: 8.0, right: 8.0, top: 8.0),
+          padding: const EdgeInsets.only(left: 8.0, right: 8.0, top: 8.0).w,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -49,7 +49,7 @@ Widget shopItemsHorizontalListChipWidget({required RecipeModel productDetail}) {
                     ),
                   ),
                   child: Padding(
-                    padding: const EdgeInsets.all(15),
+                    padding: const EdgeInsets.all(15).w,
                     child: Center(
                       child: Image.network(
                         productDetail.media![0], height: 108.h,
@@ -57,7 +57,7 @@ Widget shopItemsHorizontalListChipWidget({required RecipeModel productDetail}) {
                     ),
                   )),
               Padding(
-                padding: const EdgeInsets.only(left: 8, right: 8, top: 12),
+                padding: const EdgeInsets.only(left: 8, right: 8, top: 12).w,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [

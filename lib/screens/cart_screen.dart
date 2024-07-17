@@ -48,7 +48,7 @@ class _CartScreenState extends State<CartScreen> with RouteAware {
                     shrinkWrap: true,
                     itemCount: cartViewModel.getCartList.length,
                     padding: const EdgeInsets.only(
-                        left: 20, right: 20, top: 20, bottom: 120),
+                        left: 20, right: 20, top: 20, bottom: 120).w,
                     itemBuilder: (BuildContext context, int index) {
                       return cartVerticalListChipWidget(
                           cartDetail: cartViewModel.getCartList[index],
@@ -74,7 +74,7 @@ class _CartScreenState extends State<CartScreen> with RouteAware {
                         ],
                       ),
                       child: Padding(
-                        padding: const EdgeInsets.all(20),
+                        padding: const EdgeInsets.all(20).w,
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
                           children: [

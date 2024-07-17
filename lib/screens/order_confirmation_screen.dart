@@ -40,7 +40,7 @@ class OrderConfirmationScreen extends StatelessWidget {
           body: SafeArea(
             child: Padding(
               padding:
-              const EdgeInsets.only(top: 30, bottom: 30, left: 20, right: 20),
+              const EdgeInsets.only(top: 30, bottom: 30, left: 20, right: 20).w,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -74,7 +74,7 @@ class OrderConfirmationScreen extends StatelessWidget {
                           ),
                         ),
                         child: Padding(
-                          padding: const EdgeInsets.all(20),
+                          padding: const EdgeInsets.all(20).w,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -103,6 +103,19 @@ class OrderConfirmationScreen extends StatelessWidget {
                                     width: 2.w,
                                   ),
                                   lightBlack14w400Centre(data: '${orderViewModel.getOrderCreateResponse.data!.deliveryDate}'),
+                                ],
+                              ),
+                              SizedBox(
+                                height: 20.h,
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  grey14w400(data: 'Discount'),
+                                  SizedBox(
+                                    width: 2.w,
+                                  ),
+                                  lightBlack14w400Centre(data: 'AED ${orderViewModel.getOrderCreateResponse.data!.discountPercentage}'),
                                 ],
                               ),
                               SizedBox(

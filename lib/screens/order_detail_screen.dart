@@ -33,7 +33,7 @@ class OrderDetailScreen extends StatelessWidget {
               height: 20,
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
+              padding: const EdgeInsets.symmetric(horizontal: 20).w,
               child: Container(
                 width: double.infinity,
                 decoration: ShapeDecoration(
@@ -45,7 +45,7 @@ class OrderDetailScreen extends StatelessWidget {
                   ),
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.all(20),
+                  padding: const EdgeInsets.all(20).w,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -170,7 +170,7 @@ class OrderDetailScreen extends StatelessWidget {
                 // physics: const NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
                 itemCount: orderViewModel.getSelectedOrder.orderItems!.length,
-                padding: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
+                padding: const EdgeInsets.only(left: 20, right: 20, bottom: 20).w,
                 itemBuilder: (BuildContext context, int index) {
                   return orderItemsVerticalListChipWidget(
                       itemIndex: index,

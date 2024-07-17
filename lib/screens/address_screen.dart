@@ -54,7 +54,7 @@ class _AddressScreenState extends State<AddressScreen> {
               children: [
                 SizedBox(height: 20.h,),
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                  padding: const EdgeInsets.symmetric(horizontal: 20.0).w,
                   child: black18w500(data: 'Select Address'),
                 ),
                 addressViewModel.getAllAddressResponse.data != null?
@@ -63,7 +63,7 @@ class _AddressScreenState extends State<AddressScreen> {
                     // physics: const NeverScrollableScrollPhysics(),
                     // shrinkWrap: true,
                     itemCount: addressViewModel.getAllAddressResponse.data!.length,
-                    padding: const EdgeInsets.only(left: 20, right: 20, top: 20,bottom: 40),
+                    padding: const EdgeInsets.only(left: 20, right: 20, top: 20,bottom: 40).w,
                     itemBuilder: (BuildContext context, int index) {
                       return addressVerticalListChipWidget(addressDetail: addressViewModel.getAllAddressResponse.data![index]);
                     },

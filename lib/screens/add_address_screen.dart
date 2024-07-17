@@ -56,7 +56,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
               children: [
                 Expanded(
                   child: GoogleMap(
-                    padding: const EdgeInsets.only(top: 70.0, right: 10),
+                    padding: const EdgeInsets.only(top: 70.0, right: 10).w,
                     zoomControlsEnabled: false,
                     //liteModeEnabled: true,
                     myLocationEnabled: true,
@@ -103,7 +103,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                     alignment: Alignment.centerRight,
                     child: Padding(
                       padding:
-                          const EdgeInsets.symmetric(horizontal: 20),
+                          const EdgeInsets.symmetric(horizontal: 20).w,
                       child: InkWell(
                         onTap: () {
                           /* addressViewModel
@@ -129,14 +129,14 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                   height: 10.h,
                 ),
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  padding: const EdgeInsets.symmetric(horizontal: 20).w,
                   child: TextField(
                     controller:
                         addressViewModel.getAddressController,
-                    decoration: const InputDecoration(
+                    decoration:  InputDecoration(
                       fillColor: CustomColors.whiteColor,
                       contentPadding: EdgeInsets.symmetric(
-                          horizontal: 20, vertical: 15),
+                          horizontal: 20, vertical: 15).w,
                       // border: const OutlineInputBorder(),
                       hintText: 'Search Location',
                     ),
@@ -159,7 +159,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                 Visibility(
                   visible: addressViewModel.getPrediction.isNotEmpty,
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    padding: const EdgeInsets.symmetric(horizontal: 20).w,
                     child: Card(
                       elevation: 5,
                       color: CustomColors.orangeColorTint,
@@ -174,7 +174,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                       ),
                       child: ListView.builder(
                           padding: EdgeInsets.symmetric(
-                              horizontal: 5.h, vertical: 5.h),
+                              horizontal: 5.h, vertical: 5.h).w,
                           shrinkWrap: true,
                           scrollDirection: Axis.vertical,
                           itemCount:
@@ -202,7 +202,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                                   },
                                   child: Padding(
                                     padding: const EdgeInsets.symmetric(
-                                        horizontal: 10, vertical: 5),
+                                        horizontal: 10, vertical: 5).w,
                                     child: Text(addressViewModel
                                         .getPrediction[index]
                                         .description!),
@@ -216,7 +216,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                 Visibility(
                   visible: MediaQuery.of(context).viewInsets.bottom == 0.0,
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20).w,
                     child: customButton(
                         text: addressViewModel.getIsAddressAdd
                             ? 'Next'

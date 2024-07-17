@@ -25,7 +25,7 @@ class MonthlyPlanScreen extends StatelessWidget {
         appBar: const AppBarWithBackWidget(
             heading: 'Monthly Plan', showPuppy: true, showCart: true),
         body: Padding(
-          padding: const EdgeInsets.all(20),
+          padding: const EdgeInsets.all(20).w,
           child: Stack(
             children: [
               SingleChildScrollView(
@@ -64,7 +64,7 @@ class MonthlyPlanScreen extends StatelessWidget {
                         ),
                         child: Padding(
                           padding: const EdgeInsets.symmetric(
-                              horizontal: 15.0, vertical: 22),
+                              horizontal: 15.0, vertical: 22).w,
                           child: Row(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
@@ -101,7 +101,7 @@ class MonthlyPlanScreen extends StatelessWidget {
                                   plansViewModel.getMonthlyEmptyTile1 != null
                                       ? Padding(
                                           padding:
-                                              const EdgeInsets.only(top: 5.0),
+                                              const EdgeInsets.only(top: 5.0).w,
                                           child: black14w500(
                                               data: plansViewModel
                                                   .getMonthlyEmptyTile1!.name!),
@@ -123,8 +123,8 @@ class MonthlyPlanScreen extends StatelessWidget {
                                   color: CustomColors.orangeColor,
                                   shape: OvalBorder(),
                                 ),
-                                child: const Padding(
-                                  padding: EdgeInsets.all(10),
+                                child:  Padding(
+                                  padding: EdgeInsets.all(10).w,
                                   child: Icon(
                                     Icons.add,
                                     size: 20,
@@ -154,7 +154,7 @@ class MonthlyPlanScreen extends StatelessWidget {
                         ),
                         child: Padding(
                           padding: const EdgeInsets.symmetric(
-                              horizontal: 15.0, vertical: 22),
+                              horizontal: 15.0, vertical: 22).w,
                           child: Row(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
@@ -191,7 +191,7 @@ class MonthlyPlanScreen extends StatelessWidget {
                                   plansViewModel.getMonthlyEmptyTile2 != null
                                       ? Padding(
                                           padding:
-                                              const EdgeInsets.only(top: 5.0),
+                                              const EdgeInsets.only(top: 5.0).w,
                                           child: black14w500(
                                               data: plansViewModel
                                                   .getMonthlyEmptyTile2!.name!),
@@ -213,8 +213,8 @@ class MonthlyPlanScreen extends StatelessWidget {
                                   color: CustomColors.orangeColor,
                                   shape: OvalBorder(),
                                 ),
-                                child: const Padding(
-                                  padding: EdgeInsets.all(10),
+                                child:  Padding(
+                                  padding: EdgeInsets.all(10).w,
                                   child: Icon(
                                     Icons.add,
                                     size: 20,
@@ -244,7 +244,7 @@ class MonthlyPlanScreen extends StatelessWidget {
                         ),
                         child: Padding(
                           padding: const EdgeInsets.symmetric(
-                              horizontal: 15.0, vertical: 22),
+                              horizontal: 15.0, vertical: 22).w,
                           child: Row(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
@@ -281,7 +281,7 @@ class MonthlyPlanScreen extends StatelessWidget {
                                   plansViewModel.getMonthlyEmptyTile3 != null
                                       ? Padding(
                                           padding:
-                                              const EdgeInsets.only(top: 5.0),
+                                              const EdgeInsets.only(top: 5.0).w,
                                           child: black14w500(
                                               data: plansViewModel
                                                   .getMonthlyEmptyTile3!.name!),
@@ -303,8 +303,8 @@ class MonthlyPlanScreen extends StatelessWidget {
                                   color: CustomColors.orangeColor,
                                   shape: OvalBorder(),
                                 ),
-                                child: const Padding(
-                                  padding: EdgeInsets.all(10),
+                                child:  Padding(
+                                  padding: EdgeInsets.all(10).w,
                                   child: Icon(
                                     Icons.add,
                                     size: 20,

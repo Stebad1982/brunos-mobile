@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
 import '../view_models/faqs_blogs_news_view_model.dart';
@@ -34,7 +35,7 @@ class _NewsScreenState extends State<NewsScreen> {
              // physics: NeverScrollableScrollPhysics(),
              // shrinkWrap: true,
               itemCount: faqsBlogsNewsViewModel.getBlogsNewsResponse.data!.length,
-              padding: const EdgeInsets.symmetric(vertical: 20),
+              padding: const EdgeInsets.symmetric(vertical: 20).w,
               itemBuilder: (BuildContext context, int index) {
                 return newsBlogsVerticalListChipWidget(data: faqsBlogsNewsViewModel.getBlogsNewsResponse.data![index]);
               },

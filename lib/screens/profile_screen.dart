@@ -26,7 +26,7 @@ class ProfileScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Padding(
           padding:
-              const EdgeInsets.only(top: 30, bottom: 20, left: 20, right: 20),
+              const EdgeInsets.only(top: 30, bottom: 20, left: 20, right: 20).w,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -108,7 +108,7 @@ class ProfileScreen extends StatelessWidget {
                   title: Align(
                       alignment: Alignment.centerLeft,
                       child: lightBlack14w400Centre(data: 'Orders')),
-                  contentPadding: const EdgeInsets.all(0),
+                  contentPadding: const EdgeInsets.all(0).w,
                   minLeadingWidth: 12,
                   shape: const Border(
                     bottom: BorderSide(color: CustomColors.greyMediumColor),
@@ -135,7 +135,7 @@ class ProfileScreen extends StatelessWidget {
                   title: Align(
                       alignment: Alignment.centerLeft,
                       child: lightBlack14w400Centre(data: 'My Pets')),
-                  contentPadding: const EdgeInsets.all(0),
+                  contentPadding: const EdgeInsets.all(0).w,
                   minLeadingWidth: 12,
                   trailing: const Icon(
                     Icons.arrow_forward_ios_rounded,
@@ -156,7 +156,7 @@ class ProfileScreen extends StatelessWidget {
                   title: Align(
                       alignment: Alignment.centerLeft,
                       child: lightBlack14w400Centre(data: 'Payment')),
-                  contentPadding: const EdgeInsets.all(0),
+                  contentPadding: const EdgeInsets.all(0).w,
                   minLeadingWidth: 12,
                   trailing: const Icon(
                     Icons.arrow_forward_ios_rounded,
@@ -187,7 +187,7 @@ class ProfileScreen extends StatelessWidget {
                   title: Align(
                       alignment: Alignment.centerLeft,
                       child: lightBlack14w400Centre(data: 'Shipping Address')),
-                  contentPadding: const EdgeInsets.all(0),
+                  contentPadding: const EdgeInsets.all(0).w,
                   minLeadingWidth: 12,
                   trailing: const Icon(
                     Icons.arrow_forward_ios_rounded,
@@ -209,7 +209,7 @@ class ProfileScreen extends StatelessWidget {
                   title: Align(
                       alignment: Alignment.centerLeft,
                       child: lightBlack14w400Centre(data: 'Feedback')),
-                  contentPadding: const EdgeInsets.all(0),
+                  contentPadding: const EdgeInsets.all(0).w,
                   minLeadingWidth: 12,
                   trailing: const Icon(
                     Icons.arrow_forward_ios_rounded,
@@ -237,7 +237,7 @@ class ProfileScreen extends StatelessWidget {
                   title: Align(
                       alignment: Alignment.centerLeft,
                       child: lightBlack14w400Centre(data: 'Contact us')),
-                  contentPadding: const EdgeInsets.all(0),
+                  contentPadding: const EdgeInsets.all(0).w,
                   minLeadingWidth: 12,
                   trailing: const Icon(
                     Icons.arrow_forward_ios_rounded,
@@ -258,7 +258,7 @@ class ProfileScreen extends StatelessWidget {
                   title: Align(
                       alignment: Alignment.centerLeft,
                       child: lightBlack14w400Centre(data: 'FAQ')),
-                  contentPadding: const EdgeInsets.all(0),
+                  contentPadding: const EdgeInsets.all(0).w,
                   minLeadingWidth: 12,
                   trailing: const Icon(
                     Icons.arrow_forward_ios_rounded,
@@ -279,7 +279,7 @@ class ProfileScreen extends StatelessWidget {
                   title: Align(
                       alignment: Alignment.centerLeft,
                       child: lightBlack14w400Centre(data: 'Blogs')),
-                  contentPadding: const EdgeInsets.all(0),
+                  contentPadding: const EdgeInsets.all(0).w,
                   minLeadingWidth: 12,
                   trailing: const Icon(
                     Icons.arrow_forward_ios_rounded,
@@ -300,7 +300,7 @@ class ProfileScreen extends StatelessWidget {
                   title: Align(
                       alignment: Alignment.centerLeft,
                       child: lightBlack14w400Centre(data: 'News Updates')),
-                  contentPadding: const EdgeInsets.all(0),
+                  contentPadding: const EdgeInsets.all(0).w,
                   minLeadingWidth: 12,
                   trailing: const Icon(
                     Icons.arrow_forward_ios_rounded,
@@ -318,7 +318,7 @@ class ProfileScreen extends StatelessWidget {
                   title: Align(
                       alignment: Alignment.centerLeft,
                       child: lightBlack14w400Centre(data: 'Delete Account')),
-                  contentPadding: const EdgeInsets.all(0),
+                  contentPadding: const EdgeInsets.all(0).w,
                   minLeadingWidth: 12,
                   trailing: const Icon(
                     Icons.arrow_forward_ios_rounded,

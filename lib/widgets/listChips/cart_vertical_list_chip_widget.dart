@@ -46,7 +46,7 @@ Widget cartVerticalListChipWidget(
             ),
           ),
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 15),
+            padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 15).w,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -98,9 +98,9 @@ Widget cartVerticalListChipWidget(
                             borderRadius: BorderRadius.circular(12),
                           ),
                         ),
-                        child: const Padding(
-                          padding: EdgeInsets.all(10),
-                          child: Icon(
+                        child:  Padding(
+                          padding: const EdgeInsets.all(10).w,
+                          child: const Icon(
                             Icons.edit,
                             size: 20,
                             color: CustomColors.orangeColor,
@@ -127,8 +127,8 @@ Widget cartVerticalListChipWidget(
                             borderRadius: BorderRadius.circular(12),
                           ),
                         ),
-                        child: const Padding(
-                          padding: EdgeInsets.all(10),
+                        child:  Padding(
+                          padding: const EdgeInsets.all(10).w,
                           child: Icon(
                             Icons.delete_outline,
                             size: 20,

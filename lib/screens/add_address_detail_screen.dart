@@ -37,7 +37,7 @@ class _AddAddressDetailScreenState extends State<AddAddressDetailScreen> {
               SingleChildScrollView(
                 child: Padding(
                   padding: const EdgeInsets.only(
-                      top: 30, bottom: 120, left: 20, right: 20),
+                      top: 30, bottom: 120, left: 20, right: 20).w,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -62,7 +62,7 @@ class _AddAddressDetailScreenState extends State<AddAddressDetailScreen> {
                         onChanged: (text) {},
                         //keyboardType: TextInputType.streetAddress,
                         decoration: InputDecoration(
-                          contentPadding: const EdgeInsets.all(16),
+                          contentPadding: const EdgeInsets.all(16).w,
                           //hintText: 'Address',
                           prefixIcon: SvgPicture.asset(mapPin,
                               height: 5, width: 5, fit: BoxFit.scaleDown),
@@ -78,8 +78,8 @@ class _AddAddressDetailScreenState extends State<AddAddressDetailScreen> {
                               controller: addressViewModel.getFlatHouseNumberController,
                               onChanged: (text) {},
                               keyboardType: TextInputType.streetAddress,
-                              decoration: const InputDecoration(
-                                contentPadding: EdgeInsets.all(20.0),
+                              decoration:  InputDecoration(
+                                contentPadding: EdgeInsets.all(20.0).w,
                                 hintText: 'Flat/House No#',
                               ),
                             ),
@@ -92,8 +92,8 @@ class _AddAddressDetailScreenState extends State<AddAddressDetailScreen> {
                               controller: addressViewModel.getStreetController,
                               onChanged: (text) {},
                               keyboardType: TextInputType.streetAddress,
-                              decoration: const InputDecoration(
-                                contentPadding: EdgeInsets.all(20.0),
+                              decoration:  InputDecoration(
+                                contentPadding: EdgeInsets.all(20.0).w,
                                 hintText: 'Street',
                               ),
                             ),
@@ -110,8 +110,8 @@ class _AddAddressDetailScreenState extends State<AddAddressDetailScreen> {
                               controller: addressViewModel.getAreaController,
                               onChanged: (text) {},
                               keyboardType: TextInputType.streetAddress,
-                              decoration: const InputDecoration(
-                                contentPadding: EdgeInsets.all(20.0),
+                              decoration:  InputDecoration(
+                                contentPadding: EdgeInsets.all(20.0).w,
                                 hintText: 'Area',
                               ),
                             ),
@@ -124,8 +124,8 @@ class _AddAddressDetailScreenState extends State<AddAddressDetailScreen> {
                               controller: addressViewModel.getFloorController,
                               onChanged: (text) {},
                               keyboardType: TextInputType.streetAddress,
-                              decoration: const InputDecoration(
-                                contentPadding: EdgeInsets.all(20.0),
+                              decoration:  InputDecoration(
+                                contentPadding: EdgeInsets.all(20.0).w,
                                 hintText: 'Floor/Unit#',
                               ),
                             ),
@@ -149,8 +149,8 @@ class _AddAddressDetailScreenState extends State<AddAddressDetailScreen> {
                             addressViewModel.getDeliveryInstructionController,
                         keyboardType: TextInputType.multiline,
                         maxLength: 300,
-                        decoration: const InputDecoration(
-                          contentPadding: EdgeInsets.all(20),
+                        decoration:  InputDecoration(
+                          contentPadding: EdgeInsets.all(20).w,
                           hintText: 'Note to rider - eg. landmark',
                         ),
                       ),
@@ -163,8 +163,8 @@ class _AddAddressDetailScreenState extends State<AddAddressDetailScreen> {
                         ],
                         controller: addressViewModel.getContactNameController,
                         keyboardType: TextInputType.name,
-                        decoration: const InputDecoration(
-                          contentPadding: EdgeInsets.all(20.0),
+                        decoration:  InputDecoration(
+                          contentPadding: EdgeInsets.all(20.0).w,
                           hintText: 'Contact Person Name ',
                         ),
                       ),
@@ -177,8 +177,8 @@ class _AddAddressDetailScreenState extends State<AddAddressDetailScreen> {
                         ],
                         controller: addressViewModel.getContactNumberController,
                         keyboardType: TextInputType.phone,
-                        decoration: const InputDecoration(
-                          contentPadding: EdgeInsets.all(20.0),
+                        decoration:  InputDecoration(
+                          contentPadding: EdgeInsets.all(20.0).w,
                           hintText: 'Contact person number ',
                         ),
                       ),
@@ -234,7 +234,7 @@ class _AddAddressDetailScreenState extends State<AddAddressDetailScreen> {
                                                 : CustomColors.lightGreyColor),
                                   ),
                                   child: Padding(
-                                    padding: const EdgeInsets.all(10),
+                                    padding: const EdgeInsets.all(10).w,
                                     child: SvgPicture.asset(
                                       homeAddressIcon,
                                       width: 24.w,
@@ -283,7 +283,7 @@ class _AddAddressDetailScreenState extends State<AddAddressDetailScreen> {
                                                 : CustomColors.lightGreyColor),
                                   ),
                                   child: Padding(
-                                    padding: const EdgeInsets.all(10),
+                                    padding: const EdgeInsets.all(10).w,
                                     child: SvgPicture.asset(
                                       workAddressIcon,
                                       width: 24.w,
@@ -332,7 +332,7 @@ class _AddAddressDetailScreenState extends State<AddAddressDetailScreen> {
                                                 : CustomColors.lightGreyColor),
                                   ),
                                   child: Padding(
-                                    padding: const EdgeInsets.all(10),
+                                    padding: const EdgeInsets.all(10).w,
                                     child: SvgPicture.asset(
                                       partnerAddressIcon,
                                       width: 24.w,
@@ -382,7 +382,7 @@ class _AddAddressDetailScreenState extends State<AddAddressDetailScreen> {
                                                 : CustomColors.lightGreyColor),
                                   ),
                                   child: Padding(
-                                    padding: const EdgeInsets.all(10),
+                                    padding: const EdgeInsets.all(10).w,
                                     child: SvgPicture.asset(
                                       otherAddressIcon,
                                       width: 24.w,
@@ -433,7 +433,7 @@ class _AddAddressDetailScreenState extends State<AddAddressDetailScreen> {
                       ],
                     ),
                     child: Padding(
-                      padding: const EdgeInsets.all(20.0),
+                      padding: const EdgeInsets.all(20.0).w,
                       child: customButton(
                           text: 'Add',
                           onPressed: () async {

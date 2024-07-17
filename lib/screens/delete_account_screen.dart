@@ -19,7 +19,7 @@ class DeleteAccountScreen extends StatelessWidget {
       appBar: const AppBarWithBackWidget(
           heading: 'Delete Account', showPuppy: false, showCart: false),
       body: Padding(
-        padding: const EdgeInsets.all(20),
+        padding: const EdgeInsets.all(20).w,
         child: Column(
           children: [
             black16w500(

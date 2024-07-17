@@ -35,7 +35,7 @@ class RegisterUserScreen extends StatelessWidget {
             child: SingleChildScrollView(
               child: Padding(
                 padding: const EdgeInsets.only(
-                    top: 30, bottom: 20, left: 20, right: 20),
+                    top: 30, bottom: 20, left: 20, right: 20).w,
                 child: Stack(
                   children: [
                     Column(

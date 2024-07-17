@@ -40,7 +40,7 @@ class _PuppiesListScreenState extends State<PuppiesListScreen> {
         heading: 'My Pets', showPuppy: false,showCart: false
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 20.0),
+        padding: const EdgeInsets.symmetric(vertical: 20.0).w,
         child: SingleChildScrollView(
           child: Column(
             children: [
@@ -50,7 +50,7 @@ class _PuppiesListScreenState extends State<PuppiesListScreen> {
                   Navigator.pushNamed(context, puppyCreationRoute);
                 },
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                  padding: const EdgeInsets.symmetric(horizontal: 20.0).w,
                   child: Container(
                     decoration: ShapeDecoration(
                       color: CustomColors.lightGreyColor,
@@ -60,7 +60,7 @@ class _PuppiesListScreenState extends State<PuppiesListScreen> {
                     ),
                     child: Padding(
                       padding: const EdgeInsets.symmetric(
-                          horizontal: 16.0, vertical: 20),
+                          horizontal: 16.0, vertical: 20).w,
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
@@ -72,7 +72,7 @@ class _PuppiesListScreenState extends State<PuppiesListScreen> {
                                 ),
                               ),
                               child: Padding(
-                                padding: const EdgeInsets.all(10.0),
+                                padding: const EdgeInsets.all(10.0).w,
                                 child: SvgPicture.asset(
                                     dogFootPrint,
                                     height: 20.h
@@ -93,8 +93,8 @@ class _PuppiesListScreenState extends State<PuppiesListScreen> {
                                 borderRadius: BorderRadius.circular(12),
                               ),
                             ),
-                            child: const Padding(
-                              padding: EdgeInsets.all(10),
+                            child:  Padding(
+                              padding: EdgeInsets.all(10).w,
                               child: Icon(
                                 Icons.add,
                                 size: 20,
@@ -112,7 +112,7 @@ class _PuppiesListScreenState extends State<PuppiesListScreen> {
                 height: 20.h,
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                padding: const EdgeInsets.symmetric(horizontal: 20.0).w,
                 child: lightBlack14w400Centre(
                     left: true,
                     data:
@@ -123,7 +123,7 @@ class _PuppiesListScreenState extends State<PuppiesListScreen> {
                 physics: const NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
                 itemCount: puppyViewModel.getPuppiesResponse.data!.length,
-                padding: const EdgeInsets.only(left: 20, right: 20, top: 30),
+                padding: const EdgeInsets.only(left: 20, right: 20, top: 30).w,
                 itemBuilder: (BuildContext context, int index) {
                   return puppyVerticalListChipWidget(puppyDetail: puppyViewModel.getPuppiesResponse.data![index]);
                 },

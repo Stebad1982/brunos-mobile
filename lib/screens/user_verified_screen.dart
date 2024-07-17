@@ -18,7 +18,7 @@ class UserVerifiedScreen extends StatelessWidget {
       body: SafeArea(
         child: Padding(
           padding:
-          const EdgeInsets.only(top: 30, bottom: 30, left: 20, right: 20),
+          const EdgeInsets.only(top: 30, bottom: 30, left: 20, right: 20).w,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

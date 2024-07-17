@@ -21,7 +21,7 @@ class OneTimePlanScreen extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 20),
+          padding: const EdgeInsets.symmetric(vertical: 20).w,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
