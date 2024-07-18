@@ -104,7 +104,7 @@ class ProductDetailScreen extends StatelessWidget {
                                   ),
                                   black24w500Centre(
                                       data:
-                                          '${plansViewModel.getSelectedRecipe.weight} Kg')
+                                         plansViewModel.getSelectedRecipe.weight!)
                                 ],
                               ),
                             ),
@@ -166,8 +166,8 @@ class ProductDetailScreen extends StatelessWidget {
                                           ),
                                         ),
                                         child: Padding(
-                                          padding: EdgeInsets.all(10).w,
-                                          child: Icon(
+                                          padding: const EdgeInsets.all(10).w,
+                                          child: const Icon(
                                             Icons.remove,
                                             size: 20,
                                             color: CustomColors.greyColor,
@@ -204,8 +204,8 @@ class ProductDetailScreen extends StatelessWidget {
                                           ),
                                         ),
                                         child:  Padding(
-                                          padding: EdgeInsets.all(10).w,
-                                          child: Icon(
+                                          padding: const EdgeInsets.all(10).w,
+                                          child: const Icon(
                                             Icons.add,
                                             size: 20,
                                             color: CustomColors.greyColor,

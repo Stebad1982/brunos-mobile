@@ -80,6 +80,7 @@ class PlansViewModel with ChangeNotifier {
   void setSelectedItemSize(ItemSizes value) {
     _selectedRecipe.selectedItemSize = value;
     _selectedRecipe.pricePerKG = value.price;
+    _selectedRecipe.weight = '${value.weight} ${value.unit}' ;
     notifyListeners();
   }
 

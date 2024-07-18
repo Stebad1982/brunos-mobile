@@ -184,7 +184,7 @@ class CartViewModel with ChangeNotifier {
           .data!
           .card!
           .paymentMethodId!,
-      discountPercentage: _promoCodeDiscount + _pawPointDiscount.round(),
+      discount: _promoCodeDiscount + _pawPointDiscount.round(),
       deliveryDate: DateTimeFormatter.showDateFormat3(_selectedDay),
       promoCodeId: _promoCodeController.text,
       cartItems: _cartList,

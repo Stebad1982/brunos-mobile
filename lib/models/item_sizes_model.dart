@@ -2,13 +2,17 @@ class ItemSizes {
   String? name;
   int? price;
   int? stock;
+  int? weight;
+  String? unit;
 
-  ItemSizes({this.name, this.price, this.stock});
+  ItemSizes({this.name, this.price, this.stock, this.weight, this.unit});
 
   ItemSizes.fromJson(Map<String, dynamic> json) {
     name = json['name'];
     price = json['price'];
     stock = json['stock'];
+    weight = json['weight'];
+    unit = json['unit'];
   }
 
   Map<String, dynamic> toJson() {
@@ -16,6 +20,8 @@ class ItemSizes {
     data['name'] = this.name;
     data['price'] = this.price;
     data['stock'] = this.stock;
+    data['weight'] = this.weight;
+    data['unit'] = this.unit;
     return data;
   }
 }

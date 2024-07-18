@@ -123,7 +123,7 @@ class OrderConfirmationScreen extends StatelessWidget {
                                 height: 20.h,
                               ),
                               Visibility(
-                                visible: orderViewModel.getOrderCreateResponse.data!.discountPercentage != 0,
+                                visible: orderViewModel.getOrderCreateResponse.data!.discount != 0,
                                 child: Column(
                                   children: [
                                     Row(
@@ -133,7 +133,7 @@ class OrderConfirmationScreen extends StatelessWidget {
                                         SizedBox(
                                           width: 2.w,
                                         ),
-                                        lightBlack14w400Centre(data: 'AED ${orderViewModel.getOrderCreateResponse.data!.discountPercentage}'),
+                                        lightBlack14w400Centre(data: 'AED ${orderViewModel.getOrderCreateResponse.data!.discount}'),
                                       ],
                                     ),
                                     SizedBox(

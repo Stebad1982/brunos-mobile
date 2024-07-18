@@ -140,7 +140,8 @@ class AuthViewModel with ChangeNotifier {
   void setBannerResponse(BannersResponse value) {
     _bannersList.clear();
     if (value.data != null) {
-      _bannersList.addAll(value.data!.where((element) => element.isFeatured!).toList());
+      final List<BannerData> featuredList = value.data!.where((element) => element.isFeatured!).toList();
+      _bannersList.addAll(featuredList);
     }
     notifyListeners();
   }

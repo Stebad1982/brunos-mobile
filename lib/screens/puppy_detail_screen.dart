@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:brunos_kitchen/utils/custom_buttons.dart';
 import 'package:brunos_kitchen/utils/custom_font_style.dart';
 import 'package:brunos_kitchen/utils/date_time_formatter.dart';
+import 'package:brunos_kitchen/widgets/dialogs/discription_dialog.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -21,6 +22,7 @@ import '../widgets/bottomSheet/date_picker_bottom_sheet_widget.dart';
 import '../widgets/bottomSheet/image_taking_bottom_sheet_widget.dart';
 import '../widgets/dialogs/delete_pet_confirmation_dialog.dart';
 import '../widgets/circular_network_image_widget.dart';
+import '../widgets/dialogs/image_dialog.dart';
 
 class PuppyDetailScreen extends StatelessWidget {
   const PuppyDetailScreen({Key? key}) : super(key: key);
@@ -53,7 +55,8 @@ class PuppyDetailScreen extends StatelessWidget {
                                   color: CustomColors.orangeColor),
                               child: Padding(
                                 padding: const EdgeInsets.symmetric(
-                                    horizontal: 10.0, vertical: 2).w,
+                                        horizontal: 10.0, vertical: 2)
+                                    .w,
                                 child: white12w400(data: 'Primary'),
                               )),
                         ),
@@ -81,7 +84,7 @@ class PuppyDetailScreen extends StatelessWidget {
                                         borderRadius: BorderRadius.circular(12),
                                       ),
                                     ),
-                                    child:  Padding(
+                                    child: Padding(
                                       padding: const EdgeInsets.all(10).w,
                                       child: Icon(
                                         Icons.delete_outline,
@@ -180,7 +183,7 @@ class PuppyDetailScreen extends StatelessWidget {
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(20),
                                       color: CustomColors.orangeColor),
-                                  child:  Padding(
+                                  child: Padding(
                                     padding: const EdgeInsets.all(10).w,
                                     child: Icon(
                                       Icons.edit,
@@ -208,7 +211,7 @@ class PuppyDetailScreen extends StatelessWidget {
                             controller: puppyViewModel.getPuppyNameController,
                             onChanged: (text) {},
                             keyboardType: TextInputType.name,
-                            decoration:  InputDecoration(
+                            decoration: InputDecoration(
                                 contentPadding: const EdgeInsets.all(20.0).w,
                                 hintText: 'Entre Your Pet\'s Name'),
                           ),
@@ -239,7 +242,7 @@ class PuppyDetailScreen extends StatelessWidget {
                               puppyViewModel.searchBreeds(value);
                             },
                             keyboardType: TextInputType.name,
-                            decoration:  InputDecoration(
+                            decoration: InputDecoration(
                                 /*suffixIcon: Icon(
                                   Icons.keyboard_arrow_down,
                                   size: 25,
@@ -386,14 +389,29 @@ class PuppyDetailScreen extends StatelessWidget {
                       height: 10.h,
                     ),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         black14w500(
                             data:
                                 'Your ${puppyViewModel.getPuppyDetail!.name} is'),
                         SizedBox(
-                          width: 10.w,
+                          width: 5.w,
                         ),
+                        InkWell(
+                          onTap: () {
+                            descriptionDialog(
+                              context: context,
+                              height: 290.h,
+                              title: 'Check Weight',
+                              description:
+                                  'Select Underweight if you believe your dog needs to gain some more weight, the calculated daily portion will be slightly increased. \n\nSelect Ideal Weight if you believe your dog’s wight is ideal.\n\nSelect Overweight if you believe your dog needs to lose some weight, the calculated daily portion will be slightly decreased.',
+                            );
+                          },
+                          child: const Icon(
+                            Icons.info,
+                            size: 16,
+                          ),
+                        ),
+                        Spacer(),
                         Visibility(
                           visible: !puppyViewModel.getIsPuppyEdit,
                           child: black14w500(
@@ -468,155 +486,171 @@ class PuppyDetailScreen extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        black14w500(data: 'How old is ${puppyViewModel.getPuppyDetail!.name}?'),
+                        black14w500(
+                            data:
+                                'How old is ${puppyViewModel.getPuppyDetail!.name}?'),
                         puppyViewModel.getIsPuppyEdit
                             ? Row(
-                              children: [
-                                DropdownButtonHideUnderline(
-                                  child: DropdownButton2<int>(
-                                    style: TextStyle(
-                                      fontFamily: 'CircularStd',
-                                      fontSize: 14.sp,
-                                      color: CustomColors
-                                          .blackColor, // <-- TextFormField input color
-                                    ),
-                                    buttonStyleData: ButtonStyleData(
-                                      height: 40.h,
-                                      width: 60.w,
-                                      padding: const EdgeInsets.only(
-                                          left: 10, right: 10).w,
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(14),
-                                        border: Border.all(
-                                          color: Colors.black26,
-                                        ),
+                                children: [
+                                  DropdownButtonHideUnderline(
+                                    child: DropdownButton2<int>(
+                                      style: TextStyle(
+                                        fontFamily: 'CircularStd',
+                                        fontSize: 14.sp,
+                                        color: CustomColors
+                                            .blackColor, // <-- TextFormField input color
+                                      ),
+                                      buttonStyleData: ButtonStyleData(
+                                        height: 40.h,
+                                        width: 60.w,
+                                        padding: const EdgeInsets.only(
+                                                left: 10, right: 10)
+                                            .w,
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(14),
+                                          border: Border.all(
+                                            color: Colors.black26,
+                                          ),
 
-                                        //  color: Colors.redAccent,
+                                          //  color: Colors.redAccent,
+                                        ),
+                                        // elevation: 2,
                                       ),
-                                      // elevation: 2,
-                                    ),
-                                    dropdownStyleData: DropdownStyleData(
-                                      maxHeight: 200,
-                                      width: 60.w,
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(14),
-                                        //  color: Colors.redAccent,
+                                      dropdownStyleData: DropdownStyleData(
+                                        maxHeight: 200,
+                                        width: 60.w,
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(14),
+                                          //  color: Colors.redAccent,
+                                        ),
+                                        offset: const Offset(0, -10),
+                                        scrollbarTheme: ScrollbarThemeData(
+                                          radius: const Radius.circular(40),
+                                          thickness:
+                                              MaterialStateProperty.all<double>(
+                                                  6),
+                                          thumbVisibility:
+                                              MaterialStateProperty.all<bool>(
+                                                  true),
+                                        ),
                                       ),
-                                      offset: const Offset(0, -10),
-                                      scrollbarTheme: ScrollbarThemeData(
-                                        radius: const Radius.circular(40),
-                                        thickness:
-                                            MaterialStateProperty.all<double>(
-                                                6),
-                                        thumbVisibility:
-                                            MaterialStateProperty.all<bool>(
-                                                true),
-                                      ),
-                                    ),
-                                    // borderRadius: BorderRadius.circular(15.0),
-                                    /* hint: Text(
+                                      // borderRadius: BorderRadius.circular(15.0),
+                                      /* hint: Text(
                                 'Year',
                                 style: TextStyle(
                                   fontSize: 14,
                                   color: Theme.of(context).hintColor,
                                 ),
                                   ),*/
-                                    value: puppyViewModel.getPuppyYear,
-                                    onChanged: (newValue) {
-                                      puppyViewModel.setPuppyYear(newValue!);
-                                    },
-                                    items: puppyViewModel.getListOfYear
-                                        .map((int years) {
-                                      return DropdownMenuItem<int>(
-                                        value: years,
-                                        child: Text(years.toString()),
-                                      );
-                                    }).toList(),
+                                      value: puppyViewModel.getPuppyYear,
+                                      onChanged: (newValue) {
+                                        puppyViewModel.setPuppyYear(newValue!);
+                                      },
+                                      items: puppyViewModel.getListOfYear
+                                          .map((int years) {
+                                        return DropdownMenuItem<int>(
+                                          value: years,
+                                          child: Text(years.toString()),
+                                        );
+                                      }).toList(),
+                                    ),
                                   ),
-                                ),
-                                black14w500(data: ' Years '),
-                                DropdownButtonHideUnderline(
-                                  child: DropdownButton2<int>(
-                                    style: TextStyle(
-                                      fontFamily: 'CircularStd',
-                                      fontSize: 14.sp,
-                                      color: CustomColors
-                                          .blackColor, // <-- TextFormField input color
-                                    ),
-                                    buttonStyleData: ButtonStyleData(
-                                      height: 40.h,
-                                      width: 60.w,
-                                      padding: const EdgeInsets.only(
-                                          left: 10, right: 10).w,
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(14),
-                                        border: Border.all(
-                                          color: Colors.black26,
-                                        ),
+                                  black14w500(data: ' Years '),
+                                  DropdownButtonHideUnderline(
+                                    child: DropdownButton2<int>(
+                                      style: TextStyle(
+                                        fontFamily: 'CircularStd',
+                                        fontSize: 14.sp,
+                                        color: CustomColors
+                                            .blackColor, // <-- TextFormField input color
+                                      ),
+                                      buttonStyleData: ButtonStyleData(
+                                        height: 40.h,
+                                        width: 60.w,
+                                        padding: const EdgeInsets.only(
+                                                left: 10, right: 10)
+                                            .w,
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(14),
+                                          border: Border.all(
+                                            color: Colors.black26,
+                                          ),
 
-                                        //  color: Colors.redAccent,
+                                          //  color: Colors.redAccent,
+                                        ),
+                                        // elevation: 2,
                                       ),
-                                      // elevation: 2,
-                                    ),
-                                    dropdownStyleData: DropdownStyleData(
-                                      maxHeight: 200,
-                                      width: 60.w,
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(14),
-                                        //  color: Colors.redAccent,
+                                      dropdownStyleData: DropdownStyleData(
+                                        maxHeight: 200,
+                                        width: 60.w,
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(14),
+                                          //  color: Colors.redAccent,
+                                        ),
+                                        offset: const Offset(0, -10),
+                                        scrollbarTheme: ScrollbarThemeData(
+                                          radius: const Radius.circular(40),
+                                          thickness:
+                                              MaterialStateProperty.all<double>(
+                                                  6),
+                                          thumbVisibility:
+                                              MaterialStateProperty.all<bool>(
+                                                  true),
+                                        ),
                                       ),
-                                      offset: const Offset(0, -10),
-                                      scrollbarTheme: ScrollbarThemeData(
-                                        radius: const Radius.circular(40),
-                                        thickness:
-                                        MaterialStateProperty.all<double>(6),
-                                        thumbVisibility:
-                                        MaterialStateProperty.all<bool>(true),
-                                      ),
-                                    ),
-                                    // borderRadius: BorderRadius.circular(15.0),
-                                    /* hint: Text(
+                                      // borderRadius: BorderRadius.circular(15.0),
+                                      /* hint: Text(
                                 'Year',
                                 style: TextStyle(
                                 fontSize: 14,
                                 color: Theme.of(context).hintColor,
                                 ),
                               ),*/
-                                    value: puppyViewModel.getPuppyMonths,
-                                    onChanged: (newValue) {
-                                      puppyViewModel.setPuppyMonths(newValue!);
-                                    },
-                                    items: puppyViewModel.getListOfMonths
-                                        .map((int months) {
-                                      return DropdownMenuItem<int>(
-                                        value: months,
-                                        child: Text(months.toString()),
-                                      );
-                                    }).toList(),
+                                      value: puppyViewModel.getPuppyMonths,
+                                      onChanged: (newValue) {
+                                        puppyViewModel
+                                            .setPuppyMonths(newValue!);
+                                      },
+                                      items: puppyViewModel.getListOfMonths
+                                          .map((int months) {
+                                        return DropdownMenuItem<int>(
+                                          value: months,
+                                          child: Text(months.toString()),
+                                        );
+                                      }).toList(),
+                                    ),
                                   ),
-                                ),
-                                black14w500(data: ' Months'),
-                              ],
-                            )
+                                  black14w500(data: ' Months'),
+                                ],
+                              )
                             : Row(
-                              children: [
-                                Visibility(
-                                  visible: puppyViewModel.getPuppyDetail!.year != 0,
-                                  child: black14w500(
-                                      data:
-                                          '${puppyViewModel.getPuppyDetail!.year} Years'),
-                                ),
-                                Visibility(
-                                  visible: puppyViewModel.getPuppyDetail!.month != 0,
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(left: 10).w,
+                                children: [
+                                  Visibility(
+                                    visible:
+                                        puppyViewModel.getPuppyDetail!.year !=
+                                            0,
                                     child: black14w500(
                                         data:
-                                        '${puppyViewModel.getPuppyDetail!.month} Months'),
+                                            '${puppyViewModel.getPuppyDetail!.year} Years'),
                                   ),
-                                ),
-                              ],
-                            ),
+                                  Visibility(
+                                    visible:
+                                        puppyViewModel.getPuppyDetail!.month !=
+                                            0,
+                                    child: Padding(
+                                      padding:
+                                          const EdgeInsets.only(left: 10).w,
+                                      child: black14w500(
+                                          data:
+                                              '${puppyViewModel.getPuppyDetail!.month} Months'),
+                                    ),
+                                  ),
+                                ],
+                              ),
                       ],
                     ),
                     SizedBox(
@@ -632,19 +666,20 @@ class PuppyDetailScreen extends StatelessWidget {
                         black14w500(
                             data:
                                 '${puppyViewModel.getPuppyDetail!.name} is still a puppy?'),
-                        puppyViewModel.getIsPuppyEdit?
-                        Checkbox(
-                            materialTapTargetSize:
-                            MaterialTapTargetSize.shrinkWrap,
-                            activeColor: CustomColors.orangeColor,
-                            value: puppyViewModel.getDogIsPuppy,
-                            onChanged: (value) {
-                              puppyViewModel.setDogIsPuppy(value!);
-                            }):
-                        black14w500(
-                            data: puppyViewModel.getPuppyDetail!.isPuppy == true
-                                ? 'Yes'
-                                : 'No'),
+                        puppyViewModel.getIsPuppyEdit
+                            ? Checkbox(
+                                materialTapTargetSize:
+                                    MaterialTapTargetSize.shrinkWrap,
+                                activeColor: CustomColors.orangeColor,
+                                value: puppyViewModel.getDogIsPuppy,
+                                onChanged: (value) {
+                                  puppyViewModel.setDogIsPuppy(value!);
+                                })
+                            : black14w500(
+                                data: puppyViewModel.getPuppyDetail!.isPuppy ==
+                                        true
+                                    ? 'Yes'
+                                    : 'No'),
                       ],
                     ),
                     /* Row(
@@ -720,7 +755,7 @@ class PuppyDetailScreen extends StatelessWidget {
                                 puppyViewModel.setPuppyCurrentWeight(int.parse(text));
                       },*/
                                   keyboardType: TextInputType.number,
-                                  decoration:  InputDecoration(
+                                  decoration: InputDecoration(
                                       contentPadding: EdgeInsets.all(20.0).w,
                                       hintText: 'Weight in KG'),
                                 ),

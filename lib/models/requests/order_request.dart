@@ -4,7 +4,7 @@ class OrderRequest {
   num totalAmount;
   String locationId;
   String paymentMethod;
-  num discountPercentage;
+  num discount;
   num pointsUsed;
   String deliveryDate;
   String specialInstructions;
@@ -18,7 +18,7 @@ class OrderRequest {
       {required this.totalAmount,
         required this.locationId,
         required this.paymentMethod,
-        required this.discountPercentage,
+        required this.discount,
         required this.deliveryDate,
         required this.cartTotal,
         required this.shippingFees,
@@ -33,7 +33,7 @@ class OrderRequest {
     data['totalAmount'] = totalAmount;
     data['locationId'] = locationId;
     data['paymentMethod'] = paymentMethod;
-    data['discountPercentage'] = discountPercentage;
+    data['discount'] = discount;
     data['deliveryDate'] = deliveryDate;
     data['pointsUsed'] = pointsUsed;
     data['cartTotal'] = cartTotal;
