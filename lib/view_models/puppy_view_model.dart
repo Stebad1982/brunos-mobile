@@ -47,13 +47,15 @@ class PuppyViewModel with ChangeNotifier {
   List<BreedsData> _breedsList = [];
   final List<int> _listOfMonths = List.generate(13, (i) => i);
   final List<int> _listOfYear = List.generate(31, (i) => i);
+   final List<int> _listOfWeight = List.generate(65, (i) => i + 1);
+
   int _puppyMonths = 0;
   int _puppyYear = 0;
   bool _dogIsPuppy = false;
 
   //String _puppyDob = 'MM   /   DD   /   YYYY';
   //DateTime? _formatBirthDate;
-  final TextEditingController _puppyCurrentWeight = TextEditingController();
+   int _puppyCurrentWeight = 1;
   int _puppyActualWeight = PuppyWeight.idealWeight.value;
   String _puppyActivityLevel = Puppy.active.text;
   String _puppyNameFieldError = '';
@@ -104,12 +106,12 @@ class PuppyViewModel with ChangeNotifier {
     notifyListeners();
   }
 
-  TextEditingController get getPuppyCurrentWeight => _puppyCurrentWeight;
+  int get getPuppyCurrentWeight => _puppyCurrentWeight;
 
-  /*void setPuppyCurrentWeight(int value) {
+  void setPuppyCurrentWeight(int value) {
     _puppyCurrentWeight = value;
     notifyListeners();
-  }*/
+  }
 
   int get getPuppyActualWeight => _puppyActualWeight;
 
@@ -144,6 +146,9 @@ class PuppyViewModel with ChangeNotifier {
   List<int> get getListOfMonths => _listOfMonths;
 
   List<int> get getListOfYear => _listOfYear;
+
+  List<int> get getListOfWeight => _listOfWeight;
+
 
   int get getPuppyMonths => _puppyMonths;
 
@@ -188,12 +193,12 @@ class PuppyViewModel with ChangeNotifier {
   //   notifyListeners();
   // }
 
-  String get getCurrentWeightFieldError => _currentWeightFieldError;
+/*  String get getCurrentWeightFieldError => _currentWeightFieldError;
 
   void setCurrentWeightFieldError(String value) {
     _currentWeightFieldError = value;
     notifyListeners();
-  }
+  }*/
 
   String get getPuppyBreedFieldError => _puppyBreedFieldError;
 
@@ -261,15 +266,15 @@ class PuppyViewModel with ChangeNotifier {
     }
   }*/
 
-  bool puppyCurrentWeightValidation() {
-    if (_puppyCurrentWeight.text.isEmpty || _puppyCurrentWeight.text == '0') {
+/*  bool puppyCurrentWeightValidation() {
+    if ( _puppyCurrentWeight == 1) {
       setCurrentWeightFieldError('Please Select Pet Current Weight');
       return false;
     } else {
       setCurrentWeightFieldError('');
       return true;
     }
-  }
+  }*/
 
   /* bool puppyActualWeightValidation() {
     if (_puppyActualWeight == 0) {
@@ -309,18 +314,18 @@ class PuppyViewModel with ChangeNotifier {
     }
   }
 
-  bool puppyAdditionalCreationValidation() {
-    if (puppyBreedValidation() /*&&
-            puppyDobValidation() */
+/*  bool puppyAdditionalCreationValidation() {
+    if (puppyBreedValidation() *//*&&
+            puppyDobValidation() *//*
             &&
-            puppyCurrentWeightValidation() /*&&
-        puppyActualWeightValidation()*/
+            puppyCurrentWeightValidation() *//*&&
+        puppyActualWeightValidation()*//*
         ) {
       return true;
     } else {
       return false;
     }
-  }
+  }*/
 
   void setSelectedPuppyModel(/*{required PuppyModel data}*/) {
     _puppyNameController.text = _puppyDetail!.name!;
@@ -336,7 +341,7 @@ class PuppyViewModel with ChangeNotifier {
     /*  _puppyDob = _puppyDetail!.bornOnDate! != 0
         ? DateTimeFormatter.timeStampToDate(_puppyDetail!.bornOnDate!, 1)
         : 'MM   /   DD   /   YYYY';*/
-    _puppyCurrentWeight.text = _puppyDetail!.currentWeight!.toString();
+    _puppyCurrentWeight = _puppyDetail!.currentWeight!;
     _puppyActualWeight = _puppyDetail!.actualWeight!;
     _puppyActivityLevel = _puppyDetail!.activityLevel!;
   }
@@ -354,7 +359,7 @@ class PuppyViewModel with ChangeNotifier {
     _puppyYear = 0;
     _dogIsPuppy = false;
     //_puppyDob = 'MM   /   DD   /   YYYY';
-    _puppyCurrentWeight.clear();
+    _puppyCurrentWeight=1;
     _feedingRoutine = 1;
     _puppyActualWeight = PuppyWeight.idealWeight.value;
     _puppyActivityLevel = Puppy.active.text;
@@ -411,7 +416,7 @@ class PuppyViewModel with ChangeNotifier {
           year: _puppyYear,
           isPuppy: _dogIsPuppy,
           // bornOnDate: puppyBirthDate,
-          currentWeight: int.parse(_puppyCurrentWeight.text),
+          currentWeight: _puppyCurrentWeight,
           actualWeight: _puppyActualWeight,
           activityLevel: _puppyActivityLevel,
           feedingRoutine: _feedingRoutine);
@@ -497,7 +502,7 @@ class PuppyViewModel with ChangeNotifier {
         year: _puppyYear,
         isPuppy: _dogIsPuppy,
         // bornOnDate: puppyBirthDate,
-        currentWeight: int.parse(_puppyCurrentWeight.text),
+        currentWeight: _puppyCurrentWeight,
         actualWeight: _puppyActualWeight,
         activityLevel: _puppyActivityLevel,
         feedingRoutine: _feedingRoutine);

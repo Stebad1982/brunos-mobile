@@ -282,21 +282,24 @@ class ProductDetailScreen extends StatelessWidget {
                                       for (var sizes in plansViewModel
                                           .getSelectedRecipe.sizes!)
                                         Visibility(
-                                          visible: sizes.stock != 0,
-                                          child: SizedBox(
-                                            width: 100.w,
-                                            child: customSquareButton(
-                                                text: '${sizes.name}',
-                                                onPressed: () {
-                                                  plansViewModel
-                                                      .setSelectedItemSize(sizes);
-                                                },
-                                                colored: plansViewModel
-                                                            .getSelectedRecipe
-                                                            .selectedItemSize ==
-                                                        sizes
-                                                    ? true
-                                                    : false),
+                                          visible: sizes.stock != 0 ,
+                                          child: Visibility(
+                                            visible: sizes.name != 'Standard',
+                                            child: SizedBox(
+                                              width: 100.w,
+                                              child: customSquareButton(
+                                                  text: '${sizes.name}',
+                                                  onPressed: () {
+                                                    plansViewModel
+                                                        .setSelectedItemSize(sizes);
+                                                  },
+                                                  colored: plansViewModel
+                                                              .getSelectedRecipe
+                                                              .selectedItemSize ==
+                                                          sizes
+                                                      ? true
+                                                      : false),
+                                            ),
                                           ),
                                         )
                                     ],

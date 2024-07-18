@@ -43,7 +43,6 @@ class PlansViewModel with ChangeNotifier {
   String _transitional7to9PouchesText = '';
   String _transitional10thPouchesText = '';
 
-
   //final List<String> _pouchesDetail = [];
 
   //bool _showDaysRangeValidation = false;
@@ -76,11 +75,10 @@ class PlansViewModel with ChangeNotifier {
 
   String get getTransitional10thPouchesText => _transitional10thPouchesText;
 
-
   void setSelectedItemSize(ItemSizes value) {
     _selectedRecipe.selectedItemSize = value;
     _selectedRecipe.pricePerKG = value.price;
-    _selectedRecipe.weight = '${value.weight} ${value.unit}' ;
+    _selectedRecipe.weight = '${value.weight} ${value.unit}';
     notifyListeners();
   }
 
@@ -178,6 +176,23 @@ class PlansViewModel with ChangeNotifier {
   }*/
 
   CartModel? get getFeedingPlan => _feedingPlan;
+
+  bool monthlyDishValidation(RecipeModel value) {
+    if (_monthlyEmptyTile1 != null && _monthlyEmptyTile1!.sId == value.sId ){
+      return false;
+    }
+    else if(_monthlyEmptyTile2 != null && _monthlyEmptyTile2!.sId == value.sId){
+      return false;
+
+    }
+    else if (_monthlyEmptyTile3 != null && _monthlyEmptyTile3!.sId == value.sId){
+      return false;
+
+    }
+     else {
+      return true;
+    }
+  }
 
   void setDataToFeedingPlan({
     required var data,
@@ -293,7 +308,6 @@ class PlansViewModel with ChangeNotifier {
       final num perPouchQuantity =
           calculateFeedingPlan(recipeModel: recipes[index], puppyModel: pet);
 
-
       if (_planType == Plans.transitional.text) {
         final num transitional1to3PerPouchQty = calculateFeedingPlan(
             recipeModel: recipes[index],
@@ -330,7 +344,8 @@ class PlansViewModel with ChangeNotifier {
         pouchesDetail.add(
             '$_transitional1to3PouchesText | $_transitional4to6PouchesText | $_transitional7to9PouchesText | $_transitional10thPouchesText');
       } else {
-        pouchesDetail.add('${(totalPlanQuantity / perPouchQuantity).round()} servings x ${roundTo10(value: perPouchQuantity.toInt())} grams for ${recipes[index].totalDays} days');
+        pouchesDetail.add(
+            '${(totalPlanQuantity / perPouchQuantity).round()} servings x ${roundTo10(value: perPouchQuantity.toInt())} grams for ${recipes[index].totalDays} days');
       }
     }
     return pouchesDetail;

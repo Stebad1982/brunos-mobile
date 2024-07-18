@@ -443,25 +443,84 @@ class _PuppyCreationAdditionalScreenState
                       SizedBox(
                         height: 12.h,
                       ),
-                      TextField(
-                        controller: puppyViewModel.getPuppyCurrentWeight,
-                        /*onChanged: (text) {
-                          puppyViewModel.setPuppyCurrentWeight(int.parse(text));
-                        },*/
-                        keyboardType: TextInputType.number,
-                        focusNode: _nodeText1,
-                        decoration:  InputDecoration(
-                            contentPadding: const EdgeInsets.all(20.0).w,
-                            hintText: 'Weight in KG'),
+                      Row(
+                        children: [
+                          DropdownButtonHideUnderline(
+                            child: DropdownButton2<int>(
+                              style: TextStyle(
+                                fontFamily: 'CircularStd',
+                                fontSize: 14.sp,
+                                color: CustomColors
+                                    .blackColor, // <-- TextFormField input color
+                              ),
+                              buttonStyleData: ButtonStyleData(
+                                height: 40.h,
+                                width: 70.w,
+                                padding: const EdgeInsets.only(
+                                    left: 10, right: 10).w,
+                                decoration: BoxDecoration(
+                                  borderRadius:
+                                  BorderRadius.circular(14),
+                                  border: Border.all(
+                                    color: Colors.black26,
+                                  ),
+
+                                  //  color: Colors.redAccent,
+                                ),
+                                // elevation: 2,
+                              ),
+                              dropdownStyleData: DropdownStyleData(
+                                maxHeight: 200,
+                                width: 70.w,
+                                decoration: BoxDecoration(
+                                  borderRadius:
+                                  BorderRadius.circular(14),
+                                  //  color: Colors.redAccent,
+                                ),
+                                offset: const Offset(0, -10),
+                                scrollbarTheme: ScrollbarThemeData(
+                                  radius: const Radius.circular(40),
+                                  thickness:
+                                  MaterialStateProperty.all<double>(
+                                      6),
+                                  thumbVisibility:
+                                  MaterialStateProperty.all<bool>(
+                                      true),
+                                ),
+                              ),
+                              // borderRadius: BorderRadius.circular(15.0),
+                              /* hint: Text(
+                                    'Year',
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      color: Theme.of(context).hintColor,
+                                    ),
+                                      ),*/
+                              value: puppyViewModel.getPuppyCurrentWeight,
+                              onChanged: (newValue) {
+                                puppyViewModel.setPuppyCurrentWeight(newValue!);
+                              },
+                              items: puppyViewModel.getListOfWeight
+                                  .map((int weight) {
+                                return DropdownMenuItem<int>(
+                                  value: weight,
+                                  child: Text(weight.toString()),
+                                );
+                              }).toList(),
+                            ),
+                          ),
+                          SizedBox(width: 10.w,),
+                          black14w500(data: 'KG')
+                        ],
                       ),
-                      SizedBox(
+                      /*SizedBox(
                         height: 5.h,
                       ),
                       Visibility(
                           visible: puppyViewModel
                               .getCurrentWeightFieldError.isNotEmpty,
                           child: orange14w400(
-                              data: puppyViewModel.getCurrentWeightFieldError)),
+                              data: puppyViewModel.getCurrentWeightFieldError)),*/
                       SizedBox(
                         height: 24.h,
                       ),
@@ -697,8 +756,8 @@ class _PuppyCreationAdditionalScreenState
                     child: customButton(
                         text: 'Save',
                         onPressed: () {
-                          if (puppyViewModel
-                              .puppyAdditionalCreationValidation()) {
+                         /* if (puppyViewModel
+                              .puppyAdditionalCreationValidation()) {*/
                             /* puppyViewModel.getIsPuppyEdit
                                 ? puppyViewModel
                                     .callEditPuppyApi()
@@ -733,7 +792,9 @@ class _PuppyCreationAdditionalScreenState
                                                   puppyConfirmationRoute),
                                         }
                                     });
+/*
                           }
+*/
                         },
                         colored: true),
                   ),

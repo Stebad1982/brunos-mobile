@@ -15,17 +15,31 @@ import '../../route_generator.dart';
 import '../../utils/custom_font_style.dart';
 import '../../utils/images.dart';
 import '../circular_network_image_widget.dart';
+import '../dialogs/discription_dialog.dart';
 
 Widget mealVerticalListChipWidget({required RecipeModel recipeModel}) {
   return Column(
     children: [
       InkWell(
         onTap: () async {
-          Navigator.pop(navigatorKey.currentContext!);
           navigatorKey.currentContext!.read<PlansViewModel>().getMonthlySelectedDaysController.clear();
         //  navigatorKey.currentContext!.read<PlansViewModel>().setDayRangeValidation(false);
-          navigatorKey.currentContext!.read<PlansViewModel>().setSelectedRecipe(recipeModel);
-         scheduleDaysRangeDialog();
+          if(navigatorKey.currentContext!.read<PlansViewModel>().monthlyDishValidation(recipeModel) ){
+            Navigator.pop(navigatorKey.currentContext!);
+            navigatorKey.currentContext!.read<PlansViewModel>().setSelectedRecipe(recipeModel);
+            scheduleDaysRangeDialog();
+          }
+          else{
+            descriptionDialog(
+                context: navigatorKey.currentContext!,
+                description:
+                '${recipeModel.name} is already selected',
+                height: 150.h,
+                title: 'Alert');
+
+
+          }
+
           /*   final List<DateTime> picked = await DateRagePicker.showDatePicker(
                 context: context,
                 initialFirstDate: new DateTime.now(),

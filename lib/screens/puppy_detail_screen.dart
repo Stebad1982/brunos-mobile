@@ -400,7 +400,7 @@ class PuppyDetailScreen extends StatelessWidget {
                           onTap: () {
                             descriptionDialog(
                               context: context,
-                              height: 290.h,
+                              height: 300.h,
                               title: 'Check Weight',
                               description:
                                   'Select Underweight if you believe your dog needs to gain some more weight, the calculated daily portion will be slightly increased. \n\nSelect Ideal Weight if you believe your dog’s wight is ideal.\n\nSelect Overweight if you believe your dog needs to lose some weight, the calculated daily portion will be slightly decreased.',
@@ -483,15 +483,17 @@ class PuppyDetailScreen extends StatelessWidget {
                     SizedBox(
                       height: 10.h,
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         black14w500(
                             data:
                                 'How old is ${puppyViewModel.getPuppyDetail!.name}?'),
+                       SizedBox(height: 5.h,),
                         puppyViewModel.getIsPuppyEdit
                             ? Row(
                                 children: [
+                                  Spacer(),
                                   DropdownButtonHideUnderline(
                                     child: DropdownButton2<int>(
                                       style: TextStyle(
@@ -502,10 +504,9 @@ class PuppyDetailScreen extends StatelessWidget {
                                       ),
                                       buttonStyleData: ButtonStyleData(
                                         height: 40.h,
-                                        width: 60.w,
+                                        width: 70.w,
                                         padding: const EdgeInsets.only(
-                                                left: 10, right: 10)
-                                            .w,
+                                                left: 10, right: 10).w,
                                         decoration: BoxDecoration(
                                           borderRadius:
                                               BorderRadius.circular(14),
@@ -519,7 +520,7 @@ class PuppyDetailScreen extends StatelessWidget {
                                       ),
                                       dropdownStyleData: DropdownStyleData(
                                         maxHeight: 200,
-                                        width: 60.w,
+                                        width: 70.w,
                                         decoration: BoxDecoration(
                                           borderRadius:
                                               BorderRadius.circular(14),
@@ -568,7 +569,7 @@ class PuppyDetailScreen extends StatelessWidget {
                                       ),
                                       buttonStyleData: ButtonStyleData(
                                         height: 40.h,
-                                        width: 60.w,
+                                        width: 70.w,
                                         padding: const EdgeInsets.only(
                                                 left: 10, right: 10)
                                             .w,
@@ -585,7 +586,7 @@ class PuppyDetailScreen extends StatelessWidget {
                                       ),
                                       dropdownStyleData: DropdownStyleData(
                                         maxHeight: 200,
-                                        width: 60.w,
+                                        width: 70.w,
                                         decoration: BoxDecoration(
                                           borderRadius:
                                               BorderRadius.circular(14),
@@ -629,6 +630,7 @@ class PuppyDetailScreen extends StatelessWidget {
                               )
                             : Row(
                                 children: [
+                                  Spacer(),
                                   Visibility(
                                     visible:
                                         puppyViewModel.getPuppyDetail!.year !=
@@ -741,26 +743,90 @@ class PuppyDetailScreen extends StatelessWidget {
                               data: puppyViewModel
                                           .getPuppyDetail!.currentWeight! !=
                                       0
-                                  ? puppyViewModel
-                                      .getPuppyDetail!.currentWeight!
-                                      .toString()
+                                  ? '${puppyViewModel.getPuppyDetail!.currentWeight!.toString()} KG'
                                   : 'N/A'),
-                          child: Column(
+                          child: Row(
                             children: [
-                              IntrinsicWidth(
+                              DropdownButtonHideUnderline(
+                                child: DropdownButton2<int>(
+                                  style: TextStyle(
+                                    fontFamily: 'CircularStd',
+                                    fontSize: 14.sp,
+                                    color: CustomColors
+                                        .blackColor, // <-- TextFormField input color
+                                  ),
+                                  buttonStyleData: ButtonStyleData(
+                                    height: 40.h,
+                                    width: 70.w,
+                                    padding: const EdgeInsets.only(
+                                        left: 10, right: 10).w,
+                                    decoration: BoxDecoration(
+                                      borderRadius:
+                                      BorderRadius.circular(14),
+                                      border: Border.all(
+                                        color: Colors.black26,
+                                      ),
+
+                                      //  color: Colors.redAccent,
+                                    ),
+                                    // elevation: 2,
+                                  ),
+                                  dropdownStyleData: DropdownStyleData(
+                                    maxHeight: 200,
+                                    width: 70.w,
+                                    decoration: BoxDecoration(
+                                      borderRadius:
+                                      BorderRadius.circular(14),
+                                      //  color: Colors.redAccent,
+                                    ),
+                                    offset: const Offset(0, -10),
+                                    scrollbarTheme: ScrollbarThemeData(
+                                      radius: const Radius.circular(40),
+                                      thickness:
+                                      MaterialStateProperty.all<double>(
+                                          6),
+                                      thumbVisibility:
+                                      MaterialStateProperty.all<bool>(
+                                          true),
+                                    ),
+                                  ),
+                                  // borderRadius: BorderRadius.circular(15.0),
+                                  /* hint: Text(
+                                'Year',
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  color: Theme.of(context).hintColor,
+                                ),
+                                  ),*/
+                                  value: puppyViewModel.getPuppyCurrentWeight,
+                                  onChanged: (newValue) {
+                                    puppyViewModel.setPuppyCurrentWeight(newValue!);
+                                  },
+                                  items: puppyViewModel.getListOfWeight
+                                      .map((int weight) {
+                                    return DropdownMenuItem<int>(
+                                      value: weight,
+                                      child: Text(weight.toString()),
+                                    );
+                                  }).toList(),
+                                ),
+                              ),
+                              SizedBox(width: 10.w,),
+                              black14w500(data: 'KG')
+                             /* IntrinsicWidth(
                                 child: TextField(
                                   controller:
                                       puppyViewModel.getPuppyCurrentWeight,
-                                  /*onChanged: (text) {
+                                  *//*onChanged: (text) {
                                 puppyViewModel.setPuppyCurrentWeight(int.parse(text));
-                      },*/
+                      },*//*
                                   keyboardType: TextInputType.number,
                                   decoration: InputDecoration(
                                       contentPadding: EdgeInsets.all(20.0).w,
                                       hintText: 'Weight in KG'),
                                 ),
-                              ),
-                              SizedBox(
+                              ),*/
+                           /*   SizedBox(
                                 height: 5.h,
                               ),
                               Visibility(
@@ -768,7 +834,7 @@ class PuppyDetailScreen extends StatelessWidget {
                                       .getCurrentWeightFieldError.isNotEmpty,
                                   child: orange14w400(
                                       data: puppyViewModel
-                                          .getCurrentWeightFieldError)),
+                                          .getCurrentWeightFieldError)),*/
                             ],
                           ),
                         ),
@@ -805,6 +871,25 @@ class PuppyDetailScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         black14w500(data: 'Activity Level'),
+                        SizedBox(
+                          width: 5.w,
+                        ),
+                        InkWell(
+                          onTap: () {
+                            descriptionDialog(
+                              context: context,
+                              height: 250.h,
+                              title: 'Activity Level',
+                              description:
+                                'Less Active (less than 30 minutes of exercise per day)\n\nActive (30 to 120 minutes of exercise per day)\n\nVery Active (more than 120 minutes per day)'
+                            );
+                          },
+                          child: const Icon(
+                            Icons.info,
+                            size: 16,
+                          ),
+                        ),
+                        Spacer(),
                         Visibility(
                           visible: !puppyViewModel.getIsPuppyEdit,
                           child: black14w500(
@@ -873,6 +958,25 @@ class PuppyDetailScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         black14w500(data: 'Feeding Routine Per Day'),
+                        SizedBox(
+                          width: 5.w,
+                        ),
+                        InkWell(
+                          onTap: () {
+                            descriptionDialog(
+                                context: context,
+                                height: 200.h,
+                                title: 'Feeding Routine per Day',
+                                description:
+                                'We will prepare and portion your meals in an adequate number of servings to ensure you get a hassle-fee and zero-waste feeding experience.'
+                            );
+                          },
+                          child: const Icon(
+                            Icons.info,
+                            size: 16,
+                          ),
+                        ),
+                        Spacer(),
                         Visibility(
                           visible: !puppyViewModel.getIsPuppyEdit,
                           child: black14w500(
@@ -982,8 +1086,8 @@ class PuppyDetailScreen extends StatelessWidget {
                     child: customButton(
                         text: 'Update',
                         onPressed: () {
-                          if (puppyViewModel
-                              .puppyAdditionalCreationValidation()) {
+                        /*  if (puppyViewModel
+                              .puppyAdditionalCreationValidation()) {*/
                             puppyViewModel
                                 .callEditPuppyApi()
                                 .then((value) async => {
@@ -994,7 +1098,7 @@ class PuppyDetailScreen extends StatelessWidget {
                                               .callSplash(showLoader: true),
                                         }
                                     });
-                          }
+                          /*}*/
                         },
                         colored: true),
                   ),
