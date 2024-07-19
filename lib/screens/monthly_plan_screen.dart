@@ -124,9 +124,9 @@ class MonthlyPlanScreen extends StatelessWidget {
                                   shape: OvalBorder(),
                                 ),
                                 child:  Padding(
-                                  padding: EdgeInsets.all(10).w,
-                                  child: Icon(
-                                    Icons.add,
+                                  padding: const EdgeInsets.all(10).w,
+                                  child:  Icon(
+                                    plansViewModel.getMonthlyEmptyTile1 == null ?Icons.add :Icons.delete_outline,
                                     size: 20,
                                     color: CustomColors.whiteColor,
                                   ),
