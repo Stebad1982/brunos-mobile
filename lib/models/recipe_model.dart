@@ -12,6 +12,8 @@ class RecipeModel {
   String? name;
   bool? isFeatured;
   String? standaloneSize;
+  String? unit;
+
 
 /*
   String? userId;
@@ -21,7 +23,7 @@ class RecipeModel {
   String? details;
 
   //String? brand;
-  String? weight;
+  int? weight;
   String? instructions;
   List<String>? nutrition;
   int? pricePerKG;
@@ -78,6 +80,7 @@ class RecipeModel {
       this.finalPrice,
       this.isComboRecipe,
       this.sizes,
+        this.unit,
       // this.brand,
       this.weight,
       this.selectedItemSize,
@@ -93,8 +96,9 @@ class RecipeModel {
     createdOnDate = json['createdOnDate'];
 */
     name = json['name'];
+    unit = json['unit'];
     //  brand = json['brand'] ?? '';
-    weight = json['weight'] ?? '';
+    weight = json['weight'];
     isFeatured = json['isFeatured'];
 /*
     userId = json['userId'];
@@ -154,6 +158,7 @@ class RecipeModel {
 */
     // data['brand'] = this.brand;
     data['weight'] = this.weight;
+    data['unit'] = this.unit;
     data['name'] = this.name;
     data['isFeatured'] = this.isFeatured;
     data['isComboRecipe'] = this.isComboRecipe;

@@ -69,7 +69,7 @@ class ProductDetailScreen extends StatelessWidget {
                       height: 24.h,
                     ),
                     Visibility(
-                      visible: plansViewModel.getSelectedRecipe.details!.isNotEmpty || plansViewModel.getSelectedRecipe.weight!.isNotEmpty,
+                      visible: plansViewModel.getSelectedRecipe.details!.isNotEmpty || plansViewModel.getSelectedRecipe.weight != 0,
 
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 20).w,
@@ -92,19 +92,13 @@ class ProductDetailScreen extends StatelessWidget {
                               ),
                             ),
                             Visibility(
-                              visible: plansViewModel.getSelectedRecipe.weight!.isNotEmpty,
-
+                              visible: plansViewModel.getSelectedRecipe.weight != 0,
                               child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  black14w500(
-                                      data:  'Weight'),
-                                  SizedBox(
-                                    height: 10.h,
-                                  ),
+                                  SizedBox(height: 24.h,),
                                   black24w500Centre(
                                       data:
-                                         plansViewModel.getSelectedRecipe.weight!)
+                                         '${plansViewModel.getSelectedRecipe.weight!.toString()} ${plansViewModel.getSelectedRecipe.unit}'),
                                 ],
                               ),
                             ),
