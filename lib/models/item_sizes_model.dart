@@ -4,6 +4,7 @@ class ItemSizes {
   int? stock;
   int? weight;
   String? unit;
+  String? image;
 
   ItemSizes({this.name, this.price, this.stock, this.weight, this.unit});
 
@@ -13,6 +14,7 @@ class ItemSizes {
     stock = json['stock'];
     weight = json['weight'];
     unit = json['unit'];
+    image = json['image'];
   }
 
   Map<String, dynamic> toJson() {
@@ -22,6 +24,7 @@ class ItemSizes {
     data['stock'] = this.stock;
     data['weight'] = this.weight;
     data['unit'] = this.unit;
+    data['image'] = this.image;
     return data;
   }
 }

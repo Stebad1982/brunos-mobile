@@ -24,13 +24,15 @@ class PromoCodeResponse extends BaseResponseModel{
 }
 
 class PromoData {
+  String? sId;
   String? name;
   int? expireOnDate;
   int? discount;
 
-  PromoData({this.name, this.expireOnDate, this.discount});
+  PromoData({this.sId,this.name, this.expireOnDate, this.discount});
 
   PromoData.fromJson(Map<String, dynamic> json) {
+    sId = json['_id'];
     name = json['name'];
     expireOnDate = json['expireOnDate'];
     discount = json['discount'];
@@ -38,6 +40,7 @@ class PromoData {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['_id'] =this.sId;
     data['name'] = this.name;
     data['expireOnDate'] = this.expireOnDate;
     data['discount'] = this.discount;

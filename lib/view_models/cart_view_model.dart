@@ -22,7 +22,7 @@ class CartViewModel with ChangeNotifier {
   num _cartTotalPrice = 0;
   num _promoCodeDiscount = 0;
   num _subTotal = 0;
-
+PromoCodeResponse _promoCodeResponse = PromoCodeResponse();
   //num _vatValue = 0;
   double _pawPoints = 0;
   double _pawPointsAed = 0;
@@ -155,6 +155,7 @@ class CartViewModel with ChangeNotifier {
   }
 
   clearData() {
+    _promoCodeResponse.data = null;
     _promoCodeController.clear();
     _instructionsController.clear();
     _promoCodeDiscount = 0;
@@ -186,7 +187,7 @@ class CartViewModel with ChangeNotifier {
           .paymentMethodId!,
       discount: _promoCodeDiscount + _pawPointDiscount.round(),
       deliveryDate: DateTimeFormatter.showDateFormat3(_selectedDay),
-      promoCodeId: _promoCodeController.text,
+      promoCodeId: _promoCodeResponse.data!.sId!,
       cartItems: _cartList,
       cartTotal: _cartTotalPrice,
       shippingFees: _deliveryFee,
@@ -312,6 +313,7 @@ class CartViewModel with ChangeNotifier {
       final PromoCodeResponse response = await _promoApiServices
           .checkPromoCodeApi(code: _promoCodeController.text);
       if (response.isSuccess!) {
+        _promoCodeResponse = response;
         EasyLoading.dismiss();
         if (response.data!.discount! > _subTotal) {
           promoCodeValidationDialog(

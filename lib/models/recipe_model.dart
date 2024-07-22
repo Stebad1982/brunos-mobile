@@ -5,7 +5,7 @@ import 'item_sizes_model.dart';
 
 class RecipeModel {
   String? sId;
-
+  String? productImage;
 /*
   int? createdOnDate;
 */
@@ -81,6 +81,7 @@ class RecipeModel {
       this.isComboRecipe,
       this.sizes,
         this.unit,
+        this.productImage,
       // this.brand,
       this.weight,
       this.selectedItemSize,
@@ -95,6 +96,7 @@ class RecipeModel {
 /*
     createdOnDate = json['createdOnDate'];
 */
+    productImage = json['productImage'];
     name = json['name'];
     unit = json['unit'];
     //  brand = json['brand'] ?? '';
@@ -157,6 +159,7 @@ class RecipeModel {
     data['createdOnDate'] = this.createdOnDate;
 */
     // data['brand'] = this.brand;
+    data['productImage'] = this.productImage;
     data['weight'] = this.weight;
     data['unit'] = this.unit;
     data['name'] = this.name;

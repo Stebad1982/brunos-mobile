@@ -8,6 +8,7 @@ import 'package:brunos_kitchen/models/responses/recipes_list_response.dart';
 import 'package:brunos_kitchen/route_generator.dart';
 import 'package:brunos_kitchen/services/plan_api_services.dart';
 import 'package:brunos_kitchen/view_models/auth_view_model.dart';
+import 'package:carousel_slider/carousel_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:intl/intl.dart';
@@ -49,6 +50,8 @@ class PlansViewModel with ChangeNotifier {
   String _planType = Plans.transitional.text;
   RecipesListResponse _recipesListResponse = RecipesListResponse();
   RecipeModel _selectedRecipe = RecipeModel();
+  List<String> _productImages = [];
+  CarouselController _productCarouselController = CarouselController();
   List<RecipeModel> _recipesList = [];
   List<RecipeModel> _productsList = [];
   List<RecipeModel> _featuredRecipesList = [];
@@ -64,8 +67,12 @@ class PlansViewModel with ChangeNotifier {
   RecipeModel? _monthlyEmptyTile1;
   RecipeModel? _monthlyEmptyTile2;
   RecipeModel? _monthlyEmptyTile3;
+  int _inStockQuantity = 0;
 
   //ItemSizes? get getSelectedItemSize => _selectedItemSize;
+
+  CarouselController get getProductCarouselController => _productCarouselController;
+
 
   String get getTransitional1to3PouchesText => _transitional1to3PouchesText;
 
@@ -75,11 +82,19 @@ class PlansViewModel with ChangeNotifier {
 
   String get getTransitional10thPouchesText => _transitional10thPouchesText;
 
+  RecipeModel get getSelectedRecipe => _selectedRecipe;
+
   void setSelectedItemSize(ItemSizes value) {
+    _quantity = 1;
     _selectedRecipe.selectedItemSize = value;
     _selectedRecipe.pricePerKG = value.price;
     _selectedRecipe.weight = value.weight;
     _selectedRecipe.unit = value.unit;
+    if (value.image!.isNotEmpty) {
+      _productImages[0] = value.image!;
+    }
+    _productCarouselController.animateToPage(0);
+    _inStockQuantity = value.stock!;
     notifyListeners();
   }
 
@@ -143,7 +158,10 @@ class PlansViewModel with ChangeNotifier {
   }
 
   void addQuantity() {
-    _quantity = ++_quantity;
+    if (_selectedRecipe.sizes!.isNotEmpty &&
+        _quantity != _inStockQuantity) {
+      _quantity = ++_quantity;
+    }
     notifyListeners();
   }
 
@@ -179,18 +197,27 @@ class PlansViewModel with ChangeNotifier {
   CartModel? get getFeedingPlan => _feedingPlan;
 
   bool monthlyDishValidation(RecipeModel value) {
-    if (_monthlyEmptyTile1 != null && _monthlyEmptyTile1!.sId == value.sId ){
-      return false;
-    }
-    else if(_monthlyEmptyTile2 != null && _monthlyEmptyTile2!.sId == value.sId){
-      return false;
-
-    }
-    else if (_monthlyEmptyTile3 != null && _monthlyEmptyTile3!.sId == value.sId){
-      return false;
-
-    }
-     else {
+    if (_monthlyEmptyTile1 != null && _monthlyEmptyTile1!.sId == value.sId) {
+      if (_monthlyEmptyTileNumber == 1) {
+        return true;
+      } else {
+        return false;
+      }
+    } else if (_monthlyEmptyTile2 != null &&
+        _monthlyEmptyTile2!.sId == value.sId) {
+      if (_monthlyEmptyTileNumber == 2) {
+        return true;
+      } else {
+        return false;
+      }
+    } else if (_monthlyEmptyTile3 != null &&
+        _monthlyEmptyTile3!.sId == value.sId) {
+      if (_monthlyEmptyTileNumber == 3) {
+        return true;
+      } else {
+        return false;
+      }
+    } else {
       return true;
     }
   }
@@ -412,6 +439,7 @@ class PlansViewModel with ChangeNotifier {
     applyDishDetail.pricePerKG = _selectedRecipe.pricePerKG!;
     applyDishDetail.selectedItemSize = _selectedRecipe.selectedItemSize;
     applyDishDetail.sizes = _selectedRecipe.sizes;
+
     _selectedRecipe = applyDishDetail;
   }
 
@@ -491,10 +519,19 @@ class PlansViewModel with ChangeNotifier {
     notifyListeners();
   }
 
-  RecipeModel get getSelectedRecipe => _selectedRecipe;
+  List<String> get getProductImages => _productImages;
 
   void setSelectedRecipe(RecipeModel value) {
-    _selectedRecipe = value;
+    final RecipeModel applySelectedRecipe =
+        RecipeModel.fromJson(value.toJson());
+    _selectedRecipe = applySelectedRecipe;
+    _productImages.clear();
+    if(_selectedRecipe.sizes!.isNotEmpty){
+      _inStockQuantity = _selectedRecipe.sizes![0].stock!;
+    }
+    _productImages.addAll(_selectedRecipe.media!);
+    _productImages.insert(0, _selectedRecipe.productImage!);
+    notifyListeners();
 
     /*_selectedRecipe = RecipeModel(
         sId: value.sId,
@@ -524,7 +561,6 @@ class PlansViewModel with ChangeNotifier {
     else{
       _selectedItemSize = null;
     }*/
-    notifyListeners();
   }
 
   TextEditingController get getMonthlySelectedDaysController =>

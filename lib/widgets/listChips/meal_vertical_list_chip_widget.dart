@@ -36,8 +36,6 @@ Widget mealVerticalListChipWidget({required RecipeModel recipeModel}) {
                 '${recipeModel.name} is already selected',
                 height: 150.h,
                 title: 'Alert');
-
-
           }
 
           /*   final List<DateTime> picked = await DateRagePicker.showDatePicker(

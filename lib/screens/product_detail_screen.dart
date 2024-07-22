@@ -43,7 +43,7 @@ class ProductDetailScreen extends StatelessWidget {
                         height: 300.h,
                         child: ProductCarouselWidget(
                           productImages:
-                              plansViewModel.getSelectedRecipe.media!,
+                              plansViewModel.getProductImages,
                         )),
 /*
                     Container(
@@ -262,7 +262,7 @@ class ProductDetailScreen extends StatelessWidget {
                                           padding: const EdgeInsets.only(
                                               bottom: 20.0).w,
                                           child:
-                                              black14w500(data: 'Select Sizes'),
+                                              black14w500(data: 'Select Option'),
                                         )),
                                 Visibility(
                                   visible: context
@@ -277,23 +277,20 @@ class ProductDetailScreen extends StatelessWidget {
                                           .getSelectedRecipe.sizes!)
                                         Visibility(
                                           visible: sizes.stock != 0 ,
-                                          child: Visibility(
-                                            visible: sizes.name != 'Standard',
-                                            child: SizedBox(
-                                              width: 100.w,
-                                              child: customSquareButton(
-                                                  text: '${sizes.name}',
-                                                  onPressed: () {
-                                                    plansViewModel
-                                                        .setSelectedItemSize(sizes);
-                                                  },
-                                                  colored: plansViewModel
-                                                              .getSelectedRecipe
-                                                              .selectedItemSize ==
-                                                          sizes
-                                                      ? true
-                                                      : false),
-                                            ),
+                                          child: SizedBox(
+                                            width: 100.w,
+                                            child: customSquareButton(
+                                                text: '${sizes.name}',
+                                                onPressed: () {
+                                                  plansViewModel
+                                                      .setSelectedItemSize(sizes);
+                                                },
+                                                colored: plansViewModel
+                                                            .getSelectedRecipe
+                                                            .selectedItemSize ==
+                                                        sizes
+                                                    ? true
+                                                    : false),
                                           ),
                                         )
                                     ],

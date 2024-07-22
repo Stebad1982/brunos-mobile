@@ -1,4 +1,5 @@
 import 'package:brunos_kitchen/utils/images.dart';
+import 'package:brunos_kitchen/view_models/plans_view_model.dart';
 import 'package:carousel_slider/carousel_controller.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +22,7 @@ class ProductCarouselWidget extends StatefulWidget {
 
 class _ProductCarouselWidgetState extends State<ProductCarouselWidget> {
   int _current = 0;
-  final CarouselController _controller = CarouselController();
+  //final CarouselController _controller = CarouselController();
   @override
   Widget build(BuildContext context) {
     return Column(children: [
@@ -34,10 +35,10 @@ class _ProductCarouselWidgetState extends State<ProductCarouselWidget> {
                 borderRadius: BorderRadius.circular(20),
               ),
               child: Image.network(image,))],
-          carouselController: _controller,
+          carouselController: context.read<PlansViewModel>().getProductCarouselController,
           options: CarouselOptions(
               height: 300.h,
-              autoPlay: true,
+             // autoPlay: true,
               viewportFraction: 0.90.w,
               enlargeCenterPage: true,
               aspectRatio: 1.5,
@@ -53,7 +54,7 @@ class _ProductCarouselWidgetState extends State<ProductCarouselWidget> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: widget.productImages.asMap().entries.map((entry) {
           return GestureDetector(
-            onTap: () => _controller.animateToPage(entry.key),
+            onTap: () => context.read<PlansViewModel>().getProductCarouselController.animateToPage(entry.key),
             child: Container(
               width: 7.0,
               height: 7.0,

@@ -126,7 +126,7 @@ class MonthlyPlanScreen extends StatelessWidget {
                                 child:  Padding(
                                   padding: const EdgeInsets.all(10).w,
                                   child:  Icon(
-                                    plansViewModel.getMonthlyEmptyTile1 == null ?Icons.add :Icons.delete_outline,
+                                    plansViewModel.getMonthlyEmptyTile1 == null ?Icons.add :Icons.edit_outlined,
                                     size: 20,
                                     color: CustomColors.whiteColor,
                                   ),
@@ -214,9 +214,9 @@ class MonthlyPlanScreen extends StatelessWidget {
                                   shape: OvalBorder(),
                                 ),
                                 child:  Padding(
-                                  padding: EdgeInsets.all(10).w,
-                                  child: Icon(
-                                    Icons.add,
+                                  padding: const EdgeInsets.all(10).w,
+                                  child:  Icon(
+                                    plansViewModel.getMonthlyEmptyTile2 == null ?Icons.add :Icons.edit_outlined,
                                     size: 20,
                                     color: CustomColors.whiteColor,
                                   ),
@@ -304,9 +304,9 @@ class MonthlyPlanScreen extends StatelessWidget {
                                   shape: OvalBorder(),
                                 ),
                                 child:  Padding(
-                                  padding: EdgeInsets.all(10).w,
+                                  padding: const EdgeInsets.all(10).w,
                                   child: Icon(
-                                    Icons.add,
+                                    plansViewModel.getMonthlyEmptyTile3 == null ?Icons.add :Icons.edit_outlined,
                                     size: 20,
                                     color: CustomColors.whiteColor,
                                   ),

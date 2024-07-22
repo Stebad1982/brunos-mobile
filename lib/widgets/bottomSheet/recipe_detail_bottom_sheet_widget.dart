@@ -650,7 +650,7 @@ Future recipeDetailBottomSheetWidget({required RecipeModel recipeDetail}) {
                                         ),
                                         black14w500(
                                             data:
-                                            '${calculateFeedingPlan(recipeModel: recipeDetail, puppyModel: context.watch<AuthViewModel>().getAuthResponse.data!.pet!)} grams ${context.watch<AuthViewModel>().getAuthResponse.data!.pet!.feedingRoutine!} times per day')
+                                            '${roundTo10(value: calculateFeedingPlan(recipeModel: recipeDetail, puppyModel: context.watch<AuthViewModel>().getAuthResponse.data!.pet!).toInt())} grams ${context.watch<AuthViewModel>().getAuthResponse.data!.pet!.feedingRoutine!} times per day')
 
                                       ],
                                     ): const SizedBox(),
