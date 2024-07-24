@@ -96,6 +96,15 @@ enum FeaturedRecipeType {
   final String text;
 }
 
+enum OtpTypes {
+  register("SignUp"),
+  forgotPassword('forgotPassword');
+
+  const OtpTypes(this.text);
+
+  final String text;
+}
+
 
 
 enum SharedPreferencesKeys {
@@ -117,6 +126,8 @@ enum EndPoints {
   addFeedback('news-FAQ/'),
   forgotPassword('auth/forgot-password'),
   splash('user/'),
+  sendOtp('auth/send-otp'),
+  verifyOtp('auth/varify-otp'),
   editUserProfile('user/'),
   socialLogin('auth/social-login'),
   checkPhoneNumber('auth/phoneNumber?'),

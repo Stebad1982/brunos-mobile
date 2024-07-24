@@ -1,5 +1,6 @@
 import 'package:brunos_kitchen/route_generator.dart';
 import 'package:brunos_kitchen/utils/custom_font_style.dart';
+import 'package:brunos_kitchen/utils/enums.dart';
 import 'package:brunos_kitchen/view_models/auth_view_model.dart';
 import 'package:brunos_kitchen/widgets/user_form_fields_widget.dart';
 import 'package:flutter/cupertino.dart';
@@ -44,7 +45,7 @@ class ForgetPasswordScreen extends StatelessWidget {
                 SizedBox(
                   height: 32.h,
                 ),
-                const PhoneFieldWidget(),
+                const EmailFieldWidget(),
                 SizedBox(
                   height: 40.h,
                 ),
@@ -56,12 +57,18 @@ class ForgetPasswordScreen extends StatelessWidget {
                       if (!currentFocus.hasPrimaryFocus) {
                         currentFocus.unfocus();
                       }
-                      if (authViewModel.phoneValidation()) {
+                      if (authViewModel.emailValidation()) {
                         await authViewModel
-                            .checkPhoneNumber(checkType: true)
-                            .then((value) {
+                            .checkEmail()
+                            .then((value) async {
                           if (value) {
-                            Navigator.pushNamed(context, otpRoute);
+                            authViewModel.setOtpType(OtpTypes.forgotPassword.text);
+                            await authViewModel
+                                .sendingOtp().then((value) {
+                                  if (value){
+                                    Navigator.pushNamed(context, otpRoute);
+                                  }
+                            });
                           }
                         });
 

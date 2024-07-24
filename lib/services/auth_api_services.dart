@@ -3,6 +3,8 @@ import 'dart:convert';
 import 'package:brunos_kitchen/models/base_response_model.dart';
 import 'package:brunos_kitchen/models/requests/edit_user_profile_request.dart';
 import 'package:brunos_kitchen/models/requests/forgot_password_request.dart';
+import 'package:brunos_kitchen/models/requests/otp_send_request.dart';
+import 'package:brunos_kitchen/models/requests/otp_verify_request.dart';
 import 'package:brunos_kitchen/models/requests/social_sign_in_request.dart';
 import 'package:brunos_kitchen/models/requests/user_register_request.dart';
 import 'package:brunos_kitchen/models/responses/banners_response.dart';
@@ -132,6 +134,30 @@ class AuthApiServices {
     AuthResponse authResponse = AuthResponse.fromJson(parsed);
     return authResponse;
   }
+
+  Future<BaseResponseModel> sendOtp({required OtpSendRequest otpSendRequest}) async {
+    final response = await _httpService.httpRequest(
+        endPoint: EndPoints.sendOtp,
+        requestType: 'POST',
+        requestBody: otpSendRequest,
+        params: '');
+    final parsed = json.decode(response.body);
+    BaseResponseModel baseResponseModel = AuthResponse.fromJson(parsed);
+    return baseResponseModel;
+  }
+
+  Future<BaseResponseModel> verifyOtp({required OtpVerifyRequest otpVerifyRequest}) async {
+    final response = await _httpService.httpRequest(
+        endPoint: EndPoints.verifyOtp,
+        requestType: 'POST',
+        requestBody: otpVerifyRequest,
+        params: '');
+    final parsed = json.decode(response.body);
+    BaseResponseModel baseResponseModel = AuthResponse.fromJson(parsed);
+    return baseResponseModel;
+  }
+
+
 
   Future<AuthResponse> editUserProfileApi({required EditUserProfileRequest editUserProfileRequest}) async {
     final response = await _httpService.httpRequest(

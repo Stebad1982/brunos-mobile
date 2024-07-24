@@ -8,6 +8,8 @@ import 'package:brunos_kitchen/models/card_model.dart';
 import 'package:brunos_kitchen/models/puppy_model.dart';
 import 'package:brunos_kitchen/models/requests/edit_user_profile_request.dart';
 import 'package:brunos_kitchen/models/requests/forgot_password_request.dart';
+import 'package:brunos_kitchen/models/requests/otp_send_request.dart';
+import 'package:brunos_kitchen/models/requests/otp_verify_request.dart';
 import 'package:brunos_kitchen/models/requests/user_register_request.dart';
 import 'package:brunos_kitchen/models/responses/banners_response.dart';
 import 'package:brunos_kitchen/services/auth_api_services.dart';
@@ -48,11 +50,14 @@ class AuthViewModel with ChangeNotifier {
   AuthResponse _authResponse = AuthResponse();
   final List<BannerData> _bannersList = [];
   final SharedPref _sharedPref = SharedPref();
-  final FirebaseAuth _auth = FirebaseAuth.instance;
+
+  //final FirebaseAuth _auth = FirebaseAuth.instance;
   String _countryCode = '+971';
   String? _fcmToken;
   String _operatingSystem = '';
-  String _verificationId = '';
+  String _otpType = '';
+
+  //String _verificationId = '';
   final FirebaseMessaging _firebaseMessaging = FirebaseMessaging.instance;
   final TextEditingController _otpController = TextEditingController();
   final TextEditingController _nameController = TextEditingController();
@@ -71,23 +76,28 @@ class AuthViewModel with ChangeNotifier {
   String _otpMinutes = '02';
   String _otpSeconds = '00';
 
+  String get getOtpType => _otpType;
+
+  void setOtpType (String value){
+    _otpType = value;
+  }
 
   String get getOtpMinutes => _otpMinutes;
 
-  void setOtpMinutesSeconds (){
+  void setOtpMinutesSeconds() {
     String strDigits(int n) => n.toString().padLeft(2, '0');
     _otpMinutes = strDigits(_myDuration.inMinutes.remainder(02));
     _otpSeconds = strDigits(_myDuration.inSeconds.remainder(60));
     notifyListeners();
   }
-  String get getOtpSeconds => _otpSeconds;
 
+  String get getOtpSeconds => _otpSeconds;
 
   // timer settings
 
   Timer? get getCountdownTimer => _countdownTimer;
 
- // Duration get getMyDuration => _myDuration;
+  // Duration get getMyDuration => _myDuration;
 
   void startTimer() {
     _countdownTimer =
@@ -108,7 +118,7 @@ class AuthViewModel with ChangeNotifier {
   }
 
   void stopTimer() {
-    if(_countdownTimer != null && _countdownTimer!.isActive){
+    if (_countdownTimer != null && _countdownTimer!.isActive) {
       _otpMinutes = '02';
       _otpSeconds = '00';
       _countdownTimer!.cancel();
@@ -140,7 +150,8 @@ class AuthViewModel with ChangeNotifier {
   void setBannerResponse(BannersResponse value) {
     _bannersList.clear();
     if (value.data != null) {
-      final List<BannerData> featuredList = value.data!.where((element) => element.isFeatured!).toList();
+      final List<BannerData> featuredList =
+          value.data!.where((element) => element.isFeatured!).toList();
       _bannersList.addAll(featuredList);
     }
     notifyListeners();
@@ -259,7 +270,6 @@ class AuthViewModel with ChangeNotifier {
   TextEditingController get getPhoneController => _phoneController;
 
   TextEditingController get getEditPhoneController => _editPhoneController;
-
 
   TextEditingController get getPasswordController => _passwordController;
 
@@ -531,29 +541,31 @@ class AuthViewModel with ChangeNotifier {
   }
 
   Future<bool> callForgotPasswordApi() async {
-    final bool otpVerification = await verifyOTPFirebase();
+    _otpType = OtpTypes.forgotPassword.text;
+    final bool otpVerification = await verifyingOtp();
     EasyLoading.show(status: 'Please Wait ...');
-    if (otpVerification) {try {
-      final ForgotPasswordRequest forgotPasswordRequest = ForgotPasswordRequest(
-          password: _passwordController.text,
-          phoneNumber: _phoneController.text,
-          otp: _otpController.text);
+    if (otpVerification) {
+      try {
+        final ForgotPasswordRequest forgotPasswordRequest =
+            ForgotPasswordRequest(
+                password: _passwordController.text,
+                phoneNumber: _phoneController.text,
+                otp: _otpController.text);
 
-      final BaseResponseModel response = await _authApiServices
-          .forgotPasswordApi(forgotPasswordRequest: forgotPasswordRequest);
-      if (response.isSuccess!) {
-        EasyLoading.dismiss();
-        return true;
-      } else {
-        EasyLoading.showError('${response.message}');
+        final BaseResponseModel response = await _authApiServices
+            .forgotPasswordApi(forgotPasswordRequest: forgotPasswordRequest);
+        if (response.isSuccess!) {
+          EasyLoading.dismiss();
+          return true;
+        } else {
+          EasyLoading.showError('${response.message}');
+          return false;
+        }
+      } catch (e) {
+        EasyLoading.showError(e.toString());
         return false;
       }
-    } catch (e) {
-      EasyLoading.showError(e.toString());
-      return false;
-    }
-  }
-    else{
+    } else {
       return false;
     }
   }
@@ -587,7 +599,8 @@ class AuthViewModel with ChangeNotifier {
   }
 
   Future<bool> callUserRegisterApi() async {
-    final bool otpVerification = await verifyOTPFirebase();
+    _otpType = OtpTypes.register.text;
+    final bool otpVerification = await verifyingOtp();
     EasyLoading.show(status: 'Please Wait ...');
     SendGridPref sendGrid = SendGridPref();
     if (otpVerification) {
@@ -656,8 +669,7 @@ class AuthViewModel with ChangeNotifier {
   Future<bool> checkEmail() async {
     //EasyLoading.show(status: 'Please Wait Verify Email');
     try {
-      final BaseResponseModel response =
-      await _authApiServices.checkEmailApi(
+      final BaseResponseModel response = await _authApiServices.checkEmailApi(
           emailAddress: _emailController.text);
       if (response.isSuccess!) {
         EasyLoading.showError(response.message!);
@@ -672,43 +684,50 @@ class AuthViewModel with ChangeNotifier {
     }
   }
 
-
-  Future<void> verifyNumberFirebase() async {
+  Future<bool> sendingOtp() async {
     EasyLoading.show(status: 'Sending OTP');
-    resetTimer();
-    //bool returnValue = false;
-    await _auth.verifyPhoneNumber(
-      phoneNumber: _countryCode + _phoneController.text,
-      verificationCompleted: (PhoneAuthCredential credential) async {
-        await _auth.signInWithCredential(credential);
-        //   returnValue = true;
-        EasyLoading.dismiss();
-      },
-      timeout: const Duration(minutes: 2),
-      codeSent: (String verificationId, int? resendToken) {
-        _verificationId = verificationId;
+    try {
+      final BaseResponseModel response = await _authApiServices.sendOtp(
+          otpSendRequest:
+              OtpSendRequest(email: _emailController.text, type: _otpType));
+      if (response.isSuccess!) {
         restartTimer();
         EasyLoading.dismiss();
-        //  returnValue = true;
-      },
-      codeAutoRetrievalTimeout: (String verificationId) {
-        _verificationId = verificationId;
-        //   returnValue = true;
-        EasyLoading.dismiss();
-      },
-      verificationFailed: (FirebaseAuthException e) {
-        if (e.code == 'invalid-phone-number') {
-          EasyLoading.showToast('The provided phone number is not valid.');
-        } else {
-          EasyLoading.showToast(e.toString());
-        }
+        return true;
+      } else {
+        EasyLoading.showError(response.message!);
         resetTimer();
-        //  returnValue = false;
-      },
-    );
-    // return returnValue;
+        return false;
+      }
+    } catch (exception) {
+      resetTimer();
+      EasyLoading.showError(exception.toString());
+      return false;
+    }
   }
 
+  Future<bool> verifyingOtp() async {
+    EasyLoading.show(status: 'Sending OTP');
+    try {
+      resetTimer();
+      //bool returnValue = false;
+
+      final BaseResponseModel response = await _authApiServices.verifyOtp(
+        otpVerifyRequest: OtpVerifyRequest(email: _emailController.text, otp: _otpController.text, type: _otpType));
+      if (response.isSuccess!) {
+        EasyLoading.dismiss();
+        return true;
+      } else {
+        EasyLoading.showError(response.message!);
+        return false;
+      }
+    } catch (exception) {
+      EasyLoading.showError(exception.toString());
+      return false;
+    }
+  }
+
+/*
   Future<bool> verifyOTPFirebase() async {
     try {
       EasyLoading.show(status: 'Verify OTP');
@@ -723,6 +742,7 @@ class AuthViewModel with ChangeNotifier {
       return false;
     }
   }
+*/
 
   Future<bool> editUserProfileApi() async {
     EasyLoading.show(status: 'Please Wait ...');

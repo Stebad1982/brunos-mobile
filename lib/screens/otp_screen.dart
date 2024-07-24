@@ -36,7 +36,7 @@ class _OtpScreenState extends State<OtpScreen> {
       context.read<AuthViewModel>().resetTimer();
       await context
           .read<AuthViewModel>()
-          .verifyNumberFirebase();
+          .sendingOtp();
     });
 
   }
@@ -103,7 +103,7 @@ class _OtpScreenState extends State<OtpScreen> {
                             Form(
                               // key: formKey,
                               child: SizedBox(
-                                //width: 250.w,
+                                width: 250.w,
                                 child: PinCodeTextField(
                                   // errorAnimationController: errorController,
                                   keyboardType: TextInputType.number,
@@ -111,7 +111,7 @@ class _OtpScreenState extends State<OtpScreen> {
                                   // backgroundColor: CustomColors.lightGreyColor,
                                   controller: authViewModel.getOtpController,
                                   appContext: context,
-                                  length: 6,
+                                  length: 4,
                                   pinTheme: PinTheme(
                                       shape: PinCodeFieldShape.box,
                                       borderRadius:
@@ -173,7 +173,7 @@ class _OtpScreenState extends State<OtpScreen> {
                                 onTap: (){
                                   context
                                       .read<AuthViewModel>()
-                                      .verifyNumberFirebase();
+                                      . sendingOtp();
                                 },
                                 child: const Text.rich(
                                   TextSpan(

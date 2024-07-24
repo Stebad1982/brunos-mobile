@@ -11,6 +11,7 @@ import 'package:provider/provider.dart';
 
 import '../route_generator.dart';
 import '../utils/custom_buttons.dart';
+import '../utils/enums.dart';
 import '../widgets/back_button_widget.dart';
 
 class RegisterUserContinueScreen extends StatelessWidget {
@@ -53,14 +54,15 @@ class RegisterUserContinueScreen extends StatelessWidget {
               const Spacer(),
               customButton(
                   text: 'Continue',
-                  onPressed: ()  {
-                    if (context.read<AuthViewModel>().phoneValidation()) {
-                      Navigator.pushNamed(context, otpRoute);
-
-                         /* .then((value) => {
-                                if (value)
-                                  {Navigator.pushNamed(context, otpRoute)}
-                              })*/;
+                  onPressed: ()  async {
+                    if (context.read<AuthViewModel>().emailValidation()) {
+                      context.read<AuthViewModel>().setOtpType(OtpTypes.register.text);
+                      await context.read<AuthViewModel>()
+                          .sendingOtp().then((value) {
+                        if (value){
+                          Navigator.pushNamed(context, otpRoute);
+                        }
+                      });
                     }
                   },
                   colored: true),
