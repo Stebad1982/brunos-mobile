@@ -76,13 +76,13 @@ int calculateFinalPricePerDay({required RecipeModel recipeModel}) {
       puppyActivityLevel: puppy.activityLevel!,
       currentWeight: puppy.currentWeight!,
       puppyActualWeight: puppy.actualWeight!);
-  final int priceFromWeight = getPriceFromWeight(
+  final num priceFromWeight = getPriceFromWeight(
       recipeModel: recipeModel, dailyGram: dailyInTake);
   final num pricePerDay = dailyInTake * priceFromWeight / 1000;
   return pricePerDay.round();
 }
 
-int getPriceFromWeight(
+num getPriceFromWeight(
     {required RecipeModel recipeModel, required num dailyGram}) {
   if(dailyGram >= 1 && dailyGram <= 200){
     return recipeModel.price1!;
@@ -126,7 +126,7 @@ num calculateTransitionalGram(
 
 num calculateTransitionalPrice(
     {required num gramWithPercent, required RecipeModel recipeModel}) {
-  final int priceFromWeight = getPriceFromWeight(
+  final num priceFromWeight = getPriceFromWeight(
       recipeModel: recipeModel, dailyGram: gramWithPercent);
   final num priceWithPercent = gramWithPercent * priceFromWeight / 1000;
   return priceWithPercent.round();

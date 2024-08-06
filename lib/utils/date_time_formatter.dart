@@ -29,8 +29,8 @@ class DateTimeFormatter {
     return dateFormat;
   }
 
-  static timeStampToDate(int date , int formatterType) {
-    final DateTime dateFormat = DateTime.fromMicrosecondsSinceEpoch(date * 1000);
+  static timeStampToDate(num date , int formatterType) {
+    final DateTime dateFormat = DateTime.fromMicrosecondsSinceEpoch(date.toInt() * 1000);
     final DateFormat formatter = formatterType == 1? DateFormat('MM / dd / yyyy'): DateFormat('dd MMM yyyy');
     final String formatted = formatter.format(dateFormat);
     return formatted;

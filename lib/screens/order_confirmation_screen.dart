@@ -56,6 +56,10 @@ class OrderConfirmationScreen extends StatelessWidget {
                           height: 20.h,
                         ),
                         black24w500Centre(data: 'Order Confirmed'),
+                        Visibility(
+                          visible: orderViewModel.getOrderCreateResponse.data!.pointsEarned! > 0,
+                            child: black16w500(align: TextAlign.center,data: 'Congratulations, you have earned ${orderViewModel.getOrderCreateResponse.data!.pointsEarned.toString()} points on this order')),
+
                       ],
                     ),
                   ),

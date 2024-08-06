@@ -775,7 +775,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                             ),
                             lightBlack14w400Centre(
                                 data:
-                                    '${cartViewModel.getDeliveryFee} AED (One time  Fee)'),
+                                    '${cartViewModel.getDeliveryFee} AED'),
                           ],
                         ),
                         SizedBox(
@@ -801,7 +801,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                             lightBlack14w400Centre(data: 'Total'),
                             const Spacer(),
                             black16w500(
-                                data: 'AED ${cartViewModel.getCheckOutTotal}')
+                                data: 'AED ${cartViewModel.getCheckOutTotal.toStringAsFixed(2)}')
                           ],
                         ),
                         SizedBox(

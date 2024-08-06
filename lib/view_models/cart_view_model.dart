@@ -149,7 +149,7 @@ PromoCodeResponse _promoCodeResponse = PromoCodeResponse();
 
     // totalPrice = totalPrice + _vatValue;
 
-    _checkOutTotal = totalPrice.round() /*roundPrice(totalPrice.round())*/;
+    _checkOutTotal = totalPrice /*roundPrice(totalPrice.round())*/;
 
     notifyListeners();
   }

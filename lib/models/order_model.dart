@@ -3,16 +3,17 @@ import 'package:brunos_kitchen/models/recipe_model.dart';
 
 class OrderData {
   String? sId;
-  int? totalAmount;
+  num? totalAmount;
   String? locationId;
   String? paymentMethod;
-  int? discount;
+  num? discount;
   String? deliveryDate;
-  int? createdOnDate;
+  num? createdOnDate;
   String? promoCodeId;
   bool? isCompleted;
   num? shippingFees;
   num? cartTotal;
+  num? pointsEarned;
   List<OrderItems>? orderItems;
 
   OrderData(
@@ -27,6 +28,7 @@ class OrderData {
         this.createdOnDate,
         this.shippingFees,
         this.isCompleted,
+        this.pointsEarned,
         this.orderItems});
 
   OrderData.fromJson(Map<String, dynamic> json) {
@@ -41,6 +43,7 @@ class OrderData {
     shippingFees = json['shippingFees'];
     isCompleted = json['isCompleted'];
     promoCodeId = json['promoCodeId'];
+    pointsEarned = json['pointsEarned'];
     if (json['orderItems'] != null) {
       orderItems = <OrderItems>[];
       json['orderItems'].forEach((v) {
@@ -60,6 +63,7 @@ class OrderData {
     data['shippingFees'] = this.shippingFees;
     data['isCompleted'] = this.isCompleted;
     data['isCompleted'] = this.isCompleted;
+    data['pointsEarned'] = this.pointsEarned;
     data['promoCodeId'] = this.promoCodeId;
     if (this.orderItems != null) {
       data['orderItems'] = this.orderItems!.map((v) => v.toJson()).toList();
@@ -69,7 +73,6 @@ class OrderData {
 }
 
 class OrderItems {
-
   PuppyModel? pet;
   List<String>? pouchesDetail;
   String? planType;

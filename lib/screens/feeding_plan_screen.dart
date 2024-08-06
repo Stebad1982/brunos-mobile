@@ -316,10 +316,10 @@ class _FeedingPlanScreenState extends State<FeedingPlanScreen> {
                                           (Route route) => route.isFirst);
                                     }
 
-                                    EasyLoading.showToast(
+                                    /*EasyLoading.showToast(
                                         '${plansViewModel.getPlanType} Plan Successfully Added To\nShopping Bag',
                                         toastPosition:
-                                            EasyLoadingToastPosition.center);
+                                            EasyLoadingToastPosition.center);*/
                                   } else {
                                     Navigator.pop(context);
                                   }

@@ -218,14 +218,14 @@ class ProductDetailScreen extends StatelessWidget {
                     SizedBox(
                       height: 10.h,
                     ),
-                    Visibility(
+                   /* Visibility(
                         visible: plansViewModel.getSelectedRecipe.category ==
                             ProductCategories.standardRecipes.text,
                         child: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 20).w,
                           child: orange14w500(
                               data: 'Single Pouch Consists of ${plansViewModel.getSelectedRecipe.standaloneSize} grams'),
-                        )),
+                        )),*/
                     plansViewModel.getSelectedRecipe.selectedItemSize != null
                         ? Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 20).w,
@@ -371,9 +371,9 @@ class ProductDetailScreen extends StatelessWidget {
                             Navigator.pushNamedAndRemoveUntil(context,
                                 bottomNavigationRoute, (route) => false);
 
-                            EasyLoading.showToast(
+                           /* EasyLoading.showToast(
                                 '${plansViewModel.getPlanType} Successfully Added To\nShopping Bag',
-                                toastPosition: EasyLoadingToastPosition.center);
+                                toastPosition: EasyLoadingToastPosition.center);*/
                           } else {
                             Navigator.pushNamed(context, cartRoute);
                             descriptionDialog(

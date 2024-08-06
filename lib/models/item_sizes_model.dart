@@ -1,6 +1,6 @@
 class ItemSizes {
   String? name;
-  int? price;
+  num? price;
   int? stock;
   int? weight;
   String? unit;

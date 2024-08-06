@@ -208,7 +208,7 @@ class _OtpScreenState extends State<OtpScreen> {
                     ],
                   ),
                   Visibility(
-                    visible: authViewModel.getOtpController.value.text.length == 6,
+                    visible: authViewModel.getOtpController.value.text.length == 4  ,
                     child: SizedBox(
                       height: screenHeight,
                       child: Align(
