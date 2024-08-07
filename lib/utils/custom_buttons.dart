@@ -52,7 +52,7 @@ Widget customSquareButton ({required String text,required VoidCallback onPressed
             side: const BorderSide(width: 1.0,color: CustomColors.orangeColor)),
       ),
       onPressed: onPressed,
-      child: Text(text,
+      child: Text(text,textAlign: TextAlign.center,
           style: TextStyle(
             fontFamily: 'CircularStd',
             fontSize: 12.sp,

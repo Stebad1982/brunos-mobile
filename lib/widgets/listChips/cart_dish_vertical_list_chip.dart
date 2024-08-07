@@ -39,12 +39,14 @@ Widget cartDishVerticalListChipWidget(
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        black14w500(data: cartRecipeModel.name!),
+                        SizedBox(
+                          width: 210.w,
+                            child: black14w500(data: cartRecipeModel.name!)),
                         const SizedBox(height: 2,),
                         cartRecipeModel.sizes!.isNotEmpty?  Padding(
                           padding: const EdgeInsets.only(bottom: 2.0).w,
                           child: black14w500(data: ''
-                          'Size: ${cartRecipeModel.selectedItemSize!.name!}'),
+                          'Option: ${cartRecipeModel.selectedItemSize!.name!}'),
                         ):const SizedBox(),
                         planType == Plans.monthly.text
                             ? black14w500(

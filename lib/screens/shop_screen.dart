@@ -27,6 +27,7 @@ class ShopScreen extends StatelessWidget {
           padding: const EdgeInsets.all(20).w,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.max,
             children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -92,20 +93,29 @@ class ShopScreen extends StatelessWidget {
               SizedBox(
                 height: 10.h,
               ),
-              Wrap(
-                runSpacing: 20.w,
-                spacing: 20.w,
-                alignment: plansViewModel.getProductList.length == 1
-                    ? WrapAlignment.start
-                    : WrapAlignment.center,
-                children: List.generate(plansViewModel.getProductList.length,
-                    (index) {
-                  return SizedBox(
-                    width: 157.w,
-                    child: itemDescribedGridChipWidget(
-                        recipeData: plansViewModel.getProductList[index], showInformationIcon: false),
-                  );
-                }),
+              Expanded(
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      Wrap(
+                        runSpacing: 20.w,
+                        spacing: 20.w,
+                        alignment: plansViewModel.getProductList.length == 1
+                            ? WrapAlignment.start
+                            : WrapAlignment.center,
+                        children: List.generate(plansViewModel.getProductList.length,
+                            (index) {
+                          return SizedBox(
+                            width: 157.w,
+                            child: itemDescribedGridChipWidget(
+                                recipeData: plansViewModel.getProductList[index], showInformationIcon: false),
+                          );
+                        }),
+                      ),
+                      SizedBox(height: 80.h,)
+                    ],
+                  ),
+                ),
               ),
             ],
           ),
