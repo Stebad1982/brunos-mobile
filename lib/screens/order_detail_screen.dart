@@ -105,7 +105,7 @@ class OrderDetailScreen extends StatelessWidget {
                           ),
                           lightBlack14w400Centre(
                               data:
-                                  'AED ${orderViewModel.getSelectedOrder.cartTotal}'),
+                                  'AED ${orderViewModel.getSelectedOrder.cartTotal!.toStringAsFixed(2)}'),
                         ],
                       ),
                       SizedBox(
@@ -120,7 +120,7 @@ class OrderDetailScreen extends StatelessWidget {
                           ),
                           lightBlack14w400Centre(
                               data:
-                                  'AED ${orderViewModel.getSelectedOrder.shippingFees}'),
+                                  'AED ${orderViewModel.getSelectedOrder.shippingFees!.toStringAsFixed(2)}'),
                         ],
                       ),
                       SizedBox(
@@ -135,7 +135,7 @@ class OrderDetailScreen extends StatelessWidget {
                           ),
                           lightBlack14w400Centre(
                               data:
-                                  'AED ${orderViewModel.getSelectedOrder.totalAmount}'),
+                                  'AED ${orderViewModel.getSelectedOrder.totalAmount!.toStringAsFixed(2)}'),
                         ],
                       ),
                       SizedBox(

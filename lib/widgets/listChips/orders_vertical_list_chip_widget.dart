@@ -56,7 +56,7 @@ Widget ordersVerticalListChipWidget(
                 SizedBox(
                   height: 14.h,
                 ),
-                black16w500(data: 'AED ${orderListData.totalAmount}'),
+                black16w500(data: 'AED ${orderListData.totalAmount!.toStringAsFixed(2)}'),
                 SizedBox(
                   height: 10.h,
                 ),

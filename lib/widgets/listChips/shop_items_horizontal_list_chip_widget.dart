@@ -67,7 +67,7 @@ Widget shopItemsHorizontalListChipWidget({required RecipeModel productDetail}) {
                     SizedBox(
                       height: 6.h,
                     ),
-                    brown12w500Centre(data: 'AED ${productDetail.pricePerKG}'),
+                    brown12w500Centre(data: 'AED ${productDetail.pricePerKG!.toStringAsFixed(2)}'),
                     SizedBox(
                       height: 18.h,
                     ),

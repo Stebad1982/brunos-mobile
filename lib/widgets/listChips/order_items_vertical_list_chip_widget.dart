@@ -172,7 +172,7 @@ Widget orderItemsVerticalListChipWidget(
                 Align(
                     alignment: Alignment.centerRight,
                     child: black14w500(
-                        data: 'Total: AED ${orderItems.planDiscountedPrice}'))
+                        data: 'Total: AED ${orderItems.planDiscountedPrice!.toStringAsFixed(2)}'))
               ],
             ),
           ),
