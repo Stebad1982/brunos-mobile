@@ -714,7 +714,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                               width: 2.w,
                             ),
                             lightBlack14w400Centre(
-                                data: 'AED ${cartViewModel.getCartTotalPrice}'),
+                                data: 'AED ${cartViewModel.getCartTotalPrice.toStringAsFixed(2)}'),
                           ],
                         ),
                         Visibility(
@@ -743,7 +743,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                                 const Spacer(),
                                 orange14w500(
                                     data:
-                                        'AED -${cartViewModel.getPromoCodeDiscount}')
+                                        'AED -${cartViewModel.getPromoCodeDiscount.toStringAsFixed(2)}')
                               ],
                             ),
                           ),
@@ -775,7 +775,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                             ),
                             lightBlack14w400Centre(
                                 data:
-                                    '${cartViewModel.getDeliveryFee} AED'),
+                                    '${cartViewModel.getDeliveryFee.toStringAsFixed(2)} AED'),
                           ],
                         ),
                         SizedBox(

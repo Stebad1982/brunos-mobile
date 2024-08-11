@@ -80,7 +80,7 @@ class _CartScreenState extends State<CartScreen> with RouteAware {
                           children: [
                             orange14w500(
                                 data:
-                                    'Total Amount: AED ${cartViewModel.getCartTotalPrice}'),
+                                    'Total Amount: AED ${cartViewModel.getCartTotalPrice.toStringAsFixed(2)}'),
                             SizedBox(
                               height: 10.h,
                             ),

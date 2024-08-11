@@ -201,7 +201,7 @@ Widget cartVerticalListChipWidget(
                 Align(
                     alignment: Alignment.centerRight,
                     child: black14w500(
-                        data: 'Payable: AED ${cartDetail.planType == Plans.monthly.text? cartDetail.planDiscountedPrice: cartDetail.planTotal}'))
+                        data: 'Payable: AED ${cartDetail.planType == Plans.monthly.text? cartDetail.planDiscountedPrice.toStringAsFixed(2): cartDetail.planTotal.toStringAsFixed(2)}'))
               ],
             ),
           ),

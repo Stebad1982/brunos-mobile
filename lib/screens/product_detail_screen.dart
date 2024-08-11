@@ -126,7 +126,7 @@ class ProductDetailScreen extends StatelessWidget {
                               ),
                               black24w500Centre(
                                   data:
-                                      'AED ${plansViewModel.getSelectedRecipe.pricePerKG}')
+                                      'AED ${plansViewModel.getSelectedRecipe.pricePerKG!.toStringAsFixed(2)}')
                             ],
                           ),
                           Column(
@@ -307,20 +307,20 @@ class ProductDetailScreen extends StatelessWidget {
                     SizedBox(
                       height: 24.h,
                     ),
-                    Padding(
+                   /* Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 20).w,
                       child: black14w500(data: 'Details'),
-                    ),
-                    SizedBox(
+                    ),*/
+                   /* SizedBox(
                       height: 8.h,
-                    ),
-                     Padding(
+                    ),*/
+                    /* Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 20).w,
                       // child: black14w500(data: plansViewModel.getSelectedRecipe.),
-                    ),
-                    SizedBox(
+                    ),*/
+                    /*SizedBox(
                       height: 5.h,
-                    ),
+                    ),*/
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 20).w,
                       child: Html(
@@ -425,7 +425,7 @@ class ProductDetailScreen extends StatelessWidget {
                                   children: [
                                     white18w500(
                                         data:
-                                            'AED ${plansViewModel.getSelectedRecipe.pricePerKG! * plansViewModel.getQuantity}'),
+                                            'AED ${(plansViewModel.getSelectedRecipe.pricePerKG! * plansViewModel.getQuantity).toStringAsFixed(2)}'),
                                     SizedBox(
                                       height: 5.h,
                                     ),

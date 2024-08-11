@@ -58,7 +58,7 @@ class OrderConfirmationScreen extends StatelessWidget {
                         black24w500Centre(data: 'Order Confirmed'),
                         Visibility(
                           visible: orderViewModel.getOrderCreateResponse.data!.pointsEarned! > 0,
-                            child: black16w500(align: TextAlign.center,data: 'Congratulations, you have earned ${orderViewModel.getOrderCreateResponse.data!.pointsEarned.toString()} points on this order')),
+                            child: black16w500(align: TextAlign.center,data: 'Congratulations, you have earned ${orderViewModel.getOrderCreateResponse.data!.pointsEarned!.toStringAsFixed(2)} new paw points to your account')),
 
                       ],
                     ),
@@ -120,7 +120,7 @@ class OrderConfirmationScreen extends StatelessWidget {
                                   SizedBox(
                                     width: 2.w,
                                   ),
-                                  lightBlack14w400Centre(data: 'AED ${orderViewModel.getOrderCreateResponse.data!.cartTotal}'),
+                                  lightBlack14w400Centre(data: 'AED ${orderViewModel.getOrderCreateResponse.data!.cartTotal!.toStringAsFixed(2)}'),
                                 ],
                               ),
                               SizedBox(
@@ -137,7 +137,7 @@ class OrderConfirmationScreen extends StatelessWidget {
                                         SizedBox(
                                           width: 2.w,
                                         ),
-                                        lightBlack14w400Centre(data: 'AED ${orderViewModel.getOrderCreateResponse.data!.discount}'),
+                                        lightBlack14w400Centre(data: 'AED ${orderViewModel.getOrderCreateResponse.data!.discount!.toStringAsFixed(2)}'),
                                       ],
                                     ),
                                     SizedBox(
@@ -153,7 +153,7 @@ class OrderConfirmationScreen extends StatelessWidget {
                                   SizedBox(
                                     width: 2.w,
                                   ),
-                                  lightBlack14w400Centre(data: 'AED ${orderViewModel.getOrderCreateResponse.data!.shippingFees}'),
+                                  lightBlack14w400Centre(data: 'AED ${orderViewModel.getOrderCreateResponse.data!.shippingFees!.toStringAsFixed(2)}'),
                                 ],
                               ),
                               SizedBox(
@@ -166,7 +166,7 @@ class OrderConfirmationScreen extends StatelessWidget {
                                   SizedBox(
                                     width: 2.w,
                                   ),
-                                  lightBlack14w400Centre(data: 'AED ${orderViewModel.getOrderCreateResponse.data!.totalAmount}'),
+                                  lightBlack14w400Centre(data: 'AED ${orderViewModel.getOrderCreateResponse.data!.totalAmount!.toStringAsFixed(2)}'),
                                 ],
                               ),
                             ],
