@@ -185,7 +185,7 @@ PromoCodeResponse _promoCodeResponse = PromoCodeResponse();
           .data!
           .card!
           .paymentMethodId!,
-      discount: _promoCodeDiscount + _pawPointDiscount.round(),
+      discount: _promoCodeDiscount + _pawPointDiscount,
       deliveryDate: DateTimeFormatter.showDateFormat3(_selectedDay),
       promoCodeId: _promoCodeResponse.data != null? _promoCodeResponse.data!.sId! : '',
       cartItems: _cartList,

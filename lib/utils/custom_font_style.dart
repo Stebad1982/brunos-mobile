@@ -30,7 +30,7 @@ Widget black24w500Centre({required String data}) {
 Widget lightBlack14w400Centre({required String data, bool? left}) {
   return Text(
     data,
-    textAlign: left != null? TextAlign.left: TextAlign.center,
+    textAlign: left != null ? TextAlign.left : TextAlign.center,
     style: TextStyle(
         fontFamily: 'CircularStd',
         fontSize: 14.sp,
@@ -54,7 +54,7 @@ Widget purple10w500Centre({required String data}) {
 
 Widget black14w500({required String data, bool? centre}) {
   return Text(
-    textAlign: centre != null?  TextAlign.center: TextAlign.left,
+    textAlign: centre != null ? TextAlign.center : TextAlign.left,
     data,
     style: TextStyle(
         fontFamily: 'CircularStd',
@@ -68,7 +68,7 @@ Widget black14w400({required String data, bool? lineSpacing}) {
   return Text(
     data,
     style: TextStyle(
-        height: lineSpacing == true? 1.5 : null,
+        height: lineSpacing == true ? 1.5 : null,
         fontFamily: 'CircularStd',
         fontSize: 14.sp,
         color: CustomColors.blackColor,
@@ -83,8 +83,9 @@ Widget googleFont2({required String data, bool? click}) {
     style: TextStyle(
         fontFamily: 'Rubik',
         fontSize: 12.sp,
-        color:
-        click != null && click ? CustomColors.orangeColor : CustomColors.purpleColor,
+        color: click != null && click
+            ? CustomColors.orangeColor
+            : CustomColors.purpleColor,
         fontWeight: FontWeight.bold),
   );
 }
@@ -125,7 +126,7 @@ Widget brown32w500({required String data}) {
 Widget brown14w400Centre({required String data, bool? centre}) {
   return Text(
     data,
-    textAlign: centre != null?  TextAlign.center: TextAlign.left,
+    textAlign: centre != null ? TextAlign.center : TextAlign.left,
     style: TextStyle(
         fontFamily: 'CircularStd',
         fontSize: 14.sp,
@@ -133,6 +134,7 @@ Widget brown14w400Centre({required String data, bool? centre}) {
         fontWeight: FontWeight.w400),
   );
 }
+
 Widget brown12w500Centre({required String data}) {
   return Text(
     data,
@@ -156,12 +158,13 @@ Widget grey14w400HeightCentre({required String data}) {
         color: CustomColors.greyColor),
   );
 }
-Widget grey14w400({required String data, bool? lineHeight, int? maxLine }) {
+
+Widget grey14w400({required String data, bool? lineHeight, int? maxLine}) {
   return Text(
     maxLines: maxLine,
     data,
     style: TextStyle(
-      height: lineHeight == true? 1.5: null,
+        height: lineHeight == true ? 1.5 : null,
         fontFamily: 'CircularStd',
         fontSize: 14.sp,
         fontWeight: FontWeight.w400,
@@ -191,8 +194,9 @@ Widget orange14w400({required String data}) {
   );
 }
 
-Widget orange14w500({required String data}) {
+Widget orange14w500({required String data, TextAlign? align}) {
   return Text(
+    textAlign: align,
     data,
     style: TextStyle(
         fontFamily: 'CircularStd',
@@ -213,14 +217,19 @@ Widget orange18w500({required String data}) {
   );
 }
 
-Widget black12w500Centre({required String data, bool? centre, bool? overFlowText, bool? lineSpacing}) {
+Widget black12w500Centre(
+    {required String data,
+    bool? centre,
+    bool? overFlowText,
+    bool? lineSpacing}) {
   return Text(
-    maxLines: overFlowText != null && overFlowText? 1 : null,
-    overflow: overFlowText != null && overFlowText? TextOverflow.ellipsis: null,
+    maxLines: overFlowText != null && overFlowText ? 1 : null,
+    overflow:
+        overFlowText != null && overFlowText ? TextOverflow.ellipsis : null,
     data,
-    textAlign: centre != null?  TextAlign.center: TextAlign.left,
+    textAlign: centre != null ? TextAlign.center : TextAlign.left,
     style: TextStyle(
-        height: lineSpacing == true? 1.5 : null,
+        height: lineSpacing == true ? 1.5 : null,
         fontFamily: 'CircularStd',
         fontSize: 12.sp,
         fontWeight: FontWeight.w400,
@@ -240,10 +249,10 @@ Widget black10w400({required String data, int? maxLine}) {
   );
 }
 
-Widget black16w500({required String data,  TextAlign? align}) {
+Widget black16w500({required String data, TextAlign? align}) {
   return Text(
     data,
-    textAlign: align  ,
+    textAlign: align,
     style: TextStyle(
         fontFamily: 'CircularStd',
         fontSize: 16.sp,
@@ -251,7 +260,6 @@ Widget black16w500({required String data,  TextAlign? align}) {
         color: CustomColors.blackColor),
   );
 }
-
 
 Widget white18w500({required String data}) {
   return Text(
@@ -277,8 +285,9 @@ Widget whiteTint14w400({required String data}) {
 
 Widget white12w400({required String data, bool? overFlowText}) {
   return Text(
-    maxLines: overFlowText != null && overFlowText? 1 : null,
-    overflow: overFlowText != null && overFlowText? TextOverflow.ellipsis: null,
+    maxLines: overFlowText != null && overFlowText ? 1 : null,
+    overflow:
+        overFlowText != null && overFlowText ? TextOverflow.ellipsis : null,
     data,
     style: TextStyle(
         fontFamily: 'CircularStd',
