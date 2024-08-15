@@ -11,6 +11,7 @@ import 'package:brunos_kitchen/models/responses/banners_response.dart';
 
 import '../models/requests/sign_in_request.dart';
 import '../models/responses/auth_response.dart';
+import '../models/responses/otp_response.dart';
 import '../utils/enums.dart';
 import 'package:http/http.dart' as http;
 import '../utils/shared_pref .dart';
@@ -135,15 +136,15 @@ class AuthApiServices {
     return authResponse;
   }
 
-  Future<BaseResponseModel> sendOtp({required OtpSendRequest otpSendRequest}) async {
+  Future<OtpResponse> sendOtp({required OtpSendRequest otpSendRequest}) async {
     final response = await _httpService.httpRequest(
         endPoint: EndPoints.sendOtp,
         requestType: 'POST',
         requestBody: otpSendRequest,
         params: '');
     final parsed = json.decode(response.body);
-    BaseResponseModel baseResponseModel = AuthResponse.fromJson(parsed);
-    return baseResponseModel;
+    OtpResponse otpResponse = OtpResponse.fromJson(parsed);
+    return otpResponse;
   }
 
   Future<BaseResponseModel> verifyOtp({required OtpVerifyRequest otpVerifyRequest}) async {

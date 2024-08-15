@@ -30,6 +30,7 @@ import 'package:sendgrid_mailer/sendgrid_mailer.dart';
 import '../models/requests/sign_in_request.dart';
 import '../models/requests/social_sign_in_request.dart';
 import '../models/responses/auth_response.dart';
+import '../models/responses/otp_response.dart';
 import '../route_generator.dart';
 import '../screens/bottom_navigation_screen.dart';
 import '../screens/logIn_screen.dart';
@@ -48,6 +49,7 @@ class AuthViewModel with ChangeNotifier {
   Duration _myDuration = const Duration(minutes: 2);
   final AuthApiServices _authApiServices = AuthApiServices();
   AuthResponse _authResponse = AuthResponse();
+  OtpResponse _otpResponse = OtpResponse();
   final List<BannerData> _bannersList = [];
   final SharedPref _sharedPref = SharedPref();
 
@@ -541,11 +543,11 @@ class AuthViewModel with ChangeNotifier {
   }
 
   Future<bool> callForgotPasswordApi() async {
-    _otpType = OtpTypes.forgotPassword.text;
-    final bool otpVerification = await verifyingOtp();
-    EasyLoading.show(status: 'Please Wait ...');
-    if (otpVerification) {
+    //_otpType = OtpTypes.forgotPassword.text;
+    //final bool otpVerification = await verifyingOtp();
+   /* if (otpVerification) {*/
       try {
+        EasyLoading.show(status: 'Please Wait ...');
         final ForgotPasswordRequest forgotPasswordRequest =
             ForgotPasswordRequest(
                 password: _passwordController.text,
@@ -565,9 +567,9 @@ class AuthViewModel with ChangeNotifier {
         EasyLoading.showError(e.toString());
         return false;
       }
-    } else {
+    /*} else {
       return false;
-    }
+    }*/
   }
 
   Future<bool> callGuestUserRegisterApi() async {
@@ -601,10 +603,10 @@ class AuthViewModel with ChangeNotifier {
   Future<bool> callUserRegisterApi() async {
     _otpType = OtpTypes.register.text;
     final bool otpVerification = await verifyingOtp();
-    EasyLoading.show(status: 'Please Wait ...');
-    SendGridPref sendGrid = SendGridPref();
     if (otpVerification) {
       try {
+        EasyLoading.show(status: 'Please Wait ...');
+        SendGridPref sendGrid = SendGridPref();
         final UserRegisterRequest userRegisterRequest = UserRegisterRequest(
             password: _passwordController.text,
             email: _emailController.text,
@@ -687,10 +689,11 @@ class AuthViewModel with ChangeNotifier {
   Future<bool> sendingOtp() async {
     EasyLoading.show(status: 'Sending OTP');
     try {
-      final BaseResponseModel response = await _authApiServices.sendOtp(
+      final OtpResponse response = await _authApiServices.sendOtp(
           otpSendRequest:
               OtpSendRequest(email: _emailController.text, type: _otpType));
       if (response.isSuccess!) {
+        _otpResponse = response;
         restartTimer();
         EasyLoading.dismiss();
         return true;
@@ -708,7 +711,15 @@ class AuthViewModel with ChangeNotifier {
 
   Future<bool> verifyingOtp() async {
     EasyLoading.show(status: 'Sending OTP');
-    try {
+    if(_otpResponse.data != null && _otpResponse.data!.otp == _otpController.text){
+      EasyLoading.dismiss();
+      return true;
+    }
+    else{
+      EasyLoading.showError('Wrong OTP');
+      return false;
+    }
+ /*   try {
       resetTimer();
       //bool returnValue = false;
 
@@ -719,12 +730,14 @@ class AuthViewModel with ChangeNotifier {
         return true;
       } else {
         EasyLoading.showError(response.message!);
+        EasyLoading.dismiss();
         return false;
       }
     } catch (exception) {
       EasyLoading.showError(exception.toString());
+      EasyLoading.dismiss();
       return false;
-    }
+    }*/
   }
 
 /*

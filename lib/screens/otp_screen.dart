@@ -26,22 +26,18 @@ class OtpScreen extends StatefulWidget {
 }
 
 class _OtpScreenState extends State<OtpScreen> {
-
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
       context.read<AuthViewModel>().getOtpController.clear();
-      context.read<AuthViewModel>().resetTimer();
+      /*context.read<AuthViewModel>().resetTimer();
       await context
           .read<AuthViewModel>()
-          .sendingOtp();
+          .sendingOtp();*/
     });
-
   }
-
-
 
   @override
   void dispose() {
@@ -53,22 +49,18 @@ class _OtpScreenState extends State<OtpScreen> {
       context
           .read<AuthViewModel>().stopTimer();
     });*/
-
   }
-
-
 
   @override
   Widget build(BuildContext context) {
-
     return Consumer<AuthViewModel>(builder: (_, authViewModel, __) {
-
       return Scaffold(
         body: SafeArea(
           child: SingleChildScrollView(
             child: Padding(
               padding: const EdgeInsets.only(
-                  top: 30, bottom: 20, left: 20, right: 20).w,
+                      top: 30, bottom: 20, left: 20, right: 20)
+                  .w,
               child: Stack(
                 children: [
                   Column(
@@ -114,8 +106,7 @@ class _OtpScreenState extends State<OtpScreen> {
                                   length: 4,
                                   pinTheme: PinTheme(
                                       shape: PinCodeFieldShape.box,
-                                      borderRadius:
-                                          BorderRadius.circular(12.r),
+                                      borderRadius: BorderRadius.circular(12.r),
                                       fieldHeight: 60.w,
                                       fieldWidth: 46.w,
                                       inactiveColor:
@@ -132,7 +123,8 @@ class _OtpScreenState extends State<OtpScreen> {
                                           CustomColors.greyMediumLightColor,
                                       fieldOuterPadding:
                                           const EdgeInsets.symmetric(
-                                              horizontal: 2).w),
+                                                  horizontal: 2)
+                                              .w),
                                   enableActiveFill: true,
                                   pastedTextStyle: const TextStyle(
                                     //    color: CustomColors.color1,
@@ -165,15 +157,17 @@ class _OtpScreenState extends State<OtpScreen> {
                               height: 10.h,
                             ),
                             Visibility(
-                                visible: authViewModel.getOtpMinutes != '00' || authViewModel.getOtpSeconds != '00',
-                                child: lightBlack14w400Centre(data:'OTP will Expired in ${authViewModel.getOtpMinutes}:${authViewModel.getOtpSeconds}')),
+                                visible: authViewModel.getOtpMinutes != '00' ||
+                                    authViewModel.getOtpSeconds != '00',
+                                child: lightBlack14w400Centre(
+                                    data:
+                                        'OTP will Expired in ${authViewModel.getOtpMinutes}:${authViewModel.getOtpSeconds}')),
                             Visibility(
-                              visible: (authViewModel.getOtpMinutes == '00' && authViewModel.getOtpSeconds == '00'),
+                              visible: (authViewModel.getOtpMinutes == '00' &&
+                                  authViewModel.getOtpSeconds == '00'),
                               child: InkWell(
-                                onTap: (){
-                                  context
-                                      .read<AuthViewModel>()
-                                      . sendingOtp();
+                                onTap: () {
+                                  context.read<AuthViewModel>().sendingOtp();
                                 },
                                 child: const Text.rich(
                                   TextSpan(
@@ -190,7 +184,7 @@ class _OtpScreenState extends State<OtpScreen> {
                                       TextSpan(
                                         text: 'Resend again',
                                         style: TextStyle(
-                                          color: CustomColors.orangeColor ,
+                                          color: CustomColors.orangeColor,
                                           fontSize: 14,
                                           fontFamily: 'Circular Std',
                                           fontWeight: FontWeight.w500,
@@ -208,7 +202,8 @@ class _OtpScreenState extends State<OtpScreen> {
                     ],
                   ),
                   Visibility(
-                    visible: authViewModel.getOtpController.value.text.length == 4  ,
+                    visible:
+                        authViewModel.getOtpController.value.text.length == 4,
                     child: SizedBox(
                       height: screenHeight,
                       child: Align(
@@ -216,15 +211,24 @@ class _OtpScreenState extends State<OtpScreen> {
                         child: customButton(
                             text: 'Continue',
                             onPressed: () {
-                              authViewModel
-                                  .callUserRegisterApi()
-                                  .then((value) => {
-                                        if (value)
-                                          {
-                                            Navigator.pushNamed(
-                                                context, userVerifiedRoute)
-                                          }
-                                      });
+                              if (authViewModel.getOtpRouteFrom == Screens.forgetPassword.text) {
+                              authViewModel.verifyingOtp().then((value) {
+                                if(value){
+                                  Navigator.pushNamed(
+                                      context, resetPasswordRoute);
+                                }
+                              });}
+                              else{
+                                authViewModel
+                                    .callUserRegisterApi()
+                                    .then((value) => {
+                                          if (value)
+                                            {
+                                              Navigator.pushNamed(
+                                                  context, userVerifiedRoute)
+                                            }
+                                        });
+                              }
                             },
                             colored: true),
                       ),
