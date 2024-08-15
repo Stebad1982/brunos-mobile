@@ -551,8 +551,7 @@ class AuthViewModel with ChangeNotifier {
         final ForgotPasswordRequest forgotPasswordRequest =
             ForgotPasswordRequest(
                 password: _passwordController.text,
-                phoneNumber: _phoneController.text,
-                otp: _otpController.text);
+                phoneNumber: _emailController.text);
 
         final BaseResponseModel response = await _authApiServices
             .forgotPasswordApi(forgotPasswordRequest: forgotPasswordRequest);

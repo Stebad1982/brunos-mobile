@@ -45,25 +45,25 @@ class ResetPasswordScreen extends StatelessWidget {
                     height: 32.h,
                   ),
                   const PasswordFieldWidget(hint: 'Password',),
-                  SizedBox(
-                    height: 5.h,
-                  ),
-                  Visibility(
+                  // SizedBox(
+                  //   height: 5.h,
+                  // ),
+                  /*Visibility(
                       visible: authViewModel.getPasswordFieldError.isNotEmpty,
                       child: orange14w400(
-                          data: authViewModel.getPasswordFieldError)),
+                          data: authViewModel.getPasswordFieldError)),*/
                   SizedBox(
                     height: 16.h,
                   ),
                   const ConfirmPasswordFieldWidget(hint: 'Confirm Password',),
-                  SizedBox(
+                  /*SizedBox(
                     height: 5.h,
                   ),
                   Visibility(
                       visible:
                       authViewModel.getConfirmPasswordFieldError.isNotEmpty,
                       child: orange14w400(
-                          data: authViewModel.getConfirmPasswordFieldError)),
+                          data: authViewModel.getConfirmPasswordFieldError)),*/
                   SizedBox(
                     height: 40.h,
                   ),
