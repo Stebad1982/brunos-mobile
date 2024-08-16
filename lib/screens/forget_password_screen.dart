@@ -40,7 +40,7 @@ class ForgetPasswordScreen extends StatelessWidget {
                   width: 286.w,
                   child: grey14w400(
                       data:
-                          'We will send you a confirmation code to your phone for password reset'),
+                          'We will send you a confirmation code to your email for password reset'),
                 ),
                 SizedBox(
                   height: 32.h,

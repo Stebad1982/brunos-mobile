@@ -88,7 +88,7 @@ class _OtpScreenState extends State<OtpScreen> {
                                 width: 306.57.w,
                                 child: lightBlack14w400Centre(
                                     data:
-                                        'We have send an OTP to ${authViewModel.getCountryCode + authViewModel.getPhoneController.text}')),
+                                        'We have send an OTP to ${authViewModel.getEmailController.text}')),
                             SizedBox(
                               height: 26.h,
                             ),

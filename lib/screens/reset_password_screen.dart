@@ -32,15 +32,15 @@ class ResetPasswordScreen extends StatelessWidget {
                     height: 35.h,
                   ),
                   black24w500Centre(data: 'Reset Password'),
-                  SizedBox(
+                  /*SizedBox(
                     height: 10.h,
                   ),
                   SizedBox(
                     width: 286.w,
                     child: grey14w400(
                         data:
-                        'We will send you an confirmation code to your phone for password reset'),
-                  ),
+                        'We will send you an confirmation code to your email for password reset'),
+                  ),*/
                   SizedBox(
                     height: 32.h,
                   ),
