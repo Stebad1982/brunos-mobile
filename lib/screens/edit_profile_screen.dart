@@ -54,8 +54,8 @@ class EditProfileScreen extends StatelessWidget {
                               children: [
                                 SvgPicture.asset(phoneIcon),
                                  Padding(
-                                  padding: EdgeInsets.symmetric(vertical: 16.0).w,
-                                  child: VerticalDivider(
+                                  padding: const EdgeInsets.symmetric(vertical: 16.0).w,
+                                  child: const VerticalDivider(
                                     color: CustomColors.greyShadeColor,
                                     thickness: 1,
                                   ),
