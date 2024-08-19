@@ -205,7 +205,7 @@ PromoCodeResponse _promoCodeResponse = PromoCodeResponse();
           .read<AuthViewModel>()
           .getAuthResponse
           .data!
-          .discounts![4].aggregate!,
+          .discounts![4].aggregate!, vat: _vat,
     );
     navigatorKey.currentContext!
         .read<OrderViewModel>()

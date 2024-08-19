@@ -4,6 +4,7 @@ class OrderRequest {
   num totalAmount;
   String locationId;
   String paymentMethod;
+  num vat;
   num discount;
   num pointsUsed;
   String deliveryDate;
@@ -26,6 +27,7 @@ class OrderRequest {
         required this.pointsUsed,
         required this.discountRatio,
         required this.specialInstructions,
+        required this.vat,
         required this.cartItems});
 
   Map<String, dynamic> toJson() {
@@ -41,6 +43,7 @@ class OrderRequest {
     data['specialInstructions'] = specialInstructions;
     data['promoCodeId'] = promoCodeId;
     data ['discountRatio'] = discountRatio;
+    data ['vat'] = vat;
     data['orderItems'] = cartItems.map((v) => v.toJson()).toList();
     return data;
   }

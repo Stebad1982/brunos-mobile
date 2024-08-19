@@ -7,6 +7,7 @@ class OrderData {
   String? locationId;
   String? paymentMethod;
   num? discount;
+  num? vat;
   String? deliveryDate;
   num? createdOnDate;
   String? promoCodeId;
@@ -25,6 +26,7 @@ class OrderData {
         this.deliveryDate,
         this.promoCodeId,
         this.cartTotal,
+        this.vat,
         this.createdOnDate,
         this.shippingFees,
         this.isCompleted,
@@ -43,6 +45,7 @@ class OrderData {
     shippingFees = json['shippingFees'];
     isCompleted = json['isCompleted'];
     promoCodeId = json['promoCodeId'];
+    vat = json['vat'];
     pointsEarned = json['pointsEarned'];
     if (json['orderItems'] != null) {
       orderItems = <OrderItems>[];
@@ -63,6 +66,7 @@ class OrderData {
     data['shippingFees'] = this.shippingFees;
     data['isCompleted'] = this.isCompleted;
     data['isCompleted'] = this.isCompleted;
+    data['vat'] = this.vat;
     data['pointsEarned'] = this.pointsEarned;
     data['promoCodeId'] = this.promoCodeId;
     if (this.orderItems != null) {
