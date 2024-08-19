@@ -34,37 +34,50 @@ class EditProfileScreen extends StatelessWidget {
                   SizedBox(
                     height: 16.h,
                   ),
-                  const EmailFieldWidget(),
+                  TextField(
+                    controller: context.watch<AuthViewModel>().getEmailController,
+                    onChanged: (text) {},
+                    readOnly: true,
+                    keyboardType: TextInputType.emailAddress,
+                    decoration: InputDecoration(
+                        hintText: 'Email Address',
+                        prefixIcon: Padding(
+                          padding: const EdgeInsets.all(16),
+                          child: SvgPicture.asset(emailIcon),
+                        )),
+                  ),
                   SizedBox(
                     height: 16.h,
                   ),
-                  TextField(
-                    controller: context.watch<AuthViewModel>().getEditPhoneController,
-                    onChanged: (text) {},
-                    readOnly: true,
-                    keyboardType: TextInputType.phone,
-                    decoration: InputDecoration(
-                        hintText: 'Phone Number',
-                        prefixIcon: Padding(
-                          padding:
-                          const EdgeInsets.symmetric(horizontal: 16, vertical: 4).w,
-                          child: IntrinsicHeight(
-                            child: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                SvgPicture.asset(phoneIcon),
-                                 Padding(
-                                  padding: const EdgeInsets.symmetric(vertical: 16.0).w,
-                                  child: const VerticalDivider(
-                                    color: CustomColors.greyShadeColor,
-                                    thickness: 1,
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
-                        )),
-                  ),
+                  /*const EmailFieldWidget(),
+                  SizedBox(
+                    height: 16.h,
+                  ),*/
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              TextField(
+                controller: context.watch<AuthViewModel>().getPhoneController,
+                onChanged: (text) {},
+                keyboardType: TextInputType.phone,
+                decoration: InputDecoration(
+                    hintText: 'Phone Number',
+                    prefixIcon: Padding(
+                      padding:
+                      const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+                      child: IntrinsicHeight(
+                        child: SvgPicture.asset(phoneIcon),
+                      ),
+                    )),
+              ),
+              SizedBox(
+                height: 5.h,
+              ),
+              Visibility(
+                  visible: context.watch<AuthViewModel>().getPhoneFieldError.isNotEmpty,
+                  child: orange14w400(data: context.watch<AuthViewModel>().getPhoneFieldError)),
+            ],
+          ),
                   SizedBox(
                     height: 16.h,
                   ),

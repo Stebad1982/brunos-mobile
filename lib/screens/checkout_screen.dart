@@ -462,7 +462,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                                       .data!
                                       .discounts![2]
                                       .aggregate!);
-                              cartViewModel.setPawPoints(5);
+                              cartViewModel.setPawPoints(0);
                               redeemPawPointsBottomSheetWidget();
                             }
                           : () {},
@@ -775,7 +775,22 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                             ),
                             lightBlack14w400Centre(
                                 data:
-                                    '${cartViewModel.getDeliveryFee.toStringAsFixed(2)} AED'),
+                                    'AED ${cartViewModel.getDeliveryFee.toStringAsFixed(2)} '),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 20.h,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            lightBlack14w400Centre(data: 'VAT'),
+                            SizedBox(
+                              width: 2.w,
+                            ),
+                            lightBlack14w400Centre(
+                                data:
+                                'AED ${cartViewModel.getVat.toStringAsFixed(2)} '),
                           ],
                         ),
                         SizedBox(

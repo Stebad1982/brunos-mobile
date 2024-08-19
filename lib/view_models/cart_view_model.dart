@@ -32,6 +32,7 @@ PromoCodeResponse _promoCodeResponse = PromoCodeResponse();
   int _availablePawPoints = 0;
   num _checkOutTotal = 0;
   int _deliveryFee = 0;
+  num _vat = 0;
   int? _selectedIndex;
   bool _viewCartItemDetail = false;
   final TextEditingController _promoCodeController = TextEditingController();
@@ -40,6 +41,12 @@ PromoCodeResponse _promoCodeResponse = PromoCodeResponse();
   DateTime _selectedDay = DateTime.now().add(const Duration(days: 4));
 
   // num get getVatValue => _vatValue;
+
+  num get getVat => _vat;
+
+  void setVat (num value){
+    _vat = value;
+  }
 
   double get getPawPointDiscount => _pawPointDiscount;
 
@@ -142,14 +149,15 @@ PromoCodeResponse _promoCodeResponse = PromoCodeResponse();
 
   void setCheckOutTotal() {
     _subTotal = _cartTotalPrice - _promoCodeDiscount - _pawPointDiscount;
-    num totalPrice;
-    totalPrice = _subTotal + _deliveryFee;
+    final num totalPrice = _subTotal + _deliveryFee;
+    final num vatValue = navigatorKey.currentContext!.read<AuthViewModel>().getAuthResponse.data!.discounts![6].aggregate!;
+    setVat((vatValue/100)*totalPrice);
 
     // _vatValue = totalPrice * 5 / 100;
 
     // totalPrice = totalPrice + _vatValue;
 
-    _checkOutTotal = totalPrice /*roundPrice(totalPrice.round())*/;
+    _checkOutTotal = totalPrice + _vat /*roundPrice(totalPrice.round())*/;
 
     notifyListeners();
   }

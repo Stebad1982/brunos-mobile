@@ -65,7 +65,7 @@ class AuthViewModel with ChangeNotifier {
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _phoneController = TextEditingController();
-  final TextEditingController _editPhoneController = TextEditingController();
+ // final TextEditingController _editPhoneController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _confirmPasswordController =
       TextEditingController();
@@ -207,11 +207,15 @@ class AuthViewModel with ChangeNotifier {
 
   void setAuthResponse(AuthResponse value) {
     _authResponse = value;
+    updateProfile();
+    // notifyListeners();
+  }
+
+  void updateProfile(){
     _emailController.text = _authResponse.data!.email!;
-    _editPhoneController.text = _authResponse.data!.phoneNumber!;
+    _phoneController.text = _authResponse.data!.phoneNumber!;
     _nameController.text = _authResponse.data!.fullName!;
     setDeliveryCity();
-    // notifyListeners();
   }
 
   String get getNameFieldError => _nameFieldError;
@@ -271,7 +275,7 @@ class AuthViewModel with ChangeNotifier {
 
   TextEditingController get getPhoneController => _phoneController;
 
-  TextEditingController get getEditPhoneController => _editPhoneController;
+  //TextEditingController get getEditPhoneController => _editPhoneController;
 
   TextEditingController get getPasswordController => _passwordController;
 
@@ -762,7 +766,7 @@ class AuthViewModel with ChangeNotifier {
       final EditUserProfileRequest editUserProfileRequest =
           EditUserProfileRequest(
               fullName: _nameController.text,
-              phoneNumber: _editPhoneController.text);
+              phoneNumber:  _phoneController.text);
 
       final AuthResponse response = await _authApiServices.editUserProfileApi(
           editUserProfileRequest: editUserProfileRequest);

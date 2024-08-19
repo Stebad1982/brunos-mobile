@@ -37,6 +37,7 @@ class ProfileScreen extends StatelessWidget {
                       .getAuthResponse
                       .data!
                       .isGuest!) {
+                    context.read<AuthViewModel>().updateProfile();
                     Navigator.pushNamed(context, editProfileRoute);
                   } else {
                     context.read<AuthViewModel>().clearFieldsData();
