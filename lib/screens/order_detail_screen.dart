@@ -129,6 +129,21 @@ class OrderDetailScreen extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
+                          grey14w400(data: 'VAT'),
+                          SizedBox(
+                            width: 2.w,
+                          ),
+                          lightBlack14w400Centre(
+                              data:
+                              'AED ${orderViewModel.getSelectedOrder.vat!.toStringAsFixed(2)}'),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 20.h,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
                           grey14w400(data: 'Amount paid'),
                           SizedBox(
                             width: 2.w,
