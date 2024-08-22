@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'ingredient_model.dart';
 import 'item_sizes_model.dart';
+import 'custom_prices_model.dart';
 
 class RecipeModel {
   String? sId;
@@ -48,6 +49,8 @@ class RecipeModel {
 
   // Ingredient? ingredient;
   String? ingredientsComposition;
+  List<CustomPricesModel>? monthlyPrices;
+  List<CustomPricesModel>? transitionalPrices;
 
   RecipeModel(
       {this.sId,
@@ -89,7 +92,9 @@ class RecipeModel {
       this.totalDays,
       this.category,
       this.ingredientsComposition,
-      this.standaloneSize});
+      this.standaloneSize,
+        this.monthlyPrices,
+        this.transitionalPrices});
 
   RecipeModel.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
@@ -150,6 +155,18 @@ class RecipeModel {
     //  ingredients = json['ingredients'];
     ingredientsComposition = json['ingredientsComposition'];
     standaloneSize = json['standaloneSize'];
+    if (json['monthlyPrices'] != null) {
+      monthlyPrices = <CustomPricesModel>[];
+      json['monthlyPrices'].forEach((v) {
+        monthlyPrices!.add(new CustomPricesModel.fromJson(v));
+      });
+    }
+    if (json['transitionalPrices'] != null) {
+      transitionalPrices = <CustomPricesModel>[];
+      json['transitionalPrices'].forEach((v) {
+        transitionalPrices!.add(new CustomPricesModel.fromJson(v));
+      });
+    }
   }
 
   Map<String, dynamic> toJson() {
@@ -201,6 +218,14 @@ class RecipeModel {
     data['caloriesContentNo'] = this.caloriesContentNo;
     //  data['ingredients'] = this.ingredients;
     data['ingredientsComposition'] = this.ingredientsComposition;
+    if (this.monthlyPrices != null) {
+      data['monthlyPrices'] =
+          this.monthlyPrices!.map((v) => v.toJson()).toList();
+    }
+    if (this.transitionalPrices != null) {
+      data['transitionalPrices'] =
+          this.transitionalPrices!.map((v) => v.toJson()).toList();
+    }
     return data;
   }
 }

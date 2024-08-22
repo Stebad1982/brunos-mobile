@@ -391,24 +391,24 @@ class PlansViewModel with ChangeNotifier {
     _transitionalGrams1to3Days = calculateTransitionalGram(
         recipeModel: _selectedRecipe,
         percentage: 25,
-        days: 3,
-        calculatePrice: true);
+        days: 3/*,
+        calculatePrice: true*/);
     _transitionalGrams4to6Days = calculateTransitionalGram(
         recipeModel: _selectedRecipe,
         percentage: 50,
-        days: 3,
-        calculatePrice: true);
+        days: 3/*,
+        calculatePrice: true*/);
     _transitionalGrams7to9Days = calculateTransitionalGram(
         recipeModel: _selectedRecipe,
         percentage: 75,
-        days: 3,
-        calculatePrice: true);
+        days: 3/*,
+        calculatePrice: true*/);
     _transitionalGrams10thDay = calculateTransitionalGram(
         recipeModel: _selectedRecipe,
         percentage: 100,
-        days: 1,
-        calculatePrice: true);
-    final num priceFor1to3Days = calculateTransitionalPrice(
+        days: 1/*,
+        calculatePrice: true*/);
+   /* final num priceFor1to3Days = calculateTransitionalPrice(
         gramWithPercent: _transitionalGrams1to3Days,
         recipeModel: _selectedRecipe);
     final num priceFor4to6Days = calculateTransitionalPrice(
@@ -419,15 +419,15 @@ class PlansViewModel with ChangeNotifier {
         recipeModel: _selectedRecipe);
     final num priceFor10thDay = calculateTransitionalPrice(
         gramWithPercent: _transitionalGrams10thDay,
-        recipeModel: _selectedRecipe);
+        recipeModel: _selectedRecipe);*/
     final RecipeModel applyDishDetail =
         RecipeModel.fromJson(_selectedRecipe.toJson());
-    applyDishDetail.finalPrice = roundTo10(
+    applyDishDetail.finalPrice = calculatePrice(recipeModel: applyDishDetail, planType: Plans.transitional.text)/*roundTo10(
         value: (priceFor1to3Days +
                 priceFor4to6Days +
                 priceFor7to9Days +
                 priceFor10thDay)
-            .toInt());
+            .toInt())*/;
     _selectedRecipe = applyDishDetail;
   }
 
@@ -443,7 +443,7 @@ class PlansViewModel with ChangeNotifier {
     _selectedRecipe = applyDishDetail;
   }
 
-  void setOnTimeSelectedDishModel() {
+/*  void setOnTimeSelectedDishModel() {
     final RecipeModel applyDishDetail =
         RecipeModel.fromJson(_selectedRecipe.toJson());
     applyDishDetail.totalDays = _daysCount;
@@ -451,16 +451,16 @@ class PlansViewModel with ChangeNotifier {
         calculateFinalPricePerDay(recipeModel: _selectedRecipe) * _daysCount;
     applyDishDetail.finalPrice = roundTo10(value: planPrice);
     _selectedRecipe = applyDishDetail;
-  }
+  }*/
 
   void setMonthlySelectedItem() {
     final RecipeModel applyDishDetail =
         RecipeModel.fromJson(_selectedRecipe.toJson());
     applyDishDetail.totalDays = int.parse(_monthlySelectedDaysController.text);
-    final int planPrice =
-        calculateFinalPricePerDay(recipeModel: _selectedRecipe) *
+    final num planPrice =
+        calculatePrice(recipeModel: _selectedRecipe, planType: Plans.monthly.text) *
             int.parse(_monthlySelectedDaysController.text);
-    applyDishDetail.finalPrice = roundTo10(value: planPrice);
+    applyDishDetail.finalPrice = /*roundTo10(value:*/ planPrice/*)*/  ;
     if (_monthlyEmptyTileNumber == 1) {
       _monthlyEmptyTile1 = applyDishDetail;
     } else if (_monthlyEmptyTileNumber == 2) {

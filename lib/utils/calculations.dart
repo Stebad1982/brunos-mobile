@@ -7,6 +7,7 @@ import 'package:brunos_kitchen/models/recipe_model.dart';
 import 'package:brunos_kitchen/view_models/auth_view_model.dart';
 import 'package:provider/provider.dart';
 
+import '../models/custom_prices_model.dart';
 import 'enums.dart';
 
 int calculateDailyIntake(
@@ -65,7 +66,26 @@ num calculateFeedingPlan(
   return perTime;
 }
 
-int calculateFinalPricePerDay({required RecipeModel recipeModel}) {
+num calculatePrice({required RecipeModel recipeModel, required String planType}){
+  final PuppyModel puppy = navigatorKey.currentContext!
+      .read<AuthViewModel>()
+      .getAuthResponse
+      .data!
+      .pet!;
+
+  if(planType == Plans.monthly.text){
+    final CustomPricesModel customPrice = recipeModel.monthlyPrices!.firstWhere((element) => element.activityLevel == puppy.activityLevel && element.weight == puppy.currentWeight);
+    return customPrice.price!;
+  }
+
+  else{
+    final CustomPricesModel customPrice = recipeModel.transitionalPrices!.firstWhere((element) => element.weight == puppy.currentWeight);
+    return customPrice.price!;
+  }
+
+}
+
+/*int calculateFinalPricePerDay({required RecipeModel recipeModel}) {
   final PuppyModel puppy = navigatorKey.currentContext!
       .read<AuthViewModel>()
       .getAuthResponse
@@ -80,7 +100,7 @@ int calculateFinalPricePerDay({required RecipeModel recipeModel}) {
       recipeModel: recipeModel, dailyGram: dailyInTake);
   final num pricePerDay = dailyInTake * priceFromWeight / 1000;
   return pricePerDay.round();
-}
+}*/
 
 num getPriceFromWeight(
     {required RecipeModel recipeModel, required num dailyGram}) {
@@ -107,8 +127,8 @@ num getPriceFromWeight(
 num calculateTransitionalGram(
     {required RecipeModel recipeModel,
     required int percentage,
-    required int days,
-    required bool calculatePrice}) {
+    required int days/*,
+    required bool calculatePrice*/}) {
   final PuppyModel puppy = navigatorKey.currentContext!
       .read<AuthViewModel>()
       .getAuthResponse
@@ -124,13 +144,13 @@ num calculateTransitionalGram(
   return gramWithPercent;
 }
 
-num calculateTransitionalPrice(
+/*num calculateTransitionalPrice(
     {required num gramWithPercent, required RecipeModel recipeModel}) {
   final num priceFromWeight = getPriceFromWeight(
       recipeModel: recipeModel, dailyGram: gramWithPercent);
   final num priceWithPercent = gramWithPercent * priceFromWeight / 1000;
   return priceWithPercent.round();
-}
+}*/
 
 num calculatePlanTotal({required List<RecipeModel> listOfItems}) {
   final num finalPriceSum = listOfItems.fold(0, (i, element) {
