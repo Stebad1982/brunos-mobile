@@ -74,8 +74,20 @@ num calculatePrice({required RecipeModel recipeModel, required String planType})
       .pet!;
 
   if(planType == Plans.monthly.text){
+    num price = 0;
     final CustomPricesModel customPrice = recipeModel.monthlyPrices!.firstWhere((element) => element.activityLevel == puppy.activityLevel && element.weight == puppy.currentWeight);
-    return customPrice.price!;
+    if(puppy.actualWeight == PuppyWeight.underweight.value){
+      num weightPercent = ((7/100)*customPrice.price!);
+      price = customPrice.price! + weightPercent;
+    }
+    if(puppy.actualWeight == PuppyWeight.overweight.value){
+      num weightPercent = ((3/100)*customPrice.price!);
+      price = customPrice.price! + weightPercent;
+    }
+    else{
+      price = customPrice.price!;
+    }
+    return price;
   }
 
   else{
