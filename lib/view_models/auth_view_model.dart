@@ -382,8 +382,8 @@ class AuthViewModel with ChangeNotifier {
       _operatingSystem = 'iOS';
     }
     //TODO: ENABLE FCM
-    _fcmToken = await _firebaseMessaging.getToken();
-    print("fcm token: $_fcmToken");
+   // _fcmToken = await _firebaseMessaging.getToken();
+  // print("fcm token: $_fcmToken");
     final authToken =
         await _sharedPref.read(SharedPreferencesKeys.authToken.text);
     await Future.delayed(const Duration(seconds: 4), () {});

@@ -87,8 +87,6 @@ class _CartScreenState extends State<CartScreen> with RouteAware {
                             customButton(
                                 text: 'Next',
                                 onPressed: () {
-
-
                                   Navigator.pushNamed(
                                       context, checkOutRoute);
                                 },

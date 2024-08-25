@@ -187,7 +187,7 @@ class _FeedingPlanScreenState extends State<FeedingPlanScreen> {
                             Center(
                                 child: black16w500(
                                     data:
-                                        'Total Meal Price: ${plansViewModel.getFeedingPlan!.recipes[index].finalPrice} AED')),
+                                        'Total Meal Price: ${plansViewModel.getFeedingPlan!.recipes[index].finalPrice!.toStringAsFixed(2)} AED')),
                           ],
                         ),
                       );
@@ -253,7 +253,7 @@ class _FeedingPlanScreenState extends State<FeedingPlanScreen> {
                         ),
                         orange14w500(
                             data:
-                                'Total ${plansViewModel.getPlanType} Plan = ${plansViewModel.getPlanType == Plans.monthly.text ? plansViewModel.getFeedingPlan!.planDiscountedPrice : plansViewModel.getFeedingPlan!.planTotal} AED'),
+                                'Total ${plansViewModel.getPlanType} Plan = ${plansViewModel.getPlanType == Plans.monthly.text ? plansViewModel.getFeedingPlan!.planDiscountedPrice.toStringAsFixed(2) : plansViewModel.getFeedingPlan!.planTotal.toStringAsFixed(2)} AED'),
                         SizedBox(
                           height: 10.h,
                         ),
