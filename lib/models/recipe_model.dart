@@ -28,13 +28,13 @@ class RecipeModel {
   String? instructions;
   List<String>? nutrition;
   num? pricePerKG;
-  num? price1;
+  /*num? price1;
   num? price2;
   num? price3;
   num? price4;
   num? price5;
-  num? price6;
-  num? isComboRecipe;
+  num? price6;*/
+  bool? isComboRecipe;
   num? finalPrice;
   List<String>? media;
   List<ItemSizes>? sizes;
@@ -69,12 +69,12 @@ class RecipeModel {
       this.instructions,
       this.nutrition,
       this.pricePerKG,
-      this.price1,
+   /*   this.price1,
       this.price2,
       this.price3,
       this.price4,
       this.price5,
-      this.price6,
+      this.price6,*/
       this.media,
       this.recipeNo,
       this.lifeStage,
@@ -118,7 +118,7 @@ class RecipeModel {
       });
     }
     description = json['description'];
-    isComboRecipe = json['isComboRecipe'];
+    isComboRecipe = json['isComboRecipe'] ?? false;
     totalDays = json['totalDays'] ?? 1;
     quantity = json['quantity'] ?? 1;
     details = json['details'];
@@ -139,12 +139,12 @@ class RecipeModel {
       sizes = <ItemSizes>[];
       pricePerKG = json['pricePerKG'];
     }
-    price1 = json['price1'];
+   /* price1 = json['price1'];
     price2 = json['price2'];
     price3 = json['price3'];
     price4 = json['price4'];
     price5 = json['price5'];
-    price6 = json['price6'];
+    price6 = json['price6'];*/
     media = json['media'].cast<String>();
     tableImage =
         json['tableImage'] != null ? json['tableImage'].cast<String>() : [];
@@ -204,12 +204,12 @@ class RecipeModel {
     data['details'] = this.details;
     data['instructions'] = this.instructions;
     // data['nutrition'] = this.nutrition;
-    data['price1'] = this.price1;
+  /*  data['price1'] = this.price1;
     data['price2'] = this.price2;
     data['price3'] = this.price3;
     data['price4'] = this.price4;
     data['price5'] = this.price5;
-    data['price6'] = this.price6;
+    data['price6'] = this.price6;*/
     data['pricePerKG'] = this.pricePerKG;
     data['media'] = this.media;
     data['recipeNo'] = this.recipeNo;

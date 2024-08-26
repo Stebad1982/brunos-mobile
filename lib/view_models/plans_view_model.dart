@@ -57,7 +57,7 @@ class PlansViewModel with ChangeNotifier {
   List<RecipeModel> _featuredRecipesList = [];
   List<RecipeModel> _selectedFeaturedRecipesList = [];
   List<RecipeModel> _featuredProductsList = [];
-  List<RecipeModel> _comboRecipesList = [];
+ // List<RecipeModel> _comboRecipesList = [];
   List<RecipeModel> _recommendedRecipesList = [];
   List<RecipeModel> _oneTimeRecipesList = [];
 
@@ -125,7 +125,7 @@ class PlansViewModel with ChangeNotifier {
 
   int get getDaysCount => _daysCount;
 
-  List<RecipeModel> get getComboRecipesList => _comboRecipesList;
+  //List<RecipeModel> get getComboRecipesList => _comboRecipesList;
 
   List<RecipeModel> get getRecommendedRecipesList => _recommendedRecipesList;
 
@@ -496,13 +496,13 @@ class PlansViewModel with ChangeNotifier {
     _featuredProductsList = _recipesListResponse.data!.recipe!
         .where((element) => element.category!.isNotEmpty && element.isFeatured!)
         .toList();
-    _comboRecipesList = _recipesListResponse.data!.recipe!
-        .where((element) => element.isComboRecipe == 1)
-        .toList();
+    /*_comboRecipesList = _recipesListResponse.data!.recipe!
+        .where((element) => element.isComboRecipe!)
+        .toList();*/
     _recommendedRecipesList = _recipesListResponse.data!.recipe!
         .where((element) =>
-            element.isComboRecipe == 0 &&
-            element.category != ProductCategories.standardRecipes.text)
+            element.isComboRecipe == false &&
+            element.category == '')
         .toList();
     _oneTimeRecipesList = _recipesListResponse.data!.recipe!
         .where((element) =>

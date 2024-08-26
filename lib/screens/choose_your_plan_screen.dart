@@ -84,7 +84,7 @@ class ChooseYourPlanScreen extends StatelessWidget {
                               context: context,
                               description:
                                   'A 10 days feeding plan to ensure your pup’s tummy transitions to our food smoothly and without any dietary difficulties. We prepare and portion the food for you. Just ensure your Pet’s profile information is completed.\nRefer to FAQs page for the transition feeding guidelines.',
-                              height: 220.h,
+                              height: 280.h,
                               title: 'Transitional Plan');
                         },
                         child: Padding(

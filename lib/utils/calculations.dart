@@ -114,7 +114,7 @@ num calculatePrice({required RecipeModel recipeModel, required String planType})
   return pricePerDay.round();
 }*/
 
-num getPriceFromWeight(
+/*num getPriceFromWeight(
     {required RecipeModel recipeModel, required num dailyGram}) {
   if(dailyGram >= 1 && dailyGram <= 200){
     return recipeModel.price1!;
@@ -134,7 +134,7 @@ num getPriceFromWeight(
   else {
     return recipeModel.price6!;
   }
-}
+}*/
 
 num calculateTransitionalGram(
     {required RecipeModel recipeModel,
@@ -174,7 +174,7 @@ num calculatePlanTotal({required List<RecipeModel> listOfItems}) {
 num calculatePlanDiscount({required planTotal, required num discountedPer}) {
   final num planDiscountedPer = planTotal * discountedPer / 100;
   final num planDiscountedPrice = planTotal - planDiscountedPer;
-  return planDiscountedPrice.round();
+  return planDiscountedPrice;
 }
 
 num calculateCartTotal({required List<CartModel> cartItems}) {
