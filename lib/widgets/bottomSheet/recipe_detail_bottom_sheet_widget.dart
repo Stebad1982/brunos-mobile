@@ -24,7 +24,7 @@ Future recipeDetailBottomSheetWidget({required RecipeModel recipeDetail}) {
       context: navigatorKey.currentContext!,
       builder: (context) {
         return SizedBox(
-          height: 670.h,
+          height: 690.h,
           child: Padding(
             padding: const EdgeInsets.only(left: 20, right: 20,top: 20, ),
             child: Column(
@@ -43,7 +43,7 @@ Future recipeDetailBottomSheetWidget({required RecipeModel recipeDetail}) {
                         SizedBox(
                             width: 280.w,
                             child: grey14w400(
-                                maxLine: 3, data: recipeDetail.description!)),
+                                maxLine: 6, data: recipeDetail.description!)),
                         SizedBox(
                           height: 5.h,
                         ),
@@ -79,9 +79,9 @@ Future recipeDetailBottomSheetWidget({required RecipeModel recipeDetail}) {
                     )
                   ],
                 ),
-                SizedBox(
-                  height: 25.h,
-                ),
+                /*SizedBox(
+                  height: 10.h,
+                ),*/
                 DefaultTabController(
                   length: 4,
                   initialIndex: 0,

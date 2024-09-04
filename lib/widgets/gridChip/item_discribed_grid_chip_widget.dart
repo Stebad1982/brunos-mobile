@@ -98,10 +98,10 @@ Widget itemDescribedGridChipWidget({required RecipeModel recipeData , required b
                   child: Column(
                     children: [
                       black14w500(data: recipeData.name!, centre: true),
-                    /*  SizedBox(
+                      SizedBox(
                         height: 5.h,
-                      ),*/
-                    //  black14w500(data: '(${recipeData.lifeStage!})'),
+                      ),
+                      black14w500(data: '(${recipeData.lifeStage!})'),
                     ],
                   ),
                 )

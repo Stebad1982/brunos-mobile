@@ -79,6 +79,10 @@ Widget mealVerticalListChipWidget({required RecipeModel recipeModel}) {
                     SizedBox(
                       width:190.w,
                         child: black16w500(data: recipeModel.name!)),
+                    SizedBox(
+                      height: 5.h,
+                    ),
+                    black14w500(data: '(${recipeModel.lifeStage!})'),
                   ],
                 ),
                 const Spacer(),

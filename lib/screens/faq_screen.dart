@@ -33,7 +33,7 @@ class _FaqScreenState extends State<FaqScreen> {
             heading: 'FAQ', showPuppy: false, showCart: false),
         body: faqsBlogsNewsViewModel.getFaqsResponse.data != null
             ? Accordion(
-                disableScrolling: true,
+                disableScrolling: false,
                 paddingListHorizontal: 20,
                 maxOpenSections: 2,
                 headerBackgroundColorOpened: Colors.black54,

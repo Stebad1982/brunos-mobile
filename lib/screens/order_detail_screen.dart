@@ -105,7 +105,22 @@ class OrderDetailScreen extends StatelessWidget {
                           ),
                           lightBlack14w400Centre(
                               data:
-                                  'AED ${orderViewModel.getSelectedOrder.cartTotal!.toStringAsFixed(2)}'),
+                              'AED ${orderViewModel.getSelectedOrder.cartTotal!.toStringAsFixed(2)}'),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 20.h,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          grey14w400(data: 'Discount'),
+                          SizedBox(
+                            width: 2.w,
+                          ),
+                          lightBlack14w400Centre(
+                              data:
+                              'AED -${orderViewModel.getSelectedOrder.discount!.toStringAsFixed(2)}'),
                         ],
                       ),
                       SizedBox(
