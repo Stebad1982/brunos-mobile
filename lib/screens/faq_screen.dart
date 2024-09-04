@@ -58,7 +58,7 @@ class _FaqScreenState extends State<FaqScreen> {
                             alignment: Alignment.centerLeft,
                             child: lightBlack14w400Centre(data: item.title!)),
                       ),
-                      content: black12w500Centre(data: item.description!),
+                      content: black12w500Centre(data: item.description!,centre: false),
                       contentBackgroundColor: CustomColors.greyMediumLightColor,
                       contentHorizontalPadding: 20,
                       contentBorderWidth: 1,

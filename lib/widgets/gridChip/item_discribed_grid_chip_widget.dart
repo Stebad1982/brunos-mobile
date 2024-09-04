@@ -98,10 +98,13 @@ Widget itemDescribedGridChipWidget({required RecipeModel recipeData , required b
                   child: Column(
                     children: [
                       black14w500(data: recipeData.name!, centre: true),
-                      SizedBox(
-                        height: 5.h,
+                        Visibility(
+                          visible: recipeData.lifeStage!.isNotEmpty,
+                        child: Padding(
+                          padding: const EdgeInsets.only(top:5.0).h,
+                          child: black14w500(data: '(${recipeData.lifeStage!})'),
+                        ),
                       ),
-                      black14w500(data: '(${recipeData.lifeStage!})'),
                     ],
                   ),
                 )

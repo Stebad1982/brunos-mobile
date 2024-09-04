@@ -168,6 +168,7 @@ PromoCodeResponse _promoCodeResponse = PromoCodeResponse();
     _instructionsController.clear();
     _promoCodeDiscount = 0;
     _pawSelectedPoints = 0;
+    _pawPointDiscount = 0;
     _availablePawPoints = 0;
   }
 
