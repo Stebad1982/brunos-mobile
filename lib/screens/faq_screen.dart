@@ -56,7 +56,7 @@ class _FaqScreenState extends State<FaqScreen> {
                         padding: const EdgeInsets.symmetric(vertical: 5),
                         child: Align(
                             alignment: Alignment.centerLeft,
-                            child: lightBlack14w400Centre(data: item.title!)),
+                            child: lightBlack14w400Centre(data: item.title!,left: true)),
                       ),
                       content: black12w500Centre(data: item.description!,centre: false),
                       contentBackgroundColor: CustomColors.greyMediumLightColor,
