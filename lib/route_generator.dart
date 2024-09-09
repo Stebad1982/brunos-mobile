@@ -3,6 +3,7 @@ import 'package:brunos_kitchen/screens/add_address_screen.dart';
 import 'package:brunos_kitchen/screens/add_card_screen.dart';
 import 'package:brunos_kitchen/screens/address_detail_screen.dart';
 import 'package:brunos_kitchen/screens/address_screen.dart';
+import 'package:brunos_kitchen/screens/blogs_news_detail_screen.dart';
 import 'package:brunos_kitchen/screens/blogs_screen.dart';
 import 'package:brunos_kitchen/screens/bottom_navigation_screen.dart';
 import 'package:brunos_kitchen/screens/card_list_screen.dart';
@@ -80,6 +81,8 @@ const String productDetailRoute = '/productDetail';
 const String addAddressDetailRoute = '/addAddressDetail';
 const String cartRoute = '/cart';
 const String blogsRoute = '/blogs';
+const String blogsDetailRoute = '/blogsDetail';
+
 const String helpRoute = '/help';
 const String newsRoute = '/news';
 const String deleteAccountRoute = '/deleteAccount';
@@ -172,6 +175,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const CartScreen());
       case blogsRoute:
         return MaterialPageRoute(builder: (_) => const BlogsScreen());
+      case blogsDetailRoute:
+        return MaterialPageRoute(builder: (_) => const BlogsNewsDetailScreen());
       case helpRoute:
         return MaterialPageRoute(builder: (_) => const HelpScreen());
       case newsRoute:

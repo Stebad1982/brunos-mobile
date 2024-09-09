@@ -13,11 +13,18 @@ class FaqsBlogsNewsViewModel with ChangeNotifier {
       FaqsBlogsNewsApiServices();
   FaqsBlogsNewsResponse _faqsResponse = FaqsBlogsNewsResponse();
   BlogsNewsResponse _blogsNewsResponse = BlogsNewsResponse();
+  BlogsNewsData _selectedBlogNews = BlogsNewsData();
   WebViewController _webViewController = WebViewController();
-  TextEditingController _feedbackTitle = TextEditingController();
-  TextEditingController _feedbackDesc = TextEditingController();
-  TextEditingController _comment = TextEditingController();
+  final TextEditingController _feedbackTitle = TextEditingController();
+  final TextEditingController _feedbackDesc = TextEditingController();
+  final TextEditingController _comment = TextEditingController();
 
+  BlogsNewsData get getSelectedBlogNews => _selectedBlogNews;
+
+  void setSelectedBlogNews (BlogsNewsData data){
+    _selectedBlogNews = data;
+    notifyListeners();
+  }
 
   TextEditingController get getFeedbackTitle => _feedbackTitle;
 
@@ -114,6 +121,13 @@ class FaqsBlogsNewsViewModel with ChangeNotifier {
     }
   }
 
+  clearBlogNewsData(){
+    if(_blogsNewsResponse.data != null){
+      _blogsNewsResponse.data!.clear();
+      notifyListeners();
+    }
+  }
+
   clearComment(){
     _comment.clear();
   }
@@ -170,11 +184,13 @@ class FaqsBlogsNewsViewModel with ChangeNotifier {
   }
 
   Future<bool> callNewsApi() async {
+    clearBlogNewsData();
     EasyLoading.show(status: 'Please Wait ...');
     try {
       final BlogsNewsResponse response =
           await _faqsBlogsNewsApiServices.allNewsApi();
       if (response.isSuccess!) {
+
         setBlogsNewsResponse(response);
         EasyLoading.dismiss();
         return true;
@@ -189,11 +205,13 @@ class FaqsBlogsNewsViewModel with ChangeNotifier {
   }
 
   Future<bool> callBlogsApi() async {
+    clearBlogNewsData();
     EasyLoading.show(status: 'Please Wait ...');
     try {
       final BlogsNewsResponse response =
       await _faqsBlogsNewsApiServices.allBlogsApi();
       if (response.isSuccess!) {
+
         setBlogsNewsResponse(response);
         EasyLoading.dismiss();
         return true;
