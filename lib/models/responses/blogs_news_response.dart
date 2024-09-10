@@ -31,14 +31,16 @@ class BlogsNewsData {
   String? sId;
   String? title;
   String? description;
+  int? createdOnDate;
   List<String>? media;
 
-  BlogsNewsData({this.sId, this.title, this.description, this.media});
+  BlogsNewsData({this.sId, this.title, this.description, this.media, this.createdOnDate});
 
   BlogsNewsData.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
     title = json['title'];
     description = json['description'];
+    createdOnDate = json['createdOnDate'];
     media = json['media'].cast<String>();
   }
 
@@ -47,6 +49,7 @@ class BlogsNewsData {
     data['_id'] = this.sId;
     data['title'] = this.title;
     data['description'] = this.description;
+    data['createdOnDate'] = this.createdOnDate;
     data['media'] = this.media;
     return data;
   }

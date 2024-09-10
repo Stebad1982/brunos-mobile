@@ -11,6 +11,7 @@ import '../../main.dart';
 import '../../models/recipe_model.dart';
 import '../../models/responses/blogs_news_response.dart';
 import '../../models/responses/faqs_blogs_news_response.dart';
+import '../../utils/date_time_formatter.dart';
 import '../../view_models/faqs_blogs_news_view_model.dart';
 import '../carousels/recipes_carousel_widget.dart';
 import '../circular_network_image_widget.dart';
@@ -55,14 +56,19 @@ navigatorKey.currentContext!.read <FaqsBlogsNewsViewModel>().setSelectedBlogNews
                         width: 10.w,
                       ),
                       Expanded(
-                          child: black18w500(data: data.title!)),
+                          child: black14w500(data: data.title!)),
                     //  Spacer(),
 
                     ],
                   ),
-                  Align(
-                    alignment: Alignment.centerRight,
-                      child: orange14w400(data: 'View Detail >>'))
+                  SizedBox(height: 10.h,),
+                  Row(
+                    children: [
+                      grey14w400(data: 'Dated: ${DateTimeFormatter.timeStampToDate(data.createdOnDate!,2)}'),
+                      Spacer(),
+                      orange14w400(data: 'View Detail >>'),
+                    ],
+                  )
 
                 ],
               ),

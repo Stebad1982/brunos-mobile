@@ -7,6 +7,7 @@ import 'package:provider/provider.dart';
 
 import '../view_models/faqs_blogs_news_view_model.dart';
 import '../widgets/app_bar_with_back_widget.dart';
+import '../widgets/carousels/recipes_carousel_widget.dart';
 
 class BlogsNewsDetailScreen extends StatelessWidget {
   const BlogsNewsDetailScreen({super.key});
@@ -25,6 +26,10 @@ class BlogsNewsDetailScreen extends StatelessWidget {
               padding: const EdgeInsets.only(top: 20,left: 20,right: 20).w,
               child: black18w500(data: faqsBlogsNewsViewModel.getSelectedBlogNews.title!),
             ),
+            SizedBox(height: 20.h,),
+            SizedBox(
+                height: 200.h,
+                child: RecipesCarouselWidget(recipesImages: faqsBlogsNewsViewModel.getSelectedBlogNews.media!,)),
             Padding(
               padding: const EdgeInsets.only(bottom: 10,left: 10,right: 10).w,
               child: Html(data: faqsBlogsNewsViewModel.getSelectedBlogNews.description,),
