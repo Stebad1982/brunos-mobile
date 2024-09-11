@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../view_models/faqs_blogs_news_view_model.dart';
 import '../widgets/app_bar_with_back_widget.dart';
@@ -32,7 +33,11 @@ class BlogsNewsDetailScreen extends StatelessWidget {
                 child: RecipesCarouselWidget(recipesImages: faqsBlogsNewsViewModel.getSelectedBlogNews.media!,)),
             Padding(
               padding: const EdgeInsets.only(bottom: 10,left: 10,right: 10).w,
-              child: Html(data: faqsBlogsNewsViewModel.getSelectedBlogNews.description,),
+              child: Html(data: faqsBlogsNewsViewModel.getSelectedBlogNews.description,onLinkTap: (url,_,__) async {
+                final uri = Uri.parse(url!);
+                if (await canLaunchUrl(uri)) {
+                await launchUrl(uri);
+                }              },),
             )
           ],
         ),
