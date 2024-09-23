@@ -5,7 +5,7 @@ import 'package:brunos_kitchen/models/responses/cards_response.dart';
 import 'package:brunos_kitchen/services/card_api_services.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_credit_card/credit_card_model.dart';
+import 'package:flutter_credit_card/flutter_credit_card.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 

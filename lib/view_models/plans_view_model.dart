@@ -51,7 +51,7 @@ class PlansViewModel with ChangeNotifier {
   RecipesListResponse _recipesListResponse = RecipesListResponse();
   RecipeModel _selectedRecipe = RecipeModel();
   List<String> _productImages = [];
-  CarouselController _productCarouselController = CarouselController();
+  CarouselSliderController _productCarouselController = CarouselSliderController();
   List<RecipeModel> _recipesList = [];
   List<RecipeModel> _productsList = [];
   List<RecipeModel> _featuredRecipesList = [];
@@ -71,7 +71,7 @@ class PlansViewModel with ChangeNotifier {
 
   //ItemSizes? get getSelectedItemSize => _selectedItemSize;
 
-  CarouselController get getProductCarouselController => _productCarouselController;
+  CarouselSliderController get getProductCarouselController => _productCarouselController;
 
 
   String get getTransitional1to3PouchesText => _transitional1to3PouchesText;

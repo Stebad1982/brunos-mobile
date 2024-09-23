@@ -188,7 +188,7 @@ class _AddCardScreenState extends State<AddCardScreen> {
                       cvvCode: cardViewModel.getCvvCode,
                       onCreditCardModelChange:
                           cardViewModel.onCreditCardModelChange,
-                      themeColor: CustomColors.color6,
+                     // themeColor: CustomColors.color6,
                       obscureCvv: true,
                       obscureNumber: true,
                       isHolderNameVisible: true,
@@ -202,98 +202,101 @@ class _AddCardScreenState extends State<AddCardScreen> {
                       onFormComplete: () {
                         // callback to execute at the end of filling card data
                       },
-                      cardNumberDecoration: InputDecoration(
-                        enabledBorder: const OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.transparent),
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(15))),
-                        hintStyle: TextStyle(
-                          fontFamily: 'CircularStd',
-                          fontSize: 14.sp,
-                          color: CustomColors.greyColor,
+                      inputConfiguration: InputConfiguration(
+                        cardNumberDecoration: InputDecoration(
+                          enabledBorder: const OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.transparent),
+                              borderRadius:
+                              BorderRadius.all(Radius.circular(15))),
+                          hintStyle: TextStyle(
+                            fontFamily: 'CircularStd',
+                            fontSize: 14.sp,
+                            color: CustomColors.greyColor,
+                          ),
+                          fillColor: CustomColors.lightGreyColor,
+                          filled: true,
+                          focusColor: CustomColors.orangeColor,
+                          //  labelText: 'Number',
+                          labelStyle: TextStyle(
+                              color: CustomColors.orangeColor, fontSize: 12.sp),
+                          hintText: 'Card Number',
+                          focusedBorder: const OutlineInputBorder(
+                              borderSide:
+                              BorderSide(color: CustomColors.orangeColor),
+                              borderRadius:
+                              BorderRadius.all(Radius.circular(15))),
                         ),
-                        fillColor: CustomColors.lightGreyColor,
-                        filled: true,
-                        focusColor: CustomColors.orangeColor,
-                        //  labelText: 'Number',
-                        labelStyle: TextStyle(
-                            color: CustomColors.orangeColor, fontSize: 12.sp),
-                        hintText: 'Card Number',
-                        focusedBorder: const OutlineInputBorder(
-                            borderSide:
-                                BorderSide(color: CustomColors.orangeColor),
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(15))),
-                      ),
-                      expiryDateDecoration: InputDecoration(
-                        enabledBorder: const OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.transparent),
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(15))),
-                        hintStyle: TextStyle(
-                          fontFamily: 'CircularStd',
-                          fontSize: 14.sp,
-                          color: CustomColors.greyColor,
+                        expiryDateDecoration: InputDecoration(
+                          enabledBorder: const OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.transparent),
+                              borderRadius:
+                              BorderRadius.all(Radius.circular(15))),
+                          hintStyle: TextStyle(
+                            fontFamily: 'CircularStd',
+                            fontSize: 14.sp,
+                            color: CustomColors.greyColor,
+                          ),
+                          fillColor: CustomColors.lightGreyColor,
+                          filled: true,
+                          focusColor: CustomColors.orangeColor,
+                          //  labelText: 'Number',
+                          labelStyle: TextStyle(
+                              color: CustomColors.orangeColor, fontSize: 12.sp),
+                          hintText: 'Expiry Date',
+                          focusedBorder: const OutlineInputBorder(
+                              borderSide:
+                              BorderSide(color: CustomColors.orangeColor),
+                              borderRadius:
+                              BorderRadius.all(Radius.circular(15))),
                         ),
-                        fillColor: CustomColors.lightGreyColor,
-                        filled: true,
-                        focusColor: CustomColors.orangeColor,
-                        //  labelText: 'Number',
-                        labelStyle: TextStyle(
-                            color: CustomColors.orangeColor, fontSize: 12.sp),
-                        hintText: 'Expiry Date',
-                        focusedBorder: const OutlineInputBorder(
-                            borderSide:
-                                BorderSide(color: CustomColors.orangeColor),
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(15))),
-                      ),
-                      cvvCodeDecoration: InputDecoration(
-                        enabledBorder: const OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.transparent),
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(15))),
-                        hintStyle: TextStyle(
-                          fontFamily: 'CircularStd',
-                          fontSize: 14.sp,
-                          color: CustomColors.greyColor,
+                        cvvCodeDecoration: InputDecoration(
+                          enabledBorder: const OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.transparent),
+                              borderRadius:
+                              BorderRadius.all(Radius.circular(15))),
+                          hintStyle: TextStyle(
+                            fontFamily: 'CircularStd',
+                            fontSize: 14.sp,
+                            color: CustomColors.greyColor,
+                          ),
+                          fillColor: CustomColors.lightGreyColor,
+                          filled: true,
+                          focusColor: CustomColors.orangeColor,
+                          //  labelText: 'Number',
+                          labelStyle: TextStyle(
+                              color: CustomColors.orangeColor, fontSize: 12.sp),
+                          hintText: 'cvv',
+                          focusedBorder: const OutlineInputBorder(
+                              borderSide:
+                              BorderSide(color: CustomColors.orangeColor),
+                              borderRadius:
+                              BorderRadius.all(Radius.circular(15))),
                         ),
-                        fillColor: CustomColors.lightGreyColor,
-                        filled: true,
-                        focusColor: CustomColors.orangeColor,
-                        //  labelText: 'Number',
-                        labelStyle: TextStyle(
-                            color: CustomColors.orangeColor, fontSize: 12.sp),
-                        hintText: 'cvv',
-                        focusedBorder: const OutlineInputBorder(
-                            borderSide:
-                                BorderSide(color: CustomColors.orangeColor),
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(15))),
-                      ),
-                      cardHolderDecoration: InputDecoration(
-                        enabledBorder: const OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.transparent),
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(15))),
-                        hintStyle: TextStyle(
-                          fontFamily: 'CircularStd',
-                          fontSize: 14.sp,
-                          color: CustomColors.greyColor,
+                        cardHolderDecoration: InputDecoration(
+                          enabledBorder: const OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.transparent),
+                              borderRadius:
+                              BorderRadius.all(Radius.circular(15))),
+                          hintStyle: TextStyle(
+                            fontFamily: 'CircularStd',
+                            fontSize: 14.sp,
+                            color: CustomColors.greyColor,
+                          ),
+                          fillColor: CustomColors.lightGreyColor,
+                          filled: true,
+                          focusColor: CustomColors.orangeColor,
+                          //  labelText: 'Number',
+                          labelStyle: TextStyle(
+                              color: CustomColors.orangeColor, fontSize: 12.sp),
+                          hintText: 'Card Holder Name',
+                          focusedBorder: const OutlineInputBorder(
+                              borderSide:
+                              BorderSide(color: CustomColors.orangeColor),
+                              borderRadius:
+                              BorderRadius.all(Radius.circular(15))),
                         ),
-                        fillColor: CustomColors.lightGreyColor,
-                        filled: true,
-                        focusColor: CustomColors.orangeColor,
-                        //  labelText: 'Number',
-                        labelStyle: TextStyle(
-                            color: CustomColors.orangeColor, fontSize: 12.sp),
-                        hintText: 'Card Holder Name',
-                        focusedBorder: const OutlineInputBorder(
-                            borderSide:
-                                BorderSide(color: CustomColors.orangeColor),
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(15))),
                       ),
+
                     ),
                   ),
                   Visibility(

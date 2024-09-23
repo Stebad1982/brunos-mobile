@@ -68,8 +68,8 @@ class MyHttpOverrides extends HttpOverrides{
 
 Future<void> main() async {
   HttpOverrides.global = MyHttpOverrides();
-  FirebaseMessaging.onBackgroundMessage(backgroundHandler);
   WidgetsFlutterBinding.ensureInitialized();
+  FirebaseMessaging.onBackgroundMessage(backgroundHandler);
   await Firebase.initializeApp();
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
     //systemNavigationBarColor: Colors.amber, // navigation bar color
@@ -232,7 +232,7 @@ class MyApp extends StatelessWidget {
                     color: CustomColors.blackColor,
                   )),
               textTheme: TextTheme(
-                subtitle1: TextStyle(
+                titleMedium: TextStyle(
                   fontFamily: 'CircularStd',
                   fontSize: 14.sp,
                   color:

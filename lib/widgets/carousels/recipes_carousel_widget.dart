@@ -21,7 +21,7 @@ class RecipesCarouselWidget extends StatefulWidget {
 
 class _RecipesCarouselWidgetState extends State<RecipesCarouselWidget> {
   int _current = 0;
-  final CarouselController _controller = CarouselController();
+  final CarouselSliderController _controller = CarouselSliderController();
   @override
   Widget build(BuildContext context) {
     return Column(children: [
