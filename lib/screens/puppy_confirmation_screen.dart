@@ -1,6 +1,5 @@
 import 'package:brunos_kitchen/route_generator.dart';
 import 'package:brunos_kitchen/view_models/puppy_view_model.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -12,7 +11,7 @@ import '../utils/images.dart';
 import '../widgets/app_bar_with_back_widget.dart';
 
 class PuppyConfirmationScreen extends StatelessWidget {
-  const PuppyConfirmationScreen({Key? key}) : super(key: key);
+  const PuppyConfirmationScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -5,18 +5,16 @@ import 'package:brunos_kitchen/utils/custom_colors.dart';
 import 'package:brunos_kitchen/utils/custom_font_style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
 import '../utils/custom_buttons.dart';
 import '../utils/enums.dart';
-import '../utils/images.dart';
 import '../view_models/auth_view_model.dart';
 import '../widgets/google_facebook_button_widget.dart';
 import '../widgets/user_form_fields_widget.dart';
 
 class LoginScreen extends StatelessWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+  const LoginScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -5,7 +5,6 @@ import 'package:brunos_kitchen/models/requests/add_address_request.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:flutter_google_places/flutter_google_places.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:google_api_headers/google_api_headers.dart';
 import 'package:location/location.dart' as locator;
@@ -221,9 +220,9 @@ class AddressViewModel with ChangeNotifier {
   }
 
   void getUserLocation(
-    GoogleMapController _cntlr,
+    GoogleMapController cntlr,
   ) async {
-    _googleMapController = _cntlr;
+    _googleMapController = cntlr;
     if (_isAddressAdd) {
       try {
         myLocation = await location.getLocation();

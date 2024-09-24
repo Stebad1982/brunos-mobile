@@ -1,26 +1,18 @@
-import 'package:brunos_kitchen/utils/custom_buttons.dart';
 import 'package:brunos_kitchen/utils/custom_font_style.dart';
-import 'package:brunos_kitchen/utils/date_time_formatter.dart';
 import 'package:brunos_kitchen/view_models/address_view_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
-import '../route_generator.dart';
 import '../utils/custom_colors.dart';
-import '../utils/images.dart';
 import '../view_models/auth_view_model.dart';
-import '../view_models/puppy_view_model.dart';
 import '../widgets/app_bar_with_back_widget.dart';
 import '../widgets/dialogs/delete_address_confirmation_dialog.dart';
-import '../widgets/dialogs/delete_pet_confirmation_dialog.dart';
-import '../widgets/circular_network_image_widget.dart';
 
 class AddressDetailScreen extends StatelessWidget {
-  const AddressDetailScreen({Key? key}) : super(key: key);
+  const AddressDetailScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -70,8 +62,8 @@ class AddressDetailScreen extends StatelessWidget {
                               ),
                             ),
                             child:  Padding(
-                              padding: EdgeInsets.all(10).w,
-                              child: Icon(
+                              padding: const EdgeInsets.all(10).w,
+                              child: const Icon(
                                 Icons.delete_outline,
                                 size: 20,
                                 color: CustomColors.orangeColor,
@@ -89,7 +81,7 @@ class AddressDetailScreen extends StatelessWidget {
                 SizedBox(
                   height: 200.h,
                   child: ClipRRect(
-                    borderRadius: BorderRadius.all(Radius.circular(20)),
+                    borderRadius: const BorderRadius.all(Radius.circular(20)),
                     child: GoogleMap(
                       zoomControlsEnabled: false,
                       //liteModeEnabled: true,
@@ -188,7 +180,7 @@ class AddressDetailScreen extends StatelessWidget {
                 SizedBox(
                   height: 10.h,
                 ),
-                Divider(),
+                const Divider(),
                 SizedBox(
                   height: 10.h,
                 ),
@@ -212,7 +204,7 @@ class AddressDetailScreen extends StatelessWidget {
                 SizedBox(
                   height: 10.h,
                 ),
-                Divider(),
+                const Divider(),
                 SizedBox(
                   height: 10.h,
                 ),
@@ -235,7 +227,7 @@ class AddressDetailScreen extends StatelessWidget {
                 SizedBox(
                   height: 10.h,
                 ),
-                Divider(),
+                const Divider(),
                 SizedBox(
                   height: 10.h,
                 ),
@@ -259,7 +251,7 @@ class AddressDetailScreen extends StatelessWidget {
                 SizedBox(
                   height: 10.h,
                 ),
-                Divider(),
+                const Divider(),
                 SizedBox(
                   height: 10.h,
                 ),
@@ -283,7 +275,7 @@ class AddressDetailScreen extends StatelessWidget {
                 SizedBox(
                   height: 10.h,
                 ),
-                Divider(),
+                const Divider(),
                 SizedBox(
                   height: 10.h,
                 ),
@@ -297,7 +289,7 @@ class AddressDetailScreen extends StatelessWidget {
                 SizedBox(
                   height: 10.h,
                 ),
-                Divider(),
+                const Divider(),
                 SizedBox(
                   height: 10.h,
                 ),
@@ -317,7 +309,7 @@ class AddressDetailScreen extends StatelessWidget {
                 SizedBox(
                   height: 10.h,
                 ),
-                Divider(),
+                const Divider(),
                 SizedBox(
                   height: 10.h,
                 ),
@@ -337,7 +329,7 @@ class AddressDetailScreen extends StatelessWidget {
                 SizedBox(
                   height: 10.h,
                 ),
-                Divider(),
+                const Divider(),
                 SizedBox(
                   height: 10.h,
                 ),

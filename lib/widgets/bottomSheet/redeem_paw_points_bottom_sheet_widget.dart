@@ -7,7 +7,6 @@ import 'package:provider/provider.dart';
 import '../../main.dart';
 import '../../utils/custom_buttons.dart';
 import '../../utils/custom_colors.dart';
-import '../../utils/custom_colors.dart';
 import '../../utils/custom_font_style.dart';
 
 Future redeemPawPointsBottomSheetWidget() {
@@ -75,7 +74,7 @@ Future redeemPawPointsBottomSheetWidget() {
                           scale: 1.3, // set your value here
                           child: IconButton(
                             padding: EdgeInsets.zero,
-                            constraints: BoxConstraints(),
+                            constraints: const BoxConstraints(),
                             style: const ButtonStyle(
                               tapTargetSize: MaterialTapTargetSize
                                   .shrinkWrap, // the '2023' part
@@ -249,6 +248,7 @@ Future redeemPawPointsBottomSheetWidget() {
 }
 
 class SliderCustomTrackShape extends RoundedRectSliderTrackShape {
+  @override
   Rect getPreferredRect({
     required RenderBox parentBox,
     Offset offset = Offset.zero,

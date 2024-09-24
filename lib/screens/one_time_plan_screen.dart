@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
@@ -11,7 +10,7 @@ import '../widgets/app_bar_with_back_widget.dart';
 import '../widgets/gridChip/item_discribed_grid_chip_widget.dart';
 
 class OneTimePlanScreen extends StatelessWidget {
-  const OneTimePlanScreen({Key? key}) : super(key: key);
+  const OneTimePlanScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

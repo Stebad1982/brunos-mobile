@@ -1,27 +1,16 @@
-import 'dart:convert';
 
-import 'package:brunos_kitchen/main.dart';
 import 'package:brunos_kitchen/models/cart_model.dart';
 import 'package:brunos_kitchen/models/puppy_model.dart';
 import 'package:brunos_kitchen/models/recipe_model.dart';
 import 'package:brunos_kitchen/models/responses/recipes_list_response.dart';
-import 'package:brunos_kitchen/route_generator.dart';
 import 'package:brunos_kitchen/services/plan_api_services.dart';
-import 'package:brunos_kitchen/view_models/auth_view_model.dart';
 import 'package:carousel_slider/carousel_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:intl/intl.dart';
-import 'package:package_info_plus/package_info_plus.dart';
-import 'package:provider/provider.dart';
-import 'package:table_calendar/table_calendar.dart';
 
 import '../models/item_sizes_model.dart';
-import '../screens/logIn_screen.dart';
-import '../screens/intro_slides_screen.dart';
 import '../utils/enums.dart';
 import '../utils/calculations.dart';
-import '../utils/shared_pref .dart';
 
 class PlansViewModel with ChangeNotifier {
   final PlanApiServices _planApiServices = PlanApiServices();
@@ -50,8 +39,8 @@ class PlansViewModel with ChangeNotifier {
   String _planType = Plans.transitional.text;
   RecipesListResponse _recipesListResponse = RecipesListResponse();
   RecipeModel _selectedRecipe = RecipeModel();
-  List<String> _productImages = [];
-  CarouselSliderController _productCarouselController = CarouselSliderController();
+  final List<String> _productImages = [];
+  final CarouselSliderController _productCarouselController = CarouselSliderController();
   List<RecipeModel> _recipesList = [];
   List<RecipeModel> _productsList = [];
   List<RecipeModel> _featuredRecipesList = [];

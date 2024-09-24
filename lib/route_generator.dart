@@ -22,7 +22,6 @@ import 'package:brunos_kitchen/screens/logIn_screen.dart';
 import 'package:brunos_kitchen/screens/monthly_plan_screen.dart';
 import 'package:brunos_kitchen/screens/news_screen.dart';
 import 'package:brunos_kitchen/screens/one_time_plan_screen.dart';
-import 'package:brunos_kitchen/screens/order_completed_screen.dart';
 import 'package:brunos_kitchen/screens/order_confirmation_screen.dart';
 import 'package:brunos_kitchen/screens/order_detail_screen.dart';
 import 'package:brunos_kitchen/screens/orders_screen.dart';
@@ -41,7 +40,6 @@ import 'package:brunos_kitchen/screens/product_detail_screen.dart';
 import 'package:brunos_kitchen/screens/splash_screen.dart';
 import 'package:brunos_kitchen/screens/transitional_plan_screen.dart';
 import 'package:brunos_kitchen/screens/user_verified_screen.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 const String splashRoute = '/';
@@ -139,7 +137,7 @@ class RouteGenerator {
       case monthlyPlanRoute:
         return MaterialPageRoute(builder: (_) => const MonthlyPlanScreen());
       case feedingPlanRoute:
-        return MaterialPageRoute(builder: (_) => FeedingPlanScreen());
+        return MaterialPageRoute(builder: (_) => const FeedingPlanScreen());
       case deliveryDatesRoute:
         return MaterialPageRoute(builder: (_) => const DeliveryDatesScreen());
       case checkOutRoute:

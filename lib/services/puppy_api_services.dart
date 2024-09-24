@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:brunos_kitchen/models/base_response_model.dart';
-import 'package:brunos_kitchen/models/requests/add_breed_request.dart';
 import 'package:brunos_kitchen/models/requests/edit_puppy_request.dart';
 import 'package:brunos_kitchen/models/requests/register_puppy_request.dart';
 import 'package:brunos_kitchen/models/responses/breeds_response.dart';

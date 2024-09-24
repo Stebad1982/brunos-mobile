@@ -1,8 +1,4 @@
-import 'package:brunos_kitchen/main.dart';
-import 'package:brunos_kitchen/view_models/card_view_model.dart';
 import 'package:brunos_kitchen/view_models/cart_view_model.dart';
-import 'package:brunos_kitchen/view_models/puppy_view_model.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';

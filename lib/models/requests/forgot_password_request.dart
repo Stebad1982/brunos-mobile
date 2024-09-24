@@ -7,10 +7,10 @@ class ForgotPasswordRequest {
 
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['phoneNumber'] = this.phoneNumber;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['phoneNumber'] = phoneNumber;
    // data['otp'] = this.otp;
-    data['password'] = this.password;
+    data['password'] = password;
     return data;
   }
 }

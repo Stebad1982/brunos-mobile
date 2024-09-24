@@ -12,17 +12,17 @@ class RecipesListResponse extends BaseResponseModel{
 
   RecipesListResponse.fromJson(Map<String, dynamic> json) {
     isSuccess = json['isSuccess'];
-    data = json['data'] != null ? new AllData.fromJson(json['data']) : null;
+    data = json['data'] != null ? AllData.fromJson(json['data']) : null;
     message = json['message'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['isSuccess'] = this.isSuccess;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['isSuccess'] = isSuccess;
     if (this.data != null) {
       data['data'] = this.data!.toJson();
     }
-    data['message'] = this.message;
+    data['message'] = message;
     return data;
   }
 }
@@ -39,33 +39,33 @@ class AllData {
     if (json['categories'] != null) {
       categories = <Categories>[];
       json['categories'].forEach((v) {
-        categories!.add(new Categories.fromJson(v));
+        categories!.add(Categories.fromJson(v));
       });
     }
     if (json['recipe'] != null) {
       recipe = <RecipeModel>[];
       json['recipe'].forEach((v) {
-        recipe!.add(new RecipeModel.fromJson(v));
+        recipe!.add(RecipeModel.fromJson(v));
       });
     }
     if (json['faqs'] != null) {
       faqs = <FaqsBlogsNewsData>[];
       json['faqs'].forEach((v) {
-        faqs!.add(new FaqsBlogsNewsData.fromJson(v));
+        faqs!.add(FaqsBlogsNewsData.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.categories != null) {
-      data['categories'] = this.categories!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (categories != null) {
+      data['categories'] = categories!.map((v) => v.toJson()).toList();
     }
-    if (this.recipe != null) {
-      data['recipe'] = this.recipe!.map((v) => v.toJson()).toList();
+    if (recipe != null) {
+      data['recipe'] = recipe!.map((v) => v.toJson()).toList();
     }
-    if (this.faqs != null) {
-      data['faqs'] = this.faqs!.map((v) => v.toJson()).toList();
+    if (faqs != null) {
+      data['faqs'] = faqs!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -85,10 +85,10 @@ class Categories {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['_id'] = this.sId;
-    data['createdOnDate'] = this.createdOnDate;
-    data['name'] = this.name;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['_id'] = sId;
+    data['createdOnDate'] = createdOnDate;
+    data['name'] = name;
     return data;
   }
 }

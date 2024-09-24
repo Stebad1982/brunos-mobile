@@ -1,12 +1,10 @@
 import 'package:brunos_kitchen/main.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 
 import '../route_generator.dart';
-import '../utils/custom_colors.dart';
 import '../utils/custom_font_style.dart';
 import '../utils/enums.dart';
 import '../utils/images.dart';

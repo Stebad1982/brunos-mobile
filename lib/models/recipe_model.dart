@@ -114,7 +114,7 @@ class RecipeModel {
     if (json['ingredient'] != null) {
       ingredient = <Ingredient>[];
       json['ingredient'].forEach((v) {
-        ingredient!.add(new Ingredient.fromJson(v));
+        ingredient!.add(Ingredient.fromJson(v));
       });
     }
     description = json['description'];
@@ -158,51 +158,51 @@ class RecipeModel {
     if (json['monthlyPrices'] != null) {
       monthlyPrices = <CustomPricesModel>[];
       json['monthlyPrices'].forEach((v) {
-        monthlyPrices!.add(new CustomPricesModel.fromJson(v));
+        monthlyPrices!.add(CustomPricesModel.fromJson(v));
       });
     }
     if (json['transitionalPrices'] != null) {
       transitionalPrices = <CustomPricesModel>[];
       json['transitionalPrices'].forEach((v) {
-        transitionalPrices!.add(new CustomPricesModel.fromJson(v));
+        transitionalPrices!.add(CustomPricesModel.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['_id'] = this.sId;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['_id'] = sId;
 /*
     data['createdOnDate'] = this.createdOnDate;
 */
     // data['brand'] = this.brand;
-    data['productImage'] = this.productImage;
-    data['weight'] = this.weight;
-    data['unit'] = this.unit;
-    data['name'] = this.name;
-    data['isFeatured'] = this.isFeatured;
-    data['isComboRecipe'] = this.isComboRecipe;
-    data['standaloneSize'] = this.standaloneSize;
+    data['productImage'] = productImage;
+    data['weight'] = weight;
+    data['unit'] = unit;
+    data['name'] = name;
+    data['isFeatured'] = isFeatured;
+    data['isComboRecipe'] = isComboRecipe;
+    data['standaloneSize'] = standaloneSize;
 /*
     data['userId'] = this.userId;
 */
-    data['totalDays'] = this.totalDays ?? 1;
-    data['quantity'] = this.quantity ?? 1;
-    data['finalPrice'] = this.finalPrice ?? this.pricePerKG;
-    if (this.ingredient != null) {
-      data['ingredient'] = this.ingredient!.map((v) => v.toJson()).toList();
+    data['totalDays'] = totalDays ?? 1;
+    data['quantity'] = quantity ?? 1;
+    data['finalPrice'] = finalPrice ?? pricePerKG;
+    if (ingredient != null) {
+      data['ingredient'] = ingredient!.map((v) => v.toJson()).toList();
     }
-    if (this.nutrition != null) {
-      data['nutrition'] = jsonEncode(this.nutrition);
+    if (nutrition != null) {
+      data['nutrition'] = jsonEncode(nutrition);
     }
-    if (this.sizes != null) {
-      data['sizes'] = this.sizes!.map((v) => v.toJson()).toList();
+    if (sizes != null) {
+      data['sizes'] = sizes!.map((v) => v.toJson()).toList();
     }
-    data['selectedItemSize'] = this.selectedItemSize;
-    data['description'] = this.description;
-    data['tableImage'] = this.tableImage;
-    data['details'] = this.details;
-    data['instructions'] = this.instructions;
+    data['selectedItemSize'] = selectedItemSize;
+    data['description'] = description;
+    data['tableImage'] = tableImage;
+    data['details'] = details;
+    data['instructions'] = instructions;
     // data['nutrition'] = this.nutrition;
   /*  data['price1'] = this.price1;
     data['price2'] = this.price2;
@@ -210,21 +210,21 @@ class RecipeModel {
     data['price4'] = this.price4;
     data['price5'] = this.price5;
     data['price6'] = this.price6;*/
-    data['pricePerKG'] = this.pricePerKG;
-    data['media'] = this.media;
-    data['recipeNo'] = this.recipeNo;
-    data['lifeStage'] = this.lifeStage;
-    data['category'] = this.category;
-    data['caloriesContentNo'] = this.caloriesContentNo;
+    data['pricePerKG'] = pricePerKG;
+    data['media'] = media;
+    data['recipeNo'] = recipeNo;
+    data['lifeStage'] = lifeStage;
+    data['category'] = category;
+    data['caloriesContentNo'] = caloriesContentNo;
     //  data['ingredients'] = this.ingredients;
-    data['ingredientsComposition'] = this.ingredientsComposition;
-    if (this.monthlyPrices != null) {
+    data['ingredientsComposition'] = ingredientsComposition;
+    if (monthlyPrices != null) {
       data['monthlyPrices'] =
-          this.monthlyPrices!.map((v) => v.toJson()).toList();
+          monthlyPrices!.map((v) => v.toJson()).toList();
     }
-    if (this.transitionalPrices != null) {
+    if (transitionalPrices != null) {
       data['transitionalPrices'] =
-          this.transitionalPrices!.map((v) => v.toJson()).toList();
+          transitionalPrices!.map((v) => v.toJson()).toList();
     }
     return data;
   }

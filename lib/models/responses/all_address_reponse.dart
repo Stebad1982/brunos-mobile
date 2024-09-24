@@ -13,17 +13,17 @@ class AllAddressResponse extends BaseResponseModel{
     if (json['data'] != null) {
       data = <AddressModel>[];
       json['data'].forEach((v) {
-        data!.add(new AddressModel.fromJson(v));
+        data!.add(AddressModel.fromJson(v));
       });
     }
     message = json['message'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['isSuccess'] = this.isSuccess;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['isSuccess'] = isSuccess;
 
-    data['message'] = this.message;
+    data['message'] = message;
     return data;
   }
 }

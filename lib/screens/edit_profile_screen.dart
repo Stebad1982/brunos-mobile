@@ -1,21 +1,18 @@
-import 'package:brunos_kitchen/utils/custom_colors.dart';
 import 'package:brunos_kitchen/utils/custom_font_style.dart';
 import 'package:brunos_kitchen/view_models/auth_view_model.dart';
 import 'package:brunos_kitchen/widgets/app_bar_with_back_widget.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
 import '../main.dart';
-import '../route_generator.dart';
 import '../utils/custom_buttons.dart';
 import '../utils/images.dart';
 import '../widgets/user_form_fields_widget.dart';
 
 class EditProfileScreen extends StatelessWidget {
-  const EditProfileScreen({Key? key}) : super(key: key);
+  const EditProfileScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

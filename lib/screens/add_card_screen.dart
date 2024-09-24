@@ -2,8 +2,6 @@ import 'package:brunos_kitchen/widgets/dialogs/delete_card_confirmation_dialog.d
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_stripe/flutter_stripe.dart';
-import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_credit_card/flutter_credit_card.dart';
 
@@ -15,7 +13,7 @@ import '../view_models/card_view_model.dart';
 import '../widgets/app_bar_with_back_widget.dart';
 
 class AddCardScreen extends StatefulWidget {
-  const AddCardScreen({Key? key}) : super(key: key);
+  const AddCardScreen({super.key});
 
   @override
   State<AddCardScreen> createState() => _AddCardScreenState();
@@ -97,8 +95,8 @@ class _AddCardScreenState extends State<AddCardScreen> {
                                     ),
                                   ),
                                   child:  Padding(
-                                    padding: EdgeInsets.all(10).w,
-                                    child: Icon(
+                                    padding: const EdgeInsets.all(10).w,
+                                    child: const Icon(
                                       Icons.delete_outline,
                                       size: 20,
                                       color: CustomColors.orangeColor,
@@ -195,10 +193,18 @@ class _AddCardScreenState extends State<AddCardScreen> {
                       isCardNumberVisible: true,
                       isExpiryDateVisible: true,
                       enableCvv: true,
-                      cardNumberValidator: (String? cardNumber) {},
-                      expiryDateValidator: (String? expiryDate) {},
-                      cvvValidator: (String? cvv) {},
-                      cardHolderValidator: (String? cardHolderName) {},
+                      cardNumberValidator: (String? cardNumber) {
+                        return null;
+                      },
+                      expiryDateValidator: (String? expiryDate) {
+                        return null;
+                      },
+                      cvvValidator: (String? cvv) {
+                        return null;
+                      },
+                      cardHolderValidator: (String? cardHolderName) {
+                        return null;
+                      },
                       onFormComplete: () {
                         // callback to execute at the end of filling card data
                       },

@@ -1,7 +1,5 @@
 import 'dart:convert';
 
-import 'package:brunos_kitchen/models/base_response_model.dart';
-import 'package:flutter/src/widgets/editable_text.dart';
 
 import '../models/responses/promo_code_response.dart';
 import '../utils/enums.dart';

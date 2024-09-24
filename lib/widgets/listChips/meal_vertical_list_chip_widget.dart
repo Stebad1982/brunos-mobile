@@ -4,16 +4,11 @@ import 'package:brunos_kitchen/models/recipe_model.dart';
 import 'package:brunos_kitchen/utils/custom_colors.dart';
 import 'package:brunos_kitchen/view_models/plans_view_model.dart';
 import 'package:brunos_kitchen/widgets/dialogs/schedule_days_range_dialog.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
-import 'package:table_calendar/table_calendar.dart';
 
-import '../../route_generator.dart';
 import '../../utils/custom_font_style.dart';
-import '../../utils/images.dart';
 import '../circular_network_image_widget.dart';
 import '../dialogs/discription_dialog.dart';
 

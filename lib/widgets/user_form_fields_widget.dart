@@ -1,5 +1,4 @@
 import 'package:country_code_picker/country_code_picker.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -11,7 +10,7 @@ import '../utils/images.dart';
 import '../view_models/auth_view_model.dart';
 
 class PhoneFieldWidget extends StatelessWidget {
-  const PhoneFieldWidget({Key? key}) : super(key: key);
+  const PhoneFieldWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -74,7 +73,7 @@ class PhoneFieldWidget extends StatelessWidget {
 }
 
 class NameFieldWidget extends StatelessWidget {
-  const NameFieldWidget({Key? key}) : super(key: key);
+  const NameFieldWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -106,7 +105,7 @@ class NameFieldWidget extends StatelessWidget {
 }
 
 class EmailFieldWidget extends StatelessWidget {
-  const EmailFieldWidget({Key? key}) : super(key: key);
+  const EmailFieldWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -140,7 +139,7 @@ class EmailFieldWidget extends StatelessWidget {
 class PasswordFieldWidget extends StatelessWidget {
   final String hint;
 
-  const PasswordFieldWidget({Key? key, required this.hint}) : super(key: key);
+  const PasswordFieldWidget({super.key, required this.hint});
 
   @override
   Widget build(BuildContext context) {
@@ -183,8 +182,7 @@ class PasswordFieldWidget extends StatelessWidget {
 class ConfirmPasswordFieldWidget extends StatelessWidget {
   final String hint;
 
-  const ConfirmPasswordFieldWidget({Key? key, required this.hint})
-      : super(key: key);
+  const ConfirmPasswordFieldWidget({super.key, required this.hint});
 
   @override
   Widget build(BuildContext context) {

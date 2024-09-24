@@ -1,9 +1,6 @@
-import 'dart:async';
 
 import 'package:brunos_kitchen/utils/images.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
@@ -19,7 +16,7 @@ import '../view_models/auth_view_model.dart';
 import '../widgets/back_button_widget.dart';
 
 class OtpScreen extends StatefulWidget {
-  const OtpScreen({Key? key}) : super(key: key);
+  const OtpScreen({super.key});
 
   @override
   State<OtpScreen> createState() => _OtpScreenState();

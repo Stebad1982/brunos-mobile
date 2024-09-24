@@ -1,18 +1,13 @@
 import 'package:brunos_kitchen/main.dart';
 import 'package:brunos_kitchen/models/recipe_model.dart';
-import 'package:brunos_kitchen/models/responses/auth_response.dart';
 import 'package:brunos_kitchen/utils/custom_font_style.dart';
 import 'package:brunos_kitchen/view_models/auth_view_model.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
 import '../../utils/custom_colors.dart';
-import '../../utils/enums.dart';
 import '../../utils/calculations.dart';
-import '../../view_models/plans_view_model.dart';
-import '../carousels/home_carousel_widget.dart';
 import '../carousels/recipes_carousel_widget.dart';
 
 Future recipeDetailBottomSheetWidget({required RecipeModel recipeDetail}) {
@@ -52,7 +47,7 @@ Future recipeDetailBottomSheetWidget({required RecipeModel recipeDetail}) {
                             'Starting From ${recipeDetail.pricePerKG} AED/KG')*/
                       ],
                     ),
-                    Spacer(),
+                    const Spacer(),
                     InkWell(
                       onTap: () {
                         Navigator.pop(context);

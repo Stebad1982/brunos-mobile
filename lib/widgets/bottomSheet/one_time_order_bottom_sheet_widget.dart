@@ -11,7 +11,6 @@ import '../../utils/custom_buttons.dart';
 import '../../utils/custom_colors.dart';
 import '../../utils/images.dart';
 import '../../view_models/cart_view_model.dart';
-import '../listChips/meal_vertical_list_chip_widget.dart';
 
 Future oneTimeOrderBottomSheetWidget({required RecipeModel data}) {
   return showModalBottomSheet(

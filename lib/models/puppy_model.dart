@@ -1,6 +1,4 @@
-import 'package:brunos_kitchen/models/responses/puppies_response.dart';
 
-import '../utils/enums.dart';
 
 class PuppyModel {
   String? sId;
@@ -59,25 +57,25 @@ class PuppyModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['_id'] = this.sId;
-    data['createdOnDate'] = this.createdOnDate;
-    data['name'] = this.name;
-    data['media'] = this.media;
-    data['isSpayNeuter'] = this.isSpayNeuter;
-    data['breed'] = this.breed;
-    data['month'] = this.month;
-    data['year'] = this.year;
-    data['isPuppy'] = this.isPuppy;
-    data['month'] = this.month;
-    data['year'] = this.year;
-    data['isPuppy'] = this.isPuppy;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['_id'] = sId;
+    data['createdOnDate'] = createdOnDate;
+    data['name'] = name;
+    data['media'] = media;
+    data['isSpayNeuter'] = isSpayNeuter;
+    data['breed'] = breed;
+    data['month'] = month;
+    data['year'] = year;
+    data['isPuppy'] = isPuppy;
+    data['month'] = month;
+    data['year'] = year;
+    data['isPuppy'] = isPuppy;
     //data['bornOnDate'] = this.bornOnDate;
-    data['currentWeight'] = this.currentWeight;
-    data['actualWeight'] = this.actualWeight;
-    data['isDefault'] = this.isDefault;
-    data['feedingRoutine'] = this.feedingRoutine;
-    data['activityLevel'] = this.activityLevel;
+    data['currentWeight'] = currentWeight;
+    data['actualWeight'] = actualWeight;
+    data['isDefault'] = isDefault;
+    data['feedingRoutine'] = feedingRoutine;
+    data['activityLevel'] = activityLevel;
     return data;
   }
 }

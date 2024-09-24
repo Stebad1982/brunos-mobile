@@ -27,14 +27,14 @@ class CardModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['_id'] = this.sId;
-    data['isDefault'] = this.isDefault;
-    data['brand'] = this.brand;
-    data['paymentMethodId'] = this.paymentMethodId;
-    data['expMonth'] = this.expMonth;
-    data['expYear'] = this.expYear;
-    data['last4'] = this.last4;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['_id'] = sId;
+    data['isDefault'] = isDefault;
+    data['brand'] = brand;
+    data['paymentMethodId'] = paymentMethodId;
+    data['expMonth'] = expMonth;
+    data['expYear'] = expYear;
+    data['last4'] = last4;
     return data;
   }
 }

@@ -1,11 +1,8 @@
-import 'package:brunos_kitchen/models/requests/order_request.dart';
 import 'package:brunos_kitchen/route_generator.dart';
 import 'package:brunos_kitchen/view_models/address_view_model.dart';
 import 'package:brunos_kitchen/view_models/auth_view_model.dart';
 import 'package:brunos_kitchen/view_models/card_view_model.dart';
 import 'package:brunos_kitchen/view_models/cart_view_model.dart';
-import 'package:brunos_kitchen/view_models/order_view_model.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -16,17 +13,14 @@ import '../utils/custom_buttons.dart';
 import '../utils/custom_colors.dart';
 import '../utils/custom_font_style.dart';
 import '../utils/date_time_formatter.dart';
-import '../utils/enums.dart';
 import '../utils/images.dart';
-import '../view_models/plans_view_model.dart';
 import '../widgets/app_bar_with_back_widget.dart';
 import '../widgets/dialogs/checkout_confirmation_dialog.dart';
 import '../widgets/dialogs/discription_dialog.dart';
 import '../widgets/bottomSheet/redeem_paw_points_bottom_sheet_widget.dart';
-import '../widgets/dialogs/promo_code_validation_dialog.dart';
 
 class CheckoutScreen extends StatefulWidget {
-  const CheckoutScreen({Key? key}) : super(key: key);
+  const CheckoutScreen({super.key});
 
   @override
   State<CheckoutScreen> createState() => _CheckoutScreenState();
@@ -245,7 +239,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                                       ),
                                     ),
                                     child: Padding(
-                                      padding: EdgeInsets.all(10).w,
+                                      padding: const EdgeInsets.all(10).w,
                                       child: Icon(
                                         context
                                                     .read<AuthViewModel>()
@@ -276,14 +270,14 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                       keyboardType: TextInputType.multiline,
                       maxLines: 5,
                       decoration:  InputDecoration(
-                        enabledBorder: OutlineInputBorder(
+                        enabledBorder: const OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(12)),
                           borderSide: BorderSide(
                               color: CustomColors.greyColor, width: 0.50),
                         ),
                         hintText: 'Special Instructions',
-                        hintStyle: TextStyle(color: CustomColors.blackColor),
-                        contentPadding: EdgeInsets.symmetric(
+                        hintStyle: const TextStyle(color: CustomColors.blackColor),
+                        contentPadding: const EdgeInsets.symmetric(
                             horizontal: 15, vertical: 15.0).w,
                       ),
                     ),
@@ -598,7 +592,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                             Icons.keyboard_arrow_down,
                             size: 25,
                           ),*/
-                                  contentPadding: EdgeInsets.all(20.0).w,
+                                  contentPadding: const EdgeInsets.all(20.0).w,
                                   hintText: 'Code'),
                             ),
                             /* Container(

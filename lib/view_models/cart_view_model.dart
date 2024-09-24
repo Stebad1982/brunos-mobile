@@ -7,7 +7,6 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:provider/provider.dart';
 import 'package:table_calendar/table_calendar.dart';
 
-import '../models/base_response_model.dart';
 import '../models/cart_model.dart';
 import '../models/recipe_model.dart';
 import '../models/requests/order_request.dart';

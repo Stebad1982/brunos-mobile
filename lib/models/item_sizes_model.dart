@@ -18,13 +18,13 @@ class ItemSizes {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['name'] = this.name;
-    data['price'] = this.price;
-    data['stock'] = this.stock;
-    data['weight'] = this.weight;
-    data['unit'] = this.unit;
-    data['image'] = this.image;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['name'] = name;
+    data['price'] = price;
+    data['stock'] = stock;
+    data['weight'] = weight;
+    data['unit'] = unit;
+    data['image'] = image;
     return data;
   }
 }

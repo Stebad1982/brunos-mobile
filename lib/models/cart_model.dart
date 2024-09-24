@@ -1,4 +1,3 @@
-import 'dart:convert';
 
 import 'package:brunos_kitchen/models/puppy_model.dart';
 
@@ -25,17 +24,17 @@ class CartModel {
       required this.totalWeight});
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.pet != null) {
-      data['pet'] = this.pet!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (pet != null) {
+      data['pet'] = pet!.toJson();
     }
-    data['pouchesDetail'] = this.pouchesDetail;
-    data['planType'] = this.planType;
-    data['planTotal'] = this.planTotal;
-    data['planDiscountPer'] = this.planDiscountPer;
-    data['planDiscountedPrice'] = this.planDiscountedPrice;
-    data['totalWeight'] = this.totalWeight;
-    data['recipes'] = this.recipes.map((v) => v.toJson()).toList();
+    data['pouchesDetail'] = pouchesDetail;
+    data['planType'] = planType;
+    data['planTotal'] = planTotal;
+    data['planDiscountPer'] = planDiscountPer;
+    data['planDiscountedPrice'] = planDiscountedPrice;
+    data['totalWeight'] = totalWeight;
+    data['recipes'] = recipes.map((v) => v.toJson()).toList();
     return data;
   }
 }

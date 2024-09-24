@@ -1,7 +1,5 @@
 import 'package:brunos_kitchen/utils/custom_font_style.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
@@ -20,7 +18,7 @@ import '../widgets/carousels/product_carousel_widget.dart';
 import '../widgets/dialogs/discription_dialog.dart';
 
 class ProductDetailScreen extends StatelessWidget {
-  const ProductDetailScreen({Key? key}) : super(key: key);
+  const ProductDetailScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -299,11 +297,11 @@ class ProductDetailScreen extends StatelessWidget {
                               ],
                             ),
                           )
-                        : SizedBox(),
+                        : const SizedBox(),
                     SizedBox(
                       height: 24.h,
                     ),
-                    Divider(),
+                    const Divider(),
                     SizedBox(
                       height: 24.h,
                     ),
@@ -432,7 +430,7 @@ class ProductDetailScreen extends StatelessWidget {
                                     whiteTint14w400(data: 'Total Price')
                                   ],
                                 ),
-                                Spacer(),
+                                const Spacer(),
                                 white18w500(data: 'Add to shopping bag')
                               ],
                             ),

@@ -1,17 +1,13 @@
 import 'package:brunos_kitchen/route_generator.dart';
 import 'package:brunos_kitchen/utils/custom_font_style.dart';
 import 'package:brunos_kitchen/view_models/cart_view_model.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
 import '../main.dart';
-import '../models/address_model.dart';
 import '../utils/custom_buttons.dart';
 import '../utils/custom_colors.dart';
-import '../view_models/address_view_model.dart';
-import '../view_models/auth_view_model.dart';
 import '../widgets/app_bar_with_back_widget.dart';
 import '../widgets/listChips/cart_vertical_list_chip_widget.dart';
 

@@ -1,9 +1,6 @@
-import 'package:brunos_kitchen/main.dart';
-import 'package:brunos_kitchen/utils/custom_colors.dart';
 import 'package:brunos_kitchen/utils/custom_font_style.dart';
 import 'package:brunos_kitchen/utils/images.dart';
 import 'package:brunos_kitchen/view_models/auth_view_model.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -15,7 +12,7 @@ import '../utils/enums.dart';
 import '../widgets/back_button_widget.dart';
 
 class RegisterUserContinueScreen extends StatelessWidget {
-  const RegisterUserContinueScreen({Key? key}) : super(key: key);
+  const RegisterUserContinueScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

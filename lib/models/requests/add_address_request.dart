@@ -25,18 +25,18 @@ class AddAddressRequest {
       required this.contactNumber});
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['coordinates'] = this.coordinates;
-    data['address'] = this.address;
-    data['label'] = this.label;
-    data['isDefault'] = this.isDefault;
-    data['street'] = this.street;
-    data['area'] = this.area;
-    data['floor'] = this.floor;
-    data['deliveryInstruction'] = this.deliveryInstruction;
-    data['flatHouseNumber'] = this.flatHouseNumber;
-    data['contactNumber'] = this.contactNumber;
-    data['contactName'] = this.contactName;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['coordinates'] = coordinates;
+    data['address'] = address;
+    data['label'] = label;
+    data['isDefault'] = isDefault;
+    data['street'] = street;
+    data['area'] = area;
+    data['floor'] = floor;
+    data['deliveryInstruction'] = deliveryInstruction;
+    data['flatHouseNumber'] = flatHouseNumber;
+    data['contactNumber'] = contactNumber;
+    data['contactName'] = contactName;
     return data;
   }
 }

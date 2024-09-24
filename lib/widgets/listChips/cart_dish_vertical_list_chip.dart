@@ -1,14 +1,10 @@
 import 'package:brunos_kitchen/models/recipe_model.dart';
 import 'package:brunos_kitchen/utils/enums.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 
-import '../../models/cart_model.dart';
 import '../../utils/custom_colors.dart';
 import '../../utils/custom_font_style.dart';
-import '../../utils/images.dart';
 import '../circular_network_image_widget.dart';
 
 Widget cartDishVerticalListChipWidget(
@@ -77,12 +73,12 @@ Widget cartDishVerticalListChipWidget(
                         planType == Plans.product.text? orange14w500(
                             data: 'AED ${cartRecipeModel
                                 .pricePerKG!.toStringAsFixed(2)} / Item') : orange14w500(
-                            data: '${totalWeight} Grams/Plan'),
+                            data: '$totalWeight Grams/Plan'),
                         const SizedBox(height: 2,),
                         planType == Plans.monthly.text
                             ? orange14w500(
                             data: 'Sub Total: AED ${cartRecipeModel
-                                .finalPrice!.toStringAsFixed(2) }') : SizedBox(),
+                                .finalPrice!.toStringAsFixed(2) }') : const SizedBox(),
                       ],
                     ),
                   ],

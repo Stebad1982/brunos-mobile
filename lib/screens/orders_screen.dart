@@ -1,19 +1,13 @@
-import 'package:brunos_kitchen/screens/order_Monthly_screen.dart';
-import 'package:brunos_kitchen/screens/order_completed_screen.dart';
-import 'package:brunos_kitchen/screens/order_inprocess_screen.dart';
-import 'package:brunos_kitchen/utils/custom_font_style.dart';
 import 'package:brunos_kitchen/view_models/order_view_model.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
-import '../utils/custom_colors.dart';
 import '../widgets/app_bar_with_back_widget.dart';
 import '../widgets/listChips/orders_vertical_list_chip_widget.dart';
 
 class OrdersScreen extends StatefulWidget {
-  const OrdersScreen({Key? key}) : super(key: key);
+  const OrdersScreen({super.key});
 
   @override
   State<OrdersScreen> createState() => _OrdersScreenState();

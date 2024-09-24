@@ -1,10 +1,6 @@
 import 'package:brunos_kitchen/route_generator.dart';
-import 'package:brunos_kitchen/utils/images.dart';
-import 'package:country_code_picker/country_code_picker.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 
 import '../main.dart';
@@ -17,7 +13,7 @@ import '../widgets/google_facebook_button_widget.dart';
 import '../widgets/user_form_fields_widget.dart';
 
 class RegisterUserScreen extends StatelessWidget {
-  const RegisterUserScreen({Key? key}) : super(key: key);
+  const RegisterUserScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

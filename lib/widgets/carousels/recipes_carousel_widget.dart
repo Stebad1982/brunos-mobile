@@ -1,9 +1,6 @@
-import 'package:brunos_kitchen/utils/images.dart';
-import 'package:carousel_slider/carousel_controller.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:provider/provider.dart';
 
 import '../../utils/custom_colors.dart';
 
@@ -13,7 +10,7 @@ import '../../utils/custom_colors.dart';
 
 class RecipesCarouselWidget extends StatefulWidget {
   final List<String> recipesImages;
-  const RecipesCarouselWidget({Key? key, required this.recipesImages}) : super(key: key);
+  const RecipesCarouselWidget({super.key, required this.recipesImages});
 
   @override
   _RecipesCarouselWidgetState createState() => _RecipesCarouselWidgetState();

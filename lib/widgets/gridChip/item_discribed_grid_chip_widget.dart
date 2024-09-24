@@ -3,12 +3,8 @@ import 'package:brunos_kitchen/main.dart';
 import 'package:brunos_kitchen/route_generator.dart';
 import 'package:brunos_kitchen/utils/custom_font_style.dart';
 import 'package:brunos_kitchen/utils/images.dart';
-import 'package:brunos_kitchen/view_models/auth_view_model.dart';
 import 'package:brunos_kitchen/view_models/plans_view_model.dart';
-import 'package:brunos_kitchen/view_models/puppy_view_model.dart';
-import 'package:brunos_kitchen/widgets/circular_network_image_widget.dart';
 import 'package:brunos_kitchen/widgets/bottomSheet/recipe_detail_bottom_sheet_widget.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -17,9 +13,7 @@ import 'package:provider/provider.dart';
 import '../../models/recipe_model.dart';
 import '../../utils/custom_colors.dart';
 import '../../utils/enums.dart';
-import '../../utils/calculations.dart';
 import '../../view_models/cart_view_model.dart';
-import '../bottomSheet/one_time_order_bottom_sheet_widget.dart';
 
 Widget itemDescribedGridChipWidget({required RecipeModel recipeData , required bool showInformationIcon}) {
   return Consumer<PlansViewModel>(builder: (context, plansViewModel, child)

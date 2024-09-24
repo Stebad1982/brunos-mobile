@@ -2,13 +2,11 @@ import 'dart:io';
 
 import 'package:brunos_kitchen/route_generator.dart';
 import 'package:brunos_kitchen/utils/custom_font_style.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 
-import '../main.dart';
 import '../utils/custom_buttons.dart';
 import '../utils/custom_colors.dart';
 import '../utils/enums.dart';
@@ -16,11 +14,10 @@ import '../utils/images.dart';
 import '../view_models/puppy_view_model.dart';
 import '../widgets/app_bar_with_back_widget.dart';
 import '../widgets/circular_network_image_widget.dart';
-import '../widgets/dialogs/discription_dialog.dart';
 import '../widgets/bottomSheet/image_taking_bottom_sheet_widget.dart';
 
 class PuppyCreationScreen extends StatelessWidget {
-  const PuppyCreationScreen({Key? key}) : super(key: key);
+  const PuppyCreationScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -88,7 +85,7 @@ class PuppyCreationScreen extends StatelessWidget {
                       onChanged: (text) {},
                       keyboardType: TextInputType.name,
                       decoration:  InputDecoration(
-                          contentPadding: EdgeInsets.all(20.0).w,
+                          contentPadding: const EdgeInsets.all(20.0).w,
                           hintText: 'Entre Your Pet\'s Name'),
                     ),
                     SizedBox(

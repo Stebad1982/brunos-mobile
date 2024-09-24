@@ -13,7 +13,6 @@ import '../models/requests/sign_in_request.dart';
 import '../models/responses/auth_response.dart';
 import '../models/responses/otp_response.dart';
 import '../utils/enums.dart';
-import 'package:http/http.dart' as http;
 import '../utils/shared_pref .dart';
 import 'api_base_helper.dart';
 

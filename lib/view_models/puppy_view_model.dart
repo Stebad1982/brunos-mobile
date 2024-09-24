@@ -1,30 +1,18 @@
-import 'dart:io';
 
-import 'package:brunos_kitchen/main.dart';
 import 'package:brunos_kitchen/models/base_response_model.dart';
 import 'package:brunos_kitchen/models/puppy_model.dart';
 import 'package:brunos_kitchen/models/requests/edit_puppy_request.dart';
 import 'package:brunos_kitchen/models/requests/register_puppy_request.dart';
 import 'package:brunos_kitchen/models/responses/breeds_response.dart';
 import 'package:brunos_kitchen/models/responses/puppies_response.dart';
-import 'package:brunos_kitchen/route_generator.dart';
 import 'package:brunos_kitchen/services/puppy_api_services.dart';
-import 'package:brunos_kitchen/view_models/auth_view_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:image_cropper/image_cropper.dart';
-import 'package:intl/intl.dart';
-import 'package:package_info_plus/package_info_plus.dart';
-import 'package:provider/provider.dart';
 
-import '../utils/food_category_list_data.dart';
-import '../screens/logIn_screen.dart';
-import '../screens/intro_slides_screen.dart';
 import '../services/firebase_upload_image_service.dart';
-import '../utils/date_time_formatter.dart';
 import '../utils/enums.dart';
 import '../utils/image_genrator.dart';
-import '../utils/shared_pref .dart';
 
 class PuppyViewModel with ChangeNotifier {
   String _routeToPuppyFrom = Screens.home.text;

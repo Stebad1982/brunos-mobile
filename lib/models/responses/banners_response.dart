@@ -12,7 +12,7 @@ class BannersResponse {
     if (json['data'] != null) {
       data = <BannerData>[];
       json['data'].forEach((v) {
-        data!.add(new BannerData.fromJson(v));
+        data!.add(BannerData.fromJson(v));
       });
     }
     isServerError = json['isServerError'];
@@ -20,13 +20,13 @@ class BannersResponse {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['isSuccess'] = this.isSuccess;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['isSuccess'] = isSuccess;
     if (this.data != null) {
       data['data'] = this.data!.map((v) => v.toJson()).toList();
     }
-    data['isServerError'] = this.isServerError;
-    data['message'] = this.message;
+    data['isServerError'] = isServerError;
+    data['message'] = message;
     return data;
   }
 }
@@ -51,13 +51,13 @@ class BannerData {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['_id'] = this.sId;
-    data['title'] = this.title;
-    data['isFeatured'] = this.isFeatured;
-    data['description'] = this.description;
-    data['type'] = this.type;
-    data['media'] = this.media;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['_id'] = sId;
+    data['title'] = title;
+    data['isFeatured'] = isFeatured;
+    data['description'] = description;
+    data['type'] = type;
+    data['media'] = media;
     return data;
   }
 }

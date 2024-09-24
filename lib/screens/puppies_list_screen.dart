@@ -1,22 +1,17 @@
-import 'package:brunos_kitchen/utils/food_category_list_data.dart';
 import 'package:brunos_kitchen/route_generator.dart';
 import 'package:brunos_kitchen/utils/custom_font_style.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 
-import '../main.dart';
-import '../utils/custom_buttons.dart';
 import '../utils/custom_colors.dart';
 import '../utils/images.dart';
 import '../view_models/puppy_view_model.dart';
 import '../widgets/app_bar_with_back_widget.dart';
-import '../widgets/listChips/orders_vertical_list_chip_widget.dart';
 import '../widgets/listChips/puppy_vertical_list_chip_widget.dart';
 class PuppiesListScreen extends StatefulWidget {
-  const PuppiesListScreen({Key? key}) : super(key: key);
+  const PuppiesListScreen({super.key});
 
   @override
   State<PuppiesListScreen> createState() => _PuppiesListScreenState();
@@ -94,8 +89,8 @@ class _PuppiesListScreenState extends State<PuppiesListScreen> {
                               ),
                             ),
                             child:  Padding(
-                              padding: EdgeInsets.all(10).w,
-                              child: Icon(
+                              padding: const EdgeInsets.all(10).w,
+                              child: const Icon(
                                 Icons.add,
                                 size: 20,
                                 color: CustomColors.orangeColor,

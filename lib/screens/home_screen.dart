@@ -1,11 +1,8 @@
 import 'package:accordion/accordion.dart';
-import 'package:accordion/accordion_section.dart';
 import 'package:brunos_kitchen/utils/images.dart';
 import 'package:brunos_kitchen/view_models/address_view_model.dart';
 import 'package:brunos_kitchen/view_models/auth_view_model.dart';
-import 'package:brunos_kitchen/view_models/cart_view_model.dart';
 import 'package:brunos_kitchen/view_models/plans_view_model.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dash/flutter_dash.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -19,26 +16,20 @@ import '../utils/custom_buttons.dart';
 import '../utils/custom_colors.dart';
 import '../utils/custom_font_style.dart';
 import '../utils/enums.dart';
-import '../utils/send_grid_pref.dart';
 import '../utils/url_launcher.dart';
 import '../view_models/bottom_navigation_view_model.dart';
 import '../view_models/puppy_view_model.dart';
 import '../widgets/carousels/home_carousel_widget.dart';
 import '../widgets/cart_icon_widget.dart';
-import '../widgets/listChips/cart_vertical_list_chip_widget.dart';
-import '../widgets/circular_network_image_widget.dart';
 import '../widgets/deafult_puppy_icon_widget.dart';
-import '../widgets/dialogs/address_label_dialog.dart';
-import '../widgets/dialogs/discription_dialog.dart';
 import '../widgets/gridChip/food_category_grid_chip_widget.dart';
-import '../widgets/gridChip/item_discribed_grid_chip_widget.dart';
 import '../widgets/gridChip/food_grid_chip_widget.dart';
 import '../widgets/listChips/shop_items_horizontal_list_chip_widget.dart';
 
 
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -298,7 +289,7 @@ class HomeScreen extends StatelessWidget {
                           height: 36.w,
                           decoration: ShapeDecoration(
                             color: CustomColors.lightBrownColor,
-                            shape: OvalBorder(),
+                            shape: const OvalBorder(),
                           ),
                           child: Center(child: white18w500(data: '1')),
                         ),
@@ -316,7 +307,7 @@ class HomeScreen extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Container(
+                          SizedBox(
                               height: 36.w,
                               child: Align(
                                   alignment: Alignment.centerLeft,
@@ -344,7 +335,7 @@ class HomeScreen extends StatelessWidget {
                           height: 36.w,
                           decoration: ShapeDecoration(
                             color: CustomColors.lightBrownColor,
-                            shape: OvalBorder(),
+                            shape: const OvalBorder(),
                           ),
                           child: Center(child: white18w500(data: '2')),
                         ),
@@ -362,7 +353,7 @@ class HomeScreen extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Container(
+                          SizedBox(
                               height: 36.w,
                               child: Align(
                                   alignment: Alignment.centerLeft,
@@ -391,7 +382,7 @@ class HomeScreen extends StatelessWidget {
                       height: 36.w,
                       decoration: ShapeDecoration(
                         color: CustomColors.lightBrownColor,
-                        shape: OvalBorder(),
+                        shape: const OvalBorder(),
                       ),
                       child: Center(child: white18w500(data: '3')),
                     ),
@@ -402,7 +393,7 @@ class HomeScreen extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Container(
+                          SizedBox(
                               height: 36.w,
                               child: Align(
                                   alignment: Alignment.centerLeft,
@@ -499,7 +490,7 @@ class HomeScreen extends StatelessWidget {
                               AccordionSection(
                                 // isOpen: false,
                                 // flipRightIconIfOpen: true,
-                                rightIcon: Icon(Icons.keyboard_arrow_down),
+                                rightIcon: const Icon(Icons.keyboard_arrow_down),
                                 // leftIcon: const Icon(Icons.insights_rounded, color: Colors.white),
                                 headerBackgroundColor: CustomColors.whiteColor,
                                 headerBackgroundColorOpened:

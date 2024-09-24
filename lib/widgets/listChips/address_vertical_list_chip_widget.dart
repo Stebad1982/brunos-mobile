@@ -3,7 +3,6 @@ import 'package:brunos_kitchen/route_generator.dart';
 import 'package:brunos_kitchen/utils/enums.dart';
 import 'package:brunos_kitchen/view_models/address_view_model.dart';
 import 'package:brunos_kitchen/view_models/bottom_navigation_view_model.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -14,7 +13,6 @@ import '../../utils/custom_colors.dart';
 import '../../utils/custom_font_style.dart';
 import '../../utils/images.dart';
 import '../../view_models/auth_view_model.dart';
-import '../dialogs/delete_address_confirmation_dialog.dart';
 
 Widget addressVerticalListChipWidget({required AddressModel addressDetail}) {
   return Column(

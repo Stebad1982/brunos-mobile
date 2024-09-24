@@ -7,11 +7,11 @@ static const String key = 'SG.w8LCmX3ITxa730m7VhEoOg.__AMQquI0NoXLS8vPdSxm6qmIZJ
 
 Future <void> sendEmail ({required String emailSubject, required String emailDescription})async {
   final mailer = Mailer(key);
-  final toAddress = Address('waleedaahmedd@gmail.com');
-  final fromAddress = Address(sender);
+  const toAddress = Address('waleedaahmedd@gmail.com');
+  const fromAddress = Address(sender);
   final content = Content('text/plain', emailDescription);
   final subject = emailSubject;
-  final personalization = Personalization([toAddress]);
+  const personalization = Personalization([toAddress]);
   final email =
   Email([personalization], fromAddress, subject, content: [content]);
   mailer.send(email).then((result) {

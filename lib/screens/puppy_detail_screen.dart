@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:brunos_kitchen/utils/custom_buttons.dart';
 import 'package:brunos_kitchen/utils/custom_font_style.dart';
-import 'package:brunos_kitchen/utils/date_time_formatter.dart';
 import 'package:brunos_kitchen/widgets/dialogs/discription_dialog.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/cupertino.dart';
@@ -11,21 +10,18 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
-import '../route_generator.dart';
 import '../utils/custom_colors.dart';
 import '../utils/enums.dart';
 import '../utils/images.dart';
 import '../view_models/auth_view_model.dart';
 import '../view_models/puppy_view_model.dart';
 import '../widgets/app_bar_with_back_widget.dart';
-import '../widgets/bottomSheet/date_picker_bottom_sheet_widget.dart';
 import '../widgets/bottomSheet/image_taking_bottom_sheet_widget.dart';
 import '../widgets/dialogs/delete_pet_confirmation_dialog.dart';
 import '../widgets/circular_network_image_widget.dart';
-import '../widgets/dialogs/image_dialog.dart';
 
 class PuppyDetailScreen extends StatelessWidget {
-  const PuppyDetailScreen({Key? key}) : super(key: key);
+  const PuppyDetailScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -86,7 +82,7 @@ class PuppyDetailScreen extends StatelessWidget {
                                     ),
                                     child: Padding(
                                       padding: const EdgeInsets.all(10).w,
-                                      child: Icon(
+                                      child: const Icon(
                                         Icons.delete_outline,
                                         size: 20,
                                         color: CustomColors.orangeColor,
@@ -185,7 +181,7 @@ class PuppyDetailScreen extends StatelessWidget {
                                       color: CustomColors.orangeColor),
                                   child: Padding(
                                     padding: const EdgeInsets.all(10).w,
-                                    child: Icon(
+                                    child: const Icon(
                                       Icons.edit,
                                       size: 20,
                                       color: CustomColors.whiteColor,
@@ -384,7 +380,7 @@ class PuppyDetailScreen extends StatelessWidget {
                     SizedBox(
                       height: 10.h,
                     ),
-                    Divider(),
+                    const Divider(),
                     SizedBox(
                       height: 10.h,
                     ),
@@ -411,7 +407,7 @@ class PuppyDetailScreen extends StatelessWidget {
                             size: 16,
                           ),
                         ),
-                        Spacer(),
+                        const Spacer(),
                         Visibility(
                           visible: !puppyViewModel.getIsPuppyEdit,
                           child: black14w500(
@@ -479,7 +475,7 @@ class PuppyDetailScreen extends StatelessWidget {
                     SizedBox(
                       height: 10.h,
                     ),
-                    Divider(),
+                    const Divider(),
                     SizedBox(
                       height: 10.h,
                     ),
@@ -493,7 +489,7 @@ class PuppyDetailScreen extends StatelessWidget {
                         puppyViewModel.getIsPuppyEdit
                             ? Row(
                                 children: [
-                                  Spacer(),
+                                  const Spacer(),
                                   DropdownButtonHideUnderline(
                                     child: DropdownButton2<int>(
                                       style: TextStyle(
@@ -530,10 +526,10 @@ class PuppyDetailScreen extends StatelessWidget {
                                         scrollbarTheme: ScrollbarThemeData(
                                           radius: const Radius.circular(40),
                                           thickness:
-                                              MaterialStateProperty.all<double>(
+                                              WidgetStateProperty.all<double>(
                                                   6),
                                           thumbVisibility:
-                                              MaterialStateProperty.all<bool>(
+                                              WidgetStateProperty.all<bool>(
                                                   true),
                                         ),
                                       ),
@@ -596,10 +592,10 @@ class PuppyDetailScreen extends StatelessWidget {
                                         scrollbarTheme: ScrollbarThemeData(
                                           radius: const Radius.circular(40),
                                           thickness:
-                                              MaterialStateProperty.all<double>(
+                                              WidgetStateProperty.all<double>(
                                                   6),
                                           thumbVisibility:
-                                              MaterialStateProperty.all<bool>(
+                                              WidgetStateProperty.all<bool>(
                                                   true),
                                         ),
                                       ),
@@ -630,7 +626,7 @@ class PuppyDetailScreen extends StatelessWidget {
                               )
                             : Row(
                                 children: [
-                                  Spacer(),
+                                  const Spacer(),
                                   Visibility(
                                     visible:
                                         puppyViewModel.getPuppyDetail!.year !=
@@ -658,7 +654,7 @@ class PuppyDetailScreen extends StatelessWidget {
                     SizedBox(
                       height: 10.h,
                     ),
-                    Divider(),
+                    const Divider(),
                     SizedBox(
                       height: 10.h,
                     ),
@@ -729,7 +725,7 @@ class PuppyDetailScreen extends StatelessWidget {
                     SizedBox(
                       height: 10.h,
                     ),
-                    Divider(),
+                    const Divider(),
                     SizedBox(
                       height: 10.h,
                     ),
@@ -783,10 +779,10 @@ class PuppyDetailScreen extends StatelessWidget {
                                     scrollbarTheme: ScrollbarThemeData(
                                       radius: const Radius.circular(40),
                                       thickness:
-                                      MaterialStateProperty.all<double>(
+                                      WidgetStateProperty.all<double>(
                                           6),
                                       thumbVisibility:
-                                      MaterialStateProperty.all<bool>(
+                                      WidgetStateProperty.all<bool>(
                                           true),
                                     ),
                                   ),
@@ -843,7 +839,7 @@ class PuppyDetailScreen extends StatelessWidget {
                     SizedBox(
                       height: 10.h,
                     ),
-                    Divider(),
+                    const Divider(),
                     SizedBox(
                       height: 10.h,
                     ),
@@ -889,7 +885,7 @@ class PuppyDetailScreen extends StatelessWidget {
                             size: 16,
                           ),
                         ),
-                        Spacer(),
+                        const Spacer(),
                         Visibility(
                           visible: !puppyViewModel.getIsPuppyEdit,
                           child: black14w500(
@@ -950,7 +946,7 @@ class PuppyDetailScreen extends StatelessWidget {
                     SizedBox(
                       height: 10.h,
                     ),
-                    Divider(),
+                    const Divider(),
                     SizedBox(
                       height: 10.h,
                     ),
@@ -976,7 +972,7 @@ class PuppyDetailScreen extends StatelessWidget {
                             size: 16,
                           ),
                         ),
-                        Spacer(),
+                        const Spacer(),
                         Visibility(
                           visible: !puppyViewModel.getIsPuppyEdit,
                           child: black14w500(

@@ -10,19 +10,19 @@ class FaqsBlogsNewsResponse extends BaseResponseModel {
     if (json['data'] != null) {
       data = <FaqsBlogsNewsData>[];
       json['data'].forEach((v) {
-        data!.add(new FaqsBlogsNewsData.fromJson(v));
+        data!.add(FaqsBlogsNewsData.fromJson(v));
       });
     }
     message = json['message'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['isSuccess'] = this.isSuccess;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['isSuccess'] = isSuccess;
     if (this.data != null) {
       data['data'] = this.data!.map((v) => v.toJson()).toList();
     }
-    data['message'] = this.message;
+    data['message'] = message;
     return data;
   }
 }
@@ -43,11 +43,11 @@ class FaqsBlogsNewsData {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['_id'] = this.sId;
-    data['title'] = this.title;
-    data['description'] = this.description;
-    data['media'] = this.media;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['_id'] = sId;
+    data['title'] = title;
+    data['description'] = description;
+    data['media'] = media;
     return data;
   }
 }

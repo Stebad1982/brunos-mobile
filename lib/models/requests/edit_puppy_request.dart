@@ -31,20 +31,20 @@ class EditPuppyRequest {
       required this.year});
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['name'] = this.name;
-    data['media'] = this.media;
-    data['gender'] = this.gender;
-    data['feedingRoutine'] = this.feedingRoutine;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['name'] = name;
+    data['media'] = media;
+    data['gender'] = gender;
+    data['feedingRoutine'] = feedingRoutine;
     data['isSpayNeuter'] = false;
-    data['breed'] = this.breed;
-    data['isPuppy'] = this.isPuppy;
+    data['breed'] = breed;
+    data['isPuppy'] = isPuppy;
     data['month'] = month;
     data['year'] = year;
     // data['bornOnDate'] = this.bornOnDate;
-    data['currentWeight'] = this.currentWeight;
-    data['actualWeight'] = this.actualWeight;
-    data['activityLevel'] = this.activityLevel;
+    data['currentWeight'] = currentWeight;
+    data['actualWeight'] = actualWeight;
+    data['activityLevel'] = activityLevel;
     return data;
   }
 }

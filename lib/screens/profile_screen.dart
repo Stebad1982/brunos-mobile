@@ -3,7 +3,6 @@ import 'package:brunos_kitchen/utils/images.dart';
 import 'package:brunos_kitchen/view_models/auth_view_model.dart';
 import 'package:brunos_kitchen/view_models/bottom_navigation_view_model.dart';
 import 'package:brunos_kitchen/view_models/faqs_blogs_news_view_model.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -12,13 +11,11 @@ import 'package:provider/provider.dart';
 import '../route_generator.dart';
 import '../utils/custom_colors.dart';
 import '../utils/enums.dart';
-import '../utils/shared_pref .dart';
 import '../view_models/address_view_model.dart';
 import '../view_models/puppy_view_model.dart';
-import '../widgets/app_bar_with_back_widget.dart';
 
 class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({Key? key}) : super(key: key);
+  const ProfileScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -228,7 +225,7 @@ class ProfileScreen extends StatelessWidget {
                   onTap: () {
                     Navigator.pushNamed(context, helpRoute);
                   },
-                  leading: Icon(
+                  leading: const Icon(
                     Icons.volume_up_outlined,
                     color: CustomColors.blackColor,
                   ),

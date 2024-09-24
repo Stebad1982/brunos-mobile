@@ -1,14 +1,11 @@
 import 'package:brunos_kitchen/utils/custom_font_style.dart';
 import 'package:brunos_kitchen/view_models/plans_view_model.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
-import 'package:table_calendar/table_calendar.dart';
 
 import '../../main.dart';
 import '../../utils/custom_buttons.dart';
-import '../../utils/custom_colors.dart';
 
 Future scheduleDaysRangeDialog() {
   return showDialog(

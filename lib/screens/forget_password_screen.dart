@@ -3,19 +3,15 @@ import 'package:brunos_kitchen/utils/custom_font_style.dart';
 import 'package:brunos_kitchen/utils/enums.dart';
 import 'package:brunos_kitchen/view_models/auth_view_model.dart';
 import 'package:brunos_kitchen/widgets/user_form_fields_widget.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 
 import '../utils/custom_buttons.dart';
-import '../utils/custom_colors.dart';
-import '../utils/images.dart';
 import '../widgets/back_button_widget.dart';
 
 class ForgetPasswordScreen extends StatelessWidget {
-  const ForgetPasswordScreen({Key? key}) : super(key: key);
+  const ForgetPasswordScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -1,7 +1,6 @@
 import 'package:accordion/accordion.dart';
 import 'package:brunos_kitchen/models/responses/faqs_blogs_news_response.dart';
 import 'package:brunos_kitchen/view_models/faqs_blogs_news_view_model.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -10,7 +9,7 @@ import '../utils/custom_font_style.dart';
 import '../widgets/app_bar_with_back_widget.dart';
 
 class FaqScreen extends StatefulWidget {
-  const FaqScreen({Key? key}) : super(key: key);
+  const FaqScreen({super.key});
 
   @override
   State<FaqScreen> createState() => _FaqScreenState();

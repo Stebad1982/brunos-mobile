@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:brunos_kitchen/models/base_response_model.dart';
 import 'package:brunos_kitchen/models/requests/order_request.dart';
 import 'package:brunos_kitchen/models/responses/order_response.dart';
 import '../models/responses/order_create_response.dart';

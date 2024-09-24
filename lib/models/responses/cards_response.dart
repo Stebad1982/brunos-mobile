@@ -12,19 +12,19 @@ class CardsResponse extends BaseResponseModel{
     if (json['data'] != null) {
       data = <CardModel>[];
       json['data'].forEach((v) {
-        data!.add(new CardModel.fromJson(v));
+        data!.add(CardModel.fromJson(v));
       });
     }
     message = json['message'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['isSuccess'] = this.isSuccess;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['isSuccess'] = isSuccess;
    /* if (this.data != null) {
       data['data'] = this.data!.map((v) => v.toJson()).toList();
     }*/
-    data['message'] = this.message;
+    data['message'] = message;
     return data;
   }
 }

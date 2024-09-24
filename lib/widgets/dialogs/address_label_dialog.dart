@@ -1,7 +1,5 @@
 import 'package:brunos_kitchen/utils/enums.dart';
 import 'package:brunos_kitchen/view_models/address_view_model.dart';
-import 'package:brunos_kitchen/view_models/puppy_view_model.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
@@ -9,7 +7,6 @@ import 'package:provider/provider.dart';
 import '../../utils/custom_buttons.dart';
 import '../../utils/custom_colors.dart';
 import '../../utils/custom_font_style.dart';
-import '../../view_models/auth_view_model.dart';
 
 void addressLabelDialog({required BuildContext context}) {
   TextEditingController labelText = TextEditingController();

@@ -1,18 +1,14 @@
 import 'package:brunos_kitchen/main.dart';
 import 'package:brunos_kitchen/route_generator.dart';
 import 'package:brunos_kitchen/utils/custom_font_style.dart';
-import 'package:brunos_kitchen/view_models/auth_view_model.dart';
 import 'package:brunos_kitchen/view_models/cart_view_model.dart';
 import 'package:brunos_kitchen/view_models/plans_view_model.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 
-import '../../models/address_model.dart';
 import '../../models/cart_model.dart';
-import '../../utils/calculations.dart';
 import '../../utils/custom_colors.dart';
 import '../../utils/enums.dart';
 import '../../utils/images.dart';
@@ -129,7 +125,7 @@ Widget cartVerticalListChipWidget(
                         ),
                         child:  Padding(
                           padding: const EdgeInsets.all(10).w,
-                          child: Icon(
+                          child: const Icon(
                             Icons.delete_outline,
                             size: 20,
                             color: CustomColors.orangeColor,
@@ -185,9 +181,7 @@ Widget cartVerticalListChipWidget(
                     return cartDishVerticalListChipWidget(
                         cartRecipeModel: cartDetail.recipes[index],
                         planType: cartDetail.planType,
-                        petName: cartDetail.pet != null
-                            ? cartDetail.pet!.name!
-                            : null, totalWeight: cartDetail.totalWeight.isNotEmpty? cartDetail.totalWeight[index]: 0);
+                        petName: cartDetail.pet?.name!, totalWeight: cartDetail.totalWeight.isNotEmpty? cartDetail.totalWeight[index]: 0);
                   },
                   separatorBuilder: (BuildContext context, int index) {
                     return SizedBox(

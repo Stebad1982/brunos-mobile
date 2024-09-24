@@ -1,15 +1,12 @@
-import 'package:brunos_kitchen/main.dart';
 import 'package:brunos_kitchen/utils/custom_colors.dart';
 import 'package:brunos_kitchen/utils/images.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 
-import '../route_generator.dart';
 import '../utils/custom_buttons.dart';
 import '../utils/custom_font_style.dart';
 import '../utils/enums.dart';
@@ -19,7 +16,7 @@ import '../widgets/back_button_widget.dart';
 import '../widgets/dialogs/address_label_dialog.dart';
 
 class AddAddressDetailScreen extends StatefulWidget {
-  const AddAddressDetailScreen({Key? key}) : super(key: key);
+  const AddAddressDetailScreen({super.key});
 
   @override
   State<AddAddressDetailScreen> createState() => _AddAddressDetailScreenState();
@@ -79,7 +76,7 @@ class _AddAddressDetailScreenState extends State<AddAddressDetailScreen> {
                               onChanged: (text) {},
                               keyboardType: TextInputType.streetAddress,
                               decoration:  InputDecoration(
-                                contentPadding: EdgeInsets.all(20.0).w,
+                                contentPadding: const EdgeInsets.all(20.0).w,
                                 hintText: 'Flat/House No#',
                               ),
                             ),
@@ -93,7 +90,7 @@ class _AddAddressDetailScreenState extends State<AddAddressDetailScreen> {
                               onChanged: (text) {},
                               keyboardType: TextInputType.streetAddress,
                               decoration:  InputDecoration(
-                                contentPadding: EdgeInsets.all(20.0).w,
+                                contentPadding: const EdgeInsets.all(20.0).w,
                                 hintText: 'Street',
                               ),
                             ),
@@ -111,7 +108,7 @@ class _AddAddressDetailScreenState extends State<AddAddressDetailScreen> {
                               onChanged: (text) {},
                               keyboardType: TextInputType.streetAddress,
                               decoration:  InputDecoration(
-                                contentPadding: EdgeInsets.all(20.0).w,
+                                contentPadding: const EdgeInsets.all(20.0).w,
                                 hintText: 'Area',
                               ),
                             ),
@@ -125,7 +122,7 @@ class _AddAddressDetailScreenState extends State<AddAddressDetailScreen> {
                               onChanged: (text) {},
                               keyboardType: TextInputType.streetAddress,
                               decoration:  InputDecoration(
-                                contentPadding: EdgeInsets.all(20.0).w,
+                                contentPadding: const EdgeInsets.all(20.0).w,
                                 hintText: 'Floor/Unit#',
                               ),
                             ),
@@ -150,7 +147,7 @@ class _AddAddressDetailScreenState extends State<AddAddressDetailScreen> {
                         keyboardType: TextInputType.multiline,
                         maxLength: 300,
                         decoration:  InputDecoration(
-                          contentPadding: EdgeInsets.all(20).w,
+                          contentPadding: const EdgeInsets.all(20).w,
                           hintText: 'Note to rider - eg. landmark',
                         ),
                       ),
@@ -164,7 +161,7 @@ class _AddAddressDetailScreenState extends State<AddAddressDetailScreen> {
                         controller: addressViewModel.getContactNameController,
                         keyboardType: TextInputType.name,
                         decoration:  InputDecoration(
-                          contentPadding: EdgeInsets.all(20.0).w,
+                          contentPadding: const EdgeInsets.all(20.0).w,
                           hintText: 'Contact Person Name ',
                         ),
                       ),
@@ -178,7 +175,7 @@ class _AddAddressDetailScreenState extends State<AddAddressDetailScreen> {
                         controller: addressViewModel.getContactNumberController,
                         keyboardType: TextInputType.phone,
                         decoration:  InputDecoration(
-                          contentPadding: EdgeInsets.all(20.0).w,
+                          contentPadding: const EdgeInsets.all(20.0).w,
                           hintText: 'Contact person number ',
                         ),
                       ),

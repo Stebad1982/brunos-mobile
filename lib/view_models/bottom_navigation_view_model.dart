@@ -3,7 +3,6 @@
 
 import 'package:brunos_kitchen/main.dart';
 import 'package:brunos_kitchen/screens/home_screen.dart';
-import 'package:brunos_kitchen/screens/logIn_screen.dart';
 import 'package:brunos_kitchen/screens/profile_screen.dart';
 import 'package:brunos_kitchen/screens/shop_screen.dart';
 import 'package:brunos_kitchen/view_models/plans_view_model.dart';

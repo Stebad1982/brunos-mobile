@@ -20,15 +20,15 @@ class SocialSignInRequest {
 
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['clientId'] = this.clientId;
-    data['email'] = this.email;
-    data['fullName'] = this.fullName;
-    data['phoneNumber'] = this.phoneNumber;
-    data['deviceType'] = this.deviceType;
-    data['deviceToken'] = this.deviceToken;
-    data['media'] = this.media;
-    data['platform'] = this.platform;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['clientId'] = clientId;
+    data['email'] = email;
+    data['fullName'] = fullName;
+    data['phoneNumber'] = phoneNumber;
+    data['deviceType'] = deviceType;
+    data['deviceToken'] = deviceToken;
+    data['media'] = media;
+    data['platform'] = platform;
     return data;
   }
 }

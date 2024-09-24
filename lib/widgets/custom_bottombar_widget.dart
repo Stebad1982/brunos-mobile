@@ -3,7 +3,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 
 import '../utils/custom_colors.dart';
@@ -79,12 +78,12 @@ class BBarIcon extends StatefulWidget {
   final IconData selectedIcon;
 
   const BBarIcon({
-    Key? key,
+    super.key,
     required this.title,
     required this.iconData,
     required this.selectedIcon,
     required this.index,
-  }) : super(key: key);
+  });
   @override
   _BBarIconState createState() => _BBarIconState();
 }

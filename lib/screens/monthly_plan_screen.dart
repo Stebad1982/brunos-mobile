@@ -1,7 +1,6 @@
 import 'package:brunos_kitchen/route_generator.dart';
 import 'package:brunos_kitchen/utils/custom_font_style.dart';
 import 'package:brunos_kitchen/view_models/cart_view_model.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
@@ -16,7 +15,7 @@ import '../widgets/circular_network_image_widget.dart';
 import '../widgets/dialogs/discription_dialog.dart';
 
 class MonthlyPlanScreen extends StatelessWidget {
-  const MonthlyPlanScreen({Key? key}) : super(key: key);
+  const MonthlyPlanScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

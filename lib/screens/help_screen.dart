@@ -1,16 +1,11 @@
-import 'dart:ffi';
-import 'dart:io';
 
 import 'package:brunos_kitchen/utils/custom_colors.dart';
 import 'package:brunos_kitchen/utils/images.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:map_launcher/map_launcher.dart';
 import 'package:provider/provider.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 import '../models/address_model.dart';
 import '../utils/custom_buttons.dart';
@@ -18,7 +13,6 @@ import '../utils/custom_font_style.dart';
 import '../utils/enums.dart';
 import '../utils/url_launcher.dart';
 import '../view_models/address_view_model.dart';
-import '../view_models/auth_view_model.dart';
 import '../view_models/faqs_blogs_news_view_model.dart';
 import '../widgets/app_bar_with_back_widget.dart';
 import '../widgets/dialogs/discription_dialog.dart';
@@ -85,7 +79,7 @@ class _HelpScreenState extends State<HelpScreen> {
                 lightBlack14w400Centre(
                     left: true,
                     data:
-                        'We\’d love to hear from you – please use the form to send us your message or ideas. Or simply pop in for a cup of fresh tea and a cookie:'),
+                        'We’d love to hear from you – please use the form to send us your message or ideas. Or simply pop in for a cup of fresh tea and a cookie:'),
                 SizedBox(
                   height: 20.h,
                 ),

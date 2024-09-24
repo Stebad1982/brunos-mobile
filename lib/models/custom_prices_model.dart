@@ -12,10 +12,10 @@ class CustomPricesModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['weight'] = this.weight;
-    data['activityLevel'] = this.activityLevel;
-    data['price'] = this.price;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['weight'] = weight;
+    data['activityLevel'] = activityLevel;
+    data['price'] = price;
     return data;
   }
 }

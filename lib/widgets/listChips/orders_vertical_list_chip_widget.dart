@@ -1,8 +1,6 @@
 import 'package:brunos_kitchen/main.dart';
-import 'package:brunos_kitchen/models/responses/order_response.dart';
 import 'package:brunos_kitchen/utils/custom_font_style.dart';
 import 'package:brunos_kitchen/view_models/order_view_model.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
@@ -12,8 +10,6 @@ import '../../route_generator.dart';
 import '../../utils/custom_buttons.dart';
 import '../../utils/custom_colors.dart';
 import '../../utils/date_time_formatter.dart';
-import '../../utils/images.dart';
-import '../dialogs/address_label_dialog.dart';
 import '../dialogs/cancel_order_dialog.dart';
 
 Widget ordersVerticalListChipWidget(

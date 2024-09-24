@@ -32,7 +32,7 @@ Widget customButton ({required String text,required VoidCallback onPressed, requ
                 fontFamily: 'CircularStd',
                 fontSize: 14.sp,
                 fontWeight: FontWeight.w900,
-                color: colored ? CustomColors.whiteColor : CustomColors.orangeColor,)):SizedBox()
+                color: colored ? CustomColors.whiteColor : CustomColors.orangeColor,)):const SizedBox()
         ],
       ),
     ),

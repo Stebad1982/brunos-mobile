@@ -3,7 +3,6 @@ import 'package:brunos_kitchen/utils/custom_font_style.dart';
 import 'package:brunos_kitchen/utils/images.dart';
 import 'package:brunos_kitchen/view_models/cart_view_model.dart';
 import 'package:brunos_kitchen/view_models/plans_view_model.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -16,7 +15,7 @@ import '../widgets/app_bar_with_back_widget.dart';
 import '../widgets/dialogs/discription_dialog.dart';
 
 class ChooseYourPlanScreen extends StatelessWidget {
-  const ChooseYourPlanScreen({Key? key}) : super(key: key);
+  const ChooseYourPlanScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

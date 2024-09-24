@@ -2,29 +2,18 @@
 
 import 'package:brunos_kitchen/route_generator.dart';
 import 'package:brunos_kitchen/utils/custom_font_style.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:geocoding/geocoding.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:location/location.dart' as locator;
 import 'package:provider/provider.dart';
 
 import '../utils/custom_buttons.dart';
 import '../utils/custom_colors.dart';
-import '../utils/enums.dart';
-import '../utils/images.dart';
-import '../view_models/auth_view_model.dart';
 import '../widgets/app_bar_with_back_widget.dart';
 import '../view_models/address_view_model.dart';
-import '../widgets/dialogs/address_label_dialog.dart';
 
 class AddAddressScreen extends StatefulWidget {
-  const AddAddressScreen({Key? key}) : super(key: key);
+  const AddAddressScreen({super.key});
 
   @override
   State<AddAddressScreen> createState() => _AddAddressScreenState();
@@ -135,7 +124,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                         addressViewModel.getAddressController,
                     decoration:  InputDecoration(
                       fillColor: CustomColors.whiteColor,
-                      contentPadding: EdgeInsets.symmetric(
+                      contentPadding: const EdgeInsets.symmetric(
                           horizontal: 20, vertical: 15).w,
                       // border: const OutlineInputBorder(),
                       hintText: 'Search Location',

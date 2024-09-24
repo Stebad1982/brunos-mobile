@@ -1,4 +1,3 @@
-import 'package:brunos_kitchen/models/base_response_model.dart';
 import 'package:brunos_kitchen/models/cart_model.dart';
 import 'package:brunos_kitchen/models/requests/order_request.dart';
 import 'package:brunos_kitchen/models/responses/order_response.dart';
@@ -8,7 +7,6 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 import '../models/order_model.dart';
 import '../models/responses/order_create_response.dart';
-import '../utils/enums.dart';
 
 class OrderViewModel with ChangeNotifier {
   final OrderApiServices _orderApiServices = OrderApiServices();

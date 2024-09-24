@@ -8,17 +8,17 @@ class PromoCodeResponse extends BaseResponseModel{
 
   PromoCodeResponse.fromJson(Map<String, dynamic> json) {
     isSuccess = json['isSuccess'];
-    data = json['data'] != null ? new PromoData.fromJson(json['data']) : null;
+    data = json['data'] != null ? PromoData.fromJson(json['data']) : null;
     message = json['message'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['isSuccess'] = this.isSuccess;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['isSuccess'] = isSuccess;
     if (this.data != null) {
       data['data'] = this.data!.toJson();
     }
-    data['message'] = this.message;
+    data['message'] = message;
     return data;
   }
 }
@@ -39,11 +39,11 @@ class PromoData {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['_id'] =this.sId;
-    data['name'] = this.name;
-    data['expireOnDate'] = this.expireOnDate;
-    data['discount'] = this.discount;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['_id'] =sId;
+    data['name'] = name;
+    data['expireOnDate'] = expireOnDate;
+    data['discount'] = discount;
     return data;
   }
 }

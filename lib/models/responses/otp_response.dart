@@ -7,17 +7,17 @@ class OtpResponse extends BaseResponseModel{
 
   OtpResponse.fromJson(Map<String, dynamic> json) {
     isSuccess = json['isSuccess'];
-    data = json['data'] != null ? new Data.fromJson(json['data']) : null;
+    data = json['data'] != null ? Data.fromJson(json['data']) : null;
     message = json['message'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['isSuccess'] = this.isSuccess;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['isSuccess'] = isSuccess;
     if (this.data != null) {
       data['data'] = this.data!.toJson();
     }
-    data['message'] = this.message;
+    data['message'] = message;
     return data;
   }
 }
@@ -32,8 +32,8 @@ class Data {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['otp'] = this.otp;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['otp'] = otp;
     return data;
   }
 }

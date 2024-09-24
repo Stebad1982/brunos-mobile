@@ -1,21 +1,17 @@
 
 
 import 'package:easy_splash_screen/easy_splash_screen.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
-import '../main.dart';
 import '../services/local_notification_service.dart';
 import '../utils/custom_colors.dart';
 import '../utils/images.dart';
 import '../view_models/auth_view_model.dart';
 
 class SplashScreen extends StatefulWidget {
-  const SplashScreen({Key? key}) : super(key: key);
+  const SplashScreen({super.key});
 
   @override
   State<SplashScreen> createState() => _SplashScreenState();

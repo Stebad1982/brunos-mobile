@@ -1,27 +1,18 @@
-import 'package:brunos_kitchen/models/cart_model.dart';
 import 'package:brunos_kitchen/route_generator.dart';
 import 'package:brunos_kitchen/utils/custom_colors.dart';
 import 'package:brunos_kitchen/utils/custom_font_style.dart';
-import 'package:brunos_kitchen/utils/enums.dart';
 import 'package:brunos_kitchen/view_models/cart_view_model.dart';
 import 'package:brunos_kitchen/view_models/plans_view_model.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:table_calendar/table_calendar.dart';
 
-import '../models/recipe_model.dart';
-import '../utils/calculations.dart';
 import '../utils/custom_buttons.dart';
-import '../utils/date_time_formatter.dart';
-import '../utils/images.dart';
-import '../view_models/auth_view_model.dart';
 import '../widgets/app_bar_with_back_widget.dart';
 
 class DeliveryDatesScreen extends StatefulWidget {
-  const DeliveryDatesScreen({Key? key}) : super(key: key);
+  const DeliveryDatesScreen({super.key});
 
   @override
   State<DeliveryDatesScreen> createState() => _DeliveryDatesScreenState();

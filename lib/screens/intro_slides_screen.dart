@@ -1,5 +1,4 @@
 import 'package:brunos_kitchen/utils/images.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -11,7 +10,7 @@ import '../utils/custom_colors.dart';
 import '../utils/custom_font_style.dart';
 
 class IntroSlidesScreen extends StatefulWidget {
-  const IntroSlidesScreen({Key? key}) : super(key: key);
+  const IntroSlidesScreen({super.key});
 
   @override
   State<IntroSlidesScreen> createState() => _IntroSlidesScreenState();
@@ -198,10 +197,10 @@ class _IntroSlidesScreenState extends State<IntroSlidesScreen> {
       ),
       isShowDoneBtn: false,
       nextButtonStyle: ButtonStyle(
-        shape: MaterialStateProperty.all<OutlinedBorder>(const CircleBorder()),
+        shape: WidgetStateProperty.all<OutlinedBorder>(const CircleBorder()),
         backgroundColor:
-            MaterialStateProperty.all<Color>(const Color(0xFFD68708)),
-        overlayColor: MaterialStateProperty.all<Color>(const Color(0xFFD68708)),
+            WidgetStateProperty.all<Color>(const Color(0xFFD68708)),
+        overlayColor: WidgetStateProperty.all<Color>(const Color(0xFFD68708)),
       ),
       onSkipPress: () {
         Navigator.pushNamedAndRemoveUntil(

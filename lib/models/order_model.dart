@@ -50,27 +50,27 @@ class OrderData {
     if (json['orderItems'] != null) {
       orderItems = <OrderItems>[];
       json['orderItems'].forEach((v) {
-        orderItems!.add(new OrderItems.fromJson(v));
+        orderItems!.add(OrderItems.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['_id'] = this.sId;
-    data['totalAmount'] = this.totalAmount;
-    data['locationId'] = this.locationId;
-    data['paymentMethod'] = this.paymentMethod;
-    data['discount'] = this.discount;
-    data['deliveryDate'] = this.deliveryDate;
-    data['shippingFees'] = this.shippingFees;
-    data['isCompleted'] = this.isCompleted;
-    data['isCompleted'] = this.isCompleted;
-    data['vat'] = this.vat;
-    data['pointsEarned'] = this.pointsEarned;
-    data['promoCodeId'] = this.promoCodeId;
-    if (this.orderItems != null) {
-      data['orderItems'] = this.orderItems!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['_id'] = sId;
+    data['totalAmount'] = totalAmount;
+    data['locationId'] = locationId;
+    data['paymentMethod'] = paymentMethod;
+    data['discount'] = discount;
+    data['deliveryDate'] = deliveryDate;
+    data['shippingFees'] = shippingFees;
+    data['isCompleted'] = isCompleted;
+    data['isCompleted'] = isCompleted;
+    data['vat'] = vat;
+    data['pointsEarned'] = pointsEarned;
+    data['promoCodeId'] = promoCodeId;
+    if (orderItems != null) {
+      data['orderItems'] = orderItems!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -96,7 +96,7 @@ class OrderItems {
     this.recipes});
 
   OrderItems.fromJson(Map<String, dynamic> json) {
-    pet = json['pet'] != null ? new PuppyModel.fromJson(json['pet']) : null;
+    pet = json['pet'] != null ? PuppyModel.fromJson(json['pet']) : null;
     pouchesDetail = json['pouchesDetail'].cast<String>();
     planType = json['planType'];
     planTotal = json['planTotal'];
@@ -106,24 +106,24 @@ class OrderItems {
     if (json['recipes'] != null) {
       recipes = <RecipeModel>[];
       json['recipes'].forEach((v) {
-        recipes!.add(new RecipeModel.fromJson(v));
+        recipes!.add(RecipeModel.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.pet != null) {
-      data['pet'] = this.pet!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (pet != null) {
+      data['pet'] = pet!.toJson();
     }
-    data['pouchesDetail'] = this.pouchesDetail;
-    data['planType'] = this.planType;
-    data['planTotal'] = this.planTotal;
-    data['planDiscountPer'] = this.planDiscountPer;
-    data['planDiscountedPrice'] = this.planDiscountedPrice;
-    data['totalWeight'] = this.totalWeight;
-    if (this.recipes != null) {
-      data['recipes'] = this.recipes!.map((v) => v.toJson()).toList();
+    data['pouchesDetail'] = pouchesDetail;
+    data['planType'] = planType;
+    data['planTotal'] = planTotal;
+    data['planDiscountPer'] = planDiscountPer;
+    data['planDiscountedPrice'] = planDiscountedPrice;
+    data['totalWeight'] = totalWeight;
+    if (recipes != null) {
+      data['recipes'] = recipes!.map((v) => v.toJson()).toList();
     }
     return data;
   }

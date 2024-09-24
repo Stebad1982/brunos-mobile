@@ -2,28 +2,23 @@ import 'package:brunos_kitchen/route_generator.dart';
 import 'package:brunos_kitchen/utils/enums.dart';
 import 'package:brunos_kitchen/view_models/puppy_view_model.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:keyboard_actions/keyboard_actions.dart';
-import 'package:keyboard_actions/keyboard_actions_config.dart';
 import 'package:provider/provider.dart';
 
-import '../utils/food_category_list_data.dart';
 import '../utils/custom_buttons.dart';
 import '../utils/custom_colors.dart';
 import '../utils/custom_font_style.dart';
 import '../utils/images.dart';
 import '../view_models/auth_view_model.dart';
 import '../widgets/app_bar_with_back_widget.dart';
-import '../widgets/bottomSheet/date_picker_bottom_sheet_widget.dart';
 import '../widgets/dialogs/discription_dialog.dart';
 import '../widgets/dialogs/image_dialog.dart';
 
 class PuppyCreationAdditionalScreen extends StatefulWidget {
-  const PuppyCreationAdditionalScreen({Key? key}) : super(key: key);
+  const PuppyCreationAdditionalScreen({super.key});
 
   @override
   State<PuppyCreationAdditionalScreen> createState() =>
@@ -120,7 +115,7 @@ class _PuppyCreationAdditionalScreenState
                       ),
                       TextField(
                         controller: puppyViewModel.getPuppyBreedController,
-                        scrollPadding: EdgeInsets.only(bottom: 150).w,
+                        scrollPadding: const EdgeInsets.only(bottom: 150).w,
                         onChanged: (value) {
                           puppyViewModel.searchBreeds(value);
                         },
@@ -267,9 +262,9 @@ class _PuppyCreationAdditionalScreenState
                                   scrollbarTheme: ScrollbarThemeData(
                                     radius: const Radius.circular(40),
                                     thickness:
-                                        MaterialStateProperty.all<double>(6),
+                                        WidgetStateProperty.all<double>(6),
                                     thumbVisibility:
-                                        MaterialStateProperty.all<bool>(true),
+                                        WidgetStateProperty.all<bool>(true),
                                   ),
                                 ),
                                 // borderRadius: BorderRadius.circular(15.0),
@@ -331,9 +326,9 @@ class _PuppyCreationAdditionalScreenState
                                   scrollbarTheme: ScrollbarThemeData(
                                     radius: const Radius.circular(40),
                                     thickness:
-                                        MaterialStateProperty.all<double>(6),
+                                        WidgetStateProperty.all<double>(6),
                                     thumbVisibility:
-                                        MaterialStateProperty.all<bool>(true),
+                                        WidgetStateProperty.all<bool>(true),
                                   ),
                                 ),
                                 // borderRadius: BorderRadius.circular(15.0),
@@ -481,10 +476,10 @@ class _PuppyCreationAdditionalScreenState
                                 scrollbarTheme: ScrollbarThemeData(
                                   radius: const Radius.circular(40),
                                   thickness:
-                                  MaterialStateProperty.all<double>(
+                                  WidgetStateProperty.all<double>(
                                       6),
                                   thumbVisibility:
-                                  MaterialStateProperty.all<bool>(
+                                  WidgetStateProperty.all<bool>(
                                       true),
                                 ),
                               ),

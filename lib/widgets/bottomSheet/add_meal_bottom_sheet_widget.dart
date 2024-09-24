@@ -1,5 +1,4 @@
 
-import 'package:brunos_kitchen/models/recipe_model.dart';
 import 'package:brunos_kitchen/utils/custom_font_style.dart';
 import 'package:brunos_kitchen/view_models/plans_view_model.dart';
 import 'package:brunos_kitchen/widgets/listChips/meal_vertical_list_chip_widget.dart';
@@ -74,7 +73,7 @@ Future addMealDetailBottomSheetWidget() {
                       },
                     ),
                   ),
-                  SizedBox(height: 100,)
+                  const SizedBox(height: 100,)
                 ],
               ),
             ],

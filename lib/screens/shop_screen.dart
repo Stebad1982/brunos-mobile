@@ -1,23 +1,15 @@
 import 'package:brunos_kitchen/widgets/cart_icon_widget.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 
-import '../route_generator.dart';
 import '../utils/custom_buttons.dart';
-import '../utils/custom_colors.dart';
 import '../utils/custom_font_style.dart';
-import '../utils/enums.dart';
-import '../utils/food_category_list_data.dart';
-import '../utils/images.dart';
 import '../view_models/plans_view_model.dart';
 import '../widgets/gridChip/item_discribed_grid_chip_widget.dart';
-import '../widgets/listChips/shop_items_horizontal_list_chip_widget.dart';
 
 class ShopScreen extends StatelessWidget {
-  const ShopScreen({Key? key}) : super(key: key);
+  const ShopScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

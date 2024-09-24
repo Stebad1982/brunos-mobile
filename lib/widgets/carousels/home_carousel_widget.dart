@@ -1,6 +1,4 @@
-import 'package:brunos_kitchen/utils/images.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:carousel_slider/carousel_controller.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -18,7 +16,7 @@ import '../../view_models/auth_view_model.dart';
 
 
 class HomeCarouselWidget extends StatefulWidget {
-  const HomeCarouselWidget({Key? key}) : super(key: key);
+  const HomeCarouselWidget({super.key});
 
   @override
   _HomeCarouselWidgetState createState() => _HomeCarouselWidgetState();

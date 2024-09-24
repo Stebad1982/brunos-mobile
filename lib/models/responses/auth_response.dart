@@ -11,7 +11,7 @@ class AuthResponse extends BaseResponseModel {
 
   AuthResponse.fromJson(Map<String, dynamic> json) {
     isSuccess = json['isSuccess'];
-    data = json['data'] != null ? new AuthData.fromJson(json['data']) : null;
+    data = json['data'] != null ? AuthData.fromJson(json['data']) : null;
     message = json['message'];
   }
 
@@ -85,42 +85,42 @@ class AuthData {
     if (json['discounts'] != null) {
       discounts = <Discounts>[];
       json['discounts'].forEach((v) {
-        discounts!.add(new Discounts.fromJson(v));
+        discounts!.add(Discounts.fromJson(v));
       });
     }
     if (json['greetings'] != null) {
       greetings = <Greetings>[];
       json['greetings'].forEach((v) {
-        greetings!.add(new Greetings.fromJson(v));
+        greetings!.add(Greetings.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['_id'] = this.sId;
-    data['createdOnDate'] = this.createdOnDate;
-    data['fullName'] = this.fullName;
-    data['email'] = this.email;
-    data['isGuest'] = this.isGuest;
-    data['phoneNumber'] = this.phoneNumber;
-    data['isVerified'] = this.isVerified;
-    data['availablePoints'] = this.availablePoints;
-    data['media'] = this.media;
-    if (this.card != null) {
-      data['card'] = this.card!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['_id'] = sId;
+    data['createdOnDate'] = createdOnDate;
+    data['fullName'] = fullName;
+    data['email'] = email;
+    data['isGuest'] = isGuest;
+    data['phoneNumber'] = phoneNumber;
+    data['isVerified'] = isVerified;
+    data['availablePoints'] = availablePoints;
+    data['media'] = media;
+    if (card != null) {
+      data['card'] = card!.toJson();
     }
-    data['petsCount'] = this.petsCount;
-    if (this.pet != null) {
-      data['pet'] = this.pet!.toJson();
+    data['petsCount'] = petsCount;
+    if (pet != null) {
+      data['pet'] = pet!.toJson();
     }
-    data['refreshToken'] = this.refreshToken;
-    data['clientToken'] = this.clientToken;
-    if (this.discounts != null) {
-      data['discounts'] = this.discounts!.map((v) => v.toJson()).toList();
+    data['refreshToken'] = refreshToken;
+    data['clientToken'] = clientToken;
+    if (discounts != null) {
+      data['discounts'] = discounts!.map((v) => v.toJson()).toList();
     }
-    if (this.greetings != null) {
-      data['greetings'] = this.greetings!.map((v) => v.toJson()).toList();
+    if (greetings != null) {
+      data['greetings'] = greetings!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -142,11 +142,11 @@ class Discounts {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['_id'] = this.sId;
-    data['createdOnDate'] = this.createdOnDate;
-    data['aggregate'] = this.aggregate;
-    data['name'] = this.name;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['_id'] = sId;
+    data['createdOnDate'] = createdOnDate;
+    data['aggregate'] = aggregate;
+    data['name'] = name;
     return data;
   }
 }
@@ -186,16 +186,16 @@ class Greetings {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['_id'] = this.sId;
-    data['createdOnDate'] = this.createdOnDate;
-    data['title'] = this.title;
-    data['description'] = this.description;
-    data['type'] = this.type;
-    data['media'] = this.media;
-    data['userId'] = this.userId;
-    data['isFeatured'] = this.isFeatured;
-    data['isReplied'] = this.isReplied;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['_id'] = sId;
+    data['createdOnDate'] = createdOnDate;
+    data['title'] = title;
+    data['description'] = description;
+    data['type'] = type;
+    data['media'] = media;
+    data['userId'] = userId;
+    data['isFeatured'] = isFeatured;
+    data['isReplied'] = isReplied;
     return data;
   }
 }

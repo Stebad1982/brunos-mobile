@@ -1,5 +1,4 @@
 import 'package:brunos_kitchen/utils/images.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -11,7 +10,7 @@ import '../utils/custom_font_style.dart';
 import '../widgets/back_button_widget.dart';
 
 class PawPointsScreen extends StatelessWidget {
-  const PawPointsScreen({Key? key}) : super(key: key);
+  const PawPointsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

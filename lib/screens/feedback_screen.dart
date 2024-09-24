@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
@@ -10,7 +9,7 @@ import '../widgets/app_bar_with_back_widget.dart';
 import '../widgets/dialogs/discription_dialog.dart';
 
 class FeedbackScreen extends StatelessWidget {
-  const FeedbackScreen({Key? key}) : super(key: key);
+  const FeedbackScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +30,7 @@ class FeedbackScreen extends StatelessWidget {
                       keyboardType: TextInputType.name,
                       decoration:  InputDecoration(
                         hintText: 'Title',
-                        contentPadding: EdgeInsets.symmetric(
+                        contentPadding: const EdgeInsets.symmetric(
                             horizontal: 15, vertical: 20.0).w,
 
                         /*  prefixIcon: Padding(
@@ -50,7 +49,7 @@ class FeedbackScreen extends StatelessWidget {
                       maxLines: 10,
                       decoration:  InputDecoration(
                         hintText: 'Description',
-                        contentPadding: EdgeInsets.symmetric(
+                        contentPadding: const EdgeInsets.symmetric(
                             horizontal: 15, vertical: 15.0).w,
 
                         /* prefixIcon: Padding(
