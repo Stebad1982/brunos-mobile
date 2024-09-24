@@ -64,7 +64,7 @@ navigatorKey.currentContext!.read <FaqsBlogsNewsViewModel>().setSelectedBlogNews
                   SizedBox(height: 10.h,),
                   Row(
                     children: [
-                      grey14w400(data: 'Dated: ${DateTimeFormatter.timeStampToDate(data.createdOnDate!,2)}'),
+                      grey14w400(data: 'Posted On: ${DateTimeFormatter.timeStampToDate(data.createdOnDate!,2)}'),
                       Spacer(),
                       orange14w400(data: 'View Detail >>'),
                     ],
