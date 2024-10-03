@@ -1,7 +1,6 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
+import 'package:carousel_slider/carousel_slider.dart';
 import '../../utils/custom_colors.dart';
 
 
@@ -18,7 +17,7 @@ class RecipesCarouselWidget extends StatefulWidget {
 
 class _RecipesCarouselWidgetState extends State<RecipesCarouselWidget> {
   int _current = 0;
-  final CarouselSliderController _controller = CarouselSliderController();
+  final CarouselController _controller = CarouselController();
   @override
   Widget build(BuildContext context) {
     return Column(children: [

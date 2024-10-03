@@ -186,7 +186,7 @@ class _AddCardScreenState extends State<AddCardScreen> {
                       cvvCode: cardViewModel.getCvvCode,
                       onCreditCardModelChange:
                           cardViewModel.onCreditCardModelChange,
-                     // themeColor: CustomColors.color6,
+                      themeColor: CustomColors.color6,
                       obscureCvv: true,
                       obscureNumber: true,
                       isHolderNameVisible: true,

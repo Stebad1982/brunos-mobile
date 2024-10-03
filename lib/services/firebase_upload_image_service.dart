@@ -13,7 +13,7 @@ class FirebaseUploadImageService {
         FirebaseStorage.instance.ref().child(navigatorKey.currentContext!.read<AuthViewModel>().getAuthResponse.data!.sId!);
     UploadTask uploadTask =
         storageReference.child("$fileName.jpg").putFile(File(mFileImage.path));
-    String url = await (await uploadTask).ref.getDownloadURL();
+    String url = await (uploadTask).ref.getDownloadURL();
     return url;
   }
 }
