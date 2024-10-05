@@ -262,9 +262,9 @@ class _PuppyCreationAdditionalScreenState
                                   scrollbarTheme: ScrollbarThemeData(
                                     radius: const Radius.circular(40),
                                     thickness:
-                                        WidgetStateProperty.all<double>(6),
+                                    MaterialStateProperty.all<double>(6),
                                     thumbVisibility:
-                                        WidgetStateProperty.all<bool>(true),
+                                    MaterialStateProperty.all<bool>(true),
                                   ),
                                 ),
                                 // borderRadius: BorderRadius.circular(15.0),
@@ -326,9 +326,9 @@ class _PuppyCreationAdditionalScreenState
                                   scrollbarTheme: ScrollbarThemeData(
                                     radius: const Radius.circular(40),
                                     thickness:
-                                        WidgetStateProperty.all<double>(6),
+                                    MaterialStateProperty.all<double>(6),
                                     thumbVisibility:
-                                        WidgetStateProperty.all<bool>(true),
+                                    MaterialStateProperty.all<bool>(true),
                                   ),
                                 ),
                                 // borderRadius: BorderRadius.circular(15.0),
@@ -476,10 +476,10 @@ class _PuppyCreationAdditionalScreenState
                                 scrollbarTheme: ScrollbarThemeData(
                                   radius: const Radius.circular(40),
                                   thickness:
-                                  WidgetStateProperty.all<double>(
+                                  MaterialStateProperty.all<double>(
                                       6),
                                   thumbVisibility:
-                                  WidgetStateProperty.all<bool>(
+                                  MaterialStateProperty.all<bool>(
                                       true),
                                 ),
                               ),

@@ -197,10 +197,10 @@ class _IntroSlidesScreenState extends State<IntroSlidesScreen> {
       ),
       isShowDoneBtn: false,
       nextButtonStyle: ButtonStyle(
-        shape: WidgetStateProperty.all<OutlinedBorder>(const CircleBorder()),
+        shape: MaterialStateProperty.all<OutlinedBorder>(const CircleBorder()),
         backgroundColor:
-            WidgetStateProperty.all<Color>(const Color(0xFFD68708)),
-        overlayColor: WidgetStateProperty.all<Color>(const Color(0xFFD68708)),
+        MaterialStateProperty.all<Color>(const Color(0xFFD68708)),
+        overlayColor: MaterialStateProperty.all<Color>(const Color(0xFFD68708)),
       ),
       onSkipPress: () {
         Navigator.pushNamedAndRemoveUntil(

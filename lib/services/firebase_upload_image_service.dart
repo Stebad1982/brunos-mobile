@@ -1,3 +1,4 @@
+
 import 'dart:io';
 
 import 'package:brunos_kitchen/main.dart';
@@ -9,11 +10,16 @@ import 'package:provider/provider.dart';
 class FirebaseUploadImageService {
   Future<String> upLoadImageFile(
       {required CroppedFile mFileImage, required String fileName}) async {
-    final Reference storageReference =
-        FirebaseStorage.instance.ref().child(navigatorKey.currentContext!.read<AuthViewModel>().getAuthResponse.data!.sId!);
-    UploadTask uploadTask =
-        storageReference.child("$fileName.jpg").putFile(File(mFileImage.path));
-    String url = await (uploadTask).ref.getDownloadURL();
+    final Reference storageReference = FirebaseStorage.instance.ref().child(
+        navigatorKey.currentContext!
+            .read<AuthViewModel>()
+            .getAuthResponse
+            .data!
+            .sId!);
+    // Create a reference to "mountains.jpg"
+    final mountainsRef = storageReference.child("$fileName.jpg");
+    await mountainsRef.putFile(File(mFileImage.path));
+    String url = await mountainsRef.getDownloadURL();
     return url;
   }
 }

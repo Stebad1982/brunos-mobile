@@ -526,10 +526,10 @@ class PuppyDetailScreen extends StatelessWidget {
                                         scrollbarTheme: ScrollbarThemeData(
                                           radius: const Radius.circular(40),
                                           thickness:
-                                              WidgetStateProperty.all<double>(
+                                          MaterialStateProperty.all<double>(
                                                   6),
                                           thumbVisibility:
-                                              WidgetStateProperty.all<bool>(
+                                          MaterialStateProperty.all<bool>(
                                                   true),
                                         ),
                                       ),
@@ -592,10 +592,10 @@ class PuppyDetailScreen extends StatelessWidget {
                                         scrollbarTheme: ScrollbarThemeData(
                                           radius: const Radius.circular(40),
                                           thickness:
-                                              WidgetStateProperty.all<double>(
+                                          MaterialStateProperty.all<double>(
                                                   6),
                                           thumbVisibility:
-                                              WidgetStateProperty.all<bool>(
+                                          MaterialStateProperty.all<bool>(
                                                   true),
                                         ),
                                       ),
@@ -779,10 +779,10 @@ class PuppyDetailScreen extends StatelessWidget {
                                     scrollbarTheme: ScrollbarThemeData(
                                       radius: const Radius.circular(40),
                                       thickness:
-                                      WidgetStateProperty.all<double>(
+                                      MaterialStateProperty.all<double>(
                                           6),
                                       thumbVisibility:
-                                      WidgetStateProperty.all<bool>(
+                                      MaterialStateProperty.all<bool>(
                                           true),
                                     ),
                                   ),
