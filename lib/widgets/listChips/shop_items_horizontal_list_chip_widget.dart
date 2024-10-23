@@ -54,11 +54,15 @@ Widget shopItemsHorizontalListChipWidget({required RecipeModel productDetail}) {
               Padding(
                 padding: const EdgeInsets.only(left: 8, right: 8, top: 12).w,
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     SizedBox(
-                      height: 40.h,
+                      height: productDetail.lifeStage!.isNotEmpty? 20.h : 40.h,
                         child: black14w400(data: productDetail.name!)),
+                    Visibility(
+                      visible: productDetail.lifeStage!.isNotEmpty,
+                      child: black14w500(data: '(${productDetail.lifeStage!})'),
+                    ),
                     SizedBox(
                       height: 6.h,
                     ),

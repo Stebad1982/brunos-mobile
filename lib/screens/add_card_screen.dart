@@ -186,7 +186,7 @@ class _AddCardScreenState extends State<AddCardScreen> {
                       cvvCode: cardViewModel.getCvvCode,
                       onCreditCardModelChange:
                           cardViewModel.onCreditCardModelChange,
-                     // themeColor: CustomColors.color6,
+                      //themeColor: CustomColors.color6,
                       obscureCvv: true,
                       obscureNumber: true,
                       isHolderNameVisible: true,
@@ -210,6 +210,7 @@ class _AddCardScreenState extends State<AddCardScreen> {
                       },
                       inputConfiguration: InputConfiguration(
                         cardNumberDecoration: InputDecoration(
+                          contentPadding: const EdgeInsets.all(20).w,
                           enabledBorder: const OutlineInputBorder(
                               borderSide: BorderSide(color: Colors.transparent),
                               borderRadius:
@@ -233,6 +234,7 @@ class _AddCardScreenState extends State<AddCardScreen> {
                               BorderRadius.all(Radius.circular(15))),
                         ),
                         expiryDateDecoration: InputDecoration(
+                          contentPadding: const EdgeInsets.all(20).w,
                           enabledBorder: const OutlineInputBorder(
                               borderSide: BorderSide(color: Colors.transparent),
                               borderRadius:
@@ -256,6 +258,7 @@ class _AddCardScreenState extends State<AddCardScreen> {
                               BorderRadius.all(Radius.circular(15))),
                         ),
                         cvvCodeDecoration: InputDecoration(
+                          contentPadding: const EdgeInsets.all(20).w,
                           enabledBorder: const OutlineInputBorder(
                               borderSide: BorderSide(color: Colors.transparent),
                               borderRadius:
@@ -279,6 +282,7 @@ class _AddCardScreenState extends State<AddCardScreen> {
                               BorderRadius.all(Radius.circular(15))),
                         ),
                         cardHolderDecoration: InputDecoration(
+                          contentPadding: const EdgeInsets.all(20).w,
                           enabledBorder: const OutlineInputBorder(
                               borderSide: BorderSide(color: Colors.transparent),
                               borderRadius:

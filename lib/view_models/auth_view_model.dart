@@ -492,7 +492,7 @@ class AuthViewModel with ChangeNotifier {
     // Create a credential from the access token
     if (loginResult.accessToken != null) {
       final OAuthCredential facebookAuthCredential =
-          FacebookAuthProvider.credential(loginResult.accessToken!.token);
+          FacebookAuthProvider.credential(loginResult.accessToken!.tokenString);
 
       // Once signed in, return the UserCredential
       final userDetails = await FirebaseAuth.instance
