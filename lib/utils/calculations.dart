@@ -171,6 +171,11 @@ num calculatePlanTotal({required List<RecipeModel> listOfItems}) {
   return finalPriceSum;
 }
 
+int calculateProductWeightTotal({required List<RecipeModel> listOfItems}) {
+  final int finalProductWeight = listOfItems[0].weight!*listOfItems[0].quantity!;
+  return finalProductWeight;
+}
+
 num calculatePlanDiscount({required planTotal, required num discountedPer}) {
   final num planDiscountedPer = planTotal * discountedPer / 100;
   final num planDiscountedPrice = planTotal - planDiscountedPer;

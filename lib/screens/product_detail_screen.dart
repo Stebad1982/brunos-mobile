@@ -349,8 +349,9 @@ class ProductDetailScreen extends StatelessWidget {
                             final List<RecipeModel> recipeList = [];
                             plansViewModel.setProductModel();
                             recipeList.add(plansViewModel.getSelectedRecipe);
-                            final planTotalPrice =
+                            final num planTotalPrice =
                                 calculatePlanTotal(listOfItems: recipeList);
+                            final int planTotalWeight = calculateProductWeightTotal(listOfItems: recipeList);
                             context.read<CartViewModel>().addToCartList(
                                   CartModel(
                                       recipes: recipeList,
@@ -361,7 +362,7 @@ class ProductDetailScreen extends StatelessWidget {
                                       planType: plansViewModel.getPlanType,
                                       planTotal: planTotalPrice,
                                       pouchesDetail: [],
-                                      totalWeight: [],
+                                      totalWeight: [planTotalWeight],
                                       planDiscountedPrice: planTotalPrice,
                                       planDiscountPer: 0),
                                 );
@@ -385,8 +386,10 @@ class ProductDetailScreen extends StatelessWidget {
                           final List<RecipeModel> recipeList = [];
                           plansViewModel.setProductModel();
                           recipeList.add(plansViewModel.getSelectedRecipe);
-                          final planTotalPrice =
+                          final num planTotalPrice =
                               calculatePlanTotal(listOfItems: recipeList);
+                          final int planTotalWeight = calculateProductWeightTotal(listOfItems: recipeList);
+
                           context.read<CartViewModel>().addToCartList(
                                 CartModel(
                                     recipes: recipeList,
@@ -397,7 +400,7 @@ class ProductDetailScreen extends StatelessWidget {
                                     planType: plansViewModel.getPlanType,
                                     planTotal: planTotalPrice,
                                     pouchesDetail: [],
-                                    totalWeight: [],
+                                    totalWeight: [planTotalWeight],
                                     planDiscountedPrice: planTotalPrice,
                                     planDiscountPer: 0),
                               );
