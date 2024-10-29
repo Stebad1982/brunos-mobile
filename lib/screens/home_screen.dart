@@ -48,6 +48,9 @@ class HomeScreen extends StatelessWidget {
                   children: [
                     InkWell(
                       onTap: () {
+                        context
+                            .read<AddressViewModel>()
+                            .setRouteFromHome(true);
                         if (context
                                 .read<AuthViewModel>()
                                 .getAuthResponse

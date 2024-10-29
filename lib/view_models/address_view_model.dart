@@ -49,7 +49,7 @@ class AddressViewModel with ChangeNotifier {
   String _selectedLabel = AddressLabels.home.text;
   AddressModel _editAddress = AddressModel();
   bool _isAddressAdd = true;
-  bool _routeFromSettings = true;
+  bool _routeFromHome = true;
 
   TextEditingController get getContactNameController => _contactNameController;
   TextEditingController get getContactNumberController => _contactNumberController;
@@ -102,7 +102,7 @@ class AddressViewModel with ChangeNotifier {
 
   bool get getIsAddressAdd => _isAddressAdd;
 
-  bool get getRoutFromSettings => _routeFromSettings;
+  bool get getRouteFromHome => _routeFromHome;
 
   AllAddressResponse get getAllAddressResponse => _allAddressResponse;
 
@@ -129,8 +129,8 @@ class AddressViewModel with ChangeNotifier {
     notifyListeners();
   }
 
-  void setRouteFromSettings(bool value) {
-    _routeFromSettings = value;
+  void setRouteFromHome(bool value) {
+    _routeFromHome = value;
     notifyListeners();
   }
 

@@ -217,6 +217,9 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                                 InkWell(
                                   onTap: () {
                                     context
+                                        .read<AddressViewModel>()
+                                        .setRouteFromHome(false);
+                                    context
                                                 .read<AuthViewModel>()
                                                 .getAuthResponse
                                                 .data!

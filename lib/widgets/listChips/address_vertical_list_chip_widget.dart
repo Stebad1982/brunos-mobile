@@ -23,21 +23,27 @@ Widget addressVerticalListChipWidget({required AddressModel addressDetail}) {
                   .read<BottomNavigationViewModel>()
                   .getHomeViewIndex !=
               2) {
-            navigatorKey.currentContext!
-                .read<AuthViewModel>()
-                .setAddress(addressDetail);
-            Navigator.pop(navigatorKey.currentContext!);
-            Navigator.pop(navigatorKey.currentContext!);
-            Navigator.pushNamed(
-                navigatorKey.currentContext!, checkOutRoute);
-          }
-          else{
+            if (navigatorKey.currentContext!
+                .read<AddressViewModel>()
+                .getRouteFromHome){
+              Navigator.pop(navigatorKey.currentContext!);
+            }
+            else{
+              Navigator.pop(navigatorKey.currentContext!);
+              Navigator.pop(navigatorKey.currentContext!);
+              Navigator.pushNamed(navigatorKey.currentContext!, checkOutRoute);
+            }
+              navigatorKey.currentContext!
+                  .read<AuthViewModel>()
+                  .setAddress(addressDetail);
+
+          } else {
             navigatorKey.currentContext!
                 .read<AddressViewModel>()
                 .setIsAddressAdd(false);
             navigatorKey.currentContext!
                 .read<AddressViewModel>()
-                .setEditAddress( value: addressDetail);
+                .setEditAddress(value: addressDetail);
             Navigator.pushNamed(
                 navigatorKey.currentContext!, addressDetailRoute);
           }
