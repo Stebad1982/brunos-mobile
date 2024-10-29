@@ -1,15 +1,16 @@
+import 'package:brunos_kitchen/main.dart';
 import 'package:brunos_kitchen/view_models/address_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
+import '../../route_generator.dart';
 import '../../utils/custom_buttons.dart';
 import '../../utils/custom_colors.dart';
 import '../../utils/custom_font_style.dart';
 import '../../view_models/auth_view_model.dart';
 
-void deleteAddressConfirmationDialog(
-    {required BuildContext context}) {
+void deleteAddressConfirmationDialog({required BuildContext context}) {
   showGeneralDialog(
     context: context,
     barrierLabel: "Barrier",
@@ -65,14 +66,29 @@ void deleteAddressConfirmationDialog(
                             onPressed: () async {
                               Navigator.pop(context);
                               await context
-                                  .read<AddressViewModel>().callDeleteAddressApi().then((value) => {
-                                if(value){
-                                  Navigator.pop(context),
-                                  context
+                                  .read<AddressViewModel>()
+                                  .callDeleteAddressApi()
+                                  .then((value) async => {
+                              if(value){
+                                  await navigatorKey.currentContext!
                                       .read<AuthViewModel>()
-                                      .callSplash(showLoader: true)
-                                }
-                              });
+                                  .callSplash(showLoader: true),
+                              if(navigatorKey.currentContext!
+                                  .read<AuthViewModel>().getAuthResponse.data!.location == null){
+                                Navigator.of( navigatorKey.currentContext!)
+                                  ..pop()
+                                  ..pop(),
+                              navigatorKey.currentContext!
+                                  .read<AddressViewModel>()
+                                  .setIsAddressAdd(true),
+                              Navigator.pushNamed(navigatorKey.currentContext!, addAddressRoute)
+                              }
+                              else{
+                              Navigator.pop(navigatorKey.currentContext!),
+                              }
+                            }
+                            }
+                              );
                             },
                           ),
                         ),
@@ -84,7 +100,7 @@ void deleteAddressConfirmationDialog(
         ),
       );
     },
-  /*  transitionBuilder: (_, anim, __, child) {
+    /*  transitionBuilder: (_, anim, __, child) {
       Tween<Offset> tween;
       if (anim.status == AnimationStatus.reverse) {
         tween = Tween(begin: const Offset(-1, 0), end: Offset.zero);

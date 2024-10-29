@@ -59,7 +59,8 @@ class AuthViewModel with ChangeNotifier {
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _phoneController = TextEditingController();
- // final TextEditingController _editPhoneController = TextEditingController();
+
+  // final TextEditingController _editPhoneController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _confirmPasswordController =
       TextEditingController();
@@ -74,7 +75,7 @@ class AuthViewModel with ChangeNotifier {
 
   String get getOtpType => _otpType;
 
-  void setOtpType (String value){
+  void setOtpType(String value) {
     _otpType = value;
   }
 
@@ -172,6 +173,7 @@ class AuthViewModel with ChangeNotifier {
 
   Future<void> setAddress(AddressModel value) async {
     _authResponse.data!.location = value;
+    if (value != null) {}
     setDeliveryCity();
     // notifyListeners();
   }
@@ -205,11 +207,15 @@ class AuthViewModel with ChangeNotifier {
     // notifyListeners();
   }
 
-  void updateProfile(){
+  void updateProfile() {
     _emailController.text = _authResponse.data!.email!;
     _phoneController.text = _authResponse.data!.phoneNumber!;
     _nameController.text = _authResponse.data!.fullName!;
-    setDeliveryCity();
+    if (_authResponse.data!.location != null) {
+      setDeliveryCity();
+    } else {
+      notifyListeners();
+    }
   }
 
   String get getNameFieldError => _nameFieldError;
@@ -376,8 +382,8 @@ class AuthViewModel with ChangeNotifier {
       _operatingSystem = 'iOS';
     }
     //TODO: ENABLE FCM
-   // _fcmToken = await _firebaseMessaging.getToken();
-  // print("fcm token: $_fcmToken");
+    // _fcmToken = await _firebaseMessaging.getToken();
+    // print("fcm token: $_fcmToken");
     final authToken =
         await _sharedPref.read(SharedPreferencesKeys.authToken.text);
     await Future.delayed(const Duration(seconds: 4), () {});
@@ -543,27 +549,26 @@ class AuthViewModel with ChangeNotifier {
   Future<bool> callForgotPasswordApi() async {
     //_otpType = OtpTypes.forgotPassword.text;
     //final bool otpVerification = await verifyingOtp();
-   /* if (otpVerification) {*/
-      try {
-        EasyLoading.show(status: 'Please Wait ...');
-        final ForgotPasswordRequest forgotPasswordRequest =
-            ForgotPasswordRequest(
-                password: _passwordController.text,
-                phoneNumber: _emailController.text);
+    /* if (otpVerification) {*/
+    try {
+      EasyLoading.show(status: 'Please Wait ...');
+      final ForgotPasswordRequest forgotPasswordRequest = ForgotPasswordRequest(
+          password: _passwordController.text,
+          phoneNumber: _emailController.text);
 
-        final BaseResponseModel response = await _authApiServices
-            .forgotPasswordApi(forgotPasswordRequest: forgotPasswordRequest);
-        if (response.isSuccess!) {
-          EasyLoading.dismiss();
-          return true;
-        } else {
-          EasyLoading.showError('${response.message}');
-          return false;
-        }
-      } catch (e) {
-        EasyLoading.showError(e.toString());
+      final BaseResponseModel response = await _authApiServices
+          .forgotPasswordApi(forgotPasswordRequest: forgotPasswordRequest);
+      if (response.isSuccess!) {
+        EasyLoading.dismiss();
+        return true;
+      } else {
+        EasyLoading.showError('${response.message}');
         return false;
       }
+    } catch (e) {
+      EasyLoading.showError(e.toString());
+      return false;
+    }
     /*} else {
       return false;
     }*/
@@ -708,15 +713,15 @@ class AuthViewModel with ChangeNotifier {
 
   Future<bool> verifyingOtp() async {
     EasyLoading.show(status: 'Sending OTP');
-    if(_otpResponse.data != null && _otpResponse.data!.otp == _otpController.text){
+    if (_otpResponse.data != null &&
+        _otpResponse.data!.otp == _otpController.text) {
       EasyLoading.dismiss();
       return true;
-    }
-    else{
+    } else {
       EasyLoading.showError('Wrong OTP');
       return false;
     }
- /*   try {
+    /*   try {
       resetTimer();
       //bool returnValue = false;
 
@@ -760,7 +765,7 @@ class AuthViewModel with ChangeNotifier {
       final EditUserProfileRequest editUserProfileRequest =
           EditUserProfileRequest(
               fullName: _nameController.text,
-              phoneNumber:  _phoneController.text);
+              phoneNumber: _phoneController.text);
 
       final AuthResponse response = await _authApiServices.editUserProfileApi(
           editUserProfileRequest: editUserProfileRequest);
