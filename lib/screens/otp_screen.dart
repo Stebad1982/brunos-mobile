@@ -158,7 +158,7 @@ class _OtpScreenState extends State<OtpScreen> {
                                     authViewModel.getOtpSeconds != '00',
                                 child: lightBlack14w400Centre(
                                     data:
-                                        'OTP will Expired in ${authViewModel.getOtpMinutes}:${authViewModel.getOtpSeconds}')),
+                                        'OTP will expire in ${authViewModel.getOtpMinutes}:${authViewModel.getOtpSeconds}')),
                             Visibility(
                               visible: (authViewModel.getOtpMinutes == '00' &&
                                   authViewModel.getOtpSeconds == '00'),

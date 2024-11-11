@@ -227,8 +227,13 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                                             null
                                         ? Navigator.pushNamed(
                                             context, addressRoute)
-                                        : Navigator.pushNamed(
-                                            context, addAddressRoute);
+                                        : {
+                                      context
+                                          .read<AddressViewModel>()
+                                          .setIsAddressAdd(true),
+                                      Navigator.pushNamed(
+                                          context, addAddressRoute)
+                                    };
                                   },
                                   child: Container(
                                     decoration: ShapeDecoration(

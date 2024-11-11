@@ -1,5 +1,7 @@
 import 'dart:async';
+import 'dart:convert';
 import 'dart:io';
+import 'dart:math';
 
 import 'package:brunos_kitchen/main.dart';
 import 'package:brunos_kitchen/models/address_model.dart';
@@ -13,6 +15,7 @@ import 'package:brunos_kitchen/models/requests/user_register_request.dart';
 import 'package:brunos_kitchen/models/responses/banners_response.dart';
 import 'package:brunos_kitchen/services/auth_api_services.dart';
 import 'package:brunos_kitchen/view_models/cart_view_model.dart';
+import 'package:crypto/crypto.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
@@ -21,6 +24,7 @@ import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:provider/provider.dart';
+import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
 import '../models/requests/sign_in_request.dart';
 import '../models/requests/social_sign_in_request.dart';
@@ -520,6 +524,59 @@ class AuthViewModel with ChangeNotifier {
         EasyLoading.showError('Something Went Wrong');
         return false;
       }
+    } else {
+      EasyLoading.showError('Something Went Wrong');
+      return false;
+    }
+  }
+
+  Future<bool> signInWithApple() async {
+    EasyLoading.show(status: 'Please Wait...');
+
+    String generateNonce([int length = 32]) {
+      final charset =
+          '0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._';
+      final random = Random.secure();
+      return List.generate(
+          length, (_) => charset[random.nextInt(charset.length)]).join();
+    }
+
+    String sha256ofString(String input) {
+      final bytes = utf8.encode(input);
+      final digest = sha256.convert(bytes);
+      return digest.toString();
+    }
+
+    final rawNonce = generateNonce();
+    final nonce = sha256ofString(rawNonce);
+
+    final appleCredential = await SignInWithApple.getAppleIDCredential(
+      scopes: [
+        AppleIDAuthorizationScopes.email,
+        AppleIDAuthorizationScopes.fullName,
+      ],
+      nonce: nonce,
+    );
+
+    final appleAuthCredential = OAuthProvider("apple.com").credential(
+      idToken: appleCredential.identityToken,
+      rawNonce: rawNonce,
+    );
+    final userDetails =
+        await FirebaseAuth.instance.signInWithCredential(appleAuthCredential);
+    if (userDetails.user != null) {
+      //await getUserToken();
+
+      final SocialSignInRequest socialSignInRequest = SocialSignInRequest(
+          clientId: userDetails.user!.uid,
+          email: userDetails.user!.email!,
+          fullName: userDetails.user!.displayName!,
+          phoneNumber: userDetails.user!.phoneNumber ?? '',
+          deviceType: _operatingSystem,
+          deviceToken: _fcmToken ?? 'token',
+          media: userDetails.user!.photoURL!,
+          platform: 'Apple');
+      return await callSocialMediaLoginApi(userDetails: socialSignInRequest);
     } else {
       EasyLoading.showError('Something Went Wrong');
       return false;

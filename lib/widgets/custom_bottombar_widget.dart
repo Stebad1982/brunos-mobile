@@ -52,7 +52,7 @@ class _CustomBottomBarWidgetState extends State<CustomBottomBarWidget> {
                 index: 0,
               ),
               BBarIcon(
-                title: "shop",
+                title: "Shop",
                 iconData: Icons.shopping_bag,
                 selectedIcon: Icons.shopping_bag,
                 index: 1,
