@@ -313,7 +313,22 @@ Future recipeDetailBottomSheetWidget({required RecipeModel recipeDetail}) {
                                     ),
                                     Visibility(
                                         visible: recipeDetail.tableImage!.isNotEmpty,
-                                        child: Image.network(recipeDetail.tableImage![0])),
+                                        child: Image.network(recipeDetail.tableImage![0],
+                                          loadingBuilder: (BuildContext context, Widget child,
+                                              ImageChunkEvent? loadingProgress) {
+                                            if (loadingProgress == null) return child;
+                                            return SizedBox(
+                                              height: 108.h,
+                                              child: Center(
+                                                child: CircularProgressIndicator(
+                                                  value: loadingProgress.expectedTotalBytes != null
+                                                      ? loadingProgress.cumulativeBytesLoaded /
+                                                      loadingProgress.expectedTotalBytes!
+                                                      : null,
+                                                ),
+                                              ),
+                                            );
+                                          },)),
                                     /*SingleChildScrollView(
                                       scrollDirection: Axis.horizontal,
                                       child: Table(

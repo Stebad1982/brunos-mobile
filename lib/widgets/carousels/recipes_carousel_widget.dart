@@ -29,7 +29,19 @@ class _RecipesCarouselWidgetState extends State<RecipesCarouselWidget> {
                 color: CustomColors.greyMediumLightColor,
                 borderRadius: BorderRadius.circular(20),
               ),
-              child: Image.network(image,))],
+              child: Image.network(image,
+                loadingBuilder: (BuildContext context, Widget child,
+                    ImageChunkEvent? loadingProgress) {
+                  if (loadingProgress == null) return child;
+                  return Center(
+                    child: CircularProgressIndicator(
+                      value: loadingProgress.expectedTotalBytes != null
+                          ? loadingProgress.cumulativeBytesLoaded /
+                          loadingProgress.expectedTotalBytes!
+                          : null,
+                    ),
+                  );
+                },))],
           carouselController: _controller,
           options: CarouselOptions(
             enableInfiniteScroll: widget.recipesImages.length > 1,

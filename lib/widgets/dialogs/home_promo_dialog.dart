@@ -47,6 +47,21 @@ void homePromoDialog(
                           greetingData.media![0],
                         //  width: 150.w,
                           height: 400.h,
+                          loadingBuilder: (BuildContext context, Widget child,
+                              ImageChunkEvent? loadingProgress) {
+                            if (loadingProgress == null) return child;
+                            return SizedBox(
+                              height: 400.h,
+                              child: Center(
+                                child: CircularProgressIndicator(
+                                  value: loadingProgress.expectedTotalBytes != null
+                                      ? loadingProgress.cumulativeBytesLoaded /
+                                      loadingProgress.expectedTotalBytes!
+                                      : null,
+                                ),
+                              ),
+                            );
+                          },
                          // fit: BoxFit.fitWidth,
                         ),
                       //  const Spacer(),

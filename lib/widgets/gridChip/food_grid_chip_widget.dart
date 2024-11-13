@@ -35,6 +35,22 @@ Widget foodGridChipWidget({required RecipeModel recipeDetail}) {
                   children: [
                     Center(
                         child: Image.network(
+                          loadingBuilder: (BuildContext context, Widget child,
+                              ImageChunkEvent? loadingProgress) {
+                            if (loadingProgress == null) return child;
+                            return SizedBox(
+                              height: 108.h,
+                              width: 70.w,
+                              child: Center(
+                                child: LinearProgressIndicator(
+                                  value: loadingProgress.expectedTotalBytes != null
+                                      ? loadingProgress.cumulativeBytesLoaded /
+                                      loadingProgress.expectedTotalBytes!
+                                      : null,
+                                ),
+                              ),
+                            );
+                          },
                       recipeDetail.media![0],
                       height: 108.h,
                     )),
