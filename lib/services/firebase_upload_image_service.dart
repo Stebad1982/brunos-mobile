@@ -18,7 +18,7 @@ class FirebaseUploadImageService {
             .sId!);
     // Create a reference to "mountains.jpg"
     final mountainsRef = storageReference.child("$fileName.jpg");
-    await mountainsRef.putFile(File(mFileImage.path));
+    mountainsRef.putFile(File(mFileImage.path));
     String url = await mountainsRef.getDownloadURL();
     return url;
   }
