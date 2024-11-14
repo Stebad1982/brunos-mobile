@@ -561,6 +561,7 @@ class AuthViewModel with ChangeNotifier {
     final appleAuthCredential = OAuthProvider("apple.com").credential(
       idToken: appleCredential.identityToken,
       rawNonce: rawNonce,
+        accessToken: appleCredential.authorizationCode,
     );
     final userDetails =
         await FirebaseAuth.instance.signInWithCredential(appleAuthCredential);
@@ -570,11 +571,11 @@ class AuthViewModel with ChangeNotifier {
       final SocialSignInRequest socialSignInRequest = SocialSignInRequest(
           clientId: userDetails.user!.uid,
           email: userDetails.user!.email!,
-          fullName: userDetails.user!.displayName!,
+          fullName: userDetails.user!.displayName ?? '',
           phoneNumber: userDetails.user!.phoneNumber ?? '',
           deviceType: _operatingSystem,
           deviceToken: _fcmToken ?? 'token',
-          media: userDetails.user!.photoURL!,
+          media: userDetails.user!.photoURL ?? '',
           platform: 'Apple');
       return await callSocialMediaLoginApi(userDetails: socialSignInRequest);
     } else {
