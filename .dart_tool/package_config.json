@@ -3,7 +3,7 @@
   "packages": [
     {
       "name": "_flutterfire_internals",
-      "rootUri": "file:///Users/appstirr/.pub-cache/hosted/pub.dev/_flutterfire_internals-1.3.44",
+      "rootUri": "file:///Users/appstirr/.pub-cache/hosted/pub.dev/_flutterfire_internals-1.3.46",
       "packageUri": "lib/",
       "languageVersion": "3.2"
     },
@@ -93,7 +93,7 @@
     },
     {
       "name": "crypto",
-      "rootUri": "file:///Users/appstirr/.pub-cache/hosted/pub.dev/crypto-3.0.5",
+      "rootUri": "file:///Users/appstirr/.pub-cache/hosted/pub.dev/crypto-3.0.6",
       "packageUri": "lib/",
       "languageVersion": "3.4"
     },
@@ -183,25 +183,25 @@
     },
     {
       "name": "firebase_auth",
-      "rootUri": "file:///Users/appstirr/.pub-cache/hosted/pub.dev/firebase_auth-5.3.1",
+      "rootUri": "file:///Users/appstirr/.pub-cache/hosted/pub.dev/firebase_auth-5.3.3",
       "packageUri": "lib/",
       "languageVersion": "3.2"
     },
     {
       "name": "firebase_auth_platform_interface",
-      "rootUri": "file:///Users/appstirr/.pub-cache/hosted/pub.dev/firebase_auth_platform_interface-7.4.7",
+      "rootUri": "file:///Users/appstirr/.pub-cache/hosted/pub.dev/firebase_auth_platform_interface-7.4.9",
       "packageUri": "lib/",
       "languageVersion": "3.2"
     },
     {
       "name": "firebase_auth_web",
-      "rootUri": "file:///Users/appstirr/.pub-cache/hosted/pub.dev/firebase_auth_web-5.13.2",
+      "rootUri": "file:///Users/appstirr/.pub-cache/hosted/pub.dev/firebase_auth_web-5.13.4",
       "packageUri": "lib/",
       "languageVersion": "3.4"
     },
     {
       "name": "firebase_core",
-      "rootUri": "file:///Users/appstirr/.pub-cache/hosted/pub.dev/firebase_core-3.6.0",
+      "rootUri": "file:///Users/appstirr/.pub-cache/hosted/pub.dev/firebase_core-3.8.0",
       "packageUri": "lib/",
       "languageVersion": "3.2"
     },
@@ -219,37 +219,37 @@
     },
     {
       "name": "firebase_messaging",
-      "rootUri": "file:///Users/appstirr/.pub-cache/hosted/pub.dev/firebase_messaging-15.1.3",
+      "rootUri": "file:///Users/appstirr/.pub-cache/hosted/pub.dev/firebase_messaging-15.1.5",
       "packageUri": "lib/",
       "languageVersion": "3.2"
     },
     {
       "name": "firebase_messaging_platform_interface",
-      "rootUri": "file:///Users/appstirr/.pub-cache/hosted/pub.dev/firebase_messaging_platform_interface-4.5.46",
+      "rootUri": "file:///Users/appstirr/.pub-cache/hosted/pub.dev/firebase_messaging_platform_interface-4.5.48",
       "packageUri": "lib/",
       "languageVersion": "3.2"
     },
     {
       "name": "firebase_messaging_web",
-      "rootUri": "file:///Users/appstirr/.pub-cache/hosted/pub.dev/firebase_messaging_web-3.9.2",
+      "rootUri": "file:///Users/appstirr/.pub-cache/hosted/pub.dev/firebase_messaging_web-3.9.4",
       "packageUri": "lib/",
       "languageVersion": "3.4"
     },
     {
       "name": "firebase_storage",
-      "rootUri": "file:///Users/appstirr/.pub-cache/hosted/pub.dev/firebase_storage-12.3.4",
+      "rootUri": "file:///Users/appstirr/.pub-cache/hosted/pub.dev/firebase_storage-12.3.6",
       "packageUri": "lib/",
       "languageVersion": "3.2"
     },
     {
       "name": "firebase_storage_platform_interface",
-      "rootUri": "file:///Users/appstirr/.pub-cache/hosted/pub.dev/firebase_storage_platform_interface-5.1.31",
+      "rootUri": "file:///Users/appstirr/.pub-cache/hosted/pub.dev/firebase_storage_platform_interface-5.1.33",
       "packageUri": "lib/",
       "languageVersion": "3.2"
     },
     {
       "name": "firebase_storage_web",
-      "rootUri": "file:///Users/appstirr/.pub-cache/hosted/pub.dev/firebase_storage_web-3.10.3",
+      "rootUri": "file:///Users/appstirr/.pub-cache/hosted/pub.dev/firebase_storage_web-3.10.5",
       "packageUri": "lib/",
       "languageVersion": "3.4"
     },
@@ -327,7 +327,7 @@
     },
     {
       "name": "flutter_local_notifications",
-      "rootUri": "file:///Users/appstirr/.pub-cache/hosted/pub.dev/flutter_local_notifications-17.2.3",
+      "rootUri": "file:///Users/appstirr/.pub-cache/hosted/pub.dev/flutter_local_notifications-17.2.4",
       "packageUri": "lib/",
       "languageVersion": "2.17"
     },
@@ -411,15 +411,15 @@
     },
     {
       "name": "flutter_stripe",
-      "rootUri": "file:///Users/appstirr/.pub-cache/hosted/pub.dev/flutter_stripe-11.2.0",
+      "rootUri": "file:///Users/appstirr/.pub-cache/hosted/pub.dev/flutter_stripe-11.3.0",
       "packageUri": "lib/",
       "languageVersion": "3.0"
     },
     {
       "name": "flutter_svg",
-      "rootUri": "file:///Users/appstirr/.pub-cache/hosted/pub.dev/flutter_svg-2.0.10+1",
+      "rootUri": "file:///Users/appstirr/.pub-cache/hosted/pub.dev/flutter_svg-2.0.14",
       "packageUri": "lib/",
-      "languageVersion": "2.19"
+      "languageVersion": "3.4"
     },
     {
       "name": "flutter_test",
@@ -465,7 +465,7 @@
     },
     {
       "name": "geolocator",
-      "rootUri": "file:///Users/appstirr/.pub-cache/hosted/pub.dev/geolocator-13.0.1",
+      "rootUri": "file:///Users/appstirr/.pub-cache/hosted/pub.dev/geolocator-13.0.2",
       "packageUri": "lib/",
       "languageVersion": "2.15"
     },
@@ -477,7 +477,7 @@
     },
     {
       "name": "geolocator_apple",
-      "rootUri": "file:///Users/appstirr/.pub-cache/hosted/pub.dev/geolocator_apple-2.3.7",
+      "rootUri": "file:///Users/appstirr/.pub-cache/hosted/pub.dev/geolocator_apple-2.3.8+1",
       "packageUri": "lib/",
       "languageVersion": "2.15"
     },
@@ -507,7 +507,7 @@
     },
     {
       "name": "google_api_headers",
-      "rootUri": "file:///Users/appstirr/.pub-cache/hosted/pub.dev/google_api_headers-4.2.5",
+      "rootUri": "file:///Users/appstirr/.pub-cache/hosted/pub.dev/google_api_headers-4.2.6",
       "packageUri": "lib/",
       "languageVersion": "3.5"
     },
@@ -525,7 +525,7 @@
     },
     {
       "name": "google_maps_flutter",
-      "rootUri": "file:///Users/appstirr/.pub-cache/hosted/pub.dev/google_maps_flutter-2.9.0",
+      "rootUri": "file:///Users/appstirr/.pub-cache/hosted/pub.dev/google_maps_flutter-2.10.0",
       "packageUri": "lib/",
       "languageVersion": "3.4"
     },
@@ -561,9 +561,9 @@
     },
     {
       "name": "google_sign_in",
-      "rootUri": "file:///Users/appstirr/.pub-cache/hosted/pub.dev/google_sign_in-6.2.1",
+      "rootUri": "file:///Users/appstirr/.pub-cache/hosted/pub.dev/google_sign_in-6.2.2",
       "packageUri": "lib/",
-      "languageVersion": "3.2"
+      "languageVersion": "3.3"
     },
     {
       "name": "google_sign_in_android",
@@ -795,7 +795,7 @@
     },
     {
       "name": "package_info_plus",
-      "rootUri": "file:///Users/appstirr/.pub-cache/hosted/pub.dev/package_info_plus-8.1.0",
+      "rootUri": "file:///Users/appstirr/.pub-cache/hosted/pub.dev/package_info_plus-8.1.1",
       "packageUri": "lib/",
       "languageVersion": "3.3"
     },
@@ -915,7 +915,7 @@
     },
     {
       "name": "shared_preferences",
-      "rootUri": "file:///Users/appstirr/.pub-cache/hosted/pub.dev/shared_preferences-2.3.2",
+      "rootUri": "file:///Users/appstirr/.pub-cache/hosted/pub.dev/shared_preferences-2.3.3",
       "packageUri": "lib/",
       "languageVersion": "3.4"
     },
@@ -1035,19 +1035,19 @@
     },
     {
       "name": "stripe_android",
-      "rootUri": "file:///Users/appstirr/.pub-cache/hosted/pub.dev/stripe_android-11.2.1",
+      "rootUri": "file:///Users/appstirr/.pub-cache/hosted/pub.dev/stripe_android-11.3.0",
       "packageUri": "lib/",
       "languageVersion": "3.0"
     },
     {
       "name": "stripe_ios",
-      "rootUri": "file:///Users/appstirr/.pub-cache/hosted/pub.dev/stripe_ios-11.2.0",
+      "rootUri": "file:///Users/appstirr/.pub-cache/hosted/pub.dev/stripe_ios-11.3.0",
       "packageUri": "lib/",
       "languageVersion": "3.0"
     },
     {
       "name": "stripe_platform_interface",
-      "rootUri": "file:///Users/appstirr/.pub-cache/hosted/pub.dev/stripe_platform_interface-11.2.0",
+      "rootUri": "file:///Users/appstirr/.pub-cache/hosted/pub.dev/stripe_platform_interface-11.3.0",
       "packageUri": "lib/",
       "languageVersion": "3.0"
     },
@@ -1143,9 +1143,9 @@
     },
     {
       "name": "vector_graphics",
-      "rootUri": "file:///Users/appstirr/.pub-cache/hosted/pub.dev/vector_graphics-1.1.11+1",
+      "rootUri": "file:///Users/appstirr/.pub-cache/hosted/pub.dev/vector_graphics-1.1.14",
       "packageUri": "lib/",
-      "languageVersion": "2.17"
+      "languageVersion": "3.4"
     },
     {
       "name": "vector_graphics_codec",
@@ -1155,9 +1155,9 @@
     },
     {
       "name": "vector_graphics_compiler",
-      "rootUri": "file:///Users/appstirr/.pub-cache/hosted/pub.dev/vector_graphics_compiler-1.1.11+1",
+      "rootUri": "file:///Users/appstirr/.pub-cache/hosted/pub.dev/vector_graphics_compiler-1.1.15",
       "packageUri": "lib/",
-      "languageVersion": "2.19"
+      "languageVersion": "3.4"
     },
     {
       "name": "vector_math",
@@ -1226,7 +1226,7 @@
       "languageVersion": "2.18"
     }
   ],
-  "generated": "2024-11-13T16:29:15.762988Z",
+  "generated": "2024-11-20T22:24:00.123364Z",
   "generator": "pub",
   "generatorVersion": "3.5.4",
   "flutterRoot": "file:///Users/appstirr/Developer/flutter",
