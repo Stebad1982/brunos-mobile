@@ -1,4 +1,5 @@
 import 'package:brunos_kitchen/utils/custom_font_style.dart';
+import 'package:brunos_kitchen/widgets/dialogs/checkout_confirmation_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -16,9 +17,17 @@ import '../view_models/plans_view_model.dart';
 import '../widgets/app_bar_with_back_widget.dart';
 import '../widgets/carousels/product_carousel_widget.dart';
 import '../widgets/dialogs/discription_dialog.dart';
+import '../widgets/dialogs/monthly_suggestion_dialog.dart';
 
-class ProductDetailScreen extends StatelessWidget {
+class ProductDetailScreen extends StatefulWidget {
   const ProductDetailScreen({super.key});
+
+  @override
+  State<ProductDetailScreen> createState() => _ProductDetailScreenState();
+}
+
+class _ProductDetailScreenState extends State<ProductDetailScreen> {
+  bool addStandardRecipe = true;
 
   @override
   Widget build(BuildContext context) {
@@ -340,62 +349,34 @@ class ProductDetailScreen extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(horizontal: 20).w,
                     child: InkWell(
                       onTap: () {
-                        if (context.read<CartViewModel>().getSelectedIndex ==
-                            null) {
-                          if (context
-                              .read<CartViewModel>()
-                              .checkProductValidation(
-                                  recipe: plansViewModel.getSelectedRecipe)) {
-                            final List<RecipeModel> recipeList = [];
-                            plansViewModel.setProductModel();
-                            recipeList.add(plansViewModel.getSelectedRecipe);
-                            final num planTotalPrice =
-                                calculatePlanTotal(listOfItems: recipeList);
-                            final int planTotalWeight = calculateProductWeightTotal(listOfItems: recipeList);
-                            context.read<CartViewModel>().addToCartList(
-                                  CartModel(
-                                      recipes: recipeList,
-                                      pet: null,
-/*
-                                  deliveryDate: '03 Oct 2023',
-*/
-                                      planType: plansViewModel.getPlanType,
-                                      planTotal: planTotalPrice,
-                                      pouchesDetail: [],
-                                      totalWeight: [planTotalWeight],
-                                      planDiscountedPrice: planTotalPrice,
-                                      planDiscountPer: 0),
-                                );
+                        if(plansViewModel
+                            .getSelectedRecipe.category ==
+                            ProductCategories.standardRecipes.text && addStandardRecipe){
+                          setState(() {
+                            addStandardRecipe = false;
+                            monthlySuggestionDialog(context: context);
+                          });
+                        }
+                        else{
 
-                            Navigator.pushNamedAndRemoveUntil(context,
-                                bottomNavigationRoute, (route) => false);
-
-                           /* EasyLoading.showToast(
-                                '${plansViewModel.getPlanType} Successfully Added To\nShopping Bag',
-                                toastPosition: EasyLoadingToastPosition.center);*/
-                          } else {
-                            Navigator.pushNamed(context, cartRoute);
-                            descriptionDialog(
-                                context: context,
-                                description:
-                                    '${plansViewModel.getSelectedRecipe.name} is already added to shopping bag',
-                                height: 180.h,
-                                title: 'Alert');
-                          }
-                        } else {
-                          final List<RecipeModel> recipeList = [];
-                          plansViewModel.setProductModel();
-                          recipeList.add(plansViewModel.getSelectedRecipe);
-                          final num planTotalPrice =
+                          if (context.read<CartViewModel>().getSelectedIndex ==
+                              null) {
+                            if (context
+                                .read<CartViewModel>()
+                                .checkProductValidation(
+                                recipe: plansViewModel.getSelectedRecipe)) {
+                              final List<RecipeModel> recipeList = [];
+                              plansViewModel.setProductModel();
+                              recipeList.add(plansViewModel.getSelectedRecipe);
+                              final num planTotalPrice =
                               calculatePlanTotal(listOfItems: recipeList);
-                          final int planTotalWeight = calculateProductWeightTotal(listOfItems: recipeList);
-
-                          context.read<CartViewModel>().addToCartList(
+                              final int planTotalWeight = calculateProductWeightTotal(listOfItems: recipeList);
+                              context.read<CartViewModel>().addToCartList(
                                 CartModel(
                                     recipes: recipeList,
                                     pet: null,
 /*
-                                deliveryDate: '03 Oct 2023',
+                                  deliveryDate: '03 Oct 2023',
 */
                                     planType: plansViewModel.getPlanType,
                                     planTotal: planTotalPrice,
@@ -404,9 +385,49 @@ class ProductDetailScreen extends StatelessWidget {
                                     planDiscountedPrice: planTotalPrice,
                                     planDiscountPer: 0),
                               );
-                          Navigator.pushNamedAndRemoveUntil(context, cartRoute,
-                              (Route route) => route.isFirst);
+
+                              Navigator.pushNamedAndRemoveUntil(context,
+                                  bottomNavigationRoute, (route) => false);
+
+                              /* EasyLoading.showToast(
+                                '${plansViewModel.getPlanType} Successfully Added To\nShopping Bag',
+                                toastPosition: EasyLoadingToastPosition.center);*/
+                            } else {
+                              Navigator.pushNamed(context, cartRoute);
+                              descriptionDialog(
+                                  context: context,
+                                  description:
+                                  '${plansViewModel.getSelectedRecipe.name} is already added to shopping bag',
+                                  height: 180.h,
+                                  title: 'Alert');
+                            }
+                          } else {
+                            final List<RecipeModel> recipeList = [];
+                            plansViewModel.setProductModel();
+                            recipeList.add(plansViewModel.getSelectedRecipe);
+                            final num planTotalPrice =
+                            calculatePlanTotal(listOfItems: recipeList);
+                            final int planTotalWeight = calculateProductWeightTotal(listOfItems: recipeList);
+                            context.read<CartViewModel>().addToCartList(
+                              CartModel(
+                                  recipes: recipeList,
+                                  pet: null,
+/*
+                                deliveryDate: '03 Oct 2023',
+*/
+                                  planType: plansViewModel.getPlanType,
+                                  planTotal: planTotalPrice,
+                                  pouchesDetail: [],
+                                  totalWeight: [planTotalWeight],
+                                  planDiscountedPrice: planTotalPrice,
+                                  planDiscountPer: 0),
+                            );
+                            Navigator.pushNamedAndRemoveUntil(context, cartRoute,
+                                    (Route route) => route.isFirst);
+                          }
                         }
+
+
                       },
                       child: Container(
                           height: 90.h,

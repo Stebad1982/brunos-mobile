@@ -76,13 +76,13 @@ class _HelpScreenState extends State<HelpScreen> {
                 SizedBox(
                   height: 20.h,
                 ),
-                lightBlack14w400Centre(
+              /*  lightBlack14w400Centre(
                     left: true,
                     data:
                         'We’d love to hear from you – please use the form to send us your message or ideas. Or simply pop in for a cup of fresh tea and a cookie:'),
                 SizedBox(
                   height: 20.h,
-                ),
+                ),*/
                 TextField(
                   controller: faqsBlogsNewsViewModel.getComment,
                   onChanged: (text) {},

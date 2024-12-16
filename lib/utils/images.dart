@@ -1,6 +1,6 @@
 const intro1 = "assets/images/intro-1.png";
 const intro2 = "assets/images/intro-2.png";
-const intro3 = "assets/images/intro-3.png";
+const intro3 = "assets/images/happy-dog.jpeg";
 const weightTest = 'assets/images/weight_test.jpeg';
 const introIndicator1 = "assets/images/intro-indicator1.svg";
 const introIndicator2 = "assets/images/intro-indicator2.svg";
@@ -55,6 +55,7 @@ const userIcon = "assets/images/icon-user.svg";
 const phoneIcon = "assets/images/Icon-phone.svg";
 const facebookIcon = "assets/images/facebook.svg";
 const googleIcon = "assets/images/google.svg";
+const happyDog = "assets/images/happy-dog.jpeg";
 const appleIcon = "assets/images/apple.svg";
 const faqIcon = "assets/images/faq-icon.svg";
 const helpIcon = "assets/images/help-icon.svg";

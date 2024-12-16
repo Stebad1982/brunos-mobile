@@ -326,46 +326,55 @@ class MonthlyPlanScreen extends StatelessWidget {
                     .bottom == 0,
                 child: Align(
                   alignment: Alignment.bottomCenter,
-                  child: customButton(
-                      text: 'Continue',
-                      onPressed: () {
-                        if (plansViewModel.getMonthlyEmptyTile1 == null &&
-                            plansViewModel.getMonthlyEmptyTile2 == null &&
-                            plansViewModel.getMonthlyEmptyTile3 == null) {
-                          descriptionDialog(
-                              context: context,
-                              description: 'Please add at least One Meal',
-                              height: 150.h,
-                              title: 'Note');
-                        } else {
-                          if (((plansViewModel.getMonthlyEmptyTile1 != null
-                                      ? plansViewModel
-                                          .getMonthlyEmptyTile1!.totalDays!
-                                      : 0) +
-                                  (plansViewModel.getMonthlyEmptyTile2 != null
-                                      ? plansViewModel
-                                          .getMonthlyEmptyTile2!.totalDays!
-                                      : 0) +
-                                  (plansViewModel.getMonthlyEmptyTile3 != null
-                                      ? plansViewModel
-                                          .getMonthlyEmptyTile3!.totalDays!
-                                      : 0)) !=
-                              30) {
-                            descriptionDialog(
-                                context: context,
-                                description:
-                                    'Total number of days must equal to 30',
-                                height: 150.h,
-                                title: 'Alert');
-                          }
-                          else
-                          {
-                            context.read<CartViewModel>().setViewCartItemDetail(false);
-                            Navigator.pushNamed(context, feedingPlanRoute);
-                          }
-                        }
-                      },
-                      colored: true),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      black18w500(data: 'Please make sure your pup\'s profile is up to date in order to get the right nutritional amount for an ultimate feeding experience!' ),
+                      Padding(
+                        padding:  EdgeInsets.only(top:10.w),
+                        child: customButton(
+                            text: 'Continue',
+                            onPressed: () {
+                              if (plansViewModel.getMonthlyEmptyTile1 == null &&
+                                  plansViewModel.getMonthlyEmptyTile2 == null &&
+                                  plansViewModel.getMonthlyEmptyTile3 == null) {
+                                descriptionDialog(
+                                    context: context,
+                                    description: 'Please add at least One Meal',
+                                    height: 150.h,
+                                    title: 'Note');
+                              } else {
+                                if (((plansViewModel.getMonthlyEmptyTile1 != null
+                                            ? plansViewModel
+                                                .getMonthlyEmptyTile1!.totalDays!
+                                            : 0) +
+                                        (plansViewModel.getMonthlyEmptyTile2 != null
+                                            ? plansViewModel
+                                                .getMonthlyEmptyTile2!.totalDays!
+                                            : 0) +
+                                        (plansViewModel.getMonthlyEmptyTile3 != null
+                                            ? plansViewModel
+                                                .getMonthlyEmptyTile3!.totalDays!
+                                            : 0)) !=
+                                    30) {
+                                  descriptionDialog(
+                                      context: context,
+                                      description:
+                                          'Total number of days must equal to 30',
+                                      height: 150.h,
+                                      title: 'Alert');
+                                }
+                                else
+                                {
+                                  context.read<CartViewModel>().setViewCartItemDetail(false);
+                                  Navigator.pushNamed(context, feedingPlanRoute);
+                                }
+                              }
+                            },
+                            colored: true),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ],

@@ -126,7 +126,7 @@ class HomeScreen extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(horizontal: 20).w,
                       child: black24w500Centre(
                           data:
-                              'Trademarked Nutrient Blends, Exclusively Crafted For Your Pup\'s Special Needs.'),
+                              'Trademarked Nutrient Blends, Exclusively Crafted For Your Pup\'s Special Needs'),
                     ),
                     SizedBox(
                       height: 20.h,
@@ -135,7 +135,7 @@ class HomeScreen extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(horizontal: 20).w,
                       child: lightBlack14w400Centre(
                           data:
-                              'Sharing your love for pets and their wellbeing, we at Bruno\'s Kitchen have crafted a service that brings balanced, freshly-prepared food to your doorstep. Our simple yet nutritious recipes are scientifically formulated and made with utmost love, because we believe your furry friends deserve the very best.'),
+                              'Bruno\'s Kitchen brings balanced, freshly-prepared food to your doorstep. Our simple yet nutritious recipes are scientifically formulated and made with utmost love, because we believe your furry friends deserve the very best.'),
                     ),
                     SizedBox(
                       height: 20.h,
@@ -168,14 +168,14 @@ class HomeScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(
+            /*  SizedBox(
                 height: 10.h,
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20.0).w,
                 child: lightBlack14w400Centre(
                     data: 'Check Out Our Delicious Doggie Dishes '),
-              ),
+              ),*/
               SizedBox(height: 20.h),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20.0).w,

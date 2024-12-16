@@ -15,7 +15,7 @@ import '../utils/images.dart';
 import '../view_models/auth_view_model.dart';
 import '../widgets/app_bar_with_back_widget.dart';
 import '../widgets/dialogs/discription_dialog.dart';
-import '../widgets/dialogs/image_dialog.dart';
+import '../widgets/dialogs/scaling_image_dialog.dart';
 
 class PuppyCreationAdditionalScreen extends StatefulWidget {
   const PuppyCreationAdditionalScreen({super.key});
@@ -529,7 +529,7 @@ class _PuppyCreationAdditionalScreenState
                           ),
                           InkWell(
                             onTap: () {
-                              imageDialog(
+                              scalingImageDialog(
                                 context: context,
                                 height: 600.h,
                                 title: 'Check Weight',

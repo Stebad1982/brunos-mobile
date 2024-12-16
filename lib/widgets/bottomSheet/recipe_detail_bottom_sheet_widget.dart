@@ -42,6 +42,28 @@ Future recipeDetailBottomSheetWidget({required RecipeModel recipeDetail}) {
                         SizedBox(
                           height: 5.h,
                         ),
+                        context
+                            .watch<AuthViewModel>()
+                            .getAuthResponse
+                            .data!
+                            .pet !=
+                            null
+                            ?Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            SizedBox(
+                              height: 5.h,
+                            ),
+                            black14w500(data: 'Recommended daily feeding plan for ${context.watch<AuthViewModel>().getAuthResponse.data!.pet!.name}'),
+                            SizedBox(
+                              height: 2.h,
+                            ),
+                            black14w500(
+                                data:
+                                '${roundTo10(value: calculateFeedingPlan(recipeModel: recipeDetail, puppyModel: context.watch<AuthViewModel>().getAuthResponse.data!.pet!).toInt())} grams ${context.watch<AuthViewModel>().getAuthResponse.data!.pet!.feedingRoutine!} times per day')
+
+                          ],
+                        ): const SizedBox(),
                       /*  black12w500Centre(
                             data:
                             'Starting From ${recipeDetail.pricePerKG} AED/KG')*/
@@ -84,6 +106,7 @@ Future recipeDetailBottomSheetWidget({required RecipeModel recipeDetail}) {
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
                       const TabBar(
+                        tabAlignment: TabAlignment.start,
                         isScrollable: true,
                         indicatorColor: CustomColors.orangeColor,
                         dividerColor: CustomColors.greyColor,
@@ -642,28 +665,6 @@ Future recipeDetailBottomSheetWidget({required RecipeModel recipeDetail}) {
                                         ],
                                       ),
                                     ),*/
-                                    context
-                                        .watch<AuthViewModel>()
-                                        .getAuthResponse
-                                        .data!
-                                        .pet !=
-                                        null
-                                        ?Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: [
-                                        SizedBox(
-                                          height: 20.h,
-                                        ),
-                                        black18w500(data: 'Recommended daily feeding plan for ${context.watch<AuthViewModel>().getAuthResponse.data!.pet!.name}'),
-                                        SizedBox(
-                                          height: 5.h,
-                                        ),
-                                        black14w500(
-                                            data:
-                                            '${roundTo10(value: calculateFeedingPlan(recipeModel: recipeDetail, puppyModel: context.watch<AuthViewModel>().getAuthResponse.data!.pet!).toInt())} grams ${context.watch<AuthViewModel>().getAuthResponse.data!.pet!.feedingRoutine!} times per day')
-
-                                      ],
-                                    ): const SizedBox(),
                                     /*Container(
                                       width: double.infinity,
                                       decoration: const ShapeDecoration(

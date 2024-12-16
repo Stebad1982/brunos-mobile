@@ -6,7 +6,7 @@ import '../../utils/custom_buttons.dart';
 import '../../utils/custom_colors.dart';
 import '../../utils/custom_font_style.dart';
 
-void imageDialog(
+void scalingImageDialog(
     {required BuildContext context,
       required double height, required title}) {
   showGeneralDialog(
