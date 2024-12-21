@@ -78,47 +78,51 @@ class ProfileScreen extends StatelessWidget {
                                 : '')
                       ],
                     ),
-                     Column(
-                       crossAxisAlignment: CrossAxisAlignment.end,
-                       children: [
-                         Visibility(
-                           visible: context
-                               .watch<AuthViewModel>()
-                               .getAuthResponse
-                               .data!
-                               .availablePoints != 0,
-                           child: Padding(
-                             padding:  EdgeInsets.only(bottom: 10.h),
-                             child: Row(
-                               crossAxisAlignment: CrossAxisAlignment.start,
-                               children: [
-                                 SvgPicture.asset(
-                                   couponCoin,
-                                   height: 20.h,
-                                 ),
-                                 SizedBox(width: 4.w,),
-                                 Column(
-                                   crossAxisAlignment: CrossAxisAlignment.start,
-                                   children: [
-                                     lightBlack14w400Centre(data:'Points'),
-                                     lightBlack14w400Centre(data: context
-                                         .watch<AuthViewModel>()
-                                         .getAuthResponse
-                                         .data!
-                                         .availablePoints.toString()),
-                                   ],
-                                 )
-                               ],
-                             ),
-                           ),
-                         ),
-                         Icon(
-                           Icons.arrow_forward_ios_rounded,
-                           size: 15,
-                           color: CustomColors.greyColor,
-                         ),
-                       ],
-                     )
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        Visibility(
+                          visible: context
+                                  .watch<AuthViewModel>()
+                                  .getAuthResponse
+                                  .data!
+                                  .availablePoints !=
+                              0,
+                          child: Padding(
+                            padding: EdgeInsets.only(bottom: 10.h),
+                            child: Row(
+                              children: [
+                                SvgPicture.asset(
+                                  couponCoin,
+                                  height: 30.h,
+                                ),
+                                SizedBox(
+                                  width: 5.w,
+                                ),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    lightBlack14w400Centre(
+                                        data: context
+                                            .watch<AuthViewModel>()
+                                            .getAuthResponse
+                                            .data!
+                                            .availablePoints
+                                            .toString()),
+                                    lightBlack14w400Centre(data: 'Points'),
+                                  ],
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                        Icon(
+                          Icons.arrow_forward_ios_rounded,
+                          size: 15,
+                          color: CustomColors.greyColor,
+                        ),
+                      ],
+                    )
                   ],
                 ),
               ),

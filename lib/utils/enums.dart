@@ -13,7 +13,7 @@ enum Screens {
 
 enum Contact{
   email("hello@brunos.kitchen"),
-  phone("+971 50 237 0920"),
+  phone("+971 58 575 9205"),
   webUrl('https://brunos.kitchen/'),
   location('https://g.co/kgs/cBA99Wd'),
   termAndConditionUrl('https://admin.brunos.kitchen/terms&conditions'),

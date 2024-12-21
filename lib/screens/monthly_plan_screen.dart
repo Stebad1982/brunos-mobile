@@ -329,9 +329,9 @@ class MonthlyPlanScreen extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      black18w500(data: 'Please make sure your pup\'s profile is up to date in order to get the right nutritional amount for an ultimate feeding experience!' ),
+                      black14w400(data: 'Please make sure your pup\'s profile is up to date in order to get the right nutritional amount for an ultimate feeding experience!' ),
                       Padding(
-                        padding:  EdgeInsets.only(top:10.w),
+                        padding:  EdgeInsets.only(top:20.w),
                         child: customButton(
                             text: 'Continue',
                             onPressed: () {
