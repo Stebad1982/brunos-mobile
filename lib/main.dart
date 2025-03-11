@@ -44,11 +44,9 @@ void configLoading() {
 const AndroidNotificationChannel channel = AndroidNotificationChannel(
   'high_importance_channel', // id
   'High Importance Notifications', // title
-  *//*'This channel is used for important notifications.',*//* // description
+  */ /*'This channel is used for important notifications.',*/ /* // description
   importance: Importance.max,
 );*/
-
-
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 final RouteObserver<ModalRoute> routeObserver = RouteObserver<ModalRoute>();
@@ -57,11 +55,12 @@ final double screenHeight =
 final double screenHeightWithAppBar =
     MediaQuery.of(navigatorKey.currentContext!).size.height * 0.8;
 
-class MyHttpOverrides extends HttpOverrides{
+class MyHttpOverrides extends HttpOverrides {
   @override
-  HttpClient createHttpClient(SecurityContext? context){
+  HttpClient createHttpClient(SecurityContext? context) {
     return super.createHttpClient(context)
-      ..badCertificateCallback = (X509Certificate cert, String host, int port)=> true;
+      ..badCertificateCallback =
+          (X509Certificate cert, String host, int port) => true;
   }
 }
 
@@ -78,8 +77,7 @@ Future<void> main() async {
         Brightness.dark, // color of navigation controls
   ));
   Stripe.publishableKey =
-      "pk_test_51O6BroGm97cexwqwxfjjreBlfINzslaj3IIVEvHsyuVEi96r3PHjQFFJxFdN7Bw2Tcbj07SG9pX3BHV9w7mELpAg00C53LHoNJ";
-
+      "pk_live_51O6BroGm97cexwqwVYot0mnw9MgdK1qBOCTJ35dxF6582pfptbKcHGsnZbfDR7CbtlR6YxayCNiuArS3DWOvNGH300JR8PSnHM";
   configLoading();
   runApp(MultiProvider(
     providers: [
@@ -116,8 +114,6 @@ Future<void> main() async {
 }
 
 Future backgroundHandler(RemoteMessage msg) async {}
-
-
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

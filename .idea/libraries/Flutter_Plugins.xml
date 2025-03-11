@@ -23,7 +23,6 @@
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/google_sign_in_android-6.1.30" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/webview_flutter-4.10.0" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/location-7.0.1" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/stripe_ios-11.3.0" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/flutter_secure_storage-9.2.2" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/firebase_storage_web-3.10.5" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/geocoding_android-3.3.1" />
@@ -40,11 +39,9 @@
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/geocoding_ios-3.0.1" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/package_info_plus-8.1.1" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/url_launcher_macos-3.2.1" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/flutter_stripe-11.3.0" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/firebase_auth_web-5.13.4" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/flutter_credit_card-4.0.1" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/shared_preferences_windows-2.4.1" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/stripe_android-11.3.0" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/image_picker_for_web-3.0.5" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/facebook_auth_desktop-2.1.1" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/google_sign_in_ios-5.7.7" />
@@ -78,6 +75,9 @@
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/file_selector_windows-0.9.3+2" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/geolocator_web-4.1.1" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/firebase_messaging_web-3.9.4" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/stripe_ios-11.3.0" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/flutter_stripe-11.3.0" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/stripe_android-11.3.0" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

@@ -1,10 +1,5 @@
-import 'package:brunos_kitchen/utils/images.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../utils/custom_buttons.dart';
-import '../../utils/custom_colors.dart';
-import '../../utils/custom_font_style.dart';
 
 void productFullImageDialog(
     {required BuildContext context, required String image }) {

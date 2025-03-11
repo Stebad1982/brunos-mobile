@@ -1,9 +1,7 @@
 import 'package:brunos_kitchen/models/recipe_model.dart';
-import 'package:brunos_kitchen/utils/images.dart';
 import 'package:brunos_kitchen/widgets/bottomSheet/recipe_detail_bottom_sheet_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 
 import '../../utils/custom_colors.dart';
 import '../../utils/custom_font_style.dart';

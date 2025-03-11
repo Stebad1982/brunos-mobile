@@ -177,7 +177,6 @@ class AuthViewModel with ChangeNotifier {
 
   Future<void> setAddress(AddressModel value) async {
     _authResponse.data!.location = value;
-    if (value != null) {}
     setDeliveryCity();
     // notifyListeners();
   }

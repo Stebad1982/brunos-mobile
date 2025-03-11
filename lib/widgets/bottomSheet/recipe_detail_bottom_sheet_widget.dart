@@ -331,27 +331,27 @@ Future recipeDetailBottomSheetWidget({required RecipeModel recipeDetail}) {
                                       height: 20.h,
                                     ),
                                     black18w500(data: 'GRAMS TO FEED PER DAY'),
-                                    SizedBox(
-                                      height: 10.h,
-                                    ),
                                     Visibility(
                                         visible: recipeDetail.tableImage!.isNotEmpty,
-                                        child: Image.network(recipeDetail.tableImage![0],
-                                          loadingBuilder: (BuildContext context, Widget child,
-                                              ImageChunkEvent? loadingProgress) {
-                                            if (loadingProgress == null) return child;
-                                            return SizedBox(
-                                              height: 108.h,
-                                              child: Center(
-                                                child: CircularProgressIndicator(
-                                                  value: loadingProgress.expectedTotalBytes != null
-                                                      ? loadingProgress.cumulativeBytesLoaded /
-                                                      loadingProgress.expectedTotalBytes!
-                                                      : null,
+                                        child: Padding(
+                                          padding: const EdgeInsets.symmetric(vertical: 10).h,
+                                          child: Image.network(recipeDetail.tableImage![0],
+                                            loadingBuilder: (BuildContext context, Widget child,
+                                                ImageChunkEvent? loadingProgress) {
+                                              if (loadingProgress == null) return child;
+                                              return SizedBox(
+                                                height: 108.h,
+                                                child: Center(
+                                                  child: CircularProgressIndicator(
+                                                    value: loadingProgress.expectedTotalBytes != null
+                                                        ? loadingProgress.cumulativeBytesLoaded /
+                                                        loadingProgress.expectedTotalBytes!
+                                                        : null,
+                                                  ),
                                                 ),
-                                              ),
-                                            );
-                                          },)),
+                                              );
+                                            },),
+                                        )),
                                     /*SingleChildScrollView(
                                       scrollDirection: Axis.horizontal,
                                       child: Table(

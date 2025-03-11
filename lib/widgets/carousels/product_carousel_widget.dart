@@ -5,8 +5,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
 import '../../utils/custom_colors.dart';
-import '../dialogs/product_full_image_dialog.dart';
-import '../dialogs/scaling_image_dialog.dart';
 
 
 
