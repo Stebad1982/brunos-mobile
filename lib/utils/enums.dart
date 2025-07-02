@@ -4,6 +4,7 @@ enum Screens {
   forgetPassword("ForgetPassword"),
   registerUser("RegisterUser"),
   login("Login"),
+  cart("cart")
   ;
 
   const Screens(this.text);

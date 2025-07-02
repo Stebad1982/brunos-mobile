@@ -8,6 +8,8 @@ import 'package:provider/provider.dart';
 import '../main.dart';
 import '../utils/custom_buttons.dart';
 import '../utils/custom_colors.dart';
+import '../utils/enums.dart';
+import '../view_models/auth_view_model.dart';
 import '../widgets/app_bar_with_back_widget.dart';
 import '../widgets/listChips/cart_vertical_list_chip_widget.dart';
 
@@ -44,7 +46,8 @@ class _CartScreenState extends State<CartScreen> with RouteAware {
                     shrinkWrap: true,
                     itemCount: cartViewModel.getCartList.length,
                     padding: const EdgeInsets.only(
-                        left: 20, right: 20, top: 20, bottom: 120).w,
+                            left: 20, right: 20, top: 20, bottom: 120)
+                        .w,
                     itemBuilder: (BuildContext context, int index) {
                       return cartVerticalListChipWidget(
                           cartDetail: cartViewModel.getCartList[index],
@@ -83,8 +86,23 @@ class _CartScreenState extends State<CartScreen> with RouteAware {
                             customButton(
                                 text: 'Next',
                                 onPressed: () {
-                                  Navigator.pushNamed(
-                                      context, checkOutRoute);
+                                  if (!context
+                                      .read<AuthViewModel>()
+                                      .getAuthResponse
+                                      .data!
+                                      .isGuest!) {
+                                    Navigator.pushNamed(context, checkOutRoute);
+                                  }
+                                  else {
+                                    context.read<AuthViewModel>()
+                                        .clearFieldsData();
+                                    context
+                                        .read<AuthViewModel>()
+                                        .setRegisterRouteFrom(
+                                        Screens.cart.text);
+                                    Navigator.pushNamed(
+                                        context, registerUserRoute);
+                                  }
                                 },
                                 colored: true),
                           ],

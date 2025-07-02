@@ -195,23 +195,37 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                                                     .location!
                                                     .address!
                                                 : 'Click to add Address')),
-                                    SizedBox(
+                                    context
+                                        .read<AuthViewModel>()
+                                        .getAuthResponse
+                                        .data!
+                                        .location !=
+                                        null
+                                        ?SizedBox(
                                         width: 240.w,
                                         child: lightBlack14w400Centre(
                                             left: true,
                                             data: context
-                                                        .read<AuthViewModel>()
-                                                        .getAuthResponse
-                                                        .data!
-                                                        .location !=
-                                                    null
-                                                ? context
                                                     .read<AuthViewModel>()
                                                     .getAuthResponse
                                                     .data!
                                                     .location!
                                                     .flatHouseNumber!
-                                                : ''))
+                                               )):SizedBox(),
+                                    context
+                                        .read<AuthViewModel>()
+                                        .getAuthResponse
+                                        .data!
+                                        .location !=
+                                        null
+                                        ? orange18w500(
+                                        data: context
+                                            .read<AuthViewModel>()
+                                            .getAuthResponse
+                                            .data!
+                                            .location!
+                                            .label!):
+                                        SizedBox()
                                   ],
                                 ),
                                 InkWell(
