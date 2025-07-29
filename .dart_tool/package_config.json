@@ -3,7 +3,7 @@
   "packages": [
     {
       "name": "_flutterfire_internals",
-      "rootUri": "file:///Users/appstirr/.pub-cache/hosted/pub.dev/_flutterfire_internals-1.3.46",
+      "rootUri": "file:///Users/appstirr/.pub-cache/hosted/pub.dev/_flutterfire_internals-1.3.59",
       "packageUri": "lib/",
       "languageVersion": "3.2"
     },
@@ -21,7 +21,7 @@
     },
     {
       "name": "async",
-      "rootUri": "file:///Users/appstirr/.pub-cache/hosted/pub.dev/async-2.12.0",
+      "rootUri": "file:///Users/appstirr/.pub-cache/hosted/pub.dev/async-2.13.0",
       "packageUri": "lib/",
       "languageVersion": "3.4"
     },
@@ -141,7 +141,7 @@
     },
     {
       "name": "fake_async",
-      "rootUri": "file:///Users/appstirr/.pub-cache/hosted/pub.dev/fake_async-1.3.2",
+      "rootUri": "file:///Users/appstirr/.pub-cache/hosted/pub.dev/fake_async-1.3.3",
       "packageUri": "lib/",
       "languageVersion": "3.3"
     },
@@ -183,73 +183,73 @@
     },
     {
       "name": "firebase_auth",
-      "rootUri": "file:///Users/appstirr/.pub-cache/hosted/pub.dev/firebase_auth-5.3.3",
+      "rootUri": "file:///Users/appstirr/.pub-cache/hosted/pub.dev/firebase_auth-5.7.0",
       "packageUri": "lib/",
       "languageVersion": "3.2"
     },
     {
       "name": "firebase_auth_platform_interface",
-      "rootUri": "file:///Users/appstirr/.pub-cache/hosted/pub.dev/firebase_auth_platform_interface-7.4.9",
+      "rootUri": "file:///Users/appstirr/.pub-cache/hosted/pub.dev/firebase_auth_platform_interface-7.7.3",
       "packageUri": "lib/",
       "languageVersion": "3.2"
     },
     {
       "name": "firebase_auth_web",
-      "rootUri": "file:///Users/appstirr/.pub-cache/hosted/pub.dev/firebase_auth_web-5.13.4",
+      "rootUri": "file:///Users/appstirr/.pub-cache/hosted/pub.dev/firebase_auth_web-5.15.3",
       "packageUri": "lib/",
       "languageVersion": "3.4"
     },
     {
       "name": "firebase_core",
-      "rootUri": "file:///Users/appstirr/.pub-cache/hosted/pub.dev/firebase_core-3.8.0",
+      "rootUri": "file:///Users/appstirr/.pub-cache/hosted/pub.dev/firebase_core-3.15.2",
       "packageUri": "lib/",
       "languageVersion": "3.2"
     },
     {
       "name": "firebase_core_platform_interface",
-      "rootUri": "file:///Users/appstirr/.pub-cache/hosted/pub.dev/firebase_core_platform_interface-5.3.0",
+      "rootUri": "file:///Users/appstirr/.pub-cache/hosted/pub.dev/firebase_core_platform_interface-6.0.0",
       "packageUri": "lib/",
       "languageVersion": "3.2"
     },
     {
       "name": "firebase_core_web",
-      "rootUri": "file:///Users/appstirr/.pub-cache/hosted/pub.dev/firebase_core_web-2.18.1",
+      "rootUri": "file:///Users/appstirr/.pub-cache/hosted/pub.dev/firebase_core_web-2.24.1",
       "packageUri": "lib/",
       "languageVersion": "3.4"
     },
     {
       "name": "firebase_messaging",
-      "rootUri": "file:///Users/appstirr/.pub-cache/hosted/pub.dev/firebase_messaging-15.1.5",
+      "rootUri": "file:///Users/appstirr/.pub-cache/hosted/pub.dev/firebase_messaging-15.2.10",
       "packageUri": "lib/",
       "languageVersion": "3.2"
     },
     {
       "name": "firebase_messaging_platform_interface",
-      "rootUri": "file:///Users/appstirr/.pub-cache/hosted/pub.dev/firebase_messaging_platform_interface-4.5.48",
+      "rootUri": "file:///Users/appstirr/.pub-cache/hosted/pub.dev/firebase_messaging_platform_interface-4.6.10",
       "packageUri": "lib/",
       "languageVersion": "3.2"
     },
     {
       "name": "firebase_messaging_web",
-      "rootUri": "file:///Users/appstirr/.pub-cache/hosted/pub.dev/firebase_messaging_web-3.9.4",
+      "rootUri": "file:///Users/appstirr/.pub-cache/hosted/pub.dev/firebase_messaging_web-3.10.10",
       "packageUri": "lib/",
       "languageVersion": "3.4"
     },
     {
       "name": "firebase_storage",
-      "rootUri": "file:///Users/appstirr/.pub-cache/hosted/pub.dev/firebase_storage-12.3.6",
+      "rootUri": "file:///Users/appstirr/.pub-cache/hosted/pub.dev/firebase_storage-12.4.10",
       "packageUri": "lib/",
       "languageVersion": "3.2"
     },
     {
       "name": "firebase_storage_platform_interface",
-      "rootUri": "file:///Users/appstirr/.pub-cache/hosted/pub.dev/firebase_storage_platform_interface-5.1.33",
+      "rootUri": "file:///Users/appstirr/.pub-cache/hosted/pub.dev/firebase_storage_platform_interface-5.2.10",
       "packageUri": "lib/",
       "languageVersion": "3.2"
     },
     {
       "name": "firebase_storage_web",
-      "rootUri": "file:///Users/appstirr/.pub-cache/hosted/pub.dev/firebase_storage_web-3.10.5",
+      "rootUri": "file:///Users/appstirr/.pub-cache/hosted/pub.dev/firebase_storage_web-3.10.17",
       "packageUri": "lib/",
       "languageVersion": "3.4"
     },
@@ -507,9 +507,9 @@
     },
     {
       "name": "google_api_headers",
-      "rootUri": "file:///Users/appstirr/.pub-cache/hosted/pub.dev/google_api_headers-4.2.6",
+      "rootUri": "file:///Users/appstirr/.pub-cache/hosted/pub.dev/google_api_headers-4.5.7",
       "packageUri": "lib/",
-      "languageVersion": "3.5"
+      "languageVersion": "3.8"
     },
     {
       "name": "google_identity_services_web",
@@ -675,9 +675,9 @@
     },
     {
       "name": "intl",
-      "rootUri": "file:///Users/appstirr/.pub-cache/hosted/pub.dev/intl-0.19.0",
+      "rootUri": "file:///Users/appstirr/.pub-cache/hosted/pub.dev/intl-0.20.2",
       "packageUri": "lib/",
-      "languageVersion": "3.0"
+      "languageVersion": "3.3"
     },
     {
       "name": "intro_slider",
@@ -705,7 +705,7 @@
     },
     {
       "name": "leak_tracker",
-      "rootUri": "file:///Users/appstirr/.pub-cache/hosted/pub.dev/leak_tracker-10.0.8",
+      "rootUri": "file:///Users/appstirr/.pub-cache/hosted/pub.dev/leak_tracker-10.0.9",
       "packageUri": "lib/",
       "languageVersion": "3.2"
     },
@@ -795,13 +795,13 @@
     },
     {
       "name": "package_info_plus",
-      "rootUri": "file:///Users/appstirr/.pub-cache/hosted/pub.dev/package_info_plus-8.1.1",
+      "rootUri": "file:///Users/appstirr/.pub-cache/hosted/pub.dev/package_info_plus-8.3.0",
       "packageUri": "lib/",
       "languageVersion": "3.3"
     },
     {
       "name": "package_info_plus_platform_interface",
-      "rootUri": "file:///Users/appstirr/.pub-cache/hosted/pub.dev/package_info_plus_platform_interface-3.0.1",
+      "rootUri": "file:///Users/appstirr/.pub-cache/hosted/pub.dev/package_info_plus_platform_interface-3.2.0",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
@@ -1059,7 +1059,7 @@
     },
     {
       "name": "table_calendar",
-      "rootUri": "file:///Users/appstirr/.pub-cache/hosted/pub.dev/table_calendar-3.1.2",
+      "rootUri": "file:///Users/appstirr/.pub-cache/hosted/pub.dev/table_calendar-3.2.0",
       "packageUri": "lib/",
       "languageVersion": "3.0"
     },
@@ -1167,7 +1167,7 @@
     },
     {
       "name": "vm_service",
-      "rootUri": "file:///Users/appstirr/.pub-cache/hosted/pub.dev/vm_service-14.3.1",
+      "rootUri": "file:///Users/appstirr/.pub-cache/hosted/pub.dev/vm_service-15.0.0",
       "packageUri": "lib/",
       "languageVersion": "3.3"
     },
@@ -1226,10 +1226,9 @@
       "languageVersion": "2.18"
     }
   ],
-  "generated": "2025-07-02T21:37:57.479387Z",
   "generator": "pub",
-  "generatorVersion": "3.7.2",
+  "generatorVersion": "3.8.1",
   "flutterRoot": "file:///Users/appstirr/Developer/flutter",
-  "flutterVersion": "3.29.3",
+  "flutterVersion": "3.32.5",
   "pubCache": "file:///Users/appstirr/.pub-cache"
 }
