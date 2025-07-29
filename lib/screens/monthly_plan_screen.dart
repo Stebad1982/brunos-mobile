@@ -54,7 +54,7 @@ class MonthlyPlanScreen extends StatelessWidget {
                     Center(
                         child: lightBlack14w400Centre(
                             data:
-                                'You can select up to 3 delicious dishes per month (min order is for 14 days)')),
+                                'You can select any two delicious dishes up to 30 days (min is 15 days)')),
                     SizedBox(
                       height: 30.h,
                     ),
@@ -243,7 +243,7 @@ class MonthlyPlanScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-                    SizedBox(
+                   /* SizedBox(
                       height: 20.h,
                     ),
                     InkWell(
@@ -304,13 +304,13 @@ class MonthlyPlanScreen extends StatelessWidget {
                                         )
                                       : Container(),
 
-                                  /*     Visibility(
+                                  *//*     Visibility(
                                     visible: plansViewModel.getScheduleEmptyTile1 == null,
                                     child: Padding(
                                       padding: const EdgeInsets.only(top: 8.0),
                                       child: black12w500Centre(data: 'tap to add meal'),
                                     ),
-                                  )*/
+                                  )*//*
                                 ],
                               ),
                               const Spacer(),
@@ -334,7 +334,7 @@ class MonthlyPlanScreen extends StatelessWidget {
                           ),
                         ),
                       ),
-                    ),
+                    ),*/
                   ],
                 ),
               ),
@@ -363,13 +363,13 @@ class MonthlyPlanScreen extends StatelessWidget {
                                     title: 'Note');
                               } else {
                                 if (calculateTotalDays(
-                                        viewModel: plansViewModel) < 14 ||
+                                        viewModel: plansViewModel) < 15 ||
                                     calculateTotalDays(
                                         viewModel: plansViewModel) > 30) {
                                   descriptionDialog(
                                       context: context,
                                       description:
-                                          'Total number of days must be min 14 and max 30',
+                                          'Total number of days must be min 15 and max 30',
                                       height: 150.h,
                                       title: 'Alert');
                                 } else {

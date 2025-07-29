@@ -136,7 +136,7 @@ class AddressDetailScreen extends StatelessWidget {
                           Transform.scale(
                             scale: 0.8,
                             child: CupertinoSwitch(
-                              activeColor: CustomColors.orangeColor,
+                              activeTrackColor: CustomColors.orangeColor,
                               value: addressViewModel.getEditAddress.isDefault!,
                               onChanged: (isDefault) {
                                 addressViewModel

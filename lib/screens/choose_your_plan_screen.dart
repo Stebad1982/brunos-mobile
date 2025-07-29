@@ -163,7 +163,7 @@ class ChooseYourPlanScreen extends StatelessWidget {
                           descriptionDialog(
                               context: context,
                               description:
-                                  'The BIG SAVER option, you can choose up to 3 different recipes for up to 30 days of food supply. Ensuring you have enough food for your pup to enjoy for the entire month at a special discounted price. We prepare and portion the food for you for a hassle-free feeding experience.',
+                                  'The BIG SAVER option, you can choose any two recipes for up to 30 days of food supply. Ensuring you have enough food for your pup to enjoy for the entire month at a special discounted price. We prepare and portion the food for you for a hassle-free feeding experience.',
                               height: 230.h,
                               title: 'Monthly Order');
                         },

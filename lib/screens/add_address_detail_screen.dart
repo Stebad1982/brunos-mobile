@@ -189,7 +189,7 @@ class _AddAddressDetailScreenState extends State<AddAddressDetailScreen> {
                           Transform.scale(
                             scale: 0.8,
                             child: CupertinoSwitch(
-                              activeColor: CustomColors.orangeColor,
+                              activeTrackColor: CustomColors.orangeColor,
                               value: addressViewModel.getIsDefault,
                               onChanged: (value) {
                                 addressViewModel.setIsDefault(value);

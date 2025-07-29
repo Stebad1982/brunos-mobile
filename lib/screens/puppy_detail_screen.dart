@@ -306,7 +306,7 @@ class PuppyDetailScreen extends StatelessWidget {
                               Transform.scale(
                                 scale: 0.8,
                                 child: CupertinoSwitch(
-                                  activeColor: CustomColors.orangeColor,
+                                  activeTrackColor: CustomColors.orangeColor,
                                   value:
                                       puppyViewModel.getPuppyDetail!.isDefault!,
                                   onChanged: (isDefault) {

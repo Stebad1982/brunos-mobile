@@ -326,7 +326,7 @@ class _AddCardScreenState extends State<AddCardScreen> {
                               Transform.scale(
                                 scale: 0.8,
                                 child: CupertinoSwitch(
-                                  activeColor: CustomColors.orangeColor,
+                                  activeTrackColor: CustomColors.orangeColor,
                                   value: cardViewModel.getIsDefaultCard,
                                   onChanged: (isDefault) {
                                     cardViewModel
