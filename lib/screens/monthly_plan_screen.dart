@@ -17,6 +17,19 @@ import '../widgets/dialogs/discription_dialog.dart';
 class MonthlyPlanScreen extends StatelessWidget {
   const MonthlyPlanScreen({super.key});
 
+  int calculateTotalDays({required PlansViewModel viewModel}) {
+    final numberOfDays = (viewModel.getMonthlyEmptyTile1 != null
+            ? viewModel.getMonthlyEmptyTile1!.totalDays!
+            : 0) +
+        (viewModel.getMonthlyEmptyTile2 != null
+            ? viewModel.getMonthlyEmptyTile2!.totalDays!
+            : 0) +
+        (viewModel.getMonthlyEmptyTile3 != null
+            ? viewModel.getMonthlyEmptyTile3!.totalDays!
+            : 0);
+    return numberOfDays;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Consumer<PlansViewModel>(builder: (context, plansViewModel, child) {
@@ -41,7 +54,7 @@ class MonthlyPlanScreen extends StatelessWidget {
                     Center(
                         child: lightBlack14w400Centre(
                             data:
-                                'You can select up to 3 delicious dishes per month')),
+                                'You can select up to 3 delicious dishes per month (min order is for 14 days)')),
                     SizedBox(
                       height: 30.h,
                     ),
@@ -63,7 +76,8 @@ class MonthlyPlanScreen extends StatelessWidget {
                         ),
                         child: Padding(
                           padding: const EdgeInsets.symmetric(
-                              horizontal: 15.0, vertical: 22).w,
+                                  horizontal: 15.0, vertical: 22)
+                              .w,
                           child: Row(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
@@ -74,18 +88,17 @@ class MonthlyPlanScreen extends StatelessWidget {
                                       borderRadius: BorderRadius.circular(200),
                                     ),
                                   ),
-                                  child:
-                                      plansViewModel.getMonthlyEmptyTile1 != null
-                                          ? circularNetworkImageWidget(
-                                              image: plansViewModel
-                                                  .getMonthlyEmptyTile1!
-                                                  .media![0],
-                                              size: 52.h,
-                                            )
-                                          : SizedBox(
-                                              height: 52.h,
-                                              width: 52.h,
-                                            )),
+                                  child: plansViewModel.getMonthlyEmptyTile1 !=
+                                          null
+                                      ? circularNetworkImageWidget(
+                                          image: plansViewModel
+                                              .getMonthlyEmptyTile1!.media![0],
+                                          size: 52.h,
+                                        )
+                                      : SizedBox(
+                                          height: 52.h,
+                                          width: 52.h,
+                                        )),
                               SizedBox(
                                 width: 10.w,
                               ),
@@ -122,10 +135,12 @@ class MonthlyPlanScreen extends StatelessWidget {
                                   color: CustomColors.orangeColor,
                                   shape: OvalBorder(),
                                 ),
-                                child:  Padding(
+                                child: Padding(
                                   padding: const EdgeInsets.all(10).w,
-                                  child:  Icon(
-                                    plansViewModel.getMonthlyEmptyTile1 == null ?Icons.add :Icons.edit_outlined,
+                                  child: Icon(
+                                    plansViewModel.getMonthlyEmptyTile1 == null
+                                        ? Icons.add
+                                        : Icons.edit_outlined,
                                     size: 20,
                                     color: CustomColors.whiteColor,
                                   ),
@@ -153,7 +168,8 @@ class MonthlyPlanScreen extends StatelessWidget {
                         ),
                         child: Padding(
                           padding: const EdgeInsets.symmetric(
-                              horizontal: 15.0, vertical: 22).w,
+                                  horizontal: 15.0, vertical: 22)
+                              .w,
                           child: Row(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
@@ -164,18 +180,17 @@ class MonthlyPlanScreen extends StatelessWidget {
                                       borderRadius: BorderRadius.circular(200),
                                     ),
                                   ),
-                                  child:
-                                      plansViewModel.getMonthlyEmptyTile2 != null
-                                          ? circularNetworkImageWidget(
-                                              image: plansViewModel
-                                                  .getMonthlyEmptyTile2!
-                                                  .media![0],
-                                              size: 52.h,
-                                            )
-                                          : SizedBox(
-                                              height: 52.h,
-                                              width: 52.h,
-                                            )),
+                                  child: plansViewModel.getMonthlyEmptyTile2 !=
+                                          null
+                                      ? circularNetworkImageWidget(
+                                          image: plansViewModel
+                                              .getMonthlyEmptyTile2!.media![0],
+                                          size: 52.h,
+                                        )
+                                      : SizedBox(
+                                          height: 52.h,
+                                          width: 52.h,
+                                        )),
                               SizedBox(
                                 width: 10.w,
                               ),
@@ -212,10 +227,12 @@ class MonthlyPlanScreen extends StatelessWidget {
                                   color: CustomColors.orangeColor,
                                   shape: OvalBorder(),
                                 ),
-                                child:  Padding(
+                                child: Padding(
                                   padding: const EdgeInsets.all(10).w,
-                                  child:  Icon(
-                                    plansViewModel.getMonthlyEmptyTile2 == null ?Icons.add :Icons.edit_outlined,
+                                  child: Icon(
+                                    plansViewModel.getMonthlyEmptyTile2 == null
+                                        ? Icons.add
+                                        : Icons.edit_outlined,
                                     size: 20,
                                     color: CustomColors.whiteColor,
                                   ),
@@ -243,7 +260,8 @@ class MonthlyPlanScreen extends StatelessWidget {
                         ),
                         child: Padding(
                           padding: const EdgeInsets.symmetric(
-                              horizontal: 15.0, vertical: 22).w,
+                                  horizontal: 15.0, vertical: 22)
+                              .w,
                           child: Row(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
@@ -254,18 +272,17 @@ class MonthlyPlanScreen extends StatelessWidget {
                                       borderRadius: BorderRadius.circular(200),
                                     ),
                                   ),
-                                  child:
-                                      plansViewModel.getMonthlyEmptyTile3 != null
-                                          ? circularNetworkImageWidget(
-                                              image: plansViewModel
-                                                  .getMonthlyEmptyTile3!
-                                                  .media![0],
-                                              size: 52.h,
-                                            )
-                                          : SizedBox(
-                                              height: 52.h,
-                                              width: 52.h,
-                                            )),
+                                  child: plansViewModel.getMonthlyEmptyTile3 !=
+                                          null
+                                      ? circularNetworkImageWidget(
+                                          image: plansViewModel
+                                              .getMonthlyEmptyTile3!.media![0],
+                                          size: 52.h,
+                                        )
+                                      : SizedBox(
+                                          height: 52.h,
+                                          width: 52.h,
+                                        )),
                               SizedBox(
                                 width: 10.w,
                               ),
@@ -302,10 +319,12 @@ class MonthlyPlanScreen extends StatelessWidget {
                                   color: CustomColors.orangeColor,
                                   shape: OvalBorder(),
                                 ),
-                                child:  Padding(
+                                child: Padding(
                                   padding: const EdgeInsets.all(10).w,
                                   child: Icon(
-                                    plansViewModel.getMonthlyEmptyTile3 == null ?Icons.add :Icons.edit_outlined,
+                                    plansViewModel.getMonthlyEmptyTile3 == null
+                                        ? Icons.add
+                                        : Icons.edit_outlined,
                                     size: 20,
                                     color: CustomColors.whiteColor,
                                   ),
@@ -320,18 +339,17 @@ class MonthlyPlanScreen extends StatelessWidget {
                 ),
               ),
               Visibility(
-                visible: MediaQuery
-                    .of(context)
-                    .viewInsets
-                    .bottom == 0,
+                visible: MediaQuery.of(context).viewInsets.bottom == 0,
                 child: Align(
                   alignment: Alignment.bottomCenter,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      black14w400(data: 'Please make sure your pup\'s profile is up to date in order to get the right nutritional amount for an ultimate feeding experience!' ),
+                      black14w400(
+                          data:
+                              'Please make sure your pup\'s profile is up to date in order to get the right nutritional amount for an ultimate feeding experience!'),
                       Padding(
-                        padding:  EdgeInsets.only(top:20.w),
+                        padding: EdgeInsets.only(top: 20.w),
                         child: customButton(
                             text: 'Continue',
                             onPressed: () {
@@ -344,30 +362,22 @@ class MonthlyPlanScreen extends StatelessWidget {
                                     height: 150.h,
                                     title: 'Note');
                               } else {
-                                if (((plansViewModel.getMonthlyEmptyTile1 != null
-                                            ? plansViewModel
-                                                .getMonthlyEmptyTile1!.totalDays!
-                                            : 0) +
-                                        (plansViewModel.getMonthlyEmptyTile2 != null
-                                            ? plansViewModel
-                                                .getMonthlyEmptyTile2!.totalDays!
-                                            : 0) +
-                                        (plansViewModel.getMonthlyEmptyTile3 != null
-                                            ? plansViewModel
-                                                .getMonthlyEmptyTile3!.totalDays!
-                                            : 0)) !=
-                                    30) {
+                                if (calculateTotalDays(
+                                        viewModel: plansViewModel) < 14 ||
+                                    calculateTotalDays(
+                                        viewModel: plansViewModel) > 30) {
                                   descriptionDialog(
                                       context: context,
                                       description:
-                                          'Total number of days must equal to 30',
+                                          'Total number of days must be min 14 and max 30',
                                       height: 150.h,
                                       title: 'Alert');
-                                }
-                                else
-                                {
-                                  context.read<CartViewModel>().setViewCartItemDetail(false);
-                                  Navigator.pushNamed(context, feedingPlanRoute);
+                                } else {
+                                  context
+                                      .read<CartViewModel>()
+                                      .setViewCartItemDetail(false);
+                                  Navigator.pushNamed(
+                                      context, feedingPlanRoute);
                                 }
                               }
                             },

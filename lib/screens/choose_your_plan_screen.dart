@@ -163,9 +163,9 @@ class ChooseYourPlanScreen extends StatelessWidget {
                           descriptionDialog(
                               context: context,
                               description:
-                                  'The BIG SAVER option, you can choose up to 3 different recipes for 30 days of food supply. Ensuring you have enough food for your pup to enjoy for the entire month at a special discounted price. We prepare and portion the food for you for a hassle-free feeding experience.',
+                                  'The BIG SAVER option, you can choose up to 3 different recipes for up to 30 days of food supply. Ensuring you have enough food for your pup to enjoy for the entire month at a special discounted price. We prepare and portion the food for you for a hassle-free feeding experience.',
                               height: 230.h,
-                              title: 'Monthly Plan');
+                              title: 'Monthly Order');
                         },
                         child: Padding(
                           padding: const EdgeInsets.all(8.0).w,
@@ -189,7 +189,7 @@ class ChooseYourPlanScreen extends StatelessWidget {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  black18w500(data: 'Monthly Plan'),
+                                  black18w500(data: 'Monthly Order'),
                                   SizedBox(
                                     height: 5.h,
                                   ),
@@ -204,7 +204,7 @@ class ChooseYourPlanScreen extends StatelessWidget {
                                         alignment: Alignment.centerRight,
                                         child: orange14w500(
                                             data:
-                                                context.watch<AuthViewModel>().getAuthResponse.data!.discounts![3].aggregate != 0 ? 'Save upto ${context.watch<AuthViewModel>().getAuthResponse.data!.discounts![3].aggregate}%' : 'Order for a month and save!')),
+                                                context.watch<AuthViewModel>().getAuthResponse.data!.discounts![3].aggregate != 0 ? 'Save upto ${context.watch<AuthViewModel>().getAuthResponse.data!.discounts![3].aggregate}%' : 'Order for up to a month and save!')),
                                   )
                                 ],
                               ),

@@ -348,16 +348,15 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                     padding: const EdgeInsets.symmetric(horizontal: 20).w,
                     child: InkWell(
                       onTap: () {
-                        if(plansViewModel
-                            .getSelectedRecipe.category ==
-                            ProductCategories.standardRecipes.text && addStandardRecipe){
-                          setState(() {
-                            addStandardRecipe = false;
-                            monthlySuggestionDialog(context: context);
-                          });
-                        }
-                        else{
-
+                        // if(plansViewModel
+                        //     .getSelectedRecipe.category ==
+                        //     ProductCategories.standardRecipes.text && addStandardRecipe){
+                        //   setState(() {
+                        //     addStandardRecipe = false;
+                        //     monthlySuggestionDialog(context: context);
+                        //   });
+                        // }
+                        // else{
                           if (context.read<CartViewModel>().getSelectedIndex ==
                               null) {
                             if (context
@@ -424,7 +423,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                             Navigator.pushNamedAndRemoveUntil(context, cartRoute,
                                     (Route route) => route.isFirst);
                           }
-                        }
+                        // }
 
 
                       },
