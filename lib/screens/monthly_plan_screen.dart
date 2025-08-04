@@ -243,10 +243,14 @@ class MonthlyPlanScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-                   /* SizedBox(
+                 SizedBox(
                       height: 20.h,
                     ),
-                    InkWell(
+                    black14w400(
+                        data:
+                        'Please make sure your pup\'s profile is up to date in order to get the right nutritional amount for an ultimate feeding experience!'),
+
+                    /*  InkWell(
                       onTap: () {
                         plansViewModel.setMonthlyEmptyTileNumber(3);
                         addMealDetailBottomSheetWidget();
@@ -345,9 +349,6 @@ class MonthlyPlanScreen extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      black14w400(
-                          data:
-                              'Please make sure your pup\'s profile is up to date in order to get the right nutritional amount for an ultimate feeding experience!'),
                       Padding(
                         padding: EdgeInsets.only(top: 20.w),
                         child: customButton(
