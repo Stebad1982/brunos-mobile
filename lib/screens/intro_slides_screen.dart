@@ -185,31 +185,33 @@ class _IntroSlidesScreenState extends State<IntroSlidesScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return IntroSlider(
-      indicatorConfig:
-          const IndicatorConfig(colorIndicator: CustomColors.whiteColor),
-      backgroundColorAllTabs: CustomColors.whiteColor,
-      listContentConfig: slides,
-      renderNextBtn: const Icon(
-        Icons.arrow_forward,
-        color: CustomColors.whiteColor,
-        size: 15,
+    return SafeArea(
+      child: IntroSlider(
+        indicatorConfig:
+            const IndicatorConfig(colorIndicator: CustomColors.whiteColor),
+        backgroundColorAllTabs: CustomColors.whiteColor,
+        listContentConfig: slides,
+        renderNextBtn: const Icon(
+          Icons.arrow_forward,
+          color: CustomColors.whiteColor,
+          size: 15,
+        ),
+        isShowDoneBtn: false,
+        nextButtonStyle: ButtonStyle(
+          shape: WidgetStateProperty.all<OutlinedBorder>(const CircleBorder()),
+          backgroundColor:
+              WidgetStateProperty.all<Color>(const Color(0xFFD68708)),
+          overlayColor: WidgetStateProperty.all<Color>(const Color(0xFFD68708)),
+        ),
+        onSkipPress: () {
+          Navigator.pushNamedAndRemoveUntil(
+              context, loginRoute,  (route) => false);
+        },
+       /* onDonePress: () {
+          Navigator.pushNamedAndRemoveUntil(
+              context, loginRoute, ModalRoute.withName(splashRoute));
+        },*/
       ),
-      isShowDoneBtn: false,
-      nextButtonStyle: ButtonStyle(
-        shape: WidgetStateProperty.all<OutlinedBorder>(const CircleBorder()),
-        backgroundColor:
-            WidgetStateProperty.all<Color>(const Color(0xFFD68708)),
-        overlayColor: WidgetStateProperty.all<Color>(const Color(0xFFD68708)),
-      ),
-      onSkipPress: () {
-        Navigator.pushNamedAndRemoveUntil(
-            context, loginRoute,  (route) => false);
-      },
-     /* onDonePress: () {
-        Navigator.pushNamedAndRemoveUntil(
-            context, loginRoute, ModalRoute.withName(splashRoute));
-      },*/
     );
   }
 }

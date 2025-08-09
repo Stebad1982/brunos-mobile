@@ -14,85 +14,87 @@ class OneTimePlanScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: const AppBarWithBackWidget(
-        heading: 'OneTime Order', showPuppy: true,showCart: true
-      ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 20).w,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(
-                height: 10.h,
-              ),
-              Center(
-                child: Image.asset(
-                  buyBulits2,
-                  height: 57.h,
+    return SafeArea(
+      child: Scaffold(
+        appBar: const AppBarWithBackWidget(
+          heading: 'OneTime Order', showPuppy: true,showCart: true
+        ),
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 20).w,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(
+                  height: 10.h,
                 ),
-              ),
-              SizedBox(
-                height: 40.h,
-              ),
-              Center(
-                child: black24w500Centre(
-                    data: 'Let’s Feed Your Beloved\n${context.watch<AuthViewModel>().getAuthResponse.data!.pet!.name!}'),
-              ),
-              SizedBox(
-                height: 10.h,
-              ),
-              Center(child: lightBlack14w400Centre(data: 'Pick from any of our Bruno-approved delightful\ndishes below')),
-              SizedBox(
-                height: 30.h,
-              ),
-             /* Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                child: black18w500(
-                    data: 'Recommended Dishes'),
-              ),
-              SizedBox(
-                height: 20.h,
-              ),*/
-              Center(
-                child: Wrap(
-                  runSpacing: 20.w,
-                  spacing: 20.w,
-                  alignment: WrapAlignment.center,
-                  children: List.generate(context.read<PlansViewModel>().getOneTimeRecipesList.length, (index) {
-                    return SizedBox(
-                      width: 157.w,
-                      child: itemDescribedGridChipWidget(recipeData: context.read<PlansViewModel>().getOneTimeRecipesList[index], showInformationIcon: false),
-                    );
-                  }),
+                Center(
+                  child: Image.asset(
+                    buyBulits2,
+                    height: 57.h,
+                  ),
                 ),
-              ),
-             /* SizedBox(
-                height: 30.h,
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                child: black18w500(
-                    data: 'Try our canine-crafted combos'),
-              ),
-              SizedBox(
-                height: 20.h,
-              ),
-              Center(
-                child: Wrap(
-                  runSpacing: 20.w,
-                  spacing: 20.w,
-                  alignment: WrapAlignment.center,
-                  children: List.generate(context.read<PlansViewModel>().getComboRecipesList.length, (index) {
-                    return SizedBox(
-                      width: 157.w,
-                      child: itemDescribedGridChipWidget(recipeData: context.read<PlansViewModel>().getComboRecipesList[index]),
-                    );
-                  }),
+                SizedBox(
+                  height: 40.h,
                 ),
-              ),*/
-            ],
+                Center(
+                  child: black24w500Centre(
+                      data: 'Let’s Feed Your Beloved\n${context.watch<AuthViewModel>().getAuthResponse.data!.pet!.name!}'),
+                ),
+                SizedBox(
+                  height: 10.h,
+                ),
+                Center(child: lightBlack14w400Centre(data: 'Pick from any of our Bruno-approved delightful\ndishes below')),
+                SizedBox(
+                  height: 30.h,
+                ),
+               /* Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                  child: black18w500(
+                      data: 'Recommended Dishes'),
+                ),
+                SizedBox(
+                  height: 20.h,
+                ),*/
+                Center(
+                  child: Wrap(
+                    runSpacing: 20.w,
+                    spacing: 20.w,
+                    alignment: WrapAlignment.center,
+                    children: List.generate(context.read<PlansViewModel>().getOneTimeRecipesList.length, (index) {
+                      return SizedBox(
+                        width: 157.w,
+                        child: itemDescribedGridChipWidget(recipeData: context.read<PlansViewModel>().getOneTimeRecipesList[index], showInformationIcon: false),
+                      );
+                    }),
+                  ),
+                ),
+               /* SizedBox(
+                  height: 30.h,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                  child: black18w500(
+                      data: 'Try our canine-crafted combos'),
+                ),
+                SizedBox(
+                  height: 20.h,
+                ),
+                Center(
+                  child: Wrap(
+                    runSpacing: 20.w,
+                    spacing: 20.w,
+                    alignment: WrapAlignment.center,
+                    children: List.generate(context.read<PlansViewModel>().getComboRecipesList.length, (index) {
+                      return SizedBox(
+                        width: 157.w,
+                        child: itemDescribedGridChipWidget(recipeData: context.read<PlansViewModel>().getComboRecipesList[index]),
+                      );
+                    }),
+                  ),
+                ),*/
+              ],
+            ),
           ),
         ),
       ),

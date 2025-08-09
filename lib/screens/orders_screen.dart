@@ -45,91 +45,93 @@ class _OrdersScreenState extends State<OrdersScreen>
   @override
   Widget build(BuildContext context) {
     return Consumer<OrderViewModel>(builder: (_, orderViewModel, __) {
-      return Scaffold(
-          appBar: const AppBarWithBackWidget(
-              heading: 'My Orders', showPuppy: false, showCart: false),
-          body: orderViewModel.getOrderResponse!.data == null
-              ? const SizedBox()
-              : ListView.builder(
-                  itemCount: orderViewModel.getOrderResponse!.data!.length,
-                  padding: const EdgeInsets.only(left: 20, right: 20, top: 30).w,
-                  itemBuilder: (BuildContext context, int index) {
-                    return ordersVerticalListChipWidget(
-                        showButtons: false,
-                        orderListData:
-                            orderViewModel.getOrderResponse!.data![index]);
-                  },
-                )
-          /*Column(
-          children: [
-            SizedBox(
-              height: 30.h,
-            ),
-            TabBar(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-             // indicatorPadding: EdgeInsets.zero,
-              labelPadding: EdgeInsets.zero,
-             // dividerHeight: 0,
-              indicatorColor: Colors.transparent,
-             // isScrollable: true,
-              onTap: (index) {
-                //your currently selected index
-              },
-              controller: tabController,
-              tabs: [
-                Tab(
-                    child: Container(
-                        decoration: BoxDecoration(
-                          color: _selectedIndex == 0
-                              ? CustomColors.orangeColorTint
-                              : null,
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        height: 40.h,
-                        width: 170.w,
-                        child: Center(
-                            child: lightBlack14w400Centre(data: 'In Process')))),
-                Tab(
-                    child: Container(
-                        decoration: BoxDecoration(
-                          color: _selectedIndex == 1
-                              ? CustomColors.orangeColorTint
-                              : null,
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        height: 40.h,
-                        width: 170.w,
-                        child: Center(
-                            child: lightBlack14w400Centre(data: 'Shipped')))),
-              */ /*  Tab(
-                    child: Container(
-                        decoration: BoxDecoration(
-                          color: _selectedIndex == 2
-                              ? CustomColors.orangeColorTint
-                              : null,
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        height: 40.h,
-                        width: 170.w,
-                        child: Center(
-                            child: lightBlack14w400Centre(data: 'Monthly Subscription')))),*/ /*
-              ],
-            ),
-            Expanded(
-              child: TabBarView(
+      return SafeArea(
+        child: Scaffold(
+            appBar: const AppBarWithBackWidget(
+                heading: 'My Orders', showPuppy: false, showCart: false),
+            body: orderViewModel.getOrderResponse!.data == null
+                ? const SizedBox()
+                : ListView.builder(
+                    itemCount: orderViewModel.getOrderResponse!.data!.length,
+                    padding: const EdgeInsets.only(left: 20, right: 20, top: 30).w,
+                    itemBuilder: (BuildContext context, int index) {
+                      return ordersVerticalListChipWidget(
+                          showButtons: false,
+                          orderListData:
+                              orderViewModel.getOrderResponse!.data![index]);
+                    },
+                  )
+            /*Column(
+            children: [
+              SizedBox(
+                height: 30.h,
+              ),
+              TabBar(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+               // indicatorPadding: EdgeInsets.zero,
+                labelPadding: EdgeInsets.zero,
+               // dividerHeight: 0,
+                indicatorColor: Colors.transparent,
+               // isScrollable: true,
+                onTap: (index) {
+                  //your currently selected index
+                },
                 controller: tabController,
-                children:  [
-                  context.watch<OrderViewModel>().getOrderResponse.data != null? OrderInProcessScreen(): SizedBox(),
-                  context.watch<OrderViewModel>().getOrderResponse.data != null?OrderCompletedScreen(): SizedBox(),
-*/ /*
-                  context.watch<OrderViewModel>().getOrderResponse.data != null? OrderMonthlyScreen(): SizedBox()
-*/ /*
+                tabs: [
+                  Tab(
+                      child: Container(
+                          decoration: BoxDecoration(
+                            color: _selectedIndex == 0
+                                ? CustomColors.orangeColorTint
+                                : null,
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          height: 40.h,
+                          width: 170.w,
+                          child: Center(
+                              child: lightBlack14w400Centre(data: 'In Process')))),
+                  Tab(
+                      child: Container(
+                          decoration: BoxDecoration(
+                            color: _selectedIndex == 1
+                                ? CustomColors.orangeColorTint
+                                : null,
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          height: 40.h,
+                          width: 170.w,
+                          child: Center(
+                              child: lightBlack14w400Centre(data: 'Shipped')))),
+                */ /*  Tab(
+                      child: Container(
+                          decoration: BoxDecoration(
+                            color: _selectedIndex == 2
+                                ? CustomColors.orangeColorTint
+                                : null,
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          height: 40.h,
+                          width: 170.w,
+                          child: Center(
+                              child: lightBlack14w400Centre(data: 'Monthly Subscription')))),*/ /*
                 ],
               ),
+              Expanded(
+                child: TabBarView(
+                  controller: tabController,
+                  children:  [
+                    context.watch<OrderViewModel>().getOrderResponse.data != null? OrderInProcessScreen(): SizedBox(),
+                    context.watch<OrderViewModel>().getOrderResponse.data != null?OrderCompletedScreen(): SizedBox(),
+        */ /*
+                    context.watch<OrderViewModel>().getOrderResponse.data != null? OrderMonthlyScreen(): SizedBox()
+        */ /*
+                  ],
+                ),
+              ),
+            ],
+          )*/
             ),
-          ],
-        )*/
-          );
+      );
     });
   }
 }

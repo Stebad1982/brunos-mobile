@@ -13,9 +13,9 @@ class UserVerifiedScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-     return Scaffold(
-      body: SafeArea(
-        child: Padding(
+     return SafeArea(
+       child: Scaffold(
+        body: Padding(
           padding:
           const EdgeInsets.only(top: 30, bottom: 30, left: 20, right: 20).w,
           child: Column(
@@ -53,7 +53,7 @@ class UserVerifiedScreen extends StatelessWidget {
             ],
           ),
         ),
-      ),
-    );
+           ),
+     );
   }
 }

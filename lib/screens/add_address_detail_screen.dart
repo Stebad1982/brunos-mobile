@@ -27,9 +27,9 @@ class _AddAddressDetailScreenState extends State<AddAddressDetailScreen> {
   Widget build(BuildContext context) {
     return Consumer<AddressViewModel>(
         builder: (context, addressViewModel, child) {
-      return Scaffold(
-        body: SafeArea(
-          child: Stack(
+      return SafeArea(
+        child: Scaffold(
+          body: Stack(
             children: [
               SingleChildScrollView(
                 child: Padding(
@@ -443,7 +443,7 @@ class _AddAddressDetailScreenState extends State<AddAddressDetailScreen> {
                               Navigator.of(context)
                                 ..pop()
                                 ..pop();
-/*
+          /*
                                       if (value) {
                                         context
                                             .read<AuthViewModel>()
@@ -452,7 +452,7 @@ class _AddAddressDetailScreenState extends State<AddAddressDetailScreen> {
                                                 .data!
                                                 .defaultAddress!);
                                       }
-*/
+          */
                             });
                             /*Navigator.pushNamedAndRemoveUntil(
                               context,

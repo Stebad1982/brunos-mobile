@@ -27,46 +27,48 @@ class _FaqScreenState extends State<FaqScreen> {
   @override
   Widget build(BuildContext context) {
     return Consumer<FaqsBlogsNewsViewModel>(builder: (_, faqsBlogsNewsViewModel, __) {
-      return Scaffold(
-        appBar: const AppBarWithBackWidget(
-            heading: 'FAQ', showPuppy: false, showCart: false),
-        body: faqsBlogsNewsViewModel.getFaqsResponse.data != null
-            ? Accordion(
-                disableScrolling: false,
-                paddingListHorizontal: 20,
-                maxOpenSections: 2,
-                headerBackgroundColorOpened: Colors.black54,
-                scaleWhenAnimating: true,
-                openAndCloseAnimation: true,
-                headerPadding:
-                    const EdgeInsets.symmetric(vertical: 7, horizontal: 15),
-                // sectionOpeningHapticFeedback: SectionHapticFeedback.heavy,
-                // sectionClosingHapticFeedback: SectionHapticFeedback.light,
-                children: [
-                  for (FaqsBlogsNewsData item in faqsBlogsNewsViewModel.getFaqsResponse.data!)
-                    AccordionSection(
-                      // isOpen: false,
-                      //flipRightIconIfOpen: true,
-                      rightIcon: const Icon(Icons.keyboard_arrow_down),
-                      // leftIcon: const Icon(Icons.insights_rounded, color: Colors.white),
-                      headerBackgroundColor: CustomColors.greyMediumLightColor,
-                      headerBackgroundColorOpened: CustomColors.greyMediumLightColor,
-                      header: Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 5),
-                        child: Align(
-                            alignment: Alignment.centerLeft,
-                            child: lightBlack14w400Centre(data: item.title!,left: true)),
-                      ),
-                      content: black12w500Centre(data: item.description!,centre: false),
-                      contentBackgroundColor: CustomColors.greyMediumLightColor,
-                      contentHorizontalPadding: 20,
-                      contentBorderWidth: 1,
-                      // onOpenSection: () => print('onOpenSection ...'),
-                      // onCloseSection: () => print('onCloseSection ...'),
-                    )
-                ],
-              )
-            : const SizedBox(),
+      return SafeArea(
+        child: Scaffold(
+          appBar: const AppBarWithBackWidget(
+              heading: 'FAQ', showPuppy: false, showCart: false),
+          body: faqsBlogsNewsViewModel.getFaqsResponse.data != null
+              ? Accordion(
+                  disableScrolling: false,
+                  paddingListHorizontal: 20,
+                  maxOpenSections: 2,
+                  headerBackgroundColorOpened: Colors.black54,
+                  scaleWhenAnimating: true,
+                  openAndCloseAnimation: true,
+                  headerPadding:
+                      const EdgeInsets.symmetric(vertical: 7, horizontal: 15),
+                  // sectionOpeningHapticFeedback: SectionHapticFeedback.heavy,
+                  // sectionClosingHapticFeedback: SectionHapticFeedback.light,
+                  children: [
+                    for (FaqsBlogsNewsData item in faqsBlogsNewsViewModel.getFaqsResponse.data!)
+                      AccordionSection(
+                        // isOpen: false,
+                        //flipRightIconIfOpen: true,
+                        rightIcon: const Icon(Icons.keyboard_arrow_down),
+                        // leftIcon: const Icon(Icons.insights_rounded, color: Colors.white),
+                        headerBackgroundColor: CustomColors.greyMediumLightColor,
+                        headerBackgroundColorOpened: CustomColors.greyMediumLightColor,
+                        header: Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 5),
+                          child: Align(
+                              alignment: Alignment.centerLeft,
+                              child: lightBlack14w400Centre(data: item.title!,left: true)),
+                        ),
+                        content: black12w500Centre(data: item.description!,centre: false),
+                        contentBackgroundColor: CustomColors.greyMediumLightColor,
+                        contentHorizontalPadding: 20,
+                        contentBorderWidth: 1,
+                        // onOpenSection: () => print('onOpenSection ...'),
+                        // onCloseSection: () => print('onCloseSection ...'),
+                      )
+                  ],
+                )
+              : const SizedBox(),
+        ),
       );
     });
   }

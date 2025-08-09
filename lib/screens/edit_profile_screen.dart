@@ -16,84 +16,86 @@ class EditProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: const AppBarWithBackWidget(heading: 'Edit Profile', showPuppy: false,showCart: true),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.only(
-              top: 30, bottom: 20, left: 20, right: 20).w,
-          child: Stack(
-            children: [
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const NameFieldWidget(),
-                  SizedBox(
-                    height: 16.h,
-                  ),
-                  TextField(
-                    controller: context.watch<AuthViewModel>().getEmailController,
-                    onChanged: (text) {},
-                    readOnly: true,
-                    keyboardType: TextInputType.emailAddress,
-                    decoration: InputDecoration(
-                        hintText: 'Email Address',
-                        prefixIcon: Padding(
-                          padding: const EdgeInsets.all(16),
-                          child: SvgPicture.asset(emailIcon),
-                        )),
-                  ),
-                  SizedBox(
-                    height: 16.h,
-                  ),
-                  /*const EmailFieldWidget(),
-                  SizedBox(
-                    height: 16.h,
-                  ),*/
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              TextField(
-                controller: context.watch<AuthViewModel>().getPhoneController,
-                onChanged: (text) {},
-                keyboardType: TextInputType.phone,
-                decoration: InputDecoration(
-                    hintText: 'Phone Number',
-                    prefixIcon: Padding(
-                      padding:
-                      const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-                      child: IntrinsicHeight(
-                        child: SvgPicture.asset(phoneIcon),
-                      ),
-                    )),
-              ),
-              SizedBox(
-                height: 5.h,
-              ),
-              Visibility(
-                  visible: context.watch<AuthViewModel>().getPhoneFieldError.isNotEmpty,
-                  child: orange14w400(data: context.watch<AuthViewModel>().getPhoneFieldError)),
-            ],
-          ),
-                  SizedBox(
-                    height: 16.h,
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: screenHeightWithAppBar,
-                child: Align(
-                  alignment: Alignment.bottomCenter,
-                  child: customButton(text: 'Save', onPressed: () {
-                    context.read<AuthViewModel>().editUserProfileApi().then((
-                        value) => {
-                    if(value){
-                        Navigator.pop(context)
-                  }});
-                  }, colored: true),
+    return SafeArea(
+      child: Scaffold(
+        appBar: const AppBarWithBackWidget(heading: 'Edit Profile', showPuppy: false,showCart: true),
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.only(
+                top: 30, bottom: 20, left: 20, right: 20).w,
+            child: Stack(
+              children: [
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const NameFieldWidget(),
+                    SizedBox(
+                      height: 16.h,
+                    ),
+                    TextField(
+                      controller: context.watch<AuthViewModel>().getEmailController,
+                      onChanged: (text) {},
+                      readOnly: true,
+                      keyboardType: TextInputType.emailAddress,
+                      decoration: InputDecoration(
+                          hintText: 'Email Address',
+                          prefixIcon: Padding(
+                            padding: const EdgeInsets.all(16),
+                            child: SvgPicture.asset(emailIcon),
+                          )),
+                    ),
+                    SizedBox(
+                      height: 16.h,
+                    ),
+                    /*const EmailFieldWidget(),
+                    SizedBox(
+                      height: 16.h,
+                    ),*/
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                TextField(
+                  controller: context.watch<AuthViewModel>().getPhoneController,
+                  onChanged: (text) {},
+                  keyboardType: TextInputType.phone,
+                  decoration: InputDecoration(
+                      hintText: 'Phone Number',
+                      prefixIcon: Padding(
+                        padding:
+                        const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+                        child: IntrinsicHeight(
+                          child: SvgPicture.asset(phoneIcon),
+                        ),
+                      )),
                 ),
-              ),
-            ],
+                SizedBox(
+                  height: 5.h,
+                ),
+                Visibility(
+                    visible: context.watch<AuthViewModel>().getPhoneFieldError.isNotEmpty,
+                    child: orange14w400(data: context.watch<AuthViewModel>().getPhoneFieldError)),
+              ],
+            ),
+                    SizedBox(
+                      height: 16.h,
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: screenHeightWithAppBar,
+                  child: Align(
+                    alignment: Alignment.bottomCenter,
+                    child: customButton(text: 'Save', onPressed: () {
+                      context.read<AuthViewModel>().editUserProfileApi().then((
+                          value) => {
+                      if(value){
+                          Navigator.pop(context)
+                    }});
+                    }, colored: true),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

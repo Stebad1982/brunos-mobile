@@ -19,382 +19,384 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SingleChildScrollView(
-        child: Padding(
-          padding:
-              const EdgeInsets.only(top: 30, bottom: 20, left: 20, right: 20).w,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              InkWell(
-                onTap: () {
-                  if (!context
+    return SafeArea(
+      child: Scaffold(
+        body: SingleChildScrollView(
+          child: Padding(
+            padding:
+                const EdgeInsets.only(top: 30, bottom: 20, left: 20, right: 20).w,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                InkWell(
+                  onTap: () {
+                    if (!context
+                        .read<AuthViewModel>()
+                        .getAuthResponse
+                        .data!
+                        .isGuest!) {
+                      context.read<AuthViewModel>().updateProfile();
+                      Navigator.pushNamed(context, editProfileRoute);
+                    } else {
+                      context.read<AuthViewModel>().clearFieldsData();
+                      context
+                          .read<AuthViewModel>()
+                          .setRegisterRouteFrom(Screens.profile.text);
+                      Navigator.pushNamed(context, registerUserRoute);
+                    }
+                  },
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          lightBlack14w400Centre(
+                              left: true,
+                              data:
+                                  'Hi, ${context.watch<AuthViewModel>().getAuthResponse.data!.fullName}'),
+                          SizedBox(
+                            height: 10.h,
+                          ),
+                          Visibility(
+                              visible: context
+                                  .read<AuthViewModel>()
+                                  .getAuthResponse
+                                  .data!
+                                  .isGuest!,
+                              child: orange14w400(data: 'Register Now')),
+                          grey14w400(
+                              data: !context
+                                      .read<AuthViewModel>()
+                                      .getAuthResponse
+                                      .data!
+                                      .isGuest!
+                                  ? context
+                                      .read<AuthViewModel>()
+                                      .getAuthResponse
+                                      .data!
+                                      .email!
+                                  : '')
+                        ],
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Visibility(
+                            visible: context
+                                    .watch<AuthViewModel>()
+                                    .getAuthResponse
+                                    .data!
+                                    .availablePoints !=
+                                0,
+                            child: Padding(
+                              padding: EdgeInsets.only(bottom: 10.h),
+                              child: Row(
+                                children: [
+                                  SvgPicture.asset(
+                                    couponCoin,
+                                    height: 30.h,
+                                  ),
+                                  SizedBox(
+                                    width: 5.w,
+                                  ),
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      lightBlack14w400Centre(
+                                          data: context
+                                              .watch<AuthViewModel>()
+                                              .getAuthResponse
+                                              .data!
+                                              .availablePoints
+                                              .toString()),
+                                      lightBlack14w400Centre(data: 'Points'),
+                                    ],
+                                  )
+                                ],
+                              ),
+                            ),
+                          ),
+                          Icon(
+                            Icons.arrow_forward_ios_rounded,
+                            size: 15,
+                            color: CustomColors.greyColor,
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 39.h,
+                ),
+                lightBlack14w400Centre(data: 'Account'),
+                SizedBox(
+                  height: 14.h,
+                ),
+                ListTile(
+                    onTap: () {
+                      Navigator.pushNamed(context, ordersRoute);
+                    },
+                    leading: SvgPicture.asset(
+                      orderIcon,
+                      height: 24.h,
+                    ),
+                    title: Align(
+                        alignment: Alignment.centerLeft,
+                        child: lightBlack14w400Centre(data: 'Orders')),
+                    contentPadding: const EdgeInsets.all(0).w,
+                    minLeadingWidth: 12,
+                    shape: const Border(
+                      bottom: BorderSide(color: CustomColors.greyMediumColor),
+                    ),
+                    trailing: const Icon(
+                      Icons.arrow_forward_ios_rounded,
+                      size: 15,
+                      color: CustomColors.greyColor,
+                    )),
+                ListTile(
+                    onTap: () {
+                      context
+                          .read<PuppyViewModel>()
+                          .setRouteToPuppyFrom(Screens.profile.text);
+                      Navigator.pushNamed(context, puppiesListRoute);
+                    },
+                    leading: SvgPicture.asset(
+                      orderIcon,
+                      height: 24.h,
+                    ),
+                    shape: const Border(
+                      bottom: BorderSide(color: CustomColors.greyMediumColor),
+                    ),
+                    title: Align(
+                        alignment: Alignment.centerLeft,
+                        child: lightBlack14w400Centre(data: 'My Pets')),
+                    contentPadding: const EdgeInsets.all(0).w,
+                    minLeadingWidth: 12,
+                    trailing: const Icon(
+                      Icons.arrow_forward_ios_rounded,
+                      size: 15,
+                      color: CustomColors.greyColor,
+                    )),
+                ListTile(
+                    onTap: () {
+                      Navigator.pushNamed(context, chooseCardRoute);
+                    },
+                    leading: SvgPicture.asset(
+                      payCardIcon,
+                      height: 24.h,
+                    ),
+                    shape: const Border(
+                      bottom: BorderSide(color: CustomColors.greyMediumColor),
+                    ),
+                    title: Align(
+                        alignment: Alignment.centerLeft,
+                        child: lightBlack14w400Centre(data: 'Payment')),
+                    contentPadding: const EdgeInsets.all(0).w,
+                    minLeadingWidth: 12,
+                    trailing: const Icon(
+                      Icons.arrow_forward_ios_rounded,
+                      size: 15,
+                      color: CustomColors.greyColor,
+                    )),
+                ListTile(
+                    onTap: () {
+                      if (context
+                              .read<AuthViewModel>()
+                              .getAuthResponse
+                              .data!
+                              .location !=
+                          null) {
+                        Navigator.pushNamed(context, addressRoute);
+                      } else {
+                        context.read<AddressViewModel>().setIsAddressAdd(true);
+                        Navigator.pushNamed(context, addAddressRoute);
+                      }
+                    },
+                    leading: SvgPicture.asset(
+                      mapPin,
+                      height: 24.h,
+                    ),
+                    shape: const Border(
+                      bottom: BorderSide(color: CustomColors.greyMediumColor),
+                    ),
+                    title: Align(
+                        alignment: Alignment.centerLeft,
+                        child: lightBlack14w400Centre(data: 'Shipping Address')),
+                    contentPadding: const EdgeInsets.all(0).w,
+                    minLeadingWidth: 12,
+                    trailing: const Icon(
+                      Icons.arrow_forward_ios_rounded,
+                      size: 15,
+                      color: CustomColors.greyColor,
+                    )),
+                ListTile(
+                    onTap: () {
+                      context.read<FaqsBlogsNewsViewModel>().clearFeedbackForm();
+                      Navigator.pushNamed(context, feedbackRoute);
+                    },
+                    leading: const Icon(
+                      Icons.feedback_outlined,
+                      color: CustomColors.blackColor,
+                    ),
+                    shape: const Border(
+                      bottom: BorderSide(color: CustomColors.greyMediumColor),
+                    ),
+                    title: Align(
+                        alignment: Alignment.centerLeft,
+                        child: lightBlack14w400Centre(data: 'Feedback')),
+                    contentPadding: const EdgeInsets.all(0).w,
+                    minLeadingWidth: 12,
+                    trailing: const Icon(
+                      Icons.arrow_forward_ios_rounded,
+                      size: 15,
+                      color: CustomColors.greyColor,
+                    )),
+                SizedBox(
+                  height: 50.h,
+                ),
+                lightBlack14w400Centre(data: 'Help & Support'),
+                SizedBox(
+                  height: 14.h,
+                ),
+                ListTile(
+                    onTap: () {
+                      Navigator.pushNamed(context, helpRoute);
+                    },
+                    leading: const Icon(
+                      Icons.volume_up_outlined,
+                      color: CustomColors.blackColor,
+                    ),
+                    shape: const Border(
+                      bottom: BorderSide(color: CustomColors.greyMediumColor),
+                    ),
+                    title: Align(
+                        alignment: Alignment.centerLeft,
+                        child: lightBlack14w400Centre(data: 'Contact us')),
+                    contentPadding: const EdgeInsets.all(0).w,
+                    minLeadingWidth: 12,
+                    trailing: const Icon(
+                      Icons.arrow_forward_ios_rounded,
+                      size: 15,
+                      color: CustomColors.greyColor,
+                    )),
+                ListTile(
+                    onTap: () {
+                      Navigator.pushNamed(context, faqRoute);
+                    },
+                    leading: SvgPicture.asset(
+                      faqIcon,
+                      height: 24.h,
+                    ),
+                    shape: const Border(
+                      bottom: BorderSide(color: CustomColors.greyMediumColor),
+                    ),
+                    title: Align(
+                        alignment: Alignment.centerLeft,
+                        child: lightBlack14w400Centre(data: 'FAQ')),
+                    contentPadding: const EdgeInsets.all(0).w,
+                    minLeadingWidth: 12,
+                    trailing: const Icon(
+                      Icons.arrow_forward_ios_rounded,
+                      size: 15,
+                      color: CustomColors.greyColor,
+                    )),
+                ListTile(
+                    onTap: () {
+                      Navigator.pushNamed(context, blogsRoute);
+                    },
+                    leading: const Icon(
+                      Icons.message_outlined,
+                      color: CustomColors.blackColor,
+                    ),
+                    shape: const Border(
+                      bottom: BorderSide(color: CustomColors.greyMediumColor),
+                    ),
+                    title: Align(
+                        alignment: Alignment.centerLeft,
+                        child: lightBlack14w400Centre(data: 'Blogs')),
+                    contentPadding: const EdgeInsets.all(0).w,
+                    minLeadingWidth: 12,
+                    trailing: const Icon(
+                      Icons.arrow_forward_ios_rounded,
+                      size: 15,
+                      color: CustomColors.greyColor,
+                    )),
+                ListTile(
+                    onTap: () {
+                      Navigator.pushNamed(context, newsRoute);
+                    },
+                    leading: const Icon(
+                      Icons.newspaper,
+                      color: CustomColors.blackColor,
+                    ),
+                    shape: const Border(
+                      bottom: BorderSide(color: CustomColors.greyMediumColor),
+                    ),
+                    title: Align(
+                        alignment: Alignment.centerLeft,
+                        child: lightBlack14w400Centre(data: 'News Updates')),
+                    contentPadding: const EdgeInsets.all(0).w,
+                    minLeadingWidth: 12,
+                    trailing: const Icon(
+                      Icons.arrow_forward_ios_rounded,
+                      size: 15,
+                      color: CustomColors.greyColor,
+                    )),
+                ListTile(
+                    onTap: () {
+                      Navigator.pushNamed(context, deleteAccountRoute);
+                    },
+                    leading: const Icon(
+                      Icons.delete_outline,
+                      color: CustomColors.blackColor,
+                    ),
+                    title: Align(
+                        alignment: Alignment.centerLeft,
+                        child: lightBlack14w400Centre(data: 'Delete Account')),
+                    contentPadding: const EdgeInsets.all(0).w,
+                    minLeadingWidth: 12,
+                    trailing: const Icon(
+                      Icons.arrow_forward_ios_rounded,
+                      size: 15,
+                      color: CustomColors.greyColor,
+                    )),
+                SizedBox(
+                  height: 32.h,
+                ),
+                Visibility(
+                  visible: !context
                       .read<AuthViewModel>()
                       .getAuthResponse
                       .data!
-                      .isGuest!) {
-                    context.read<AuthViewModel>().updateProfile();
-                    Navigator.pushNamed(context, editProfileRoute);
-                  } else {
-                    context.read<AuthViewModel>().clearFieldsData();
-                    context
-                        .read<AuthViewModel>()
-                        .setRegisterRouteFrom(Screens.profile.text);
-                    Navigator.pushNamed(context, registerUserRoute);
-                  }
-                },
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        lightBlack14w400Centre(
-                            left: true,
-                            data:
-                                'Hi, ${context.watch<AuthViewModel>().getAuthResponse.data!.fullName}'),
-                        SizedBox(
-                          height: 10.h,
-                        ),
-                        Visibility(
-                            visible: context
-                                .read<AuthViewModel>()
-                                .getAuthResponse
-                                .data!
-                                .isGuest!,
-                            child: orange14w400(data: 'Register Now')),
-                        grey14w400(
-                            data: !context
-                                    .read<AuthViewModel>()
-                                    .getAuthResponse
-                                    .data!
-                                    .isGuest!
-                                ? context
-                                    .read<AuthViewModel>()
-                                    .getAuthResponse
-                                    .data!
-                                    .email!
-                                : '')
-                      ],
+                      .isGuest!,
+                  child: ListTile(
+                    onTap: () async {
+                      context.read<AuthViewModel>().clearFieldsData();
+                      context
+                          .read<BottomNavigationViewModel>()
+                          .setHomeViewIndex(0);
+                      context.read<AuthViewModel>().callLogOut();
+                      Navigator.pushNamedAndRemoveUntil(
+                          context, loginRoute, (route) => false);
+                    },
+                    leading: SvgPicture.asset(
+                      logoutIcon,
+                      height: 24.h,
                     ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        Visibility(
-                          visible: context
-                                  .watch<AuthViewModel>()
-                                  .getAuthResponse
-                                  .data!
-                                  .availablePoints !=
-                              0,
-                          child: Padding(
-                            padding: EdgeInsets.only(bottom: 10.h),
-                            child: Row(
-                              children: [
-                                SvgPicture.asset(
-                                  couponCoin,
-                                  height: 30.h,
-                                ),
-                                SizedBox(
-                                  width: 5.w,
-                                ),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    lightBlack14w400Centre(
-                                        data: context
-                                            .watch<AuthViewModel>()
-                                            .getAuthResponse
-                                            .data!
-                                            .availablePoints
-                                            .toString()),
-                                    lightBlack14w400Centre(data: 'Points'),
-                                  ],
-                                )
-                              ],
-                            ),
-                          ),
-                        ),
-                        Icon(
-                          Icons.arrow_forward_ios_rounded,
-                          size: 15,
-                          color: CustomColors.greyColor,
-                        ),
-                      ],
-                    )
-                  ],
+                    title: Align(
+                        alignment: Alignment.centerLeft,
+                        child: orange14w400(data: 'Log out')),
+                    contentPadding: const EdgeInsets.all(0),
+                    minLeadingWidth: 12,
+                  ),
                 ),
-              ),
-              SizedBox(
-                height: 39.h,
-              ),
-              lightBlack14w400Centre(data: 'Account'),
-              SizedBox(
-                height: 14.h,
-              ),
-              ListTile(
-                  onTap: () {
-                    Navigator.pushNamed(context, ordersRoute);
-                  },
-                  leading: SvgPicture.asset(
-                    orderIcon,
-                    height: 24.h,
-                  ),
-                  title: Align(
-                      alignment: Alignment.centerLeft,
-                      child: lightBlack14w400Centre(data: 'Orders')),
-                  contentPadding: const EdgeInsets.all(0).w,
-                  minLeadingWidth: 12,
-                  shape: const Border(
-                    bottom: BorderSide(color: CustomColors.greyMediumColor),
-                  ),
-                  trailing: const Icon(
-                    Icons.arrow_forward_ios_rounded,
-                    size: 15,
-                    color: CustomColors.greyColor,
-                  )),
-              ListTile(
-                  onTap: () {
-                    context
-                        .read<PuppyViewModel>()
-                        .setRouteToPuppyFrom(Screens.profile.text);
-                    Navigator.pushNamed(context, puppiesListRoute);
-                  },
-                  leading: SvgPicture.asset(
-                    orderIcon,
-                    height: 24.h,
-                  ),
-                  shape: const Border(
-                    bottom: BorderSide(color: CustomColors.greyMediumColor),
-                  ),
-                  title: Align(
-                      alignment: Alignment.centerLeft,
-                      child: lightBlack14w400Centre(data: 'My Pets')),
-                  contentPadding: const EdgeInsets.all(0).w,
-                  minLeadingWidth: 12,
-                  trailing: const Icon(
-                    Icons.arrow_forward_ios_rounded,
-                    size: 15,
-                    color: CustomColors.greyColor,
-                  )),
-              ListTile(
-                  onTap: () {
-                    Navigator.pushNamed(context, chooseCardRoute);
-                  },
-                  leading: SvgPicture.asset(
-                    payCardIcon,
-                    height: 24.h,
-                  ),
-                  shape: const Border(
-                    bottom: BorderSide(color: CustomColors.greyMediumColor),
-                  ),
-                  title: Align(
-                      alignment: Alignment.centerLeft,
-                      child: lightBlack14w400Centre(data: 'Payment')),
-                  contentPadding: const EdgeInsets.all(0).w,
-                  minLeadingWidth: 12,
-                  trailing: const Icon(
-                    Icons.arrow_forward_ios_rounded,
-                    size: 15,
-                    color: CustomColors.greyColor,
-                  )),
-              ListTile(
-                  onTap: () {
-                    if (context
-                            .read<AuthViewModel>()
-                            .getAuthResponse
-                            .data!
-                            .location !=
-                        null) {
-                      Navigator.pushNamed(context, addressRoute);
-                    } else {
-                      context.read<AddressViewModel>().setIsAddressAdd(true);
-                      Navigator.pushNamed(context, addAddressRoute);
-                    }
-                  },
-                  leading: SvgPicture.asset(
-                    mapPin,
-                    height: 24.h,
-                  ),
-                  shape: const Border(
-                    bottom: BorderSide(color: CustomColors.greyMediumColor),
-                  ),
-                  title: Align(
-                      alignment: Alignment.centerLeft,
-                      child: lightBlack14w400Centre(data: 'Shipping Address')),
-                  contentPadding: const EdgeInsets.all(0).w,
-                  minLeadingWidth: 12,
-                  trailing: const Icon(
-                    Icons.arrow_forward_ios_rounded,
-                    size: 15,
-                    color: CustomColors.greyColor,
-                  )),
-              ListTile(
-                  onTap: () {
-                    context.read<FaqsBlogsNewsViewModel>().clearFeedbackForm();
-                    Navigator.pushNamed(context, feedbackRoute);
-                  },
-                  leading: const Icon(
-                    Icons.feedback_outlined,
-                    color: CustomColors.blackColor,
-                  ),
-                  shape: const Border(
-                    bottom: BorderSide(color: CustomColors.greyMediumColor),
-                  ),
-                  title: Align(
-                      alignment: Alignment.centerLeft,
-                      child: lightBlack14w400Centre(data: 'Feedback')),
-                  contentPadding: const EdgeInsets.all(0).w,
-                  minLeadingWidth: 12,
-                  trailing: const Icon(
-                    Icons.arrow_forward_ios_rounded,
-                    size: 15,
-                    color: CustomColors.greyColor,
-                  )),
-              SizedBox(
-                height: 50.h,
-              ),
-              lightBlack14w400Centre(data: 'Help & Support'),
-              SizedBox(
-                height: 14.h,
-              ),
-              ListTile(
-                  onTap: () {
-                    Navigator.pushNamed(context, helpRoute);
-                  },
-                  leading: const Icon(
-                    Icons.volume_up_outlined,
-                    color: CustomColors.blackColor,
-                  ),
-                  shape: const Border(
-                    bottom: BorderSide(color: CustomColors.greyMediumColor),
-                  ),
-                  title: Align(
-                      alignment: Alignment.centerLeft,
-                      child: lightBlack14w400Centre(data: 'Contact us')),
-                  contentPadding: const EdgeInsets.all(0).w,
-                  minLeadingWidth: 12,
-                  trailing: const Icon(
-                    Icons.arrow_forward_ios_rounded,
-                    size: 15,
-                    color: CustomColors.greyColor,
-                  )),
-              ListTile(
-                  onTap: () {
-                    Navigator.pushNamed(context, faqRoute);
-                  },
-                  leading: SvgPicture.asset(
-                    faqIcon,
-                    height: 24.h,
-                  ),
-                  shape: const Border(
-                    bottom: BorderSide(color: CustomColors.greyMediumColor),
-                  ),
-                  title: Align(
-                      alignment: Alignment.centerLeft,
-                      child: lightBlack14w400Centre(data: 'FAQ')),
-                  contentPadding: const EdgeInsets.all(0).w,
-                  minLeadingWidth: 12,
-                  trailing: const Icon(
-                    Icons.arrow_forward_ios_rounded,
-                    size: 15,
-                    color: CustomColors.greyColor,
-                  )),
-              ListTile(
-                  onTap: () {
-                    Navigator.pushNamed(context, blogsRoute);
-                  },
-                  leading: const Icon(
-                    Icons.message_outlined,
-                    color: CustomColors.blackColor,
-                  ),
-                  shape: const Border(
-                    bottom: BorderSide(color: CustomColors.greyMediumColor),
-                  ),
-                  title: Align(
-                      alignment: Alignment.centerLeft,
-                      child: lightBlack14w400Centre(data: 'Blogs')),
-                  contentPadding: const EdgeInsets.all(0).w,
-                  minLeadingWidth: 12,
-                  trailing: const Icon(
-                    Icons.arrow_forward_ios_rounded,
-                    size: 15,
-                    color: CustomColors.greyColor,
-                  )),
-              ListTile(
-                  onTap: () {
-                    Navigator.pushNamed(context, newsRoute);
-                  },
-                  leading: const Icon(
-                    Icons.newspaper,
-                    color: CustomColors.blackColor,
-                  ),
-                  shape: const Border(
-                    bottom: BorderSide(color: CustomColors.greyMediumColor),
-                  ),
-                  title: Align(
-                      alignment: Alignment.centerLeft,
-                      child: lightBlack14w400Centre(data: 'News Updates')),
-                  contentPadding: const EdgeInsets.all(0).w,
-                  minLeadingWidth: 12,
-                  trailing: const Icon(
-                    Icons.arrow_forward_ios_rounded,
-                    size: 15,
-                    color: CustomColors.greyColor,
-                  )),
-              ListTile(
-                  onTap: () {
-                    Navigator.pushNamed(context, deleteAccountRoute);
-                  },
-                  leading: const Icon(
-                    Icons.delete_outline,
-                    color: CustomColors.blackColor,
-                  ),
-                  title: Align(
-                      alignment: Alignment.centerLeft,
-                      child: lightBlack14w400Centre(data: 'Delete Account')),
-                  contentPadding: const EdgeInsets.all(0).w,
-                  minLeadingWidth: 12,
-                  trailing: const Icon(
-                    Icons.arrow_forward_ios_rounded,
-                    size: 15,
-                    color: CustomColors.greyColor,
-                  )),
-              SizedBox(
-                height: 32.h,
-              ),
-              Visibility(
-                visible: !context
-                    .read<AuthViewModel>()
-                    .getAuthResponse
-                    .data!
-                    .isGuest!,
-                child: ListTile(
-                  onTap: () async {
-                    context.read<AuthViewModel>().clearFieldsData();
-                    context
-                        .read<BottomNavigationViewModel>()
-                        .setHomeViewIndex(0);
-                    context.read<AuthViewModel>().callLogOut();
-                    Navigator.pushNamedAndRemoveUntil(
-                        context, loginRoute, (route) => false);
-                  },
-                  leading: SvgPicture.asset(
-                    logoutIcon,
-                    height: 24.h,
-                  ),
-                  title: Align(
-                      alignment: Alignment.centerLeft,
-                      child: orange14w400(data: 'Log out')),
-                  contentPadding: const EdgeInsets.all(0),
-                  minLeadingWidth: 12,
+                SizedBox(
+                  height: 100.h,
                 ),
-              ),
-              SizedBox(
-                height: 100.h,
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

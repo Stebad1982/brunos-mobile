@@ -26,9 +26,9 @@ class RegisterUserScreen extends StatelessWidget {
           Navigator.pop(context);
           return false;
         },
-        child: Scaffold(
-          body: SafeArea(
-            child: SingleChildScrollView(
+        child: SafeArea(
+          child: Scaffold(
+            body: SingleChildScrollView(
               child: Padding(
                 padding: const EdgeInsets.only(
                     top: 30, bottom: 20, left: 20, right: 20).w,

@@ -30,282 +30,284 @@ class _DeliveryDatesScreenState extends State<DeliveryDatesScreen> {
   Widget build(BuildContext context) {
     return Consumer<CartViewModel>(builder: (context, cartViewModel, child) {
       return Consumer<PlansViewModel>(builder: (context, planViewModel, child) {
-        return Scaffold(
-          appBar: const AppBarWithBackWidget(
-              heading: 'Select Date', showPuppy: false, showCart: false),
-          body: Stack(
-            children: [
-              SingleChildScrollView(
-                child: Padding(
-                  padding: const EdgeInsets.all(20).w,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      /* SizedBox(
-                        height: 10.h,
-                      ),
-                      Center(
-                        child: Image.asset(
-                          buyBulits2,
-                          height: 57.h,
-                        ),
-                      ),*/
-                      SizedBox(
-                        height: 40.h,
-                      ),
-                      black24w500Centre(
-                          data: /* plansViewModel.getPlanType == Plans.monthly.text
-                            ? 'Schedule Your Meal Deliveries'
-                            :*/
-                              'Select Your Delivery Date'),
-                      SizedBox(
-                        height: 10.h,
-                      ),
-                      lightBlack14w400Centre(
-                          data:
-                              'Order by 4pm to receive your doggies dishes\nbetween 9am- 12noon the following day'),
-                      SizedBox(
-                        height: 30.h,
-                      ),
-                      /*    Visibility(
-                      visible: plansViewModel.getPlanType == Plans.monthly.text,
-                      child: Padding(
-                        padding: const EdgeInsets.only(bottom: 20),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Transform.scale(
-                              scale: 1,
-                              child: Radio(
-                                  activeColor: CustomColors.blackColor,
-                                  visualDensity: const VisualDensity(
-                                    horizontal: VisualDensity.minimumDensity,
-                                    vertical: VisualDensity.minimumDensity,
-                                  ),
-                                  value: 1,
-                                  groupValue: plansViewModel.getRadioVal,
-                                  onChanged: (value) {
-                                    plansViewModel.setRadioValue(value!);
-                                  }),
-                            ),
-                            SizedBox(
-                              width: 5.w,
-                            ),
-                            lightBlack14w400Centre(data: 'One time Delivery'),
-                            const Spacer(),
-                            Transform.scale(
-                              scale: 1,
-                              child: Radio(
-                                  activeColor: CustomColors.blackColor,
-                                  visualDensity: const VisualDensity(
-                                    horizontal: VisualDensity.minimumDensity,
-                                    vertical: VisualDensity.minimumDensity,
-                                  ),
-                                  value: 2,
-                                  groupValue: plansViewModel.getRadioVal,
-                                  onChanged: (value) {
-                                    plansViewModel.setRadioValue(value!);
-                                  }),
-                            ),
-                            SizedBox(
-                              width: 5.w,
-                            ),
-                            lightBlack14w400Centre(
-                                data: 'Scheduled Delivery\n( Every 10 days )',
-                                left: true)
-                          ],
-                        ),
-                      ),
-                    ),*/
-                      TableCalendar(
-                        rowHeight: 45,
-                        headerStyle: const HeaderStyle(
-                          formatButtonVisible: false,
-                          titleCentered: true,
-                        ),
-                        availableGestures: AvailableGestures.all,
-                        selectedDayPredicate: (day) =>
-                            day.weekday == 6 || day.weekday == 7
-                                ? false
-                                : isSameDay(cartViewModel.getSelectedDay, day),
-                        locale: 'en_US',
-                        firstDay: cartViewModel.getFocusedDay,
-                        lastDay: DateTime.utc(2030, 3, 14),
-                        focusedDay: cartViewModel.getFocusedDay,
-                        onDaySelected: cartViewModel.onDaySelected,
-                        calendarStyle: const CalendarStyle(
-                          weekendTextStyle: TextStyle(color: CustomColors.orangeColor),
-                            selectedDecoration: BoxDecoration(
-                                color: CustomColors.orangeColor,
-                                shape: BoxShape.circle),
-                            todayDecoration: BoxDecoration(
-                                color: CustomColors.yellowColor,
-                                shape: BoxShape.circle)),
-                      ),
-                      /*SizedBox(
-                      height: 20.h,
-                    ),
-                    Visibility(
-                      visible: plansViewModel.getPlanType == Plans.monthly.text,
-                      child: Column(
-                        children: [
-                          Align(
-                              alignment: Alignment.centerLeft,
-                              child: black16w500(
-                                  data: 'Your order will be delivered')),
-                          SizedBox(
-                            height: 20.h,
-                          ),
-                          Align(
-                              alignment: Alignment.centerLeft,
-                              child: lightBlack14w400Centre(
-                                  data: 'Order Summary')),
-                          SizedBox(
-                            height: 15.h,
-                          ),
-                          Container(
-                            width: double.infinity,
-                            decoration: const ShapeDecoration(
-                              color: CustomColors.lightGreyColor,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(20),
-                                    topRight: Radius.circular(20)),
-                              ),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(20),
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  black16w500(data: 'Meal Batch'),
-                                  black16w500(data: 'Deliver on'),
-                                ],
-                              ),
-                            ),
-                          ),
-                          Container(
-                            width: double.infinity,
-                            decoration: BoxDecoration(
-                              color: CustomColors.whiteColor,
-                              border: Border.all(
-                                  color: CustomColors.greyMediumColor),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 20, vertical: 10),
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  lightBlack14w400Centre(
-                                      data: 'Batch 1 (Beefy Barkfest)'),
-                                  lightBlack14w400Centre(data: '3 June 2023'),
-                                ],
-                              ),
-                            ),
-                          ),
-                          Container(
-                            width: double.infinity,
-                            decoration: BoxDecoration(
-                              color: CustomColors.whiteColor,
-                              border: Border.all(
-                                  color: CustomColors.greyMediumColor),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 20, vertical: 10),
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  lightBlack14w400Centre(
-                                      data: 'Batch 1 (Beefy Barkfest)'),
-                                  lightBlack14w400Centre(data: '3 June 2023'),
-                                ],
-                              ),
-                            ),
-                          ),
-                          Container(
-                            width: double.infinity,
-                            decoration: BoxDecoration(
-                              color: CustomColors.whiteColor,
-                              border: Border.all(
-                                  color: CustomColors.greyMediumColor),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 20, vertical: 10),
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  lightBlack14w400Centre(
-                                      data: 'Batch 1 (Beefy Barkfest)'),
-                                  lightBlack14w400Centre(data: '3 June 2023'),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),*/
-                      SizedBox(
-                        height: 30.h,
-                      ),
-                      brown14w400Centre(
-                          data:
-                              'Great! Now tell us where we will be delivering\nour tail-wagging meals',
-                          centre: true),
-                      SizedBox(
-                        height: 100.h,
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              Align(
-                alignment: Alignment.bottomCenter,
-                child: Container(
-                  decoration: const BoxDecoration(
-                    color: CustomColors.whiteColor,
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(30.0),
-                      topRight: Radius.circular(30.0),
-                    ),
-                    boxShadow: [
-                      BoxShadow(
-                        offset: Offset(0, 0),
-                        blurRadius: 5,
-                        spreadRadius: 2,
-                        color: Colors.black12,
-                      ),
-                    ],
-                  ),
+        return SafeArea(
+          child: Scaffold(
+            appBar: const AppBarWithBackWidget(
+                heading: 'Select Date', showPuppy: false, showCart: false),
+            body: Stack(
+              children: [
+                SingleChildScrollView(
                   child: Padding(
                     padding: const EdgeInsets.all(20).w,
-                    child: customButton(
-                        text: 'CheckOut',
-                        onPressed: () {
-                         /* cartViewModel.clearData();
-                          cartViewModel.setCheckOutTotal();*/
-                          Navigator.pushNamed(context, checkOutRoute);
-                          /*final String deliveryDate =
-                          DateTimeFormatter.showDateFormat3(
-                              cartViewModel.getSelectedDay!);*/
-                        },
-                        colored: true),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        /* SizedBox(
+                          height: 10.h,
+                        ),
+                        Center(
+                          child: Image.asset(
+                            buyBulits2,
+                            height: 57.h,
+                          ),
+                        ),*/
+                        SizedBox(
+                          height: 40.h,
+                        ),
+                        black24w500Centre(
+                            data: /* plansViewModel.getPlanType == Plans.monthly.text
+                              ? 'Schedule Your Meal Deliveries'
+                              :*/
+                                'Select Your Delivery Date'),
+                        SizedBox(
+                          height: 10.h,
+                        ),
+                        lightBlack14w400Centre(
+                            data:
+                                'Order by 4pm to receive your doggies dishes\nbetween 9am- 12noon the following day'),
+                        SizedBox(
+                          height: 30.h,
+                        ),
+                        /*    Visibility(
+                        visible: plansViewModel.getPlanType == Plans.monthly.text,
+                        child: Padding(
+                          padding: const EdgeInsets.only(bottom: 20),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Transform.scale(
+                                scale: 1,
+                                child: Radio(
+                                    activeColor: CustomColors.blackColor,
+                                    visualDensity: const VisualDensity(
+                                      horizontal: VisualDensity.minimumDensity,
+                                      vertical: VisualDensity.minimumDensity,
+                                    ),
+                                    value: 1,
+                                    groupValue: plansViewModel.getRadioVal,
+                                    onChanged: (value) {
+                                      plansViewModel.setRadioValue(value!);
+                                    }),
+                              ),
+                              SizedBox(
+                                width: 5.w,
+                              ),
+                              lightBlack14w400Centre(data: 'One time Delivery'),
+                              const Spacer(),
+                              Transform.scale(
+                                scale: 1,
+                                child: Radio(
+                                    activeColor: CustomColors.blackColor,
+                                    visualDensity: const VisualDensity(
+                                      horizontal: VisualDensity.minimumDensity,
+                                      vertical: VisualDensity.minimumDensity,
+                                    ),
+                                    value: 2,
+                                    groupValue: plansViewModel.getRadioVal,
+                                    onChanged: (value) {
+                                      plansViewModel.setRadioValue(value!);
+                                    }),
+                              ),
+                              SizedBox(
+                                width: 5.w,
+                              ),
+                              lightBlack14w400Centre(
+                                  data: 'Scheduled Delivery\n( Every 10 days )',
+                                  left: true)
+                            ],
+                          ),
+                        ),
+                      ),*/
+                        TableCalendar(
+                          rowHeight: 45,
+                          headerStyle: const HeaderStyle(
+                            formatButtonVisible: false,
+                            titleCentered: true,
+                          ),
+                          availableGestures: AvailableGestures.all,
+                          selectedDayPredicate: (day) =>
+                              day.weekday == 6 || day.weekday == 7
+                                  ? false
+                                  : isSameDay(cartViewModel.getSelectedDay, day),
+                          locale: 'en_US',
+                          firstDay: cartViewModel.getFocusedDay,
+                          lastDay: DateTime.utc(2030, 3, 14),
+                          focusedDay: cartViewModel.getFocusedDay,
+                          onDaySelected: cartViewModel.onDaySelected,
+                          calendarStyle: const CalendarStyle(
+                            weekendTextStyle: TextStyle(color: CustomColors.orangeColor),
+                              selectedDecoration: BoxDecoration(
+                                  color: CustomColors.orangeColor,
+                                  shape: BoxShape.circle),
+                              todayDecoration: BoxDecoration(
+                                  color: CustomColors.yellowColor,
+                                  shape: BoxShape.circle)),
+                        ),
+                        /*SizedBox(
+                        height: 20.h,
+                      ),
+                      Visibility(
+                        visible: plansViewModel.getPlanType == Plans.monthly.text,
+                        child: Column(
+                          children: [
+                            Align(
+                                alignment: Alignment.centerLeft,
+                                child: black16w500(
+                                    data: 'Your order will be delivered')),
+                            SizedBox(
+                              height: 20.h,
+                            ),
+                            Align(
+                                alignment: Alignment.centerLeft,
+                                child: lightBlack14w400Centre(
+                                    data: 'Order Summary')),
+                            SizedBox(
+                              height: 15.h,
+                            ),
+                            Container(
+                              width: double.infinity,
+                              decoration: const ShapeDecoration(
+                                color: CustomColors.lightGreyColor,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.only(
+                                      topLeft: Radius.circular(20),
+                                      topRight: Radius.circular(20)),
+                                ),
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.all(20),
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    black16w500(data: 'Meal Batch'),
+                                    black16w500(data: 'Deliver on'),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            Container(
+                              width: double.infinity,
+                              decoration: BoxDecoration(
+                                color: CustomColors.whiteColor,
+                                border: Border.all(
+                                    color: CustomColors.greyMediumColor),
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 20, vertical: 10),
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    lightBlack14w400Centre(
+                                        data: 'Batch 1 (Beefy Barkfest)'),
+                                    lightBlack14w400Centre(data: '3 June 2023'),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            Container(
+                              width: double.infinity,
+                              decoration: BoxDecoration(
+                                color: CustomColors.whiteColor,
+                                border: Border.all(
+                                    color: CustomColors.greyMediumColor),
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 20, vertical: 10),
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    lightBlack14w400Centre(
+                                        data: 'Batch 1 (Beefy Barkfest)'),
+                                    lightBlack14w400Centre(data: '3 June 2023'),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            Container(
+                              width: double.infinity,
+                              decoration: BoxDecoration(
+                                color: CustomColors.whiteColor,
+                                border: Border.all(
+                                    color: CustomColors.greyMediumColor),
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 20, vertical: 10),
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    lightBlack14w400Centre(
+                                        data: 'Batch 1 (Beefy Barkfest)'),
+                                    lightBlack14w400Centre(data: '3 June 2023'),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),*/
+                        SizedBox(
+                          height: 30.h,
+                        ),
+                        brown14w400Centre(
+                            data:
+                                'Great! Now tell us where we will be delivering\nour tail-wagging meals',
+                            centre: true),
+                        SizedBox(
+                          height: 100.h,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-            ],
+                Align(
+                  alignment: Alignment.bottomCenter,
+                  child: Container(
+                    decoration: const BoxDecoration(
+                      color: CustomColors.whiteColor,
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(30.0),
+                        topRight: Radius.circular(30.0),
+                      ),
+                      boxShadow: [
+                        BoxShadow(
+                          offset: Offset(0, 0),
+                          blurRadius: 5,
+                          spreadRadius: 2,
+                          color: Colors.black12,
+                        ),
+                      ],
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(20).w,
+                      child: customButton(
+                          text: 'CheckOut',
+                          onPressed: () {
+                           /* cartViewModel.clearData();
+                            cartViewModel.setCheckOutTotal();*/
+                            Navigator.pushNamed(context, checkOutRoute);
+                            /*final String deliveryDate =
+                            DateTimeFormatter.showDateFormat3(
+                                cartViewModel.getSelectedDay!);*/
+                          },
+                          colored: true),
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         );
       });

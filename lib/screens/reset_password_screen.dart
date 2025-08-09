@@ -15,9 +15,9 @@ class ResetPasswordScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Consumer<AuthViewModel>(builder: (_, authViewModel, __) {
-      return Scaffold(
-        body: SafeArea(
-          child: SingleChildScrollView(
+      return SafeArea(
+        child: Scaffold(
+          body: SingleChildScrollView(
             child: Padding(
               padding:
               const EdgeInsets.only(top: 30, bottom: 30, left: 20, right: 20).w,

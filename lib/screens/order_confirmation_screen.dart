@@ -28,12 +28,12 @@ class OrderConfirmationScreen extends StatelessWidget {
         onWillPop: () async{
           onBack();
           return true; },
-        child: Scaffold(
-         /* appBar:   AppBarWithBackWidget(
-            heading: 'Order Confirmation', showPuppy: false,showCart: false, onBackPress: onBack,
-          ),*/
-          body: SafeArea(
-            child: Padding(
+        child: SafeArea(
+          child: Scaffold(
+           /* appBar:   AppBarWithBackWidget(
+              heading: 'Order Confirmation', showPuppy: false,showCart: false, onBackPress: onBack,
+            ),*/
+            body: Padding(
               padding:
               const EdgeInsets.only(top: 30, bottom: 30, left: 20, right: 20).w,
               child: Column(

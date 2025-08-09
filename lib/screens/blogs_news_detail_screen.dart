@@ -15,32 +15,34 @@ class BlogsNewsDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Consumer<FaqsBlogsNewsViewModel>(builder: (_, faqsBlogsNewsViewModel, __) {
-      return Scaffold(
-        appBar: const AppBarWithBackWidget(
-            heading: 'Detail', showPuppy: false, showCart: false),
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(top: 20,left: 20,right: 20).w,
-              child: black18w500(data: faqsBlogsNewsViewModel.getSelectedBlogNews.title!),
-            ),
-            SizedBox(height: 20.h,),
-            SizedBox(
-                height: 200.h,
-                child: RecipesCarouselWidget(recipesImages: faqsBlogsNewsViewModel.getSelectedBlogNews.media!,)),
-            Padding(
-              padding: const EdgeInsets.only(bottom: 10,left: 10,right: 10).w,
-              child: Html(data: faqsBlogsNewsViewModel.getSelectedBlogNews.description,onLinkTap: (url,_,__) async {
-                final uri = Uri.parse(url!);
-                if (await canLaunchUrl(uri)) {
-                await launchUrl(uri);
-                }              },),
-            )
-          ],
+      return SafeArea(
+        child: Scaffold(
+          appBar: const AppBarWithBackWidget(
+              heading: 'Detail', showPuppy: false, showCart: false),
+        body: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(top: 20,left: 20,right: 20).w,
+                child: black18w500(data: faqsBlogsNewsViewModel.getSelectedBlogNews.title!),
+              ),
+              SizedBox(height: 20.h,),
+              SizedBox(
+                  height: 200.h,
+                  child: RecipesCarouselWidget(recipesImages: faqsBlogsNewsViewModel.getSelectedBlogNews.media!,)),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 10,left: 10,right: 10).w,
+                child: Html(data: faqsBlogsNewsViewModel.getSelectedBlogNews.description,onLinkTap: (url,_,__) async {
+                  final uri = Uri.parse(url!);
+                  if (await canLaunchUrl(uri)) {
+                  await launchUrl(uri);
+                  }              },),
+              )
+            ],
+          ),
         ),
-      ),
+        ),
       );
     });
 

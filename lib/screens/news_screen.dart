@@ -26,20 +26,22 @@ class _NewsScreenState extends State<NewsScreen> {
   @override
   Widget build(BuildContext context) {
     return Consumer<FaqsBlogsNewsViewModel>(builder: (_, faqsBlogsNewsViewModel, __) {
-      return Scaffold(
-        appBar: const AppBarWithBackWidget(
-            heading: 'News Updates', showPuppy: false, showCart: false),
-        body: faqsBlogsNewsViewModel.getBlogsNewsResponse.data != null
-            ? ListView.builder(
-             // physics: NeverScrollableScrollPhysics(),
-             // shrinkWrap: true,
-              itemCount: faqsBlogsNewsViewModel.getBlogsNewsResponse.data!.length,
-              padding: const EdgeInsets.symmetric(vertical: 20).w,
-              itemBuilder: (BuildContext context, int index) {
-                return newsBlogsVerticalListChipWidget(data: faqsBlogsNewsViewModel.getBlogsNewsResponse.data![index]);
-              },
-            )
-            : const SizedBox(),
+      return SafeArea(
+        child: Scaffold(
+          appBar: const AppBarWithBackWidget(
+              heading: 'News Updates', showPuppy: false, showCart: false),
+          body: faqsBlogsNewsViewModel.getBlogsNewsResponse.data != null
+              ? ListView.builder(
+               // physics: NeverScrollableScrollPhysics(),
+               // shrinkWrap: true,
+                itemCount: faqsBlogsNewsViewModel.getBlogsNewsResponse.data!.length,
+                padding: const EdgeInsets.symmetric(vertical: 20).w,
+                itemBuilder: (BuildContext context, int index) {
+                  return newsBlogsVerticalListChipWidget(data: faqsBlogsNewsViewModel.getBlogsNewsResponse.data![index]);
+                },
+              )
+              : const SizedBox(),
+        ),
       );
     });  }
 }

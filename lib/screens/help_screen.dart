@@ -60,235 +60,237 @@ class _HelpScreenState extends State<HelpScreen> {
 
     return Consumer<FaqsBlogsNewsViewModel>(
         builder: (_, faqsBlogsNewsViewModel, __) {
-      return Scaffold(
-        appBar: const AppBarWithBackWidget(
-            heading: 'Get Help', showPuppy: false, showCart: false),
-        body: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 20.0).w,
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                /*  WebViewWidget(
-                      controller: faqsBlogsNewsViewModel.getWebViewController,
-                    ),*/
-                black24w500Centre(data: 'Contact us'),
-                SizedBox(
-                  height: 20.h,
-                ),
-              /*  lightBlack14w400Centre(
-                    left: true,
-                    data:
-                        'We’d love to hear from you – please use the form to send us your message or ideas. Or simply pop in for a cup of fresh tea and a cookie:'),
-                SizedBox(
-                  height: 20.h,
-                ),*/
-                TextField(
-                  controller: faqsBlogsNewsViewModel.getComment,
-                  onChanged: (text) {},
-                  keyboardType: TextInputType.multiline,
-                  maxLines: 10,
-                  decoration:  InputDecoration(
-                    hintText: 'Your Comment',
-                    contentPadding:
-                        const EdgeInsets.symmetric(horizontal: 15, vertical: 15.0).w,
+      return SafeArea(
+        child: Scaffold(
+          appBar: const AppBarWithBackWidget(
+              heading: 'Get Help', showPuppy: false, showCart: false),
+          body: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 20.0).w,
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  /*  WebViewWidget(
+                        controller: faqsBlogsNewsViewModel.getWebViewController,
+                      ),*/
+                  black24w500Centre(data: 'Contact us'),
+                  SizedBox(
+                    height: 20.h,
                   ),
-                ),
-                SizedBox(
-                  height: 20.h,
-                ),
-                customButton(
-                  colored: true,
-                  text: 'Submit',
-                  onPressed: () async {
-                    if (faqsBlogsNewsViewModel.validateComment()) {
-                      FocusManager.instance.primaryFocus?.unfocus();
-                      await faqsBlogsNewsViewModel.callAddCommentApi();
-                      faqsBlogsNewsViewModel.clearComment();
-                    } else {
-                      descriptionDialog(
-                          context: context,
-                          description: 'Kindly fill Comment',
-                          height: 160.h,
-                          title: 'Alert');
-                    }
-                  },
-                ),
-                SizedBox(
-                  height: 20.h,
-                ),
-                Stack(
-                  children: [
-                    SizedBox(
-                      height: 160.h,
-                      child: ClipRRect(
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(20)),
-                        child: GoogleMap(
-                          zoomControlsEnabled: false,
-                          //liteModeEnabled: true,
-                          //myLocationEnabled: true,
-                          //myLocationButtonEnabled: true,
-                          // mapType: MapType.terrain,
-                          onCameraMove: (position) {
-                            context
-                                .watch<AddressViewModel>()
-                                .setInitialCameraPosition(LatLng(
-                                    position.target.latitude,
-                                    position.target.longitude));
-                          },
-                          onCameraIdle: () {
-                            context.watch<AddressViewModel>().getMapMovement();
-                          },
-                          initialCameraPosition: CameraPosition(
-                              target: context
-                                  .watch<AddressViewModel>()
-                                  .getInitialCameraPosition),
-                          markers: <Marker>{
-                            Marker(
-                              /* onDragEnd: ((newPosition) {
-                                addressViewModel.updateMapCameraPosition(LatLng(
-                                    newPosition.latitude, newPosition.longitude));
-                              }),*/
-                              //draggable: false,
-                              markerId: const MarkerId("1"),
-                              position: LatLng(
-                                  double.parse(context
-                                      .watch<AddressViewModel>()
-                                      .getEditAddress
-                                      .coordinates![0]),
-                                  double.parse(context
-                                      .watch<AddressViewModel>()
-                                      .getEditAddress
-                                      .coordinates![1])),
-                              icon: BitmapDescriptor.defaultMarkerWithHue(
-                                  BitmapDescriptor.hueOrange),
-                              infoWindow: const InfoWindow(
-                                title: '',
-                              ),
-                            )
-                          },
-                          onMapCreated:
-                              context.watch<AddressViewModel>().getUserLocation,
-                        ),
-                      ),
+                /*  lightBlack14w400Centre(
+                      left: true,
+                      data:
+                          'We’d love to hear from you – please use the form to send us your message or ideas. Or simply pop in for a cup of fresh tea and a cookie:'),
+                  SizedBox(
+                    height: 20.h,
+                  ),*/
+                  TextField(
+                    controller: faqsBlogsNewsViewModel.getComment,
+                    onChanged: (text) {},
+                    keyboardType: TextInputType.multiline,
+                    maxLines: 10,
+                    decoration:  InputDecoration(
+                      hintText: 'Your Comment',
+                      contentPadding:
+                          const EdgeInsets.symmetric(horizontal: 15, vertical: 15.0).w,
                     ),
-                    Center(
-                      child: SizedBox(
-                        width: 170.w,
-                        height: 150.h,
-                        child: Align(
-                          alignment: Alignment.bottomCenter,
-                          child: customButton(
-                            colored: true,
-                            text: 'View Location',
-                            onPressed: () async {
-                              urlLauncher(url: addressLocation);
+                  ),
+                  SizedBox(
+                    height: 20.h,
+                  ),
+                  customButton(
+                    colored: true,
+                    text: 'Submit',
+                    onPressed: () async {
+                      if (faqsBlogsNewsViewModel.validateComment()) {
+                        FocusManager.instance.primaryFocus?.unfocus();
+                        await faqsBlogsNewsViewModel.callAddCommentApi();
+                        faqsBlogsNewsViewModel.clearComment();
+                      } else {
+                        descriptionDialog(
+                            context: context,
+                            description: 'Kindly fill Comment',
+                            height: 160.h,
+                            title: 'Alert');
+                      }
+                    },
+                  ),
+                  SizedBox(
+                    height: 20.h,
+                  ),
+                  Stack(
+                    children: [
+                      SizedBox(
+                        height: 160.h,
+                        child: ClipRRect(
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(20)),
+                          child: GoogleMap(
+                            zoomControlsEnabled: false,
+                            //liteModeEnabled: true,
+                            //myLocationEnabled: true,
+                            //myLocationButtonEnabled: true,
+                            // mapType: MapType.terrain,
+                            onCameraMove: (position) {
+                              context
+                                  .watch<AddressViewModel>()
+                                  .setInitialCameraPosition(LatLng(
+                                      position.target.latitude,
+                                      position.target.longitude));
                             },
+                            onCameraIdle: () {
+                              context.watch<AddressViewModel>().getMapMovement();
+                            },
+                            initialCameraPosition: CameraPosition(
+                                target: context
+                                    .watch<AddressViewModel>()
+                                    .getInitialCameraPosition),
+                            markers: <Marker>{
+                              Marker(
+                                /* onDragEnd: ((newPosition) {
+                                  addressViewModel.updateMapCameraPosition(LatLng(
+                                      newPosition.latitude, newPosition.longitude));
+                                }),*/
+                                //draggable: false,
+                                markerId: const MarkerId("1"),
+                                position: LatLng(
+                                    double.parse(context
+                                        .watch<AddressViewModel>()
+                                        .getEditAddress
+                                        .coordinates![0]),
+                                    double.parse(context
+                                        .watch<AddressViewModel>()
+                                        .getEditAddress
+                                        .coordinates![1])),
+                                icon: BitmapDescriptor.defaultMarkerWithHue(
+                                    BitmapDescriptor.hueOrange),
+                                infoWindow: const InfoWindow(
+                                  title: '',
+                                ),
+                              )
+                            },
+                            onMapCreated:
+                                context.watch<AddressViewModel>().getUserLocation,
                           ),
                         ),
                       ),
+                      Center(
+                        child: SizedBox(
+                          width: 170.w,
+                          height: 150.h,
+                          child: Align(
+                            alignment: Alignment.bottomCenter,
+                            child: customButton(
+                              colored: true,
+                              text: 'View Location',
+                              onPressed: () async {
+                                urlLauncher(url: addressLocation);
+                              },
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 20.h,
+                  ),
+                  black16w500(
+                      data:
+                          'Shop no.17, Paragon Bay Mall, Marina Square\nAl Reem Island, Abu Dhabi, UAE',
+                      align: TextAlign.center),
+                  SizedBox(
+                    height: 20.h,
+                  ),
+                  InkWell(
+                    onTap: () async {
+                      final Uri launchUri = Uri.parse(
+                          'https://wa.me/${Contact.phone.text}?text=Hi'
+                      );
+                      await urlLauncher(url: launchUri);
+                    },
+                    child: Row(
+                      children: [
+                        SvgPicture.asset(
+                          whatsAppIcon,
+                          width: 18.h,
+                          color: CustomColors.blackColor,
+                        ),
+                        SizedBox(
+                          width: 10.w,
+                        ),
+                        black16w500(data: Contact.phone.text),
+                      ],
                     ),
-                  ],
-                ),
-                SizedBox(
-                  height: 20.h,
-                ),
-                black16w500(
-                    data:
-                        'Shop no.17, Paragon Bay Mall, Marina Square\nAl Reem Island, Abu Dhabi, UAE',
-                    align: TextAlign.center),
-                SizedBox(
-                  height: 20.h,
-                ),
-                InkWell(
-                  onTap: () async {
-                    final Uri launchUri = Uri.parse(
-                        'https://wa.me/${Contact.phone.text}?text=Hi'
-                    );
-                    await urlLauncher(url: launchUri);
-                  },
-                  child: Row(
-                    children: [
-                      SvgPicture.asset(
-                        whatsAppIcon,
-                        width: 18.h,
-                        color: CustomColors.blackColor,
-                      ),
-                      SizedBox(
-                        width: 10.w,
-                      ),
-                      black16w500(data: Contact.phone.text),
-                    ],
                   ),
-                ),
-                SizedBox(
-                  height: 20.h,
-                ),
-                InkWell(
-                  onTap: () async {
-                    final Uri emailLaunchUri = Uri(
-                      scheme: 'mailto',
-                      path: Contact.email.text,
-                      query: encodeQueryParameters(<String, String>{
-                        'subject': 'Get Help',
-                      }),
-                    );
-                    await urlLauncher(url: emailLaunchUri);
-                  },
-                  child: Row(
-                    children: [
-                      const Icon(
-                        Icons.email_outlined,
-                        color: CustomColors.blackColor,
-                      ),
-                      SizedBox(
-                        width: 10.w,
-                      ),
-                      black16w500(data: Contact.email.text),
-                    ],
+                  SizedBox(
+                    height: 20.h,
                   ),
-                ),
-                SizedBox(
-                  height: 20.h,
-                ),
-                InkWell(
-                  onTap: () async {
-                    // final Uri webUrl = Uri.parse(Contact.webUrl.text);
-                    urlLauncher(url: webUrl);
-                    /*  if (!await launchUrl(webUrl)) {
-                      throw Exception('Could not launch $webUrl');
-                    }*/
-                  },
-                  child: Row(
-                    children: [
-                      const Icon(
-                        Icons.language,
-                        color: CustomColors.blackColor,
-                      ),
-                      SizedBox(
-                        width: 10.w,
-                      ),
-                      black16w500(data: 'www.brunos.kitchen'),
-                    ],
+                  InkWell(
+                    onTap: () async {
+                      final Uri emailLaunchUri = Uri(
+                        scheme: 'mailto',
+                        path: Contact.email.text,
+                        query: encodeQueryParameters(<String, String>{
+                          'subject': 'Get Help',
+                        }),
+                      );
+                      await urlLauncher(url: emailLaunchUri);
+                    },
+                    child: Row(
+                      children: [
+                        const Icon(
+                          Icons.email_outlined,
+                          color: CustomColors.blackColor,
+                        ),
+                        SizedBox(
+                          width: 10.w,
+                        ),
+                        black16w500(data: Contact.email.text),
+                      ],
+                    ),
                   ),
-                ),
-                SizedBox(
-                  height: 20.h,
-                ),
-                /*customButton(
-                  colored: false,
-                  text: 'Call Now',
-                  icon: Icons.phone,
-                  onPressed: () async {
-                    final Uri launchUri = Uri(
-                      scheme: 'tel',
-                      path: Contact.phone.text,
-                    );
-                    await launchUrl(launchUri);
-                  },
-                ),*/
-              ],
+                  SizedBox(
+                    height: 20.h,
+                  ),
+                  InkWell(
+                    onTap: () async {
+                      // final Uri webUrl = Uri.parse(Contact.webUrl.text);
+                      urlLauncher(url: webUrl);
+                      /*  if (!await launchUrl(webUrl)) {
+                        throw Exception('Could not launch $webUrl');
+                      }*/
+                    },
+                    child: Row(
+                      children: [
+                        const Icon(
+                          Icons.language,
+                          color: CustomColors.blackColor,
+                        ),
+                        SizedBox(
+                          width: 10.w,
+                        ),
+                        black16w500(data: 'www.brunos.kitchen'),
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    height: 20.h,
+                  ),
+                  /*customButton(
+                    colored: false,
+                    text: 'Call Now',
+                    icon: Icons.phone,
+                    onPressed: () async {
+                      final Uri launchUri = Uri(
+                        scheme: 'tel',
+                        path: Contact.phone.text,
+                      );
+                      await launchUrl(launchUri);
+                    },
+                  ),*/
+                ],
+              ),
             ),
           ),
         ),

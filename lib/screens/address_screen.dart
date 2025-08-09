@@ -32,39 +32,41 @@ class _AddressScreenState extends State<AddressScreen> {
   Widget build(BuildContext context) {
     return Consumer<AddressViewModel>(
         builder: (context, addressViewModel, child) {
-          return Scaffold(
-            appBar:  const AppBarWithBackWidget(
-              heading: 'Address', showPuppy: false,showCart: true
-            ),
-            floatingActionButton: FloatingActionButton(
-              backgroundColor: CustomColors.orangeColor,
-              onPressed: () {
-                addressViewModel.setIsAddressAdd(true);
-                Navigator.pushNamed(context, addAddressRoute);
-              },
-              child: const Icon(Icons.add),
-            ),
-            body: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(height: 20.h,),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20.0).w,
-                  child: black18w500(data: 'Select Address'),
-                ),
-                addressViewModel.getAllAddressResponse.data != null?
-                Expanded(
-                  child: ListView.builder(
-                    // physics: const NeverScrollableScrollPhysics(),
-                    // shrinkWrap: true,
-                    itemCount: addressViewModel.getAllAddressResponse.data!.length,
-                    padding: const EdgeInsets.only(left: 20, right: 20, top: 20,bottom: 40).w,
-                    itemBuilder: (BuildContext context, int index) {
-                      return addressVerticalListChipWidget(addressDetail: addressViewModel.getAllAddressResponse.data![index]);
-                    },
+          return SafeArea(
+            child: Scaffold(
+              appBar:  const AppBarWithBackWidget(
+                heading: 'Address', showPuppy: false,showCart: true
+              ),
+              floatingActionButton: FloatingActionButton(
+                backgroundColor: CustomColors.orangeColor,
+                onPressed: () {
+                  addressViewModel.setIsAddressAdd(true);
+                  Navigator.pushNamed(context, addAddressRoute);
+                },
+                child: const Icon(Icons.add),
+              ),
+              body: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(height: 20.h,),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20.0).w,
+                    child: black18w500(data: 'Select Address'),
                   ),
-                ): Container(),
-              ],
+                  addressViewModel.getAllAddressResponse.data != null?
+                  Expanded(
+                    child: ListView.builder(
+                      // physics: const NeverScrollableScrollPhysics(),
+                      // shrinkWrap: true,
+                      itemCount: addressViewModel.getAllAddressResponse.data!.length,
+                      padding: const EdgeInsets.only(left: 20, right: 20, top: 20,bottom: 40).w,
+                      itemBuilder: (BuildContext context, int index) {
+                        return addressVerticalListChipWidget(addressDetail: addressViewModel.getAllAddressResponse.data![index]);
+                      },
+                    ),
+                  ): Container(),
+                ],
+              ),
             ),
           );
         });
