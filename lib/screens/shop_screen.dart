@@ -60,13 +60,10 @@ class ShopScreen extends StatelessWidget {
                     },
                     colored: true),
                 SizedBox(
-                  height: 10.h,
+                  height: 20.h,
                 ),
-                Center(child: black18w500(data: 'OR')),
+                Center(child: grey14w400HeightCentre(data: 'OR')),
 
-                SizedBox(
-                  height: 5.h,
-                ),
                 black18w500(data: 'Select Category'),
                 SizedBox(
                   height: 20.h,

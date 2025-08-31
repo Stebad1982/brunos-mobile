@@ -32,7 +32,7 @@ Widget googleFacebookButtonWidget({required BuildContext context}) {
               });
         },
         child: Container(
-          width: Platform.isAndroid ? 159.w : null,
+          width: Platform.isAndroid ? 335.w : null,
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(100),
               border: Border.all(width: 1, color: CustomColors.greyShadeColor)),
@@ -59,7 +59,7 @@ Widget googleFacebookButtonWidget({required BuildContext context}) {
         ),
       ),
       const Spacer(),
-      InkWell(
+     /* InkWell(
         onTap: () {
           context.read<AuthViewModel>().signInWithFacebook().then((value) => {
                 if (value)
@@ -88,9 +88,9 @@ Widget googleFacebookButtonWidget({required BuildContext context}) {
                   width: 23,
                   height: 23,
                 ),
-                /*SizedBox(
+                *//*SizedBox(
                   width: 12.w,
-                ),*/
+                ),*//*
                 Visibility(
                     visible: Platform.isAndroid,
                     child: Padding(
@@ -102,7 +102,7 @@ Widget googleFacebookButtonWidget({required BuildContext context}) {
           ),
         ),
       ),
-      const Spacer(),
+      const Spacer(),*/
       Visibility(
         visible: Platform.isIOS,
         child: InkWell(
