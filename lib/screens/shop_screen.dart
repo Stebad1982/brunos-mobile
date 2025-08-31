@@ -7,6 +7,7 @@ import '../route_generator.dart';
 import '../utils/custom_buttons.dart';
 import '../utils/custom_font_style.dart';
 import '../utils/enums.dart';
+import '../utils/navigations_validation.dart';
 import '../view_models/auth_view_model.dart';
 import '../view_models/plans_view_model.dart';
 import '../view_models/puppy_view_model.dart';
@@ -52,8 +53,7 @@ class ShopScreen extends StatelessWidget {
                         context.read<PuppyViewModel>().clearPuppyData();
                         Navigator.pushNamed(context, puppyCreationRoute);
                       } else {
-                        Navigator.pushNamed(context, monthlyPlanRoute);
-                      }
+                        navigateToMonthlyPlans(context: context)  ;                    }
                       /*   SendGridPref sendGrid = SendGridPref();
                       sendGrid.sendEmail(emailSubject: 'Registration', emailDescription: 'Register Successfully');
                       */

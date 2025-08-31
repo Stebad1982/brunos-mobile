@@ -12,6 +12,7 @@ import '../utils/custom_buttons.dart';
 import '../utils/custom_colors.dart';
 import '../utils/custom_font_style.dart';
 import '../utils/images.dart';
+import '../utils/navigations_validation.dart';
 import '../view_models/auth_view_model.dart';
 import '../widgets/app_bar_with_back_widget.dart';
 import '../widgets/dialogs/discription_dialog.dart';
@@ -786,8 +787,7 @@ class _PuppyCreationAdditionalScreenState
                                                     context, choosePlanRoute):
                                             puppyViewModel.getRouteToPuppyFrom ==
                                                 Screens.shop.text
-                                                ? Navigator.pushNamed(
-                                                context, monthlyPlanRoute)
+                                                ? navigateToMonthlyPlans(context: context)
                                                 : Navigator.pushNamed(context,
                                                     puppyConfirmationRoute),
                                           }

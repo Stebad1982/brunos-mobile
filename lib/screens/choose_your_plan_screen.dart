@@ -10,6 +10,7 @@ import 'package:provider/provider.dart';
 
 import '../utils/custom_colors.dart';
 import '../utils/enums.dart';
+import '../utils/navigations_validation.dart';
 import '../view_models/auth_view_model.dart';
 import '../widgets/app_bar_with_back_widget.dart';
 import '../widgets/dialogs/discription_dialog.dart';
@@ -132,22 +133,7 @@ class ChooseYourPlanScreen extends StatelessWidget {
                 ),
                 InkWell(
                   onTap: () {
-                    if (context.read<CartViewModel>().checkCartForPlanValidation(
-                        planType: Plans.monthly.text)) {
-                      context
-                          .read<PlansViewModel>()
-                          .setPlanType(Plans.monthly.text);
-                      context.read<PlansViewModel>().clearPlanData();
-                      Navigator.pushNamed(context, monthlyPlanRoute);
-                    } else {
-                      Navigator.pushNamed(context, cartRoute);
-                      descriptionDialog(
-                          context: context,
-                          description:
-                              'To add new plan for ${context.read<AuthViewModel>().getAuthResponse.data!.pet!.name} you have to remove current ${context.read<AuthViewModel>().getAuthResponse.data!.pet!.name} plan from shopping bag',
-                          height: 180.h,
-                          title: 'New Plan Creation');
-                    }
+                    navigateToMonthlyPlans(context: context);
                   },
                   child: Container(
                     decoration: ShapeDecoration(
