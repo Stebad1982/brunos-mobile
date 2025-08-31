@@ -3,9 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
+import '../route_generator.dart';
 import '../utils/custom_buttons.dart';
 import '../utils/custom_font_style.dart';
+import '../utils/enums.dart';
+import '../view_models/auth_view_model.dart';
 import '../view_models/plans_view_model.dart';
+import '../view_models/puppy_view_model.dart';
 import '../widgets/gridChip/item_discribed_grid_chip_widget.dart';
 
 class ShopScreen extends StatelessWidget {
@@ -30,7 +34,38 @@ class ShopScreen extends StatelessWidget {
                   ],
                 ),
                 SizedBox(
-                  height: 40.h,
+                  height: 20.h,
+                ),
+                customButton(
+                    text: '<< Monthly Plan >>',
+                    /* boldText: 'Tap Here',*/
+                    onPressed: () {
+                      if (context
+                          .read<AuthViewModel>()
+                          .getAuthResponse
+                          .data!
+                          .petsCount ==
+                          0) {
+                        context
+                            .read<PuppyViewModel>()
+                            .setRouteToPuppyFrom(Screens.shop.text);
+                        context.read<PuppyViewModel>().clearPuppyData();
+                        Navigator.pushNamed(context, puppyCreationRoute);
+                      } else {
+                        Navigator.pushNamed(context, monthlyPlanRoute);
+                      }
+                      /*   SendGridPref sendGrid = SendGridPref();
+                      sendGrid.sendEmail(emailSubject: 'Registration', emailDescription: 'Register Successfully');
+                      */
+                    },
+                    colored: true),
+                SizedBox(
+                  height: 10.h,
+                ),
+                Center(child: black18w500(data: 'OR')),
+
+                SizedBox(
+                  height: 5.h,
                 ),
                 black18w500(data: 'Select Category'),
                 SizedBox(

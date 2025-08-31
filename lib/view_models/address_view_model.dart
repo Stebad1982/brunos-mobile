@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:brunos_kitchen/models/base_response_model.dart';
 import 'package:brunos_kitchen/models/requests/add_address_request.dart';
+import 'package:brunos_kitchen/models/requests/address_radius_request.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
@@ -12,6 +13,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:google_maps_webservice/places.dart';
 
 import '../models/address_model.dart';
+import '../models/responses/address_radius_response.dart';
 import '../models/responses/all_address_reponse.dart';
 import '../services/address_api_services.dart';
 import '../services/api_base_helper.dart';
@@ -181,7 +183,7 @@ class AddressViewModel with ChangeNotifier {
     }
   }*/
 
-  bool validateAddressDetail() {
+  Future<bool> validateAddressDetail() async {
     if (_addressController.text.isEmpty) {
       EasyLoading.showToast('Please Select Address');
       return false;
@@ -191,7 +193,7 @@ class AddressViewModel with ChangeNotifier {
       return false;
     }
     else {
-      return true;
+      return await callValidateAddressRadius();
     }
   }
 
@@ -307,6 +309,25 @@ class AddressViewModel with ChangeNotifier {
       EasyLoading.dismiss();
     } catch (e) {
       EasyLoading.showToast(e.toString());
+    }
+  }
+
+
+  Future<bool> callValidateAddressRadius() async {
+    EasyLoading.show(status: 'Please wait...');
+    try {
+      final AddressRadiusResponse response =
+      await _addressApiServices.checkRadius(addressRadiusRequest: AddressRadiusRequest(lat: _selectedAddressLat,long:_selectedAddressLng ));
+      if (response.withinRadius!) {
+        EasyLoading.dismiss();
+        return true;
+      } else {
+        EasyLoading.showToast('Sorry, this address is outside of the delivery range');
+        return false;
+      }
+    } catch (e) {
+      EasyLoading.showError(e.toString());
+      return false;
     }
   }
 

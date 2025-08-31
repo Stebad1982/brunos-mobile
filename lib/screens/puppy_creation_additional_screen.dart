@@ -783,7 +783,11 @@ class _PuppyCreationAdditionalScreenState
                                             puppyViewModel.getRouteToPuppyFrom ==
                                                     Screens.home.text
                                                 ? Navigator.pushNamed(
-                                                    context, choosePlanRoute)
+                                                    context, choosePlanRoute):
+                                            puppyViewModel.getRouteToPuppyFrom ==
+                                                Screens.shop.text
+                                                ? Navigator.pushNamed(
+                                                context, monthlyPlanRoute)
                                                 : Navigator.pushNamed(context,
                                                     puppyConfirmationRoute),
                                           }

@@ -4,15 +4,15 @@ enum Screens {
   forgetPassword("ForgetPassword"),
   registerUser("RegisterUser"),
   login("Login"),
-  cart("cart")
-  ;
+  cart("cart"),
+  shop("shop");
 
   const Screens(this.text);
 
   final String text;
 }
 
-enum Contact{
+enum Contact {
   email("hello@brunos.kitchen"),
   phone("+971 58 575 9205"),
   webUrl('https://brunos.kitchen/'),
@@ -20,7 +20,6 @@ enum Contact{
   termAndConditionUrl('https://admin.brunos.kitchen/terms&conditions'),
   privacyPolicyUrl('https://admin.brunos.kitchen/privacy-policy'),
   agreementUrl('https://admin.brunos.kitchen/user-agreement');
-
 
   const Contact(this.text);
 
@@ -48,7 +47,6 @@ enum ProductCategories {
   final String text;
 }
 
-
 enum Puppy {
   boy("boy"),
   girl("girl"),
@@ -65,7 +63,9 @@ enum PuppyWeight {
   idealWeight(10),
   overweight(20),
   underweight(5);
+
   final int value;
+
   const PuppyWeight(this.value);
 }
 
@@ -73,7 +73,9 @@ enum Discounts {
   discountPercentageOnMonthlyPlan('discountPercentageOnMonthlyPlan'),
   discountOnPointsRedeem('discountOnPointsRedeem'),
   pointsToAEDRatio('pointsToAEDRatio');
+
   final String text;
+
   const Discounts(this.text);
 }
 
@@ -105,8 +107,6 @@ enum OtpTypes {
 
   final String text;
 }
-
-
 
 enum SharedPreferencesKeys {
   authToken("auth_token");
@@ -140,6 +140,7 @@ enum EndPoints {
   allAddresses('user/locations'),
   allRecipes('recipe/'),
   addAddress('user/location'),
+  checkLocation('auth/checkLocation'),
   defaultAddress('user/default/location/'),
   defaultCard('card/default/'),
   defaultPuppy('pet/default/'),
@@ -150,7 +151,6 @@ enum EndPoints {
   allCards('card'),
   promoIsValid('promo-code/name/'),
   deleteAddress('user/location/');
-
 
   final String url;
 

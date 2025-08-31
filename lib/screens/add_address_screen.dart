@@ -212,7 +212,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                               ? 'Next'
                               : 'Update',
                           onPressed: () async {
-                            if (addressViewModel.validateAddressDetail()) {
+                            if (await addressViewModel.validateAddressDetail()) {
                               if (addressViewModel.getIsAddressAdd) {
                                 Navigator.pushNamed(context, addAddressDetailRoute);
                               } /*else {
