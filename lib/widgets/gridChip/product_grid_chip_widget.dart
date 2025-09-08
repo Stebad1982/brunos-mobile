@@ -1,3 +1,4 @@
+
 import 'package:brunos_kitchen/main.dart';
 import 'package:brunos_kitchen/route_generator.dart';
 import 'package:brunos_kitchen/utils/custom_font_style.dart';
@@ -14,14 +15,22 @@ import '../../utils/custom_colors.dart';
 import '../../utils/enums.dart';
 import '../../view_models/cart_view_model.dart';
 
-Widget itemDescribedGridChipWidget(
-    {required RecipeModel recipeData, required bool showInformationIcon}) {
-  return Consumer<PlansViewModel>(builder: (context, plansViewModel, child) {
+Widget productGridChipWidget({required RecipeModel recipeData , required bool showInformationIcon}) {
+  return Consumer<PlansViewModel>(builder: (context, plansViewModel, child)
+  {
     return InkWell(
       onTap: () {
-        plansViewModel.setSelectedRecipe(recipeData);
-        context.read<CartViewModel>().setViewCartItemDetail(false);
-        Navigator.pushNamed(navigatorKey.currentContext!, feedingPlanRoute);
+        if(plansViewModel.getPlanType == Plans.monthly.text){
+          plansViewModel.setPlanType(Plans.product.text);
+        }
+        plansViewModel.setSelectedRecipe(
+            recipeData);
+        //TODO: REMOVE ONETIME ORDER
+          context.read<CartViewModel>().setViewCartItemDetail(false);
+          navigatorKey.currentContext!.read<PlansViewModel>().clearPlanData();
+          Navigator.pushNamed(
+              navigatorKey.currentContext!, productDetailRoute);
+
       },
       child: Card(
           elevation: 2,
@@ -49,28 +58,27 @@ Widget itemDescribedGridChipWidget(
                       children: [
                         Center(
                             child: Image.network(
-                          recipeData.media![0],
-                          height: 108.h,
-                          loadingBuilder: (BuildContext context, Widget child,
-                              ImageChunkEvent? loadingProgress) {
-                            if (loadingProgress == null) return child;
-                            return SizedBox(
+                              recipeData.media![0],
                               height: 108.h,
-                              width: 70.w,
-                              child: Center(
-                                child: LinearProgressIndicator(
-                                  value: loadingProgress.expectedTotalBytes !=
-                                          null
-                                      ? loadingProgress.cumulativeBytesLoaded /
+                              loadingBuilder: (BuildContext context, Widget child,
+                                  ImageChunkEvent? loadingProgress) {
+                                if (loadingProgress == null) return child;
+                                return SizedBox(
+                                  height: 108.h,
+                                  width: 70.w,
+                                  child: Center(
+                                    child: LinearProgressIndicator(
+                                      value: loadingProgress.expectedTotalBytes != null
+                                          ? loadingProgress.cumulativeBytesLoaded /
                                           loadingProgress.expectedTotalBytes!
-                                      : null,
-                                ),
-                              ),
-                            );
-                          },
-                        )),
+                                          : null,
+                                    ),
+                                  ),
+                                );
+                              },
+                            )),
                         Visibility(
-                          visible: showInformationIcon,
+                          visible: showInformationIcon ,
                           child: InkWell(
                             onTap: () {
                               //TODO: CHANGE RECIPE MODEL
@@ -92,12 +100,11 @@ Widget itemDescribedGridChipWidget(
                   child: Column(
                     children: [
                       black14w500(data: recipeData.name!, centre: true),
-                      Visibility(
-                        visible: recipeData.lifeStage!.isNotEmpty,
+                        Visibility(
+                          visible: recipeData.lifeStage!.isNotEmpty,
                         child: Padding(
-                          padding: const EdgeInsets.only(top: 5.0).h,
-                          child:
-                              black14w500(data: '(${recipeData.lifeStage!})'),
+                          padding: const EdgeInsets.only(top:5.0).h,
+                          child: black14w500(data: '(${recipeData.lifeStage!})'),
                         ),
                       ),
                     ],

@@ -8,6 +8,7 @@ import '../view_models/auth_view_model.dart';
 import '../view_models/plans_view_model.dart';
 import '../widgets/app_bar_with_back_widget.dart';
 import '../widgets/gridChip/item_discribed_grid_chip_widget.dart';
+import '../widgets/gridChip/product_grid_chip_widget.dart';
 
 class OneTimePlanScreen extends StatelessWidget {
   const OneTimePlanScreen({super.key});
@@ -64,7 +65,7 @@ class OneTimePlanScreen extends StatelessWidget {
                     children: List.generate(context.read<PlansViewModel>().getOneTimeRecipesList.length, (index) {
                       return SizedBox(
                         width: 157.w,
-                        child: itemDescribedGridChipWidget(recipeData: context.read<PlansViewModel>().getOneTimeRecipesList[index], showInformationIcon: false),
+                        child: productGridChipWidget(recipeData: context.read<PlansViewModel>().getOneTimeRecipesList[index], showInformationIcon: false),
                       );
                     }),
                   ),

@@ -1,4 +1,5 @@
 import 'package:brunos_kitchen/widgets/cart_icon_widget.dart';
+import 'package:brunos_kitchen/widgets/gridChip/product_grid_chip_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
@@ -132,7 +133,7 @@ class ShopScreen extends StatelessWidget {
                               (index) {
                             return SizedBox(
                               width: 157.w,
-                              child: itemDescribedGridChipWidget(
+                              child: productGridChipWidget(
                                   recipeData: plansViewModel.getProductList[index], showInformationIcon: false),
                             );
                           }),

@@ -3,7 +3,6 @@
     <CLASSES>
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/google_maps_flutter_web-0.5.10" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/geolocator_android-4.6.1" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/flutter_facebook_auth-7.1.1" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/flutter_local_notifications-17.2.4" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/url_launcher_windows-3.1.2" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/shared_preferences_android-2.3.2" />
@@ -43,7 +42,6 @@
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/package_info_plus-8.3.0" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/firebase_messaging_web-4.0.0" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/flutter_stripe-11.3.0" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/flutter_credit_card-4.0.1" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/google_sign_in_web-0.12.4+4" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/shared_preferences_windows-2.4.1" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/stripe_android-11.3.0" />
@@ -78,6 +76,8 @@
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/file_selector_windows-0.9.3+2" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/geolocator_web-4.1.1" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/image_cropper_for_web-6.1.0" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/flutter_facebook_auth-7.1.1" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/flutter_credit_card-4.0.1" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
